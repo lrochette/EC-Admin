@@ -1,3 +1,8 @@
+2014-07-13  Laurent Rochette <lrochette@electric-cloud.com>
+ * EC-Admin.jar & EC-Admin.xml: new version 1.10.0
+     + Added a procedure to create a plugin and by extracting each step individually
+       in single files for finer granularity SCM check in.
+
 2014-06-18  Laurent Rochette <lrochette@electric-cloud.com>
  * EC-Admin.jar & EC-Admin.xml: new version 1.9.0
      + Added a hook to allow actions to be taken when the plugin changes state in createPluginFromProject
@@ -14,7 +19,7 @@
 2014-04-30 Laurent Rochette <lrochette@electric-cloud.com>
 
  * EC-Admin.jar & EC-Admin.xml: new version 1.7.0
-     + Added step to fix self refence to project in createPluginFromProject
+     + Added step to fix self reference to project in createPluginFromProject
      
 2014-04-29 Laurent Rochette <lrochette@electric-cloud.com>
 
