@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+  <key>EC-Admin</key>
+  <version>1.10.0.49</version>
+  <label>EC-Admin</label>
+  <description>A set of administrative tasks to help manage your server</description>
+  <help>help.xml</help>
+  <author>L. Rochette</author>
+  <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>
+
+  <commander-version min="4.1"/>
+
+    <!-- Specify a category for this plugin; this is used in filtered lists in the Plugin Manager.
+         Typically, it is set to System or Step.
+     -->
+  <category>Administration</category>
+ 	  <depends>EC-Core</depends>
+</plugin>
