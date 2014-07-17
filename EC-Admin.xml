@@ -4958,7 +4958,7 @@ software.&lt;/p>
         <propertyName>pluginBuildNumber</propertyName>
         <description />
         <expandable>1</expandable>
-        <value>63</value>
+        <value>65</value>
       </property>
       <property>
         <propertyName>version</propertyName>
@@ -5209,7 +5209,7 @@ Report the number of workflows.",
 
 @::createStepPickerSteps = (\%acquireSemaphore, \%artifactsCleanup, \%artifactsCleanup_byQuantity, \%createPluginFromProject, \%deleteObjects, \%deleteWorkspaceOrphans, \%jobCleanup_byResult, \%jobsCleanup, \%performanceMetrics, \%projectAsCode, \%releaseSemaphore, \%saveAllObjects, \%saveProjects, \%synchronizePlugins, \%workflowCleanup);
 
-</value></property><property><propertyName>project_version</propertyName><value>1.10.1.63</value></property></propertySheet>
+</value></property><property><propertyName>project_version</propertyName><value>1.10.1.65</value></property></propertySheet>
     <credential>
       <credentialName>adminLogin</credentialName>
       <description />
@@ -12634,10 +12634,10 @@ my $ec_setup = $projectXml->ownerDocument->createElement('property');
 $ec_setup->appendTextChild('propertyName',"ec_setup");
 $ec_setup->appendTextChild('value',"PLACEHOLDER");
 $projectPropertySheet->[0]->appendChild($ec_setup);
-# Add project_version -> 1.10.1.63 property
+# Add project_version -> 1.10.1.65 property
 my $project_version = $projectXml->ownerDocument->createElement('property');
 $project_version->appendTextChild('propertyName',"project_version");
-$project_version->appendTextChild('value','1.10.1.63');
+$project_version->appendTextChild('value','1.10.1.65');
 $projectPropertySheet->[0]->appendChild($project_version);
 
 # Replace some plugin values
@@ -12788,7 +12788,7 @@ if ($projectAsCode eq "true") {
 
   $ECsetup .= &lt;&lt; 'ENDOFPAC';
 if ($promoteAction eq 'promote') {
-    my $pluginName = 'EC-Admin-1.10.1.63';
+    my $pluginName = 'EC-Admin-1.10.1.65';
     my $pluginKey = 'EC-Admin';
 
     # The purpose of a "ProjectAsCode" plugin is to develop a PROJECT so it can be checked
@@ -13074,6 +13074,9 @@ my $pluginName="$[/myJob/pluginName]";
 my $version="$[/myJob/Version]";
 my $description="$[/myJob/pluginDescription]";
 
+# replace \n by HTML &lt;br/>
+$description =~ s#\n#&lt;br/>#;
+
 if ($author eq "") {
    $author="Electric Cloud";
 }
@@ -13097,7 +13100,7 @@ printf(FILE "\n&lt;plugin>\n");
 printf(FILE "  &lt;key>%s&lt;/key>\n", $pluginName);
 printf(FILE "  &lt;version>%s&lt;/version>\n", $version);
 printf(FILE "  &lt;label>%s&lt;/label>\n", $pluginName);
-printf(FILE "  &lt;description>%s&lt;/description>\n", $description);
+printf(FILE "  &lt;description>&lt;html>%s&lt;/html>&lt;/description>\n", $description);
 
 #
 # Create the help entry only if it exists
