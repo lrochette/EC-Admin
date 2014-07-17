@@ -15,12 +15,12 @@
               <property>
                 <propertyName>image</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/1268492/images/custom4d73a6511471f822c0a1.png</value>
+                <value>/commander/jobSteps/1293227/images/customa97dafa147341af08d1.png</value>
               </property>
               <property>
                 <propertyName>link</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/1268492/Performance Report.html</value>
+                <value>/commander/jobSteps/1293227/Performance Report.html</value>
               </property>
             </propertySheet>
           </property>
@@ -1064,6 +1064,56 @@
                     <propertyName>reportDate</propertyName>
                     <expandable>1</expandable>
                     <value>2014-07-10 02:01:05</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>152104</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1293227</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1293227</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2014-07-14 02:00:54</value>
                   </property>
                   <property>
                     <propertyName>reportType</propertyName>
@@ -4908,13 +4958,16 @@ software.&lt;/p>
         <propertyName>pluginBuildNumber</propertyName>
         <description />
         <expandable>1</expandable>
-        <value>49</value>
+        <value>51</value>
       </property>
       <property>
         <propertyName>version</propertyName>
         <description>Version of the EC-Admin project
 
 History:
+- version 1.10.1
+    + Added creation of CHANGELOG in projectAsCode.
+
 - version 1.10.0
     + Added a new procedure projectAsCode. See Help for details
 
@@ -5044,7 +5097,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>1.10.0</value>
+        <value>1.10.1</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value># Data that drives the create step picker registration for this plugin.
 my %acquireSemaphore = ( 
@@ -5156,7 +5209,7 @@ Report the number of workflows.",
 
 @::createStepPickerSteps = (\%acquireSemaphore, \%artifactsCleanup, \%artifactsCleanup_byQuantity, \%createPluginFromProject, \%deleteObjects, \%deleteWorkspaceOrphans, \%jobCleanup_byResult, \%jobsCleanup, \%performanceMetrics, \%projectAsCode, \%releaseSemaphore, \%saveAllObjects, \%saveProjects, \%synchronizePlugins, \%workflowCleanup);
 
-</value></property><property><propertyName>project_version</propertyName><value>1.10.0.49</value></property></propertySheet>
+</value></property><property><propertyName>project_version</propertyName><value>1.10.0.51</value></property></propertySheet>
     <credential>
       <credentialName>adminLogin</credentialName>
       <description />
@@ -11611,6 +11664,7 @@ if (-f $filename) {
 Changelog:
 --------------
 
+2014-07-17  lrochette   Added CHANGELOG creation
 2014-07-09  lrochette   Include projectAsCode option
 2014-06-18  lrochette   Added a hook to allow actions to be taken when the plugin changes state
 2014-05-08  lrochette   Added feature to save plugin as an artifact version
@@ -11651,6 +11705,16 @@ Changelog:
                 </property>
                 <property>
                   <propertyName>Category</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>Comment</propertyName>
                   <propertySheet>
                     <property>
                       <propertyName>formType</propertyName>
@@ -11942,6 +12006,13 @@ Changelog:
     &lt;/formElement> 
 
     &lt;formElement> 
+        &lt;label>Comment&lt;/label> 
+        &lt;property>Comment&lt;/property> 
+        &lt;documentation>Comment to add to the CHANGELOG.&lt;/documentation> 
+        &lt;type>entry&lt;/type>
+    &lt;/formElement> 
+  
+    &lt;formElement> 
         &lt;label>Directory&lt;/label> 
         &lt;property>directory&lt;/property> 
         &lt;documentation>Directory where the project is &lt;/documentation> 
@@ -12040,6 +12111,14 @@ Changelog:
         <description>The category used for the plugin list</description>
         <expansionDeferred>0</expansionDeferred>
         <required>1</required>
+        <type>entry</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>Comment</formalParameterName>
+        <defaultValue />
+        <description>Comment to add to description and changeLog</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
         <type>entry</type>
       </formalParameter>
       <formalParameter>
@@ -12160,6 +12239,9 @@ Changelog:
 my $pluginName="$[Plugin]";
 my $project="$[Project]";
 my $version="$[Version]";
+my $description="$[Description]";
+my $comment="$[Comment]";
+
 
 if ($pluginName eq "") {
   $pluginName=$project;
@@ -12172,6 +12254,18 @@ $ec->setProperty("/myJob/Version", $completeVersion);
 
 # If plugin name is empty default to the projectName
 $ec->setProperty("/myJob/pluginName", ($pluginName ne "") ? $pluginName : $project );
+
+# If description is empty, use the project description
+if ($description eq "") {
+  $description=getP("/projects/$project/description");
+}
+$description .= "\n$[/timestamp YYYY-MM-DD] $[/myJob/launchedByUser] $[comment]";
+$ec->setProperty("/myJob/pluginDescription", $description);
+
+
+
+
+
 </command>
         <condition />
         <description>Set up some job properties</description>
@@ -12540,10 +12634,10 @@ my $ec_setup = $projectXml->ownerDocument->createElement('property');
 $ec_setup->appendTextChild('propertyName',"ec_setup");
 $ec_setup->appendTextChild('value',"PLACEHOLDER");
 $projectPropertySheet->[0]->appendChild($ec_setup);
-# Add project_version -> 1.10.0.49 property
+# Add project_version -> 1.10.0.51 property
 my $project_version = $projectXml->ownerDocument->createElement('property');
 $project_version->appendTextChild('propertyName',"project_version");
-$project_version->appendTextChild('value','1.10.0.49');
+$project_version->appendTextChild('value','1.10.0.51');
 $projectPropertySheet->[0]->appendChild($project_version);
 
 # Replace some plugin values
@@ -12694,7 +12788,7 @@ if ($projectAsCode eq "true") {
 
   $ECsetup .= &lt;&lt; 'ENDOFPAC';
 if ($promoteAction eq 'promote') {
-    my $pluginName = 'EC-Admin-1.10.0.49';
+    my $pluginName = 'EC-Admin-1.10.0.51';
     my $pluginKey = 'EC-Admin';
 
     # The purpose of a "ProjectAsCode" plugin is to develop a PROJECT so it can be checked
@@ -12882,6 +12976,70 @@ close(FILE)
 </command>
         <condition />
         <description>create the build.xml</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName />
+        <parallel>0</parallel>
+        <postProcessor />
+        <precondition />
+        <releaseMode>none</releaseMode>
+        <resourceName>$[SDKResource]</resourceName>
+        <shell>ec-perl</shell>
+        <timeLimit />
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory />
+        <workspaceName />
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>create_CHANGELOG</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>#############################################################################
+#
+# Copyright 2014 Electric-Cloud Inc.
+#
+#############################################################################
+
+#############################################################################
+#
+# Parameters
+#
+#############################################################################
+my $project="$[Project]";
+my $comment="$[Comment]";
+
+my $version="$[/myJob/Version]";
+my $pluginName="$[/myJob/pluginName]";
+
+my $userFullName="$[/users/$[/myJob/launchedByUser]/fullUserName]";
+my $userEmail="$[/users/$[/myJob/launchedByUser]/email]";
+
+my $file="$[directory]/CHANGELOG";
+my @changelLogContent="";
+
+# If the CHANGELOG file exist, read it
+if (-f $file) {
+
+	unless (open FILE, '&lt;'.$file) {
+        printf("File: %s\n", $file);
+		die "\nUnable to read $file\n";
+	}
+    @changeLogContent=&lt;FILE>;
+}
+push @changeLogContent, "$[/timestamp YYYY-MM-DD $userFullName &lt;$userEmail>\n  * $comment\n\n";
+
+unless (open FILE, '>'.$file) {
+        printf("File: %s\n", $file);
+		die "\nUnable to write $file\n";
+}
+
+printf(FILE @changeLogContent);
+close(FILE);
+</command>
+        <condition />
+        <description>create the CHANGELOG file</description>
         <errorHandling>failProcedure</errorHandling>
         <exclusiveMode>none</exclusiveMode>
         <logFileName />
