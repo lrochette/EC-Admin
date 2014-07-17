@@ -4958,7 +4958,7 @@ software.&lt;/p>
         <propertyName>pluginBuildNumber</propertyName>
         <description />
         <expandable>1</expandable>
-        <value>51</value>
+        <value>52</value>
       </property>
       <property>
         <propertyName>version</propertyName>
@@ -5209,7 +5209,7 @@ Report the number of workflows.",
 
 @::createStepPickerSteps = (\%acquireSemaphore, \%artifactsCleanup, \%artifactsCleanup_byQuantity, \%createPluginFromProject, \%deleteObjects, \%deleteWorkspaceOrphans, \%jobCleanup_byResult, \%jobsCleanup, \%performanceMetrics, \%projectAsCode, \%releaseSemaphore, \%saveAllObjects, \%saveProjects, \%synchronizePlugins, \%workflowCleanup);
 
-</value></property><property><propertyName>project_version</propertyName><value>1.10.0.51</value></property></propertySheet>
+</value></property><property><propertyName>project_version</propertyName><value>1.10.0.52</value></property></propertySheet>
     <credential>
       <credentialName>adminLogin</credentialName>
       <description />
@@ -12634,10 +12634,10 @@ my $ec_setup = $projectXml->ownerDocument->createElement('property');
 $ec_setup->appendTextChild('propertyName',"ec_setup");
 $ec_setup->appendTextChild('value',"PLACEHOLDER");
 $projectPropertySheet->[0]->appendChild($ec_setup);
-# Add project_version -> 1.10.0.51 property
+# Add project_version -> 1.10.0.52 property
 my $project_version = $projectXml->ownerDocument->createElement('property');
 $project_version->appendTextChild('propertyName',"project_version");
-$project_version->appendTextChild('value','1.10.0.51');
+$project_version->appendTextChild('value','1.10.0.52');
 $projectPropertySheet->[0]->appendChild($project_version);
 
 # Replace some plugin values
@@ -12788,7 +12788,7 @@ if ($projectAsCode eq "true") {
 
   $ECsetup .= &lt;&lt; 'ENDOFPAC';
 if ($promoteAction eq 'promote') {
-    my $pluginName = 'EC-Admin-1.10.0.51';
+    my $pluginName = 'EC-Admin-1.10.0.52';
     my $pluginKey = 'EC-Admin';
 
     # The purpose of a "ProjectAsCode" plugin is to develop a PROJECT so it can be checked
@@ -13017,7 +13017,7 @@ my $userFullName="$[/users/$[/myJob/launchedByUser]/fullUserName]";
 my $userEmail="$[/users/$[/myJob/launchedByUser]/email]";
 
 my $file="$[directory]/CHANGELOG";
-my @changelLogContent="";
+my @changelLogContent=();
 
 # If the CHANGELOG file exist, read it
 if (-f $file) {
@@ -13027,6 +13027,8 @@ if (-f $file) {
 		die "\nUnable to read $file\n";
 	}
     @changeLogContent=&lt;FILE>;
+    printf("Content of CHANGELOG:\n");
+    print @changeLog;
 }
 push @changeLogContent, "$[/timestamp YYYY-MM-DD $userFullName &lt;$userEmail>\n  * $comment\n\n";
 
