@@ -16,12 +16,12 @@
               <property>
                 <propertyName>image</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/1268492/images/custom4d73a6511471f822c0a1.png</value>
+                <value>/commander/jobSteps/1293227/images/customa97dafa147341af08d1.png</value>
               </property>
               <property>
                 <propertyName>link</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/1268492/Performance Report.html</value>
+                <value>/commander/jobSteps/1293227/Performance Report.html</value>
               </property>
             </propertySheet>
           </property>
@@ -1065,6 +1065,56 @@
                     <propertyName>reportDate</propertyName>
                     <expandable>1</expandable>
                     <value>2014-07-10 02:01:05</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>152104</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1293227</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1293227</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2014-07-14 02:00:54</value>
                   </property>
                   <property>
                     <propertyName>reportType</propertyName>
@@ -4901,13 +4951,16 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>49</value>
+        <value>69</value>
       </property>
       <property>
         <propertyName>version</propertyName>
         <description>Version of the EC-Admin project
 
 History:
+- version 1.10.1
+    + Added creation of CHANGELOG in projectAsCode.
+
 - version 1.10.0
     + Added a new procedure projectAsCode. See Help for details
 
@@ -5037,7 +5090,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>1.10.0</value>
+        <value>1.10.1</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -9278,6 +9331,7 @@ Best: mssql or oracle</description>
 Changelog:
 --------------
 
+2014-07-17  lrochette   Added CHANGELOG creation
 2014-07-09  lrochette   Include projectAsCode option
 2014-06-18  lrochette   Added a hook to allow actions to be taken when the plugin changes state
 2014-05-08  lrochette   Added feature to save plugin as an artifact version
@@ -9318,6 +9372,16 @@ Changelog:
                 </property>
                 <property>
                   <propertyName>Category</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>Comment</propertyName>
                   <propertySheet>
                     <property>
                       <propertyName>formType</propertyName>
@@ -9609,6 +9673,13 @@ Changelog:
     &lt;/formElement&gt; 
 
     &lt;formElement&gt; 
+        &lt;label&gt;Comment&lt;/label&gt; 
+        &lt;property&gt;Comment&lt;/property&gt; 
+        &lt;documentation&gt;Comment to add to the CHANGELOG.&lt;/documentation&gt; 
+        &lt;type&gt;entry&lt;/type&gt;
+    &lt;/formElement&gt; 
+  
+    &lt;formElement&gt; 
         &lt;label&gt;Directory&lt;/label&gt; 
         &lt;property&gt;directory&lt;/property&gt; 
         &lt;documentation&gt;Directory where the project is &lt;/documentation&gt; 
@@ -9707,6 +9778,14 @@ Changelog:
         <description>The category used for the plugin list</description>
         <expansionDeferred>0</expansionDeferred>
         <required>1</required>
+        <type>entry</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>Comment</formalParameterName>
+        <defaultValue/>
+        <description>Comment to add to description and changeLog</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
         <type>entry</type>
       </formalParameter>
       <formalParameter>
@@ -10076,6 +10155,29 @@ Procedure is added only if property pluginExpose is set</description>
         <command>PLACEHOLDER</command>
         <condition/>
         <description>create the build.xml</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName>$[SDKResource]</resourceName>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>create_CHANGELOG</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition>$[/javascript "$[Comment]" != "" ]</condition>
+        <description>create the CHANGELOG file</description>
         <errorHandling>failProcedure</errorHandling>
         <exclusiveMode>none</exclusiveMode>
         <logFileName/>

@@ -54,6 +54,7 @@
 	['//project/procedure[procedureName="projectAsCode"]/step[stepName="createFileStructure"]/command', 'procedures/projectAsCode/steps/createFileStructure.pl'],
 	['//project/procedure[procedureName="projectAsCode"]/step[stepName="create_ec_setup.pl"]/command', 'procedures/projectAsCode/steps/create_ec_setup.pl.pl'],
 	['//project/procedure[procedureName="projectAsCode"]/step[stepName="create_build.xml"]/command', 'procedures/projectAsCode/steps/create_build.xml.pl'],
+	['//project/procedure[procedureName="projectAsCode"]/step[stepName="create_CHANGELOG"]/command', 'procedures/projectAsCode/steps/create_CHANGELOG.pl'],
 	['//project/procedure[procedureName="projectAsCode"]/step[stepName="create_plugin.xml"]/command', 'procedures/projectAsCode/steps/create_plugin.xml.pl'],
 	['//project/procedure[procedureName="projectAsCode"]/step[stepName="restore-ec_visibility"]/command', 'procedures/projectAsCode/steps/restore-ec_visibility.pl'],
 	['//project/procedure[procedureName="projectAsCode"]/step[stepName="createHelp.xml"]/command', 'procedures/projectAsCode/steps/createHelp.xml.pl'],

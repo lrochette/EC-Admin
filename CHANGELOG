@@ -1,3 +1,6 @@
+2014-07-198 System Administrator <lrochette@electric-cloud.com>
+  * Added CHANGELOG creation
+
 2014-07-13  Laurent Rochette <lrochette@electric-cloud.com>
  * EC-Admin.jar & EC-Admin.xml: new version 1.10.0
      + Added a procedure to create a plugin and by extracting each step individually

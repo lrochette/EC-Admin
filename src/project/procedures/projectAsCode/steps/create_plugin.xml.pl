@@ -1,13 +1,13 @@
 $[/myProject/scripts/perlHeaderJSON]
 
 my $project="$[Project]";
-my $description="$[Description]";
 my $author="$[Author]";
 my $email='$[Email]';
 my $category="$[Category]";
 
 my $pluginName="$[/myJob/pluginName]";
 my $version="$[/myJob/Version]";
+my $description="$[/myJob/pluginDescription]";
 
 if ($author eq "") {
    $author="Electric Cloud";
