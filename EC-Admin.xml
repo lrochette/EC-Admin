@@ -4958,13 +4958,17 @@ software.&lt;/p>
         <propertyName>pluginBuildNumber</propertyName>
         <description />
         <expandable>1</expandable>
-        <value>69</value>
+        <value>70</value>
       </property>
       <property>
         <propertyName>version</propertyName>
         <description>Version of the EC-Admin project
 
 History:
+- version 1.10.1
+    + Fixed date format in description for projectAsCode
+    + Appended the release comment to plugin description when it is present.
+ 
 - version 1.10.1
     + Added creation of CHANGELOG in projectAsCode.
 
@@ -5097,7 +5101,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>1.10.1</value>
+        <value>1.10.2</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value># Data that drives the create step picker registration for this plugin.
 my %acquireSemaphore = ( 
@@ -5209,7 +5213,7 @@ Report the number of workflows.",
 
 @::createStepPickerSteps = (\%acquireSemaphore, \%artifactsCleanup, \%artifactsCleanup_byQuantity, \%createPluginFromProject, \%deleteObjects, \%deleteWorkspaceOrphans, \%jobCleanup_byResult, \%jobsCleanup, \%performanceMetrics, \%projectAsCode, \%releaseSemaphore, \%saveAllObjects, \%saveProjects, \%synchronizePlugins, \%workflowCleanup);
 
-</value></property><property><propertyName>project_version</propertyName><value>1.10.1.69</value></property></propertySheet>
+</value></property><property><propertyName>project_version</propertyName><value>1.10.2.70</value></property></propertySheet>
     <credential>
       <credentialName>adminLogin</credentialName>
       <description />
@@ -6966,6 +6970,16 @@ Changelog:
                   </propertySheet>
                 </property>
                 <property>
+                  <propertyName>Comment</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
                   <propertyName>Description</propertyName>
                   <propertySheet>
                     <property>
@@ -7203,6 +7217,13 @@ Changelog:
     &lt;/formElement> 
 
     &lt;formElement> 
+        &lt;label>Comment&lt;/label> 
+        &lt;property>Comment&lt;/property> 
+        &lt;documentation>Comment to add to the CHANGELOG.&lt;/documentation> 
+        &lt;type>entry&lt;/type>
+    &lt;/formElement> 
+
+    &lt;formElement> 
         &lt;label>Fix self references&lt;/label>    
         &lt;property>fixSelfReferences&lt;/property> 
         &lt;documentation>Replace self reference to your project by an empty string.&lt;/documentation> 
@@ -7269,6 +7290,14 @@ Changelog:
         <description>The category used for the plugin list</description>
         <expansionDeferred>0</expansionDeferred>
         <required>1</required>
+        <type>entry</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>Comment</formalParameterName>
+        <defaultValue />
+        <description>Comment to add to description and changeLog</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
         <type>entry</type>
       </formalParameter>
       <formalParameter>
@@ -7357,6 +7386,8 @@ Changelog:
 my $pluginName="$[Plugin]";
 my $project="$[Project]";
 my $version="$[Version]";
+my $description="$[Description]";
+my $comment="$[Comment]";
 
 if ($pluginName eq "") {
   $pluginName=$project;
@@ -7366,6 +7397,20 @@ my $completeVersion="$version.$pluginBuildNumber";
 
 $ec->setProperty("summary", "Processing plugin $project-$completeVersion");
 $ec->setProperty("/myJob/Version", $completeVersion);
+
+# If plugin name is empty default to the projectName
+$ec->setProperty("/myJob/pluginName", ($pluginName ne "") ? $pluginName : $project );
+
+# If description is empty, use the project description
+if ($description eq "") {
+  $description=getP("/projects/$project/description");
+}
+
+if ($comment ne "") {
+  $description .= "\n$[/timestamp YYYY-MM-dd] $[/myJob/launchedByUser] $[comment]";
+}
+$ec->setProperty("/myJob/pluginDescription", $description);
+
 </command>
         <condition />
         <description>Set up some job properties</description>
@@ -7534,13 +7579,14 @@ foreach my $node ($res->findnodes("//procedure")) {
         <broadcast>0</broadcast>
         <command>$[/myProject/scripts/perlHeaderJSON]
 
-my $pluginName="$[Plugin]";
 my $project="$[Project]";
-my $version="$[/myJob/Version]";
-my $description="$[Description]";
 my $author="$[Author]";
 my $email='$[Email]';
 my $category="$[Category]";
+
+my $pluginName="$[/myJob/pluginName]";
+my $version="$[/myJob/Version]";
+my $description="$[/myJob/pluginDescription]";
 
 if ($author eq "") {
    $author="Electric Cloud";
@@ -7548,12 +7594,7 @@ if ($author eq "") {
 if ($email eq "") {
    $email="plugins\@electric-cloud.com";
 }
-if ($pluginName eq "") {
-  $pluginName="$[Project]";
-}
-if ($description eq "") {
-  $description=getP("/projects/$project/description");
-}
+
 
 my $file="plugin.$[/myJob/jobId]/META-INF/plugin.xml";
 unless (open FILE, '>'.$file) {
@@ -12261,7 +12302,7 @@ if ($description eq "") {
 }
 
 if ($comment ne "") {
-  $description .= "\n$[/timestamp YYYY-MM-DD] $[/myJob/launchedByUser] $[comment]";
+  $description .= "\n$[/timestamp YYYY-MM-dd] $[/myJob/launchedByUser] $[comment]";
 }
 $ec->setProperty("/myJob/pluginDescription", $description);
 
@@ -12637,10 +12678,10 @@ my $ec_setup = $projectXml->ownerDocument->createElement('property');
 $ec_setup->appendTextChild('propertyName',"ec_setup");
 $ec_setup->appendTextChild('value',"PLACEHOLDER");
 $projectPropertySheet->[0]->appendChild($ec_setup);
-# Add project_version -> 1.10.1.69 property
+# Add project_version -> 1.10.2.70 property
 my $project_version = $projectXml->ownerDocument->createElement('property');
 $project_version->appendTextChild('propertyName',"project_version");
-$project_version->appendTextChild('value','1.10.1.69');
+$project_version->appendTextChild('value','1.10.2.70');
 $projectPropertySheet->[0]->appendChild($project_version);
 
 # Replace some plugin values
@@ -12791,7 +12832,7 @@ if ($projectAsCode eq "true") {
 
   $ECsetup .= &lt;&lt; 'ENDOFPAC';
 if ($promoteAction eq 'promote') {
-    my $pluginName = 'EC-Admin-1.10.1.69';
+    my $pluginName = 'EC-Admin-1.10.2.70';
     my $pluginKey = 'EC-Admin';
 
     # The purpose of a "ProjectAsCode" plugin is to develop a PROJECT so it can be checked
