@@ -1,12 +1,13 @@
 $[/myProject/scripts/perlHeaderJSON]
 
-my $pluginName="$[Plugin]";
 my $project="$[Project]";
-my $version="$[/myJob/Version]";
-my $description="$[Description]";
 my $author="$[Author]";
 my $email='$[Email]';
 my $category="$[Category]";
+
+my $pluginName="$[/myJob/pluginName]";
+my $version="$[/myJob/Version]";
+my $description="$[/myJob/pluginDescription]";
 
 if ($author eq "") {
    $author="Electric Cloud";
@@ -14,12 +15,7 @@ if ($author eq "") {
 if ($email eq "") {
    $email="plugins\@electric-cloud.com";
 }
-if ($pluginName eq "") {
-  $pluginName="$[Project]";
-}
-if ($description eq "") {
-  $description=getP("/projects/$project/description");
-}
+
 
 my $file="plugin.$[/myJob/jobId]/META-INF/plugin.xml";
 unless (open FILE, '>'.$file) {

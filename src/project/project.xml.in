@@ -4951,13 +4951,17 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>69</value>
+        <value>71</value>
       </property>
       <property>
         <propertyName>version</propertyName>
         <description>Version of the EC-Admin project
 
 History:
+- version 1.10.1
+    + Fixed date format in description for projectAsCode
+    + Appended the release comment to plugin description when it is present.
+ 
 - version 1.10.1
     + Added creation of CHANGELOG in projectAsCode.
 
@@ -5090,7 +5094,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>1.10.1</value>
+        <value>1.10.2</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -6122,6 +6126,16 @@ Changelog:
                   </propertySheet>
                 </property>
                 <property>
+                  <propertyName>Comment</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
                   <propertyName>Description</propertyName>
                   <propertySheet>
                     <property>
@@ -6359,6 +6373,13 @@ Changelog:
     &lt;/formElement&gt; 
 
     &lt;formElement&gt; 
+        &lt;label&gt;Comment&lt;/label&gt; 
+        &lt;property&gt;Comment&lt;/property&gt; 
+        &lt;documentation&gt;Comment to add to the CHANGELOG.&lt;/documentation&gt; 
+        &lt;type&gt;entry&lt;/type&gt;
+    &lt;/formElement&gt; 
+
+    &lt;formElement&gt; 
         &lt;label&gt;Fix self references&lt;/label&gt;    
         &lt;property&gt;fixSelfReferences&lt;/property&gt; 
         &lt;documentation&gt;Replace self reference to your project by an empty string.&lt;/documentation&gt; 
@@ -6425,6 +6446,14 @@ Changelog:
         <description>The category used for the plugin list</description>
         <expansionDeferred>0</expansionDeferred>
         <required>1</required>
+        <type>entry</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>Comment</formalParameterName>
+        <defaultValue/>
+        <description>Comment to add to description and changeLog</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
         <type>entry</type>
       </formalParameter>
       <formalParameter>

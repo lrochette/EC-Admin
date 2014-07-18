@@ -30,7 +30,7 @@ if ($description eq "") {
 }
 
 if ($comment ne "") {
-  $description .= "\n$[/timestamp YYYY-MM-DD] $[/myJob/launchedByUser] $[comment]";
+  $description .= "\n$[/timestamp YYYY-MM-dd] $[/myJob/launchedByUser] $[comment]";
 }
 $ec->setProperty("/myJob/pluginDescription", $description);
 
