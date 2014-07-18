@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>1.10.2.71</version>
+  <version>1.10.2.72</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server
 2014-07-17 admin Appended the release comment to plugin descripti&#xc3;&#xa2;&#xc2;&#x80;&#xc2;&#xa6; &#xc3;&#xa2;&#xc2;&#x80;&#xc2;&#xa6;on when it is present</description>
