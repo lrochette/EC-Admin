@@ -5015,7 +5015,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>85</value>
+        <value>87</value>
       </property>
       <property>
         <propertyName>version</propertyName>
@@ -5927,12 +5927,12 @@ Changelog:
                             <property>
                               <propertyName>text</propertyName>
                               <expandable>1</expandable>
-                              <value>SDK</value>
+                              <value>Dev</value>
                             </property>
                             <property>
                               <propertyName>value</propertyName>
                               <expandable>1</expandable>
-                              <value>SDK</value>
+                              <value>DEV</value>
                             </property>
                           </propertySheet>
                         </property>
@@ -5942,19 +5942,34 @@ Changelog:
                             <property>
                               <propertyName>text</propertyName>
                               <expandable>1</expandable>
+                              <value>SDK</value>
+                            </property>
+                            <property>
+                              <propertyName>value</propertyName>
+                              <expandable>1</expandable>
+                              <value>SDK</value>
+                            </property>
+                          </propertySheet>
+                        </property>
+                        <property>
+                          <propertyName>option3</propertyName>
+                          <propertySheet>
+                            <property>
+                              <propertyName>text</propertyName>
+                              <expandable>1</expandable>
                               <value>Original</value>
                             </property>
                             <property>
                               <propertyName>value</propertyName>
                               <expandable>1</expandable>
-                              <value>original</value>
+                              <value>Original</value>
                             </property>
                           </propertySheet>
                         </property>
                         <property>
                           <propertyName>optionCount</propertyName>
                           <expandable>1</expandable>
-                          <value>2</value>
+                          <value>3</value>
                         </property>
                         <property>
                           <propertyName>type</propertyName>
