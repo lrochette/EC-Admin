@@ -5015,7 +5015,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>84</value>
+        <value>85</value>
       </property>
       <property>
         <propertyName>version</propertyName>
@@ -6097,7 +6097,7 @@ Changelog:
           <property>
             <propertyName>sourceFile</propertyName>
             <expandable>1</expandable>
-            <value>$[/server/Electric Cloud/dataDirectory]/plugins/@PLUGIN_NAME@/htdocs/logo_$[color].gif</value>
+            <value>$[/server/Electric Cloud/dataDirectory]/plugins/@PLUGIN_NAME@/htdocs/logo_$[logo].gif</value>
           </property>
           <property>
             <propertyName>sourceResourceName</propertyName>
