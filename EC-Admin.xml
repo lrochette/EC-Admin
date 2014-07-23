@@ -4810,7 +4810,7 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1&lt;/p>
 			production instances, this procedure is for you. It allows you to change 
 			the color of the top banner to make it easier to identify your different 
 			servers. Simply choose one of the offered solid boring colors. Feel free 
-			to &lt;a href="mailto:lrochette@electric-cloud.com"send me&lt;/a> new ones if 
+			to &lt;a href="mailto:lrochette@electric-cloud.com">send me&lt;/a> new ones if 
 			you have a more artistic touch than me. Or better
 			push your changes to 
 			&lt;a href="https://github.com/electriccommunity/EC-Admin">GitHub&lt;/a>.&lt;/p>
@@ -5020,7 +5020,7 @@ software.&lt;/p>
         <propertyName>pluginBuildNumber</propertyName>
         <description />
         <expandable>1</expandable>
-        <value>76</value>
+        <value>77</value>
       </property>
       <property>
         <propertyName>version</propertyName>
@@ -5278,7 +5278,7 @@ Report the number of workflows.",
 
 @::createStepPickerSteps = (\%acquireSemaphore, \%artifactsCleanup, \%artifactsCleanup_byQuantity, \%createPluginFromProject, \%deleteObjects, \%deleteWorkspaceOrphans, \%jobCleanup_byResult, \%jobsCleanup, \%performanceMetrics, \%projectAsCode, \%releaseSemaphore, \%saveAllObjects, \%saveProjects, \%synchronizePlugins, \%workflowCleanup);
 
-</value></property><property><propertyName>project_version</propertyName><value>1.11.0.76</value></property></propertySheet>
+</value></property><property><propertyName>project_version</propertyName><value>1.11.0.77</value></property></propertySheet>
     <credential>
       <credentialName>adminLogin</credentialName>
       <description />
@@ -6555,7 +6555,7 @@ foreach my $node ($nodeset->get_nodelist) {
           <property>
             <propertyName>sourceFile</propertyName>
             <expandable>1</expandable>
-            <value>$[/server/Electric Cloud/dataDirectory]/plugins/EC-Admin-1.11.0.76/htdocs/frame_bannerBg_$[color].gif</value>
+            <value>$[/server/Electric Cloud/dataDirectory]/plugins/EC-Admin-1.11.0.77/htdocs/frame_bannerBg_$[color].gif</value>
           </property>
           <property>
             <propertyName>sourceResourceName</propertyName>
@@ -12867,10 +12867,10 @@ my $ec_setup = $projectXml->ownerDocument->createElement('property');
 $ec_setup->appendTextChild('propertyName',"ec_setup");
 $ec_setup->appendTextChild('value',"PLACEHOLDER");
 $projectPropertySheet->[0]->appendChild($ec_setup);
-# Add project_version -> 1.11.0.76 property
+# Add project_version -> 1.11.0.77 property
 my $project_version = $projectXml->ownerDocument->createElement('property');
 $project_version->appendTextChild('propertyName',"project_version");
-$project_version->appendTextChild('value','1.11.0.76');
+$project_version->appendTextChild('value','1.11.0.77');
 $projectPropertySheet->[0]->appendChild($project_version);
 
 # Replace some plugin values
@@ -13021,7 +13021,7 @@ if ($projectAsCode eq "true") {
 
   $ECsetup .= &lt;&lt; 'ENDOFPAC';
 if ($promoteAction eq 'promote') {
-    my $pluginName = 'EC-Admin-1.11.0.76';
+    my $pluginName = 'EC-Admin-1.11.0.77';
     my $pluginKey = 'EC-Admin';
 
     # The purpose of a "ProjectAsCode" plugin is to develop a PROJECT so it can be checked

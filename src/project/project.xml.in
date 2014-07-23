@@ -4803,7 +4803,7 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1&lt;/p&gt;
 			production instances, this procedure is for you. It allows you to change 
 			the color of the top banner to make it easier to identify your different 
 			servers. Simply choose one of the offered solid boring colors. Feel free 
-			to &lt;a href="mailto:lrochette@electric-cloud.com"send me&lt;/a&gt; new ones if 
+			to &lt;a href="mailto:lrochette@electric-cloud.com"&gt;send me&lt;/a&gt; new ones if 
 			you have a more artistic touch than me. Or better
 			push your changes to 
 			&lt;a href="https://github.com/electriccommunity/EC-Admin"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
@@ -5013,7 +5013,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>76</value>
+        <value>77</value>
       </property>
       <property>
         <propertyName>version</propertyName>
