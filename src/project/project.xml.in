@@ -4779,16 +4779,14 @@ what it is now.&lt;/p&gt;
 
 		&lt;h2&gt;&lt;a name="installation"&gt;&lt;/a&gt;Installation&lt;/h2&gt;
 		
-        &lt;p&gt;This collection of procedures can be found on our &lt;a
-href="https://github.com/electriccommunity/electriccommander/tree/master/EC-
-Admin"&gt;community  repository on GitHub&lt;/a&gt;. It is available either as a simple
-XML project export or as  a plugin delivered in the form of a .jar file.&lt;/p&gt;
+        &lt;p&gt;This collection of procedures can be found on our 
+        	&lt;a href="https://github.com/electriccommunity/EC-Admin"&gt;GitHub
+        		repository&lt;/a&gt;. It is available as a plugin delivered 
+        	in the form of a .jar file or you can simply get the source code 
+        	and recompile it yourself.&lt;/p&gt;
 
 		&lt;p&gt;To install the plugin, use the "Install from File/URL" tab in the
 			administration/Plugins or use the "installPlugin" API.&lt;/p&gt;
-		&lt;p&gt;To install the .xml project export, use the "import "API call as 
-			following:
-		&lt;br/&gt;ectool import /path_to/EC-Admin.xml --disableSchedules 1&lt;/p&gt;
  
 		&lt;p&gt;To install on 4.0.x or or 4.1.x, import the EC_4.0.xml file. Be 
 			aware that some features are not present as the original project 
@@ -4798,8 +4796,8 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1&lt;/p&gt;
 		&lt;p&gt;If you get an error with the passKey, use the "--force 1" option&lt;/p&gt;
 
 		&lt;h1&gt;&lt;a name="look"&gt;&lt;/a&gt;Look and Feel&lt;/h1&gt;
-		&lt;h2&gt;changeBanerColor&lt;/h2&gt;
-		&lt;p&gt;If you work on multiple Commander servers like a developement and a 
+		&lt;h2&gt;changeBannerColor&lt;/h2&gt;
+		&lt;p&gt;If you work on multiple Commander servers like a development and a 
 			production instances, this procedure is for you. It allows you to change 
 			the color of the top banner to make it easier to identify your different 
 			servers. Simply choose one of the offered solid boring colors. Feel free 
@@ -4839,7 +4837,7 @@ directories. This is for customers with huge job or workflow database.&lt;/p&gt;
 		&lt;h1&gt;&lt;a name="plugin"&gt;&lt;/a&gt;Plugins&lt;/h1&gt;
 		&lt;h2&gt;Plugin Synchronization&lt;/h2&gt;
 		&lt;p&gt;This procedure synchronizes plugins between the server and 
-		a resource. Plugins are uploaded first as artifacts it has not been 
+		a resource. Plugins are uploaded first as artifacts if it has not been 
 		done already and then downloaded on the resource if it does not 
 		already exist in the plugins directory.&lt;/p&gt;
 		
@@ -4928,6 +4926,10 @@ if ( $promoteAction eq 'promote' ) {
 		upon promotion.&lt;br/&gt;
 		All the properties associated with createPluginFromProject still apply.&lt;/p&gt;
 
+		&lt;p&gt;&lt;u&gt;Note:&lt;/u&gt; EC-Admin is released on 
+		&lt;a href="https://github.com/electriccommunity/EC-Admin"&gt;GitHub&lt;/a&gt; using 
+		this procedure.&lt;/p&gt;
+
 		&lt;h1&gt;&lt;a name="artifacts"&gt;&lt;/a&gt;Artifact Management&lt;/h1&gt;
 		
 		&lt;h2&gt;artifactsCleanup&lt;/h2&gt; 
@@ -4935,7 +4937,7 @@ if ( $promoteAction eq 'promote' ) {
 		&lt;p&gt;A procedure to delete artifact versions older than a specified number
 of days. Same as for jobs above, a property allows preventing the deletion. Once the
 artifacts have been deleted, artifact repositories and artifact caches are
-cleaned as well (deleting stale artifacts).  A report only mode prevents any
+cleaned as well (deleting stale artifacts).  A report mode prevents any
 real deletion.&lt;/p&gt;
 
 		&lt;h2&gt;artifactsCleanup_byQuantity&lt;/h2&gt;
@@ -5013,7 +5015,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>77</value>
+        <value>78</value>
       </property>
       <property>
         <propertyName>version</propertyName>
