@@ -4619,15 +4619,10 @@ Report the number of workflows.",
 </value>
       </property>
       <property>
-        <propertyName>ec_visibilioty</propertyName>
+        <propertyName>ec_visibility</propertyName>
         <description/>
         <expandable>1</expandable>
         <value>all</value>
-      </property>
-      <property>
-        <propertyName>ec_visibility</propertyName>
-        <expandable>1</expandable>
-        <value>pickListOnly</value>
       </property>
       <property>
         <propertyName>help</propertyName>
@@ -5007,7 +5002,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>74</value>
+        <value>75</value>
       </property>
       <property>
         <propertyName>version</propertyName>
@@ -5862,7 +5857,7 @@ Changelog:
     <procedure>
       <procedureName>changeBannerColor</procedureName>
       <description>A procedure to change the color of the banner to easily identify your multiple servers (DEV vs. PROD)</description>
-      <jobNameTemplate>$[/myProject/jobTemplate]</jobNameTemplate>
+      <jobNameTemplate>$[/myProject/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -5966,7 +5961,7 @@ Changelog:
           <property>
             <propertyName>sourceFile</propertyName>
             <expandable>1</expandable>
-            <value>$[/server/Electric Cloud/dataDirectory]/plugins/@PLUGIN_NAME@/files/frame_bannerBg_$[color].gif</value>
+            <value>$[/server/Electric Cloud/dataDirectory]/plugins/@PLUGIN_NAME@/htdocs/frame_bannerBg_$[color].gif</value>
           </property>
           <property>
             <propertyName>sourceResourceName</propertyName>
