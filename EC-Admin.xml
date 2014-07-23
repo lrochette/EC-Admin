@@ -4627,7 +4627,6 @@ Report the number of workflows.",
       </property>
       <property>
         <propertyName>ec_visibility</propertyName>
-        <description />
         <expandable>1</expandable>
         <value>all</value>
       </property>
@@ -4776,6 +4775,7 @@ what it is now.&lt;/p>
 
 		&lt;p>It contains the following modules:&lt;/p>
 		&lt;ul>
+			&lt;li>&lt;a href="#look">Look and Feel&lt;/a>&lt;/li>
 			&lt;li>&lt;a href="#jobs">Jobs and Workspaces management&lt;/a>&lt;/li>
 			&lt;li>&lt;a href="#plugin">Plugins&lt;/a>&lt;/li>
 			&lt;li>&lt;a href="#artifacts">Artifacts management&lt;/a>&lt;/li>
@@ -4803,6 +4803,17 @@ XML project export or as  a plugin delivered in the form of a .jar file.&lt;/p>
 ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1&lt;/p>
 
 		&lt;p>If you get an error with the passKey, use the "--force 1" option&lt;/p>
+
+		&lt;h1>&lt;a name="look">&lt;/a>Look and Feel&lt;/h1>
+		&lt;h2>changeBanerColor&lt;/h2>
+		&lt;p>If you work on multiple Commander servers like a developement and a 
+			production instances, this procedure is for you. It allows you to change 
+			the color of the top banner to make it easier to identify your different 
+			servers. Simply choose one of the offered solid boring colors. Feel free 
+			to &lt;a href="mailto:lrochette@electric-cloud.com"send me&lt;/a> new ones if 
+			you have a more artistic touch than me. Or better
+			push your changes to 
+			&lt;a href="https://github.com/electriccommunity/EC-Admin">GitHub&lt;/a>.&lt;/p>
 
 		&lt;h1>&lt;a name="jobs">&lt;/a>Jobs and Workspaces management&lt;/h1>
 		&lt;p>This set of procedures will help you manage your old jobs and the 
@@ -5009,7 +5020,7 @@ software.&lt;/p>
         <propertyName>pluginBuildNumber</propertyName>
         <description />
         <expandable>1</expandable>
-        <value>75</value>
+        <value>76</value>
       </property>
       <property>
         <propertyName>version</propertyName>
@@ -5267,7 +5278,7 @@ Report the number of workflows.",
 
 @::createStepPickerSteps = (\%acquireSemaphore, \%artifactsCleanup, \%artifactsCleanup_byQuantity, \%createPluginFromProject, \%deleteObjects, \%deleteWorkspaceOrphans, \%jobCleanup_byResult, \%jobsCleanup, \%performanceMetrics, \%projectAsCode, \%releaseSemaphore, \%saveAllObjects, \%saveProjects, \%synchronizePlugins, \%workflowCleanup);
 
-</value></property><property><propertyName>project_version</propertyName><value>1.11.0.75</value></property></propertySheet>
+</value></property><property><propertyName>project_version</propertyName><value>1.11.0.76</value></property></propertySheet>
     <credential>
       <credentialName>adminLogin</credentialName>
       <description />
@@ -6461,7 +6472,7 @@ foreach my $node ($nodeset->get_nodelist) {
                         <property>
                           <propertyName>list</propertyName>
                           <expandable>1</expandable>
-                          <value>Yellow|Red|Purple|Default</value>
+                          <value>Yellow|Red|Purple|Green|Default</value>
                         </property>
                         <property>
                           <propertyName>type</propertyName>
@@ -6495,7 +6506,7 @@ foreach my $node ($nodeset->get_nodelist) {
       <formalParameter>
         <formalParameterName>color</formalParameterName>
         <defaultValue>Default</defaultValue>
-        <description />
+        <description>Choose the color of your banner</description>
         <expansionDeferred>0</expansionDeferred>
         <required>1</required>
         <type>select</type>
@@ -6503,7 +6514,7 @@ foreach my $node ($nodeset->get_nodelist) {
       <formalParameter>
         <formalParameterName>webResource</formalParameterName>
         <defaultValue>local</defaultValue>
-        <description />
+        <description>Name of the resource running on the webserver</description>
         <expansionDeferred>0</expansionDeferred>
         <required>0</required>
         <type>entry</type>
@@ -6539,12 +6550,12 @@ foreach my $node ($nodeset->get_nodelist) {
           <property>
             <propertyName>destinationWorkspaceName</propertyName>
             <expandable>1</expandable>
-            <value />
+            <value>default</value>
           </property>
           <property>
             <propertyName>sourceFile</propertyName>
             <expandable>1</expandable>
-            <value>$[/server/Electric Cloud/dataDirectory]/plugins/EC-Admin-1.11.0.75/htdocs/frame_bannerBg_$[color].gif</value>
+            <value>$[/server/Electric Cloud/dataDirectory]/plugins/EC-Admin-1.11.0.76/htdocs/frame_bannerBg_$[color].gif</value>
           </property>
           <property>
             <propertyName>sourceResourceName</propertyName>
@@ -6554,7 +6565,7 @@ foreach my $node ($nodeset->get_nodelist) {
           <property>
             <propertyName>sourceWorkspaceName</propertyName>
             <expandable>1</expandable>
-            <value />
+            <value>default</value>
           </property>
         </actualParameters>
         <propertySheet>
@@ -12856,10 +12867,10 @@ my $ec_setup = $projectXml->ownerDocument->createElement('property');
 $ec_setup->appendTextChild('propertyName',"ec_setup");
 $ec_setup->appendTextChild('value',"PLACEHOLDER");
 $projectPropertySheet->[0]->appendChild($ec_setup);
-# Add project_version -> 1.11.0.75 property
+# Add project_version -> 1.11.0.76 property
 my $project_version = $projectXml->ownerDocument->createElement('property');
 $project_version->appendTextChild('propertyName',"project_version");
-$project_version->appendTextChild('value','1.11.0.75');
+$project_version->appendTextChild('value','1.11.0.76');
 $projectPropertySheet->[0]->appendChild($project_version);
 
 # Replace some plugin values
@@ -13010,7 +13021,7 @@ if ($projectAsCode eq "true") {
 
   $ECsetup .= &lt;&lt; 'ENDOFPAC';
 if ($promoteAction eq 'promote') {
-    my $pluginName = 'EC-Admin-1.11.0.75';
+    my $pluginName = 'EC-Admin-1.11.0.76';
     my $pluginKey = 'EC-Admin';
 
     # The purpose of a "ProjectAsCode" plugin is to develop a PROJECT so it can be checked

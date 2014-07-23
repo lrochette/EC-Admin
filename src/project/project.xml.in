@@ -4620,7 +4620,6 @@ Report the number of workflows.",
       </property>
       <property>
         <propertyName>ec_visibility</propertyName>
-        <description/>
         <expandable>1</expandable>
         <value>all</value>
       </property>
@@ -4769,6 +4768,7 @@ what it is now.&lt;/p&gt;
 
 		&lt;p&gt;It contains the following modules:&lt;/p&gt;
 		&lt;ul&gt;
+			&lt;li&gt;&lt;a href="#look"&gt;Look and Feel&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#jobs"&gt;Jobs and Workspaces management&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#plugin"&gt;Plugins&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#artifacts"&gt;Artifacts management&lt;/a&gt;&lt;/li&gt;
@@ -4796,6 +4796,17 @@ XML project export or as  a plugin delivered in the form of a .jar file.&lt;/p&g
 ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1&lt;/p&gt;
 
 		&lt;p&gt;If you get an error with the passKey, use the "--force 1" option&lt;/p&gt;
+
+		&lt;h1&gt;&lt;a name="look"&gt;&lt;/a&gt;Look and Feel&lt;/h1&gt;
+		&lt;h2&gt;changeBanerColor&lt;/h2&gt;
+		&lt;p&gt;If you work on multiple Commander servers like a developement and a 
+			production instances, this procedure is for you. It allows you to change 
+			the color of the top banner to make it easier to identify your different 
+			servers. Simply choose one of the offered solid boring colors. Feel free 
+			to &lt;a href="mailto:lrochette@electric-cloud.com"send me&lt;/a&gt; new ones if 
+			you have a more artistic touch than me. Or better
+			push your changes to 
+			&lt;a href="https://github.com/electriccommunity/EC-Admin"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 
 		&lt;h1&gt;&lt;a name="jobs"&gt;&lt;/a&gt;Jobs and Workspaces management&lt;/h1&gt;
 		&lt;p&gt;This set of procedures will help you manage your old jobs and the 
@@ -5002,7 +5013,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>75</value>
+        <value>76</value>
       </property>
       <property>
         <propertyName>version</propertyName>
@@ -5878,7 +5889,7 @@ Changelog:
                         <property>
                           <propertyName>list</propertyName>
                           <expandable>1</expandable>
-                          <value>Yellow|Red|Purple|Default</value>
+                          <value>Yellow|Red|Purple|Green|Default</value>
                         </property>
                         <property>
                           <propertyName>type</propertyName>
@@ -5912,7 +5923,7 @@ Changelog:
       <formalParameter>
         <formalParameterName>color</formalParameterName>
         <defaultValue>Default</defaultValue>
-        <description/>
+        <description>Choose the color of your banner</description>
         <expansionDeferred>0</expansionDeferred>
         <required>1</required>
         <type>select</type>
@@ -5920,7 +5931,7 @@ Changelog:
       <formalParameter>
         <formalParameterName>webResource</formalParameterName>
         <defaultValue>local</defaultValue>
-        <description/>
+        <description>Name of the resource running on the webserver</description>
         <expansionDeferred>0</expansionDeferred>
         <required>0</required>
         <type>entry</type>
@@ -5956,7 +5967,7 @@ Changelog:
           <property>
             <propertyName>destinationWorkspaceName</propertyName>
             <expandable>1</expandable>
-            <value/>
+            <value>default</value>
           </property>
           <property>
             <propertyName>sourceFile</propertyName>
@@ -5971,7 +5982,7 @@ Changelog:
           <property>
             <propertyName>sourceWorkspaceName</propertyName>
             <expandable>1</expandable>
-            <value/>
+            <value>default</value>
           </property>
         </actualParameters>
         <propertySheet>
