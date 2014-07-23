@@ -5015,7 +5015,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>90</value>
+        <value>91</value>
       </property>
       <property>
         <propertyName>version</propertyName>
@@ -5927,7 +5927,7 @@ Changelog:
                             <property>
                               <propertyName>text</propertyName>
                               <expandable>1</expandable>
-                              <value>Dev</value>
+                              <value>Development</value>
                             </property>
                             <property>
                               <propertyName>value</propertyName>
@@ -5957,6 +5957,21 @@ Changelog:
                             <property>
                               <propertyName>text</propertyName>
                               <expandable>1</expandable>
+                              <value>Production</value>
+                            </property>
+                            <property>
+                              <propertyName>value</propertyName>
+                              <expandable>1</expandable>
+                              <value>PROD</value>
+                            </property>
+                          </propertySheet>
+                        </property>
+                        <property>
+                          <propertyName>option4</propertyName>
+                          <propertySheet>
+                            <property>
+                              <propertyName>text</propertyName>
+                              <expandable>1</expandable>
                               <value>Original</value>
                             </property>
                             <property>
@@ -5969,7 +5984,7 @@ Changelog:
                         <property>
                           <propertyName>optionCount</propertyName>
                           <expandable>1</expandable>
-                          <value>3</value>
+                          <value>4</value>
                         </property>
                         <property>
                           <propertyName>type</propertyName>
