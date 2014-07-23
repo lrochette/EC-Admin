@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>1.11.2.82</version>
+  <version>1.11.3.83</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server
-2014-07-22 admin Added version number to CHANGELOG</description>
+2014-07-22 lrochette Made pink color really pink instead of magenta</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>
