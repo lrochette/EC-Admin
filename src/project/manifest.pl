@@ -7,6 +7,7 @@
 	['//project/procedure[procedureName="artifactsCleanup_byQuantity"]/step[stepName="deleteAV"]/command', 'procedures/artifactsCleanup_byQuantity/steps/deleteAV.pl'],
 	['//project/procedure[procedureName="artifactsCleanup_byQuantity"]/step[stepName="dynamicCleanRepoProcedure"]/command', 'procedures/artifactsCleanup_byQuantity/steps/dynamicCleanRepoProcedure.pl'],
 	['//project/procedure[procedureName="artifactsCleanup_byQuantity"]/step[stepName="dynamicCacheCleaningProcedure"]/command', 'procedures/artifactsCleanup_byQuantity/steps/dynamicCacheCleaningProcedure.pl'],
+	['//project/procedure[procedureName="changeBannerColor"]/step[stepName="copyBannerFile"]/command', 'procedures/changeBannerColor/steps/copyBannerFile.sh'],
 	['//project/procedure[procedureName="cleanupCacheDirectory"]/step[stepName="clearInvalidArtifactVersions"]/command', 'procedures/cleanupCacheDirectory/steps/clearInvalidArtifactVersions.pl'],
 	['//project/procedure[procedureName="cleanupCacheDirectory"]/step[stepName="traverseCacheDirectory"]/command', 'procedures/cleanupCacheDirectory/steps/traverseCacheDirectory.pl'],
 	['//project/procedure[procedureName="cleanupCacheDirectory"]/step[stepName="timeBaseDeletion"]/command', 'procedures/cleanupCacheDirectory/steps/timeBaseDeletion.pl'],

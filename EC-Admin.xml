@@ -1,4 +1,4 @@
-<exportedData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="commander.xsd" version="61" buildLabel="build_4.2_71224_2014.04.04_08:13:52" buildVersion="4.2.4.71224" passkey="a30cbf89cfdae202c5227ce40fe867512295566d">
+<exportedData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="commander.xsd" version="61" buildLabel="build_4.2_74531_2014.06.26_10:37:53" buildVersion="4.2.5.74531" passkey="a30cbf89cfdae202c5227ce40fe867512295566d">
   <exportPath>/projects/EC-Admin</exportPath>
   <project>
     <projectName>EC-Admin</projectName>
@@ -15,12 +15,12 @@
               <property>
                 <propertyName>image</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/1293227/images/customa97dafa147341af08d1.png</value>
+                <value>/commander/jobSteps/1331552/images/customcc8a6314758275a3c1.png</value>
               </property>
               <property>
                 <propertyName>link</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/1293227/Performance Report.html</value>
+                <value>/commander/jobSteps/1331552/Performance Report.html</value>
               </property>
             </propertySheet>
           </property>
@@ -1114,6 +1114,56 @@
                     <propertyName>reportDate</propertyName>
                     <expandable>1</expandable>
                     <value>2014-07-14 02:00:54</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>156166</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1331552</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1331552</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2014-07-21 02:00:46</value>
                   </property>
                   <property>
                     <propertyName>reportType</propertyName>
@@ -4576,6 +4626,12 @@ Report the number of workflows.",
 </value>
       </property>
       <property>
+        <propertyName>ec_visibilioty</propertyName>
+        <description />
+        <expandable>1</expandable>
+        <value>all</value>
+      </property>
+      <property>
         <propertyName>ec_visibility</propertyName>
         <expandable>1</expandable>
         <value>pickListOnly</value>
@@ -4958,13 +5014,16 @@ software.&lt;/p>
         <propertyName>pluginBuildNumber</propertyName>
         <description />
         <expandable>1</expandable>
-        <value>73</value>
+        <value>74</value>
       </property>
       <property>
         <propertyName>version</propertyName>
         <description>Version of the EC-Admin project
 
 History:
+- version 1.11.0
+    + Added changeBannerColor procedure
+
 - version 1.10.1
     + Fixed date format in description for projectAsCode
     + Appended the release comment to plugin description when it is present.
@@ -5101,7 +5160,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>1.10.2</value>
+        <value>1.11.0</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value># Data that drives the create step picker registration for this plugin.
 my %acquireSemaphore = ( 
@@ -5213,7 +5272,7 @@ Report the number of workflows.",
 
 @::createStepPickerSteps = (\%acquireSemaphore, \%artifactsCleanup, \%artifactsCleanup_byQuantity, \%createPluginFromProject, \%deleteObjects, \%deleteWorkspaceOrphans, \%jobCleanup_byResult, \%jobsCleanup, \%performanceMetrics, \%projectAsCode, \%releaseSemaphore, \%saveAllObjects, \%saveProjects, \%synchronizePlugins, \%workflowCleanup);
 
-</value></property><property><propertyName>project_version</propertyName><value>1.10.2.73</value></property></propertySheet>
+</value></property><property><propertyName>project_version</propertyName><value>1.11.0.74</value></property></propertySheet>
     <credential>
       <credentialName>adminLogin</credentialName>
       <description />
@@ -6379,6 +6438,130 @@ foreach my $node ($nodeset->get_nodelist) {
         <timeLimitUnits>minutes</timeLimitUnits>
         <workingDirectory />
         <workspaceName />
+        <propertySheet>
+        </propertySheet>
+      </step>
+    </procedure>
+    <procedure>
+      <procedureName>changeBannerColor</procedureName>
+      <description>A procedure to change the color of the banner to easily identify your multiple servers (DEV vs. PROD)</description>
+      <jobNameTemplate>$[/myProject/jobTemplate]</jobNameTemplate>
+      <resourceName />
+      <timeLimit />
+      <timeLimitUnits>minutes</timeLimitUnits>
+      <workspaceName />
+      <propertySheet>
+        <property>
+          <propertyName>ec_customEditorData</propertyName>
+          <propertySheet>
+            <property>
+              <propertyName>parameters</propertyName>
+              <propertySheet>
+                <property>
+                  <propertyName>color</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>options</propertyName>
+                      <propertySheet>
+                        <property>
+                          <propertyName>list</propertyName>
+                          <expandable>1</expandable>
+                          <value>Yellow|Red|Purple|Default</value>
+                        </property>
+                        <property>
+                          <propertyName>type</propertyName>
+                          <expandable>1</expandable>
+                          <value>simpleList</value>
+                        </property>
+                      </propertySheet>
+                    </property>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>webResource</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+              </propertySheet>
+            </property>
+          </propertySheet>
+        </property>
+      </propertySheet>
+      <formalParameter>
+        <formalParameterName>color</formalParameterName>
+        <defaultValue>Default</defaultValue>
+        <description />
+        <expansionDeferred>0</expansionDeferred>
+        <required>1</required>
+        <type>select</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>webResource</formalParameterName>
+        <defaultValue>local</defaultValue>
+        <description />
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
+        <type>entry</type>
+      </formalParameter>
+      <step>
+        <stepName>copyBannerFile</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <condition />
+        <description />
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <parallel>0</parallel>
+        <precondition />
+        <releaseMode>none</releaseMode>
+        <resourceName />
+        <subprocedure>Remote Copy - Native</subprocedure>
+        <subproject>/plugins/EC-FileOps/project</subproject>
+        <timeLimit />
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workspaceName />
+        <actualParameters>
+          <property>
+            <propertyName>destinationFile</propertyName>
+            <expandable>1</expandable>
+            <value>$[/server/Electric Cloud/installDirectory]/apache/htdocs/commander/lib/images/frame_bannerBg.gif</value>
+          </property>
+          <property>
+            <propertyName>destinationResourceName</propertyName>
+            <expandable>1</expandable>
+            <value>$[webResource]</value>
+          </property>
+          <property>
+            <propertyName>destinationWorkspaceName</propertyName>
+            <expandable>1</expandable>
+            <value />
+          </property>
+          <property>
+            <propertyName>sourceFile</propertyName>
+            <expandable>1</expandable>
+            <value>$[/server/Electric Cloud/dataDirectory]/plugins/EC-Admin-1.11.0.74/files/frame_bannerBg_$[color].gif</value>
+          </property>
+          <property>
+            <propertyName>sourceResourceName</propertyName>
+            <expandable>1</expandable>
+            <value>local</value>
+          </property>
+          <property>
+            <propertyName>sourceWorkspaceName</propertyName>
+            <expandable>1</expandable>
+            <value />
+          </property>
+        </actualParameters>
         <propertySheet>
         </propertySheet>
       </step>
@@ -12678,10 +12861,10 @@ my $ec_setup = $projectXml->ownerDocument->createElement('property');
 $ec_setup->appendTextChild('propertyName',"ec_setup");
 $ec_setup->appendTextChild('value',"PLACEHOLDER");
 $projectPropertySheet->[0]->appendChild($ec_setup);
-# Add project_version -> 1.10.2.73 property
+# Add project_version -> 1.11.0.74 property
 my $project_version = $projectXml->ownerDocument->createElement('property');
 $project_version->appendTextChild('propertyName',"project_version");
-$project_version->appendTextChild('value','1.10.2.73');
+$project_version->appendTextChild('value','1.11.0.74');
 $projectPropertySheet->[0]->appendChild($project_version);
 
 # Replace some plugin values
@@ -12832,7 +13015,7 @@ if ($projectAsCode eq "true") {
 
   $ECsetup .= &lt;&lt; 'ENDOFPAC';
 if ($promoteAction eq 'promote') {
-    my $pluginName = 'EC-Admin-1.10.2.73';
+    my $pluginName = 'EC-Admin-1.11.0.74';
     my $pluginKey = 'EC-Admin';
 
     # The purpose of a "ProjectAsCode" plugin is to develop a PROJECT so it can be checked
