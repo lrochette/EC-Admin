@@ -5015,13 +5015,15 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>83</value>
+        <value>84</value>
       </property>
       <property>
         <propertyName>version</propertyName>
         <description>Version of the EC-Admin project
 
 History:
+- version 1.11.4
+    + Added option to modify the logo
 - version 1.11.3
     + Made pink color really pink instead of magenta
 - version 1.11.2
@@ -5167,7 +5169,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>1.11.3</value>
+        <value>1.11.4</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -5914,6 +5916,61 @@ Changelog:
                   </propertySheet>
                 </property>
                 <property>
+                  <propertyName>logo</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>options</propertyName>
+                      <propertySheet>
+                        <property>
+                          <propertyName>option1</propertyName>
+                          <propertySheet>
+                            <property>
+                              <propertyName>text</propertyName>
+                              <expandable>1</expandable>
+                              <value>SDK</value>
+                            </property>
+                            <property>
+                              <propertyName>value</propertyName>
+                              <expandable>1</expandable>
+                              <value>SDK</value>
+                            </property>
+                          </propertySheet>
+                        </property>
+                        <property>
+                          <propertyName>option2</propertyName>
+                          <propertySheet>
+                            <property>
+                              <propertyName>text</propertyName>
+                              <expandable>1</expandable>
+                              <value>Original</value>
+                            </property>
+                            <property>
+                              <propertyName>value</propertyName>
+                              <expandable>1</expandable>
+                              <value>original</value>
+                            </property>
+                          </propertySheet>
+                        </property>
+                        <property>
+                          <propertyName>optionCount</propertyName>
+                          <expandable>1</expandable>
+                          <value>2</value>
+                        </property>
+                        <property>
+                          <propertyName>type</propertyName>
+                          <expandable>1</expandable>
+                          <value>list</value>
+                        </property>
+                      </propertySheet>
+                    </property>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
                   <propertyName>webResource</propertyName>
                   <propertySheet>
                     <property>
@@ -5934,6 +5991,14 @@ Changelog:
         <description>Choose the color of your banner</description>
         <expansionDeferred>0</expansionDeferred>
         <required>1</required>
+        <type>select</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>logo</formalParameterName>
+        <defaultValue>SDK</defaultValue>
+        <description>The logo do Display</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
         <type>select</type>
       </formalParameter>
       <formalParameter>
@@ -5981,6 +6046,58 @@ Changelog:
             <propertyName>sourceFile</propertyName>
             <expandable>1</expandable>
             <value>$[/server/Electric Cloud/dataDirectory]/plugins/@PLUGIN_NAME@/htdocs/frame_bannerBg_$[color].gif</value>
+          </property>
+          <property>
+            <propertyName>sourceResourceName</propertyName>
+            <expandable>1</expandable>
+            <value>local</value>
+          </property>
+          <property>
+            <propertyName>sourceWorkspaceName</propertyName>
+            <expandable>1</expandable>
+            <value>default</value>
+          </property>
+        </actualParameters>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>copyLogoFile</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <condition/>
+        <description/>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <parallel>0</parallel>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName/>
+        <subprocedure>Remote Copy - Native</subprocedure>
+        <subproject>/plugins/EC-FileOps/project</subproject>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workspaceName/>
+        <actualParameters>
+          <property>
+            <propertyName>destinationFile</propertyName>
+            <expandable>1</expandable>
+            <value>$[/server/Electric Cloud/installDirectory]/apache/htdocs/commander/images/logo.gif</value>
+          </property>
+          <property>
+            <propertyName>destinationResourceName</propertyName>
+            <expandable>1</expandable>
+            <value>$[webResource]</value>
+          </property>
+          <property>
+            <propertyName>destinationWorkspaceName</propertyName>
+            <expandable>1</expandable>
+            <value>default</value>
+          </property>
+          <property>
+            <propertyName>sourceFile</propertyName>
+            <expandable>1</expandable>
+            <value>$[/server/Electric Cloud/dataDirectory]/plugins/@PLUGIN_NAME@/htdocs/logo_$[color].gif</value>
           </property>
           <property>
             <propertyName>sourceResourceName</propertyName>
