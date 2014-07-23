@@ -1,4 +1,7 @@
 2014-07-22 System Administrator <lrochette@electric-cloud.com>
+  * 1.11.2.82: Added version number to CHANGELOG
+
+2014-07-22 System Administrator <lrochette@electric-cloud.com>
  * EC-Admin.jar:  new version 1.11.1.81
      + Added pink and orange color for changeBannerColor procedure
 

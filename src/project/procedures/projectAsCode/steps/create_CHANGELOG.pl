@@ -33,7 +33,8 @@ if (-f $file) {
     printf("Content of CHANGELOG:\n");
     print @changeLogContent;
 }
-unshift (@changeLogContent,"$[/timestamp YYYY-MM-dd] $userFullName <$userEmail>\n  * $comment\n\n");
+unshift (@changeLogContent,"$[/timestamp YYYY-MM-dd] $userFullName <$userEmail>\n" . 
+						    "  * $version: $comment\n\n");
 
 unless (open FILE, '>'.$file) {
         printf("File: %s\n", $file);
