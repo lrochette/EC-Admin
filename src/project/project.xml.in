@@ -5015,13 +5015,15 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>79</value>
+        <value>81</value>
       </property>
       <property>
         <propertyName>version</propertyName>
         <description>Version of the EC-Admin project
 
 History:
+- version 1.11.1
+    + Added pink and orange color for changeBannerColor procedure
 - version 1.11.0
     + Added changeBannerColor procedure
 
@@ -5161,7 +5163,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>1.11.0</value>
+        <value>1.11.1</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -5891,7 +5893,7 @@ Changelog:
                         <property>
                           <propertyName>list</propertyName>
                           <expandable>1</expandable>
-                          <value>Yellow|Red|Purple|Green|Default</value>
+                          <value>Green|Orange|Pink|Purple|Red|Yellow|Default</value>
                         </property>
                         <property>
                           <propertyName>type</propertyName>
@@ -5924,7 +5926,7 @@ Changelog:
       </propertySheet>
       <formalParameter>
         <formalParameterName>color</formalParameterName>
-        <defaultValue>Default</defaultValue>
+        <defaultValue>Red</defaultValue>
         <description>Choose the color of your banner</description>
         <expansionDeferred>0</expansionDeferred>
         <required>1</required>
