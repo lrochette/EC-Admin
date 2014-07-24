@@ -102,3 +102,4 @@ foreach my $gav (keys %gavMap) {
 }
 
 $ec->setProperty("/myJob/candidatesForDeletion", {value => 1});
+

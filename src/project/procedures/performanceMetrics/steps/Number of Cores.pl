@@ -15,3 +15,4 @@ my $str=sprintf("%2d cores\n", $nbCores);
 printf("Number of cores: $str\n");
 checkValue("CORE", $nbCores, $str);
 
+

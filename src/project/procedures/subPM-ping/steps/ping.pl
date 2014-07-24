@@ -54,3 +54,4 @@ if ($OSNAME eq "linux") {
 
 checkValue("PING", $avgPing, $str);
 
+

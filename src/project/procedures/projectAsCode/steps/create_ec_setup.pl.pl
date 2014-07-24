@@ -20,8 +20,8 @@ if ($projectAsCode eq "true") {
 
   $ECsetup .= << 'ENDOFPAC';
 if ($promoteAction eq 'promote') {
-    my $pluginName = '@PLUGIN_NAME@';
-    my $pluginKey = '@PLUGIN_KEY@';
+    my $pluginName = 'EC-Admin-1.11.4.93';
+    my $pluginKey = 'EC-Admin';
 
     # The purpose of a "ProjectAsCode" plugin is to develop a PROJECT so it can be checked
     # into source control and properly revisioned.  End users of these projects shouldn't
@@ -122,4 +122,5 @@ print SETUP $ECsetup, "\n";
 close SETUP;
 
 $[/myProject/scripts/perlLib]
+
 

@@ -18,3 +18,4 @@ my $str=sprintf("%2.1f GHz\n", $CPUspeed);
 printf("CPU speed: $str\n");
 checkValue("CPU", $CPUspeed, $str);
 
+

@@ -42,3 +42,4 @@ InvokeCommander("SuppressLog", 'publishArtifactVersion',
 );
 
 $[/myProject/scripts/perlLib]
+

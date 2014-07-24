@@ -32,3 +32,4 @@ $ec->setProperty("/myJob/PM-numberOfProjects", $nb);
 
 $[/myProject/scripts/perlLibJSON]
 
+

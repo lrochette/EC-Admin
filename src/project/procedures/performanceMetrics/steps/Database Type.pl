@@ -32,3 +32,4 @@ InvokeCommander("SuppressLog", "setProperty", "summary", $DBType);
 
 exit(0);
 
+

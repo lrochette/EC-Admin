@@ -51,3 +51,4 @@ foreach my $node ($res->findnodes('//plugin') ){
 $ec->setProperty("summary", "$nbPlugins plugins uploaded");
 
 $[/myProject/scripts/perlLib]
+

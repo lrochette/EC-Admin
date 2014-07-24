@@ -33,3 +33,4 @@ if (my $jar_path=which('jar')) {
 
 $ec->setProperty("/myJob/report-urls/$pluginName-$Version.jar", "file:/$[/myWorkspace/agentUnixPath]/$[/myJob/directoryName]/$pluginName-$Version.jar");
 
+

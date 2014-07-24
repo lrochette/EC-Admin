@@ -13,3 +13,4 @@ my $file="$wkSpace/$[/myJob/directoryName]/plugin.$[/myJob/jobId]/META-INF/proje
 $ec->export($file, {path=> "/projects/" . $project, relocatable => "true"});
 
 $[/myProject/scripts/perlLib]
+

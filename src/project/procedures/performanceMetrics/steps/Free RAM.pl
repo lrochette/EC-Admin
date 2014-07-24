@@ -37,3 +37,4 @@ printf("RAM amount: $str\n");
 InvokeCommander("SuppressLog", "setProperty", "summary", $str);
 
 
+

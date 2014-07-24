@@ -12,3 +12,4 @@ mkdir ("htdocs");
 # Open persmission the project export can be written
 # in the case the server and agent run with 2 different users
 chmod (0777, "META-INF");
+

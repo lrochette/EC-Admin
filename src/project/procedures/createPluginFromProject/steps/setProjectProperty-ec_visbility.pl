@@ -12,3 +12,4 @@ if (! getP("/projects/$project/ec_visibility")) {
 }
 
 $[/myProject/scripts/perlLibJSON]
+

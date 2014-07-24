@@ -30,3 +30,4 @@ if ($res->{concurrentUsers}->{maxLicenses} != 999999) {
 }
 $ec->setProperty("summary", $str);
 
+

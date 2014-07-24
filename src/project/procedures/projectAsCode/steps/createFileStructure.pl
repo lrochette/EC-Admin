@@ -7,3 +7,4 @@ mkdir ("pages");
 mkdir ("cgi-bin");
 mkdir ("htdocs");
 
+

@@ -35,3 +35,4 @@ my $str=sprintf("%3.1f GB\n", $RAM);
 printf("RAM amount: $str\n");
 checkValue("RAM", $RAM, $str);
 
+

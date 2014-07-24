@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <exportedData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="commander.xsd" version="61" buildLabel="build_4.2_74531_2014.06.26_10:37:53" buildVersion="4.2.5.74531" passkey="a30cbf89cfdae202c5227ce40fe867512295566d">
-  <exportPath>/projects/@PLUGIN_KEY@</exportPath>
+  <exportPath>/projects/EC-Admin</exportPath>
   <project>
-    <projectName>@PLUGIN_KEY@</projectName>
+    <projectName>EC-Admin</projectName>
     <description>A set of tools to help with the administration of a Commander Server.</description>
     <resourceName/>
     <workspaceName/>
@@ -4512,113 +4512,6 @@ sub getPS
         </propertySheet>
       </property>
       <property>
-        <propertyName>ec_setup</propertyName>
-        <expandable>1</expandable>
-        <value># Data that drives the create step picker registration for this plugin.
-my %acquireSemaphore = ( 
-  label       =&gt; "EC-Admin - acquireSemaphore", 
-  procedure   =&gt; "acquireSemaphore", 
-  description =&gt; "Acquire a token in order to limit access to a set of procedures.", 
-  category    =&gt; "Administration" 
-);
-
-my %artifactsCleanup = ( 
-  label       =&gt; "EC-Admin - artifactsCleanup", 
-  procedure   =&gt; "artifactsCleanup", 
-  description =&gt; "Delete old artifacts and clean caches.", 
-  category    =&gt; "Administration" 
-);
-
-my %artifactsCleanup_byQuantity = ( 
-  label       =&gt; "EC-Admin - artifactsCleanup_byQuantity", 
-  procedure   =&gt; "artifactsCleanup_byQuantity", 
-  description =&gt; "Delete old artifacts and clean caches.", 
-  category    =&gt; "Administration" 
-);
-
-my %createPluginFromProject = ( 
-  label       =&gt; "EC-Admin - createPluginFromProject", 
-  procedure   =&gt; "createPluginFromProject", 
-  description =&gt; "Transform a project into a plugin", 
-  category    =&gt; "Administration" 
-);
-
-my %deleteObjects = ( 
-  label       =&gt; "EC-Admin - deleteObjects", 
-  procedure   =&gt; "deleteObjects", 
-  description =&gt; "A procedure to quickly delete jobs or workflows older than a specified number of days. It will NOT delete associated workspace job directories.", 
-  category    =&gt; "Administration" 
-);
-
-my %deleteWorkspaceOrphans = ( 
-  label       =&gt; "EC-Admin - deleteWorkspaceOrphans", 
-  procedure   =&gt; "deleteWorkspaceOrphans", 
-  description =&gt; "Procedure to crawl a workspace directory to find orphan jobs (directories without a matching job)", 
-  category    =&gt; "Administration" 
-);
-
-my %jobCleanup_byResult = ( 
-  label       =&gt; "EC-Admin - jobCleanup_byResult", 
-  procedure   =&gt; "jobCleanup_byResult", 
-  description =&gt; "Delete jobs and the associated workspace based on  result: keeping X goods/warning, and Y failed
-Report the number of jobs, the disk space and database space that could/was be deleted.", 
-  category    =&gt; "Administration" 
-);
-
-my %jobsCleanup = ( 
-  label       =&gt; "EC-Admin - jobsCleanup", 
-  procedure   =&gt; "jobsCleanup", 
-  description =&gt; "Delete jobs older than a number of days, along with the associated workspace.", 
-  category    =&gt; "Administration" 
-);
-
-my %performanceMetrics = ( 
-  label       =&gt; "EC-Admin - performanceMetrics", 
-  procedure   =&gt; "performanceMetrics", 
-  description =&gt; "Performance diagnostics for EC server and agents.", 
-  category    =&gt; "Administration" 
-);
-
-my %releaseSemaphore = ( 
-  label       =&gt; "EC-Admin - releaseSemaphore", 
-  procedure   =&gt; "releaseSemaphore", 
-  description =&gt; "Procedure to release the token.", 
-  category    =&gt; "Administration" 
-);
-
-my %saveAllObjects = ( 
-  label       =&gt; "EC-Admin - saveAllObjects", 
-  procedure   =&gt; "saveAllObjects", 
-  description =&gt; "This procedure brings a finer granularity to a full server export. For example to retrieve an object after a wrong action or a bad code change. By default it exports projects and each procedure individually. In addition by enabling the matching checkboxes, you can also export resources, resource pools, workspaces, users and groups.", 
-  category    =&gt; "Administration" 
-);
-
-my %saveProjects = ( 
-  label       =&gt; "EC-Admin - saveProjects", 
-  procedure   =&gt; "saveProjects", 
-  description =&gt; "a framework to export projects.", 
-  category    =&gt; "Administration" 
-);
-
-my %synchronizePlugins = ( 
-  label       =&gt; "EC-Admin - synchronizePlugins", 
-  procedure   =&gt; "synchronizePlugins", 
-  description =&gt; "A procedure to synchronize plugins between the server and a resource. Plugins are uploaded first as artifacts and downloaded on the resource if it does not already exist.", 
-  category    =&gt; "Administration" 
-);
-
-my %workflowCleanup = ( 
-  label       =&gt; "EC-Admin - workflowCleanup", 
-  procedure   =&gt; "workflowCleanup", 
-  description =&gt; "Delete workflows older than a number of days.
-Report the number of workflows.", 
-  category    =&gt; "Administration" 
-);
-
-@::createStepPickerSteps = (\%acquireSemaphore, \%artifactsCleanup, \%artifactsCleanup_byQuantity, \%createPluginFromProject, \%deleteObjects, \%deleteWorkspaceOrphans, \%jobCleanup_byResult, \%jobsCleanup, \%performanceMetrics, \%releaseSemaphore, \%saveAllObjects, \%saveProjects, \%synchronizePlugins, \%workflowCleanup);
-</value>
-      </property>
-      <property>
         <propertyName>ec_visibility</propertyName>
         <expandable>1</expandable>
         <value>all</value>
@@ -5015,7 +4908,12 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>93</value>
+        <value>94</value>
+      </property>
+      <property>
+        <propertyName>project_version</propertyName>
+        <expandable>1</expandable>
+        <value>1.11.4.93</value>
       </property>
       <property>
         <propertyName>version</propertyName>
@@ -5171,7 +5069,7 @@ History:
         <expandable>1</expandable>
         <value>1.11.4</value>
       </property>
-    <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
+    <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>1.11.4.93</value></property></propertySheet>
     <credential>
       <credentialName>adminLogin</credentialName>
       <description/>
@@ -5927,12 +5825,12 @@ Changelog:
                             <property>
                               <propertyName>text</propertyName>
                               <expandable>1</expandable>
-                              <value>Development</value>
+                              <value>Development (black)</value>
                             </property>
                             <property>
                               <propertyName>value</propertyName>
                               <expandable>1</expandable>
-                              <value>DEV</value>
+                              <value>logo-DEV_black.png</value>
                             </property>
                           </propertySheet>
                         </property>
@@ -5942,12 +5840,12 @@ Changelog:
                             <property>
                               <propertyName>text</propertyName>
                               <expandable>1</expandable>
-                              <value>SDK</value>
+                              <value>SDK (black)</value>
                             </property>
                             <property>
                               <propertyName>value</propertyName>
                               <expandable>1</expandable>
-                              <value>SDK</value>
+                              <value>logo-SDK_black.png</value>
                             </property>
                           </propertySheet>
                         </property>
@@ -5957,12 +5855,12 @@ Changelog:
                             <property>
                               <propertyName>text</propertyName>
                               <expandable>1</expandable>
-                              <value>Production</value>
+                              <value>Test (black)</value>
                             </property>
                             <property>
                               <propertyName>value</propertyName>
                               <expandable>1</expandable>
-                              <value>PROD</value>
+                              <value>logo-TEST_black.png</value>
                             </property>
                           </propertySheet>
                         </property>
@@ -5972,19 +5870,94 @@ Changelog:
                             <property>
                               <propertyName>text</propertyName>
                               <expandable>1</expandable>
+                              <value>Production (Black)</value>
+                            </property>
+                            <property>
+                              <propertyName>value</propertyName>
+                              <expandable>1</expandable>
+                              <value>logo-PROD_black.png</value>
+                            </property>
+                          </propertySheet>
+                        </property>
+                        <property>
+                          <propertyName>option5</propertyName>
+                          <propertySheet>
+                            <property>
+                              <propertyName>text</propertyName>
+                              <expandable>1</expandable>
+                              <value>Development (white)</value>
+                            </property>
+                            <property>
+                              <propertyName>value</propertyName>
+                              <expandable>1</expandable>
+                              <value>logo-DEV_white.png</value>
+                            </property>
+                          </propertySheet>
+                        </property>
+                        <property>
+                          <propertyName>option6</propertyName>
+                          <propertySheet>
+                            <property>
+                              <propertyName>text</propertyName>
+                              <expandable>1</expandable>
+                              <value>SDK (white)</value>
+                            </property>
+                            <property>
+                              <propertyName>value</propertyName>
+                              <expandable>1</expandable>
+                              <value>logo-SDK_white.png</value>
+                            </property>
+                          </propertySheet>
+                        </property>
+                        <property>
+                          <propertyName>option7</propertyName>
+                          <propertySheet>
+                            <property>
+                              <propertyName>text</propertyName>
+                              <expandable>1</expandable>
+                              <value>Test (white)</value>
+                            </property>
+                            <property>
+                              <propertyName>value</propertyName>
+                              <expandable>1</expandable>
+                              <value>logo-TEST_white.png</value>
+                            </property>
+                          </propertySheet>
+                        </property>
+                        <property>
+                          <propertyName>option8</propertyName>
+                          <propertySheet>
+                            <property>
+                              <propertyName>text</propertyName>
+                              <expandable>1</expandable>
+                              <value>Production (white)</value>
+                            </property>
+                            <property>
+                              <propertyName>value</propertyName>
+                              <expandable>1</expandable>
+                              <value>logo-PROD_white.png</value>
+                            </property>
+                          </propertySheet>
+                        </property>
+                        <property>
+                          <propertyName>option9</propertyName>
+                          <propertySheet>
+                            <property>
+                              <propertyName>text</propertyName>
+                              <expandable>1</expandable>
                               <value>Original</value>
                             </property>
                             <property>
                               <propertyName>value</propertyName>
                               <expandable>1</expandable>
-                              <value>original</value>
+                              <value>logo_original.gif</value>
                             </property>
                           </propertySheet>
                         </property>
                         <property>
                           <propertyName>optionCount</propertyName>
                           <expandable>1</expandable>
-                          <value>4</value>
+                          <value>9</value>
                         </property>
                         <property>
                           <propertyName>type</propertyName>
@@ -6025,7 +5998,7 @@ Changelog:
       </formalParameter>
       <formalParameter>
         <formalParameterName>logo</formalParameterName>
-        <defaultValue>SDK</defaultValue>
+        <defaultValue>logo-DEV_white.png</defaultValue>
         <description>The logo do Display</description>
         <expansionDeferred>0</expansionDeferred>
         <required>0</required>
@@ -6075,7 +6048,7 @@ Changelog:
           <property>
             <propertyName>sourceFile</propertyName>
             <expandable>1</expandable>
-            <value>$[/server/Electric Cloud/dataDirectory]/plugins/@PLUGIN_NAME@/htdocs/frame_bannerBg_$[color].gif</value>
+            <value>$[/server/Electric Cloud/dataDirectory]/plugins/EC-Admin-1.11.4.93/htdocs/frame_bannerBg_$[color].gif</value>
           </property>
           <property>
             <propertyName>sourceResourceName</propertyName>
@@ -6127,7 +6100,7 @@ Changelog:
           <property>
             <propertyName>sourceFile</propertyName>
             <expandable>1</expandable>
-            <value>$[/server/Electric Cloud/dataDirectory]/plugins/@PLUGIN_NAME@/htdocs/logo_$[logo].gif</value>
+            <value>$[/server/Electric Cloud/dataDirectory]/plugins/EC-Admin-1.11.4.93/htdocs/$[logo]</value>
           </property>
           <property>
             <propertyName>sourceResourceName</propertyName>

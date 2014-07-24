@@ -29,3 +29,4 @@ my $str=sprintf("%5.1f MB/s\n", $READspeed);
 printf("Disk Read speed: $str\n");
 checkValue("DISKREAD", $READspeed, $str);
 
+

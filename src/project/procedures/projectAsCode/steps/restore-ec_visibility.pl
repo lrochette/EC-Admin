@@ -8,3 +8,4 @@ if ( $[/javascript (typeof(myCall.ecVisibility) != "undefined") ?"1":"0" ] ) {
    $ec->setProperty("/projects/$project/ec_visibility", getP("/myCall/ecVisibility") );
 }
 $[/myProject/scripts/perlLibJSON]
+

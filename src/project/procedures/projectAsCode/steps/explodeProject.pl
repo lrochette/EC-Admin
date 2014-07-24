@@ -61,21 +61,21 @@ my $ec_setup = $projectXml->ownerDocument->createElement('property');
 $ec_setup->appendTextChild('propertyName',"ec_setup");
 $ec_setup->appendTextChild('value',"PLACEHOLDER");
 $projectPropertySheet->[0]->appendChild($ec_setup);
-# Add project_version -> @PLUGIN_VERSION@ property
+# Add project_version -> 1.11.4.93 property
 my $project_version = $projectXml->ownerDocument->createElement('property');
 $project_version->appendTextChild('propertyName',"project_version");
-$project_version->appendTextChild('value','@PLUGIN_VERSION@');
+$project_version->appendTextChild('value','1.11.4.93');
 $projectPropertySheet->[0]->appendChild($project_version);
 
 # Replace some plugin values
-#exportPath: /projects/exportPath -> /projects/@PLUGIN_KEY@
+#exportPath: /projects/exportPath -> /projects/EC-Admin
 my $exportPathNode=($projectXml->findnodes('/exportedData/exportPath'))[0];
 $exportPathNode->removeChildNodes;  # Remove the current value
-$exportPathNode->appendText('/projects/@PLUGIN_KEY@'); # Insert new value
-#projectName -> @PLUGIN_KEY@
+$exportPathNode->appendText('/projects/EC-Admin'); # Insert new value
+#projectName -> EC-Admin
 my $projectNameNode=($projectXml->findnodes('/exportedData/project/projectName'))[0];
 $projectNameNode->removeChildNodes;  # Remove the current value
-$projectNameNode->appendText('@PLUGIN_KEY@'); # Insert new value
+$projectNameNode->appendText('EC-Admin'); # Insert new value
 
 $manifest .= qq(\@files = \(
 	['//project/propertySheet/property[propertyName="ec_setup"]/value', 'ec_setup.pl'],\n);
@@ -125,5 +125,6 @@ close TEMPLATE;
 
 # delete the exported XML file
 unlink("project.xml")
+
 
 

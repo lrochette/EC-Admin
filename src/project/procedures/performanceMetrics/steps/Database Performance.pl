@@ -22,3 +22,4 @@ printf("Database performance: $str\n");
 checkValue("DBPERF", $DBperf, $str);
 
 
+

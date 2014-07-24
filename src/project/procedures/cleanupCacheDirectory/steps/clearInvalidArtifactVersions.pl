@@ -41,3 +41,4 @@ if ($executeDeletion eq "true") {
 } else {
     print "Would call cleanupArtifactCache on \"$dir\".\n";
 }
+

@@ -7,3 +7,4 @@ $ec->setProperty("summary", "semaphore = $semaphore");
 # Decrement local counter as well
 my $xPath = $ec->incrementProperty("/myJob/localSemaphoreCounter", -1);
 
+

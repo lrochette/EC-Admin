@@ -34,3 +34,4 @@ my $str=sprintf("%5.1f MB/s\n", $WRITEspeed);
 printf("Disk Write speed: $str\n");
 checkValue("DISKWRITE", $WRITEspeed, $str);
 
+
