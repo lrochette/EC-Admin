@@ -4908,7 +4908,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>99</value>
+        <value>100</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>
@@ -4920,6 +4920,8 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 1.11.5
+    + Professional versions of the logo in black and white
 - version 1.11.4
     + Added option to modify the logo
 - version 1.11.3
@@ -5067,7 +5069,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>1.11.4</value>
+        <value>1.11.5</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>1.11.4.93</value></property></propertySheet>
     <credential>
