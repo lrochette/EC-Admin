@@ -4512,11 +4512,6 @@ sub getPS
         </propertySheet>
       </property>
       <property>
-        <propertyName>ec_tags</propertyName>
-        <expandable>1</expandable>
-        <value> ec-admin github </value>
-      </property>
-      <property>
         <propertyName>ec_visibility</propertyName>
         <expandable>1</expandable>
         <value>all</value>
@@ -4913,7 +4908,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>95</value>
+        <value>96</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>
