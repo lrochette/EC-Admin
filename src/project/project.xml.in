@@ -4908,7 +4908,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>97</value>
+        <value>98</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>
@@ -6100,7 +6100,7 @@ Changelog:
           <property>
             <propertyName>sourceFile</propertyName>
             <expandable>1</expandable>
-            <value>$[/server/Electric Cloud/dataDirectory]/plugins/EC-Admin-1.11.4.93/htdocs/$[logo]</value>
+            <value>$[/server/Electric Cloud/dataDirectory]/plugins/@PLUGIN_NAME@/htdocs/$[logo]</value>
           </property>
           <property>
             <propertyName>sourceResourceName</propertyName>
