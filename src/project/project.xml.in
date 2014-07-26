@@ -16,12 +16,12 @@
               <property>
                 <propertyName>image</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/1331552/images/customcc8a6314758275a3c1.png</value>
+                <value>/commander/jobSteps/1357751/images/customeff17d14771e7015e1.png</value>
               </property>
               <property>
                 <propertyName>link</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/1331552/Performance Report.html</value>
+                <value>/commander/jobSteps/1357751/Performance Report.html</value>
               </property>
             </propertySheet>
           </property>
@@ -1165,6 +1165,56 @@
                     <propertyName>reportDate</propertyName>
                     <expandable>1</expandable>
                     <value>2014-07-21 02:00:46</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>159230</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1357751</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1357751</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2014-07-26 02:00:39</value>
                   </property>
                   <property>
                     <propertyName>reportType</propertyName>
@@ -4908,7 +4958,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>103</value>
+        <value>104</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>
@@ -4920,6 +4970,8 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 1.11.7
+    + Added option to add own logo file
 - version 1.11.6
     + Added overwrite option for projectAsCode
     + Protect PLUGIN_KEY and PLUGIN_VERSION in steps so they're not hardcoded when 
@@ -5073,7 +5125,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>1.11.6</value>
+        <value>1.11.7</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -5980,6 +6032,16 @@ Changelog:
                   </propertySheet>
                 </property>
                 <property>
+                  <propertyName>logoFile</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
                   <propertyName>webResource</propertyName>
                   <propertySheet>
                     <property>
@@ -6009,6 +6071,15 @@ Changelog:
         <expansionDeferred>0</expansionDeferred>
         <required>0</required>
         <type>select</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>logoFile</formalParameterName>
+        <defaultValue/>
+        <description>The path on the Commander server to your personal logo to replace the default one. This value will overwrite the logo parameter if it's not blank
+</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
+        <type>entry</type>
       </formalParameter>
       <formalParameter>
         <formalParameterName>webResource</formalParameterName>
@@ -6106,7 +6177,7 @@ Changelog:
           <property>
             <propertyName>sourceFile</propertyName>
             <expandable>1</expandable>
-            <value>$[/server/Electric Cloud/dataDirectory]/plugins/@PLUGIN_NAME@/htdocs/$[logo]</value>
+            <value>$[/javascript ("$[logoFile]" == "")? "$[/server/Electric Cloud/dataDirectory]/plugins/@PLUGIN_NAME@/htdocs/$[logo]" : "$[logoFile]" ;]</value>
           </property>
           <property>
             <propertyName>sourceResourceName</propertyName>
