@@ -4831,6 +4831,7 @@ days. It will also delete associated workspace job directories.&lt;/p&gt;
 		            &lt;tr&gt;
 		                &lt;td&gt;computeUsage&lt;/td&gt;
 		                &lt;td&gt;Check off to skip the computation of the number of steps and the file space used for the job. This will speed up the execution.&lt;/td&gt;
+		            &lt;/tr&gt;
 		        &lt;/tbody&gt;
 		    &lt;/table&gt;
 
@@ -5036,7 +5037,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>116</value>
+        <value>117</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>

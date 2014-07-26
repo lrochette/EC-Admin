@@ -259,6 +259,7 @@ days. It will also delete associated workspace job directories.</p>
 		            <tr>
 		                <td>computeUsage</td>
 		                <td>Check off to skip the computation of the number of steps and the file space used for the job. This will speed up the execution.</td>
+		            </tr>
 		        </tbody>
 		    </table>
 
