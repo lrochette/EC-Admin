@@ -4813,7 +4813,7 @@ days. It will also delete associated workspace job directories.&lt;/p&gt;
 		                &lt;td&gt;Indicate the number of days after which jobs are deleted&lt;/td&gt;
 		            &lt;/tr&gt;
 		            &lt;tr&gt;
-		                &lt;td&gt;jobType&lt;/td&gt;
+		                &lt;td class='required'&gt;jobType&lt;/td&gt;
 		                &lt;td&gt;Define what jobs should be deleted: Error, Warning or all.&lt;/td&gt;
 		            &lt;/tr&gt;
 		            &lt;tr&gt;
@@ -4825,11 +4825,11 @@ days. It will also delete associated workspace job directories.&lt;/p&gt;
 		                &lt;td&gt;A SQL pattern matching to automatically preserve some jobs. The pattern must solve for a LIKE statement.&lt;/td&gt;
 		            &lt;/tr&gt;
 		            &lt;tr&gt;
-		                &lt;td&gt;delete&lt;/td&gt;
+		                &lt;td class='required'&gt;delete&lt;/td&gt;
 		                &lt;td&gt;If this option is not set, only report is done. No real data are deleted&lt;/td&gt;
 		            &lt;/tr&gt;
 		            &lt;tr&gt;
-		                &lt;td&gt;computeUsage&lt;/td&gt;
+		                &lt;td class='required'&gt;computeUsage&lt;/td&gt;
 		                &lt;td&gt;Check off to skip the computation of the number of steps and the file space used for the job. This will speed up the execution.&lt;/td&gt;
 		            &lt;/tr&gt;
 		        &lt;/tbody&gt;
@@ -5037,7 +5037,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>118</value>
+        <value>119</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>

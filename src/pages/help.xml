@@ -241,7 +241,7 @@ days. It will also delete associated workspace job directories.</p>
 		                <td>Indicate the number of days after which jobs are deleted</td>
 		            </tr>
 		            <tr>
-		                <td>jobType</td>
+		                <td class='required'>jobType</td>
 		                <td>Define what jobs should be deleted: Error, Warning or all.</td>
 		            </tr>
 		            <tr>
@@ -253,11 +253,11 @@ days. It will also delete associated workspace job directories.</p>
 		                <td>A SQL pattern matching to automatically preserve some jobs. The pattern must solve for a LIKE statement.</td>
 		            </tr>
 		            <tr>
-		                <td>delete</td>
+		                <td class='required'>delete</td>
 		                <td>If this option is not set, only report is done. No real data are deleted</td>
 		            </tr>
 		            <tr>
-		                <td>computeUsage</td>
+		                <td class='required'>computeUsage</td>
 		                <td>Check off to skip the computation of the number of steps and the file space used for the job. This will speed up the execution.</td>
 		            </tr>
 		        </tbody>
