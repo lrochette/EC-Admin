@@ -4701,7 +4701,7 @@ sub getPS
 &lt;body&gt;
     &lt;div class="help"&gt;
 		&lt;h1&gt;EC-Admin&lt;/h1&gt;
-&lt;p&gt;Plugin Version $[/myProject/version]&lt;/p&gt;
+&lt;p&gt;Plugin Version @PLUGIN_VERSION@&lt;/p&gt;
     	&lt;hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" /&gt;
 
         &lt;p&gt;EC-Admin is a collection of administrative procedures to help you
@@ -5037,7 +5037,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>119</value>
+        <value>120</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>
