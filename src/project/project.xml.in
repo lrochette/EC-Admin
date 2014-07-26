@@ -4867,32 +4867,63 @@ directories. This is for customers with huge job or workflow database.&lt;/p&gt;
 		&lt;h3&gt;createPluginFromProject&lt;/h3&gt;
 		&lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; This procedure requires access to the jar or zip 
 			executable in the PATH.&lt;/p&gt;
-		&lt;p&gt;The procedure "createPluginFromProject" allows transforming a 
+		&lt;p&gt;The procedure "createPluginFromProject" allows the transformation of a 
 			project into a plugin. The parameters are the following:&lt;/p&gt;
-			&lt;dl&gt;
-				&lt;dt&gt;&lt;b&gt;Author:&lt;/b&gt;&lt;/dt&gt;
-				&lt;dd&gt;The author of the project to transform into a plugin&lt;/dd&gt;
-				&lt;dt&gt;&lt;b&gt;Email:&lt;/b&gt;&lt;/dt&gt;
-				&lt;dd&gt;The email of the author&lt;/dd&gt;
-				&lt;dt&gt;&lt;b&gt;Category&lt;/b&gt;:&lt;/dt&gt;
-				&lt;dd&gt;The category of the plugin. It helps filter the plugin in
-				the Plugins page and in the pickerList.&lt;/dd&gt;
-				&lt;dt&gt;&lt;b&gt;Description&lt;/b&gt;:&lt;/dt&gt;
-				&lt;dd&gt;The description of the plugin do display in the main 
-					plugin page. If left empty it will default to the 
-					description of the project.&lt;/dd&gt;
-				&lt;dt&gt;&lt;b&gt;installPlugin&lt;/b&gt;:&lt;/dt&gt;
-				&lt;dd&gt;A Boolean to install or not the plugin after creation&lt;/dd&gt;
-				&lt;dt&gt;&lt;b&gt;promotePlugin&lt;/b&gt;:&lt;/dt&gt;
-				&lt;dd&gt;A Boolean to promote or not the plugin after installation&lt;/dd&gt;
-				&lt;dt&gt;&lt;b&gt;Plugin&lt;/b&gt;:&lt;/dt&gt;
-				&lt;dd&gt;The name of the plugin. If left empty, it will default to
-				the project name.&lt;/dd&gt;
-				&lt;dt&gt;&lt;b&gt;Project&lt;/b&gt;:&lt;/dt&gt;
-				&lt;dd&gt;The name of the project to transform into a plugin&lt;/dd&gt;
-				&lt;dt&gt;&lt;b&gt;Version&lt;/b&gt;:&lt;/dt&gt;
-				&lt;dd&gt;Version of the plugin to create.&lt;/dd&gt;
-			&lt;/dl&gt;
+		    &lt;table class="grid"&gt;
+		        &lt;thead&gt;
+		            &lt;tr&gt;
+		                &lt;th&gt;Parameter&lt;/th&gt;
+		                &lt;th&gt;Description&lt;/th&gt;
+		            &lt;/tr&gt;
+		        &lt;/thead&gt;
+
+		        &lt;tbody&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;Author&lt;/td&gt;
+						&lt;td&gt;The author of the project to transform into a plugin&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;Email&lt;/td&gt;
+						&lt;td&gt;The email of the author&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;Category&lt;/td&gt;
+						&lt;td&gt;The category of the plugin. It helps filter the plugin in
+					the Plugins page and in the pickerList.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;Description&lt;/td&gt;
+						&lt;td&gt;The description of the plugin do display in the main 
+						plugin page. If left empty it will default to the 
+						description of the project.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;installPlugin&lt;/td&gt;
+						&lt;td&gt;A Boolean to install or not the plugin after creation&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;promotePlugin&lt;/td&gt;
+						&lt;td&gt;A Boolean to promote or not the plugin after installation&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;Plugin&lt;/td&gt;
+						&lt;td&gt;The name of the plugin. If left empty, it will default to
+					the project name.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;Project&lt;/td&gt;
+						&lt;td&gt;The name of the project to transform into a plugin&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;Version&lt;/td&gt;
+						&lt;td&gt;Version of the plugin to create.&lt;/td&gt;
+		            &lt;/tr&gt;
+		        &lt;/tbody&gt;
+		    &lt;/table&gt;
+
+			&lt;img src="../../plugins/@PLUGIN_KEY@/images/help/createPluginFromProject.png" 
+				 alt="createPluginFromProject parameters" /&gt;
+
 		&lt;p&gt;At the project level, you can define the following properties to 
 			alter the behavior of the plugin creation:&lt;/p&gt;
 			&lt;dl&gt;
@@ -5037,7 +5068,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>120</value>
+        <value>121</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>

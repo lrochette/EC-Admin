@@ -295,32 +295,63 @@ directories. This is for customers with huge job or workflow database.</p>
 		<h3>createPluginFromProject</h3>
 		<p><b>Note:</b> This procedure requires access to the jar or zip 
 			executable in the PATH.</p>
-		<p>The procedure "createPluginFromProject" allows transforming a 
+		<p>The procedure "createPluginFromProject" allows the transformation of a 
 			project into a plugin. The parameters are the following:</p>
-			<dl>
-				<dt><b>Author:</b></dt>
-				<dd>The author of the project to transform into a plugin</dd>
-				<dt><b>Email:</b></dt>
-				<dd>The email of the author</dd>
-				<dt><b>Category</b>:</dt>
-				<dd>The category of the plugin. It helps filter the plugin in
-				the Plugins page and in the pickerList.</dd>
-				<dt><b>Description</b>:</dt>
-				<dd>The description of the plugin do display in the main 
-					plugin page. If left empty it will default to the 
-					description of the project.</dd>
-				<dt><b>installPlugin</b>:</dt>
-				<dd>A Boolean to install or not the plugin after creation</dd>
-				<dt><b>promotePlugin</b>:</dt>
-				<dd>A Boolean to promote or not the plugin after installation</dd>
-				<dt><b>Plugin</b>:</dt>
-				<dd>The name of the plugin. If left empty, it will default to
-				the project name.</dd>
-				<dt><b>Project</b>:</dt>
-				<dd>The name of the project to transform into a plugin</dd>
-				<dt><b>Version</b>:</dt>
-				<dd>Version of the plugin to create.</dd>
-			</dl>
+		    <table class="grid">
+		        <thead>
+		            <tr>
+		                <th>Parameter</th>
+		                <th>Description</th>
+		            </tr>
+		        </thead>
+
+		        <tbody>
+					<tr>
+			        	<td>Author</td>
+						<td>The author of the project to transform into a plugin</td>
+		            </tr>
+					<tr>
+			        	<td>Email</td>
+						<td>The email of the author</td>
+		            </tr>
+					<tr>
+			        	<td>Category</td>
+						<td>The category of the plugin. It helps filter the plugin in
+					the Plugins page and in the pickerList.</td>
+		            </tr>
+					<tr>
+			        	<td>Description</td>
+						<td>The description of the plugin do display in the main 
+						plugin page. If left empty it will default to the 
+						description of the project.</td>
+		            </tr>
+					<tr>
+			        	<td>installPlugin</td>
+						<td>A Boolean to install or not the plugin after creation</td>
+		            </tr>
+					<tr>
+			        	<td>promotePlugin</td>
+						<td>A Boolean to promote or not the plugin after installation</td>
+		            </tr>
+					<tr>
+			        	<td>Plugin</td>
+						<td>The name of the plugin. If left empty, it will default to
+					the project name.</td>
+		            </tr>
+					<tr>
+			        	<td>Project</td>
+						<td>The name of the project to transform into a plugin</td>
+		            </tr>
+					<tr>
+			        	<td>Version</td>
+						<td>Version of the plugin to create.</td>
+		            </tr>
+		        </tbody>
+		    </table>
+
+			<img src="../../plugins/@PLUGIN_KEY@/images/help/createPluginFromProject.png" 
+				 alt="createPluginFromProject parameters" />
+
 		<p>At the project level, you can define the following properties to 
 			alter the behavior of the plugin creation:</p>
 			<dl>
