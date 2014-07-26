@@ -4879,23 +4879,49 @@ directories. This is for customers with huge job or workflow database.&lt;/p&gt;
 
 		        &lt;tbody&gt;
 					&lt;tr&gt;
-			        	&lt;td&gt;Author&lt;/td&gt;
-						&lt;td&gt;The author of the project to transform into a plugin&lt;/td&gt;
+			        	&lt;td class='required'&gt;Project&lt;/td&gt;
+						&lt;td&gt;The name of the project to transform into a plugin&lt;/td&gt;
 		            &lt;/tr&gt;
 					&lt;tr&gt;
-			        	&lt;td&gt;Email&lt;/td&gt;
-						&lt;td&gt;The email of the author&lt;/td&gt;
+			        	&lt;td&gt;Plugin&lt;/td&gt;
+						&lt;td&gt;The name of the plugin. If left empty, it will default to
+					the project name.&lt;/td&gt;
 		            &lt;/tr&gt;
 					&lt;tr&gt;
 			        	&lt;td&gt;Category&lt;/td&gt;
-						&lt;td&gt;The category of the plugin. It helps filter the plugin in
+						&lt;td&gt;The category of the plugin. It helps filter the plugin list in
 					the Plugins page and in the pickerList.&lt;/td&gt;
 		            &lt;/tr&gt;
 					&lt;tr&gt;
+			        	&lt;td  class='required'&gt;Version&lt;/td&gt;
+						&lt;td&gt;Version of the plugin to create. A build number is automatically 
+							added (after incrementation) to ensure uniq version numbers.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
 			        	&lt;td&gt;Description&lt;/td&gt;
-						&lt;td&gt;The description of the plugin do display in the main 
+						&lt;td&gt;The description of the plugin to display in the main 
 						plugin page. If left empty it will default to the 
 						description of the project.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;Author&lt;/td&gt;
+						&lt;td&gt;Name of he author of the project to transform into a plugin.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;Email&lt;/td&gt;
+						&lt;td&gt;The email of the author.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;Comment&lt;/td&gt;
+						&lt;td&gt;if this parameter is not empty, it will be added to the CHANGELOG for traceabiity.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;fixSelfReferences&lt;/td&gt;
+						&lt;td&gt;Replace self references to the project in sub-prceodure calls by an empty string to be sure the plugins= created will not call the original project instead of itself.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;createArtifact&lt;/td&gt;
+						&lt;td&gt;Save the new created plugin as an artifact version.&lt;/td&gt;
 		            &lt;/tr&gt;
 					&lt;tr&gt;
 			        	&lt;td&gt;installPlugin&lt;/td&gt;
@@ -4904,19 +4930,6 @@ directories. This is for customers with huge job or workflow database.&lt;/p&gt;
 					&lt;tr&gt;
 			        	&lt;td&gt;promotePlugin&lt;/td&gt;
 						&lt;td&gt;A Boolean to promote or not the plugin after installation&lt;/td&gt;
-		            &lt;/tr&gt;
-					&lt;tr&gt;
-			        	&lt;td&gt;Plugin&lt;/td&gt;
-						&lt;td&gt;The name of the plugin. If left empty, it will default to
-					the project name.&lt;/td&gt;
-		            &lt;/tr&gt;
-					&lt;tr&gt;
-			        	&lt;td&gt;Project&lt;/td&gt;
-						&lt;td&gt;The name of the project to transform into a plugin&lt;/td&gt;
-		            &lt;/tr&gt;
-					&lt;tr&gt;
-			        	&lt;td&gt;Version&lt;/td&gt;
-						&lt;td&gt;Version of the plugin to create.&lt;/td&gt;
 		            &lt;/tr&gt;
 		        &lt;/tbody&gt;
 		    &lt;/table&gt;
@@ -5068,7 +5081,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>121</value>
+        <value>122</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>

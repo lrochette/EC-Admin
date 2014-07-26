@@ -307,23 +307,49 @@ directories. This is for customers with huge job or workflow database.</p>
 
 		        <tbody>
 					<tr>
-			        	<td>Author</td>
-						<td>The author of the project to transform into a plugin</td>
+			        	<td class='required'>Project</td>
+						<td>The name of the project to transform into a plugin</td>
 		            </tr>
 					<tr>
-			        	<td>Email</td>
-						<td>The email of the author</td>
+			        	<td>Plugin</td>
+						<td>The name of the plugin. If left empty, it will default to
+					the project name.</td>
 		            </tr>
 					<tr>
 			        	<td>Category</td>
-						<td>The category of the plugin. It helps filter the plugin in
+						<td>The category of the plugin. It helps filter the plugin list in
 					the Plugins page and in the pickerList.</td>
 		            </tr>
 					<tr>
+			        	<td  class='required'>Version</td>
+						<td>Version of the plugin to create. A build number is automatically 
+							added (after incrementation) to ensure uniq version numbers.</td>
+		            </tr>
+					<tr>
 			        	<td>Description</td>
-						<td>The description of the plugin do display in the main 
+						<td>The description of the plugin to display in the main 
 						plugin page. If left empty it will default to the 
 						description of the project.</td>
+		            </tr>
+					<tr>
+			        	<td>Author</td>
+						<td>Name of he author of the project to transform into a plugin.</td>
+		            </tr>
+					<tr>
+			        	<td>Email</td>
+						<td>The email of the author.</td>
+		            </tr>
+					<tr>
+			        	<td>Comment</td>
+						<td>if this parameter is not empty, it will be added to the CHANGELOG for traceabiity.</td>
+		            </tr>
+					<tr>
+			        	<td>fixSelfReferences</td>
+						<td>Replace self references to the project in sub-prceodure calls by an empty string to be sure the plugins= created will not call the original project instead of itself.</td>
+		            </tr>
+					<tr>
+			        	<td>createArtifact</td>
+						<td>Save the new created plugin as an artifact version.</td>
 		            </tr>
 					<tr>
 			        	<td>installPlugin</td>
@@ -332,19 +358,6 @@ directories. This is for customers with huge job or workflow database.</p>
 					<tr>
 			        	<td>promotePlugin</td>
 						<td>A Boolean to promote or not the plugin after installation</td>
-		            </tr>
-					<tr>
-			        	<td>Plugin</td>
-						<td>The name of the plugin. If left empty, it will default to
-					the project name.</td>
-		            </tr>
-					<tr>
-			        	<td>Project</td>
-						<td>The name of the project to transform into a plugin</td>
-		            </tr>
-					<tr>
-			        	<td>Version</td>
-						<td>Version of the plugin to create.</td>
 		            </tr>
 		        </tbody>
 		    </table>
