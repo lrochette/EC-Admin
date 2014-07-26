@@ -4890,7 +4890,7 @@ directories. This is for customers with huge job or workflow database.&lt;/p&gt;
 					&lt;tr&gt;
 			        	&lt;td&gt;Category&lt;/td&gt;
 						&lt;td&gt;The category of the plugin. It helps filter the plugin list in
-					the Plugins page and in the pickerList.&lt;/td&gt;
+					the Plugins page and in the picker list.&lt;/td&gt;
 		            &lt;/tr&gt;
 					&lt;tr&gt;
 			        	&lt;td  class='required'&gt;Version&lt;/td&gt;
@@ -4970,11 +4970,11 @@ if ( $promoteAction eq 'promote' ) {
 			&lt;dl&gt;
 				&lt;dt&gt;&lt;b&gt;exposeToPlugin:&lt;/b&gt;&lt;/dt&gt;
 				&lt;dd&gt;This property if set to 1 will add the procedure to 
-					ec_setup to be shown in the procedure pickerList when 
+					ec_setup to be shown in the procedure picker list when 
 					choosing a plugin step.&lt;/dd&gt;
 				&lt;dt&gt;&lt;b&gt;descriptionForPlugin:&lt;/b&gt;&lt;/dt&gt;
 				&lt;dd&gt;This property will be shown as the description in the 
-					pickerList mentioned above. If it's empty or non-existent,
+					picker list mentioned above. If it's empty or non-existent,
 					 the description will be description of the procedure 
 					 itself.&lt;/dd&gt;
 			&lt;/dl&gt;
@@ -4992,7 +4992,95 @@ if ( $promoteAction eq 'promote' ) {
 		upon promotion.&lt;br/&gt;
 		All the properties associated with createPluginFromProject still apply.&lt;/p&gt;
 
-		&lt;p&gt;&lt;u&gt;Note:&lt;/u&gt; EC-Admin is released on 
+		    &lt;table class="grid"&gt;
+		        &lt;thead&gt;
+		            &lt;tr&gt;
+		                &lt;th&gt;Parameter&lt;/th&gt;
+		                &lt;th&gt;Description&lt;/th&gt;
+		            &lt;/tr&gt;
+		        &lt;/thead&gt;
+
+		        &lt;tbody&gt;
+					&lt;tr&gt;
+			        	&lt;td class='required'&gt;Project&lt;/td&gt;
+						&lt;td&gt;The name of the project to transform into a plugin&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;Plugin&lt;/td&gt;
+						&lt;td&gt;The name of the plugin. If left empty, it will default to
+					the project name.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;Category&lt;/td&gt;
+						&lt;td&gt;The category of the plugin. It helps filter the plugin list in
+					the Plugins page and in the picker list.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td  class='required'&gt;Version&lt;/td&gt;
+						&lt;td&gt;Version of the plugin to create. A build number is automatically 
+							added (after incrementation) to ensure uniq version numbers.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;Description&lt;/td&gt;
+						&lt;td&gt;The description of the plugin to display in the main 
+						plugin page. If left empty it will default to the 
+						description of the project.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;Author&lt;/td&gt;
+						&lt;td&gt;Name of he author of the project to transform into a plugin.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;Email&lt;/td&gt;
+						&lt;td&gt;The email of the author.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;Comment&lt;/td&gt;
+						&lt;td&gt;if this parameter is not empty, it will be added to the CHANGELOG for traceabiity.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;Directory&lt;/td&gt;
+						&lt;td&gt;The name of the directory where to create the complete file structure. Typically a directory you well check in in your SCM.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;SDK resource&lt;/td&gt;
+						&lt;td&gt;The name of an agent where the Commander SDK is installed. Required to build the plugin.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;SDK Location&lt;/td&gt;
+						&lt;td&gt;The path where the COmmander SDK is installed on the above resources..&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;fixSelfReferences&lt;/td&gt;
+						&lt;td&gt;Replace self references to the project in sub-prceodure calls by an empty string to be sure the plugins= created will not call the original project instead of itself.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;overwrite&lt;/td&gt;
+						&lt;td&gt;if the ec_setup.pl already exists, it is not overwritten. Check this parameter overwrite with a content dynamically generated based on project properties.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;cprojectAsCode&lt;/td&gt;
+						&lt;td&gt;Include a bit of code to revert the plugin to a project upon promotion if this option is checked.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;createArtifact&lt;/td&gt;
+						&lt;td&gt;Save the new created plugin as an artifact version.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;installPlugin&lt;/td&gt;
+						&lt;td&gt;A Boolean to install or not the plugin after creation&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;promotePlugin&lt;/td&gt;
+						&lt;td&gt;A Boolean to promote or not the plugin after installation&lt;/td&gt;
+		            &lt;/tr&gt;
+		        &lt;/tbody&gt;
+		    &lt;/table&gt;
+
+			&lt;img src="../../plugins/@PLUGIN_KEY@/images/help/projectAsCode.png" 
+				 alt="projectAsCode parameters" /&gt;
+
+		&lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; EC-Admin is released on 
 		&lt;a href="https://github.com/electriccommunity/EC-Admin"&gt;GitHub&lt;/a&gt; using 
 		this procedure.&lt;/p&gt;
 
@@ -5081,7 +5169,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>122</value>
+        <value>123</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>

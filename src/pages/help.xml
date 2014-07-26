@@ -318,7 +318,7 @@ directories. This is for customers with huge job or workflow database.</p>
 					<tr>
 			        	<td>Category</td>
 						<td>The category of the plugin. It helps filter the plugin list in
-					the Plugins page and in the pickerList.</td>
+					the Plugins page and in the picker list.</td>
 		            </tr>
 					<tr>
 			        	<td  class='required'>Version</td>
@@ -398,11 +398,11 @@ if ( $promoteAction eq 'promote' ) {
 			<dl>
 				<dt><b>exposeToPlugin:</b></dt>
 				<dd>This property if set to 1 will add the procedure to 
-					ec_setup to be shown in the procedure pickerList when 
+					ec_setup to be shown in the procedure picker list when 
 					choosing a plugin step.</dd>
 				<dt><b>descriptionForPlugin:</b></dt>
 				<dd>This property will be shown as the description in the 
-					pickerList mentioned above. If it's empty or non-existent,
+					picker list mentioned above. If it's empty or non-existent,
 					 the description will be description of the procedure 
 					 itself.</dd>
 			</dl>
@@ -420,7 +420,95 @@ if ( $promoteAction eq 'promote' ) {
 		upon promotion.<br/>
 		All the properties associated with createPluginFromProject still apply.</p>
 
-		<p><u>Note:</u> EC-Admin is released on 
+		    <table class="grid">
+		        <thead>
+		            <tr>
+		                <th>Parameter</th>
+		                <th>Description</th>
+		            </tr>
+		        </thead>
+
+		        <tbody>
+					<tr>
+			        	<td class='required'>Project</td>
+						<td>The name of the project to transform into a plugin</td>
+		            </tr>
+					<tr>
+			        	<td>Plugin</td>
+						<td>The name of the plugin. If left empty, it will default to
+					the project name.</td>
+		            </tr>
+					<tr>
+			        	<td>Category</td>
+						<td>The category of the plugin. It helps filter the plugin list in
+					the Plugins page and in the picker list.</td>
+		            </tr>
+					<tr>
+			        	<td  class='required'>Version</td>
+						<td>Version of the plugin to create. A build number is automatically 
+							added (after incrementation) to ensure uniq version numbers.</td>
+		            </tr>
+					<tr>
+			        	<td>Description</td>
+						<td>The description of the plugin to display in the main 
+						plugin page. If left empty it will default to the 
+						description of the project.</td>
+		            </tr>
+					<tr>
+			        	<td>Author</td>
+						<td>Name of he author of the project to transform into a plugin.</td>
+		            </tr>
+					<tr>
+			        	<td>Email</td>
+						<td>The email of the author.</td>
+		            </tr>
+					<tr>
+			        	<td>Comment</td>
+						<td>if this parameter is not empty, it will be added to the CHANGELOG for traceabiity.</td>
+		            </tr>
+					<tr>
+			        	<td>Directory</td>
+						<td>The name of the directory where to create the complete file structure. Typically a directory you well check in in your SCM.</td>
+		            </tr>
+					<tr>
+			        	<td>SDK resource</td>
+						<td>The name of an agent where the Commander SDK is installed. Required to build the plugin.</td>
+		            </tr>
+					<tr>
+			        	<td>SDK Location</td>
+						<td>The path where the COmmander SDK is installed on the above resources..</td>
+		            </tr>
+					<tr>
+			        	<td>fixSelfReferences</td>
+						<td>Replace self references to the project in sub-prceodure calls by an empty string to be sure the plugins= created will not call the original project instead of itself.</td>
+		            </tr>
+					<tr>
+			        	<td>overwrite</td>
+						<td>if the ec_setup.pl already exists, it is not overwritten. Check this parameter overwrite with a content dynamically generated based on project properties.</td>
+		            </tr>
+					<tr>
+			        	<td>cprojectAsCode</td>
+						<td>Include a bit of code to revert the plugin to a project upon promotion if this option is checked.</td>
+		            </tr>
+					<tr>
+			        	<td>createArtifact</td>
+						<td>Save the new created plugin as an artifact version.</td>
+		            </tr>
+					<tr>
+			        	<td>installPlugin</td>
+						<td>A Boolean to install or not the plugin after creation</td>
+		            </tr>
+					<tr>
+			        	<td>promotePlugin</td>
+						<td>A Boolean to promote or not the plugin after installation</td>
+		            </tr>
+		        </tbody>
+		    </table>
+
+			<img src="../../plugins/@PLUGIN_KEY@/images/help/projectAsCode.png" 
+				 alt="projectAsCode parameters" />
+
+		<p><b>Note:</b> EC-Admin is released on 
 		<a href="https://github.com/electriccommunity/EC-Admin">GitHub</a> using 
 		this procedure.</p>
 
