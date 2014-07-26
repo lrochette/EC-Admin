@@ -4964,7 +4964,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>110</value>
+        <value>111</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>
