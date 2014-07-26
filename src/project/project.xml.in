@@ -4738,6 +4738,12 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1&lt;/p&gt;
 
 		&lt;p&gt;If you get an error with the passKey, use the "--force 1" option&lt;/p&gt;
 
+    &lt;p&gt;
+        IMPORTANT: For all parameter descriptions below, required
+        parameters are shown in &lt;span class="required"&gt;bold
+        italics&lt;/span&gt;.
+    &lt;/p&gt;
+
 		&lt;h1&gt;&lt;a name="look"&gt;&lt;/a&gt;Look and Feel&lt;/h1&gt;
 		&lt;h2&gt;changeBannerColor&lt;/h2&gt;
 		&lt;p&gt;If you work on multiple Commander servers like a development and a 
@@ -4753,7 +4759,6 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1&lt;/p&gt;
 		        &lt;thead&gt;
 		            &lt;tr&gt;
 		                &lt;th&gt;Parameter&lt;/th&gt;
-
 		                &lt;th&gt;Description&lt;/th&gt;
 		            &lt;/tr&gt;
 		        &lt;/thead&gt;
@@ -4789,12 +4794,48 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1&lt;/p&gt;
 		&lt;h1&gt;&lt;a name="jobs"&gt;&lt;/a&gt;Jobs and Workspaces management&lt;/h1&gt;
 		&lt;p&gt;This set of procedures will help you manage your old jobs and the 
 			associated workspaces.&lt;/p&gt;
+
 			&lt;h2&gt;jobsCleanup:&lt;/h2&gt; 
 			&lt;p&gt;A procedure to delete jobs older than a specified number of
-days. It will also delete associated workspace job directories. You
-can also provide a property name, if this property is attached to the
-job, it won't be deleted no matter how old. A report only mode
-prevents any real deletion.&lt;/p&gt;
+days. It will also delete associated workspace job directories.&lt;/p&gt;
+
+		    &lt;table class="grid"&gt;
+		        &lt;thead&gt;
+		            &lt;tr&gt;
+		                &lt;th&gt;Parameter&lt;/th&gt;
+		                &lt;th&gt;Description&lt;/th&gt;
+		            &lt;/tr&gt;
+		        &lt;/thead&gt;
+
+		        &lt;tbody&gt;
+		            &lt;tr&gt;
+		                &lt;td class='required'&gt;olderThan&lt;/td&gt;
+		                &lt;td&gt;Indicate the number of days after which jobs are deleted&lt;/td&gt;
+		            &lt;/tr&gt;
+		            &lt;tr&gt;
+		                &lt;td&gt;jobType&lt;/td&gt;
+		                &lt;td&gt;Define what jobs should be deleted: Error, Warning or all.&lt;/td&gt;
+		            &lt;/tr&gt;
+		            &lt;tr&gt;
+		                &lt;td&gt;jobProperty&lt;/td&gt;
+		                &lt;td&gt;Name of a property attached to your jobs. If this property is set, your job won't be deleted no matter how old it is.&lt;/td&gt;
+		            &lt;/tr&gt;
+		            &lt;tr&gt;
+		                &lt;td&gt;jobPatternMatching&lt;/td&gt;
+		                &lt;td&gt;A SQL pattern matching to automatically preserve some jobs. The pattern must solve for a LIKE statement.&lt;/td&gt;
+		            &lt;/tr&gt;
+		            &lt;tr&gt;
+		                &lt;td&gt;delete&lt;/td&gt;
+		                &lt;td&gt;If this option is not set, only report is done. No real data are deleted&lt;/td&gt;
+		            &lt;/tr&gt;
+		            &lt;tr&gt;
+		                &lt;td&gt;computeUsage&lt;/td&gt;
+		                &lt;td&gt;Check off to skip the computation of the number of steps and the file space used for the job. This will speed up the execution.&lt;/td&gt;
+		        &lt;/tbody&gt;
+		    &lt;/table&gt;
+
+			&lt;img src="../../plugins/@PLUGIN_KEY@/images/help/jobsCleanup.png" 
+				 alt="jobsCleanup parameters" /&gt;
 
 			&lt;h2&gt;jobCleanup_byResult:&lt;/h2&gt; 
             &lt;p&gt;A procedure to delete jobs older than a specified number of days.
@@ -4995,7 +5036,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>115</value>
+        <value>116</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>
