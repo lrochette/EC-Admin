@@ -176,6 +176,12 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 			you have a more artistic touch than me. Or better
 			push your changes to 
 			<a href="https://github.com/electriccommunity/EC-Admin">GitHub</a>.</p>
+			<p>You can also select a written cue to add to the default "electriccommander"
+				logo to indicate 
+				if you server is of type DEV, SDK, TEST or PROD, in black or white to  
+				go along different background colors.<br/>
+				You can also upload your own logo to replace the default one by simply filling the "logoFile" 
+				parameter field.</p>
 
 		<h1><a name="jobs"></a>Jobs and Workspaces management</h1>
 		<p>This set of procedures will help you manage your old jobs and the 

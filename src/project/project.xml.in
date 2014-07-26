@@ -4748,6 +4748,12 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1&lt;/p&gt;
 			you have a more artistic touch than me. Or better
 			push your changes to 
 			&lt;a href="https://github.com/electriccommunity/EC-Admin"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+			&lt;p&gt;You can also select a written cue to add to the default "electriccommander"
+				logo to indicate 
+				if you server is of type DEV, SDK, TEST or PROD, in black or white to  
+				go along different background colors.&lt;br/&gt;
+				You can also upload your own logo to replace the default one by simply filling the "logoFile" 
+				parameter field.&lt;/p&gt;
 
 		&lt;h1&gt;&lt;a name="jobs"&gt;&lt;/a&gt;Jobs and Workspaces management&lt;/h1&gt;
 		&lt;p&gt;This set of procedures will help you manage your old jobs and the 
@@ -4958,7 +4964,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>108</value>
+        <value>109</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>
