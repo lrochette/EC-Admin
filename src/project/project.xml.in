@@ -4742,18 +4742,46 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1&lt;/p&gt;
 		&lt;h2&gt;changeBannerColor&lt;/h2&gt;
 		&lt;p&gt;If you work on multiple Commander servers like a development and a 
 			production instances, this procedure is for you. It allows you to change 
-			the color of the top banner to make it easier to identify your different 
-			servers. Simply choose one of the offered solid boring colors. Feel free 
+			the color of the top banner and the logo to make it easier to identify your different 
+			servers. Feel free 
 			to &lt;a href="mailto:lrochette@electric-cloud.com"&gt;send me&lt;/a&gt; new ones if 
 			you have a more artistic touch than me. Or better
 			push your changes to 
 			&lt;a href="https://github.com/electriccommunity/EC-Admin"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-			&lt;p&gt;You can also select a written cue to add to the default "electriccommander"
-				logo to indicate 
+
+		    &lt;table class="grid"&gt;
+		        &lt;thead&gt;
+		            &lt;tr&gt;
+		                &lt;th&gt;Parameter&lt;/th&gt;
+
+		                &lt;th&gt;Description&lt;/th&gt;
+		            &lt;/tr&gt;
+		        &lt;/thead&gt;
+
+		        &lt;tbody&gt;
+		            &lt;tr&gt;
+		                &lt;td class='required'&gt;color&lt;/td&gt;
+		                &lt;td&gt;Choose a color for your top banner&lt;/td&gt;
+		            &lt;/tr&gt;
+		            &lt;tr&gt;
+		                &lt;td&gt;logo&lt;/td&gt;
+		                &lt;td&gt;Choose a set of pre-rendered logo to indicate 
 				if you server is of type DEV, SDK, TEST or PROD, in black or white to  
-				go along different background colors.&lt;br/&gt;
-				You can also upload your own logo to replace the default one by simply filling the "logoFile" 
-				parameter field.&lt;/p&gt;
+				go along different background colors.&lt;/td&gt;
+		            &lt;/tr&gt;
+		            &lt;tr&gt;
+		                &lt;td&gt;logoFile&lt;/td&gt;
+		                &lt;td&gt;The path on the Commander server to upload your own logo. If this value is not blank it will overwritten the logo paremeter above.&lt;/td&gt;
+		            &lt;/tr&gt;
+		            &lt;tr&gt;
+		                &lt;td&gt;webResource&lt;/td&gt;
+		                &lt;td&gt;The name of the resource running on your webserver to allow the copy of the logo and banner color files.&lt;/td&gt;
+		            &lt;/tr&gt;
+		        &lt;/tbody&gt;
+		    &lt;/table&gt;
+			&lt;img src="../../plugins/@PLUGIN_KEY@/images/help/changeBannerColor.png" 
+				 alt="changeBannerColor parameters" /&gt;
+
 
 		&lt;h1&gt;&lt;a name="jobs"&gt;&lt;/a&gt;Jobs and Workspaces management&lt;/h1&gt;
 		&lt;p&gt;This set of procedures will help you manage your old jobs and the 
@@ -4964,7 +4992,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>113</value>
+        <value>114</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>
@@ -4979,6 +5007,7 @@ History:
 - version 1.11.7
     + Added option to add own logo file in changeBannerColor
     + Added link to installed and promoted plugin in projectAsCode
+    + Improved help
 - version 1.11.6
     + Added overwrite option for projectAsCode
     + Protect PLUGIN_KEY and PLUGIN_VERSION in steps so they're not hardcoded when 
@@ -6062,6 +6091,12 @@ Changelog:
             </property>
           </propertySheet>
         </property>
+        <property>
+          <propertyName>ec_parameterForm</propertyName>
+          <description/>
+          <expandable>1</expandable>
+          <value/>
+        </property>
       </propertySheet>
       <formalParameter>
         <formalParameterName>color</formalParameterName>
@@ -6074,7 +6109,7 @@ Changelog:
       <formalParameter>
         <formalParameterName>logo</formalParameterName>
         <defaultValue>logo-DEV_white.png</defaultValue>
-        <description>The logo do Display</description>
+        <description>The logo to display on the top left corner.</description>
         <expansionDeferred>0</expansionDeferred>
         <required>0</required>
         <type>select</type>

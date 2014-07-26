@@ -170,18 +170,46 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 		<h2>changeBannerColor</h2>
 		<p>If you work on multiple Commander servers like a development and a 
 			production instances, this procedure is for you. It allows you to change 
-			the color of the top banner to make it easier to identify your different 
-			servers. Simply choose one of the offered solid boring colors. Feel free 
+			the color of the top banner and the logo to make it easier to identify your different 
+			servers. Feel free 
 			to <a href="mailto:lrochette@electric-cloud.com">send me</a> new ones if 
 			you have a more artistic touch than me. Or better
 			push your changes to 
 			<a href="https://github.com/electriccommunity/EC-Admin">GitHub</a>.</p>
-			<p>You can also select a written cue to add to the default "electriccommander"
-				logo to indicate 
+
+		    <table class="grid">
+		        <thead>
+		            <tr>
+		                <th>Parameter</th>
+
+		                <th>Description</th>
+		            </tr>
+		        </thead>
+
+		        <tbody>
+		            <tr>
+		                <td class='required'>color</td>
+		                <td>Choose a color for your top banner</td>
+		            </tr>
+		            <tr>
+		                <td>logo</td>
+		                <td>Choose a set of pre-rendered logo to indicate 
 				if you server is of type DEV, SDK, TEST or PROD, in black or white to  
-				go along different background colors.<br/>
-				You can also upload your own logo to replace the default one by simply filling the "logoFile" 
-				parameter field.</p>
+				go along different background colors.</td>
+		            </tr>
+		            <tr>
+		                <td>logoFile</td>
+		                <td>The path on the Commander server to upload your own logo. If this value is not blank it will overwritten the logo paremeter above.</td>
+		            </tr>
+		            <tr>
+		                <td>webResource</td>
+		                <td>The name of the resource running on your webserver to allow the copy of the logo and banner color files.</td>
+		            </tr>
+		        </tbody>
+		    </table>
+			<img src="../../plugins/@PLUGIN_KEY@/images/help/changeBannerColor.png" 
+				 alt="changeBannerColor parameters" />
+
 
 		<h1><a name="jobs"></a>Jobs and Workspaces management</h1>
 		<p>This set of procedures will help you manage your old jobs and the 
