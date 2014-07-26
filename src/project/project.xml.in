@@ -4781,6 +4781,9 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1&lt;/p&gt;
 		    &lt;/table&gt;
 			&lt;img src="../../plugins/@PLUGIN_KEY@/images/help/changeBannerColor.png" 
 				 alt="changeBannerColor parameters" /&gt;
+			&lt;p&gt;will produce&lt;/p&gt;
+			&lt;img src="../../plugins/@PLUGIN_KEY@/images/help/RedDev.png" 
+				 alt="Red DEV example" /&gt;
 
 
 		&lt;h1&gt;&lt;a name="jobs"&gt;&lt;/a&gt;Jobs and Workspaces management&lt;/h1&gt;
@@ -4992,7 +4995,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>114</value>
+        <value>115</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>

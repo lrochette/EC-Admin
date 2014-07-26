@@ -209,6 +209,9 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 		    </table>
 			<img src="../../plugins/@PLUGIN_KEY@/images/help/changeBannerColor.png" 
 				 alt="changeBannerColor parameters" />
+			<p>will produce</p>
+			<img src="../../plugins/@PLUGIN_KEY@/images/help/RedDev.png" 
+				 alt="Red DEV example" />
 
 
 		<h1><a name="jobs"></a>Jobs and Workspaces management</h1>
