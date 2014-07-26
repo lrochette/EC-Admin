@@ -5,5 +5,5 @@ my $version="$[/myJob/Version]";
 
 printf("Promoting plugin '$plugin-$version'\n");
 $ec->promotePlugin("$plugin-$version");
-$ec->setProperty("summary", "$plugin-$version promoted");
+$ec->setProperty("summary", "<html><a href=\"https://$[/server/hostName]/commander/link/projectDetails/plugins/$plugin-$version\">$plugin-$version</a> promoted</html>");
 
