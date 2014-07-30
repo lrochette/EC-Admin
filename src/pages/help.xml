@@ -416,8 +416,6 @@ if ( $promoteAction eq 'promote' ) {
 		creates a plugin but instead of simply exporting the project, it
 		"explodes" each step in its own file for finer granularity check in
 		in your favorite SCM tool.<br/>
-		In addition, there is an option to extract the project from the plugin 
-		upon promotion.<br/>
 		All the properties associated with createPluginFromProject still apply.</p>
 
 		    <table class="grid">
@@ -468,7 +466,7 @@ if ( $promoteAction eq 'promote' ) {
 		            </tr>
 					<tr>
 			        	<td>Directory</td>
-						<td>The name of the directory where to create the complete file structure. Typically a directory you well check in in your SCM.</td>
+						<td>The name of the directory where to create the complete file structure. Typically a directory you will check in in your SCM.</td>
 		            </tr>
 					<tr>
 			        	<td>SDK resource</td>

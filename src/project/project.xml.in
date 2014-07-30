@@ -16,12 +16,12 @@
               <property>
                 <propertyName>image</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/1357751/images/customeff17d14771e7015e1.png</value>
+                <value>/commander/jobSteps/1392858/images/custom9f276f14786802ccf1.png</value>
               </property>
               <property>
                 <propertyName>link</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/1357751/Performance Report.html</value>
+                <value>/commander/jobSteps/1392858/Performance Report.html</value>
               </property>
             </propertySheet>
           </property>
@@ -1215,6 +1215,156 @@
                     <propertyName>reportDate</propertyName>
                     <expandable>1</expandable>
                     <value>2014-07-26 02:00:39</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>161136</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1370398</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1370398</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2014-07-28 02:00:41</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>163020</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1381622</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1381622</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2014-07-29 02:00:46</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>164900</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1392858</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1392858</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2014-07-30 02:00:39</value>
                   </property>
                   <property>
                     <propertyName>reportType</propertyName>
@@ -4988,8 +5138,6 @@ if ( $promoteAction eq 'promote' ) {
 		creates a plugin but instead of simply exporting the project, it
 		"explodes" each step in its own file for finer granularity check in
 		in your favorite SCM tool.&lt;br/&gt;
-		In addition, there is an option to extract the project from the plugin 
-		upon promotion.&lt;br/&gt;
 		All the properties associated with createPluginFromProject still apply.&lt;/p&gt;
 
 		    &lt;table class="grid"&gt;
@@ -5040,7 +5188,7 @@ if ( $promoteAction eq 'promote' ) {
 		            &lt;/tr&gt;
 					&lt;tr&gt;
 			        	&lt;td&gt;Directory&lt;/td&gt;
-						&lt;td&gt;The name of the directory where to create the complete file structure. Typically a directory you well check in in your SCM.&lt;/td&gt;
+						&lt;td&gt;The name of the directory where to create the complete file structure. Typically a directory you will check in in your SCM.&lt;/td&gt;
 		            &lt;/tr&gt;
 					&lt;tr&gt;
 			        	&lt;td&gt;SDK resource&lt;/td&gt;
@@ -5157,19 +5305,14 @@ limited manual testing done so far.&lt;/p&gt;
 software.&lt;/p&gt;
 	&lt;/div&gt;
 &lt;/body&gt;
-&lt;/html&gt;</value>
-      </property>
-      <property>
-        <propertyName>jobCounter</propertyName>
-        <description>In preparation of changes in 5.0 with jobId.</description>
-        <expandable>1</expandable>
-        <value>20</value>
+&lt;/html&gt;
+</value>
       </property>
       <property>
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>124</value>
+        <value>125</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>
@@ -5181,6 +5324,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 1.11.8
+  + Fixed help tip for "directory" parameter
+
 - version 1.11.7
     + Added option to add own logo file in changeBannerColor
     + Added link to installed and promoted plugin in projectAsCode
@@ -5338,7 +5484,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>1.11.7</value>
+        <value>1.11.8</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -10349,7 +10495,7 @@ Changelog:
     &lt;formElement&gt; 
         &lt;label&gt;Directory&lt;/label&gt; 
         &lt;property&gt;directory&lt;/property&gt; 
-        &lt;documentation&gt;Directory where the project is &lt;/documentation&gt; 
+        &lt;documentation&gt;The name of the directory where to create the complete file structure. Typically a directory you will check in in your SCM.&lt;/documentation&gt; 
         &lt;type&gt;entry&lt;/type&gt;
     &lt;/formElement&gt; 
 
