@@ -9,6 +9,7 @@ use XML::LibXML;
 use File::Path;
 
 $| = 1;
+my $DEBUG=1;
 
 sub fileFriendly($) {
 # Replace file-name reserved characters with % equivalent
@@ -62,7 +63,7 @@ $ec_setup->appendTextChild('propertyName',"ec_setup");
 $ec_setup->appendTextChild('value',"PLACEHOLDER");
 $projectPropertySheet->[0]->appendChild($ec_setup);
 my $ecSetupFile = "project/ec_setup.pl";
-my $setupContent = $projectXml->find('/exportedData/project/propertySheet/property[propertyName="ec_setup"]/value')->string_value;
+my $setupContent = $projectXml->find('/exportedData/project/propertySheet/property[propertyName="ec_setup"]/value')->string_value();
 
 open (SETUP, ">$ecSetupFile") or die "$ecSetupFile:  $!\n";
 print SETUP $setupContent, "\n";
@@ -88,15 +89,25 @@ $manifest .= qq(\@files = \(
 	['//project/propertySheet/property[propertyName="ec_setup"]/value', 'ec_setup.pl'],\n);
 
 foreach my $procedure ($projectXml->findnodes('/exportedData/project/procedure')) {
+
 	my $procedureName = $procedure->find("procedureName")->string_value;
+	printf("Processing procedure: $procedureName\n") if ($DEBUG);
+	
 	# my $procedureFile = $procedureName;
 	# $procedureFile =~ s/\:/_colon_/g;  # Deal with step name characters not allowed in file names
 	my $procedureFile = fileFriendly($procedureName);
 	mkdir "project/procedures/$procedureFile";
+
+	# deal with ec_parameterForm property
+	my $form=$procedure->find('propertySheet/property[propertyName="ec_parameterForm"]/value')->string_value();
+	if ($form) {
+		printf("ec_parameterForm found")
+	}
 	mkdir "project/procedures/$procedureFile/steps";
 	#print "Procedure: $procedureName\n";
 	foreach my $step ($procedure->findnodes('step')) {
 		my $stepName = $step->find("stepName")->string_value;
+		printf("  Processing step: $stepName\n") if ($DEBUG);
 		my $shell = $step->find("shell")->string_value;
 		my $command = $step->find("command")->string_value;
 		#print "	Step: $stepName\n";
@@ -132,5 +143,4 @@ close TEMPLATE;
 
 # delete the exported XML file
 unlink("project.xml")
-
 

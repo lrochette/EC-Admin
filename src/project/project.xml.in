@@ -5194,7 +5194,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>130</value>
+        <value>132</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>
@@ -5207,8 +5207,11 @@ software.&lt;/p&gt;
 
 History:
 
+- version 1.13.0
+  +  Extract ec_prameterForm in projectAsCode
+
 - version 1.12.0
-  + Create a dummy help page if it does not exist
+  + Create a dummy help page if it does not exist in projectAsCode
 
 - version 1.11.8
   + Fixed help tip for "directory" parameter in projectAsCode
@@ -5372,7 +5375,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>1.12.0</value>
+        <value>1.13.0</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -10013,6 +10016,7 @@ Changelog:
                                  Fixed summary link to the new plugin version
                                  Added report link to the new promoted plugin
                                  Create a dummy page if t does not already exists
+                                 Extract ec_parameterForm
 2014-07-17  lrochette   Added CHANGELOG creation
 2014-07-09  lrochette   Include projectAsCode option
 2014-06-18  lrochette   Added a hook to allow actions to be taken when the plugin changes state
