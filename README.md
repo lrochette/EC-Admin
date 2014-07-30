@@ -24,18 +24,21 @@ value.
 saveProjects: a simple procdure to export individually all (non plugins) 
 projects to create you own versioning. Better to run on a nightly schedule.
 
-plugin creation: a procedure helps your transform your favorite project
+plugin creation: two different procedures help you transform your favorite project
 into a plugin to make it easier to version and deploy to your production
 server.
 
 performanceMetrics: a procedure to gather a bunch of data about your Commander
 environment and may help when things start to slow down.
 
-to install on 4.2.x, simply import the XML file:
+changeBannerColor: A procedure to change the color of the banner to easily identify 
+your multiple servers (DEV vs. PROD)
 
-ectool import /path_to/EC-Admin.xml --disableSchedules 1
+To install on 4.2.x and later, use the "Install from File/URL" tab in the 
+administration/Plugins or use the "installPlugin" API.
+	ectool  installPlugin EC-Admin.jar
 
-to install on 4.0.x or later, import the EC_4.0.xml file. Be aware that 
+to install on 4.0.x or 4.1.x, import the EC_4.0.xml file. Be aware that 
 some features are not present as the original project makes use of 
 createJobStep() API which was introduced in 4.2.0:
 
