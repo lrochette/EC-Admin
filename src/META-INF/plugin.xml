@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>1.13.0.133</version>
+  <version>1.13.0.142</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.</description>
   <help>help.xml</help>

@@ -5194,7 +5194,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>133</value>
+        <value>142</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>
@@ -5606,61 +5606,7 @@ Changelog:
           <propertyName>ec_parameterForm</propertyName>
           <description/>
           <expandable>1</expandable>
-          <value>&lt;editor&gt; 
-    &lt;formElement&gt; 
-        &lt;label&gt;Delete artifact versions older than&lt;/label&gt; 
-        &lt;property&gt;olderThan&lt;/property&gt; 
-        &lt;documentation&gt;Indicate the numbers of days after which artifact versions  should be deleted&lt;/documentation&gt; 
-        &lt;type&gt;select&lt;/type&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;1 month&lt;/name&gt; 
-            &lt;value&gt;30&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;2 months&lt;/name&gt; 
-            &lt;value&gt;60&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;3 months&lt;/name&gt; 
-            &lt;value&gt;91&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;6 months&lt;/name&gt; 
-            &lt;value&gt;182&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;1 year&lt;/name&gt; 
-            &lt;value&gt;365&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;value&gt;91&lt;/value&gt; 
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-   &lt;formElement&gt; 
-        &lt;label&gt;Artifact property&lt;/label&gt; 
-        &lt;property&gt;artifactProperty&lt;/property&gt; 
-        &lt;documentation&gt;Name of a property attached to your artifact versions. If this property is set, your artifact version won't be deleted.
-        &lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt; 
-        &lt;value&gt;doNotDelete&lt;/value&gt; 
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-    &lt;formElement&gt; 
-        &lt;label&gt;Delete&lt;/label&gt; 
-        &lt;property&gt;executeDeletion&lt;/property&gt; 
-        &lt;documentation&gt;If this option is not set, only report is done. No real data are deleted&lt;/documentation&gt; 
-        &lt;type&gt;select&lt;/type&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;Report&lt;/name&gt; 
-            &lt;value&gt;false&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;Delete&lt;/name&gt; 
-            &lt;value&gt;true&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;value&gt;false&lt;/value&gt; 
-    &lt;/formElement&gt; 
-
-&lt;/editor&gt;</value>
+          <value>PLACEHOLDER</value>
         </property>
         <property>
           <propertyName>exposeToPlugin</propertyName>
@@ -5903,73 +5849,7 @@ Changelog:
           <propertyName>ec_parameterForm</propertyName>
           <description/>
           <expandable>1</expandable>
-          <value>&lt;editor&gt; 
-    &lt;formElement&gt; 
-        &lt;label&gt;Delete artifact versions older than&lt;/label&gt; 
-        &lt;property&gt;olderThan&lt;/property&gt; 
-        &lt;documentation&gt;Indicate the numbers of days after which artifact versions  should be deleted&lt;/documentation&gt; 
-        &lt;type&gt;select&lt;/type&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;1 month&lt;/name&gt; 
-            &lt;value&gt;30&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;2 months&lt;/name&gt; 
-            &lt;value&gt;60&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;3 months&lt;/name&gt; 
-            &lt;value&gt;91&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;6 months&lt;/name&gt; 
-            &lt;value&gt;182&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;1 year&lt;/name&gt; 
-            &lt;value&gt;365&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;value&gt;91&lt;/value&gt; 
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-
-   &lt;formElement&gt; 
-        &lt;label&gt;Artifact property&lt;/label&gt; 
-        &lt;property&gt;artifactProperty&lt;/property&gt; 
-        &lt;documentation&gt;Name of a property attached to your artifact versions. If this property is set, your artifact version won't be deleted.
-        &lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt; 
-        &lt;value&gt;doNotDelete&lt;/value&gt; 
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-
-   &lt;formElement&gt; 
-        &lt;label&gt;Number to preserve&lt;/label&gt;    
-        &lt;property&gt;nbToPreserve&lt;/property&gt;    
-        &lt;documentation&gt;The number of artifact versions to preserve per artifact&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;    
-        &lt;value&gt;5&lt;/value&gt; 
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Delete&lt;/label&gt; 
-        &lt;property&gt;executeDeletion&lt;/property&gt; 
-        &lt;documentation&gt;If this option is not set, only report is done. No real data are deleted&lt;/documentation&gt; 
-        &lt;type&gt;select&lt;/type&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;Report&lt;/name&gt; 
-            &lt;value&gt;false&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;Delete&lt;/name&gt; 
-            &lt;value&gt;true&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;value&gt;false&lt;/value&gt; 
-    &lt;/formElement&gt; 
-
-&lt;/editor&gt;</value>
+          <value>PLACEHOLDER</value>
         </property>
         <property>
           <propertyName>exposeToPlugin</propertyName>
@@ -6309,7 +6189,7 @@ Changelog:
           <propertyName>ec_parameterForm</propertyName>
           <description/>
           <expandable>1</expandable>
-          <value/>
+          <value>PLACEHOLDER</value>
         </property>
       </propertySheet>
       <formalParameter>
@@ -6971,111 +6851,7 @@ Changelog:
           <propertyName>ec_parameterForm</propertyName>
           <description/>
           <expandable>1</expandable>
-          <value>&lt;editor&gt;
-    &lt;formElement&gt; 
-        &lt;label&gt;Project Name&lt;/label&gt; 
-        &lt;property&gt;Project&lt;/property&gt; 
-        &lt;documentation&gt;Choose a project to transform into a plugin.&lt;/documentation&gt; 
-        &lt;type&gt;project&lt;/type&gt;
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Plugin name&lt;/label&gt; 
-        &lt;property&gt;Plugin&lt;/property&gt; 
-        &lt;documentation&gt;The name of the plugin to create. If left empty, it will default to the project name.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Category&lt;/label&gt; 
-        &lt;property&gt;Category&lt;/property&gt; 
-        &lt;documentation&gt;Category of the plugin. It helps filter the search for the plugin and its procedures in the picker list.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Version&lt;/label&gt; 
-        &lt;property&gt;Version&lt;/property&gt; 
-        &lt;documentation&gt;The version of the plugin to create.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;
-        &lt;value&gt;1.0.0&lt;/value&gt;
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Description&lt;/label&gt; 
-        &lt;property&gt;Description&lt;/property&gt; 
-        &lt;documentation&gt;Description of the plugin. If left empty, it will default to the description of the project.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Author&lt;/label&gt; 
-        &lt;property&gt;Author&lt;/property&gt; 
-        &lt;documentation&gt;Author of the plugin.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Author's email&lt;/label&gt; 
-        &lt;property&gt;Email&lt;/property&gt; 
-        &lt;documentation&gt;Email of the plugin author.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Comment&lt;/label&gt; 
-        &lt;property&gt;Comment&lt;/property&gt; 
-        &lt;documentation&gt;Comment to add to the CHANGELOG.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Fix self references&lt;/label&gt;    
-        &lt;property&gt;fixSelfReferences&lt;/property&gt; 
-        &lt;documentation&gt;Replace self reference to your project by an empty string.&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;    
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;0&lt;/initiallyChecked&gt; 
-        &lt;value&gt;false&lt;/value&gt;    
-    &lt;/formElement&gt;
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Create Artifact&lt;/label&gt;    
-        &lt;property&gt;createArtifact&lt;/property&gt; 
-        &lt;documentation&gt;Save the new created Plugin as an artifact version.&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;    
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;0&lt;/initiallyChecked&gt; 
-        &lt;value&gt;false&lt;/value&gt;    
-    &lt;/formElement&gt;
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Install Plugin&lt;/label&gt;    
-        &lt;property&gt;installPlugin&lt;/property&gt; 
-        &lt;documentation&gt;Check to install the plugin automatically after successful creation.&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;    
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;1&lt;/initiallyChecked&gt; 
-        &lt;value&gt;true&lt;/value&gt;    
-    &lt;/formElement&gt;
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Promote Plugin&lt;/label&gt;    
-        &lt;property&gt;promotePlugin&lt;/property&gt; 
-        &lt;documentation&gt;Check to promote the plugin automatically after successful installation.&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;    
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;1&lt;/initiallyChecked&gt; 
-        &lt;value&gt;true&lt;/value&gt;    
-    &lt;/formElement&gt;
-
-&lt;/editor&gt;</value>
+          <value>PLACEHOLDER</value>
         </property>
         <property>
           <propertyName>exposeToPlugin</propertyName>
@@ -7555,91 +7331,7 @@ Changelog:
           <propertyName>ec_parameterForm</propertyName>
           <description/>
           <expandable>1</expandable>
-          <value>&lt;editor&gt; 
-   &lt;formElement&gt; 
-        &lt;label&gt;Object Type&lt;/label&gt; 
-        &lt;property&gt;objectType&lt;/property&gt; 
-        &lt;documentation&gt;The type of objects to delete&lt;/documentation&gt; 
-        &lt;type&gt;select&lt;/type&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;Jobs&lt;/name&gt; 
-            &lt;value&gt;job&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;Workflows&lt;/name&gt; 
-            &lt;value&gt;workflow&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;value&gt;job&lt;/value&gt; 
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Delete objects older than&lt;/label&gt; 
-        &lt;property&gt;daysLimit&lt;/property&gt; 
-        &lt;documentation&gt;Indicate the numbers of days after which jobs should be deleted&lt;/documentation&gt; 
-        &lt;type&gt;select&lt;/type&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;1 month&lt;/name&gt; 
-            &lt;value&gt;30&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;2 months&lt;/name&gt; 
-            &lt;value&gt;60&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;3 months&lt;/name&gt; 
-            &lt;value&gt;91&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;6 months&lt;/name&gt; 
-            &lt;value&gt;182&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;1 year&lt;/name&gt; 
-            &lt;value&gt;365&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;value&gt;91&lt;/value&gt; 
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Maximum number of objects to delete&lt;/label&gt; 
-        &lt;property&gt;maxObjects&lt;/property&gt; 
-        &lt;documentation&gt;Indicate the maximum numbers of objects to delete&lt;/documentation&gt; 
-        &lt;type&gt;select&lt;/type&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;200 objects&lt;/name&gt; 
-            &lt;value&gt;200&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;500 objects&lt;/name&gt; 
-            &lt;value&gt;500&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;1000 objects&lt;/name&gt; 
-            &lt;value&gt;1000&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;2000 objects&lt;/name&gt; 
-            &lt;value&gt;2000&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;5000 objects&lt;/name&gt; 
-            &lt;value&gt;5000&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;value&gt;1000&lt;/value&gt; 
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Chunk size&lt;/label&gt; 
-        &lt;property&gt;chunkSize&lt;/property&gt; 
-        &lt;documentation&gt;Chunk size&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type &gt; 
-        &lt;value&gt;200&lt;/value&gt; 
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt;
-&lt;/editor&gt;</value>
+          <value>PLACEHOLDER</value>
         </property>
         <property>
           <propertyName>exposeToPlugin</propertyName>
@@ -8553,111 +8245,7 @@ Report the number of jobs, the disk space and database space that could/was be d
           <propertyName>ec_parameterForm</propertyName>
           <description>Redefine UI</description>
           <expandable>1</expandable>
-          <value>&lt;editor&gt; 
-    &lt;formElement&gt; 
-        &lt;label&gt;Delete jobs older than&lt;/label&gt; 
-        &lt;property&gt;olderThan&lt;/property&gt; 
-        &lt;documentation&gt;Indicate the numbers of days after which jobs should be deleted&lt;/documentation&gt; 
-        &lt;type&gt;select&lt;/type&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;Now&lt;/name&gt; 
-            &lt;value&gt;0&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;1 month&lt;/name&gt; 
-            &lt;value&gt;30&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;2 months&lt;/name&gt; 
-            &lt;value&gt;60&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;3 months&lt;/name&gt; 
-            &lt;value&gt;91&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;6 months&lt;/name&gt; 
-            &lt;value&gt;182&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;1 year&lt;/name&gt; 
-            &lt;value&gt;365&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;value&gt;0&lt;/value&gt; 
-        &lt;required&gt;0&lt;/required&gt;
-    &lt;/formElement&gt; 
-    &lt;formElement&gt; 
-        &lt;label&gt;Success Jobs&lt;/label&gt;	
-        &lt;property&gt;nbGoodJobs&lt;/property&gt;	
-        &lt;documentation&gt;The number of successful jobs to preserve per procedure&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;	
-        &lt;value&gt;5&lt;/value&gt; 
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-    &lt;formElement&gt; 
-        &lt;label&gt;Warning Jobs&lt;/label&gt; 
-        &lt;property&gt;nbWarningJobs&lt;/property&gt; 
-        &lt;documentation&gt;The number of Warning jobs to preserve per procedure&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;  
-        &lt;value&gt;1&lt;/value&gt; 
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-    &lt;formElement&gt; 
-        &lt;label&gt;Failed Jobs&lt;/label&gt; 
-        &lt;property&gt;nbFailedJobs&lt;/property&gt; 
-        &lt;documentation&gt;The number of failed jobs to preserve per procedure&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;  
-        &lt;value&gt;5&lt;/value&gt; 
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-    &lt;formElement&gt; 
-        &lt;label&gt;Job property&lt;/label&gt; 
-        &lt;property&gt;jobProperty&lt;/property&gt; 
-        &lt;documentation&gt;Name of a property attached to your jobs. If this property is set, your job won't be deleted.
-        &lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;  
-        &lt;value&gt;doNotDelete&lt;/value&gt; 
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Delete&lt;/label&gt;	
-        &lt;property&gt;executeDeletion&lt;/property&gt; 
-        &lt;documentation&gt;If this option is not set, only report is done. No real data are deleted&lt;/documentation&gt; 
-        &lt;type&gt;select&lt;/type&gt;	
-        &lt;option&gt; 
-            &lt;name&gt;Report&lt;/name&gt; 
-            &lt;value&gt;false&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;Delete&lt;/name&gt; 
-            &lt;value&gt;true&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;value&gt;false&lt;/value&gt;	
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Compute Disk Usage&lt;/label&gt;    
-        &lt;property&gt;computeDiskUsage&lt;/property&gt; 
-        &lt;documentation&gt;Check off to skip the computation of file space used for the job. This will speed up the job.&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;    
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;1&lt;/initiallyChecked&gt; 
-        &lt;value&gt;true&lt;/value&gt;    
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Skip plugins&lt;/label&gt;	
-        &lt;property&gt;skipPlugins&lt;/property&gt; 
-        &lt;documentation&gt;A boolean to indicate to skip plugin projects or not&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;	
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;1&lt;/initiallyChecked&gt; 
-        &lt;value&gt;true&lt;/value&gt;	
-    &lt;/formElement&gt;
-&lt;/editor&gt; </value>
+          <value>PLACEHOLDER</value>
         </property>
         <property>
           <propertyName>exposeToPlugin</propertyName>
@@ -9202,102 +8790,7 @@ Changelog:
           <propertyName>ec_parameterForm</propertyName>
           <description>Redefine UI</description>
           <expandable>1</expandable>
-          <value>&lt;editor&gt; 
-    &lt;formElement&gt; 
-        &lt;label&gt;Delete jobs older than&lt;/label&gt;    
-        &lt;property&gt;olderThan&lt;/property&gt;    
-        &lt;documentation&gt;Indicate the numbers of days after which jobs should be deleted&lt;/documentation&gt; 
-        &lt;type&gt;select&lt;/type&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;1 month&lt;/name&gt; 
-            &lt;value&gt;30&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;2 months&lt;/name&gt; 
-            &lt;value&gt;60&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;3 months&lt;/name&gt; 
-            &lt;value&gt;91&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;6 months&lt;/name&gt; 
-            &lt;value&gt;182&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;1 year&lt;/name&gt; 
-            &lt;value&gt;365&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;value&gt;91&lt;/value&gt;  
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Type of jobs to delete&lt;/label&gt;    
-        &lt;property&gt;jobLevel&lt;/property&gt;    
-        &lt;documentation&gt;define what jobs you want to delete: Aborted, Error, All&lt;/documentation&gt; 
-        &lt;type&gt;select&lt;/type&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;Aborted&lt;/name&gt; 
-            &lt;value&gt;Aborted&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;Error and Aborted&lt;/name&gt; 
-            &lt;value&gt;Error&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;All&lt;/name&gt; 
-            &lt;value&gt;All&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;value&gt;Aborted&lt;/value&gt;  
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Job property&lt;/label&gt; 
-        &lt;property&gt;jobProperty&lt;/property&gt; 
-        &lt;documentation&gt;Name of a property attached to your jobs. If this property is set, your job won't be deleted.
-        &lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt; 
-        &lt;value&gt;doNotDelete&lt;/value&gt; 
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Pattern matching&lt;/label&gt; 
-        &lt;property&gt;jobPatternMatching&lt;/property&gt; 
-        &lt;documentation&gt;a SQL pattern matching to automatically preserve some jobs. The pattern must solve for a LIKE statement.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Delete&lt;/label&gt;    
-        &lt;property&gt;executeDeletion&lt;/property&gt; 
-        &lt;documentation&gt;If this option is not set, only report is done. No real data are deleted&lt;/documentation&gt; 
-        &lt;type&gt;select&lt;/type&gt;    
-        &lt;option&gt; 
-            &lt;name&gt;Report&lt;/name&gt; 
-            &lt;value&gt;false&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;Delete&lt;/name&gt; 
-            &lt;value&gt;true&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;value&gt;false&lt;/value&gt;    
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Compute Usage&lt;/label&gt;	
-        &lt;property&gt;computeUsage&lt;/property&gt; 
-        &lt;documentation&gt;Check off to skip the computation of the number of steps and the file space used for the job. This will speed up the execution.&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;	
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;1&lt;/initiallyChecked&gt; 
-        &lt;value&gt;true&lt;/value&gt;	
-    &lt;/formElement&gt; 
-
-&lt;/editor&gt;</value>
+          <value>PLACEHOLDER</value>
         </property>
         <property>
           <propertyName>exposeToPlugin</propertyName>
@@ -10330,154 +9823,7 @@ Changelog:
           <propertyName>ec_parameterForm</propertyName>
           <description/>
           <expandable>1</expandable>
-          <value>&lt;editor&gt;
-    &lt;formElement&gt; 
-        &lt;label&gt;Project Name&lt;/label&gt; 
-        &lt;property&gt;Project&lt;/property&gt; 
-        &lt;documentation&gt;Choose a project to transform into a plugin.&lt;/documentation&gt; 
-        &lt;type&gt;project&lt;/type&gt;
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Plugin name&lt;/label&gt; 
-        &lt;property&gt;Plugin&lt;/property&gt; 
-        &lt;documentation&gt;The name of the plugin to create. If left empty, it will default to the project name.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Category&lt;/label&gt; 
-        &lt;property&gt;Category&lt;/property&gt; 
-        &lt;documentation&gt;Category of the plugin. It helps filter the search for the plugin and its procedures in the picker list.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Version&lt;/label&gt; 
-        &lt;property&gt;Version&lt;/property&gt; 
-        &lt;documentation&gt;The version of the plugin to create.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;
-        &lt;value&gt;1.0.0&lt;/value&gt;
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Description&lt;/label&gt; 
-        &lt;property&gt;Description&lt;/property&gt; 
-        &lt;documentation&gt;Description of the plugin. If left empty, it will default to the description of the project.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Author&lt;/label&gt; 
-        &lt;property&gt;Author&lt;/property&gt; 
-        &lt;documentation&gt;Author of the plugin.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Author's email&lt;/label&gt; 
-        &lt;property&gt;Email&lt;/property&gt; 
-        &lt;documentation&gt;Email of the plugin author.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Comment&lt;/label&gt; 
-        &lt;property&gt;Comment&lt;/property&gt; 
-        &lt;documentation&gt;Comment to add to the CHANGELOG.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;
-    &lt;/formElement&gt; 
-  
-    &lt;formElement&gt; 
-        &lt;label&gt;Directory&lt;/label&gt; 
-        &lt;property&gt;directory&lt;/property&gt; 
-        &lt;documentation&gt;The name of the directory where to create the complete file structure. Typically a directory you will check in in your SCM.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;SDK Resource&lt;/label&gt; 
-        &lt;property&gt;SDKResource&lt;/property&gt; 
-        &lt;documentation&gt;A resource where the SDK is installed&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;SDK Location&lt;/label&gt; 
-        &lt;property&gt;SDKpath&lt;/property&gt; 
-        &lt;documentation&gt;Location of the Commander SDK.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Fix self references&lt;/label&gt;    
-        &lt;property&gt;fixSelfReferences&lt;/property&gt; 
-        &lt;documentation&gt;Replace self reference to your project by an empty string.&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;    
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;0&lt;/initiallyChecked&gt; 
-        &lt;value&gt;false&lt;/value&gt;    
-    &lt;/formElement&gt;
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Overwrite ec_setup.pl&lt;/label&gt;    
-        &lt;property&gt;overwrite&lt;/property&gt; 
-        &lt;documentation&gt;Overwrite the content of the ec_setup property by what is auto-generated by this procedure.&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;    
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;1&lt;/initiallyChecked&gt; 
-        &lt;value&gt;true&lt;/value&gt;    
-    &lt;/formElement&gt;
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Project As Code&lt;/label&gt;    
-        &lt;property&gt;projectAsCode&lt;/property&gt; 
-        &lt;documentation&gt;Modify the ec_setup.pl to extract the project from the created plugin upon promotion.&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;    
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;0&lt;/initiallyChecked&gt; 
-        &lt;value&gt;false&lt;/value&gt;    
-    &lt;/formElement&gt;
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Create Artifact&lt;/label&gt;    
-        &lt;property&gt;createArtifact&lt;/property&gt; 
-        &lt;documentation&gt;Save the new created Plugin as an artifact version.&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;    
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;0&lt;/initiallyChecked&gt; 
-        &lt;value&gt;false&lt;/value&gt;    
-    &lt;/formElement&gt;
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Install Plugin&lt;/label&gt;    
-        &lt;property&gt;installPlugin&lt;/property&gt; 
-        &lt;documentation&gt;Check to install the plugin automatically after successful creation.&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;    
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;1&lt;/initiallyChecked&gt; 
-        &lt;value&gt;true&lt;/value&gt;    
-    &lt;/formElement&gt;
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Promote Plugin&lt;/label&gt;    
-        &lt;property&gt;promotePlugin&lt;/property&gt; 
-        &lt;documentation&gt;Check to promote the plugin automatically after successful installation.&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;    
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;1&lt;/initiallyChecked&gt; 
-        &lt;value&gt;true&lt;/value&gt;    
-    &lt;/formElement&gt;
-
-&lt;/editor&gt;</value>
+          <value>PLACEHOLDER</value>
         </property>
         <property>
           <propertyName>exposeToPlugin</propertyName>
@@ -11337,59 +10683,7 @@ Changelog:
           <propertyName>ec_parameterForm</propertyName>
           <description/>
           <expandable>1</expandable>
-          <value>&lt;editor&gt; 
-    &lt;formElement&gt; 
-        &lt;label&gt;Project&lt;/label&gt;    
-        &lt;property&gt;project_Name&lt;/property&gt;    
-        &lt;documentation&gt;The name of the project&lt;/documentation&gt; 
-        &lt;type&gt;project&lt;/type&gt; 
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Procedure&lt;/label&gt;    
-        &lt;property&gt;procedure_Name&lt;/property&gt;    
-        &lt;documentation&gt;The name of the procedure for which you have deleted a parameter&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt; 
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Pramater&lt;/label&gt; 
-        &lt;property&gt;parameter_Name&lt;/property&gt; 
-        &lt;documentation&gt;The name of the parameter you have deleted from the procedure above.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt; 
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt;  
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Delete&lt;/label&gt;    
-        &lt;property&gt;delete&lt;/property&gt; 
-        &lt;documentation&gt;If this option is not set, only report is done. No parameter is deleted from any sub-procedure call&lt;/documentation&gt; 
-        &lt;type&gt;select&lt;/type&gt;    
-        &lt;option&gt; 
-            &lt;name&gt;Report&lt;/name&gt; 
-            &lt;value&gt;false&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;Delete&lt;/name&gt; 
-            &lt;value&gt;true&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;value&gt;false&lt;/value&gt;    
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Verbose&lt;/label&gt;	
-        &lt;property&gt;debug&lt;/property&gt; 
-        &lt;documentation&gt;Check to show more details in the log.&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;	
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;1&lt;/initiallyChecked&gt; 
-        &lt;value&gt;true&lt;/value&gt;	
-    &lt;/formElement&gt; 
-
-&lt;/editor&gt;</value>
+          <value>PLACEHOLDER</value>
         </property>
       </propertySheet>
       <formalParameter>
@@ -11678,72 +10972,7 @@ Changelog:
           <propertyName>ec_parameterForm</propertyName>
           <description>New rendering of the parameters</description>
           <expandable>1</expandable>
-          <value>&lt;editor&gt; 
-    &lt;formElement&gt; 
-        &lt;label&gt;Backup directory&lt;/label&gt;    
-        &lt;property&gt;pathname&lt;/property&gt;    
-        &lt;documentation&gt;Directory where to saved the XML files.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;    
-        &lt;value&gt;/tmp/BACKUP&lt;/value&gt; 
-     &lt;required&gt;1&lt;/required&gt; 
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Backup Resources&lt;/label&gt;    
-        &lt;property&gt;exportResources&lt;/property&gt; 
-        &lt;documentation&gt;Boolean to export Resources&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;    
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;1&lt;/initiallyChecked&gt; 
-        &lt;value&gt;true&lt;/value&gt;    
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Backup Resource Pools&lt;/label&gt;    
-        &lt;property&gt;exportResourcePools&lt;/property&gt; 
-        &lt;documentation&gt;Boolean to export Pools&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;    
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;1&lt;/initiallyChecked&gt; 
-        &lt;value&gt;true&lt;/value&gt;    
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Backup Workspaces&lt;/label&gt;    
-        &lt;property&gt;exportWorkspaces&lt;/property&gt; 
-        &lt;documentation&gt;Boolean to export Workspaces&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;    
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;1&lt;/initiallyChecked&gt; 
-        &lt;value&gt;true&lt;/value&gt;    
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Backup Users&lt;/label&gt;    
-        &lt;property&gt;exportUsers&lt;/property&gt; 
-        &lt;documentation&gt;Boolean to export Users&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;    
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;1&lt;/initiallyChecked&gt; 
-        &lt;value&gt;true&lt;/value&gt;    
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Backup Groups&lt;/label&gt;    
-        &lt;property&gt;exportGroups&lt;/property&gt; 
-        &lt;documentation&gt;Boolean to export Groups&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;    
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;1&lt;/initiallyChecked&gt; 
-        &lt;value&gt;true&lt;/value&gt;    
-    &lt;/formElement&gt; 
-
-&lt;/editor&gt;</value>
+          <value>PLACEHOLDER</value>
         </property>
         <property>
           <propertyName>exposeToPlugin</propertyName>
@@ -12068,47 +11297,7 @@ Changelog:
           <propertyName>ec_parameterForm</propertyName>
           <description>To overwrite default parameter panel display</description>
           <expandable>1</expandable>
-          <value>&lt;editor&gt; 
-    &lt;formElement&gt; 
-        &lt;label&gt;Backup directory&lt;/label&gt;	
-        &lt;property&gt;pathname&lt;/property&gt;	
-        &lt;documentation&gt;Directory where to saved the XML files.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;	
-        &lt;value&gt;/tmp&lt;/value&gt; 
-	    &lt;required&gt;1&lt;/required&gt; 
-    &lt;/formElement&gt; 
-    &lt;formElement&gt; 
-        &lt;label&gt;Relocatable&lt;/label&gt;	
-        &lt;property&gt;relocatable&lt;/property&gt; 
-        &lt;documentation&gt;If set to "true", the export will not include object IDs, ACLs, system property sheets, create/modify times, owners, 
-email notifiers or lastModifiedBy information, and the export file result will be much smaller than a normal export.&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;	
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;1&lt;/initiallyChecked&gt; 
-        &lt;value&gt;true&lt;/value&gt;	
-    &lt;/formElement&gt; 
-    &lt;formElement&gt; 
-        &lt;label&gt;ACLs&lt;/label&gt;	
-        &lt;property&gt;includeACLs&lt;/property&gt; 
-        &lt;documentation&gt;If set to "true", the export will include ACLs.&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;	
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;0&lt;/initiallyChecked&gt; 
-        &lt;value&gt;false&lt;/value&gt;	
-    &lt;/formElement&gt; 
-    &lt;formElement&gt; 
-        &lt;label&gt;Notifiers&lt;/label&gt;	
-        &lt;property&gt;includeNotifiers&lt;/property&gt; 
-        &lt;documentation&gt;If set to "true", the export will include email notifiers.&lt;/documentation&gt; 
-        &lt;type&gt;checkbox&lt;/type&gt;	
-        &lt;checkedValue&gt;true&lt;/checkedValue&gt; 
-        &lt;uncheckedValue&gt;false&lt;/uncheckedValue&gt; 
-        &lt;initiallyChecked&gt;0&lt;/initiallyChecked&gt; 
-        &lt;value&gt;false&lt;/value&gt;	
-    &lt;/formElement&gt; 
-&lt;/editor&gt; </value>
+          <value>PLACEHOLDER</value>
         </property>
         <property>
           <propertyName>exposeToPlugin</propertyName>
@@ -13084,70 +12273,7 @@ Report the number of workflows.</description>
           <propertyName>ec_parameterForm</propertyName>
           <description>Redefine UI</description>
           <expandable>1</expandable>
-          <value>&lt;editor&gt; 
-    &lt;formElement&gt; 
-        &lt;label&gt;Delete workflows older than&lt;/label&gt;    
-        &lt;property&gt;olderThan&lt;/property&gt;    
-        &lt;documentation&gt;Indicate the numbers of days after which workflows should be deleted&lt;/documentation&gt; 
-        &lt;type&gt;select&lt;/type&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;1 month&lt;/name&gt; 
-            &lt;value&gt;30&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;2 months&lt;/name&gt; 
-            &lt;value&gt;60&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;3 months&lt;/name&gt; 
-            &lt;value&gt;91&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;6 months&lt;/name&gt; 
-            &lt;value&gt;182&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;1 year&lt;/name&gt; 
-            &lt;value&gt;365&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;value&gt;91&lt;/value&gt;  
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Workflow property&lt;/label&gt; 
-        &lt;property&gt;wkfProperty&lt;/property&gt; 
-        &lt;documentation&gt;Name of a property attached to your workflows. If this property is set, your workflow won't be deleted.
-        &lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt; 
-        &lt;value&gt;doNotDelete&lt;/value&gt; 
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Pattern matching&lt;/label&gt; 
-        &lt;property&gt;wkfPatternMatching&lt;/property&gt; 
-        &lt;documentation&gt;a SQL pattern matching to automatically preserve some workflows. The pattern must solve for a LIKE statement.&lt;/documentation&gt; 
-        &lt;type&gt;entry&lt;/type&gt;
-    &lt;/formElement&gt; 
-
-    &lt;formElement&gt; 
-        &lt;label&gt;Delete&lt;/label&gt;    
-        &lt;property&gt;executeDeletion&lt;/property&gt; 
-        &lt;documentation&gt;If this option is not set, only report is done. No real data are deleted&lt;/documentation&gt; 
-        &lt;type&gt;select&lt;/type&gt;    
-        &lt;option&gt; 
-            &lt;name&gt;Report&lt;/name&gt; 
-            &lt;value&gt;false&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;option&gt; 
-            &lt;name&gt;Delete&lt;/name&gt; 
-            &lt;value&gt;true&lt;/value&gt; 
-        &lt;/option&gt; 
-        &lt;value&gt;false&lt;/value&gt;    
-    &lt;/formElement&gt; 
-
-&lt;/editor&gt;</value>
+          <value>PLACEHOLDER</value>
         </property>
         <property>
           <propertyName>exposeToPlugin</propertyName>

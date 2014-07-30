@@ -63,7 +63,7 @@ $ec_setup->appendTextChild('propertyName',"ec_setup");
 $ec_setup->appendTextChild('value',"PLACEHOLDER");
 $projectPropertySheet->[0]->appendChild($ec_setup);
 my $ecSetupFile = "project/ec_setup.pl";
-my $setupContent = $projectXml->find('/exportedData/project/propertySheet/property[propertyName="ec_setup"]/value')->string_value();
+my $setupContent = $projectXml->find('/exportedData/project/propertySheet/property[propertyName="ec_setup"]/value')->string_value;
 
 open (SETUP, ">$ecSetupFile") or die "$ecSetupFile:  $!\n";
 print SETUP $setupContent, "\n";
@@ -99,9 +99,20 @@ foreach my $procedure ($projectXml->findnodes('/exportedData/project/procedure')
 	mkdir "project/procedures/$procedureFile";
 
 	# deal with ec_parameterForm property
-	my $form=$procedure->find('propertySheet/property[propertyName="ec_parameterForm"]/value')->string_value();
+	my $form=($procedure->findnodes('propertySheet/property[propertyName="ec_parameterForm"]/value'))[0];
 	if ($form) {
-		printf("ec_parameterForm found")
+		printf("    ec_parameterForm found\n") if ($DEBUG);
+		print $form;
+#		my $formValue=$form->findnodes("value")->string_value;
+#		my $formNode=($form->findnodes('value'))[0];
+		$form->removeChildNodes;  # Remove the current value
+		$form->appendText('PLACEHOLDER'); # Insert new value
+		$manifest .= qq(	['//project/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/$procedureFile/form.xml'],\n);
+		my $formFile = "project/procedures/form.xml";
+		open (FORM, ">$formFile") or die "$formFile:  $!\n";
+		print FORM $form, "\n";
+		close FORM;
+
 	}
 	mkdir "project/procedures/$procedureFile/steps";
 	#print "Procedure: $procedureName\n";
