@@ -5312,7 +5312,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>125</value>
+        <value>126</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>
@@ -10118,7 +10118,8 @@ Best: mssql or oracle</description>
 
 Changelog:
 --------------
-
+2014-07-30  lrochette   Fixed "directory" parameter help tip
+                                 Now pick ant from the SDK instead of the path
 2014-07-17  lrochette   Added CHANGELOG creation
 2014-07-09  lrochette   Include projectAsCode option
 2014-06-18  lrochette   Added a hook to allow actions to be taken when the plugin changes state
