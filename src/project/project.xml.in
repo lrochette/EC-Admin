@@ -4727,125 +4727,7 @@ sub getPS
 &lt;head&gt;
 	&lt;meta content="text/html; charset=us-ascii" http-equiv="content-type" /&gt;
 	&lt;title&gt;EC-Admin Plugin&lt;/title&gt;
-	&lt;style&gt;
-/* pluginhelp.css -
- *
- * This file defines styles used for displaying plugin documentation.
- *
- * Copyright (c) 2006-2014 Electric Cloud, Inc.
- * All rights reserved
- */
-
-.help {
-    font-family: Times New Roman, Times, serif;
-    font-size: 16px;
-    margin: 10px 10px 0px 30px;
-}
-
-.help h1 {
-    font-family: Verdana, Helvetica, sans-serif;
-    font-size: 25.89px;
-    font-weight: bold;
-    color: #4670B8;
-    margin-left: -10px;
-}
-
-.help h2 {
-    font-family: Verdana, Helvetica, sans-serif;
-    font-size: 125%;
-    font-weight: bold;
-    color: #5981BD;
-    margin-left: -10px;
-}
-
-.help h3 {
-    font-family: Verdana, Helvetica, sans-serif;
-    font-size: 115%;
-    font-weight: bold;
-    color: #5981BD;
-}
-
-.help h4 {
-    font-family: Verdana, Helvetica, sans-serif;
-    font-size: 100%;
-    font-weight: bold;
-    font-style: italic;
-    color: #5981BD;
-}
-
-.help a {
-    color: #333333;
-    text-decoration: none;
-    padding: 1px;
-    background-image: url(../lib/images/dottedBorder1.gif);
-    background-position: bottom;
-    background-repeat: repeat-x;
-}
-
-.help a:hover {
-    color: #CC6600;
-    background-image: url(../lib/images/dottedBorder1Hover.gif);
-}
-
-.help ul li {
-    list-style-position: outside;
-    padding-bottom: 4px;
-    font-size: 110%;
-    margin-left: 5pt;
-}
-
-.help pre {
-    font-size: 100%;
-}
-
-.help img {
-    margin-top: 15px;
-    margin-bottom: 8 px;
-    margin-left: 30px;
-    border-style: solid;
-    border-width: 1px;
-}
-
-.grid {
-    border-collapse: collapse;
-    width: 900px;
-    margin: 15px 0px 0px 30px;
-}
-    
-.grid td {
-    border-style: solid;
-    border-width: 1px;
-    padding: 3px 10px 3px 5px;
-    font-size: 110%;
-   
-}
-
-.grid th {
-    border-style: solid;
-    border-width: 1px;
-    padding-right: 10px;
-    padding-left: 5px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    font-size: 110%;
-    text-align: left;
-    vertical-align: bottom;
-}
-
-.help .required {
-    font-weight: bold;
-    font-style: italic;
-}
-
-.help a:link {
-    text-decoration:underline;
-}
-
-.help div &gt; a {
-    display: none;
-}
-	&lt;/style&gt;
-
+    &lt;link rel="stylesheet" href= "../../plugins/@PLUGIN_KEY@/pluginhelp.css" type="text/css" media= "screen" /&gt;
 &lt;/head&gt;
 
 &lt;body&gt;
@@ -5312,7 +5194,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>127</value>
+        <value>128</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>
@@ -5324,6 +5206,10 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+
+- version 1.12.0
+  + Create a dummy help page if it does not exist
+
 - version 1.11.8
   + Fixed help tip for "directory" parameter in projectAsCode
   + Fixed summary link to the new plugin version in projectAsCode
@@ -5486,7 +5372,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>1.11.8</value>
+        <value>1.12.0</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -6835,6 +6721,8 @@ This procedure can be run on an individual repository or can be called on all re
     <procedure>
       <procedureName>createPluginFromProject</procedureName>
       <description>Create a plugin from a simple project
+
+OBSOLETE: being replaced by projectAsCode. Keeping it in EC-Admin for current users but won't be updated anymore
 
 Changelog:
 --------------
@@ -10124,6 +10012,7 @@ Changelog:
                                  Now pick ant from the SDK instead of the path
                                  Fixed summary link to the new plugin version
                                  Added report link to the new promoted plugin
+                                 Create a dummy page if t does not already exists
 2014-07-17  lrochette   Added CHANGELOG creation
 2014-07-09  lrochette   Include projectAsCode option
 2014-06-18  lrochette   Added a hook to allow actions to be taken when the plugin changes state
@@ -11083,7 +10972,8 @@ Procedure is added only if property pluginExpose is set</description>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
         <condition/>
-        <description>if the property "help" exist for the project, use it to create the pages/help.xml</description>
+        <description>if the property "help" exist for the project, use it to create the pages/help.xml.
+If not and the fie does not already exist, create a "dummy" page to be filled later</description>
         <errorHandling>failProcedure</errorHandling>
         <exclusiveMode>none</exclusiveMode>
         <logFileName/>
@@ -11095,7 +10985,7 @@ Procedure is added only if property pluginExpose is set</description>
         <shell>ec-perl</shell>
         <timeLimit/>
         <timeLimitUnits>minutes</timeLimitUnits>
-        <workingDirectory/>
+        <workingDirectory>$[directory]</workingDirectory>
         <workspaceName/>
         <propertySheet>
         </propertySheet>
