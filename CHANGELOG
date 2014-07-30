@@ -1,16 +1,11 @@
 2014-07-30 Laurent Rochette <lrochette@electric-cloud.com>
+  * 1.13.0.146: Extract ec_parameterForm property in projectAsCode
+
+2014-07-30 Laurent Rochette <lrochette@electric-cloud.com>
   * 1.12.0.130: Fixed link to css for help page
-
-2014-07-30 Laurent Rochette <lrochette@electric-cloud.com>
   * 1.12.0.129: Create dummy help page
-
-2014-07-30 Laurent Rochette <lrochette@electric-cloud.com>
   * 1.11.8.128: Fixed summary link to the new plugin version in projectAsCode.
-
-2014-07-30 Laurent Rochette <lrochette@electric-cloud.com>
-  * 1.11.8.127: Fixed summary link to the new plugin version in projectAsCode.
   * 1.11.8.126: Fixed Help for Directory parameter in projectAsCode
-  * 1.11.8.125: Fixed Help for Directory parameter in projectAsCode
 
 2014-07-26 Laurent Rochette <lrochette@electric-cloud.com>
   * 1.11.7.124: Improved Help page for projectAsCode
