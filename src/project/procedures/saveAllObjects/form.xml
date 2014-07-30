@@ -1,1 +1,66 @@
-PLACEHOLDER
+<editor> 
+    <formElement> 
+        <label>Backup directory</label>    
+        <property>pathname</property>    
+        <documentation>Directory where to saved the XML files.</documentation> 
+        <type>entry</type>    
+        <value>/tmp/BACKUP</value> 
+     <required>1</required> 
+    </formElement> 
+
+    <formElement> 
+        <label>Backup Resources</label>    
+        <property>exportResources</property> 
+        <documentation>Boolean to export Resources</documentation> 
+        <type>checkbox</type>    
+        <checkedValue>true</checkedValue> 
+        <uncheckedValue>false</uncheckedValue> 
+        <initiallyChecked>1</initiallyChecked> 
+        <value>true</value>    
+    </formElement> 
+
+    <formElement> 
+        <label>Backup Resource Pools</label>    
+        <property>exportResourcePools</property> 
+        <documentation>Boolean to export Pools</documentation> 
+        <type>checkbox</type>    
+        <checkedValue>true</checkedValue> 
+        <uncheckedValue>false</uncheckedValue> 
+        <initiallyChecked>1</initiallyChecked> 
+        <value>true</value>    
+    </formElement> 
+
+    <formElement> 
+        <label>Backup Workspaces</label>    
+        <property>exportWorkspaces</property> 
+        <documentation>Boolean to export Workspaces</documentation> 
+        <type>checkbox</type>    
+        <checkedValue>true</checkedValue> 
+        <uncheckedValue>false</uncheckedValue> 
+        <initiallyChecked>1</initiallyChecked> 
+        <value>true</value>    
+    </formElement> 
+
+    <formElement> 
+        <label>Backup Users</label>    
+        <property>exportUsers</property> 
+        <documentation>Boolean to export Users</documentation> 
+        <type>checkbox</type>    
+        <checkedValue>true</checkedValue> 
+        <uncheckedValue>false</uncheckedValue> 
+        <initiallyChecked>1</initiallyChecked> 
+        <value>true</value>    
+    </formElement> 
+
+    <formElement> 
+        <label>Backup Groups</label>    
+        <property>exportGroups</property> 
+        <documentation>Boolean to export Groups</documentation> 
+        <type>checkbox</type>    
+        <checkedValue>true</checkedValue> 
+        <uncheckedValue>false</uncheckedValue> 
+        <initiallyChecked>1</initiallyChecked> 
+        <value>true</value>    
+    </formElement> 
+
+</editor>

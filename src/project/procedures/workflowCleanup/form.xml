@@ -1,1 +1,64 @@
-PLACEHOLDER
+<editor> 
+    <formElement> 
+        <label>Delete workflows older than</label>    
+        <property>olderThan</property>    
+        <documentation>Indicate the numbers of days after which workflows should be deleted</documentation> 
+        <type>select</type> 
+        <option> 
+            <name>1 month</name> 
+            <value>30</value> 
+        </option> 
+        <option> 
+            <name>2 months</name> 
+            <value>60</value> 
+        </option> 
+        <option> 
+            <name>3 months</name> 
+            <value>91</value> 
+        </option> 
+        <option> 
+            <name>6 months</name> 
+            <value>182</value> 
+        </option> 
+        <option> 
+            <name>1 year</name> 
+            <value>365</value> 
+        </option> 
+        <value>91</value>  
+        <required>1</required>
+    </formElement> 
+
+    <formElement> 
+        <label>Workflow property</label> 
+        <property>wkfProperty</property> 
+        <documentation>Name of a property attached to your workflows. If this property is set, your workflow won't be deleted.
+        </documentation> 
+        <type>entry</type> 
+        <value>doNotDelete</value> 
+        <required>1</required>
+    </formElement> 
+
+    <formElement> 
+        <label>Pattern matching</label> 
+        <property>wkfPatternMatching</property> 
+        <documentation>a SQL pattern matching to automatically preserve some workflows. The pattern must solve for a LIKE statement.</documentation> 
+        <type>entry</type>
+    </formElement> 
+
+    <formElement> 
+        <label>Delete</label>    
+        <property>executeDeletion</property> 
+        <documentation>If this option is not set, only report is done. No real data are deleted</documentation> 
+        <type>select</type>    
+        <option> 
+            <name>Report</name> 
+            <value>false</value> 
+        </option> 
+        <option> 
+            <name>Delete</name> 
+            <value>true</value> 
+        </option> 
+        <value>false</value>    
+    </formElement> 
+
+</editor>

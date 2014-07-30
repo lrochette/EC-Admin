@@ -1,1 +1,105 @@
-PLACEHOLDER
+<editor> 
+    <formElement> 
+        <label>Delete jobs older than</label> 
+        <property>olderThan</property> 
+        <documentation>Indicate the numbers of days after which jobs should be deleted</documentation> 
+        <type>select</type> 
+        <option> 
+            <name>Now</name> 
+            <value>0</value> 
+        </option> 
+        <option> 
+            <name>1 month</name> 
+            <value>30</value> 
+        </option> 
+        <option> 
+            <name>2 months</name> 
+            <value>60</value> 
+        </option> 
+        <option> 
+            <name>3 months</name> 
+            <value>91</value> 
+        </option> 
+        <option> 
+            <name>6 months</name> 
+            <value>182</value> 
+        </option> 
+        <option> 
+            <name>1 year</name> 
+            <value>365</value> 
+        </option> 
+        <value>0</value> 
+        <required>0</required>
+    </formElement> 
+    <formElement> 
+        <label>Success Jobs</label>	
+        <property>nbGoodJobs</property>	
+        <documentation>The number of successful jobs to preserve per procedure</documentation> 
+        <type>entry</type>	
+        <value>5</value> 
+        <required>1</required>
+    </formElement> 
+    <formElement> 
+        <label>Warning Jobs</label> 
+        <property>nbWarningJobs</property> 
+        <documentation>The number of Warning jobs to preserve per procedure</documentation> 
+        <type>entry</type>  
+        <value>1</value> 
+        <required>1</required>
+    </formElement> 
+    <formElement> 
+        <label>Failed Jobs</label> 
+        <property>nbFailedJobs</property> 
+        <documentation>The number of failed jobs to preserve per procedure</documentation> 
+        <type>entry</type>  
+        <value>5</value> 
+        <required>1</required>
+    </formElement> 
+    <formElement> 
+        <label>Job property</label> 
+        <property>jobProperty</property> 
+        <documentation>Name of a property attached to your jobs. If this property is set, your job won't be deleted.
+        </documentation> 
+        <type>entry</type>  
+        <value>doNotDelete</value> 
+        <required>1</required>
+    </formElement> 
+
+    <formElement> 
+        <label>Delete</label>	
+        <property>executeDeletion</property> 
+        <documentation>If this option is not set, only report is done. No real data are deleted</documentation> 
+        <type>select</type>	
+        <option> 
+            <name>Report</name> 
+            <value>false</value> 
+        </option> 
+        <option> 
+            <name>Delete</name> 
+            <value>true</value> 
+        </option> 
+        <value>false</value>	
+    </formElement> 
+
+    <formElement> 
+        <label>Compute Disk Usage</label>    
+        <property>computeDiskUsage</property> 
+        <documentation>Check off to skip the computation of file space used for the job. This will speed up the job.</documentation> 
+        <type>checkbox</type>    
+        <checkedValue>true</checkedValue> 
+        <uncheckedValue>false</uncheckedValue> 
+        <initiallyChecked>1</initiallyChecked> 
+        <value>true</value>    
+    </formElement> 
+
+    <formElement> 
+        <label>Skip plugins</label>	
+        <property>skipPlugins</property> 
+        <documentation>A boolean to indicate to skip plugin projects or not</documentation> 
+        <type>checkbox</type>	
+        <checkedValue>true</checkedValue> 
+        <uncheckedValue>false</uncheckedValue> 
+        <initiallyChecked>1</initiallyChecked> 
+        <value>true</value>	
+    </formElement>
+</editor> 
