@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>1.11.8.128</version>
+  <version>1.12.0.129</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
-2014-07-30 lrochette Fixed summary link to the new plugin version in projectAsCode.</description>
+2014-07-30 lrochette Create dummy help page</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>

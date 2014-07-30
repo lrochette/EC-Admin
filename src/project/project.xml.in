@@ -5194,7 +5194,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>128</value>
+        <value>129</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>

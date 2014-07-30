@@ -26,16 +26,17 @@ if ($help ne "") {
     <meta content="text/html; charset=us-ascii" http-equiv="content-type" />
 
     <title>Electric Commander Plugin for $[/myJob/pluginName]</title>
-    <link rel="stylesheet" href= "../../plugins/@' . 'PLUGIN_KEY' . '@/pluginhelp.css" type="text/css" media= "screen" />
+    <link rel="stylesheet" href= "../../plugins/@' . 'PLUGIN_NAME' . '@/pluginhelp.css" type="text/css" media= "screen" />
 </head>
 
 <body>
     <div class="help">
-    <h1>Jenkins</h1>
-    <p>Plugin Version @' . 'PLUGIN_VERSION' . '@</p>
-    <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" />
+      <h1>@' . 'PLUGIN_KEY' . '@</h1>
+      <p>Plugin Version @' . 'PLUGIN_VERSION' . '@</p>
+      <hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" />
 
-    <p></p>
+      <p>This is where your help should go.</p>
+    </div>
 </body>
 </html>
 ';
