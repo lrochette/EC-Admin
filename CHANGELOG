@@ -1,4 +1,7 @@
 2014-07-30 Laurent Rochette <lrochette@electric-cloud.com>
+  * 1.11.8.127: Fixed summary link to the new plugin version in projectAsCode.
+
+2014-07-30 Laurent Rochette <lrochette@electric-cloud.com>
   * 1.11.8.126: Fixed Help for Directory parameter in projectAsCode
 
 2014-07-30 Laurent Rochette <lrochette@electric-cloud.com>

@@ -5312,7 +5312,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>126</value>
+        <value>127</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>
@@ -5325,7 +5325,9 @@ software.&lt;/p&gt;
 
 History:
 - version 1.11.8
-  + Fixed help tip for "directory" parameter
+  + Fixed help tip for "directory" parameter in projectAsCode
+  + Fixed summary link to the new plugin version in projectAsCode
+  + Added report link to the new promoted plugin in projectAsCode
 
 - version 1.11.7
     + Added option to add own logo file in changeBannerColor
@@ -10120,6 +10122,8 @@ Changelog:
 --------------
 2014-07-30  lrochette   Fixed "directory" parameter help tip
                                  Now pick ant from the SDK instead of the path
+                                 Fixed summary link to the new plugin version
+                                 Added report link to the new promoted plugin
 2014-07-17  lrochette   Added CHANGELOG creation
 2014-07-09  lrochette   Include projectAsCode option
 2014-06-18  lrochette   Added a hook to allow actions to be taken when the plugin changes state
