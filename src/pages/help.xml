@@ -5,7 +5,7 @@
 <head>
 	<meta content="text/html; charset=us-ascii" http-equiv="content-type" />
 	<title>EC-Admin Plugin</title>
-    <link rel="stylesheet" href= "../../plugins/@PLUGIN_KEY@/pluginhelp.css" type="text/css" media= "screen" />
+    <link rel="stylesheet" href= "../../plugins/@PLUGIN_NAME@/pluginhelp.css" type="text/css" media= "screen" />
 </head>
 
 <body>

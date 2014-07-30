@@ -4727,7 +4727,7 @@ sub getPS
 &lt;head&gt;
 	&lt;meta content="text/html; charset=us-ascii" http-equiv="content-type" /&gt;
 	&lt;title&gt;EC-Admin Plugin&lt;/title&gt;
-    &lt;link rel="stylesheet" href= "../../plugins/@PLUGIN_KEY@/pluginhelp.css" type="text/css" media= "screen" /&gt;
+    &lt;link rel="stylesheet" href= "../../plugins/@PLUGIN_NAME@/pluginhelp.css" type="text/css" media= "screen" /&gt;
 &lt;/head&gt;
 
 &lt;body&gt;
@@ -5194,7 +5194,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>129</value>
+        <value>130</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>
