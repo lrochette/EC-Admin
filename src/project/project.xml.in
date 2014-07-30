@@ -5194,7 +5194,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>144</value>
+        <value>145</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>
@@ -6184,12 +6184,6 @@ Changelog:
               </propertySheet>
             </property>
           </propertySheet>
-        </property>
-        <property>
-          <propertyName>ec_parameterForm</propertyName>
-          <description/>
-          <expandable>1</expandable>
-          <value>PLACEHOLDER</value>
         </property>
       </propertySheet>
       <formalParameter>

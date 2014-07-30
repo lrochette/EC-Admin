@@ -105,7 +105,7 @@ foreach my $procedure ($projectXml->findnodes('/exportedData/project/procedure')
 		my $formValue=$form->string_value;
 		$form->removeChildNodes;  # Remove the current value
 		$form->appendText('PLACEHOLDER'); # Insert new value
-		$manifest .= qq(	['//project/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/$procedureFile/form.xml'],\n);
+		$manifest .= qq(	['//project/procedure[procedureName="$procedureName"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/$procedureFile/form.xml'],\n);
 		my $formFile = "project/procedures/$procedureFile/form.xml";
 		open (FORM, ">$formFile") or die "$formFile:  $!\n";
 		print FORM $formValue, "\n";
