@@ -102,15 +102,14 @@ foreach my $procedure ($projectXml->findnodes('/exportedData/project/procedure')
 	my $form=($procedure->findnodes('propertySheet/property[propertyName="ec_parameterForm"]/value'))[0];
 	if ($form) {
 		printf("    ec_parameterForm found\n") if ($DEBUG);
-		print $form;
 #		my $formValue=$form->findnodes("value")->string_value;
 #		my $formNode=($form->findnodes('value'))[0];
 		$form->removeChildNodes;  # Remove the current value
 		$form->appendText('PLACEHOLDER'); # Insert new value
 		$manifest .= qq(	['//project/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/$procedureFile/form.xml'],\n);
-		my $formFile = "project/procedures/form.xml";
+		my $formFile = "project/procedures/$procedureFile/form.xml";
 		open (FORM, ">$formFile") or die "$formFile:  $!\n";
-		print FORM $form, "\n";
+		print FORM $form->string_value, "\n";
 		close FORM;
 
 	}
