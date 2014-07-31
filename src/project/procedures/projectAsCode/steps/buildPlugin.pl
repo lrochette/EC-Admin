@@ -5,6 +5,9 @@ use File::Copy qw(move);
 my $pluginName="$[/myJob/pluginName]";
 my $Version="$[/myJob/Version]";
 
+# Using Commander provided Java
+$ENV{'JAVA_HOME'} = $ENV{'COMMANDER_HOME'} . "/jre";
+
 my @args=("\"$[SDKpath]/tools/ant/bin/ant\" build");
 system(@args) == 0 or die("system @args failed: $?");
 

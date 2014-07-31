@@ -5194,7 +5194,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>146</value>
+        <value>147</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>
@@ -5206,6 +5206,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+
+- version 1.13.1
+  + Setting JAVA_HOME to use the provided jre one in projectAsCode
 
 - version 1.13.0
   +  Extract ec_prameterForm in projectAsCode
@@ -5375,7 +5378,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>1.13.0</value>
+        <value>1.13.1</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -9504,6 +9507,7 @@ Changelog:
                                  Added report link to the new promoted plugin
                                  Create a dummy page if t does not already exists
                                  Extract ec_parameterForm
+                                 Setting up JAVA_HOME to use the provided jre one in projectAsCode
 2014-07-17  lrochette   Added CHANGELOG creation
 2014-07-09  lrochette   Include projectAsCode option
 2014-06-18  lrochette   Added a hook to allow actions to be taken when the plugin changes state

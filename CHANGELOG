@@ -1,4 +1,7 @@
 2014-07-30 Laurent Rochette <lrochette@electric-cloud.com>
+  * 1.13.1.147: Setting up JAVA_HOME to use the provided jre one in projectAsCode
+
+2014-07-30 Laurent Rochette <lrochette@electric-cloud.com>
   * 1.13.0.146: Extract ec_parameterForm property in projectAsCode
   * 1.12.0.130: Fixed link to css for help page
   * 1.12.0.129: Create dummy help page
