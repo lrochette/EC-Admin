@@ -4945,7 +4945,7 @@ sub checkValue
             <propertyName>jobTemplate</propertyName>
             <description/>
             <expandable>1</expandable>
-            <value>$[/myProcedure/procedureName]_$[/increment /server/counters/EC-Admin/jobCounter]</value>
+            <value>PLACEHOLDER</value>
           </property>
           <property>
             <propertyName>perlCommonLib</propertyName>
@@ -4955,131 +4955,19 @@ sub checkValue
  - humanSize: return a size in human readable string
  - compareVersion: a function to compare artifact version strings in the form of x.y.z....</description>
             <expandable>1</expandable>
-            <value>#############################################################################
-#
-# Compare 2 version number strings like x.y.z... section by section
-# return 1 if V1 &gt; v2
-# return 0 if v1 == v2
-# return -1 if v1 &lt; v2
-#
-#############################################################################
-sub compareVersion {
-
-  my ($v1, $v2)=@_;
-  
-  my @v1Numbers = split('\.', $v1);
-  my @v2Numbers = split('\.', $v2);
-
-  for (my $index = 0; $index &lt; scalar(@v1Numbers); $index++) {
-    
-    # We ran out of V2 numbers =&gt; V1 is a bigger version
-    return 1 if (scalar(@v2Numbers) == $index);
-
-    # same value, go to next number
-    next if ($v1Numbers[$index] == $v2Numbers[$index]);
-        
-    # V1 is a bigger version
-    return 1 if ($v1Numbers[$index] &gt; $v2Numbers[$index]);
-           ;
-    # V2 is a bigger version
-    return -1;
-  }
-
-  # We ran out of V1 numbers
-  return -1 if(scalar(@v1Numbers) != scalar(@v2Numbers));
-
-  # Same number
-  return 0;
-}
-
-
-#############################################################################
-#
-# Return property value or undef in case of error (non existing)
-#
-#############################################################################
-sub getP
-{
-  my $prop=shift;
-
-  my($success, $xPath, $errMsg, $errCode)= InvokeCommander("SuppressLog IgnoreError", "getProperty", $prop);
-  return undef if ($success != 1);
-  my $val= $xPath-&gt;findvalue("//value");
-  return($val);
-}
-
-#############################################################################
-#
-# Return human readable size
-#
-#############################################################################
-sub humanSize {
-  my $size = shift();
-
-  if ($size &gt; 1099511627776) { # TB: 1024 GB
-      return sprintf("%.2f TB", $size / 1099511627776);
-  }
-  if ($size &gt; 1073741824) { # GB: 1024 MB
-      return sprintf("%.2f GB", $size / 1073741824);
-  }
-  if ($size &gt; 1048576) { # MB: 1024 KB
-      return sprintf("%.2f MB", $size / 1048576);
-  }
-  elsif ($size &gt; 1024) { # KiB: 1024 B
-      return sprintf("%.2f KB", $size / 1024);
-  }
-                                  # bytes
-  return "$size byte" . ($size &lt;= 1 ? "" : "s");
-}</value>
+            <value>PLACEHOLDER</value>
           </property>
           <property>
             <propertyName>perlHeader</propertyName>
             <description>default Perl Header to use the API</description>
             <expandable>1</expandable>
-            <value>#############################################################################
-#
-# Copyright 2013 Electric-Cloud Inc.
-#
-#############################################################################
-use strict;
-use English;
-use ElectricCommander;
-$| = 1;
-
-my $DEBUG=0;
-
-# Create a single instance of the Perl access to ElectricCommander
-my $ec = new ElectricCommander();
-
-# Check for the OS Type
-my $osIsWindows = $^O =~ /MSWin/;
-</value>
+            <value>PLACEHOLDER</value>
           </property>
           <property>
             <propertyName>perlHeaderJSON</propertyName>
             <description>default Perl Header to use the API with JSON format</description>
             <expandable>1</expandable>
-            <value>#############################################################################
-#
-# Copyright 2013 Electric-Cloud Inc.
-#
-#############################################################################
-use strict;
-use English;
-use ElectricCommander;
-use Data::Dumper;
-$| = 1;
-
-my $DEBUG=0;
-
-# Create a single instance of the Perl access to ElectricCommander
-my $ec = new ElectricCommander({'format' =&gt; "json"});
-
-# Check for the OS Type
-my $osIsWindows = $^O =~ /MSWin/;
-
-
-#### Line 20 ####</value>
+            <value>PLACEHOLDER</value>
           </property>
           <property>
             <propertyName>perlLib</propertyName>
@@ -5106,93 +4994,7 @@ my $osIsWindows = $^O =~ /MSWin/;
 # errCode - the code part &lt;code&gt; of the XML
 #-------------------------------------------------------------------------</description>
             <expandable>1</expandable>
-            <value>$[/javascript 
-var p;
-if (typeof(plugins["EC-Admin"].project.Version) == "undefined") {
-  p=projects["EC-Admin"].scripts.perlCommonLib;
-} else {
-  p=plugins["EC-Admin"].project.scripts.perlCommonLib;
-}
-p;
-];
-
-#############################################################################
-#
-# Invoke a API call
-#
-#############################################################################
-sub InvokeCommander {
-
-    my $optionFlags = shift;
-    my $commanderFunction = shift;
-    my $xPath;
-    my $success = 1;
-
-    my $bSuppressLog = $optionFlags =~ /SuppressLog/i;
-    my $bSuppressResult = $bSuppressLog || $optionFlags =~ /SuppressResult/i;
-    my $bIgnoreError = $optionFlags =~ /IgnoreError/i;
-
-    # Run the command
-    # print "Request to Commander: $commanderFunction\n" unless ($bSuppressLog);
-
-    $ec-&gt;abortOnError(0) if $bIgnoreError;
-    $xPath = $ec-&gt;$commanderFunction(@_);
-    $ec-&gt;abortOnError(1) if $bIgnoreError;
-
-    # Check for error return
-    my $errMsg = $ec-&gt;checkAllErrors($xPath);
-    my $errCode=$xPath-&gt;findvalue('//code',)-&gt;value();
-    if ($errMsg ne "") {
-        $success = 0;
-    }
-    if ($xPath) {
-        print "Return data from Commander:\n" .
-               $xPath-&gt;findnodes_as_string("/") . "\n"
-            unless $bSuppressResult;
-    }
-
-    # Return the result
-    return ($success, $xPath, $errMsg, $errCode);
-}
-
-
-#############################################################################
-#
-# Return a hash of the properties contained in a Property Sheet.
-# Args:
-#    1. Property Sheet path
-#    2. Recursive boolean
-#############################################################################
-sub getPS
-{
-  my $psPath=shift;
-  my $recursive=shift;
-  
-  my $hashRef=undef;
-  
-  my($success, $result, $errMsg, $errCode)=InvokeCommander("SuppressLog IgnoreError", "getProperties", {'path'=&gt;$psPath});
-  return $hashRef if (!$success);
-  
- my $nodeset=$result-&gt;find('//property');
-  foreach my $node ($nodeset-&gt;get_nodelist) {
-	my $propName=$result-&gt;findvalue('propertyName',    $node);
-    my $value   =$result-&gt;findvalue('value',           $node);
-    my $psId    =$result-&gt;findvalue('propertySheetId', $node);
-    
-    # this is not a nested PS    
-    if ($psId eq '') {
-      $hashRef-&gt;{$propName}=$value;
-    } else {
-      # nested PropertySheet
-      if ($recursive) {
-        $hashRef-&gt;{$propName}=getPS("$psPath/$propName");
-      } else {
-        $hashRef-&gt;{$propName}=undef;
-      }  
-    }
-  }
-  return $hashRef;
-}</value>
+            <value>PLACEHOLDER</value>
           </property>
           <property>
             <propertyName>perlLibJSON</propertyName>
@@ -5220,94 +5022,7 @@ sub getPS
 # errCode - the code part &lt;code&gt; of the XML
 #-------------------------------------------------------------------------</description>
             <expandable>1</expandable>
-            <value>$[/javascript 
-var p;
-if (typeof(plugins["EC-Admin"].project.Version) == "undefined") {
-  p=projects["EC-Admin"].scripts.perlCommonLib;
-} else {
-  p=plugins["EC-Admin"].project.scripts.perlCommonLib;
-}
-p;
-];
-
-#############################################################################
-#
-# Invoke a API call
-#
-#############################################################################
-sub InvokeCommander {
-
-    my $optionFlags = shift;
-    my $commanderFunction = shift;
-    my $result;
-    my $success = 1;
-	my $errMsg;
-	my $errCode;
-
-    my $bSuppressLog = $optionFlags =~ /SuppressLog/i;
-    my $bSuppressResult = $bSuppressLog || $optionFlags =~ /SuppressResult/i;
-    my $bIgnoreError = $optionFlags =~ /IgnoreError/i;
-
-    # Run the command
-    # print "Request to Commander: $commanderFunction\n" unless ($bSuppressLog);
-
-    $ec-&gt;abortOnError(0) if $bIgnoreError;
-    $result = $ec-&gt;$commanderFunction(@_);
-    $ec-&gt;abortOnError(1) if $bIgnoreError;
-
-    # Check for error return
-    if (defined ($result-&gt;{responses}-&gt;[0]-&gt;{error})) {
-    	$errCode=$result-&gt;{responses}-&gt;[0]-&gt;{error}-&gt;{code};
-    	$errMsg=$result-&gt;{responses}-&gt;[0]-&gt;{error}-&gt;{message};
-    }
-
-    if ($errMsg ne "") {
-        $success = 0;
-    }
-    if ($result) {
-        print "Return data from Commander:\n" .
-               Dumper($result) . "\n"
-            unless $bSuppressResult;
-    }
-
-    # Return the result
-    return ($success, $result, $errMsg, $errCode);
-}
-
-
-#############################################################################
-#
-# Return a hash of the properties contained in a Property Sheet.
-# Args:
-#    1. Property Sheet path
-#    2. Recursive boolean
-#############################################################################
-sub getPS
-{
-  my $psPath=shift;
-  my $recursive=shift;
-  
-  my $hashRef=undef;;
-  
-  my($success, $result, $errMsg, $errCode)=InvokeCommander("SuppressLog IgnoreError", "getProperties", {'path'=&gt;$psPath});
-  return $hashRef if (!$success);
-  
-  foreach my $node ($result-&gt;findnodes('//property')) {
-	my $propName=$node-&gt;{'propertyName'};
-    my $value=$node-&gt;{'value'};
-    if (defined ($value)) {
-      $hashRef-&gt;{$propName}=$node-&gt;{'value'};
-    } else {
-      # nested PropertySheet
-      if ($recursive) {
-        $hashRef-&gt;{$propName}=getPS("$psPath/$propName");
-      } else {
-        $hashRef-&gt;{$propName}=undef;
-      }  
-    }
-  }
-  return $hashRef;
-}</value>
+            <value>PLACEHOLDER</value>
           </property>
         </propertySheet>
       </property>
@@ -5794,7 +5509,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>150</value>
+        <value>151</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>

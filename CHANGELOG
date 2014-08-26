@@ -1,3 +1,6 @@
+2014-08-26 Laurent Rochette <lrochette@electric-cloud.com>
+  * 1.14.0.151: Extract code as properties in PS named scripts
+
 2014-07-30 Laurent Rochette <lrochette@electric-cloud.com>
   * 1.13.1.147: Setting up JAVA_HOME to use the provided jre one in projectAsCode
 

@@ -40,8 +40,12 @@ sub fileFriendly($) {
 rmtree("project/procedures");
 mkdir "project";
 mkdir "project/procedures";
+# Remove old properties directory if it exists
+rmtree("project/properties");
+mkdir "project/properties";
+mkdir "project/properties/scripts";
 
-my $manifest = ""; # manifest.pl file content
+my $manifest = qq(\@files = \(\n); # manifest.pl file content
 
 # Load export file
 my $filename = "project.xml";
@@ -70,14 +74,24 @@ open (SETUP, ">$ecSetupFile") or die "$ecSetupFile:  $!\n";
 print SETUP $setupContent, "\n";
 close SETUP;
 
-# check PS named scripts to extract code
+# check PS named "scripts" to extract code
 my $PS=($projectXml->findnodes('/exportedData/project/propertySheet/property[propertyName="scripts"]'))[0];
 if ($PS) {
-  printf("Looking at scripts propertySheet\n");
+  printf("Looking at \"scripts\" propertySheet\n");
   foreach my $prop ($PS->findnodes('propertySheet/property')) {
     my $propName=$prop->find("propertyName")->string_value;
-    my $value=$prop->find("value")->string_value;
-    printf("  Process $propName\n");
+    my $propValue=$prop->find("value")->string_value;
+    printf("  Process scripts/$propName\n");
+    my $propFileName=fileFriendly($propName);
+    $manifest .= qq(	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="$propName"]/value', "properties/scripts/$propFileName.xml"],\n);
+	my $propFile = "project/properties/scripts/$propFileName.xml";
+	open (PROP, ">$propFile") or die "$propFile:  $!\n";
+	print PROP $propValue, "\n";
+	close PROP;
+    
+    my $node=($prop->findnodes('value'))[0];
+    $node->removeChildNodes;			# Remove the current value
+	$node->appendText('PLACEHOLDER'); 	# Insert new value
   }
 }
 
@@ -97,8 +111,7 @@ my $projectNameNode=($projectXml->findnodes('/exportedData/project/projectName')
 $projectNameNode->removeChildNodes;  # Remove the current value
 $projectNameNode->appendText('@'.'PLUGIN_KEY'.'@'); # Insert new value
 
-$manifest .= qq(\@files = \(
-	['//project/propertySheet/property[propertyName="ec_setup"]/value', 'ec_setup.pl'],\n);
+$manifest .= qq(	['//project/propertySheet/property[propertyName="ec_setup"]/value', 'ec_setup.pl'],\n);
 
 foreach my $procedure ($projectXml->findnodes('/exportedData/project/procedure')) {
 
@@ -115,8 +128,8 @@ foreach my $procedure ($projectXml->findnodes('/exportedData/project/procedure')
 	if ($form) {
 		printf("    ec_parameterForm found\n") if ($DEBUG);
 		my $formValue=$form->string_value;
-		$form->removeChildNodes;  # Remove the current value
-		$form->appendText('PLACEHOLDER'); # Insert new value
+		$form->removeChildNodes;  			# Remove the current value
+		$form->appendText('PLACEHOLDER'); 	# Insert new value
 		$manifest .= qq(	['//project/procedure[procedureName="$procedureName"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/$procedureFile/form.xml'],\n);
 		my $formFile = "project/procedures/$procedureFile/form.xml";
 		open (FORM, ">$formFile") or die "$formFile:  $!\n";
