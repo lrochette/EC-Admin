@@ -57,6 +57,7 @@ if (!$projectXml->findnodes('/exportedData/project/propertySheet')) {
 
 # Add plugin properties
 my $projectPropertySheet=$projectXml->findnodes('/exportedData/project/propertySheet');
+
 # Add ec_setup -> PLACEHOLDER property
 my $ec_setup = $projectXml->ownerDocument->createElement('property');
 $ec_setup->appendTextChild('propertyName',"ec_setup");
@@ -68,6 +69,17 @@ my $setupContent = $projectXml->find('/exportedData/project/propertySheet/proper
 open (SETUP, ">$ecSetupFile") or die "$ecSetupFile:  $!\n";
 print SETUP $setupContent, "\n";
 close SETUP;
+
+# check PS named scripts to extract code
+my $PS=($projectXml->findnodes('/exportedData/project/propertySheet/property[propertyName="scripts"]'))[0];
+if ($PS) {
+  printf("Looking at scripts propertySheet\n");
+  foreach my $prop ($PS->findnodes('propertySheet/property')) {
+    my $propName=$prop->find("propertyName")->string_value;
+    my $value=$prop->find("value")->string_value;
+    printf("  Process $propName\n");
+  }
+}
 
 # Add project_version -> @ PLUGIN_VERSION @ property
 my $project_version = $projectXml->ownerDocument->createElement('property');

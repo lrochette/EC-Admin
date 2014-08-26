@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>1.13.1.147</version>
+  <version>1.14.0.150</version>
   <label>EC-Admin</label>
-  <description>A set of administrative tasks to help manage your server.
-2014-07-30 lrochette Setting up JAVA_HOME to use the provided jre one in projectAsCode</description>
+  <description>A set of administrative tasks to help manage your server.</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>
