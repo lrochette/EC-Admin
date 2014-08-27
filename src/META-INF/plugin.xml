@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>1.14.0.151</version>
+  <version>1.14.1.152</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
-2014-08-26 lrochette Extract code as properties in PS named scripts</description>
+2014-08-27 lrochette Parse scripts property sheet recursively in projectAsCode</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>

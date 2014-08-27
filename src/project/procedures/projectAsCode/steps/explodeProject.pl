@@ -7,9 +7,16 @@ use strict;
 use warnings;
 use XML::LibXML;
 use File::Path;
+use Data::Dumper;
 
 $| = 1;
 my $DEBUG=1;
+
+#
+# Global variables
+#
+my $manifest = qq(\@files = \(\n); # manifest.pl file content
+my $PSManifestPath='//project/propertySheet/property[propertyName="scripts"]/propertySheet';
 
 sub fileFriendly($) {
 # Replace file-name reserved characters with % equivalent
@@ -36,16 +43,48 @@ sub fileFriendly($) {
 	return $inputString;
 }
 
+sub processPS {
+# Recursive function to process a PS and create a file for each property
+
+	my $node=shift;			# Node to process
+	my $directory=shift;	# where to save the file
+	my $propPath=shift;		# the path to access the code property
+	my $spaces=shift;		# number of spaces for indentation
+
+	# print Dumper($node) . "\n";
+  	foreach my $prop ($node->findnodes('property')) {
+    	my $propName=$prop->findvalue("propertyName");
+    	my $propFileName=fileFriendly($propName);
+	    printf(" " x $spaces . "Process $propName\n");
+
+    	# Is this a PS, if so let's recurse
+    	if ($prop->findnodes("propertySheet")) {
+    		mkdir "$directory/$propFileName";
+    		processPS(($prop->findnodes("propertySheet"))[0], "$directory/$propFileName", $propPath . "/property[propertyName=\"$propName\"]/propertySheet", 2 + $spaces );
+    	} else {
+    		# we have a normal property
+	    	my $propValue=$prop->findvalue("value");
+
+	    	$manifest .= qq(	['$propPath/property[propertyName="$propName"]/value', "$directory/$propFileName.txt"],\n);
+			my $propFile = "$directory/$propFileName.txt";
+			open (PROP, ">$propFile") or die "$propFile:  $!\n";
+			print PROP $propValue, "\n";
+			close PROP;
+	    
+	    	my $node=($prop->findnodes('value'))[0];
+	    	$node->removeChildNodes;			# Remove the current value
+			$node->appendText('PLACEHOLDER'); 	# Insert new value
+		}
+	}
+}
+
 # Remove old procedures directory if it exists
 rmtree("project/procedures");
 mkdir "project";
 mkdir "project/procedures";
+
 # Remove old properties directory if it exists
 rmtree("project/properties");
-mkdir "project/properties";
-mkdir "project/properties/scripts";
-
-my $manifest = qq(\@files = \(\n); # manifest.pl file content
 
 # Load export file
 my $filename = "project.xml";
@@ -74,27 +113,17 @@ open (SETUP, ">$ecSetupFile") or die "$ecSetupFile:  $!\n";
 print SETUP $setupContent, "\n";
 close SETUP;
 
-# check PS named "scripts" to extract code
+# check PS named "scripts" to extract code as properties
 my $PS=($projectXml->findnodes('/exportedData/project/propertySheet/property[propertyName="scripts"]'))[0];
 if ($PS) {
-  printf("Looking at \"scripts\" propertySheet\n");
-  foreach my $prop ($PS->findnodes('propertySheet/property')) {
-    my $propName=$prop->find("propertyName")->string_value;
-    my $propValue=$prop->find("value")->string_value;
-    printf("  Process scripts/$propName\n");
-    my $propFileName=fileFriendly($propName);
-    $manifest .= qq(	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="$propName"]/value', "properties/scripts/$propFileName.xml"],\n);
-	my $propFile = "project/properties/scripts/$propFileName.xml";
-	open (PROP, ">$propFile") or die "$propFile:  $!\n";
-	print PROP $propValue, "\n";
-	close PROP;
-    
-    my $node=($prop->findnodes('value'))[0];
-    $node->removeChildNodes;			# Remove the current value
-	$node->appendText('PLACEHOLDER'); 	# Insert new value
-  }
+	printf("Process scripts propertySheet\n");
+	mkdir "project/properties";
+	mkdir "project/properties/scripts";
+	chdir("project");
+	processPS(($PS->findnodes("propertySheet"))[0], "properties/scripts", 
+						  "//project/propertySheet/property[propertyName=\"scripts\"]/propertySheet", 2);
+	chdir("..");
 }
-
 # Add project_version -> @ PLUGIN_VERSION @ property
 my $project_version = $projectXml->ownerDocument->createElement('property');
 $project_version->appendTextChild('propertyName',"project_version");

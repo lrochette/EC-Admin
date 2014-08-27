@@ -1,3 +1,6 @@
+2014-08-27 Laurent Rochette <lrochette@electric-cloud.com>
+  * 1.14.1.152: Parse scripts property sheet recursively in projectAsCode
+
 2014-08-26 Laurent Rochette <lrochette@electric-cloud.com>
   * 1.14.0.151: Extract code as properties in PS named scripts
 

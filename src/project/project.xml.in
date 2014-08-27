@@ -5509,7 +5509,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>151</value>
+        <value>152</value>
       </property>
       <property>
         <propertyName>project_version</propertyName>
@@ -5521,6 +5521,8 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 1.14.1
+  +  Parse script PS recursively in projectAsCode
 - version 1.14.0
   +  Extract script PS in projectAsCode
 
@@ -5695,7 +5697,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>1.14.0</value>
+        <value>1.14.1</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -9818,6 +9820,7 @@ Best: mssql or oracle</description>
 
 Changelog:
 --------------
+2014-08-27  lrochette   Parse "scripts" PS recursively 
 2014-08-25  lrochette   Extracting "scripts" PS generally containing code 
 2014-07-30  lrochette   Fixed "directory" parameter help tip
                                  Now pick ant from the SDK instead of the path
