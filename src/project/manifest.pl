@@ -1,4 +1,6 @@
 @files = (
+	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="licenseLogger"]/propertySheet/property[propertyName="jobCleanup.pl"]/value', "properties/scripts/licenseLogger/jobCleanup.pl.txt"],
+	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="licenseLogger"]/propertySheet/property[propertyName="logLicenseUsage.pl"]/value', "properties/scripts/licenseLogger/logLicenseUsage.pl.txt"],
 	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="jobTemplate"]/value', "properties/scripts/jobTemplate.txt"],
 	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="perlCommonLib"]/value', "properties/scripts/perlCommonLib.txt"],
 	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="perlHeader"]/value', "properties/scripts/perlHeader.txt"],
@@ -42,6 +44,8 @@
 	['//project/procedure[procedureName="jobCleanup_byResult"]/step[stepName="deleteJobs.byProject"]/command', 'procedures/jobCleanup_byResult/steps/deleteJobs.byProject.pl'],
 	['//project/procedure[procedureName="jobsCleanup"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/jobsCleanup/form.xml'],
 	['//project/procedure[procedureName="jobsCleanup"]/step[stepName="deleteJobs"]/command', 'procedures/jobsCleanup/steps/deleteJobs.pl'],
+	['//project/procedure[procedureName="licenseLogger-snapshot"]/step[stepName="getLicenseUsage"]/command', 'procedures/licenseLogger-snapshot/steps/getLicenseUsage.pl'],
+	['//project/procedure[procedureName="licenseLogger-snapshot"]/step[stepName="cleanup"]/command', 'procedures/licenseLogger-snapshot/steps/cleanup.pl'],
 	['//project/procedure[procedureName="performanceMetrics"]/step[stepName="Server RAM Amount"]/command', 'procedures/performanceMetrics/steps/Server RAM Amount.pl'],
 	['//project/procedure[procedureName="performanceMetrics"]/step[stepName="Free RAM"]/command', 'procedures/performanceMetrics/steps/Free RAM.pl'],
 	['//project/procedure[procedureName="performanceMetrics"]/step[stepName="Disk Space Available"]/command', 'procedures/performanceMetrics/steps/Disk Space Available.pl'],

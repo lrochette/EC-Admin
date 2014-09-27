@@ -1,3 +1,6 @@
+2014-09-26 System Administrator <lrochette@electric-cloud.com>
+  * 2.0.0.153: Added licenseLogger snapshot
+
 2014-08-27 Laurent Rochette <lrochette@electric-cloud.com>
   * 1.14.1.152: Parse scripts property sheet recursively in projectAsCode
 

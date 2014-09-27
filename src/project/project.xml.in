@@ -16,12 +16,12 @@
               <property>
                 <propertyName>image</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/1519767/images/customa9420a147f2a5ca4b1.png</value>
+                <value>/commander/jobSteps/1566690/images/customa4252b1481bd9d4d11.png</value>
               </property>
               <property>
                 <propertyName>link</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/1519767/Performance Report.html</value>
+                <value>/commander/jobSteps/1566690/Performance Report.html</value>
               </property>
             </propertySheet>
           </property>
@@ -1965,6 +1965,56 @@
                     <propertyName>reportDate</propertyName>
                     <expandable>1</expandable>
                     <value>2014-08-21 02:01:07</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>193132</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1566690</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1566690</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2014-08-28 02:01:00</value>
                   </property>
                   <property>
                     <propertyName>reportType</propertyName>
@@ -4942,6 +4992,24 @@ sub checkValue
         <description>A list of Perl helpers</description>
         <propertySheet>
           <property>
+            <propertyName>licenseLogger</propertyName>
+            <description/>
+            <propertySheet>
+              <property>
+                <propertyName>jobCleanup.pl</propertyName>
+                <description>Perl script to clean up old jobs</description>
+                <expandable>1</expandable>
+                <value>PLACEHOLDER</value>
+              </property>
+              <property>
+                <propertyName>logLicenseUsage.pl</propertyName>
+                <description>Perl script to log license usage statistics</description>
+                <expandable>1</expandable>
+                <value>PLACEHOLDER</value>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
             <propertyName>jobTemplate</propertyName>
             <description/>
             <expandable>1</expandable>
@@ -5509,18 +5577,16 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>152</value>
-      </property>
-      <property>
-        <propertyName>project_version</propertyName>
-        <expandable>1</expandable>
-        <value>1.11.4.93</value>
+        <value>153</value>
       </property>
       <property>
         <propertyName>version</propertyName>
         <description>Version of the EC-Admin project
 
 History:
+- version 2.0.0
+  + Add a licenseLogger to extract usage
+
 - version 1.14.1
   +  Parse script PS recursively in projectAsCode
 - version 1.14.0
@@ -5697,7 +5763,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>1.14.1</value>
+        <value>2.0.0</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -9184,6 +9250,66 @@ Changelog:
         <timeLimitUnits>minutes</timeLimitUnits>
         <workingDirectory/>
         <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+    </procedure>
+    <procedure>
+      <procedureName>licenseLogger-snapshot</procedureName>
+      <description>&lt;html&gt;&lt;b&gt;Scheduled Procedure&lt;/b&gt; - gathers and stores the periodic snapshot of license usage&lt;/html&gt;</description>
+      <jobNameTemplate>$[/myProject/scripts/jobTemplate]</jobNameTemplate>
+      <resourceName/>
+      <timeLimit/>
+      <timeLimitUnits>minutes</timeLimitUnits>
+      <workspaceName/>
+      <propertySheet>
+      </propertySheet>
+      <step>
+        <stepName>getLicenseUsage</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition/>
+        <description>$[/javascript (typeof(server.licenseLogger.config.resource) == "undefined")? "local" : server.licenseLogger.config.resource ]
+$[/javascript (typeof(server.licenseLogger.config.workspace) == "undefined")? "default" : server.licenseLogger.config.workspace ]
+
+$ [/server/licenseLogger/config/resource]</description>
+        <errorHandling>abortJob</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName>$[/javascript (typeof(server.licenseLogger.config.resource) == "undefined")? "local" : server.licenseLogger.config.resource ]</resourceName>
+        <shell>ec-perl</shell>
+        <timeLimit>15</timeLimit>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName>$[/javascript (typeof(server.licenseLogger.config.workspace) == "undefined")? "default" : server.licenseLogger.config.workspace ]</workspaceName>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>cleanup</stepName>
+        <alwaysRun>1</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition>$[/javascript (typeof(server.licenseLogger.config.cleanpOldJobs) == "undefined")? "1" : server.licenseLogger.config.cleanpOldJobs ]</condition>
+        <description>Cleans up old job records.</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName>$[/javascript (typeof(server.licenseLogger.config.resource) == "undefined")? "local" : server.licenseLogger.config.resource ]</resourceName>
+        <shell>ec-perl</shell>
+        <timeLimit>5</timeLimit>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName>$[/javascript (typeof(server.licenseLogger.config.workspace) == "undefined")? "default" : server.licenseLogger.config.workspace ]</workspaceName>
         <propertySheet>
         </propertySheet>
       </step>
@@ -12701,6 +12827,35 @@ Report the number of workflows.</description>
           <value>30</value>
         </property>
       </actualParameters>
+      <propertySheet>
+        <property>
+          <propertyName>ec_customEditorData</propertyName>
+          <propertySheet>
+            <property>
+              <propertyName>formType</propertyName>
+              <expandable>1</expandable>
+              <value>standard</value>
+            </property>
+          </propertySheet>
+        </property>
+      </propertySheet>
+    </schedule>
+    <schedule>
+      <scheduleName>licenseLogger-snapshot</scheduleName>
+      <beginDate/>
+      <description>Gathers a periodic snapshot of license usage</description>
+      <endDate/>
+      <interval>5</interval>
+      <intervalUnits>minutes</intervalUnits>
+      <misfirePolicy>ignore</misfirePolicy>
+      <monthDays/>
+      <priority>normal</priority>
+      <procedureName>licenseLogger-snapshot</procedureName>
+      <scheduleDisabled>1</scheduleDisabled>
+      <startTime>0:02</startTime>
+      <stopTime>23:59</stopTime>
+      <timeZone>America/Los_Angeles</timeZone>
+      <weekDays/>
       <propertySheet>
         <property>
           <propertyName>ec_customEditorData</propertyName>
