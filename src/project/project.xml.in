@@ -5613,7 +5613,27 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>155</value>
+        <value>157</value>
+      </property>
+      <property>
+        <propertyName>promoteAction</propertyName>
+        <description/>
+        <expandable>1</expandable>
+        <value>if ( $promoteAction eq 'promote' ) {
+	my $query=$commander-&gt;newBatch();
+	my $cfg = $query-&gt;getProperty("/server/EC-Admin/licenseLogger/config");
+	local $self-&gt;{abortOnError} = 0;
+	$query-&gt;submit();
+
+	# If the PS does not already exist, create it
+	if ($query-&gt;findvalue($cfg, "code") eq "NoSuchProperty") {
+		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/emailTo", "admin" );
+		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/emailConfig", "default" );
+		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/cleanpOldJobs", 1 );
+		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/resource", "local" );
+		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/workspace", "default" );
+	}
+}</value>
       </property>
       <property>
         <propertyName>version</propertyName>

@@ -1,3 +1,20 @@
+# promote/demote action
+if ( $promoteAction eq 'promote' ) {
+	my $query=$commander->newBatch();
+	my $cfg = $query->getProperty("/server/EC-Admin/licenseLogger/config");
+	local $self->{abortOnError} = 0;
+	$query->submit();
+
+	# If the PS does not already exist, create it
+	if ($query->findvalue($cfg, "code") eq "NoSuchProperty") {
+		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/emailTo", "admin" );
+		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/emailConfig", "default" );
+		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/cleanpOldJobs", 1 );
+		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/resource", "local" );
+		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/workspace", "default" );
+	}
+}
+
 # Data that drives the create step picker registration for this plugin.
 my %acquireSemaphore = ( 
   label       => "EC-Admin - acquireSemaphore", 
