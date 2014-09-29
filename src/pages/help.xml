@@ -28,6 +28,7 @@ what it is now.</p>
 			<li><a href="#backup">Object export and backup</a></li>
 			<li><a href="#semaphore">Semaphore management</a></li>
 			<li><a href="#perf">Performance metrics</a></li>
+			<li><a href="#license">License Logger</a></li>
 		</ul>
 
 		<h2><a name="installation"></a>Installation</h2>
@@ -449,8 +450,49 @@ ping times with agents, relative performance of agents, ...
 In addition it checks the amount of time spent running steps on the server 
 local agents as this should be minimized as much as possible.</p>
 
-		<h1>Contact author</h1> 
-  		<p>Laurent Rochette (<a href="mailto:lrochette@electric-cloud.com">lrochette@electric-cloud.com</a>) </p>
+		<h1><a name="license"></a>License Logger</h1>
+		<p>The License Logger mechanism is intended to collect and email various
+license-related statistics.</p>
+		<p>It is implemented as a set of schedules and procedures in a single project,
+along with a set of configuration properties.</p>
+		<p>The configuration is located under /server/EC-Admin/licenseLogger/config. The following properties can be set up:</p>
+
+		    <table class="grid">
+		        <thead>
+		            <tr>
+		                <th>Property</th>
+		                <th>Description</th>
+		            </tr>
+		        </thead>
+
+		        <tbody>
+					<tr>
+			        	<td>resource</td>
+						<td>The name of the resource on which to run the procedures. Default is "local".</td>
+		            </tr>
+					<tr>
+			        	<td>workspace</td>
+						<td>The name of the workspace used by the procedures. Default is "default".</td>
+		            </tr>
+					<tr>
+			        	<td class='required'>emailConfig</td>
+						<td>The name of the mail configuration used to send report.</td>
+		            </tr>
+					<tr>
+			        	<td class='required'>emailTo</td>
+						<td>The list of recipients (semicolon separated) to which to send the reports.</td>
+		            </tr>
+            	</tbodby>
+        	</table>
+
+
+		<h1>Contact authors</h1> 
+		<dl>
+			<dt>License Logger</dt>
+			<dd>Mike Westerhof (<a href="mailto:mwesterhof@electric-cloud.com">mwesterhof@electric-cloud.com</a>)</dd>
+  			<dt>Other</dt>
+  			<dd>Laurent Rochette (<a href="mailto:lrochette@electric-cloud.com">lrochette@electric-cloud.com</a>)</dd>
+		</dl>
 
 	<h1>Legal Jumbo</h1>
  

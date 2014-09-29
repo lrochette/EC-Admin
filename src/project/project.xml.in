@@ -5001,12 +5001,6 @@ sub checkValue
                 <expandable>1</expandable>
                 <value>PLACEHOLDER</value>
               </property>
-              <property>
-                <propertyName>logLicenseUsage.pl</propertyName>
-                <description>Perl script to log license usage statistics</description>
-                <expandable>1</expandable>
-                <value>PLACEHOLDER</value>
-              </property>
             </propertySheet>
           </property>
           <property>
@@ -5133,6 +5127,7 @@ what it is now.&lt;/p&gt;
 			&lt;li&gt;&lt;a href="#backup"&gt;Object export and backup&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#semaphore"&gt;Semaphore management&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#perf"&gt;Performance metrics&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#license"&gt;License Logger&lt;/a&gt;&lt;/li&gt;
 		&lt;/ul&gt;
 
 		&lt;h2&gt;&lt;a name="installation"&gt;&lt;/a&gt;Installation&lt;/h2&gt;
@@ -5554,8 +5549,49 @@ ping times with agents, relative performance of agents, ...
 In addition it checks the amount of time spent running steps on the server 
 local agents as this should be minimized as much as possible.&lt;/p&gt;
 
-		&lt;h1&gt;Contact author&lt;/h1&gt; 
-  		&lt;p&gt;Laurent Rochette (&lt;a href="mailto:lrochette@electric-cloud.com"&gt;lrochette@electric-cloud.com&lt;/a&gt;) &lt;/p&gt;
+		&lt;h1&gt;&lt;a name="license"&gt;&lt;/a&gt;License Logger&lt;/h1&gt;
+		&lt;p&gt;The License Logger mechanism is intended to collect and email various
+license-related statistics.&lt;/p&gt;
+		&lt;p&gt;It is implemented as a set of schedules and procedures in a single project,
+along with a set of configuration properties.&lt;/p&gt;
+		&lt;p&gt;The configuration is located under /server/EC-Admin/licenseLogger/config. The following properties can be set up:&lt;/p&gt;
+
+		    &lt;table class="grid"&gt;
+		        &lt;thead&gt;
+		            &lt;tr&gt;
+		                &lt;th&gt;Property&lt;/th&gt;
+		                &lt;th&gt;Description&lt;/th&gt;
+		            &lt;/tr&gt;
+		        &lt;/thead&gt;
+
+		        &lt;tbody&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;resource&lt;/td&gt;
+						&lt;td&gt;The name of the resource on which to run the procedures. Default is "local".&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;workspace&lt;/td&gt;
+						&lt;td&gt;The name of the workspace used by the procedures. Default is "default".&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td class='required'&gt;emailConfig&lt;/td&gt;
+						&lt;td&gt;The name of the mail configuration used to send report.&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td class='required'&gt;emailTo&lt;/td&gt;
+						&lt;td&gt;The list of recipients (semicolon separated) to which to send the reports.&lt;/td&gt;
+		            &lt;/tr&gt;
+            	&lt;/tbodby&gt;
+        	&lt;/table&gt;
+
+
+		&lt;h1&gt;Contact authors&lt;/h1&gt; 
+		&lt;dl&gt;
+			&lt;dt&gt;License Logger&lt;/dt&gt;
+			&lt;dd&gt;Mike Westerhof (&lt;a href="mailto:mwesterhof@electric-cloud.com"&gt;mwesterhof@electric-cloud.com&lt;/a&gt;)&lt;/dd&gt;
+  			&lt;dt&gt;Other&lt;/dt&gt;
+  			&lt;dd&gt;Laurent Rochette (&lt;a href="mailto:lrochette@electric-cloud.com"&gt;lrochette@electric-cloud.com&lt;/a&gt;)&lt;/dd&gt;
+		&lt;/dl&gt;
 
 	&lt;h1&gt;Legal Jumbo&lt;/h1&gt;
  
@@ -5577,7 +5613,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>153</value>
+        <value>154</value>
       </property>
       <property>
         <propertyName>version</propertyName>
@@ -9255,6 +9291,124 @@ Changelog:
       </step>
     </procedure>
     <procedure>
+      <procedureName>licenseLogger-report</procedureName>
+      <description>&lt;html&gt;&lt;b&gt;Scheduled Procedure&lt;/b&gt; - report on license usage summary and supporting detail&lt;/html&gt;</description>
+      <jobNameTemplate>$[/myProject/scripts/jobTemplate]</jobNameTemplate>
+      <resourceName/>
+      <timeLimit/>
+      <timeLimitUnits>minutes</timeLimitUnits>
+      <workspaceName/>
+      <propertySheet>
+        <property>
+          <propertyName>ec_customEditorData</propertyName>
+          <propertySheet>
+            <property>
+              <propertyName>parameters</propertyName>
+              <propertySheet>
+                <property>
+                  <propertyName>logName</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>sendEmail</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>checkedValue</propertyName>
+                      <expandable>1</expandable>
+                      <value>true</value>
+                    </property>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                    <property>
+                      <propertyName>initiallyChecked</propertyName>
+                      <expandable>1</expandable>
+                      <value>1</value>
+                    </property>
+                    <property>
+                      <propertyName>uncheckedValue</propertyName>
+                      <expandable>1</expandable>
+                      <value>false</value>
+                    </property>
+                  </propertySheet>
+                </property>
+              </propertySheet>
+            </property>
+          </propertySheet>
+        </property>
+      </propertySheet>
+      <formalParameter>
+        <formalParameterName>logName</formalParameterName>
+        <defaultValue/>
+        <description>Name of log to be processed.  Default is the log corresponding to the previous period (i.e. for monthly logs, the default is to process last month's log)</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
+        <type>entry</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>sendEmail</formalParameterName>
+        <defaultValue>true</defaultValue>
+        <description>Send email?</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>1</required>
+        <type>checkbox</type>
+      </formalParameter>
+      <step>
+        <stepName>summarizeLicenseUsage</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition/>
+        <description>Perl script to identify and summarize a log file containing license usage statistics</description>
+        <errorHandling>abortJob</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName>$[/javascript (typeof(server['EC-Admin'].licenseLogger.config.resource) == "undefined")? "local" : server['EC-Admin'].licenseLogger.config.resource ]</resourceName>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName>$[/javascript (typeof(server['EC-Admin'].licenseLogger.config.workspace) == "undefined")? "default" : server['EC-Admin'].licenseLogger.config.workspace ]</workspaceName>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>cleanup</stepName>
+        <alwaysRun>1</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition>$[/javascript (typeof(server['EC-Admin'].licenseLogger.config.cleanpOldJobs) == "undefined")? "1" : server['EC-Admin'].licenseLogger.config.cleanpOldJobs ]</condition>
+        <description>Cleans up old job records.</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName>$[/javascript (typeof(server['EC-Admin'].licenseLogger.config.resource) == "undefined")? "local" : server['EC-Admin'].licenseLogger.config.resource ]</resourceName>
+        <shell>ec-perl</shell>
+        <timeLimit>5</timeLimit>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName>$[/javascript (typeof(server['EC-Admin'].licenseLogger.config.workspace) == "undefined")? "default" : server['EC-Admin'].licenseLogger.config.workspace ]</workspaceName>
+        <propertySheet>
+        </propertySheet>
+      </step>
+    </procedure>
+    <procedure>
       <procedureName>licenseLogger-snapshot</procedureName>
       <description>&lt;html&gt;&lt;b&gt;Scheduled Procedure&lt;/b&gt; - gathers and stores the periodic snapshot of license usage&lt;/html&gt;</description>
       <jobNameTemplate>$[/myProject/scripts/jobTemplate]</jobNameTemplate>
@@ -9270,10 +9424,7 @@ Changelog:
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
         <condition/>
-        <description>$[/javascript (typeof(server.licenseLogger.config.resource) == "undefined")? "local" : server.licenseLogger.config.resource ]
-$[/javascript (typeof(server.licenseLogger.config.workspace) == "undefined")? "default" : server.licenseLogger.config.workspace ]
-
-$ [/server/licenseLogger/config/resource]</description>
+        <description>Perl script to log license usage statistics</description>
         <errorHandling>abortJob</errorHandling>
         <exclusiveMode>none</exclusiveMode>
         <logFileName/>
@@ -9281,12 +9432,12 @@ $ [/server/licenseLogger/config/resource]</description>
         <postProcessor/>
         <precondition/>
         <releaseMode>none</releaseMode>
-        <resourceName>$[/javascript (typeof(server.licenseLogger.config.resource) == "undefined")? "local" : server.licenseLogger.config.resource ]</resourceName>
+        <resourceName>$[/javascript (typeof(server['EC-Admin'].licenseLogger.config.resource) == "undefined")? "local" : server['EC-Admin'].licenseLogger.config.resource ]</resourceName>
         <shell>ec-perl</shell>
         <timeLimit>15</timeLimit>
         <timeLimitUnits>minutes</timeLimitUnits>
         <workingDirectory/>
-        <workspaceName>$[/javascript (typeof(server.licenseLogger.config.workspace) == "undefined")? "default" : server.licenseLogger.config.workspace ]</workspaceName>
+        <workspaceName>$[/javascript (typeof(server['EC-Admin'].licenseLogger.config.workspace) == "undefined")? "default" : server['EC-Admin'].licenseLogger.config.workspace ]</workspaceName>
         <propertySheet>
         </propertySheet>
       </step>
@@ -9295,7 +9446,7 @@ $ [/server/licenseLogger/config/resource]</description>
         <alwaysRun>1</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
-        <condition>$[/javascript (typeof(server.licenseLogger.config.cleanpOldJobs) == "undefined")? "1" : server.licenseLogger.config.cleanpOldJobs ]</condition>
+        <condition>$[/javascript (typeof(server['EC-Admin'].licenseLogger.config.cleanpOldJobs) == "undefined")? "1" : server['EC-Admin'].licenseLogger.config.cleanpOldJobs ]</condition>
         <description>Cleans up old job records.</description>
         <errorHandling>failProcedure</errorHandling>
         <exclusiveMode>none</exclusiveMode>
@@ -9304,12 +9455,12 @@ $ [/server/licenseLogger/config/resource]</description>
         <postProcessor/>
         <precondition/>
         <releaseMode>none</releaseMode>
-        <resourceName>$[/javascript (typeof(server.licenseLogger.config.resource) == "undefined")? "local" : server.licenseLogger.config.resource ]</resourceName>
+        <resourceName>$[/javascript (typeof(server['EC-Admin'].licenseLogger.config.resource) == "undefined")? "local" : server['EC-Admin'].licenseLogger.config.resource ]</resourceName>
         <shell>ec-perl</shell>
         <timeLimit>5</timeLimit>
         <timeLimitUnits>minutes</timeLimitUnits>
         <workingDirectory/>
-        <workspaceName>$[/javascript (typeof(server.licenseLogger.config.workspace) == "undefined")? "default" : server.licenseLogger.config.workspace ]</workspaceName>
+        <workspaceName>$[/javascript (typeof(server['EC-Admin'].licenseLogger.config.workspace) == "undefined")? "default" : server['EC-Admin'].licenseLogger.config.workspace ]</workspaceName>
         <propertySheet>
         </propertySheet>
       </step>
