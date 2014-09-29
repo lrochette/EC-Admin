@@ -482,7 +482,7 @@ along with a set of configuration properties.</p>
 			        	<td class='required'>emailTo</td>
 						<td>The list of recipients (semicolon separated) to which to send the reports.</td>
 		            </tr>
-            	</tbodby>
+            	</tbody>
         	</table>
 
 

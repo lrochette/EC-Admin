@@ -5581,7 +5581,7 @@ along with a set of configuration properties.&lt;/p&gt;
 			        	&lt;td class='required'&gt;emailTo&lt;/td&gt;
 						&lt;td&gt;The list of recipients (semicolon separated) to which to send the reports.&lt;/td&gt;
 		            &lt;/tr&gt;
-            	&lt;/tbodby&gt;
+            	&lt;/tbody&gt;
         	&lt;/table&gt;
 
 
@@ -5613,7 +5613,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>154</value>
+        <value>155</value>
       </property>
       <property>
         <propertyName>version</propertyName>
