@@ -452,10 +452,11 @@ local agents as this should be minimized as much as possible.</p>
 
 		<h1><a name="license"></a>License Logger</h1>
 		<p>The License Logger mechanism is intended to collect and email various
-license-related statistics.</p>
-		<p>It is implemented as a set of schedules and procedures in a single project,
+license-related statistics. It is implemented as a set of schedules and procedures,
 along with a set of configuration properties.</p>
-		<p>The configuration is located under /server/EC-Admin/licenseLogger/config. The following properties can be set up:</p>
+		<p>The configuration proeprties are located under /server/EC-Admin/licenseLogger/config.
+The proeprty sheet is created upon promotion if it does not already exists.The following 
+properties can be set up:</p>
 
 		    <table class="grid">
 		        <thead>
@@ -473,6 +474,10 @@ along with a set of configuration properties.</p>
 					<tr>
 			        	<td>workspace</td>
 						<td>The name of the workspace used by the procedures. Default is "default".</td>
+		            </tr>
+					<tr>
+			        	<td>cleanOldJobs</td>
+						<td>A boolean to remove old jobs so only the last one is kept for each procedure. It keeps your job history cleaner.</td>
 		            </tr>
 					<tr>
 			        	<td class='required'>emailConfig</td>

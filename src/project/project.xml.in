@@ -5551,10 +5551,11 @@ local agents as this should be minimized as much as possible.&lt;/p&gt;
 
 		&lt;h1&gt;&lt;a name="license"&gt;&lt;/a&gt;License Logger&lt;/h1&gt;
 		&lt;p&gt;The License Logger mechanism is intended to collect and email various
-license-related statistics.&lt;/p&gt;
-		&lt;p&gt;It is implemented as a set of schedules and procedures in a single project,
+license-related statistics. It is implemented as a set of schedules and procedures,
 along with a set of configuration properties.&lt;/p&gt;
-		&lt;p&gt;The configuration is located under /server/EC-Admin/licenseLogger/config. The following properties can be set up:&lt;/p&gt;
+		&lt;p&gt;The configuration proeprties are located under /server/EC-Admin/licenseLogger/config.
+The proeprty sheet is created upon promotion if it does not already exists.The following 
+properties can be set up:&lt;/p&gt;
 
 		    &lt;table class="grid"&gt;
 		        &lt;thead&gt;
@@ -5572,6 +5573,10 @@ along with a set of configuration properties.&lt;/p&gt;
 					&lt;tr&gt;
 			        	&lt;td&gt;workspace&lt;/td&gt;
 						&lt;td&gt;The name of the workspace used by the procedures. Default is "default".&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;cleanOldJobs&lt;/td&gt;
+						&lt;td&gt;A boolean to remove old jobs so only the last one is kept for each procedure. It keeps your job history cleaner.&lt;/td&gt;
 		            &lt;/tr&gt;
 					&lt;tr&gt;
 			        	&lt;td class='required'&gt;emailConfig&lt;/td&gt;
@@ -5613,7 +5618,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>157</value>
+        <value>158</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -5640,6 +5645,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.1.1
+  + Create dummy licenseLoger configuration upon promotion
+  + Improved Help
 - version 2.0.0
   + Add a licenseLogger to extract usage
 
@@ -5819,7 +5827,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.0.0</value>
+        <value>2.1.1</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
