@@ -36,6 +36,8 @@
 	['//project/procedure[procedureName="createPluginFromProject"]/step[stepName="savePluginAsArtifactVersion"]/command', 'procedures/createPluginFromProject/steps/savePluginAsArtifactVersion.pl'],
 	['//project/procedure[procedureName="createPluginFromProject"]/step[stepName="installPlugin"]/command', 'procedures/createPluginFromProject/steps/installPlugin.pl'],
 	['//project/procedure[procedureName="createPluginFromProject"]/step[stepName="promotePlugin"]/command', 'procedures/createPluginFromProject/steps/promotePlugin.pl'],
+	['//project/procedure[procedureName="debugPostp"]/step[stepName="getJobStepInformation"]/command', 'procedures/debugPostp/steps/getJobStepInformation.pl'],
+	['//project/procedure[procedureName="debugPostp"]/step[stepName="rerunPostp"]/command', 'procedures/debugPostp/steps/rerunPostp.pl'],
 	['//project/procedure[procedureName="deleteObjects"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/deleteObjects/form.xml'],
 	['//project/procedure[procedureName="deleteObjects"]/step[stepName="Delete"]/command', 'procedures/deleteObjects/steps/Delete.pl'],
 	['//project/procedure[procedureName="deleteWorkspaceOrphans"]/step[stepName="crawlWorkspace"]/command', 'procedures/deleteWorkspaceOrphans/steps/crawlWorkspace.pl'],

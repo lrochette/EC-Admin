@@ -29,6 +29,7 @@ what it is now.</p>
 			<li><a href="#semaphore">Semaphore management</a></li>
 			<li><a href="#perf">Performance metrics</a></li>
 			<li><a href="#license">License Logger</a></li>
+			<li><a href="#postp">postp debugger helper</a></li>
 		</ul>
 
 		<h2><a name="installation"></a>Installation</h2>
@@ -490,6 +491,8 @@ properties can be set up:</p>
             	</tbody>
         	</table>
 
+		<h1><a name="postp"></a>postp debugger helper</h1>
+		<p>The debugPostp is a simple procedure to help you debug with postp. Traditionally you would call postp from the command line with the jobStepId of the faulty postp and adding some additional option to see details. This new procedure does that for you on Linux and Windows, you just have to pass the jobStepId as a parameter.</p>
 
 		<h1>Contact authors</h1> 
 		<dl>

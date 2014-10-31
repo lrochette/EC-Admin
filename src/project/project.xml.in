@@ -5128,6 +5128,7 @@ what it is now.&lt;/p&gt;
 			&lt;li&gt;&lt;a href="#semaphore"&gt;Semaphore management&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#perf"&gt;Performance metrics&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#license"&gt;License Logger&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#postp"&gt;postp debugger helper&lt;/a&gt;&lt;/li&gt;
 		&lt;/ul&gt;
 
 		&lt;h2&gt;&lt;a name="installation"&gt;&lt;/a&gt;Installation&lt;/h2&gt;
@@ -5589,6 +5590,8 @@ properties can be set up:&lt;/p&gt;
             	&lt;/tbody&gt;
         	&lt;/table&gt;
 
+		&lt;h1&gt;&lt;a name="postp"&gt;&lt;/a&gt;postp debugger helper&lt;/h1&gt;
+		&lt;p&gt;The debugPostp is a simple procedure to help you debug with postp. Traditionally you would call postp from the command line with the jobStepId of the faulty postp and adding some additional option to see details. This new procedure does that for you on Linux and Windows, you just have to pass the jobStepId as a parameter.&lt;/p&gt;
 
 		&lt;h1&gt;Contact authors&lt;/h1&gt; 
 		&lt;dl&gt;
@@ -5618,7 +5621,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>159</value>
+        <value>160</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -5645,6 +5648,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.2.0
+  + Added a procedure to help debug postp
+
 - version 2.1.2
   + Added licenseLogger-reporter scheduler
   + Create dummy licenseLoger configuration upon promotion
@@ -5828,7 +5834,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.1.2</value>
+        <value>2.2.0</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -7708,6 +7714,137 @@ Procedure is added only if property pluginExpose is set</description>
         <precondition/>
         <releaseMode>none</releaseMode>
         <resourceName/>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+    </procedure>
+    <procedure>
+      <procedureName>debugPostp</procedureName>
+      <description>&lt;html&gt;A procedure to automatize my manual postp debugging process:
+&lt;ul&gt;
+&lt;li&gt;note jobStepId&lt;/li&gt;
+&lt;li&gt;cd in the workspace to have access to the original log file&lt;/li&gt;
+&lt;li&gt;run postp with the same option plus --debugLog and --jobStepId&lt;/li&gt;
+&lt;li&gt;check the debugLog file for information.&lt;/li&gt;
+&lt;li&gt;Modify your matcher&lt;/li&gt;
+&lt;li&gt;Rinse and repeat&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/html&gt;</description>
+      <jobNameTemplate/>
+      <resourceName/>
+      <timeLimit/>
+      <timeLimitUnits>minutes</timeLimitUnits>
+      <workspaceName/>
+      <propertySheet>
+        <property>
+          <propertyName>ec_customEditorData</propertyName>
+          <propertySheet>
+            <property>
+              <propertyName>parameters</propertyName>
+              <propertySheet>
+                <property>
+                  <propertyName>debug</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>checkedValue</propertyName>
+                      <expandable>1</expandable>
+                      <value>1</value>
+                    </property>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                    <property>
+                      <propertyName>initiallyChecked</propertyName>
+                      <expandable>1</expandable>
+                      <value>1</value>
+                    </property>
+                    <property>
+                      <propertyName>uncheckedValue</propertyName>
+                      <expandable>1</expandable>
+                      <value>0</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>myJobStepId</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+              </propertySheet>
+            </property>
+          </propertySheet>
+        </property>
+      </propertySheet>
+      <formalParameter>
+        <formalParameterName>debug</formalParameterName>
+        <defaultValue>1</defaultValue>
+        <description/>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
+        <type>checkbox</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>myJobStepId</formalParameterName>
+        <defaultValue>1637022</defaultValue>
+        <description>jobStepId to use for debugging purpose</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>1</required>
+        <type>entry</type>
+      </formalParameter>
+      <step>
+        <stepName>getJobStepInformation</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition/>
+        <description>Extract a few information from the original job step:
+- postp command
+- logFile to analyze and its workspace location
+- resource on which it was executed
+</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName/>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>rerunPostp</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition/>
+        <description>Rerun the same command on the same agent that the original</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName>$[/myJob/assignedResource]</resourceName>
         <shell>ec-perl</shell>
         <timeLimit/>
         <timeLimitUnits>minutes</timeLimitUnits>
@@ -13037,6 +13174,11 @@ Report the number of workflows.</description>
       <timeZone>America/Los_Angeles</timeZone>
       <weekDays/>
       <actualParameters>
+        <property>
+          <propertyName>logName</propertyName>
+          <expandable>1</expandable>
+          <value>$[/timestamp YYYYMM]</value>
+        </property>
         <property>
           <propertyName>sendEmail</propertyName>
           <expandable>1</expandable>
