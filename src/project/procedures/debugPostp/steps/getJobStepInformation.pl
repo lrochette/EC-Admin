@@ -1,18 +1,15 @@
 $[/projects/EC-Admin/scripts/perlHeaderJSON]
 
-
 #
 # Parameters
 #
 my $stepId="$[myJobStepId]";
-my $DEBUG="$[debug]";
 
 #
 # Global variables
 #
 my $path="";
-
-
+my $DEBUG=0;
 
 # let us extract some date from the original step
 my ($ok, $json)=InvokeCommander("SuppressLog", 'getJobStepDetails', $stepId);

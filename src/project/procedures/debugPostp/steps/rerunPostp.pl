@@ -1,15 +1,14 @@
 $[/projects/EC-Admin/scripts/perlHeaderJSON]
 
-
 #
 # Parameters
 #
 my $stepId="$[myJobStepId]";
-my $DEBUG="$[debug]";
 
 #
 # Global variables
 #
+my $DEBUG=0;
 my $cmd="$[/myJob/postpCommand]";
 my $logFile='$[/myJob/pathToLog]';
 

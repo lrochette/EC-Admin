@@ -5621,7 +5621,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>160</value>
+        <value>161</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -7787,14 +7787,6 @@ Procedure is added only if property pluginExpose is set</description>
           </propertySheet>
         </property>
       </propertySheet>
-      <formalParameter>
-        <formalParameterName>debug</formalParameterName>
-        <defaultValue>1</defaultValue>
-        <description/>
-        <expansionDeferred>0</expansionDeferred>
-        <required>0</required>
-        <type>checkbox</type>
-      </formalParameter>
       <formalParameter>
         <formalParameterName>myJobStepId</formalParameterName>
         <defaultValue>1637022</defaultValue>
