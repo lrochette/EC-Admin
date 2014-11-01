@@ -1,4 +1,4 @@
-$[/projects/EC-Admin/scripts/perlHeaderJSON]
+$[/myProject/scripts/perlHeaderJSON]
 
 #
 # Parameters

@@ -1,3 +1,6 @@
+2014-10-31 System Administrator <lrochette@electric-cloud.com>
+  * 2.2.0.162: Fixed /myProject issue if run from plugin
+
 2014-10-30 System Administrator <lrochette@electric-cloud.com>
   * 2.2.0.161: removed DEBUG parameter
 
