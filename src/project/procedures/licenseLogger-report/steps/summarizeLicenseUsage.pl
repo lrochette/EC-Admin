@@ -38,7 +38,7 @@ my $zipFN = $xp->findvalue('//value')->string_value;
 my $xprefix = '/responses/response/licenseUsage/';
 my %statXPaths = (
     'maxHosts' => $xprefix . 'concurrentResources/maxHosts',
-    'maxProxiedHosts' => $xprefix . 'concurrentResources/maxProxiedHosts';
+    'maxProxiedHosts' => $xprefix . 'concurrentResources/maxProxiedHosts'
 );
 # Fetch a snapshot of current license usage data
 $xp = $ec->getLicenseUsage();
@@ -47,7 +47,6 @@ $xp = $ec->getLicenseUsage();
 my %statValues = ();
 foreach my $i (keys %statXPaths) {
     $statValues{$i} = $xp->findvalue($statXPaths{$i})->string_value;
-    printf("%18s: %s\n", $i, $statValues{$i}) if ($verbose);
 }
 
 # Finally, fetch our parameters
@@ -233,7 +232,7 @@ if ($v) {
     $report .= " Data collected on server: $host\n";
     $report .= sprintf(" %d records from %s to %s\n", $n-1, $tstart, $tend);
     foreach my $i (sort keys %statValues) {
-    	$report .= sprintf("%s: %d\n", $i, $statValues{$i});
+    	$report .= sprintf(" %-15s: %3d\n", $i, $statValues{$i});
 	}
     $report .= " ----\n";
 

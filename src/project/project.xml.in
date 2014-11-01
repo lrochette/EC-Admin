@@ -5621,7 +5621,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>162</value>
+        <value>163</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -5648,6 +5648,10 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.2.1
+  + Fixed a problem with debugPostp
+  + Add total license values in licenseLogger report
+
 - version 2.2.0
   + Added a procedure to help debug postp
 

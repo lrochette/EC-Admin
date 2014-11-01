@@ -1,4 +1,7 @@
 2014-10-31 System Administrator <lrochette@electric-cloud.com>
+  * 2.2.1.163: Add total license number for licenseLogger report
+
+2014-10-31 System Administrator <lrochette@electric-cloud.com>
   * 2.2.0.162: Fixed /myProject issue if run from plugin
 
 2014-10-30 System Administrator <lrochette@electric-cloud.com>
