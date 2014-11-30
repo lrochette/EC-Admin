@@ -26,27 +26,4 @@ ntest "licenseLogger", {}, sub {
 	assertOK($::N->getProcedure($pluginName, "licenseLogger-report"), "procedure licenseLogger-report missing");
 };
 
-
-#-------------------------------------------------------------------------------
-# Check the report is send properly
-#-------------------------------------------------------------------------------
-ntest "Report", {}, sub {
-
-	# create a fake data point (before it was released so 2012-01)
-	my $month="201201";
-	my $xpath=$::N->createProperty("/server/$pluginKey/licenseLogger/$month", 
-							{valueFile=>"licenseLogger$month.txt",
-							 description=>"identity,dataVersion,timeStamp,inUseHosts,inUseLicenses,inUseProxiedHosts,runningSteps"});
-
-	# Send email
-	smtpServerUp("licenseLogger");
-	
-	# clean
-	$xpath=$::N->deleteProperty("/server/$pluginKey/licenseLogger/$month");
-	assertOK($xpath, "CO
-		Could not delete fake data for testing - /server/$pluginKey/licenseLogger/$month");
-
-};
-
-
 1;
