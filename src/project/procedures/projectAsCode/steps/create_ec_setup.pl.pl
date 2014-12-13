@@ -38,8 +38,9 @@ if ($promoteAction eq 'promote') {
     $commander->import($exportFile, {path => "/projects/$pluginKey", force => 1});
     unlink($exportFile);
 
-    # Delete the ec_setup property from the user-facing project since it's irrelevant.
+    # Delete the ec_setup & ec_visibility properties from the user-facing project since they're irrelevant.
     $commander->deleteProperty("/projects/$pluginKey/ec_setup");
+    $commander->deleteProperty("/projects/$pluginKey/ec_visibility");
 }
 ENDOFPAC
 
