@@ -18,16 +18,12 @@ my $ECsetup="";
 #
 if ($projectAsCode eq "true") {
 
+  $ECsetup .= '
+  if ($promoteAction eq "promote") {
+    my $pluginName = "\@"."PLUGIN_NAME\@";
+    my $pluginKey  = "\@"."PLUGIN_KEY\@";
+';
   $ECsetup .= << 'ENDOFPAC';
-if ($promoteAction eq 'promote') {
-<<<<<<< HEAD
-    my $pluginName = '@'.'PLUGIN_NAME@';
-    my $pluginKey = '@'.'PLUGIN_KEY@';
-=======
-    my $pluginName = '@PLUGIN_NAME@';
-    my $pluginKey = '@PLUGIN_KEY@';
->>>>>>> 59a3a1c60a3ba4d245eaa4461d05e3e5da5c7c0f
-
     # The purpose of a "ProjectAsCode" plugin is to develop a PROJECT so it can be checked
     # into source control and properly revisioned.  End users of these projects shouldn't
     # be aware of plugins usage on the back-end.  So we create a project by the same name
@@ -45,12 +41,7 @@ if ($promoteAction eq 'promote') {
 
     # Delete the ec_setup & ec_visibility properties from the user-facing project since they're irrelevant.
     $commander->deleteProperty("/projects/$pluginKey/ec_setup");
-<<<<<<< HEAD
     $commander->deleteProperty("/projects/$pluginKey/ec_visibility");}
-=======
-    $commander->deleteProperty("/projects/$pluginKey/ec_visibility");
-}
->>>>>>> 59a3a1c60a3ba4d245eaa4461d05e3e5da5c7c0f
 ENDOFPAC
 
 }	# end of projectAsCode block
