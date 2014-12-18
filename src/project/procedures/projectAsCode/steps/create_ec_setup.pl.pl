@@ -18,11 +18,11 @@ my $ECsetup="";
 #
 if ($projectAsCode eq "true") {
 
-  $ECsetup .= '
-  if ($promoteAction eq "promote") {
-    my $pluginName = "\@"."PLUGIN_NAME\@";
-    my $pluginKey  = "\@"."PLUGIN_KEY\@";
-';
+  $ECsetup .= "
+  if (\$promoteAction eq 'promote') {
+    my \$pluginName = \"\@PLUGIN_NAME\@\";
+    my \$pluginKey  = \"\@PLUGIN_KEY\@\";
+";
   $ECsetup .= << 'ENDOFPAC';
     # The purpose of a "ProjectAsCode" plugin is to develop a PROJECT so it can be checked
     # into source control and properly revisioned.  End users of these projects shouldn't
