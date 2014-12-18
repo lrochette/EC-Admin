@@ -1,3 +1,6 @@
+2014-12-17 System Administrator <lrochette@electric-cloud.com>
+  * 2.2.2.164: Fixed 2 issues in create_ec_setup.pl
+
 2014-10-31 System Administrator <lrochette@electric-cloud.com>
   * 2.2.1.163: Add total license number for licenseLogger report
 

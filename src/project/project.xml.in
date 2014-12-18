@@ -5621,7 +5621,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>163</value>
+        <value>164</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -5648,6 +5648,10 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.2.2
+  + Removed ec_visibility property  when plugin is transformed back into a project (projectAsCode)
+  + Fixed issue with PLUGIN_KEY becoming hardcoded in creat_ec_setup.pl in the EC-Admin plugin
+
 - version 2.2.1
   + Fixed a problem with debugPostp
   + Add total license values in licenseLogger report
@@ -5838,7 +5842,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.2.0</value>
+        <value>2.2.2</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -6951,7 +6955,7 @@ Can be called manually on 1 resource or automatically on all</description>
       <procedureName>cleanupRepository</procedureName>
       <description>Clear out all stale artifacts from a repository's backing store.
 This procedure can be run on an individual repository or can be called on all repositories by "Artifact Cleanup"</description>
-      <jobNameTemplate>$[/myProject/projectName]-$[/myProcedure/procedureName]_$[jobId]-$[/timestamp]</jobNameTemplate>
+      <jobNameTemplate>$[/myProject/projectName]-$[/myProcedure/procedureName]_$[/increment /server/ec_counters/$[/myProject/projectName]/jobCounter]-$[/timestamp]</jobNameTemplate>
       <resourceName>$[resource]</resourceName>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -10259,6 +10263,7 @@ Best: mssql or oracle</description>
 
 Changelog:
 --------------
+2014-12-10  kjdowney  Remove ec_visibility Prop
 2014-08-27  lrochette   Parse "scripts" PS recursively 
 2014-08-25  lrochette   Extracting "scripts" PS generally containing code 
 2014-07-30  lrochette   Fixed "directory" parameter help tip

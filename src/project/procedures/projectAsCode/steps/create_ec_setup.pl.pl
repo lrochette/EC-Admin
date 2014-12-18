@@ -20,8 +20,8 @@ if ($projectAsCode eq "true") {
 
   $ECsetup .= << 'ENDOFPAC';
 if ($promoteAction eq 'promote') {
-    my $pluginName = 'EC-Admin-1.11.4.93';
-    my $pluginKey = 'EC-Admin';
+    my $pluginName = '@'.'PLUGIN_NAME@';
+    my $pluginKey = '@'.'PLUGIN_KEY@';
 
     # The purpose of a "ProjectAsCode" plugin is to develop a PROJECT so it can be checked
     # into source control and properly revisioned.  End users of these projects shouldn't
@@ -38,9 +38,9 @@ if ($promoteAction eq 'promote') {
     $commander->import($exportFile, {path => "/projects/$pluginKey", force => 1});
     unlink($exportFile);
 
-    # Delete the ec_setup property from the user-facing project since it's irrelevant.
+    # Delete the ec_setup & ec_visibility properties from the user-facing project since they're irrelevant.
     $commander->deleteProperty("/projects/$pluginKey/ec_setup");
-}
+    $commander->deleteProperty("/projects/$pluginKey/ec_visibility");}
 ENDOFPAC
 
 }	# end of projectAsCode block
