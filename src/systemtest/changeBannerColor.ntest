@@ -1,0 +1,73 @@
+# -*-Perl-*-
+
+# changeBannerColor.ntest -
+#
+# check the changeBannerColor procedure of EC-Admin plugin
+#
+# Copyright (c) 2014 Electric Cloud, Inc.
+# All rights reserved
+
+use strict;
+use warnings;
+use ECTest;
+
+initCommander();
+$::N=$adminSession;
+
+my $pluginKey = "EC-Admin";
+my $xpath = $::N->getPlugin($pluginKey);
+my $pluginName = $xpath->findvalue("//pluginName")->value;
+
+#-------------------------------------------------------------------------------
+# Test procedure present.
+#-------------------------------------------------------------------------------
+ntest "changeBannerColor", {}, sub {
+	assertOK($::N->getProcedure($pluginName, "changeBannerColor"), "procedure missing");
+};
+
+# Plugin directory to check the files
+my $installDir=$::N->getProperty("/server/Electric Cloud/installDirectory")->findvalue("//value");
+
+#-------------------------------------------------------------------------------
+# Check that the color files are present for each color in the menu
+#-------------------------------------------------------------------------------
+ntest "banner color files", {}, sub {
+	my $defaultPresent=0;
+
+	my $xpath=$::N->getProperty("ec_customEditorData/parameters/color/options/list", 
+							{projectName=>$pluginName,
+							 procedureName=>"changeBannerColor"});
+
+	my $colorList=$xpath->findvalue("//value");
+	foreach my $color (split('\|', $colorList)) {
+		if ($color eq "Default") {
+			$defaultPresent=1;
+			next;
+		}
+		# Check if banner  is present in plugin directory as expected
+		my $fileName="$installDir/plugins/$pluginName/htdocs/frame_bannerBg_$color.gif";
+		assertTrue(-f $fileName, "banner color file mising for $color");
+	}
+	assertTrue($defaultPresent, "default choice of color not present");
+};
+
+
+#-------------------------------------------------------------------------------
+# Check that the color files are present for each color in the menu
+#-------------------------------------------------------------------------------
+ntest "banner logo files", {}, sub {
+	my $optionCount=$::N->getProperty("ec_customEditorData/parameters/logo/options/optionCount", 
+							{projectName=>$pluginName,
+							 procedureName=>"changeBannerColor"})->findvalue("//value");
+
+	for (my $index=1; $index <=  $optionCount; $index++) {
+		my $logoFile=$::N->getProperty("ec_customEditorData/parameters/logo/options/option" . $index . "/value", 
+							{projectName=>$pluginName,
+							 procedureName=>"changeBannerColor"})->findvalue("//value");
+		
+		# Check if banner  is present in plugin directory as expected
+		my $fileName="$installDir/plugins/$pluginName/htdocs/$logoFile";
+		assertTrue(-f $fileName, "logo file mising for $logoFile (option $index)");
+	}
+};
+1;
