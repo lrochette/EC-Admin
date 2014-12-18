@@ -35,6 +35,7 @@ if ($comment ne "") {
 $ec->setProperty("/myJob/pluginDescription", $description);
 
 
+$[/myProject/scripts/perlLibJSON]
 
 
 

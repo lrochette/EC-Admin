@@ -1,3 +1,6 @@
+2014-12-18 System Administrator <lrochette@electric-cloud.com>
+  * 2.2.3.173: JSON lib was missing in projectAsCode::Initialization
+
 2014-12-17 System Administrator <lrochette@electric-cloud.com>
   * 2.2.2.172: Fixed issue in projectasCode::create_ec_setup.pl
   * 2.2.2.167: Fixed issue in projectasCode::Initialization
