@@ -16,11 +16,12 @@ if ( $promoteAction eq 'promote' ) {
 
     # Give project principal "Electrirc Cloud" write access to our project
     my $projPrincipal = "project: Electric Cloud";
-    my $ecAdminProj   = 'EC-Admin-2.2.4.181';
+    my $ecAdminProj   = 'EC-Admin-2.2.4.184';
 
     # Give project Electric Cloud permission on ec_reportData
     $cfg = $commander->getProperty("ec_reportData", {projectName => $ecAdminProj});
     my $psId= $cfg->findvalue("//propertySheetId");
+    printf("XXX DEBUG: $psId\n");
 
     my $xpath = $commander->getAclEntry("user", $projPrincipal, 
             { 
