@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.2.4.189</version>
+  <version>2.2.4.190</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
 2014-12-24 admin Fix issue#1 about ec_reportData</description>
