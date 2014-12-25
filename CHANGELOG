@@ -1,4 +1,7 @@
 2014-12-24 System Administrator <lrochette@electric-cloud.com>
+  * 2.2.4.187: Fix issue#1 about ec_reportData
+
+2014-12-24 System Administrator <lrochette@electric-cloud.com>
   * 2.2.4.186: Fix issue#1 about ec_reportData
 
 2014-12-24 System Administrator <lrochette@electric-cloud.com>
