@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.2.3.173</version>
+  <version>2.2.4.181</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
-2014-12-18 admin JSON lib was missing in projectAsCode::Initialization</description>
+2014-12-24 admin Fix issue#1 about ec_reportData</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>

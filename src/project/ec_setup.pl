@@ -13,7 +13,23 @@ if ( $promoteAction eq 'promote' ) {
 		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/resource", "local" );
 		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/workspace", "default" );
 	}
+       
+        # Give project Electric Cloud permission on ec_reportData
+        $cfg = $commander->getProperty("/plugins/EC-Admin/project/ec_reportData");
+        my $psId= $cfg->findvalue("//propertySheetId");
+        printf("XXX DEBUG: $psId\n");
+        printf("XXX DEBUG: @PLUGIN_NAME@\n");
+        $batch->createAclEntry("user", "project: Electric Cloud", 
+             {
+                projectName => "@"."PLUGIN_NAME@",
+                propertySheetId => $psId, 
+                "readPrivilege"=>"allow", 
+                "modifyPrivilege"=>"allow", 
+                "executePrivilege"=>"inherit", 
+                "changePermissionsPrivilege"=>"inherit"
+             });
 }
+
 
 # Data that drives the create step picker registration for this plugin.
 my %acquireSemaphore = ( 

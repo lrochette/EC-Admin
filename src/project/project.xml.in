@@ -5621,7 +5621,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>173</value>
+        <value>181</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -5641,13 +5641,32 @@ software.&lt;/p&gt;
 		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/resource", "local" );
 		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/workspace", "default" );
 	}
-}</value>
+       
+        # Give project Electric Cloud permission on ec_reportData
+        $cfg = $commander-&gt;getProperty("/plugins/EC-Admin/project/ec_reportData");
+        my $psId= $cfg-&gt;findvalue("//propertySheetId");
+        printf("XXX DEBUG: $psId\n");
+        printf("XXX DEBUG: @PLUGIN_NAME@\n");
+        $batch-&gt;createAclEntry("user", "project: Electric Cloud", 
+             {
+                projectName =&gt; "@"."PLUGIN_NAME@",
+                propertySheetId =&gt; $psId, 
+                "readPrivilege"=&gt;"allow", 
+                "modifyPrivilege"=&gt;"allow", 
+                "executePrivilege"=&gt;"inherit", 
+                "changePermissionsPrivilege"=&gt;"inherit"
+             });
+}
+</value>
       </property>
       <property>
         <propertyName>version</propertyName>
         <description>Version of the EC-Admin project
 
 History:
+- version 2.2.4
+  + Fixed Issue #11: ec_reportData cannot be modifed by "Electric Cloud" project
+
 - version 2.2.3
   + JSON lib was missing in projectAsCode::Initialization
 
@@ -5845,7 +5864,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.2.3</value>
+        <value>2.2.4</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
