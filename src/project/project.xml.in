@@ -5621,7 +5621,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>181</value>
+        <value>184</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -5641,21 +5641,29 @@ software.&lt;/p&gt;
 		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/resource", "local" );
 		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/workspace", "default" );
 	}
-       
-        # Give project Electric Cloud permission on ec_reportData
-        $cfg = $commander-&gt;getProperty("/plugins/EC-Admin/project/ec_reportData");
-        my $psId= $cfg-&gt;findvalue("//propertySheetId");
-        printf("XXX DEBUG: $psId\n");
-        printf("XXX DEBUG: @PLUGIN_NAME@\n");
+
+    # Give project principal "Electrirc Cloud" write access to our project
+    my $projPrincipal = "project: Electric Cloud";
+    my $ecAdminProj   = '$[/plugins/EC-Admin/project]';
+
+    # Give project Electric Cloud permission on ec_reportData
+    $cfg = $commander-&gt;getProperty("ec_reportData", {projectName =&gt; $ecAdminProj});
+    my $psId= $cfg-&gt;findvalue("//propertySheetId");
+
+    my $xpath = $commander-&gt;getAclEntry("user", $projPrincipal, 
+            { 
+                projectName =&gt; $ecAdminProj, 
+                propertySheetId =&gt; $psId 
+            });
+    if ($xpath-&gt;findvalue('//code') eq 'NoSuchAclEntry') {
         $batch-&gt;createAclEntry("user", "project: Electric Cloud", 
              {
-                projectName =&gt; "@"."PLUGIN_NAME@",
+                projectName =&gt; $ecAdminProj,
                 propertySheetId =&gt; $psId, 
                 "readPrivilege"=&gt;"allow", 
-                "modifyPrivilege"=&gt;"allow", 
-                "executePrivilege"=&gt;"inherit", 
-                "changePermissionsPrivilege"=&gt;"inherit"
+                "modifyPrivilege"=&gt;"allow",
              });
+    }       
 }
 </value>
       </property>
