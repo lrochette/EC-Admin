@@ -16,8 +16,8 @@ if ( $promoteAction eq 'promote' ) {
 
     # Give project principal "Electrirc Cloud" write access to our project
     my $projPrincipal = "project: Electric Cloud";
-    my $ecAdminProj   = '$[/plugins/EC-Admin/project/projectName]';
-    #my $ecAdminProj = $commander->getProperty("/myProject/projectName")->findvalue("//value");
+    #my $ecAdminProj   = '$'.'[/plugins/EC-Admin/project/projectName]';
+    my $ecAdminProj = $commander->getProperty("/myProject/projectName")->findvalue("//value");
     # Give project Electric Cloud permission on ec_reportData
     $cfg = $commander->getProperty("ec_reportData", {projectName => $ecAdminProj});
     my $psId= $cfg->findvalue("//propertySheetId");
