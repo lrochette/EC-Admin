@@ -5621,12 +5621,12 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>192</value>
+        <value>193</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
         <description/>
-        <expandable>0</expandable>
+        <expandable>1</expandable>
         <value>if ( $promoteAction eq 'promote' ) {
 	my $query=$commander-&gt;newBatch();
 	my $cfg = $query-&gt;getProperty("/server/EC-Admin/licenseLogger/config");
@@ -5644,8 +5644,8 @@ software.&lt;/p&gt;
 
     # Give project principal "Electrirc Cloud" write access to our project
     my $projPrincipal = "project: Electric Cloud";
-    #my $ecAdminProj   = '$'.'[/plugins/EC-Admin/project/projectName]';
-    my $ecAdminProj = $commander-&gt;getProperty("/myProject/projectName")-&gt;findvalue("//value");
+    my $ecAdminProj   = '$[/plugins/EC-Admin/project/projectName]';
+    #my $ecAdminProj = $commander-&gt;getProperty("/myProject/projectName")-&gt;findvalue("//value");
     # Give project Electric Cloud permission on ec_reportData
     $cfg = $commander-&gt;getProperty("ec_reportData", {projectName =&gt; $ecAdminProj});
     my $psId= $cfg-&gt;findvalue("//propertySheetId");
