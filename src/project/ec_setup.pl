@@ -13,7 +13,31 @@ if ( $promoteAction eq 'promote' ) {
 		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/resource", "local" );
 		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/workspace", "default" );
 	}
+
+    # Give project principal "Electrirc Cloud" write access to our project
+    my $projPrincipal = "project: Electric Cloud";
+    my $ecAdminProj = '@PLUGIN_NAME@';
+    
+    # Give project Electric Cloud permission on ec_reportData
+    $cfg = $commander->getProperty("ec_reportData", {projectName => $ecAdminProj});
+    my $psId= $cfg->findvalue("//propertySheetId");
+
+    my $xpath = $commander->getAclEntry("user", $projPrincipal, 
+            { 
+                projectName => $ecAdminProj, 
+                propertySheetId => $psId 
+            });
+    if ($xpath->findvalue('//code') eq 'NoSuchAclEntry') {
+        $batch->createAclEntry("user", "project: Electric Cloud", 
+             {
+                projectName => $ecAdminProj,
+                propertySheetId => $psId, 
+                "readPrivilege"=>"allow", 
+                "modifyPrivilege"=>"allow",
+             });
+    }       
 }
+
 
 # Data that drives the create step picker registration for this plugin.
 my %acquireSemaphore = ( 

@@ -31,6 +31,24 @@ $xp = $ec->getProperty(
     '/javascript getProperty("/server/EC-Admin/licenseLogger/config/attachmentName");');
 my $zipFN = $xp->findvalue('//value')->string_value;
 
+# Get a license usage to get max values for header
+# Build a hash of "interesting" statistics to collect and save.
+# The hash key is the name of the statistic, and the value is the xpath
+# query string used to retrieve the statistic from the getLicenseUsage() API.
+my $xprefix = '/responses/response/licenseUsage/';
+my %statXPaths = (
+    'maxHosts' => $xprefix . 'concurrentResources/maxHosts',
+    'maxProxiedHosts' => $xprefix . 'concurrentResources/maxProxiedHosts'
+);
+# Fetch a snapshot of current license usage data
+$xp = $ec->getLicenseUsage();
+
+# Extract the stats from the returned XML
+my %statValues = ();
+foreach my $i (keys %statXPaths) {
+    $statValues{$i} = $xp->findvalue($statXPaths{$i})->string_value;
+}
+
 # Finally, fetch our parameters
 $xp = $ec->getProperty('sendEmail');
 my $sendEmail = $xp->findvalue('//value')->string_value;
@@ -213,6 +231,9 @@ if ($v) {
     # Now build the body of the email.
     $report .= " Data collected on server: $host\n";
     $report .= sprintf(" %d records from %s to %s\n", $n-1, $tstart, $tend);
+    foreach my $i (sort keys %statValues) {
+    	$report .= sprintf(" %-15s: %3d\n", $i, $statValues{$i});
+	}
     $report .= " ----\n";
 
     # Field names to be reported upon (adjust as required)

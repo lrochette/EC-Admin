@@ -5621,7 +5621,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>161</value>
+        <value>199</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -5641,13 +5641,51 @@ software.&lt;/p&gt;
 		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/resource", "local" );
 		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/workspace", "default" );
 	}
-}</value>
+
+    # Give project principal "Electrirc Cloud" write access to our project
+    my $projPrincipal = "project: Electric Cloud";
+    my $ecAdminProj = '@PLUGIN_NAME@';
+    
+    # Give project Electric Cloud permission on ec_reportData
+    $cfg = $commander-&gt;getProperty("ec_reportData", {projectName =&gt; $ecAdminProj});
+    my $psId= $cfg-&gt;findvalue("//propertySheetId");
+
+    my $xpath = $commander-&gt;getAclEntry("user", $projPrincipal, 
+            { 
+                projectName =&gt; $ecAdminProj, 
+                propertySheetId =&gt; $psId 
+            });
+    if ($xpath-&gt;findvalue('//code') eq 'NoSuchAclEntry') {
+        $batch-&gt;createAclEntry("user", "project: Electric Cloud", 
+             {
+                projectName =&gt; $ecAdminProj,
+                propertySheetId =&gt; $psId, 
+                "readPrivilege"=&gt;"allow", 
+                "modifyPrivilege"=&gt;"allow",
+             });
+    }       
+}
+</value>
       </property>
       <property>
         <propertyName>version</propertyName>
         <description>Version of the EC-Admin project
 
 History:
+- version 2.2.4
+  + Fixed Issue #11: ec_reportData cannot be modifed by "Electric Cloud" project
+
+- version 2.2.3
+  + JSON lib was missing in projectAsCode::Initialization
+
+- version 2.2.2
+  + Removed ec_visibility property  when plugin is transformed back into a project (projectAsCode)
+  + Fixed issue with PLUGIN_KEY becoming hardcoded in creat_ec_setup.pl in the EC-Admin plugin
+
+- version 2.2.1
+  + Fixed a problem with debugPostp
+  + Add total license values in licenseLogger report
+
 - version 2.2.0
   + Added a procedure to help debug postp
 
@@ -5834,7 +5872,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.2.0</value>
+        <value>2.2.4</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -6947,7 +6985,7 @@ Can be called manually on 1 resource or automatically on all</description>
       <procedureName>cleanupRepository</procedureName>
       <description>Clear out all stale artifacts from a repository's backing store.
 This procedure can be run on an individual repository or can be called on all repositories by "Artifact Cleanup"</description>
-      <jobNameTemplate>$[/myProject/projectName]-$[/myProcedure/procedureName]_$[jobId]-$[/timestamp]</jobNameTemplate>
+      <jobNameTemplate>$[/myProject/projectName]-$[/myProcedure/procedureName]_$[/increment /server/ec_counters/$[/myProject/projectName]/jobCounter]-$[/timestamp]</jobNameTemplate>
       <resourceName>$[resource]</resourceName>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -10255,6 +10293,8 @@ Best: mssql or oracle</description>
 
 Changelog:
 --------------
+2014-12-18  lrochette   JSON lib was missing in Initialization
+2014-12-10  kjdowney  Remove ec_visibility Prop
 2014-08-27  lrochette   Parse "scripts" PS recursively 
 2014-08-25  lrochette   Extracting "scripts" PS generally containing code 
 2014-07-30  lrochette   Fixed "directory" parameter help tip

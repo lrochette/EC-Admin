@@ -18,11 +18,11 @@ if ($pluginName eq "") {
 my $pluginBuildNumber=$[/increment /projects/$[Project]/pluginBuildNumber];
 my $completeVersion="$version.$pluginBuildNumber";
 
-$ec->setProperty("summary", "Processing plugin $project-$completeVersion");
+$ec->setProperty("summary", "Processing plugin $pluginName-$completeVersion");
 $ec->setProperty("/myJob/Version", $completeVersion);
 
 # If plugin name is empty default to the projectName
-$ec->setProperty("/myJob/pluginName", ($pluginName ne "") ? $pluginName : $project );
+$ec->setProperty("/myJob/pluginName", $pluginName);
 
 # If description is empty, use the project description
 if ($description eq "") {
@@ -35,6 +35,7 @@ if ($comment ne "") {
 $ec->setProperty("/myJob/pluginDescription", $description);
 
 
+$[/myProject/scripts/perlLibJSON]
 
 
 
