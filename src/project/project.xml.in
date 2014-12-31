@@ -5621,7 +5621,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>198</value>
+        <value>199</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -5649,8 +5649,6 @@ software.&lt;/p&gt;
     # Give project Electric Cloud permission on ec_reportData
     $cfg = $commander-&gt;getProperty("ec_reportData", {projectName =&gt; $ecAdminProj});
     my $psId= $cfg-&gt;findvalue("//propertySheetId");
-    printf("XXX DEBUG: $psId\n");
-    printf("XXX DEBUG: $ecAdminProj\n");
 
     my $xpath = $commander-&gt;getAclEntry("user", $projPrincipal, 
             { 

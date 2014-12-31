@@ -21,8 +21,6 @@ if ( $promoteAction eq 'promote' ) {
     # Give project Electric Cloud permission on ec_reportData
     $cfg = $commander->getProperty("ec_reportData", {projectName => $ecAdminProj});
     my $psId= $cfg->findvalue("//propertySheetId");
-    printf("XXX DEBUG: $psId\n");
-    printf("XXX DEBUG: $ecAdminProj\n");
 
     my $xpath = $commander->getAclEntry("user", $projPrincipal, 
             { 
