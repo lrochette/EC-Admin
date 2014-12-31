@@ -1,45 +1,6 @@
 2015-12-30 System Administrator <lrochette@electric-cloud.com>
   * 2.2.4.199: Fix issue#1 about ec_reportData
 
-2015-12-30 System Administrator <lrochette@electric-cloud.com>
-  * 2.2.4.198: Fix issue#1 about ec_reportData
-
-2015-12-30 System Administrator <lrochette@electric-cloud.com>
-  * 2.2.4.197: Fix issue#1 about ec_reportData
-
-2015-12-30 System Administrator <lrochette@electric-cloud.com>
-  * 2.2.4.196: Fix issue#1 about ec_reportData
-
-2015-12-30 System Administrator <lrochette@electric-cloud.com>
-  * 2.2.4.195: Fix issue#1 about ec_reportData
-
-2015-12-30 System Administrator <lrochette@electric-cloud.com>
-  * 2.2.4.193: Fix issue#1 about ec_reportData
-
-2015-12-30 System Administrator <lrochette@electric-cloud.com>
-  * 2.2.4.192: Fix issue#1 about ec_reportData
-
-2014-12-24 System Administrator <lrochette@electric-cloud.com>
-  * 2.2.4.190: Fix issue#1 about ec_reportData
-
-2014-12-24 System Administrator <lrochette@electric-cloud.com>
-  * 2.2.4.189: Fix issue#1 about ec_reportData
-
-2014-12-24 System Administrator <lrochette@electric-cloud.com>
-  * 2.2.4.188: Fix issue#1 about ec_reportData
-
-2014-12-24 System Administrator <lrochette@electric-cloud.com>
-  * 2.2.4.187: Fix issue#1 about ec_reportData
-
-2014-12-24 System Administrator <lrochette@electric-cloud.com>
-  * 2.2.4.186: Fix issue#1 about ec_reportData
-
-2014-12-24 System Administrator <lrochette@electric-cloud.com>
-  * 2.2.4.184: Fix issue#1 about ec_reportData
-
-2014-12-24 System Administrator <lrochette@electric-cloud.com>
-  * 2.2.4.181: Fix issue#1 about ec_reportData
-
 2014-12-18 System Administrator <lrochette@electric-cloud.com>
   * 2.2.3.173: JSON lib was missing in projectAsCode::Initialization
 
