@@ -5621,7 +5621,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>195</value>
+        <value>196</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -5644,7 +5644,8 @@ software.&lt;/p&gt;
 
     # Give project principal "Electrirc Cloud" write access to our project
     my $projPrincipal = "project: Electric Cloud";
-    my $ecAdminProj   = '$[/plugins/EC-Admin/project/projectName]';
+    #my $ecAdminProj   = '$[/plugins/EC-Admin/project/projectName]';
+    my $ecAdminProj = '@PLUGIN_NAME';
     #my $ecAdminProj = $commander-&gt;getProperty("/plugins/EC-Admin/project/projectName")-&gt;findvalue("//value");
     # Give project Electric Cloud permission on ec_reportData
     # $cfg = $commander-&gt;getProperty("ec_reportData", {projectName =&gt; $ecAdminProj});
