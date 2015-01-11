@@ -1,3 +1,6 @@
+2015-01-11 System Administrator <lrochette@electric-cloud.com>
+  * 2.3.0.200: obsCleanup now supports local workspace
+
 2015-12-30 System Administrator <lrochette@electric-cloud.com>
   * 2.2.4.199: Fix issue#1 about ec_reportData
 
