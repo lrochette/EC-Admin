@@ -61,4 +61,33 @@ ntest "performanceMetrics", {}, sub {
 	assertOK($::N->getProcedure($pluginName, "performanceMetrics"), "procedure missing");
 };
 
+ntest "jobsCleanup", {}, sub {
+        assertOK($::N->getProcedure($pluginName, "jobsCleanup"), "procedure missing");
+};
+
+#-------------------------------------------------------------------------------
+# Test for scripts/properties
+#-------------------------------------------------------------------------------
+ntest "scripts_perlCommonLib", {}, sub {
+    my $xpath = $::N->runProcedure("EC-Admin_Test", {
+        procedureName=>"scriptsPropertiesTest",
+      });
+    assertOK($xpath, "run scriptsPropertiesTest");
+    assertDef($xpath, "Procedure scriptsPropertiesTest timed out"); 
+
+    if ($xpath) {
+        # get new job ID
+        my $jobId  = $xpath->findvalue("//jobId");
+        waitForJob($jobId);
+
+        my $jobData  = $::N->getJobDetails($jobId);
+        my $exitCode = $jobData->findvalue("//job/jobStep[stepName='humanSize']/exitCode");
+        my $result   = $jobData->findvalue("//job/jobStep[stepName='humanSize']/result");
+        
+        # testing result=1 Mb and exitCode=0
+        assertEq($result, "1 Mb", "test scriptPropertiesTest returned wrong value $result instead of 1Mb");
+        assert($exitCode, "==", 0,  "test scriptPropertiesTest failed");
+    }
+};
+
 1;

@@ -20,7 +20,7 @@ p;
 
 $[/javascript 
 var p;
-if (typeof(projects["EC-Admin"].humanSize != "undefined") {
+if (typeof(projects["EC-Admin"].humanSize) != "undefined") {
   p=projects["EC-Admin"].scripts.humanSize;
 } else {
   p=plugins["EC-Admin"].project.scripts.humanSize;
