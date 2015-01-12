@@ -1,5 +1,10 @@
 @files = (
 	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="licenseLogger"]/propertySheet/property[propertyName="jobCleanup.pl"]/value', "properties/scripts/licenseLogger/jobCleanup.pl.txt"],
+	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="compareVersion"]/value', "properties/scripts/compareVersion.txt"],
+	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="deleteWorkspace"]/value', "properties/scripts/deleteWorkspace.txt"],
+	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="getDirSize"]/value', "properties/scripts/getDirSize.txt"],
+	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="getP"]/value', "properties/scripts/getP.txt"],
+	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="humanSize"]/value', "properties/scripts/humanSize.txt"],
 	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="jobTemplate"]/value', "properties/scripts/jobTemplate.txt"],
 	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="perlCommonLib"]/value', "properties/scripts/perlCommonLib.txt"],
 	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="perlHeader"]/value', "properties/scripts/perlHeader.txt"],
@@ -96,6 +101,7 @@
 	['//project/procedure[procedureName="saveAllObjects"]/step[stepName="saveGroups"]/command', 'procedures/saveAllObjects/steps/saveGroups.pl'],
 	['//project/procedure[procedureName="saveProjects"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/saveProjects/form.xml'],
 	['//project/procedure[procedureName="saveProjects"]/step[stepName="save Projects"]/command', 'procedures/saveProjects/steps/save Projects.pl'],
+	['//project/procedure[procedureName="subJC_deleteWorkspace"]/step[stepName="deleteWorkspaceDirectory"]/command', 'procedures/subJC_deleteWorkspace/steps/deleteWorkspaceDirectory.pl'],
 	['//project/procedure[procedureName="subPM-deploymentSize"]/step[stepName="agents"]/command', 'procedures/subPM-deploymentSize/steps/agents.pl'],
 	['//project/procedure[procedureName="subPM-deploymentSize"]/step[stepName="managedResources"]/command', 'procedures/subPM-deploymentSize/steps/managedResources.pl'],
 	['//project/procedure[procedureName="subPM-deploymentSize"]/step[stepName="projects"]/command', 'procedures/subPM-deploymentSize/steps/projects.pl'],

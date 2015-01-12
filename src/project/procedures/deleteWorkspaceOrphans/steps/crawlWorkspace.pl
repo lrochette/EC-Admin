@@ -66,7 +66,7 @@ foreach my $dir (grep(!/^\.\.?/, readdir(D))) {
     printf ("%s: not a directory. Skipping!\n", $dir) if ($verboseMode eq "true");
     next;
   }
-  if ($dir !~ /[-_\(]\d{3,}/ ) {
+  if ($dir !~ /[-_\(]\d+/ ) {
     printf("%s: does not match a job name pattern. Skipping!\n", $dir);
     next;
   }
