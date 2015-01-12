@@ -82,10 +82,11 @@ ntest "scripts_perlCommonLib", {}, sub {
 
         my $jobData  = $::N->getJobDetails($jobId);
         my $exitCode = $jobData->findvalue("//job/jobStep[stepName='humanSize']/exitCode");
-        my $result   = $jobData->findvalue("//job/jobStep[stepName='humanSize']/result");
+
+	my $result =$::N->getProperty("result", {jobId=>$jobId, stepName=>"humanSize"})->findvalue("//value");
         
         # testing result=1 Mb and exitCode=0
-        assertEq($result, "1 Mb", "test scriptPropertiesTest returned wrong value $result instead of 1Mb");
+        assertEq($result, "3.00 MB", "test scriptPropertiesTest returned wrong value $result instead of 3.00 MB");
         assert($exitCode, "==", 0,  "test scriptPropertiesTest failed");
     }
 };
