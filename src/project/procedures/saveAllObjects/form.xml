@@ -63,4 +63,15 @@
         <value>true</value>    
     </formElement> 
 
+    <formElement> 
+        <label>Backup Deploy</label>    
+        <property>exportDeploy</property> 
+        <documentation>Boolean to export Deploy objects. Require Commander 5.x</documentation> 
+        <type>checkbox</type>    
+        <checkedValue>true</checkedValue> 
+        <uncheckedValue>false</uncheckedValue> 
+        <initiallyChecked>1</initiallyChecked> 
+        <value>true</value>    
+    </formElement> 
+
 </editor>

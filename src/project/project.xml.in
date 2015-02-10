@@ -1902,7 +1902,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>206</value>
+        <value>207</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -7856,6 +7856,31 @@ Changelog:
               <propertyName>parameters</propertyName>
               <propertySheet>
                 <property>
+                  <propertyName>exportDeploy</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>checkedValue</propertyName>
+                      <expandable>1</expandable>
+                      <value>true</value>
+                    </property>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                    <property>
+                      <propertyName>initiallyChecked</propertyName>
+                      <expandable>1</expandable>
+                      <value>1</value>
+                    </property>
+                    <property>
+                      <propertyName>uncheckedValue</propertyName>
+                      <expandable>1</expandable>
+                      <value>false</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
                   <propertyName>exportGroups</propertyName>
                   <propertySheet>
                     <property>
@@ -8080,6 +8105,14 @@ $[/server/ec_notifierTemplates/Html_JobTempl/body]</formattingTemplate>
         </propertySheet>
       </emailNotifier>
       <formalParameter>
+        <formalParameterName>exportDeploy</formalParameterName>
+        <defaultValue>true</defaultValue>
+        <description/>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
+        <type>checkbox</type>
+      </formalParameter>
+      <formalParameter>
         <formalParameterName>exportGroups</formalParameterName>
         <defaultValue>true</defaultValue>
         <description/>
@@ -8127,29 +8160,6 @@ $[/server/ec_notifierTemplates/Html_JobTempl/body]</formattingTemplate>
         <required>1</required>
         <type>entry</type>
       </formalParameter>
-      <step>
-        <stepName>saveDeployObjects</stepName>
-        <alwaysRun>0</alwaysRun>
-        <broadcast>0</broadcast>
-        <command>PLACEHOLDER</command>
-        <condition/>
-        <description>a step to save the Deploy objects from the Default project</description>
-        <errorHandling>failProcedure</errorHandling>
-        <exclusiveMode>none</exclusiveMode>
-        <logFileName/>
-        <parallel>0</parallel>
-        <postProcessor/>
-        <precondition/>
-        <releaseMode>none</releaseMode>
-        <resourceName/>
-        <shell>ec-perl</shell>
-        <timeLimit/>
-        <timeLimitUnits>minutes</timeLimitUnits>
-        <workingDirectory/>
-        <workspaceName/>
-        <propertySheet>
-        </propertySheet>
-      </step>
       <step>
         <stepName>saveProjectsProceduresWorkflows</stepName>
         <alwaysRun>0</alwaysRun>
@@ -8277,6 +8287,29 @@ Changelog:
         <command>PLACEHOLDER</command>
         <condition>$[exportGroups]</condition>
         <description/>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName/>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>saveDeployObjects</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition>$[exportDeploy]</condition>
+        <description>a step to save the Deploy objects from the Default project</description>
         <errorHandling>failProcedure</errorHandling>
         <exclusiveMode>none</exclusiveMode>
         <logFileName/>
