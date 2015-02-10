@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.3.0.205</version>
+  <version>2.4.0.206</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
-2015-01-11 admin Fixed ntest</description>
+2015-02-10 admin Added deploy object backup in saveAllObjects</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>

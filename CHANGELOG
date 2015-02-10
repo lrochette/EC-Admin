@@ -1,3 +1,6 @@
+2015-02-10 System Administrator <lrochette@electric-cloud.com>
+  * 2.4.0.206: Added deploy object backup in saveAllObjects
+
 2015-01-11 System Administrator <lrochette@electric-cloud.com>
   * 2.3.0.205: Added ntest for scripts PS
   * 2.3.0.200: jobsCleanup now supports local workspace

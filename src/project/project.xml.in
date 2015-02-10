@@ -1902,7 +1902,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>205</value>
+        <value>206</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -1953,6 +1953,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+-version 2.4.0
+  + Added deploy object backup in saveAllObjects
+
 -version 2.3.0
   + jobsCleanup now supports local workspace
   + Slightly changed the pattern matching for deleteOrphanWorkspace
@@ -2157,7 +2160,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.3.0</value>
+        <value>2.4.0</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -8124,6 +8127,29 @@ $[/server/ec_notifierTemplates/Html_JobTempl/body]</formattingTemplate>
         <required>1</required>
         <type>entry</type>
       </formalParameter>
+      <step>
+        <stepName>saveDeployObjects</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition/>
+        <description>a step to save the Deploy objects from the Default project</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName/>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
       <step>
         <stepName>saveProjectsProceduresWorkflows</stepName>
         <alwaysRun>0</alwaysRun>

@@ -93,6 +93,7 @@
 	['//project/procedure[procedureName="removeParameterFromCall"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/removeParameterFromCall/form.xml'],
 	['//project/procedure[procedureName="removeParameterFromCall"]/step[stepName="searchAndRemove"]/command', 'procedures/removeParameterFromCall/steps/searchAndRemove.pl'],
 	['//project/procedure[procedureName="saveAllObjects"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/saveAllObjects/form.xml'],
+	['//project/procedure[procedureName="saveAllObjects"]/step[stepName="saveDeployObjects"]/command', 'procedures/saveAllObjects/steps/saveDeployObjects.pl'],
 	['//project/procedure[procedureName="saveAllObjects"]/step[stepName="saveProjectsProceduresWorkflows"]/command', 'procedures/saveAllObjects/steps/saveProjectsProceduresWorkflows.pl'],
 	['//project/procedure[procedureName="saveAllObjects"]/step[stepName="saveResources"]/command', 'procedures/saveAllObjects/steps/saveResources.pl'],
 	['//project/procedure[procedureName="saveAllObjects"]/step[stepName="saveResourcePools"]/command', 'procedures/saveAllObjects/steps/saveResourcePools.pl'],
