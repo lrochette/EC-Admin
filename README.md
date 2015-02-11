@@ -1,13 +1,6 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta content="text/html; charset=us-ascii" http-equiv="content-type" />
-</head>
+<h1>EC-Admin</h1>
 
-<body>
-    <div class="help">
-		<h1>EC-Admin</h1>
-
-        <p>EC-Admin is a collection of administrative procedures to help you
+<p>EC-Admin is a collection of administrative procedures to help you
 manage your server. Its inception was sparked by requests from customers
 during my Professional Services engagements. It has grown over the years to
 what it is now.</p>
