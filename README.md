@@ -82,10 +82,10 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 		            </tr>
 		        </tbody>
 		    </table>
-<img src="../../plugins/@PLUGIN_KEY@/images/help/changeBannerColor.png" 
+<img src="src/htdocs/images/help/changeBannerColor.png" 
 				 alt="changeBannerColor parameters" />
 <p>will produce</p>
-<img src="../../plugins/@PLUGIN_KEY@/images/help/RedDev.png" 
+<img src="src/htdocs/images/help/RedDev.png" 
 				 alt="Red DEV example" />
 
 
@@ -97,7 +97,7 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 <p>A procedure to delete jobs older than a specified number of
 days. It will also delete associated workspace job directories.</p>
 
-		    <table class="grid">
+<table class="grid">
 		        <thead>
 		            <tr>
 		                <th>Parameter</th>
@@ -133,7 +133,7 @@ days. It will also delete associated workspace job directories.</p>
 		        </tbody>
 		    </table>
 
-<img src="../../plugins/@PLUGIN_KEY@/images/help/jobsCleanup.png" 
+<img src="src/htdocs/images/help/jobsCleanup.png" 
 				 alt="jobsCleanup parameters" />
 
 <h2>jobCleanup_byResult:</h2> 
@@ -167,7 +167,7 @@ directories. This is for customers with huge job or workflow database.</p>
 			executable in the PATH.</p>
 <p>The procedure "createPluginFromProject" allows the transformation of a 
 			project into a plugin. The parameters are the following:</p>
-		    <table class="grid">
+<table class="grid">
 		        <thead>
 		            <tr>
 		                <th>Parameter</th>
@@ -232,7 +232,7 @@ directories. This is for customers with huge job or workflow database.</p>
 		        </tbody>
 		    </table>
 
-<img src="../../plugins/@PLUGIN_KEY@/images/help/createPluginFromProject.png" 
+<img src="src/htdocs/images/help/createPluginFromProject.png" 
 				 alt="createPluginFromProject parameters" />
 
 <p>At the project level, you can define the following properties to 
@@ -288,7 +288,7 @@ if ( $promoteAction eq 'promote' ) {
 		in your favorite SCM tool.<br/>
 		All the properties associated with createPluginFromProject still apply.</p>
 
-		    <table class="grid">
+<table class="grid">
 		        <thead>
 		            <tr>
 		                <th>Parameter</th>
@@ -373,7 +373,7 @@ if ( $promoteAction eq 'promote' ) {
 		        </tbody>
 		    </table>
 
-<img src="../../plugins/@PLUGIN_KEY@/images/help/projectAsCode.png" 
+<img src="src/htdocs/images/help/projectAsCode.png" 
 				 alt="projectAsCode parameters" />
 
 <p><b>Note:</b> EC-Admin is released on 
@@ -452,7 +452,7 @@ along with a set of configuration properties.</p>
 The proeprty sheet is created upon promotion if it does not already exists.The following 
 properties can be set up:</p>
 
-		    <table class="grid">
+<table class="grid">
 		        <thead>
 		            <tr>
 		                <th>Property</th>
