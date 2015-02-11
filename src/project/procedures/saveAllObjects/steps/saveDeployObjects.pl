@@ -2,6 +2,7 @@
 #
 #  Copyright 2015 Electric-Cloud Inc.
 #
+# Script to backup the Deploy objects (application, environment, components)
 #############################################################################
 use File::Path;
 
@@ -16,6 +17,7 @@ my $path="$[pathname]";
 my $errorCount=0;
 my $appCount=0;
 my $envCount=0;
+my $compCount=0;
 my $newtimeout=600;
 
 # Set the time out to newtimeout so the ec commands won't time out at 3 mins
@@ -24,8 +26,8 @@ $ec->setTimeout($newtimeout);
 # Check if Default project exist
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getProject", "Default");
 if (!$success) {
-	$ec->setProperty("summary", "Project Default required to save Deploy objects");
-	exit(0);
+  $ec->setProperty("summary", "Project Default required to save Deploy objects");
+  exit(0);
 }
 my $fileProjectName="Default";
 my $pName="Default";
@@ -58,9 +60,11 @@ foreach my $app ($xPath->findnodes('//application')) {
   my $fileAppName=safeFilename($appName);
   printf("  Saving Application: %s\n", $appName);
 
-	my ($success, $res, $errMsg, $errCode) = 
-    InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Applications/$fileAppName".".xml",
-					{ 'path'=> "/projects/$pName/applications/$appName", 
+  mkpath("$path/Projects/$fileProjectName/Applications/$fileAppName");
+  chmod(0777, "$path/Projects/$fileProjectName/Applications/$fileAppName");
+  my ($success, $res, $errMsg, $errCode) = 
+    InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Applications/$fileAppName/$fileAppName".".xml",
+          { 'path'=> "/projects/$pName/applications/$appName", 
                                         'relocatable' => 1,
                                         'withAcls'    => 1,
                                         'withNotifiers'=>1});
@@ -72,6 +76,34 @@ foreach my $app ($xPath->findnodes('//application')) {
   }
   else {
     $appCount++;
+  }
+
+  #
+  # backup Components
+  mkpath("$path/Projects/$fileProjectName/Applications/$fileAppName/Components");
+  chmod(0777, "$path/Projects/$fileProjectName/Applications/$fileAppName/Components");
+
+  my ($ok, $json) = InvokeCommander("SuppressLog", "getComponents", $pName, {applicationName => $appName});
+  foreach my $comp ($json->findnodes("//component")) {
+    my $compName=$comp->{'componentName'};
+    my $fileCompName=safeFilename($compName);
+
+    my ($success, $res, $errMsg, $errCode) = 
+      InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Applications/$fileAppName/Components/$fileCompName".".xml",
+          { 'path'=> "/projects/$pName/applications/$appName/components/$compName", 
+                                        'relocatable' => 1,
+                                        'withAcls'    => 1,
+                                        'withNotifiers'=>1});
+  
+  if (! $success) {
+    printf("  Error exporting component %s in application", $compName, $appName);
+    printf("  %s: %s\n", $errCode, $errMsg);
+    $errorCount++;
+  }
+  else {
+    $compCount++;
+  }
+
   }
 }
 
@@ -89,7 +121,7 @@ foreach my $proc ($xPath->findnodes('//environment')) {
   
   my ($success, $res, $errMsg, $errCode) = 
     InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Environments/$fileEnvName".".xml",
-					{ 'path'=> "/projects/$pName/environments/$envName", 
+          { 'path'=> "/projects/$pName/environments/$envName", 
                                         'relocatable' => 1,
                                         'withAcls'    => 1,
                                         'withNotifiers'=>1});
@@ -105,7 +137,7 @@ foreach my $proc ($xPath->findnodes('//environment')) {
 }
 
 
-$ec->setProperty("preSummary", "$appCount applications exported\n  $envCount environments exported\n");
+$ec->setProperty("preSummary", "$appCount applications exported\n  $envCount environments exported\n  $compCount components exported");
 exit($errorCount);
 
 #

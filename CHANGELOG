@@ -1,3 +1,6 @@
+2015-02-11 System Administrator <lrochette@electric-cloud.com>
+  * 2.4.1.208: saveAllObjects now backups Components as well per Application
+
 2015-02-10 System Administrator <lrochette@electric-cloud.com>
   * 2.4.0.207: Reordered steps after testing
   * 2.4.0.206: Added Deploy object backup in saveAllObjects
