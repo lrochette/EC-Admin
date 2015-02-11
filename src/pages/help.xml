@@ -428,11 +428,18 @@ with it to backup your projects on a regular basis.</p>
 
 		<h2>saveAllObjects</h2>
 
-        <p>This procedure brings a finer granularity to a full server export. For 
-example to retrieve an object after a wrong action or a bad code change. By 
-default it exports projects and each procedure individually. In addition by 
-enabling the matching checkboxes, you can also export resources, 
-resource pools, workspaces, users and groups.</p>
+        <p>This procedure brings a finer granularity to a full server export.
+For  example, it may be easier to retrieve a simple project or procedure
+instead of the full server export or database backup to undo r a wrong action
+or a bad code change. By  default it exports projects and each procedure
+individually. In addition by  enabling the matching checkboxes, you can also
+export resources,  resource pools, workspaces, users and groups, and with 5.x
+and later ElectricFlow Deploy objects (Applications, Components and
+Environments). It is recommended to enable the nightly schedule associated
+with it to backup your projects on a regular basis.</p>
+
+		<p><b>Note:</b> Use saveProjects or saveAllObjects depending on the
+		granularity you are requiring.</p>
 
 		<h1><a name="semaphore"></a>Semaphore Management</h1>
 

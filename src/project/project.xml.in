@@ -1808,11 +1808,18 @@ with it to backup your projects on a regular basis.&lt;/p&gt;
 
 		&lt;h2&gt;saveAllObjects&lt;/h2&gt;
 
-        &lt;p&gt;This procedure brings a finer granularity to a full server export. For 
-example to retrieve an object after a wrong action or a bad code change. By 
-default it exports projects and each procedure individually. In addition by 
-enabling the matching checkboxes, you can also export resources, 
-resource pools, workspaces, users and groups.&lt;/p&gt;
+        &lt;p&gt;This procedure brings a finer granularity to a full server export.
+For  example, it may be easier to retrieve a simple project or procedure
+instead of the full server export or database backup to undo r a wrong action
+or a bad code change. By  default it exports projects and each procedure
+individually. In addition by  enabling the matching checkboxes, you can also
+export resources,  resource pools, workspaces, users and groups, and with 5.x
+and later ElectricFlow Deploy objects (Applications, Components and
+Environments). It is recommended to enable the nightly schedule associated
+with it to backup your projects on a regular basis.&lt;/p&gt;
+
+		&lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; Use saveProjects or saveAllObjects depending on the
+		granularity you are requiring.&lt;/p&gt;
 
 		&lt;h1&gt;&lt;a name="semaphore"&gt;&lt;/a&gt;Semaphore Management&lt;/h1&gt;
 
@@ -1902,7 +1909,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>208</value>
+        <value>209</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
