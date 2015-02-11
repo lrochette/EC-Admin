@@ -1,8 +1,6 @@
 2015-02-10 System Administrator <lrochette@electric-cloud.com>
   * 2.4.0.207: Reordered steps after testing
-
-2015-02-10 System Administrator <lrochette@electric-cloud.com>
-  * 2.4.0.206: Added deploy object backup in saveAllObjects
+  * 2.4.0.206: Added Deploy object backup in saveAllObjects
 
 2015-01-11 System Administrator <lrochette@electric-cloud.com>
   * 2.3.0.205: Added ntest for scripts PS
