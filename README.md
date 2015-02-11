@@ -21,37 +21,37 @@ what it is now.</p>
 <h2><a name="installation"></a>Installation</h2>
 		
 <p>This collection of procedures can be found on our 
-        	<a href="https://github.com/electriccommunity/EC-Admin">GitHub
+        <a href="https://github.com/electriccommunity/EC-Admin">GitHub
         		repository</a>. It is available as a plugin delivered 
         	in the form of a .jar file or you can simply get the source code 
         	and recompile it yourself.</p>
 
-		<p>To install the plugin, use the "Install from File/URL" tab in the
+<p>To install the plugin, use the "Install from File/URL" tab in the
 			administration/Plugins or use the "installPlugin" API.</p>
- 
-		<p>To install on 4.0.x or or 4.1.x, import the EC_4.0.xml file. Be 
+
+<p>To install on 4.0.x or or 4.1.x, import the EC_4.0.xml file. Be 
 			aware that some features are not present as the original project 
 			makes use of createJobStep() API which was introduced in 4.2.0:<br/>
 ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 
-		<p>If you get an error with the passKey, use the "--force 1" option</p>
+<p>If you get an error with the passKey, use the "--force 1" option</p>
 
-    <p>
+<p>
         IMPORTANT: For all parameter descriptions below, required
         parameters are shown in <span class="required">bold
         italics</span>.
-    </p>
+</p>
 
-		<h1><a name="look"></a>Look and Feel</h1>
-		<h2>changeBannerColor</h2>
-		<p>If you work on multiple Commander servers like a development and a 
+<h1><a name="look"></a>Look and Feel</h1>
+<h2>changeBannerColor</h2>
+<p>If you work on multiple Commander servers like a development and a 
 			production instances, this procedure is for you. It allows you to change 
 			the color of the top banner and the logo to make it easier to identify your different 
 			servers. Feel free 
 			to <a href="mailto:lrochette@electric-cloud.com">send me</a> new ones if 
 			you have a more artistic touch than me. Or better
 			push your changes to 
-			<a href="https://github.com/electriccommunity/EC-Admin">GitHub</a>.</p>
+		<a href="https://github.com/electriccommunity/EC-Admin">GitHub</a>.</p>
 
 		    <table class="grid">
 		        <thead>
@@ -82,19 +82,19 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 		            </tr>
 		        </tbody>
 		    </table>
-			<img src="../../plugins/@PLUGIN_KEY@/images/help/changeBannerColor.png" 
+		<img src="../../plugins/@PLUGIN_KEY@/images/help/changeBannerColor.png" 
 				 alt="changeBannerColor parameters" />
-			<p>will produce</p>
-			<img src="../../plugins/@PLUGIN_KEY@/images/help/RedDev.png" 
+		<p>will produce</p>
+		<img src="../../plugins/@PLUGIN_KEY@/images/help/RedDev.png" 
 				 alt="Red DEV example" />
 
 
-		<h1><a name="jobs"></a>Jobs and Workspaces management</h1>
-		<p>This set of procedures will help you manage your old jobs and the 
+	<h1><a name="jobs"></a>Jobs and Workspaces management</h1>
+	<p>This set of procedures will help you manage your old jobs and the 
 			associated workspaces.</p>
 
-			<h2>jobsCleanup:</h2> 
-			<p>A procedure to delete jobs older than a specified number of
+		<h2>jobsCleanup:</h2> 
+		<p>A procedure to delete jobs older than a specified number of
 days. It will also delete associated workspace job directories.</p>
 
 		    <table class="grid">
@@ -133,39 +133,39 @@ days. It will also delete associated workspace job directories.</p>
 		        </tbody>
 		    </table>
 
-			<img src="../../plugins/@PLUGIN_KEY@/images/help/jobsCleanup.png" 
+		<img src="../../plugins/@PLUGIN_KEY@/images/help/jobsCleanup.png" 
 				 alt="jobsCleanup parameters" />
 
-			<h2>jobCleanup_byResult:</h2> 
+		<h2>jobCleanup_byResult:</h2> 
             <p>A procedure to delete jobs older than a specified number of days.
 It will also delete associated workspace job directories. It will keep the
 number of successful, failed and warning jobs you entered. You can also
 provide a property name, if this property is attached to the job, it won't be
 deleted no matter how old. A report only mode prevents any real deletion.</p>
 
-			<h2>deleteWorksapceOrphans:</h2> 
+		<h2>deleteWorksapceOrphans:</h2> 
 
             <p>A procedure to crawl a workspace directory to find orphan jobs
 (directories without a matching job) on a specified resource.</p>
 
-			<h2>deleteObjects:</h2> 
+		<h2>deleteObjects:</h2> 
             <p>A procedure to quickly delete jobs or workflows older than a
 specified number of days. It will <b>not</b> delete associated workspace job
 directories. This is for customers with huge job or workflow database.</p>
 
 
-		<h1><a name="plugin"></a>Plugins</h1>
-		<h2>Plugin Synchronization</h2>
-		<p>This procedure synchronizes plugins between the server and 
+	<h1><a name="plugin"></a>Plugins</h1>
+	<h2>Plugin Synchronization</h2>
+	<p>This procedure synchronizes plugins between the server and 
 		a resource. Plugins are uploaded first as artifacts if it has not been 
 		done already and then downloaded on the resource if it does not 
 		already exist in the plugins directory.</p>
 		
-		<h2>Plugin creation</h2>
-		<h3>createPluginFromProject</h3>
-		<p><b>Note:</b> This procedure requires access to the jar or zip 
+	<h2>Plugin creation</h2>
+	<h3>createPluginFromProject</h3>
+	<p><b>Note:</b> This procedure requires access to the jar or zip 
 			executable in the PATH.</p>
-		<p>The procedure "createPluginFromProject" allows the transformation of a 
+	<p>The procedure "createPluginFromProject" allows the transformation of a 
 			project into a plugin. The parameters are the following:</p>
 		    <table class="grid">
 		        <thead>
@@ -176,113 +176,113 @@ directories. This is for customers with huge job or workflow database.</p>
 		        </thead>
 
 		        <tbody>
-					<tr>
-			        	<td class='required'>Project</td>
-						<td>The name of the project to transform into a plugin</td>
+				<tr>
+			        <td class='required'>Project</td>
+					<td>The name of the project to transform into a plugin</td>
 		            </tr>
-					<tr>
-			        	<td>Plugin</td>
-						<td>The name of the plugin. If left empty, it will default to
+				<tr>
+			        <td>Plugin</td>
+					<td>The name of the plugin. If left empty, it will default to
 					the project name.</td>
 		            </tr>
-					<tr>
-			        	<td>Category</td>
-						<td>The category of the plugin. It helps filter the plugin list in
+				<tr>
+			        <td>Category</td>
+					<td>The category of the plugin. It helps filter the plugin list in
 					the Plugins page and in the picker list.</td>
 		            </tr>
-					<tr>
-			        	<td  class='required'>Version</td>
-						<td>Version of the plugin to create. A build number is automatically 
+				<tr>
+			        <td  class='required'>Version</td>
+					<td>Version of the plugin to create. A build number is automatically 
 							added (after incrementation) to ensure uniq version numbers.</td>
 		            </tr>
-					<tr>
-			        	<td>Description</td>
-						<td>The description of the plugin to display in the main 
+				<tr>
+			        <td>Description</td>
+					<td>The description of the plugin to display in the main 
 						plugin page. If left empty it will default to the 
 						description of the project.</td>
 		            </tr>
-					<tr>
-			        	<td>Author</td>
-						<td>Name of he author of the project to transform into a plugin.</td>
+				<tr>
+			        <td>Author</td>
+					<td>Name of he author of the project to transform into a plugin.</td>
 		            </tr>
-					<tr>
-			        	<td>Email</td>
-						<td>The email of the author.</td>
+				<tr>
+			        <td>Email</td>
+					<td>The email of the author.</td>
 		            </tr>
-					<tr>
-			        	<td>Comment</td>
-						<td>if this parameter is not empty, it will be added to the CHANGELOG for traceabiity.</td>
+				<tr>
+			        <td>Comment</td>
+					<td>if this parameter is not empty, it will be added to the CHANGELOG for traceabiity.</td>
 		            </tr>
-					<tr>
-			        	<td>fixSelfReferences</td>
-						<td>Replace self references to the project in sub-prceodure calls by an empty string to be sure the plugins= created will not call the original project instead of itself.</td>
+				<tr>
+			        <td>fixSelfReferences</td>
+					<td>Replace self references to the project in sub-prceodure calls by an empty string to be sure the plugins= created will not call the original project instead of itself.</td>
 		            </tr>
-					<tr>
-			        	<td>createArtifact</td>
-						<td>Save the new created plugin as an artifact version.</td>
+				<tr>
+			        <td>createArtifact</td>
+					<td>Save the new created plugin as an artifact version.</td>
 		            </tr>
-					<tr>
-			        	<td>installPlugin</td>
-						<td>A Boolean to install or not the plugin after creation</td>
+				<tr>
+			        <td>installPlugin</td>
+					<td>A Boolean to install or not the plugin after creation</td>
 		            </tr>
-					<tr>
-			        	<td>promotePlugin</td>
-						<td>A Boolean to promote or not the plugin after installation</td>
+				<tr>
+			        <td>promotePlugin</td>
+					<td>A Boolean to promote or not the plugin after installation</td>
 		            </tr>
 		        </tbody>
 		    </table>
 
-			<img src="../../plugins/@PLUGIN_KEY@/images/help/createPluginFromProject.png" 
+		<img src="../../plugins/@PLUGIN_KEY@/images/help/createPluginFromProject.png" 
 				 alt="createPluginFromProject parameters" />
 
-		<p>At the project level, you can define the following properties to 
+	<p>At the project level, you can define the following properties to 
 			alter the behavior of the plugin creation:</p>
-			<dl>
-				<dt><b>ec_visibility:</b></dt>
-				<dd>Choose <b>all</b> to have the plugin shows in the project 
+		<dl>
+			<dt><b>ec_visibility:</b></dt>
+			<dd>Choose <b>all</b> to have the plugin shows in the project 
 					list (like EC-Admin), or <b>pickListOnly</b> (default) to 
 					have your procedures available only through the plugin 
 					procedure picker (when you choose plugin as a step).</dd>
-				<dt><b>help:</b></dt>
-				<dd>This property allows you to create a Help page associated 
+			<dt><b>help:</b></dt>
+			<dd>This property allows you to create a Help page associated 
 					with your plugin. The page you are currently reading is 
 					created this way so feel free to explore the help property
 					 in the EC-Admin plugin/project for an example.</dd>
-				<dt><b>promoteAction</b></dt>
-				<dd>This proeprty would contain some Perl code to take action
+			<dt><b>promoteAction</b></dt>
+			<dd>This proeprty would contain some Perl code to take action
 					when the plugin change state. Look at the ec_setup property
 					in the plugins installed on your system to get a better idea
 					of what you can accomplish.<br/>
 					For example to set a property hwne the plugin is pomoted 
 					you could add the the following code to the promoteAction
 					procedure:<br/>
-					<pre><code>
+				<pre><code>
 if ( $promoteAction eq 'promote' ) {
     $batch->setProperty( "/projects/$pluginName/addedByPromote", "123" );
 }
-					</code></pre>
-				</dd>
-			</dl>
-		<p>In addition each procedure can modify the behavior with the 
+				</code></pre>
+			</dd>
+		</dl>
+	<p>In addition each procedure can modify the behavior with the 
 			following 2 properties:</p>
-			<dl>
-				<dt><b>exposeToPlugin:</b></dt>
-				<dd>This property if set to 1 will add the procedure to 
+		<dl>
+			<dt><b>exposeToPlugin:</b></dt>
+			<dd>This property if set to 1 will add the procedure to 
 					ec_setup to be shown in the procedure picker list when 
 					choosing a plugin step.</dd>
-				<dt><b>descriptionForPlugin:</b></dt>
-				<dd>This property will be shown as the description in the 
+			<dt><b>descriptionForPlugin:</b></dt>
+			<dd>This property will be shown as the description in the 
 					picker list mentioned above. If it's empty or non-existent,
 					 the description will be description of the procedure 
 					 itself.</dd>
-			</dl>
+		</dl>
 
-		<h3>projectAsCode</h3>
+	<h3>projectAsCode</h3>
 
-		<p><b>Note:</b> This procedure requires access to a resource with the 
+	<p><b>Note:</b> This procedure requires access to a resource with the 
 			Commander SDK installed.</p>
 
-		<p>This procedure is an extension of createPluginFromProject. It also
+	<p>This procedure is an extension of createPluginFromProject. It also
 		creates a plugin but instead of simply exporting the project, it
 		"explodes" each step in its own file for finer granularity check in
 		in your favorite SCM tool.<br/>
@@ -297,102 +297,102 @@ if ( $promoteAction eq 'promote' ) {
 		        </thead>
 
 		        <tbody>
-					<tr>
-			        	<td class='required'>Project</td>
-						<td>The name of the project to transform into a plugin</td>
+				<tr>
+			        <td class='required'>Project</td>
+					<td>The name of the project to transform into a plugin</td>
 		            </tr>
-					<tr>
-			        	<td>Plugin</td>
-						<td>The name of the plugin. If left empty, it will default to
+				<tr>
+			        <td>Plugin</td>
+					<td>The name of the plugin. If left empty, it will default to
 					the project name.</td>
 		            </tr>
-					<tr>
-			        	<td>Category</td>
-						<td>The category of the plugin. It helps filter the plugin list in
+				<tr>
+			        <td>Category</td>
+					<td>The category of the plugin. It helps filter the plugin list in
 					the Plugins page and in the picker list.</td>
 		            </tr>
-					<tr>
-			        	<td  class='required'>Version</td>
-						<td>Version of the plugin to create. A build number is automatically 
+				<tr>
+			        <td  class='required'>Version</td>
+					<td>Version of the plugin to create. A build number is automatically 
 							added (after incrementation) to ensure uniq version numbers.</td>
 		            </tr>
-					<tr>
-			        	<td>Description</td>
-						<td>The description of the plugin to display in the main 
+				<tr>
+			        <td>Description</td>
+					<td>The description of the plugin to display in the main 
 						plugin page. If left empty it will default to the 
 						description of the project.</td>
 		            </tr>
-					<tr>
-			        	<td>Author</td>
-						<td>Name of he author of the project to transform into a plugin.</td>
+				<tr>
+			        <td>Author</td>
+					<td>Name of he author of the project to transform into a plugin.</td>
 		            </tr>
-					<tr>
-			        	<td>Email</td>
-						<td>The email of the author.</td>
+				<tr>
+			        <td>Email</td>
+					<td>The email of the author.</td>
 		            </tr>
-					<tr>
-			        	<td>Comment</td>
-						<td>if this parameter is not empty, it will be added to the CHANGELOG for traceabiity.</td>
+				<tr>
+			        <td>Comment</td>
+					<td>if this parameter is not empty, it will be added to the CHANGELOG for traceabiity.</td>
 		            </tr>
-					<tr>
-			        	<td>Directory</td>
-						<td>The name of the directory where to create the complete file structure. Typically a directory you will check in in your SCM.</td>
+				<tr>
+			        <td>Directory</td>
+					<td>The name of the directory where to create the complete file structure. Typically a directory you will check in in your SCM.</td>
 		            </tr>
-					<tr>
-			        	<td>SDK resource</td>
-						<td>The name of an agent where the Commander SDK is installed. Required to build the plugin.</td>
+				<tr>
+			        <td>SDK resource</td>
+					<td>The name of an agent where the Commander SDK is installed. Required to build the plugin.</td>
 		            </tr>
-					<tr>
-			        	<td>SDK Location</td>
-						<td>The path where the COmmander SDK is installed on the above resources..</td>
+				<tr>
+			        <td>SDK Location</td>
+					<td>The path where the COmmander SDK is installed on the above resources..</td>
 		            </tr>
-					<tr>
-			        	<td>fixSelfReferences</td>
-						<td>Replace self references to the project in sub-prceodure calls by an empty string to be sure the plugins= created will not call the original project instead of itself.</td>
+				<tr>
+			        <td>fixSelfReferences</td>
+					<td>Replace self references to the project in sub-prceodure calls by an empty string to be sure the plugins= created will not call the original project instead of itself.</td>
 		            </tr>
-					<tr>
-			        	<td>overwrite</td>
-						<td>if the ec_setup.pl already exists, it is not overwritten. Check this parameter overwrite with a content dynamically generated based on project properties.</td>
+				<tr>
+			        <td>overwrite</td>
+					<td>if the ec_setup.pl already exists, it is not overwritten. Check this parameter overwrite with a content dynamically generated based on project properties.</td>
 		            </tr>
-					<tr>
-			        	<td>cprojectAsCode</td>
-						<td>Include a bit of code to revert the plugin to a project upon promotion if this option is checked.</td>
+				<tr>
+			        <td>cprojectAsCode</td>
+					<td>Include a bit of code to revert the plugin to a project upon promotion if this option is checked.</td>
 		            </tr>
-					<tr>
-			        	<td>createArtifact</td>
-						<td>Save the new created plugin as an artifact version.</td>
+				<tr>
+			        <td>createArtifact</td>
+					<td>Save the new created plugin as an artifact version.</td>
 		            </tr>
-					<tr>
-			        	<td>installPlugin</td>
-						<td>A Boolean to install or not the plugin after creation</td>
+				<tr>
+			        <td>installPlugin</td>
+					<td>A Boolean to install or not the plugin after creation</td>
 		            </tr>
-					<tr>
-			        	<td>promotePlugin</td>
-						<td>A Boolean to promote or not the plugin after installation</td>
+				<tr>
+			        <td>promotePlugin</td>
+					<td>A Boolean to promote or not the plugin after installation</td>
 		            </tr>
 		        </tbody>
 		    </table>
 
-			<img src="../../plugins/@PLUGIN_KEY@/images/help/projectAsCode.png" 
+		<img src="../../plugins/@PLUGIN_KEY@/images/help/projectAsCode.png" 
 				 alt="projectAsCode parameters" />
 
-		<p><b>Note:</b> EC-Admin is released on 
-		<a href="https://github.com/electriccommunity/EC-Admin">GitHub</a> using 
+	<p><b>Note:</b> EC-Admin is released on 
+	<a href="https://github.com/electriccommunity/EC-Admin">GitHub</a> using 
 		this procedure.</p>
 
-		<h1><a name="artifacts"></a>Artifact Management</h1>
+	<h1><a name="artifacts"></a>Artifact Management</h1>
 		
-		<h2>artifactsCleanup</h2> 
+	<h2>artifactsCleanup</h2> 
 		
-		<p>A procedure to delete artifact versions older than a specified number
+	<p>A procedure to delete artifact versions older than a specified number
 of days. Same as for jobs above, a property allows preventing the deletion. Once the
 artifacts have been deleted, artifact repositories and artifact caches are
 cleaned as well (deleting stale artifacts).  A report mode prevents any
 real deletion.</p>
 
-		<h2>artifactsCleanup_byQuantity</h2>
+	<h2>artifactsCleanup_byQuantity</h2>
 
-		<p>As "ArtifactsCleanup"", this procedure deletes artifact versions 
+	<p>As "ArtifactsCleanup"", this procedure deletes artifact versions 
 			older than a specified number
 of days but keeps only X per Artifact. Again, a property allows preventing the 
 deletion. Once the
@@ -400,19 +400,19 @@ artifacts have been deleted, artifact repositories and artifact caches are
 cleaned as well (deleting stale artifacts).  A report only mode prevents any
 real deletion.</p>
 
-		<h1><a name="backup"></a>Object export and backup</h1>
+	<h1><a name="backup"></a>Object export and backup</h1>
 
         <p>This set of procedures is to help you export objects from
 ElectricCommander for a potential inclusion into your SCM for
 versioning.</p>
 		
-		<h2>saveProjects</h2>
+	<h2>saveProjects</h2>
 
         <p>This procedure simply exports your projects in a directory on the
 server. It is recommended to enable the nightly schedule associated
 with it to backup your projects on a regular basis.</p>
 
-		<h2>saveAllObjects</h2>
+	<h2>saveAllObjects</h2>
 
         <p>This procedure brings a finer granularity to a full server export.
 For  example, it may be easier to retrieve a simple project or procedure
@@ -424,31 +424,31 @@ and later ElectricFlow Deploy objects (Applications, Components and
 Environments). It is recommended to enable the nightly schedule associated
 with it to backup your projects on a regular basis.</p>
 
-		<p><b>Note:</b> Use saveProjects or saveAllObjects depending on the
+	<p><b>Note:</b> Use saveProjects or saveAllObjects depending on the
 		granularity you are requiring.</p>
 
-		<h1><a name="semaphore"></a>Semaphore Management</h1>
+	<h1><a name="semaphore"></a>Semaphore Management</h1>
 
-		<h2>acquireSemaphore and releaseSemaphore:</h2>
+	<h2>acquireSemaphore and releaseSemaphore:</h2>
 			
-		<p>Those 2 procedures are used to create a 
+	<p>Those 2 procedures are used to create a 
 gate for a set of steps. The important part is to use a resource with a step 
 limit of one to ensure the atomicity of increasing and decreasing the gate 
 value.</p>
 
-		<h1><a name="perf"></a>Performance metrics</h1>
-		<p>This procedure returns some information about your 
+	<h1><a name="perf"></a>Performance metrics</h1>
+	<p>This procedure returns some information about your 
 			ElectricCommander server like number of processors, total RAM, 
 			available RAM, 
 ping times with agents, relative performance of agents, ... 
 In addition it checks the amount of time spent running steps on the server 
 local agents as this should be minimized as much as possible.</p>
 
-		<h1><a name="license"></a>License Logger</h1>
-		<p>The License Logger mechanism is intended to collect and email various
+	<h1><a name="license"></a>License Logger</h1>
+	<p>The License Logger mechanism is intended to collect and email various
 license-related statistics. It is implemented as a set of schedules and procedures,
 along with a set of configuration properties.</p>
-		<p>The configuration proeprties are located under /server/EC-Admin/licenseLogger/config.
+	<p>The configuration proeprties are located under /server/EC-Admin/licenseLogger/config.
 The proeprty sheet is created upon promotion if it does not already exists.The following 
 properties can be set up:</p>
 
@@ -461,51 +461,51 @@ properties can be set up:</p>
 		        </thead>
 
 		        <tbody>
-					<tr>
-			        	<td>resource</td>
-						<td>The name of the resource on which to run the procedures. Default is "local".</td>
+				<tr>
+			        <td>resource</td>
+					<td>The name of the resource on which to run the procedures. Default is "local".</td>
 		            </tr>
-					<tr>
-			        	<td>workspace</td>
-						<td>The name of the workspace used by the procedures. Default is "default".</td>
+				<tr>
+			        <td>workspace</td>
+					<td>The name of the workspace used by the procedures. Default is "default".</td>
 		            </tr>
-					<tr>
-			        	<td>cleanOldJobs</td>
-						<td>A boolean to remove old jobs so only the last one is kept for each procedure. It keeps your job history cleaner.</td>
+				<tr>
+			        <td>cleanOldJobs</td>
+					<td>A boolean to remove old jobs so only the last one is kept for each procedure. It keeps your job history cleaner.</td>
 		            </tr>
-					<tr>
-			        	<td class='required'>emailConfig</td>
-						<td>The name of the mail configuration used to send report.</td>
+				<tr>
+			        <td class='required'>emailConfig</td>
+					<td>The name of the mail configuration used to send report.</td>
 		            </tr>
-					<tr>
-			        	<td class='required'>emailTo</td>
-						<td>The list of recipients (semicolon separated) to which to send the reports.</td>
+				<tr>
+			        <td class='required'>emailTo</td>
+					<td>The list of recipients (semicolon separated) to which to send the reports.</td>
 		            </tr>
-            	</tbody>
-        	</table>
+            </tbody>
+        </table>
 
-		<h1><a name="postp"></a>postp debugger helper</h1>
-		<p>The debugPostp is a simple procedure to help you debug with postp. Traditionally you would call postp from the command line with the jobStepId of the faulty postp and adding some additional option to see details. This new procedure does that for you on Linux and Windows, you just have to pass the jobStepId as a parameter.</p>
+	<h1><a name="postp"></a>postp debugger helper</h1>
+	<p>The debugPostp is a simple procedure to help you debug with postp. Traditionally you would call postp from the command line with the jobStepId of the faulty postp and adding some additional option to see details. This new procedure does that for you on Linux and Windows, you just have to pass the jobStepId as a parameter.</p>
 
-		<h1>Contact authors</h1> 
-		<dl>
-			<dt>License Logger</dt>
-			<dd>Mike Westerhof (<a href="mailto:mwesterhof@electric-cloud.com">mwesterhof@electric-cloud.com</a>)</dd>
-  			<dt>Other</dt>
-  			<dd>Laurent Rochette (<a href="mailto:lrochette@electric-cloud.com">lrochette@electric-cloud.com</a>)</dd>
-		</dl>
+	<h1>Contact authors</h1> 
+	<dl>
+		<dt>License Logger</dt>
+		<dd>Mike Westerhof (<a href="mailto:mwesterhof@electric-cloud.com">mwesterhof@electric-cloud.com</a>)</dd>
+  		<dt>Other</dt>
+  		<dd>Laurent Rochette (<a href="mailto:lrochette@electric-cloud.com">lrochette@electric-cloud.com</a>)</dd>
+	</dl>
 
-	<h1>Legal Jumbo</h1>
+<h1>Legal Jumbo</h1>
  
-	<p>This module is free for use. Modify it however you see fit to better your 
+<p>This module is free for use. Modify it however you see fit to better your 
 experience using ElectricCommander. Share your enhancements and fixes.</p>
 
-	<p>This module is not officially supported by Electric Cloud. It has undergone no 
+<p>This module is not officially supported by Electric Cloud. It has undergone no 
 formal testing and you may run into issues that have not been uncovered in the 
 limited manual testing done so far.</p>
 
-	<p>Electric Cloud should not be held liable for any repercussions of using this 
+<p>Electric Cloud should not be held liable for any repercussions of using this 
 software.</p>
-	</div>
+</div>
 </body>
 </html>
