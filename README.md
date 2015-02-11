@@ -21,7 +21,7 @@ what it is now.</p>
 <h2><a name="installation"></a>Installation</h2>
 		
 <p>This collection of procedures can be found on our 
-        <a href="https://github.com/electriccommunity/EC-Admin">GitHub
+<a href="https://github.com/electriccommunity/EC-Admin">GitHub
         		repository</a>. It is available as a plugin delivered 
         	in the form of a .jar file or you can simply get the source code 
         	and recompile it yourself.</p>
@@ -55,32 +55,32 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 
 <table class="grid">
 <thead>
-		            <tr>
-		                <th>Parameter</th>
-		                <th>Description</th>
-		            </tr>
-		        </thead>
+		    <tr>
+		        <th>Parameter</th>
+		        <th>Description</th>
+		    </tr>
+		</thead>
 
-		        <tbody>
-		            <tr>
-		                <td class='required'>color</td>
-		                <td>Choose a color for your top banner</td>
-		            </tr>
-		            <tr>
-		                <td>logo</td>
-		                <td>Choose a set of pre-rendered logo to indicate 
+		<tbody>
+		    <tr>
+		        <td class='required'>color</td>
+		        <td>Choose a color for your top banner</td>
+		    </tr>
+		    <tr>
+		        <td>logo</td>
+		        <td>Choose a set of pre-rendered logo to indicate 
 				if you server is of type DEV, SDK, TEST or PROD, in black or white to  
 				go along different background colors.</td>
-		            </tr>
-		            <tr>
-		                <td>logoFile</td>
-		                <td>The path on the Commander server to upload your own logo. If this value is not blank it will overwritten the logo paremeter above.</td>
-		            </tr>
-		            <tr>
-		                <td>webResource</td>
-		                <td>The name of the resource running on your webserver to allow the copy of the logo and banner color files.</td>
-		            </tr>
-		        </tbody>
+		    </tr>
+		    <tr>
+		        <td>logoFile</td>
+		        <td>The path on the Commander server to upload your own logo. If this value is not blank it will overwritten the logo paremeter above.</td>
+		    </tr>
+		    <tr>
+		        <td>webResource</td>
+		        <td>The name of the resource running on your webserver to allow the copy of the logo and banner color files.</td>
+		    </tr>
+		</tbody>
 		    </table>
 <img src="src/htdocs/images/help/changeBannerColor.png" 
 				 alt="changeBannerColor parameters" />
@@ -98,46 +98,46 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 days. It will also delete associated workspace job directories.</p>
 
 <table class="grid">
-		        <thead>
-		            <tr>
-		                <th>Parameter</th>
-		                <th>Description</th>
-		            </tr>
-		        </thead>
+		<thead>
+		    <tr>
+		        <th>Parameter</th>
+		        <th>Description</th>
+		    </tr>
+		</thead>
 
-		        <tbody>
-		            <tr>
-		                <td class='required'>olderThan</td>
-		                <td>Indicate the number of days after which jobs are deleted</td>
-		            </tr>
-		            <tr>
-		                <td class='required'>jobType</td>
-		                <td>Define what jobs should be deleted: Error, Warning or all.</td>
-		            </tr>
-		            <tr>
-		                <td>jobProperty</td>
-		                <td>Name of a property attached to your jobs. If this property is set, your job won't be deleted no matter how old it is.</td>
-		            </tr>
-		            <tr>
-		                <td>jobPatternMatching</td>
-		                <td>A SQL pattern matching to automatically preserve some jobs. The pattern must solve for a LIKE statement.</td>
-		            </tr>
-		            <tr>
-		                <td class='required'>delete</td>
-		                <td>If this option is not set, only report is done. No real data are deleted</td>
-		            </tr>
-		            <tr>
-		                <td class='required'>computeUsage</td>
-		                <td>Check off to skip the computation of the number of steps and the file space used for the job. This will speed up the execution.</td>
-		            </tr>
-		        </tbody>
+		<tbody>
+		    <tr>
+		        <td class='required'>olderThan</td>
+		        <td>Indicate the number of days after which jobs are deleted</td>
+		    </tr>
+		    <tr>
+		        <td class='required'>jobType</td>
+		        <td>Define what jobs should be deleted: Error, Warning or all.</td>
+		    </tr>
+		    <tr>
+		        <td>jobProperty</td>
+		        <td>Name of a property attached to your jobs. If this property is set, your job won't be deleted no matter how old it is.</td>
+		    </tr>
+		    <tr>
+		        <td>jobPatternMatching</td>
+		        <td>A SQL pattern matching to automatically preserve some jobs. The pattern must solve for a LIKE statement.</td>
+		    </tr>
+		    <tr>
+		        <td class='required'>delete</td>
+		        <td>If this option is not set, only report is done. No real data are deleted</td>
+		    </tr>
+		    <tr>
+		        <td class='required'>computeUsage</td>
+		        <td>Check off to skip the computation of the number of steps and the file space used for the job. This will speed up the execution.</td>
+		    </tr>
+		</tbody>
 		    </table>
 
 <img src="src/htdocs/images/help/jobsCleanup.png" 
 				 alt="jobsCleanup parameters" />
 
 <h2>jobCleanup_byResult:</h2> 
-            <p>A procedure to delete jobs older than a specified number of days.
+<p>A procedure to delete jobs older than a specified number of days.
 It will also delete associated workspace job directories. It will keep the
 number of successful, failed and warning jobs you entered. You can also
 provide a property name, if this property is attached to the job, it won't be
@@ -145,11 +145,11 @@ deleted no matter how old. A report only mode prevents any real deletion.</p>
 
 <h2>deleteWorksapceOrphans:</h2> 
 
-            <p>A procedure to crawl a workspace directory to find orphan jobs
+<p>A procedure to crawl a workspace directory to find orphan jobs
 (directories without a matching job) on a specified resource.</p>
 
 <h2>deleteObjects:</h2> 
-            <p>A procedure to quickly delete jobs or workflows older than a
+<p>A procedure to quickly delete jobs or workflows older than a
 specified number of days. It will <b>not</b> delete associated workspace job
 directories. This is for customers with huge job or workflow database.</p>
 
@@ -168,68 +168,68 @@ directories. This is for customers with huge job or workflow database.</p>
 <p>The procedure "createPluginFromProject" allows the transformation of a 
 			project into a plugin. The parameters are the following:</p>
 <table class="grid">
-		        <thead>
-		            <tr>
-		                <th>Parameter</th>
-		                <th>Description</th>
-		            </tr>
-		        </thead>
+		<thead>
+		    <tr>
+		        <th>Parameter</th>
+		        <th>Description</th>
+		    </tr>
+		</thead>
 
-		        <tbody>
+		<tbody>
 		<tr>
-			        <td class='required'>Project</td>
+			<td class='required'>Project</td>
 			<td>The name of the project to transform into a plugin</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>Plugin</td>
+			<td>Plugin</td>
 			<td>The name of the plugin. If left empty, it will default to
 					the project name.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>Category</td>
+			<td>Category</td>
 			<td>The category of the plugin. It helps filter the plugin list in
 					the Plugins page and in the picker list.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td  class='required'>Version</td>
+			<td  class='required'>Version</td>
 			<td>Version of the plugin to create. A build number is automatically 
 							added (after incrementation) to ensure uniq version numbers.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>Description</td>
+			<td>Description</td>
 			<td>The description of the plugin to display in the main 
 						plugin page. If left empty it will default to the 
 						description of the project.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>Author</td>
+			<td>Author</td>
 			<td>Name of he author of the project to transform into a plugin.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>Email</td>
+			<td>Email</td>
 			<td>The email of the author.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>Comment</td>
+			<td>Comment</td>
 			<td>if this parameter is not empty, it will be added to the CHANGELOG for traceabiity.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>fixSelfReferences</td>
+			<td>fixSelfReferences</td>
 			<td>Replace self references to the project in sub-prceodure calls by an empty string to be sure the plugins= created will not call the original project instead of itself.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>createArtifact</td>
+			<td>createArtifact</td>
 			<td>Save the new created plugin as an artifact version.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>installPlugin</td>
+			<td>installPlugin</td>
 			<td>A Boolean to install or not the plugin after creation</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>promotePlugin</td>
+			<td>promotePlugin</td>
 			<td>A Boolean to promote or not the plugin after installation</td>
-		            </tr>
-		        </tbody>
+		    </tr>
+		</tbody>
 		    </table>
 
 <img src="src/htdocs/images/help/createPluginFromProject.png" 
@@ -289,88 +289,88 @@ if ( $promoteAction eq 'promote' ) {
 		All the properties associated with createPluginFromProject still apply.</p>
 
 <table class="grid">
-		        <thead>
-		            <tr>
-		                <th>Parameter</th>
-		                <th>Description</th>
-		            </tr>
-		        </thead>
+		<thead>
+		    <tr>
+		        <th>Parameter</th>
+		        <th>Description</th>
+		    </tr>
+		</thead>
 
-		        <tbody>
+		<tbody>
 		<tr>
-			        <td class='required'>Project</td>
+			<td class='required'>Project</td>
 			<td>The name of the project to transform into a plugin</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>Plugin</td>
+			<td>Plugin</td>
 			<td>The name of the plugin. If left empty, it will default to
 					the project name.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>Category</td>
+			<td>Category</td>
 			<td>The category of the plugin. It helps filter the plugin list in
 					the Plugins page and in the picker list.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td  class='required'>Version</td>
+			<td  class='required'>Version</td>
 			<td>Version of the plugin to create. A build number is automatically 
 							added (after incrementation) to ensure uniq version numbers.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>Description</td>
+			<td>Description</td>
 			<td>The description of the plugin to display in the main 
 						plugin page. If left empty it will default to the 
 						description of the project.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>Author</td>
+			<td>Author</td>
 			<td>Name of he author of the project to transform into a plugin.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>Email</td>
+			<td>Email</td>
 			<td>The email of the author.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>Comment</td>
+			<td>Comment</td>
 			<td>if this parameter is not empty, it will be added to the CHANGELOG for traceabiity.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>Directory</td>
+			<td>Directory</td>
 			<td>The name of the directory where to create the complete file structure. Typically a directory you will check in in your SCM.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>SDK resource</td>
+			<td>SDK resource</td>
 			<td>The name of an agent where the Commander SDK is installed. Required to build the plugin.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>SDK Location</td>
+			<td>SDK Location</td>
 			<td>The path where the COmmander SDK is installed on the above resources..</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>fixSelfReferences</td>
+			<td>fixSelfReferences</td>
 			<td>Replace self references to the project in sub-prceodure calls by an empty string to be sure the plugins= created will not call the original project instead of itself.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>overwrite</td>
+			<td>overwrite</td>
 			<td>if the ec_setup.pl already exists, it is not overwritten. Check this parameter overwrite with a content dynamically generated based on project properties.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>cprojectAsCode</td>
+			<td>cprojectAsCode</td>
 			<td>Include a bit of code to revert the plugin to a project upon promotion if this option is checked.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>createArtifact</td>
+			<td>createArtifact</td>
 			<td>Save the new created plugin as an artifact version.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>installPlugin</td>
+			<td>installPlugin</td>
 			<td>A Boolean to install or not the plugin after creation</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>promotePlugin</td>
+			<td>promotePlugin</td>
 			<td>A Boolean to promote or not the plugin after installation</td>
-		            </tr>
-		        </tbody>
+		    </tr>
+		</tbody>
 		    </table>
 
 <img src="src/htdocs/images/help/projectAsCode.png" 
@@ -402,19 +402,19 @@ real deletion.</p>
 
 <h1><a name="backup"></a>Object export and backup</h1>
 
-        <p>This set of procedures is to help you export objects from
+<p>This set of procedures is to help you export objects from
 ElectricCommander for a potential inclusion into your SCM for
 versioning.</p>
 		
 <h2>saveProjects</h2>
 
-        <p>This procedure simply exports your projects in a directory on the
+<p>This procedure simply exports your projects in a directory on the
 server. It is recommended to enable the nightly schedule associated
 with it to backup your projects on a regular basis.</p>
 
 <h2>saveAllObjects</h2>
 
-        <p>This procedure brings a finer granularity to a full server export.
+<p>This procedure brings a finer granularity to a full server export.
 For  example, it may be easier to retrieve a simple project or procedure
 instead of the full server export or database backup to undo r a wrong action
 or a bad code change. By  default it exports projects and each procedure
@@ -453,36 +453,36 @@ The proeprty sheet is created upon promotion if it does not already exists.The f
 properties can be set up:</p>
 
 <table class="grid">
-		        <thead>
-		            <tr>
-		                <th>Property</th>
-		                <th>Description</th>
-		            </tr>
-		        </thead>
+		<thead>
+		    <tr>
+		        <th>Property</th>
+		        <th>Description</th>
+		    </tr>
+		</thead>
 
-		        <tbody>
+		<tbody>
 		<tr>
-			        <td>resource</td>
+			<td>resource</td>
 			<td>The name of the resource on which to run the procedures. Default is "local".</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>workspace</td>
+			<td>workspace</td>
 			<td>The name of the workspace used by the procedures. Default is "default".</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td>cleanOldJobs</td>
+			<td>cleanOldJobs</td>
 			<td>A boolean to remove old jobs so only the last one is kept for each procedure. It keeps your job history cleaner.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td class='required'>emailConfig</td>
+			<td class='required'>emailConfig</td>
 			<td>The name of the mail configuration used to send report.</td>
-		            </tr>
+		    </tr>
 		<tr>
-			        <td class='required'>emailTo</td>
+			<td class='required'>emailTo</td>
 			<td>The list of recipients (semicolon separated) to which to send the reports.</td>
-		            </tr>
-            </tbody>
-        </table>
+		    </tr>
+    </tbody>
+</table>
 
 <h1><a name="postp"></a>postp debugger helper</h1>
 <p>The debugPostp is a simple procedure to help you debug with postp. Traditionally you would call postp from the command line with the jobStepId of the faulty postp and adding some additional option to see details. This new procedure does that for you on Linux and Windows, you just have to pass the jobStepId as a parameter.</p>
