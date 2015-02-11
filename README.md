@@ -5,22 +5,22 @@ manage your server. Its inception was sparked by requests from customers
 during my Professional Services engagements. It has grown over the years to
 what it is now.</p>
 
-		<p>It contains the following modules:</p>
-		<ul>
-			<li><a href="#look">Look and Feel</a></li>
-			<li><a href="#jobs">Jobs and Workspaces management</a></li>
-			<li><a href="#plugin">Plugins</a></li>
-			<li><a href="#artifacts">Artifacts management</a></li>
-			<li><a href="#backup">Object export and backup</a></li>
-			<li><a href="#semaphore">Semaphore management</a></li>
-			<li><a href="#perf">Performance metrics</a></li>
-			<li><a href="#license">License Logger</a></li>
-			<li><a href="#postp">postp debugger helper</a></li>
-		</ul>
+<p>It contains the following modules:</p>
+<ul>
+<li><a href="#look">Look and Feel</a></li>
+<li><a href="#jobs">Jobs and Workspaces management</a></li>
+<li><a href="#plugin">Plugins</a></li>
+<li><a href="#artifacts">Artifacts management</a></li>
+<li><a href="#backup">Object export and backup</a></li>
+<li><a href="#semaphore">Semaphore management</a></li>
+<li><a href="#perf">Performance metrics</a></li>
+<li><a href="#license">License Logger</a></li>
+<li><a href="#postp">postp debugger helper</a></li>
+</ul>
 
-		<h2><a name="installation"></a>Installation</h2>
+<h2><a name="installation"></a>Installation</h2>
 		
-        <p>This collection of procedures can be found on our 
+<p>This collection of procedures can be found on our 
         	<a href="https://github.com/electriccommunity/EC-Admin">GitHub
         		repository</a>. It is available as a plugin delivered 
         	in the form of a .jar file or you can simply get the source code 
