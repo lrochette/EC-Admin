@@ -1,4 +1,7 @@
 2015-02-16 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.0.211: Added procedure artifactRepositorySynchronization to synchronize repository servers
+
+2015-02-16 System Administrator <lrochette@electric-cloud.com>
   * 2.5.0.210: Added procedure artifactRepositorySynchronization to synchronize repository servers
 
 2015-02-11 System Administrator <lrochette@electric-cloud.com>
