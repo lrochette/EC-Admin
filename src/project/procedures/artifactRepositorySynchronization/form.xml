@@ -1,0 +1,23 @@
+<editor>
+   <formElement> 
+        <label>Repository Resource</label> 
+        <property>artifactRepositoryResource</property> 
+        <documentation>Name of the resource running the repository to sync to.</documentation> 
+        <type>entry</type>
+    </formElement> 
+   <formElement> 
+        <label>Repository List</label> 
+        <property>artifactRepositoryList</property> 
+        <documentation>A comma-separated list of repositories to sync from.</documentation> 
+        <type>entry</type>
+    </formElement> 
+   <formElement> 
+        <label>Artifact Version Pattern</label> 
+        <property>artifactVersionPattern</property> 
+        <documentation>Pattern of artifact version to sync. Examples: MyGrp:MyKey:* (all artifact versions with group MyGrp and key MyKey),
+   MyGrp:* (all artifact versions with group MyGrp),
+   * (all artifact versions. This is the default).</documentation> 
+        <type>entry</type>
+        <value>*</value>
+    </formElement> 
+</editor>

@@ -98,7 +98,13 @@ directories. This is for customers with huge job or workflow database.</p>
 		this procedure.</p>
 
 <h1><a name="artifacts"></a>Artifact Management</h1>
-		
+
+<h2>artifactRepositorySynchronization</h2>
+
+<p>Synchronize the content of remote artifact repositories to a local
+resource. You can use pattern matching to select specific artifact
+versions to synchronize.</p>
+
 <h2>artifactsCleanup</h2> 
 		
 <p>A procedure to delete artifact versions older than a specified number

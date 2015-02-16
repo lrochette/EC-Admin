@@ -263,7 +263,7 @@ directories. This is for customers with huge job or workflow database.</p>
 					created this way so feel free to explore the help property
 					 in the EC-Admin plugin/project for an example.</dd>
 				<dt><b>promoteAction</b></dt>
-				<dd>This proeprty would contain some Perl code to take action
+				<dd>This property would contain some Perl code to take action
 					when the plugin change state. Look at the ec_setup property
 					in the plugins installed on your system to get a better idea
 					of what you can accomplish.<br/>
@@ -396,6 +396,12 @@ if ( $promoteAction eq 'promote' ) {
 
 		<h1><a name="artifacts"></a>Artifact Management</h1>
 		
+		<h2>artifactRepositorySynchronization</h2>
+
+		<p>Synchronize the content of remote artifact repositories to a local
+		resource. You can use pattern matching to select specific artifact
+		versions to synchronize.</p>
+
 		<h2>artifactsCleanup</h2> 
 		
 		<p>A procedure to delete artifact versions older than a specified number
@@ -462,8 +468,8 @@ local agents as this should be minimized as much as possible.</p>
 		<p>The License Logger mechanism is intended to collect and email various
 license-related statistics. It is implemented as a set of schedules and procedures,
 along with a set of configuration properties.</p>
-		<p>The configuration proeprties are located under /server/EC-Admin/licenseLogger/config.
-The proeprty sheet is created upon promotion if it does not already exists.The following 
+		<p>The configuration properties are located under /server/EC-Admin/licenseLogger/config.
+The property sheet is created upon promotion if it does not already exists.The following 
 properties can be set up:</p>
 
 		    <table class="grid">
