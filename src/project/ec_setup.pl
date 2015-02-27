@@ -14,7 +14,7 @@ if ( $promoteAction eq 'promote' ) {
 		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/workspace", "default" );
 	}
 
-    # Give project principal "Electrirc Cloud" write access to our project
+    # Give project principal "Electric Cloud" write access to our project
     my $projPrincipal = "project: Electric Cloud";
     my $ecAdminProj = '@PLUGIN_NAME@';
     
@@ -34,6 +34,25 @@ if ( $promoteAction eq 'promote' ) {
                 propertySheetId => $psId, 
                 "readPrivilege"=>"allow", 
                 "modifyPrivilege"=>"allow",
+             });
+    }      
+
+    # Give plugin permission on /server/EC-Admin
+    $projPrincipal='project: @PLUGIN_NAME@';
+    $cfg = $commander->getProperty("/server/EC-Admin");
+    $psId= $cfg->findvalue("//propertySheetId");
+
+    $xpath = $commander->getAclEntry("user", $projPrincipal, 
+            {  
+                propertySheetId => $psId 
+            });
+    if ($xpath->findvalue('//code') eq 'NoSuchAclEntry') {
+        $batch->createAclEntry("user", "$projPrincipal", 
+             {
+                propertySheetId => $psId, 
+                "readPrivilege" =>"allow", 
+                "modifyPrivilege" =>"allow",
+                "changePermissionsPrivilege" => "allow",
              });
     }       
 }
