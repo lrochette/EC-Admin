@@ -1,3 +1,6 @@
+2015-02-26 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.1.226: Fixed Issue #14: open ACL for the plugin on /server/EC-Admin
+
 2015-02-16 System Administrator <lrochette@electric-cloud.com>
   * 2.5.0.211: Added procedure artifactRepositorySynchronization to synchronize repository servers
 
