@@ -1065,7 +1065,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>212</value>
+        <value>213</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
