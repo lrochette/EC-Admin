@@ -5,7 +5,7 @@
 
   <!-- Plugin-specific properties -->
   <property name="pluginKey" value="EC-Admin" />
-  <property name="pluginVersion" value="2.5.1.228" />
+  <property name="pluginVersion" value="2.5.1.229" />
 
   <path id="extras">
     <!-- Add extra jars that need to be in the classpath for building the 
