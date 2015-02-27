@@ -1,6 +1,6 @@
 $[/javascript 
 var p;
-if (typeof(projects["EC-Admin"].compareVersion) != "undefined") {
+if (typeof(projects["EC-Admin"].scripts.compareVersion) != "undefined") {
   p=projects["EC-Admin"].scripts.compareVersion;
 } else {
   p=plugins["EC-Admin"].project.scripts.compareVersion;
@@ -10,7 +10,7 @@ p;
 
 $[/javascript 
 var p;
-if (typeof(projects["EC-Admin"].getP) != "undefined") {
+if (typeof(projects["EC-Admin"].scripts.getP) != "undefined") {
   p=projects["EC-Admin"].scripts.getP;
 } else {
   p=plugins["EC-Admin"].project.scripts.getP;
@@ -20,7 +20,7 @@ p;
 
 $[/javascript 
 var p;
-if (typeof(projects["EC-Admin"].humanSize) != "undefined") {
+if (typeof(projects["EC-Admin"].scripts.humanSize) != "undefined") {
   p=projects["EC-Admin"].scripts.humanSize;
 } else {
   p=plugins["EC-Admin"].project.scripts.humanSize;

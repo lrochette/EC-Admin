@@ -21,8 +21,7 @@ my $identity = $xp->findvalue('//value')->string_value;
 print "identity: $identity\n" if ($verbose);
 
 # We need to know our project name
-$xp = $ec->getProperty('/myProject/projectName');
-my $projName = $xp->findvalue('//value')->string_value;
+my $projName = "EC-Admin";
 print "projName: $projName\n" if ($verbose);
 
 # Determine "now", as defined by the Commander server

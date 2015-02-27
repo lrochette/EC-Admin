@@ -522,7 +522,7 @@ but
       <property>
         <propertyName>ec_visibility</propertyName>
         <expandable>1</expandable>
-        <value>all</value>
+        <value>pickListOnly</value>
       </property>
       <property>
         <propertyName>help</propertyName>
@@ -1065,7 +1065,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>213</value>
+        <value>223</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -1116,6 +1116,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+-version 2.5.1
+  + Fixed Issue #15: name of the configuration PS should be EC-Admin not plugin name and version
+
 -version 2.5.0
   + Added procedure artifactRepositorySynchronization to synchronize repository servers
 
@@ -1329,7 +1332,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.5.0</value>
+        <value>2.5.1</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -5225,7 +5228,12 @@ Changelog:
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
         <condition/>
-        <description>Perl script to log license usage statistics</description>
+        <description>Perl script to log license usage statistics
+
+ChangeLog:
+--------------
+2015-02-25  lrochette  Fixed Issue #15: name of the configuration PS should be EC-Admin not plugin name and version
+</description>
         <errorHandling>abortJob</errorHandling>
         <exclusiveMode>none</exclusiveMode>
         <logFileName/>
@@ -6469,7 +6477,7 @@ $ec-&gt;setProperty("/projects/$[Project]/ec_visibility", "pickListOnly");
         <broadcast>0</broadcast>
         <condition/>
         <description/>
-        <errorHandling>failProcedure</errorHandling>
+        <errorHandling>abortJob</errorHandling>
         <exclusiveMode>none</exclusiveMode>
         <parallel>0</parallel>
         <precondition/>
