@@ -3,12 +3,28 @@ $[/myProject/scripts/perlHeader]
 my $pName="$[Plugin]";
 my $pCategory="$[Category]";
 my $project="$[Project]";
+my $moveJobs="$[moveJobs]";		# boolean to move old jobs to new version
 
 if ($pName eq "") {
   $pName=$project;
 }
 
 my $ECsetup="";
+
+#
+# Add code to move the old jobs if checkbox is on
+#
+if ($moveJobs eq "true") {
+	$ECsetup .= << 'MOVEJOBS' ;
+# Move old jobs to new version
+if ( $promoteAction eq 'promote' ) {
+   if ($otherPluginName ne "") {
+        $commander->moveJobs($otherPluginName, $pluginName);
+    }
+}
+MOVEJOBS
+
+}
 
 #
 # Pickup code for Promote/demote

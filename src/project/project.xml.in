@@ -521,6 +521,7 @@ but
       </property>
       <property>
         <propertyName>ec_visibility</propertyName>
+        <description/>
         <expandable>1</expandable>
         <value>pickListOnly</value>
       </property>
@@ -1065,7 +1066,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>230</value>
+        <value>231</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -1166,6 +1167,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+-version 2.5.2
+  + Fixed Issue #16: Add option to move jobs from older version to new version of plugin created with createPluginFromProject or projectAsCode
+
 -version 2.5.1
   + Fixed Issue #14: open ACL for the plugin on /server/EC-Admin
   + Fixed Issue #15: name of the configuration PS should be EC-Admin not plugin name and version
@@ -1383,7 +1387,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.5.1</value>
+        <value>2.5.2</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -2759,7 +2763,7 @@ OBSOLETE: being replaced by projectAsCode. Keeping it in EC-Admin for current us
 
 Changelog:
 --------------
-
+2015-02-27  lrochette   Added a moveJobs option to move jobs from old plugin version to the new one
 2014-06-18  lrochette   Added a hook to allow actions to be taken when the plugin changes state
 2014-05-08  lrochette   Added feature to save plugin as an artifact version
 2014-04-30  lrochette   Added step to fix self reference to project
@@ -2953,6 +2957,31 @@ Changelog:
                   </propertySheet>
                 </property>
                 <property>
+                  <propertyName>moveJobs</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>checkedValue</propertyName>
+                      <expandable>1</expandable>
+                      <value>true</value>
+                    </property>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                    <property>
+                      <propertyName>initiallyChecked</propertyName>
+                      <expandable>1</expandable>
+                      <value>0</value>
+                    </property>
+                    <property>
+                      <propertyName>uncheckedValue</propertyName>
+                      <expandable>1</expandable>
+                      <value>false</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
                   <propertyName>pluginName</propertyName>
                   <propertySheet>
                     <property>
@@ -3070,6 +3099,14 @@ Changelog:
         <formalParameterName>installPlugin</formalParameterName>
         <defaultValue>true</defaultValue>
         <description>install the plugin or not at the end of the process</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
+        <type>checkbox</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>moveJobs</formalParameterName>
+        <defaultValue>false</defaultValue>
+        <description>A boolean to indicate if you want to move the jobs associated to the previous version of the plugin upon promotion of the new version.</description>
         <expansionDeferred>0</expansionDeferred>
         <required>0</required>
         <type>checkbox</type>
@@ -5957,6 +5994,7 @@ Best: mssql or oracle</description>
 
 Changelog:
 --------------
+2015-02-27  lrochette   Added a moveJobs option to move jobs from old plugin version to the new one
 2014-12-18  lrochette   JSON lib was missing in Initialization
 2014-12-10  kjdowney  Remove ec_visibility Prop
 2014-08-27  lrochette   Parse "scripts" PS recursively 
@@ -6183,6 +6221,31 @@ Changelog:
                   </propertySheet>
                 </property>
                 <property>
+                  <propertyName>moveJobs</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>checkedValue</propertyName>
+                      <expandable>1</expandable>
+                      <value>true</value>
+                    </property>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                    <property>
+                      <propertyName>initiallyChecked</propertyName>
+                      <expandable>1</expandable>
+                      <value>0</value>
+                    </property>
+                    <property>
+                      <propertyName>uncheckedValue</propertyName>
+                      <expandable>1</expandable>
+                      <value>false</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
                   <propertyName>overwrite</propertyName>
                   <propertySheet>
                     <property>
@@ -6363,6 +6426,14 @@ Changelog:
         <type>checkbox</type>
       </formalParameter>
       <formalParameter>
+        <formalParameterName>moveJobs</formalParameterName>
+        <defaultValue>false</defaultValue>
+        <description>A boolean to indicate if you want to move the jobs associated to the previous version of the plugin upon promotion of the new version.</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
+        <type>checkbox</type>
+      </formalParameter>
+      <formalParameter>
         <formalParameterName>overwrite</formalParameterName>
         <defaultValue>true</defaultValue>
         <description>Overwrite ec_setup property by the content generated automatically by this procedure.</description>
@@ -6407,7 +6478,7 @@ Changelog:
         <defaultValue/>
         <description>The path to your SDK installation</description>
         <expansionDeferred>0</expansionDeferred>
-        <required>0</required>
+        <required>1</required>
         <type>entry</type>
       </formalParameter>
       <formalParameter>

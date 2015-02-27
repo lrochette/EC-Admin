@@ -19,6 +19,7 @@
         <property>Category</property> 
         <documentation>Category of the plugin. It helps filter the search for the plugin and its procedures in the picker list.</documentation> 
         <type>entry</type>
+        <required>1</required>
     </formElement> 
 
     <formElement> 
@@ -42,6 +43,7 @@
         <property>Author</property> 
         <documentation>Author of the plugin.</documentation> 
         <type>entry</type>
+        <required>1</required>
     </formElement> 
 
     <formElement> 
@@ -102,4 +104,14 @@
         <value>true</value>    
     </formElement>
 
+   <formElement> 
+        <label>Move old Jobs</label>    
+        <property>moveJobs</property> 
+        <documentation>A boolean to indicate if you want to move the jobs associated to the previous version of the plugin upon promotion of the new version.</documentation> 
+        <type>checkbox</type>    
+        <checkedValue>true</checkedValue> 
+        <uncheckedValue>false</uncheckedValue> 
+        <initiallyChecked>0</initiallyChecked> 
+        <value>false</value>    
+    </formElement>
 </editor>
