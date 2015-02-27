@@ -1065,7 +1065,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>229</value>
+        <value>230</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -1126,7 +1126,23 @@ software.&lt;/p&gt;
                 "modifyPrivilege" =&gt;"allow",
                 "changePermissionsPrivilege" =&gt; "allow",
              });
-    }       
+    } 
+   # Remove previous plugin permission on /server/EC-Admin
+   if ($otherPluginName ne "") {
+        my $otherProjPrincipal="project: $otherPluginName";
+        # $psId is the same than above
+        $xpath = $commander-&gt;getAclEntry("user", $otherProjPrincipal, 
+                {
+                    propertySheetId =&gt; $psId 
+                });
+        if ($xpath-&gt;findvalue('//principalName') eq $otherProjPrincipal) {
+            $batch-&gt;deleteAclEntry("user", "$otherProjPrincipal", 
+                 {
+                    propertySheetId =&gt; $psId,
+                 });
+        }
+    } 
+
 } elsif ( $promoteAction eq 'demote' ) { 
     # Remove plugin permission on /server/EC-Admin
     my $projPrincipal='project: @PLUGIN_NAME@';
@@ -1134,7 +1150,7 @@ software.&lt;/p&gt;
     my $psId= $cfg-&gt;findvalue("//propertySheetId");
 
     my $xpath = $commander-&gt;getAclEntry("user", $projPrincipal, 
-            {  
+            {
                 propertySheetId =&gt; $psId 
             });
     if ($xpath-&gt;findvalue('//principalName') eq $projPrincipal) {
@@ -1142,8 +1158,7 @@ software.&lt;/p&gt;
              {
                 propertySheetId =&gt; $psId,
              });
-    }       
-
+    }
 }</value>
       </property>
       <property>

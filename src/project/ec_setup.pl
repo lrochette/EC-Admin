@@ -54,7 +54,23 @@ if ( $promoteAction eq 'promote' ) {
                 "modifyPrivilege" =>"allow",
                 "changePermissionsPrivilege" => "allow",
              });
-    }       
+    } 
+   # Remove previous plugin permission on /server/EC-Admin
+   if ($otherPluginName ne "") {
+        my $otherProjPrincipal="project: $otherPluginName";
+        # $psId is the same than above
+        $xpath = $commander->getAclEntry("user", $otherProjPrincipal, 
+                {
+                    propertySheetId => $psId 
+                });
+        if ($xpath->findvalue('//principalName') eq $otherProjPrincipal) {
+            $batch->deleteAclEntry("user", "$otherProjPrincipal", 
+                 {
+                    propertySheetId => $psId,
+                 });
+        }
+    } 
+
 } elsif ( $promoteAction eq 'demote' ) { 
     # Remove plugin permission on /server/EC-Admin
     my $projPrincipal='project: @PLUGIN_NAME@';
@@ -62,7 +78,7 @@ if ( $promoteAction eq 'promote' ) {
     my $psId= $cfg->findvalue("//propertySheetId");
 
     my $xpath = $commander->getAclEntry("user", $projPrincipal, 
-            {  
+            {
                 propertySheetId => $psId 
             });
     if ($xpath->findvalue('//principalName') eq $projPrincipal) {
@@ -70,8 +86,7 @@ if ( $promoteAction eq 'promote' ) {
              {
                 propertySheetId => $psId,
              });
-    }       
-
+    }
 }
 
 # Data that drives the create step picker registration for this plugin.
