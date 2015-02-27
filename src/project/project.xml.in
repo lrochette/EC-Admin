@@ -1065,7 +1065,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>226</value>
+        <value>228</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -1127,8 +1127,24 @@ software.&lt;/p&gt;
                 "changePermissionsPrivilege" =&gt; "allow",
              });
     }       
-}
-</value>
+} elsif ( $promoteAction eq 'demote' ) { 
+    # Remove plugin permission on /server/EC-Admin
+    my $projPrincipal='project: @PLUGIN_NAME@';
+    my $cfg = $commander-&gt;getProperty("/server/EC-Admin");
+    my $psId= $cfg-&gt;findvalue("//propertySheetId");
+
+    my $xpath = $commander-&gt;getAclEntry("user", $projPrincipal, 
+            {  
+                propertySheetId =&gt; $psId 
+            });
+    if ($xpath-&gt;findvalue('//principalName') eq $projPrincipal) {
+        $batch-&gt;deleteAclEntry("user", "$projPrincipal", 
+             {
+                propertySheetId =&gt; $psId,
+             });
+    }       
+
+}</value>
       </property>
       <property>
         <propertyName>version</propertyName>

@@ -55,8 +55,24 @@ if ( $promoteAction eq 'promote' ) {
                 "changePermissionsPrivilege" => "allow",
              });
     }       
-}
+} elsif ( $promoteAction eq 'demote' ) { 
+    # Remove plugin permission on /server/EC-Admin
+    my $projPrincipal='project: @PLUGIN_NAME@';
+    my $cfg = $commander->getProperty("/server/EC-Admin");
+    my $psId= $cfg->findvalue("//propertySheetId");
 
+    my $xpath = $commander->getAclEntry("user", $projPrincipal, 
+            {  
+                propertySheetId => $psId 
+            });
+    if ($xpath->findvalue('//principalName') eq $projPrincipal) {
+        $batch->deleteAclEntry("user", "$projPrincipal", 
+             {
+                propertySheetId => $psId,
+             });
+    }       
+
+}
 
 # Data that drives the create step picker registration for this plugin.
 my %acquireSemaphore = ( 

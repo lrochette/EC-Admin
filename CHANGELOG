@@ -1,4 +1,7 @@
 2015-02-26 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.1.228: Remove ACL on /server/EC-Admin when demoting
+
+2015-02-26 System Administrator <lrochette@electric-cloud.com>
   * 2.5.1.226: Fixed Issue #14: open ACL for the plugin on /server/EC-Admin
 
 2015-02-16 System Administrator <lrochette@electric-cloud.com>

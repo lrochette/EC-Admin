@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.5.1.226</version>
+  <version>2.5.1.228</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
-2015-02-26 admin Fixed Issue #14: open ACL for the plugin on /server/EC-Admin</description>
+2015-02-26 admin Remove ACL on /server/EC-Admin when demoting</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>
