@@ -521,7 +521,6 @@ but
       </property>
       <property>
         <propertyName>ec_visibility</propertyName>
-        <description/>
         <expandable>1</expandable>
         <value>pickListOnly</value>
       </property>
@@ -1066,7 +1065,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>231</value>
+        <value>232</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -1168,7 +1167,7 @@ software.&lt;/p&gt;
 
 History:
 -version 2.5.2
-  + Fixed Issue #16: Add option to move jobs from older version to new version of plugin created with createPluginFromProject or projectAsCode
+  + Fixed Issue #16: Add option to move jobs from old to new version of the plugin created with createPluginFromProject or projectAsCode
 
 -version 2.5.1
   + Fixed Issue #14: open ACL for the plugin on /server/EC-Admin
