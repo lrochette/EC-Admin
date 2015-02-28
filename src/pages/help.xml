@@ -243,6 +243,11 @@ directories. This is for customers with huge job or workflow database.</p>
 			        	<td>promotePlugin</td>
 						<td>A Boolean to promote or not the plugin after installation</td>
 		            </tr>
+					<tr>
+			        	<td>moveJobs</td>
+						<td>A Boolean to move or not jobs from the previous 
+							version into the current one upon promotion.</td>
+		            </tr>
 		        </tbody>
 		    </table>
 
