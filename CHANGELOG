@@ -1,19 +1,16 @@
 2015-02-27 System Administrator <lrochette@electric-cloud.com>
-  * 2.5.2.232: Fix Issue #16
-
-2015-02-27 System Administrator <lrochette@electric-cloud.com>
-  * 2.5.2.231: Fix Issue #16
+  * 2.5.2.232: Fix Issue #16: Add option to move jobs from old to new version 
+of the plugin created with createPluginFromProject or projectAsCode
 
 2015-02-26 System Administrator <lrochette@electric-cloud.com>
   * 2.5.1.228: Remove ACL on /server/EC-Admin when demoting
                Fixed Issue #14: open ACL for the plugin on /server/EC-Admin
-               Fixed Issue #15: name of the configuration PS should be EC-Admin not plugin name and version
+               Fixed Issue #15: name of the configuration PS should be EC-Admin 
+not plugin name and version
 
 2015-02-16 System Administrator <lrochette@electric-cloud.com>
-  * 2.5.0.211: Added procedure artifactRepositorySynchronization to synchronize repository servers
-
-2015-02-16 System Administrator <lrochette@electric-cloud.com>
-  * 2.5.0.210: Added procedure artifactRepositorySynchronization to synchronize repository servers
+  * 2.5.0.211: Added procedure artifactRepositorySynchronization to synchronize 
+repository servers
 
 2015-02-11 System Administrator <lrochette@electric-cloud.com>
   * 2.4.1.209: saveAllObjects now backups Components as well per Application
