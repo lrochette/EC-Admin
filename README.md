@@ -82,6 +82,7 @@ directories. This is for customers with huge job or workflow database.</p>
 <p><b>Note:</b> This procedure requires access to the jar or zip 
 			executable in the PATH.</p>
 <p>The procedure "createPluginFromProject" allows the transformation of a project into a plugin.</p>
+<p>This procedure is obsolete and has been replaced by <i>projectasCode</i> explained below.</p>
 
 <h3>projectAsCode</h3>
 
