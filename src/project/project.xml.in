@@ -900,7 +900,8 @@ if ( $promoteAction eq 'promote' ) {
 		            &lt;/tr&gt;
 					&lt;tr&gt;
 			        	&lt;td&gt;cprojectAsCode&lt;/td&gt;
-						&lt;td&gt;Include a bit of code to revert the plugin to a project upon promotion if this option is checked.&lt;/td&gt;
+						&lt;td&gt;Include a bit of code to revert the plugin to a 
+							project upon promotion if this option is checked.&lt;/td&gt;
 		            &lt;/tr&gt;
 					&lt;tr&gt;
 			        	&lt;td&gt;createArtifact&lt;/td&gt;
@@ -913,6 +914,11 @@ if ( $promoteAction eq 'promote' ) {
 					&lt;tr&gt;
 			        	&lt;td&gt;promotePlugin&lt;/td&gt;
 						&lt;td&gt;A Boolean to promote or not the plugin after installation&lt;/td&gt;
+		            &lt;/tr&gt;
+					&lt;tr&gt;
+			        	&lt;td&gt;moveJobs&lt;/td&gt;
+						&lt;td&gt;A Boolean to move or not jobs from the previous 
+							version into the current one upon promotion.&lt;/td&gt;
 		            &lt;/tr&gt;
 		        &lt;/tbody&gt;
 		    &lt;/table&gt;
@@ -1065,7 +1071,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>232</value>
+        <value>233</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>

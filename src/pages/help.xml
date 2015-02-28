@@ -370,7 +370,8 @@ if ( $promoteAction eq 'promote' ) {
 		            </tr>
 					<tr>
 			        	<td>cprojectAsCode</td>
-						<td>Include a bit of code to revert the plugin to a project upon promotion if this option is checked.</td>
+						<td>Include a bit of code to revert the plugin to a 
+							project upon promotion if this option is checked.</td>
 		            </tr>
 					<tr>
 			        	<td>createArtifact</td>
@@ -383,6 +384,11 @@ if ( $promoteAction eq 'promote' ) {
 					<tr>
 			        	<td>promotePlugin</td>
 						<td>A Boolean to promote or not the plugin after installation</td>
+		            </tr>
+					<tr>
+			        	<td>moveJobs</td>
+						<td>A Boolean to move or not jobs from the previous 
+							version into the current one upon promotion.</td>
 		            </tr>
 		        </tbody>
 		    </table>
