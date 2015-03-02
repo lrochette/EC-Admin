@@ -773,11 +773,6 @@ directories. This is for customers with huge job or workflow database.&lt;/p&gt;
 			        	&lt;td&gt;promotePlugin&lt;/td&gt;
 						&lt;td&gt;A Boolean to promote or not the plugin after installation&lt;/td&gt;
 		            &lt;/tr&gt;
-					&lt;tr&gt;
-			        	&lt;td&gt;moveJobs&lt;/td&gt;
-						&lt;td&gt;A Boolean to move or not jobs from the previous 
-							version into the current one upon promotion.&lt;/td&gt;
-		            &lt;/tr&gt;
 		        &lt;/tbody&gt;
 		    &lt;/table&gt;
 
@@ -1076,7 +1071,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>235</value>
+        <value>234</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
