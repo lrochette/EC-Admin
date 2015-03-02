@@ -1,4 +1,7 @@
 2015-03-02 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.4.237: Fixed indentation and empty lines in ec_setup.pl in projectAsCode
+
+2015-03-02 System Administrator <lrochette@electric-cloud.com>
   * 2.5.3.236: Add tag to EC-Admin release
 
 2015-02-27 System Administrator <lrochette@electric-cloud.com>
