@@ -42,7 +42,8 @@ if ($projectAsCode eq "true") {
 
     # Delete the ec_setup & ec_visibility properties from the user-facing project since they're irrelevant.
     $commander->deleteProperty("/projects/$pluginKey/ec_setup");
-    $commander->deleteProperty("/projects/$pluginKey/ec_visibility");}
+    $commander->deleteProperty("/projects/$pluginKey/ec_visibility");
+}
 ENDOFPAC
 
 }	# end of projectAsCode block
@@ -136,7 +137,7 @@ print $ECsetup;
 
 my $ec_setupFile = "project/ec_setup.pl";
 open (SETUP, ">$ec_setupFile") or die "$ec_setupFile:  $!\n";
-print SETUP $ECsetup, "\n";
+print SETUP $ECsetup;
 close SETUP;
 
 $[/myProject/scripts/perlLib]

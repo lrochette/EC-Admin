@@ -15,6 +15,9 @@ my $comment="$[Comment]";
 if ($pluginName eq "") {
   $pluginName=$project;
 }
+
+$ec->setProperty("/myJob/shortVersion", $version);
+
 my $pluginBuildNumber=$[/increment /projects/$[Project]/pluginBuildNumber];
 my $completeVersion="$version.$pluginBuildNumber";
 
