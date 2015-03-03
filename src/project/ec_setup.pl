@@ -4,7 +4,7 @@ if ( $promoteAction eq 'promote' ) {
 	
     # If the licenseLogger config PS does not already exist, create it
     my $cfg = $commander->getProperty("/server/EC-Admin/licenseLogger/config");    
-	if ($cfg->findvalue("code") eq "NoSuchProperty") {
+	if ($cfg->findvalue("//code") eq "NoSuchProperty") {
         # we need the top PS later for the ACLs
         $batch->createProperty("/server/EC-Admin", {propertyType => 'sheet'});
 		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/emailTo", "admin" );
@@ -16,7 +16,7 @@ if ( $promoteAction eq 'promote' ) {
 
     # If the cleanup config PS does not already exist, create it
     $cfg = $commander->getProperty("/server/EC-Admin/cleanup/config");
-    if ($cfg->findvalue("code") eq "NoSuchProperty") {
+    if ($cfg->findvalue("//code") eq "NoSuchProperty") {
         $batch->setProperty( "/server/EC-Admin/cleanup/config/timeout", 600);
     }
 

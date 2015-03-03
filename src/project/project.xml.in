@@ -1076,7 +1076,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>247</value>
+        <value>248</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -1087,7 +1087,7 @@ software.&lt;/p&gt;
 	
     # If the licenseLogger config PS does not already exist, create it
     my $cfg = $commander-&gt;getProperty("/server/EC-Admin/licenseLogger/config");    
-	if ($cfg-&gt;findvalue("code") eq "NoSuchProperty") {
+	if ($cfg-&gt;findvalue("//code") eq "NoSuchProperty") {
         # we need the top PS later for the ACLs
         $batch-&gt;createProperty("/server/EC-Admin", {propertyType =&gt; 'sheet'});
 		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/emailTo", "admin" );
@@ -1099,7 +1099,7 @@ software.&lt;/p&gt;
 
     # If the cleanup config PS does not already exist, create it
     $cfg = $commander-&gt;getProperty("/server/EC-Admin/cleanup/config");
-    if ($cfg-&gt;findvalue("code") eq "NoSuchProperty") {
+    if ($cfg-&gt;findvalue("//code") eq "NoSuchProperty") {
         $batch-&gt;setProperty( "/server/EC-Admin/cleanup/config/timeout", 600);
     }
 
