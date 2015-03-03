@@ -1076,7 +1076,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>237</value>
+        <value>238</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -1177,6 +1177,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+-version 2.5.5
+  + Default licenseLogger-report schedule now sends previous month data
+
 -version 2.5.4
   + Fixed indentation and empty lines in ec_setup.pl in projectAsCode
 
@@ -1400,7 +1403,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.5.4</value>
+        <value>2.5.5</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -9175,20 +9178,15 @@ Report the number of workflows.</description>
       <interval>0</interval>
       <intervalUnits>seconds</intervalUnits>
       <misfirePolicy>runOnce</misfirePolicy>
-      <monthDays>1 </monthDays>
+      <monthDays>1 2 </monthDays>
       <priority>normal</priority>
       <procedureName>licenseLogger-report</procedureName>
       <scheduleDisabled>1</scheduleDisabled>
-      <startTime>20:00</startTime>
+      <startTime>8:00</startTime>
       <stopTime/>
       <timeZone>America/Los_Angeles</timeZone>
       <weekDays/>
       <actualParameters>
-        <property>
-          <propertyName>logName</propertyName>
-          <expandable>1</expandable>
-          <value>$[/timestamp YYYYMM]</value>
-        </property>
         <property>
           <propertyName>sendEmail</propertyName>
           <expandable>1</expandable>

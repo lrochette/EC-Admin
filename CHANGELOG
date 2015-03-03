@@ -1,3 +1,6 @@
+2015-03-03 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.5.238: Default licenseLogger-report schedule now sends previous month data
+
 2015-03-02 System Administrator <lrochette@electric-cloud.com>
   * 2.5.4.237: Fixed indentation and empty lines in ec_setup.pl in projectAsCode
 
