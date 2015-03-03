@@ -1076,7 +1076,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>248</value>
+        <value>249</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -1089,7 +1089,7 @@ software.&lt;/p&gt;
     my $cfg = $commander-&gt;getProperty("/server/EC-Admin/licenseLogger/config");    
 	if ($cfg-&gt;findvalue("//code") eq "NoSuchProperty") {
         # we need the top PS later for the ACLs
-        $batch-&gt;createProperty("/server/EC-Admin", {propertyType =&gt; 'sheet'});
+        $commander-&gt;createProperty("/server/EC-Admin", {propertyType =&gt; 'sheet'});
 		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/emailTo", "admin" );
 		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/emailConfig", "default" );
 		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/cleanpOldJobs", 1 );

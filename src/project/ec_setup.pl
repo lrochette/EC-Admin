@@ -6,7 +6,7 @@ if ( $promoteAction eq 'promote' ) {
     my $cfg = $commander->getProperty("/server/EC-Admin/licenseLogger/config");    
 	if ($cfg->findvalue("//code") eq "NoSuchProperty") {
         # we need the top PS later for the ACLs
-        $batch->createProperty("/server/EC-Admin", {propertyType => 'sheet'});
+        $commander->createProperty("/server/EC-Admin", {propertyType => 'sheet'});
 		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/emailTo", "admin" );
 		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/emailConfig", "default" );
 		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/cleanpOldJobs", 1 );
