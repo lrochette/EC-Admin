@@ -6,7 +6,7 @@
 use File::Path;
 
 $[/myProject/scripts/perlHeader]
-$[/myProject/scripts/perlLib]
+
 #
 # Parameters
 #
@@ -14,10 +14,12 @@ my $path="$[pathname]";
 my $includeACLs="$[includeACLs]";
 my $includeNotifiers="$[includeNotifiers]";
 my $relocatable="$[relocatable]";
-my $newtimeout=600;
+
+my $defaultTimeout = getP("/server/EC-Admin/cleanup/config/timeout");
+my $newTimeout = $defaultTimeout? $defaultTimeout : 600;
 
 # Set the time out to newtimeout so the ec commands won't time out at 3 mins
-$ec->setTimeout($newtimeout);
+$ec->setTimeout($newTimeout);
 
 my $errorCount=0;
 # Get list of Project
@@ -51,4 +53,5 @@ foreach my $node ($nodeset->get_nodelist) {
 }
 exit($errorCount);
 
+$[/myProject/scripts/perlLib]
 

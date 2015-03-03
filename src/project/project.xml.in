@@ -1076,7 +1076,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>250</value>
+        <value>251</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -1186,6 +1186,7 @@ History:
 -version 2.5.5
   + Default licenseLogger-report schedule now sends previous month data
   + Fixed Issue #17: timeout option in global configuration
+  + Fixed ACL issue on /server/EC-Admin property sheet
 
 -version 2.5.4
   + Fixed indentation and empty lines in ec_setup.pl in projectAsCode
