@@ -1,4 +1,7 @@
 2015-03-03 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.5.250: Fixed ACL issue on EC-Admin.
+
+2015-03-03 System Administrator <lrochette@electric-cloud.com>
   * 2.5.5.249: Default licenseLogger-report schedule now sends previous month data
 
 2015-03-03 System Administrator <lrochette@electric-cloud.com>
