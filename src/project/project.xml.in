@@ -1076,7 +1076,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>246</value>
+        <value>247</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -1098,10 +1098,10 @@ software.&lt;/p&gt;
 	}
 
     # If the cleanup config PS does not already exist, create it
-    #$cfg = $commander-&gt;getProperty("/server/EC-Admin/cleanup/config");
-    #if ($cfg-&gt;findvalue($cfg, "code") eq "NoSuchProperty") {
-    #    $batch-&gt;setProperty( "/server/EC-Admin/cleanup/config/timeout", 600);
-    #}
+    $cfg = $commander-&gt;getProperty("/server/EC-Admin/cleanup/config");
+    if ($cfg-&gt;findvalue("code") eq "NoSuchProperty") {
+        $batch-&gt;setProperty( "/server/EC-Admin/cleanup/config/timeout", 600);
+    }
 
     # Give project principal "Electric Cloud" write access to our project
     my $projPrincipal = "project: Electric Cloud";

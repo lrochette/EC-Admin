@@ -15,10 +15,10 @@ if ( $promoteAction eq 'promote' ) {
 	}
 
     # If the cleanup config PS does not already exist, create it
-    #$cfg = $commander->getProperty("/server/EC-Admin/cleanup/config");
-    #if ($cfg->findvalue($cfg, "code") eq "NoSuchProperty") {
-    #    $batch->setProperty( "/server/EC-Admin/cleanup/config/timeout", 600);
-    #}
+    $cfg = $commander->getProperty("/server/EC-Admin/cleanup/config");
+    if ($cfg->findvalue("code") eq "NoSuchProperty") {
+        $batch->setProperty( "/server/EC-Admin/cleanup/config/timeout", 600);
+    }
 
     # Give project principal "Electric Cloud" write access to our project
     my $projPrincipal = "project: Electric Cloud";
