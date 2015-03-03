@@ -1,23 +1,7 @@
 2015-03-03 System Administrator <lrochette@electric-cloud.com>
   * 2.5.5.251: Fixed Issue #17: timeout option in global configuration
-
-2015-03-03 System Administrator <lrochette@electric-cloud.com>
-  * 2.5.5.250: Fixed ACL issue on EC-Admin.
-
-2015-03-03 System Administrator <lrochette@electric-cloud.com>
-  * 2.5.5.249: Default licenseLogger-report schedule now sends previous month data
-
-2015-03-03 System Administrator <lrochette@electric-cloud.com>
-  * 2.5.5.248: Default licenseLogger-report schedule now sends previous month data
-
-2015-03-03 System Administrator <lrochette@electric-cloud.com>
-  * 2.5.5.247: Default licenseLogger-report schedule now sends previous month data
-
-2015-03-03 System Administrator <lrochette@electric-cloud.com>
-  * 2.5.5.246: Default licenseLogger-report schedule now sends previous month data
-
-2015-03-03 System Administrator <lrochette@electric-cloud.com>
-  * 2.5.5.238: Default licenseLogger-report schedule now sends previous month data
+               Fixed ACL issue on EC-Admin.
+               Default licenseLogger-report schedule now sends previous month data
 
 2015-03-02 System Administrator <lrochette@electric-cloud.com>
   * 2.5.4.237: Fixed indentation and empty lines in ec_setup.pl in projectAsCode
