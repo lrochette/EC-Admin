@@ -1076,26 +1076,32 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>238</value>
+        <value>246</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
         <description/>
         <expandable>1</expandable>
         <value>if ( $promoteAction eq 'promote' ) {
-	my $query=$commander-&gt;newBatch();
-	my $cfg = $query-&gt;getProperty("/server/EC-Admin/licenseLogger/config");
-	local $self-&gt;{abortOnError} = 0;
-	$query-&gt;submit();
-
-	# If the PS does not already exist, create it
-	if ($query-&gt;findvalue($cfg, "code") eq "NoSuchProperty") {
+    local $self-&gt;{abortOnError} = 0;
+	
+    # If the licenseLogger config PS does not already exist, create it
+    my $cfg = $commander-&gt;getProperty("/server/EC-Admin/licenseLogger/config");    
+	if ($cfg-&gt;findvalue("code") eq "NoSuchProperty") {
+        # we need the top PS later for the ACLs
+        $batch-&gt;createProperty("/server/EC-Admin", {propertyType =&gt; 'sheet'});
 		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/emailTo", "admin" );
 		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/emailConfig", "default" );
 		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/cleanpOldJobs", 1 );
 		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/resource", "local" );
 		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/workspace", "default" );
 	}
+
+    # If the cleanup config PS does not already exist, create it
+    #$cfg = $commander-&gt;getProperty("/server/EC-Admin/cleanup/config");
+    #if ($cfg-&gt;findvalue($cfg, "code") eq "NoSuchProperty") {
+    #    $batch-&gt;setProperty( "/server/EC-Admin/cleanup/config/timeout", 600);
+    #}
 
     # Give project principal "Electric Cloud" write access to our project
     my $projPrincipal = "project: Electric Cloud";
@@ -1179,6 +1185,7 @@ software.&lt;/p&gt;
 History:
 -version 2.5.5
   + Default licenseLogger-report schedule now sends previous month data
+  + Fixed Issue #17: timeout option in global configuration
 
 -version 2.5.4
   + Fixed indentation and empty lines in ec_setup.pl in projectAsCode
@@ -6939,7 +6946,7 @@ If not and the fie does not already exist, create a "dummy" page to be filled la
         <condition>$[/javascript "$[installPlugin]" == "true" ]
 </condition>
         <description/>
-        <errorHandling>failProcedure</errorHandling>
+        <errorHandling>abortProcedureNow</errorHandling>
         <exclusiveMode>none</exclusiveMode>
         <logFileName/>
         <parallel>0</parallel>

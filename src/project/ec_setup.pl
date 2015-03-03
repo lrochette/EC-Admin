@@ -1,18 +1,24 @@
 # promote/demote action
 if ( $promoteAction eq 'promote' ) {
-	my $query=$commander->newBatch();
-	my $cfg = $query->getProperty("/server/EC-Admin/licenseLogger/config");
-	local $self->{abortOnError} = 0;
-	$query->submit();
-
-	# If the PS does not already exist, create it
-	if ($query->findvalue($cfg, "code") eq "NoSuchProperty") {
+    local $self->{abortOnError} = 0;
+	
+    # If the licenseLogger config PS does not already exist, create it
+    my $cfg = $commander->getProperty("/server/EC-Admin/licenseLogger/config");    
+	if ($cfg->findvalue("code") eq "NoSuchProperty") {
+        # we need the top PS later for the ACLs
+        $batch->createProperty("/server/EC-Admin", {propertyType => 'sheet'});
 		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/emailTo", "admin" );
 		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/emailConfig", "default" );
 		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/cleanpOldJobs", 1 );
 		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/resource", "local" );
 		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/workspace", "default" );
 	}
+
+    # If the cleanup config PS does not already exist, create it
+    #$cfg = $commander->getProperty("/server/EC-Admin/cleanup/config");
+    #if ($cfg->findvalue($cfg, "code") eq "NoSuchProperty") {
+    #    $batch->setProperty( "/server/EC-Admin/cleanup/config/timeout", 600);
+    #}
 
     # Give project principal "Electric Cloud" write access to our project
     my $projPrincipal = "project: Electric Cloud";
