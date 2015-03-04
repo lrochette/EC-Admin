@@ -91,4 +91,26 @@ ntest "scripts_perlCommonLib", {}, sub {
     }
 };
 
+#-------------------------------------------------------------------------------
+# Test ACL on /server/EC-Admin
+#-------------------------------------------------------------------------------
+ntest "ACL_on_server_EC-Admin", {}, sub {
+    my $psId = $::N->getProperty("/server/EC-Admin")->findvalue("//propertySheetId");
+    my $xpath = $::N->getAclEntry("user", "project: $pluginName",
+	{
+		projectName => $pluginName,
+		propertySheetId => $psId 
+        });
+    assertOK($xpath, "ACL not set");
+};
+
+#-------------------------------------------------------------------------------
+# Test timeout property
+#-------------------------------------------------------------------------------
+ntest "timeout_config_property", {}, sub {
+    assertEq($::N->getProperty("/server/EC-Admin/cleanup/config/timeout")->findvalue("//value"), 
+		"600", "timeout value is incorrect");
+};
+
+
 1;
