@@ -1076,7 +1076,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>252</value>
+        <value>253</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -4688,6 +4688,7 @@ Report the number of jobs, the disk space and database space that could/was be d
 
 Changelog:
 --------------
+03-05-2015  Fixed Issue #18: bad property in subJC_deleteWorkspace
 09-20-2013  lrochette    Rewritten using JSON to increase performance
                                        Paramater is also now used to skip number of steps computation
  09-12-2013  lrochette   Add a parameter to skip the computation of the disk space used; to speed up the job</description>
