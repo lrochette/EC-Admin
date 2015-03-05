@@ -18,6 +18,9 @@ my $pluginKey = "EC-Admin";
 my $xpath = $::N->getPlugin($pluginKey);
 my $pluginName = $xpath->findvalue("//pluginName")->value;
 
+#
+# Move /server/EC-Admin PS out of the way
+$::N->modifyProperty("/server/EC-Admin", {newName=>"EC-Admin.backup"});
 
 #-------------------------------------------------------------------------------
 # Test permissions and visibility, which should be set regardless of whether the
@@ -59,10 +62,6 @@ $::N->promotePlugin($pluginName);
 #-------------------------------------------------------------------------------
 ntest "performanceMetrics", {}, sub {
 	assertOK($::N->getProcedure($pluginName, "performanceMetrics"), "procedure missing");
-};
-
-ntest "jobsCleanup", {}, sub {
-        assertOK($::N->getProcedure($pluginName, "jobsCleanup"), "procedure missing");
 };
 
 #-------------------------------------------------------------------------------
@@ -112,5 +111,49 @@ ntest "timeout_config_property", {}, sub {
 		"600", "timeout value is incorrect");
 };
 
+#-------------------------------------------------------------------------------
+# Test cleanpOldJobs
+#-------------------------------------------------------------------------------
+ntest "cleanpOldJobs_config_property", {}, sub {
+    assertEq($::N->getProperty("/server/EC-Admin/licenseLogger/config/cleanpOldJobs")->findvalue("//value"),
+                "1", "cleanpOldJobs value is incorrect");
+};
+
+#-------------------------------------------------------------------------------
+# Test workspace
+#-------------------------------------------------------------------------------
+ntest "workspace_config_property", {}, sub {
+    assertEq($::N->getProperty("/server/EC-Admin/licenseLogger/config/workspace")->findvalue("//value"),
+                "default", "workspace value is incorrect");
+};
+
+#-------------------------------------------------------------------------------
+# Test emailConfig
+#-------------------------------------------------------------------------------
+ntest "emailConfig_config_property", {}, sub {
+    assertEq($::N->getProperty("/server/EC-Admin/licenseLogger/config/emailConfig")->findvalue("//value"),
+                "default", "emailConfig value is incorrect");
+};
+
+#-------------------------------------------------------------------------------
+# Test emailTo
+#-------------------------------------------------------------------------------
+ntest "emailTo_config_property", {}, sub {
+    assertEq($::N->getProperty("/server/EC-Admin/licenseLogger/config/emailTo")->findvalue("//value"),
+                "admin", "emailTo value is incorrect");
+};
+
+#-------------------------------------------------------------------------------
+# Test resource
+#-------------------------------------------------------------------------------
+ntest "resource_config_property", {}, sub {
+    assertEq($::N->getProperty("/server/EC-Admin/licenseLogger/config/resource")->findvalue("//value"),
+                "local", "resource value is incorrect");
+};
+
+#
+# Recover /server/EC-Admin from the backup copy
+$::N->deleteProperty("/server/EC-Admin");
+$::N->modifyProperty("/server/EC-Admin.backup", {newName=>"EC-Admin"});
 
 1;

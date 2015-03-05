@@ -17,10 +17,10 @@ my $errorCount=0;
 my $projCount=0;
 my $procCount=0;
 my $wkfCount=0;
-my $newtimeout=600;
 
-# Set the time out to newtimeout so the ec commands won't time out at 3 mins
-$ec->setTimeout($newtimeout);
+# Set the timeout to config value or 600 if not set
+my $defaultTimeout = getP("/server/EC-Admin/cleanup/config/timeout");
+$ec->setTimeout($defaultTimeout? $defaultTimeout : 600);
 
 # Get list of Project
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getProjects");

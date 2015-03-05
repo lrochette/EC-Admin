@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.5.5.251</version>
+  <version>2.5.6.252</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
-2015-03-03 admin Fixed Issue #17: timeout option in global configuration</description>
+2015-03-05 admin subJC_deleteWorkspace</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>

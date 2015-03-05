@@ -1,3 +1,6 @@
+2015-03-05 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.6.252: subJC_deleteWorkspace
+
 2015-03-03 System Administrator <lrochette@electric-cloud.com>
   * 2.5.5.251: Fixed Issue #17: timeout option in global configuration
                Fixed ACL issue on EC-Admin.

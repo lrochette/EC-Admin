@@ -26,9 +26,6 @@ ntest "licenseLogger", {}, sub {
 	assertOK($::N->getProcedure($pluginName, "licenseLogger-report"), "procedure licenseLogger-report missing");
 };
 
-<<<<<<< HEAD
-=======
-
 #-------------------------------------------------------------------------------
 # Check the report is send properly
 #-------------------------------------------------------------------------------
@@ -50,6 +47,4 @@ ntest "licenseLogger", {}, sub {
 #
 #};
 
-
->>>>>>> d8aa19d31df907cd11bca7f31631f004d195630b
 1;

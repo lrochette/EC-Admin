@@ -35,5 +35,5 @@ $[/myProject/scripts/deleteWorkspace]
 
 # additional functions
 $[/myProject/scripts/getDirSize]
-$[/myProject/scripts/getHumanSize]
+$[/myProject/scripts/humanSize]
 

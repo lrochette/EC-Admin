@@ -15,11 +15,9 @@ my $includeACLs="$[includeACLs]";
 my $includeNotifiers="$[includeNotifiers]";
 my $relocatable="$[relocatable]";
 
+# Set the timeout to config value or 600 if not set
 my $defaultTimeout = getP("/server/EC-Admin/cleanup/config/timeout");
-my $newTimeout = $defaultTimeout? $defaultTimeout : 600;
-
-# Set the time out to newtimeout so the ec commands won't time out at 3 mins
-$ec->setTimeout($newTimeout);
+$ec->setTimeout($defaultTimeout? $defaultTimeout : 600);
 
 my $errorCount=0;
 # Get list of Project
