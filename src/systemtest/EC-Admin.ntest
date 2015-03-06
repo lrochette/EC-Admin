@@ -109,8 +109,8 @@ ntest "getPS", {}, sub {
         my $exitCode = $jobData->findvalue("//job/jobStep[stepName='getPSJSON']/exitCode");
         assertEq(0, $exitCode,  "test getPSJSON failed");
 
-        my $jobData  = $::N->getJobDetails($jobId);
-        my $exitCode = $jobData->findvalue("//job/jobStep[stepName='getPSXML']/exitCode");
+        $jobData  = $::N->getJobDetails($jobId);
+        $exitCode = $jobData->findvalue("//job/jobStep[stepName='getPSXML']/exitCode");
         assertEq(0, $exitCode,  "test getPSXML failed");
     }
 };

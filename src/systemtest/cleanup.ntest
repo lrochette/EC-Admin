@@ -54,7 +54,11 @@ ntest "humanSize", {}, sub {
     }
 };
 
-
+#-------------------------------------------------------------------------------
+# sub procedure to help calling jobsCleanup multiple times
+#  Takes the parameters are an input
+#  and return the summary and outcome
+#-------------------------------------------------------------------------------
 sub callJobsCleanup{
     my ($computeUsage, $executeDeletion, $jobLevel, $pattern, $jobProp, $days)=@_;
 
@@ -78,23 +82,29 @@ sub callJobsCleanup{
         my $jsId = $jobData->findvalue("//job/jobStep[stepName='deleteJobs']/jobStepId");
         my $summary=$::N->getProperty("summary", {jobStepId=>$jsId})->findvalue("//value");
         my $outcome = $jobData->findvalue("//job/outcome");
+	my $nbJobs = $::N->getProperty("numberOfJobs", {jobId => $jobId})->findvalue("//value");
 	
-        return($summary, $outcome);
+        return($summary, $outcome, $nbJobs);
     }
-    return("", "");
+    return("", "", -1);
 }
 
+#-------------------------------------------------------------------------------
+#  Load some old jobs
+#-------------------------------------------------------------------------------
 sub loadJob {
   my $name=shift;
 
-  my $xpath= $::N->import({file=>$::gWorkingDirectory . "/data/cleanup/$name.xml"});
+  my $xpath= $::N->import({file=>$::gWorkingDirectory . "/data/cleanup/$name.xml", force=>1});
   assertOK($xpath, "$name job import failed");
 }
+
+
 #-------------------------------------------------------------------------------
 # Test job Delete
 #-------------------------------------------------------------------------------
 ntest "jobsCleanup", {}, sub {
-    my ($summary, $outcome, $xpath);
+    my ($summary, $outcome, $nbJobs);
 
     loadJob("success");
     loadJob("error");
@@ -102,19 +112,30 @@ ntest "jobsCleanup", {}, sub {
     loadJob("aborted");
    
     # Report mode
-    ($summary, $outcome)=callJobsCleanup(0, "false","All", "", "doNotDelete", 365);
-    assertEq("success", $outcome, "jobsCleanup 1 failed");
-    assertEq("", $summary, "should be a normal success");
+    ($summary, $outcome, $nbJobs)=callJobsCleanup(0, "false","All", "", "doNotDelete", 365);
+    assertEq("success", $outcome, "report mode failed");
+    assertEq("", $summary, "report mode should succeed");
+    assertEq("4", $nbJobs, "report mode should return 4 jobs");
 
-    # Delete mode: 1 job
-    ($summary, $outcome)=callJobsCleanup(0, "true", "All", "", "doNotDelete", 365);
-    assertEq("success", $outcome, "jobsCleanup 2 failed");
-    assertEq("1 jobs deleted", $summary, "wrong number of jobs deleted");
+    # Delete mode: 1 aborted job
+    ($summary, $outcome, $nbJobs)=callJobsCleanup(0, "true", "Aborted", "", "doNotDelete", 365);
+    assertEq("success", $outcome, "aborted test failed");
+    assertEq("1 jobs deleted", $summary, "wrong number of aborted jobs deleted");
 
-    # Delete mode
-    ($summary, $outcome)=callJobsCleanup(0, "true", "All", "", "doNotDelete", 365);
-    assertEq("success", $outcome, "jobsCleanup 3 failed");
-    assertEq("0 jobs deleted", $summary, "no job to delete anymore");
+    # Delete mode: 1 error job
+    ($summary, $outcome, $nbJobs)=callJobsCleanup(0, "true", "Error", "", "doNotDelete", 365);
+    assertEq("success", $outcome, "error test failed");
+    assertEq("1 jobs deleted", $summary, "wrong number of error jobs deleted");
+
+    # Delete mode: 2 jobs (1 success and 1 warning)
+    ($summary, $outcome, $nbJobs)=callJobsCleanup(0, "true", "All", "", "doNotDelete", 365);
+    assertEq("success", $outcome, "error test failed");
+    assertEq("2 jobs deleted", $summary, "wrong number of jobs deleted");
+
+    # Delete mode: nothing to delete anymore
+    ($summary, $outcome, $nbJobs)=callJobsCleanup(0, "true", "All", "", "doNotDelete", 365);
+    assertEq("success", $outcome, "error test failed");
+    assertEq("0 jobs deleted", $summary, "no job to delete");
 
 };
 
