@@ -1,8 +1,6 @@
 2015-03-05 System Administrator <lrochette@electric-cloud.com>
   * 2.5.6.254: Fixed Issue #20: getPS does not recurse more than 1 level
-
-2015-03-05 System Administrator <lrochette@electric-cloud.com>
-  * 2.5.6.252: subJC_deleteWorkspace
+               Fixed Issue #18: bad property in subJC_deleteWorkspace
 
 2015-03-03 System Administrator <lrochette@electric-cloud.com>
   * 2.5.5.251: Fixed Issue #17: timeout option in global configuration
