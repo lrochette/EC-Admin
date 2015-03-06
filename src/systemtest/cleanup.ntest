@@ -139,4 +139,21 @@ ntest "jobsCleanup", {}, sub {
 
 };
 
+#-------------------------------------------------------------------------------
+# Test local workspace on disable machine
+#-------------------------------------------------------------------------------
+ntest "local_workspace_on_disable_machine", {}, sub {
+    my ($summary, $outcome, $nbJobs);
+
+    loadJob("localwin");
+
+    $::N->modifyResource("ecadmin-win", {resourceDisabled => 1});
+
+    # Report mode
+    ($summary, $outcome, $nbJobs)=callJobsCleanup(0, "true","All", "", "doNotDelete", 365);
+    assertEq("success", $outcome, "local win mode failed");
+    assertEq("1 jobs deleted", $summary, "local win mode should succeed");
+    assertEq("1", $nbJobs, "local win mode should return 4 jobs");
+};
+
 1;
