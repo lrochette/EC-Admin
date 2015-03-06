@@ -65,16 +65,15 @@ sub getPS
   my($success, $result, $errMsg, $errCode)=InvokeCommander("SuppressLog IgnoreError", "getProperties", {'path'=>$psPath});
   return $hashRef if (!$success);
   
- 
-  foreach my $node ($result->findnodes('//property')) {
-    my $propName=$node->findvalue('propertyName');
-    my $value   =$node->findvalue('value')->string_value();
-    my $psId    =$node->findvalue('propertySheetId');
+ my $nodeset=$result->find('//property');
+  foreach my $node ($nodeset->get_nodelist) {
+	my $propName=$result->findvalue('propertyName',    $node);
+    my $value   =$result->findvalue('value',           $node);
+    my $psId    =$result->findvalue('propertySheetId', $node);
     
     # this is not a nested PS    
     if ($psId eq '') {
       $hashRef->{$propName}=$value;
-      printf("%s: %s\n", $propName, $value);
     } else {
       # nested PropertySheet
       if ($recursive) {

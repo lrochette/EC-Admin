@@ -53,4 +53,69 @@ ntest "humanSize", {}, sub {
 	assertEq("success", $outcome, "subJC_deleteWorkspace failed");
     }
 };
+
+
+sub callJobsCleanup{
+    my ($computeUsage, $executeDeletion, $jobLevel, $pattern, $jobProp, $days)=@_;
+
+    my $xpath = $::N->runProcedure("EC-Admin", {
+        procedureName=>"jobsCleanup",
+        actualParameter=>[
+            {actualParameterName=>"computeUsage", value=>$computeUsage},
+            {actualParameterName=>"executeDeletion", value=>$executeDeletion},
+            {actualParameterName=>"jobLevel", value=>$jobLevel},
+            {actualParameterName=>"jobPatternMatching", value=>$pattern},
+            {actualParameterName=>"jobProperty", value=>$jobProp},
+            {actualParameterName=>"olderThan", value=>$days}
+        ]});
+    assertOK($xpath, "Failed to launch EC-Admin::jobsCleanup");
+    if ($xpath) {
+        #get new Job ID
+        my $jobId  = $xpath->findvalue("//jobId");
+        waitForJob($jobId);
+        my $jobData  = $::N->getJobDetails($jobId);
+
+        my $jsId = $jobData->findvalue("//job/jobStep[stepName='deleteJobs']/jobStepId");
+        my $summary=$::N->getProperty("summary", {jobStepId=>$jsId})->findvalue("//value");
+        my $outcome = $jobData->findvalue("//job/outcome");
+	
+        return($summary, $outcome);
+    }
+    return("", "");
+}
+
+sub loadJob {
+  my $name=shift;
+
+  my $xpath= $::N->import({file=>$::gWorkingDirectory . "/data/cleanup/$name.xml"});
+  assertOK($xpath, "$name job import failed");
+}
+#-------------------------------------------------------------------------------
+# Test job Delete
+#-------------------------------------------------------------------------------
+ntest "jobsCleanup", {}, sub {
+    my ($summary, $outcome, $xpath);
+
+    loadJob("success");
+    loadJob("error");
+    loadJob("warning");
+    loadJob("aborted");
+   
+    # Report mode
+    ($summary, $outcome)=callJobsCleanup(0, "false","All", "", "doNotDelete", 365);
+    assertEq("success", $outcome, "jobsCleanup 1 failed");
+    assertEq("", $summary, "should be a normal success");
+
+    # Delete mode: 1 job
+    ($summary, $outcome)=callJobsCleanup(0, "true", "All", "", "doNotDelete", 365);
+    assertEq("success", $outcome, "jobsCleanup 2 failed");
+    assertEq("1 jobs deleted", $summary, "wrong number of jobs deleted");
+
+    # Delete mode
+    ($summary, $outcome)=callJobsCleanup(0, "true", "All", "", "doNotDelete", 365);
+    assertEq("success", $outcome, "jobsCleanup 3 failed");
+    assertEq("0 jobs deleted", $summary, "no job to delete anymore");
+
+};
+
 1;

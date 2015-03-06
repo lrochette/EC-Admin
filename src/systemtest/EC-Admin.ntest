@@ -91,6 +91,30 @@ ntest "scripts_perlCommonLib", {}, sub {
 };
 
 #-------------------------------------------------------------------------------
+# Test for getPS
+#-------------------------------------------------------------------------------
+ntest "getPS", {}, sub {
+    my $xpath = $::N->runProcedure("EC-Admin_Test", {
+        procedureName=>"getPS",
+      });
+    assertOK($xpath, "Could not run getPS");
+    assertDef($xpath, "Procedure getPS timed out");
+
+    if ($xpath) {
+        # get new job ID
+        my $jobId  = $xpath->findvalue("//jobId");
+        waitForJob($jobId);
+
+        my $jobData  = $::N->getJobDetails($jobId);
+        my $exitCode = $jobData->findvalue("//job/jobStep[stepName='getPSJSON']/exitCode");
+        assertEq(0, $exitCode,  "test getPSJSON failed");
+
+        my $jobData  = $::N->getJobDetails($jobId);
+        my $exitCode = $jobData->findvalue("//job/jobStep[stepName='getPSXML']/exitCode");
+        assertEq(0, $exitCode,  "test getPSXML failed");
+    }
+};
+#-------------------------------------------------------------------------------
 # Test ACL on /server/EC-Admin
 #-------------------------------------------------------------------------------
 ntest "ACL_on_server_EC-Admin", {}, sub {

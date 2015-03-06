@@ -1,7 +1,7 @@
 #############################################################################
 #
 #  deleteJobs -- Script to delete jobs and workspaces
-#  Copyright 2013 Electric-Cloud Inc.
+#  Copyright 2013-2015 Electric-Cloud Inc.
 #
 #############################################################################
 
@@ -167,7 +167,9 @@ do {
       if ( ($jobStepHost ne $currentResource) && 
            ($wksList{$jobStepWks}{'local'} == 1)) {
         printf("    Deleting workspace $jobStepWks remotely on $jobStepHost\n");
-        $ec->createJobStep({
+        if ((getP("/resources/$jobStepHost/agentState/state") eq "alive") &&
+            (getP("/resources/$jobStepHost/resourceDisabled") eq "false")) {
+          $ec->createJobStep({
               subprocedure=>"subJC_deleteWorkspace",
               jobStepName => "Delete $jobStepWks-$jobStepHost-$totalNbSteps",
               actualParameter => [
@@ -176,10 +178,11 @@ do {
                 {actualParameterName => "resName",         value => $jobStepHost},
                 {actualParameterName => "winDir",          value => $wksList{$jobStepWks}{win}},
                 {actualParameterName => "linDir",          value => $wksList{$jobStepWks}{lin}},
-              ]
-           
-          });
+              ]});
         } else {
+          printf("    Skipping unavailable $jobStepHost\n");
+        }  
+      } else {
           my $wksDir="";
           if ($osIsWindows) {
             $wksDir =  $wksList{$jobStepWks}{win};

@@ -78,7 +78,7 @@ sub getPS
     } else {
       # nested PropertySheet
       if ($recursive) {
-        $hashRef->{$propName}=getPS("$psPath/$propName");
+        $hashRef->{$propName}=getPS("$psPath/$propName", $recursive);
       } else {
         $hashRef->{$propName}=undef;
       }  

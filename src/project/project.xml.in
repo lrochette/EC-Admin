@@ -490,6 +490,12 @@ but
             <value>PLACEHOLDER</value>
           </property>
           <property>
+            <propertyName>perlLib.orig</propertyName>
+            <description/>
+            <expandable>1</expandable>
+            <value>PLACEHOLDER</value>
+          </property>
+          <property>
             <propertyName>perlLibJSON</propertyName>
             <description>Perl Libraries (JSON Format) for:
  - InvokeCommander: Run an ElectricCommander function using the Perl API
@@ -1076,7 +1082,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>253</value>
+        <value>254</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -1185,6 +1191,7 @@ software.&lt;/p&gt;
 History:
 -version 2.5.6
   + Fixed Issue #18: bad property in subJC_deleteWorkspace
+  + Fixed Issue #20: getPS does not recurse more than 1 level
 
 -version 2.5.5
   + Default licenseLogger-report schedule now sends previous month data
@@ -4689,6 +4696,7 @@ Report the number of jobs, the disk space and database space that could/was be d
 Changelog:
 --------------
 03-05-2015  Fixed Issue #18: bad property in subJC_deleteWorkspace
+                  Fixed Issue #19: should skip down machine for local workspace
 09-20-2013  lrochette    Rewritten using JSON to increase performance
                                        Paramater is also now used to skip number of steps computation
  09-12-2013  lrochette   Add a parameter to skip the computation of the disk space used; to speed up the job</description>

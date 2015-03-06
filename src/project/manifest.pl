@@ -10,6 +10,7 @@
 	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="perlHeader"]/value', "properties/scripts/perlHeader.txt"],
 	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="perlHeaderJSON"]/value', "properties/scripts/perlHeaderJSON.txt"],
 	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="perlLib"]/value', "properties/scripts/perlLib.txt"],
+	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="perlLib.orig"]/value', "properties/scripts/perlLib.orig.txt"],
 	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="perlLibJSON"]/value', "properties/scripts/perlLibJSON.txt"],
 	['//project/propertySheet/property[propertyName="ec_setup"]/value', 'ec_setup.pl'],
 	['//project/procedure[procedureName="acquireSemaphore"]/step[stepName="acquireSemaphore"]/command', 'procedures/acquireSemaphore/steps/acquireSemaphore.pl'],
