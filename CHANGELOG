@@ -1,4 +1,7 @@
 2015-03-12 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.7.256: Skip down resources in performanceMetrics
+
+2015-03-12 System Administrator <lrochette@electric-cloud.com>
   * 2.5.7.255: Fixed Issue #21: winDir should not be compulsory for subJC_deleteWorkspace
 
 2015-03-05 System Administrator <lrochette@electric-cloud.com>

@@ -33,7 +33,7 @@ ntest "cleanup_procedures", {}, sub {
 #-------------------------------------------------------------------------------
 # Issue #18: jobsCleanup fails with property error 
 #-------------------------------------------------------------------------------
-ntest "humanSize", {}, sub {
+ntest "Issue_18_humanSize", {}, sub {
     my $xpath = $::N->runProcedure("EC-Admin", {
 	procedureName=>"subJC_deleteWorkspace",
 	actualParameter=>[
@@ -152,6 +152,22 @@ ntest "local_workspace_on_disable_machine", {}, sub {
     # Report mode
     ($summary, $outcome, $nbJobs)=callJobsCleanup(0, "true","All", "", "doNotDelete", 365);
     assertEq("success", $outcome, "local win mode failed");
+    assertEq("1 jobs deleted", $summary, "local win mode should succeed");
+    assertEq("1", $nbJobs, "local win mode should return 4 jobs");
+};
+
+#-------------------------------------------------------------------------------
+# Test local workspace on linux machine: Issue #21
+#-------------------------------------------------------------------------------
+ntest "Issue_21_local_workspace_on_linux_machine", {}, sub {
+    my ($summary, $outcome, $nbJobs);
+
+    loadJob("localWks_linux");
+    $::N->modifyResource("ecadmin-lin",  {resourceDisabled => 0});
+
+    # Report mode
+    ($summary, $outcome, $nbJobs)=callJobsCleanup(0, "true", "All", "", "doNotDelete", 365);
+    assertEq("success", $outcome, "local linux mode failed");
     assertEq("1 jobs deleted", $summary, "local win mode should succeed");
     assertEq("1", $nbJobs, "local win mode should return 4 jobs");
 };

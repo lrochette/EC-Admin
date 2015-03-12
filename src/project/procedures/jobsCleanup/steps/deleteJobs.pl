@@ -42,7 +42,6 @@ my $MAXJOBS=5000;            # Limiting the number of Objects returned
 my $nbObjs;                  # Number of Objects returned
 
 my $DEBUG=0;
-# $ENV{'NTEST_DEBUG'};                 # 
 
 #############################################################################
 #
@@ -169,6 +168,7 @@ do {
         printf("    Deleting workspace $jobStepWks remotely on $jobStepHost\n");
         if ((getP("/resources/$jobStepHost/agentState/state") eq "alive") &&
             (getP("/resources/$jobStepHost/resourceDisabled") eq "false")) {
+          printf("    winDir: '%s'\n", $wksList{$jobStepWks}{win}) if ($DEBUG);
           $ec->createJobStep({
               subprocedure=>"subJC_deleteWorkspace",
               jobStepName => "Delete $jobStepWks-$jobStepHost-$totalNbSteps",

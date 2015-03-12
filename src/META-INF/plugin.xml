@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.5.7.255</version>
+  <version>2.5.7.256</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
-2015-03-12 admin Fixed Issue #21: winDir should not be compulsory for subJC_deleteWorkspace</description>
+2015-03-12 admin Skip down resources in performanceMetrics</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>

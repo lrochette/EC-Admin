@@ -14,16 +14,18 @@ foreach my $node ($nodeset->get_nodelist) {
   #
   # Create a sub-step only if agent is alive and not disabled
   # to avoid to have to wait (and fail) for unavailable resources
-  if ( ($resDisabled eq "0") && ($agentAlive eq "1") && !exists($hostsHash{$hostName})) {
-    my $hostName=$node->findvalue('hostName');
-	$ec->createJobStep({'jobStepName' => $resName,
+  if (!exists($hostsHash{$hostName})) {
+    if ( ($resDisabled eq "0") && ($agentAlive eq "1") ) {
+      my $hostName=$node->findvalue('hostName');
+	  $ec->createJobStep({'jobStepName' => $resName,
                         'subprocedure' => "subPM-performance",
                         'parallel' => 1,
                         'actualParameter'=>[{actualParameterName => 'hostname', value => $hostName},
                         					{actualParameterName => 'resource', value => $$resName}]
                         }); 
-    $hostsHash{$hostName}=1;  # Mark host as tested
-  } 
+      $hostsHash{$hostName}=1;  # Mark host as tested
+    } 
+  }
 }
 
 
