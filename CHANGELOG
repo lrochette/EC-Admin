@@ -1,3 +1,6 @@
+2015-03-12 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.7.255: Fixed Issue #21: winDir should not be compulsory for subJC_deleteWorkspace
+
 2015-03-05 System Administrator <lrochette@electric-cloud.com>
   * 2.5.6.254: Fixed Issue #20: getPS does not recurse more than 1 level
                Fixed Issue #18: bad property in subJC_deleteWorkspace
