@@ -225,7 +225,7 @@ directories. This is for customers with huge job or workflow database.</p>
 		            </tr>
 					<tr>
 			        	<td>Comment</td>
-						<td>if this parameter is not empty, it will be added to the CHANGELOG for traceabiity.</td>
+						<td>if this parameter is not empty, it will be added to the CHANGELOG for traceability.</td>
 		            </tr>
 					<tr>
 			        	<td>fixSelfReferences</td>
@@ -363,7 +363,7 @@ if ( $promoteAction eq 'promote' ) {
 		            </tr>
 					<tr>
 			        	<td>SDK Location</td>
-						<td>The path where the COmmander SDK is installed on the above resources..</td>
+						<td>The path where the Commander SDK is installed on the above resources..</td>
 		            </tr>
 					<tr>
 			        	<td>fixSelfReferences</td>

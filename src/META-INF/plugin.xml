@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.5.7.256</version>
+  <version>2.5.7.257</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
-2015-03-12 admin Skip down resources in performanceMetrics</description>
+2015-03-26 admin Fixed help page typos</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>
