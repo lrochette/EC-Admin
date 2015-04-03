@@ -49,7 +49,7 @@ if ($help ne "") {
       subprocedure    => "Remote Copy - Native",
       jobStepName     => "copy_pluginhelp.css", 
       actualParameter => [
-    	{actualParameterName => 'sourceFile',               value => '$[/server/Electric Cloud/dataDirectory]/plugins/EC-Admin-$[/plugins/EC-Admin/pluginVersion]/htdocs/pluginhelp.css'},
+    	{actualParameterName => 'sourceFile',               value => '$[/server/settings/pluginsDirectory]/EC-Admin-$[/plugins/EC-Admin/pluginVersion]/htdocs/pluginhelp.css'},
     	{actualParameterName => 'sourceResourceName',       value => 'local'},
     	{actualParameterName => 'sourceWorkspaceName',      value => 'default'},
     	{actualParameterName => 'destinationFile',          value => '$[directory]/htdocs/pluginhelp.css'},
