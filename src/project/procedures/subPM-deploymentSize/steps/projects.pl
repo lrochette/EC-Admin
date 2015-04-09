@@ -10,14 +10,15 @@ my $LARGE=100;
 my $size;
 my $nb=0;
 
-my ($ok, $json)=InvokeCommander("SuppressLog", 'getProjects');
-foreach my $node ($json->findnodes('//project')) {
-    # Skip plugins
-    next if ($node->{pluginName});
-	my $name=$node->{projectName};
-    printf("Processing %s\n", $name);
-	$nb++;
-}
+# create filterList
+my @filterList;
+# only non plugin
+push (@filterList, {"propertyName" => "pluginName",
+                    "operator" => "equals",
+                    "operand1" => ""});
+
+my ($ok, $json)=InvokeCommander("SuppressLog", 'countObjects', 'project', {filter=>\@filterList});
+$nb=$json->{responses}->[0]->{count};
 
 
 if ($nb < $SMALL) {

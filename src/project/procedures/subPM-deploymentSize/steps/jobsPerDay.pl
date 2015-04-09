@@ -13,7 +13,6 @@ my $size;
 my $nbDays=7;		# check over the last 7 days only
 my $count=0;		# total number of jobs
 my $nb=1.0;
-my $MAXJOBS=7000;
 my $now="$[/timestamp yyyy-MM-dd]" . "T00:00:00.000Z";
 my $weekAgo=calculateDate($nbDays);
 
@@ -35,12 +34,11 @@ push (@filterList, {"propertyName" => "start",
                     "operator" => "lessThan",
                     "operand1" => $now});
 
-my ($ok, $json)=InvokeCommander("SuppressLog", 'findObjects', 'job',
-									{maxIds => $MAXJOBS, 
-                                     numObjects => $MAXJOBS,
-                                     filter => \@filterList}
+my ($ok, $json)=InvokeCommander("", 'countObjects', 'job',
+									{filter => \@filterList}
 								);
-$count=scalar($json->findnodes('//job'));
+$count=$json->{responses}->[0]->{count};
+
 $nb=$count/$nbDays;
 
 printf("Count: %d\n", $count);

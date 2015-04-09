@@ -8,8 +8,8 @@ $[/myProject/scripts/perlHeaderJSON]
 my $SMALL=100;
 my $LARGE=1000;
 
-my ($ok, $json)=InvokeCommander("SuppressLog", 'getResources');
-my $nbResources=scalar ($json->findnodes('//resource'));
+my ($ok, $json)=InvokeCommander("SuppressLog", 'countObjects', 'resource');
+my $nbResources=$json->{responses}->[0]->{count};
 
 my $size;
 if ($nbResources < $SMALL) {

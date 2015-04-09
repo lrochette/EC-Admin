@@ -1,3 +1,6 @@
+2015-04-09 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.9.258: Replace some findObjects by countObjects to get faster results in performanceMetrics
+
 2015-03-26 System Administrator <lrochette@electric-cloud.com>
   * 2.5.7.257: Fixed help page typos
 
