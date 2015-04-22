@@ -55,6 +55,17 @@ sub InvokeCommander {
 
 #############################################################################
 #
+# Return the agent version.
+# Args:
+#    NONE
+#############################################################################
+sub getVersion
+{
+  return $ec->getVersions()->{responses}->[0]->{serverVersion}->{version};
+}
+
+#############################################################################
+#
 # Return a hash of the properties contained in a Property Sheet.
 # Args:
 #    1. Property Sheet path

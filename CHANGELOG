@@ -1,3 +1,6 @@
+2015-04-22 System Administrator <lrochette@electric-cloud.com>
+  * 2.6.0.259: Fixed changeBannerColor for 5.4
+
 2015-04-09 System Administrator <lrochette@electric-cloud.com>
   * 2.5.9.258: Replace some findObjects by countObjects to get faster results in performanceMetrics
 
