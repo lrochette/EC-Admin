@@ -2126,7 +2126,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>260</value>
+        <value>261</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -2233,6 +2233,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+
+-version 2.7.0
+  + Fixed Issue #12: jobCleanup_byResult now supports local workspace
 
 -version 2.6.0
   + Fixed changeBannerColor for 5.4
@@ -2479,7 +2482,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.6.0</value>
+        <value>2.7.0</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -5773,6 +5776,30 @@ Report the number of jobs, the disk space and database space that could/was be d
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
         <condition/>
+        <description>Script to delete all jobs and workspaces associated to a project
+It includes CI and workflows jobs.</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName/>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>deleteJobs.byProject ORIGINAL</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition>0</condition>
         <description>Script to delete all jobs and workspaces associated to a project
 It includes CI and workflows jobs.</description>
         <errorHandling>failProcedure</errorHandling>

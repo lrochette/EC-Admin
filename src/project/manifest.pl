@@ -52,6 +52,7 @@
 	['//project/procedure[procedureName="deleteWorkspaceOrphans"]/step[stepName="crawlWorkspace"]/command', 'procedures/deleteWorkspaceOrphans/steps/crawlWorkspace.pl'],
 	['//project/procedure[procedureName="jobCleanup_byResult"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/jobCleanup_byResult/form.xml'],
 	['//project/procedure[procedureName="jobCleanup_byResult"]/step[stepName="deleteJobs.byProject"]/command', 'procedures/jobCleanup_byResult/steps/deleteJobs.byProject.pl'],
+	['//project/procedure[procedureName="jobCleanup_byResult"]/step[stepName="deleteJobs.byProject ORIGINAL"]/command', 'procedures/jobCleanup_byResult/steps/deleteJobs.byProject ORIGINAL.pl'],
 	['//project/procedure[procedureName="jobsCleanup"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/jobsCleanup/form.xml'],
 	['//project/procedure[procedureName="jobsCleanup"]/step[stepName="deleteJobs"]/command', 'procedures/jobsCleanup/steps/deleteJobs.pl'],
 	['//project/procedure[procedureName="licenseLogger-report"]/step[stepName="summarizeLicenseUsage"]/command', 'procedures/licenseLogger-report/steps/summarizeLicenseUsage.pl'],

@@ -2,18 +2,21 @@
 #
 #  deleteJobs_byResult -- Script to delete jobs and workspaces keeping
 #                         some good and failed ones.
-#  Copyright 2013-2015 Electric-Cloud Inc.
+#  Copyright 2013 Electric-Cloud Inc.
 #
 #############################################################################
 
 #
 # Perl Commander Header
-$[/myProject/scripts/perlHeaderJSON]
+$[/myProject/scripts/perlHeader]
 use File::Path;
 use File::stat;
 use Fcntl ':mode';
 use DateTime;
 
+#
+# Perl Commander library
+$[/myProject/scripts/perlLib]
 
 #############################################################################
 #
@@ -27,23 +30,22 @@ my $nbFail          =  $[nbFailedJobs];
 my $nbWarn          =  $[nbWarningJobs];
 my $skipPluginBool  = "$[skipPlugins]";
 my $timeLimit       =  $[olderThan];
-my $computeUsage    = "$[computeDiskUsage]";
-
-my $currentResource = "$[assignedResourceName]";  # Resource used to run this
+my $computeDiskUsage= "$[computeDiskUsage]";
 
 #############################################################################
 #
 #  Global Variables
 #
 #############################################################################
+my $version="1.0";
+my $totalWksSize=0;          # Size of workspace files
 my $totalNbJobs=0;           # Number of jobs to delete potentially
 my $totalNbSteps=0;          # Number of steps to evaluate DB size
 my $DBStepSize=10240;        # Step is about 10K in DB
-$ec->setProperty("/myJob/totalDiskSpace", 0); #Space on disk
 
-my $procGood=0;				       # Number of good jobs in the procedure kept
-my $procFailed=0;		         # Number of failed jobs in the procedure kept
-my $procWarning=0;		       # Number of warning jobs in the procedure kept
+my $procGood=0;				 # Number of good jobs in the procedure kept
+my $procFailed=0;		     # Number of failed jobs in the procedure kept
+my $procWarning=0;		     # Number of warning jobs in the procedure kept
 
 $DEBUG=0;
 
@@ -63,10 +65,11 @@ printf("  Preserving %d FAIL    jobs\n\n", $nbFail);
 #
 # Loop over each project 
 #
-my ($success, $json) = InvokeCommander("SuppressLog", "getProjects");
-foreach my $projNode ($json->findnodes("//project")) {
-  my $projName  =$projNode->{projectName};
-  my $pluginName=$projNode->{pluginName};
+my ($success, $pjPath) = InvokeCommander("SuppressLog", "getProjects");
+my $projSet = $pjPath->find('//project');
+foreach my $pjNode ($projSet->get_nodelist) {
+  my $projName  =$pjPath->findvalue('projectName', $pjNode);
+  my $pluginName=$pjPath->findvalue('pluginName',  $pjNode);
   
   # skip plugins if Boolean is set
   next if (($pluginName ne "") && ($skipPluginBool eq "true"));
@@ -104,15 +107,14 @@ foreach my $projNode ($json->findnodes("//project")) {
                                                         order => "descending"} ]});
 
   # Loop over all returned jobs
-  foreach my $node ($xPath->findnodes('//job')) {
+  my $nodeset = $xPath->find('//job');
+  foreach my $node ($nodeset->get_nodelist) {
     my $wksSize;
-    my %wksList={};
-    my %processedWks={};
 
-    my $jobId        = $node->{jobId};
-    my $jobName      = $node->{jobName};
-    my $jobOutcome   = $node->{outcome};
-    my $jobProcedure = $node->{procedureName};
+    my $jobId     = $xPath->findvalue('jobId',   $node);
+    my $jobName   = $xPath->findvalue('jobName', $node);
+    my $jobOutcome= $xPath->findvalue('outcome', $node);
+    my $jobProcedure=$xPath->findvalue('procedureName', $node);
     if ($jobProcedure ne $previousProcName) {
       $previousProcName=$jobProcedure;
       $procGood=0;
@@ -146,83 +148,40 @@ foreach my $projNode ($json->findnodes("//project")) {
 
     $totalNbJobs++;
 
+    #
+    # Find number of steps for the jobs
+    my ($success, $xPath) = InvokeCommander("SuppressLog", "findJobSteps", 
+                    {'jobId' => $jobId});
+    my $nbSteps=scalar($xPath->findnodes('//object')->get_nodelist);
+    $totalNbSteps += $nbSteps;
+    printf("      Job steps:\t%d\n", $nbSteps) if ($DEBUG);
+
     #  Find the workspaces (there may be more than one if some steps
     #  were configured to use a different workspace)
-    my ($success, $xPath) = InvokeCommander("SuppressLog", "getJobInfo", $jobId);
-    WKS: foreach my $wsNode ($xPath->findnodes('//job/workspace')) {
-        my $wksName=$wsNode->{'workspaceName'};
-        $wksList{$wksName}{defined}=1;
-        if (! defined($wsNode->{'workspaceId'})) {
-          printf("WARNING: workspace \'$wksName\' has been deleted. Cannot access directories!\n");
-            $ec->setProperty("outcome", "warning");
-            $wksList{$wksName}{defined}=0;
-            next;
-        }
-        if ($wsNode->{'local'} == 1) {
-          $wksList{$wksName}{'local'} = 1;
-          $wksList{$wksName}{'win'} = $wsNode->{'winDrive'};
-        } else {
-          $wksList{$wksName}{'local'} = 0;
-          $wksList{$wksName}{'win'} = $wsNode->{'winUNC'};
-        }
-        $wksList{$wksName}{'lin'} = $wsNode->{'unix'};
-        $wksList{$wksName}{'win'} =~ s'/'\\'g; 
-        printf("  Workspace: $wksName (%s)\n", $wksList{$wksName}{'local'}?"local":"shared");
-        #printf("      Windows: %s\n", $wksList{$wksName}{'win'});
-        #printf("      Linux:   %s\n", $wksList{$wksName}{'lin'});
-    }
-
-    my ($success, $jSteps) = InvokeCommander("SuppressLog", "findJobSteps", 
-                  {'jobId' => $jobId});
-    STEP: foreach my $step ($jSteps->findnodes('//object/jobStep')) {
-      $totalNbSteps ++;
-      my $jobStepId=$step->{jobStepId};
-
-    my $jobStepWks=$step->{workspaceName};  
-      next if ($jobStepWks eq "");    # Nothing to do for a step without workspace
-
-    my $jobStepHost=$step->{assignedResourceName};
-      next if  ($jobStepHost eq "");  # nothing to do for no resource
-
-    # skip if we have already processed this workspace on this machine
-      next if ($processedWks{$jobStepWks}{$jobStepHost});
-    # skip if the workspace does not exist anymore
-      next if ($wksList{$jobStepWks}{defined} == 0);
-      
-    printf("  jobStep: %s\t on workspace: %s\n", $jobStepId, $jobStepWks);
-
-      # Delete Workspace
-      if ( ($jobStepHost ne $currentResource) && 
-           ($wksList{$jobStepWks}{'local'} == 1)) {
-        printf("    Deleting workspace $jobStepWks remotely on $jobStepHost\n");
-        if ((getP("/resources/$jobStepHost/agentState/state") eq "alive") &&
-            (getP("/resources/$jobStepHost/resourceDisabled") eq "false")) {
-          printf("    winDir: '%s'\n", $wksList{$jobStepWks}{win}) if ($DEBUG);
-          $ec->createJobStep({
-              subprocedure=>"subJC_deleteWorkspace",
-              jobStepName => "Delete $jobStepWks-$jobStepHost-$totalNbSteps",
-              actualParameter => [
-                {actualParameterName => "computeUsage",    value => $computeUsage},
-                {actualParameterName => "executeDeletion", value => $executeDeletion},
-                {actualParameterName => "resName",         value => $jobStepHost},
-                {actualParameterName => "winDir",          value => $wksList{$jobStepWks}{win}},
-                {actualParameterName => "linDir",          value => $wksList{$jobStepWks}{lin}},
-              ]});
-        } else {
-          printf("    Skipping unavailable $jobStepHost\n");
-        }  
+    my ($success, $xPath) = InvokeCommander("SuppressLog", "getJobInfo",
+                                               $jobId);
+    my $wsNodeset = $xPath->find('//job/workspace');
+    foreach my $wsNode ($wsNodeset->get_nodelist) {
+      my $workspace;
+      if ($osIsWindows) {
+        $workspace = $xPath->findvalue('./winUNC', $wsNode);
+        $workspace =~ s'/'\\'g;
       } else {
-          my $wksDir="";
-          if ($osIsWindows) {
-            $wksDir =  $wksList{$jobStepWks}{win};
-          } else {
-              $wksDir = $wksList{$jobStepWks}{lin};
-          }
-          $[/myProject/scripts/deleteWorkspace]
-        }
-        # mark the workspace for this resource so we don't process it again
-        $processedWks{$jobStepWks}{$jobStepHost}=1;
+        $workspace = $xPath->findvalue('./unix', $wsNode);
       }
+
+      print "      Workspace:\t$workspace\n" if (($workspace ne "") &&  ($DEBUG));
+
+      if ($computeDiskUsage eq "true") {
+        $wksSize = getDirSize($workspace);
+        printf ("        Size:\t%s\n", humanSize($wksSize)) if ($DEBUG);
+        $totalWksSize += $wksSize;
+      }
+      if ($executeDeletion eq "true") {
+        rmtree ([$workspace])  ;
+        print "        Deleting Workspace\n" if ($DEBUG);
+      }
+    }
 
     # Delete the job
 
@@ -235,14 +194,13 @@ foreach my $projNode ($json->findnodes("//project")) {
 
 printf("\nSUMMARY:\n");
 printf("Total number of jobs:  %d\n", $totalNbJobs);
-$ec->setProperty("/myJob/numberOfJobs", $totalNbJobs);
+printf("Total File size:       %s\n", humanSize($totalWksSize))  if ($computeDiskUsage eq "true");
+printf("Total number of steps: %d\n", $totalNbSteps);
+printf("Total Database size:   %s\n", humanSize($totalNbSteps * $DBStepSize));
 
-if ($computeUsage eq "true") {
-  printf("Total File size:       %s\n", humanSize(getP("/myJob/totalDiskSpace")));
-  printf("Total number of steps: %d\n", $totalNbSteps);
-  printf("Total Database size:   %s\n", humanSize($totalNbSteps * $DBStepSize));
-  $ec->setProperty("/myJob/numbernumberOfSteps", $totalNbSteps);
-}
+$ec->setProperty("/myJob/numberOfJobs", $totalNbJobs);
+$ec->setProperty("/myJob/diskSpace", $totalWksSize) if ($computeDiskUsage eq "true");
+$ec->setProperty("/myJob/numbernumberOfSteps", $totalNbSteps);
 
 $ec->setProperty("summary", $totalNbJobs . " jobs deleted" ) if ($executeDeletion eq "true");
 
@@ -283,7 +241,4 @@ sub calculateDate {
     return DateTime->now()->subtract(days => $nbDays)->iso8601() . ".000Z";
 }
 
-#
-# Perl Commander library
-$[/myProject/scripts/perlLibJSON]
 

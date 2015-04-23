@@ -1,3 +1,6 @@
+2015-04-23 System Administrator <lrochette@electric-cloud.com>
+  * 2.7.0.261: -version 2.6.0   + Fixed changeBannerColor for 5.4
+
 2015-04-22 System Administrator <lrochette@electric-cloud.com>
   * 2.6.0.260: Fixed changeBannerColor for 5.4
 
