@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.7.0.261</version>
+  <version>2.7.0.262</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
-2015-04-23 admin -version 2.6.0   + Fixed changeBannerColor for 5.4</description>
+2015-04-23 admin Fixed Issue #12: jobCleanup_byResult now supports local workspace</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>
