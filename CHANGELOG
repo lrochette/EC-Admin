@@ -1,3 +1,6 @@
+2015-05-14 System Administrator <lrochette@electric-cloud.com>
+  * 2.7.1.263: Fix templates for schedule
+
 2015-04-23 System Administrator <lrochette@electric-cloud.com>
   * 2.7.0.262: Fixed Issue #12: jobCleanup_byResult now supports local workspace
 

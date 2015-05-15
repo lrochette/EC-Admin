@@ -1,8 +1,9 @@
 #############################################################################
 #
-# Copyright 2014 Electric-Cloud Inc.
+# Copyright 2014-2015 Electric-Cloud Inc.
 #
 #############################################################################
+$[/myProject/scripts/perlHeaderJSON]
 
 #############################################################################
 #
@@ -14,7 +15,7 @@ my $SDKDir="$[SDKpath]";
 
 my $version="$[/myJob/Version]";
 my $pluginName="$[/myJob/pluginName]";
-
+my $javaName="$[/myJob/javaName]";
 
 
 my $file="$[directory]/build.xml";
@@ -32,28 +33,45 @@ printf(FILE
   <property name="pluginKey" value="%s" />
   <property name="pluginVersion" value="%s" />
 
-  <path id="extras">
-    <!-- Add extra jars that need to be in the classpath for building the 
-         plugin here. For example:
+  ',
+$pluginName, $pluginName,  $pluginName, $version);  
 
-         <pathelement location="lib/smartgwt.jar"/>
+my $configure=getP("/projects/$[Project]/configure");
 
-         will grab the smartgwt jar from the lib directory of the plugin.
+if ($configure != undef) {
+	printf(FILE
+'
+  <!-- Java code specific properties -->
+  <property name="gwtModules" value="ecplugins.%s.ConfigurationManagement" />
+',
+	$javaName);
 
-         Note that you must also add the jar to the "Referenced Libraries" 
-         section of your plugin project for Eclipse to recognize the classes in
-         the jar.
+	printf(FILE 
+'  <path id="extras">
+    <pathelement location="$[SDKpath]/lib/commander-client.jar"/>
+');
+	my @jars=("ec_internal.jar", "gin-2.1.1.jar", 
+    		  "gwtp-all-0.8-PATCH5.jar", "javax.inject.jar", 
+              "guice-assistedinject.jar", "guice.jar",
+              "annotations.jar");
+	foreach $file (@jars) {
+		printf(FILE '    <pathelement location="%s/$[/myProject/projectName]/lib/%s"/>
+', $ENV{COMMANDER_PLUGINS}, $file);
+    }
 
-         Typically, you must also add an <inherits> element to the .gwt.xml 
-         file for a component that uses classes from the third-party package.
-    -->
+	printf(FILE '
   </path>
-  <property name="gwt.path.extras" value="extras" />
-
+  <property name="gwt.path.extras" value="extras" />'
+	);
+  }
+  
+printf(FILE 
+'
   <import file="$[SDKpath]/build/buildTargets.xml" />
-</project>',
+</project>'
+);
 
-$pluginName, $pluginName, $pluginName, $version);
+close(FILE);
 
-close(FILE)
+$[/myProject/scripts/perlLibJSON]
 

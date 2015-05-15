@@ -16,12 +16,12 @@
               <property>
                 <propertyName>image</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/1791958/images/custom1110b54214ce05c7f121.png</value>
+                <value>/commander/jobSteps/1816120/images/custom60adc92114d4c82ca681.png</value>
               </property>
               <property>
                 <propertyName>link</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/1791958/Performance Report.html</value>
+                <value>/commander/jobSteps/1816120/Performance Report.html</value>
               </property>
             </propertySheet>
           </property>
@@ -1080,6 +1080,256 @@
               </property>
             </propertySheet>
           </property>
+          <property>
+            <propertyName>222809</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1797257</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1797257</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2015-04-24 02:01:43</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>223383</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1801848</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1801848</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2015-05-03 02:00:57</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>224310</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1809344</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1809344</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2015-05-08 02:00:56</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>224857</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1813927</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1813927</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2015-05-12 02:00:57</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>225202</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1816120</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1816120</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2015-05-13 02:01:12</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
         </propertySheet>
       </property>
       <property>
@@ -1193,6 +1443,1384 @@
                 <propertyName>textSearchCount</propertyName>
                 <expandable>1</expandable>
                 <value>0</value>
+              </property>
+            </propertySheet>
+          </property>
+        </propertySheet>
+      </property>
+      <property>
+        <propertyName>pac_configurations</propertyName>
+        <description>Code used to manage configurations with projectAsCode</description>
+        <propertySheet>
+          <property>
+            <propertyName>cgi-bin</propertyName>
+            <description>The cgi-bin scripts</description>
+            <propertySheet>
+              <property>
+                <propertyName>monitorJob.cgi</propertyName>
+                <description>Monitors a job: waits for it to complete and reports on its success or failure.</description>
+                <expandable>1</expandable>
+                <value>#!/bin/sh
+
+exec "$COMMANDER_HOME/bin/ec-perl" -x "$0" "${@}"
+
+#!perl
+
+################################
+# monitorJob.cgi
+#
+# Monitors a job: waits for it to complete and reports on its success or
+# failure.
+#
+################################
+use warnings;
+use strict;
+use ElectricCommander;
+use XML::XPath;
+use CGI;
+
+use constant {
+    SUCCESS =&gt; 0,
+    ERROR   =&gt; 1,
+};
+
+
+my $gTimeout = 20;
+
+################################
+# main - Main program for the application.
+#
+# Arguments:
+#   -
+#
+# Returns:
+#   -
+#
+################################
+sub main {
+
+    # Get CGI args
+    my $cgi = new CGI;
+    my $cgiArgs = $cgi-&gt;Vars;
+    
+    # Check for required args
+    my $jobId = $cgiArgs-&gt;{jobId};
+    if (!defined $jobId || "$jobId" eq "") {
+        reportError($cgi, "jobId is a required parameter");
+    }
+    
+    # Wait for job
+    my $ec = new ElectricCommander({abortOnError =&gt; 0});
+    my $xpath = $ec-&gt;waitForJob($jobId, $gTimeout);
+    my $errors = $ec-&gt;checkAllErrors($xpath);
+    
+    if ("$errors" ne "") {
+        reportError($cgi, $errors);
+    }
+    
+    my $status = $xpath-&gt;findvalue("//status");
+    if ("$status" ne "completed") {
+        
+        # Abort job and report failure
+        abortJobAndReportError($cgi, $ec, $jobId);
+    }
+    
+    my $outcome = $xpath-&gt;findvalue("//outcome");
+    if ("$outcome" ne "success") {
+        
+        # Report job errors
+        reportJobErrors($cgi, $ec, $jobId);
+    }
+    
+    # If the job was successful and the debug flag is not set, delete it
+    my $debug = $cgiArgs-&gt;{debug};
+    if (!defined $debug || "$debug" ne "1") {
+        $ec-&gt;deleteJob($jobId);
+    }
+    
+    # Report the job's success
+    reportSuccess($cgi);
+}
+
+################################
+# abortJobAndReportError - Abort the job and report the timeout error.
+#
+# Arguments:
+#   cgi   
+#   ec    - ElectricCommander instance
+#   jobId - int identifier for the job 
+#
+# Returns:
+#   -
+#
+################################
+sub abortJobAndReportError($$$) {
+    my ($cgi, $ec, $jobId) = @_;
+    
+    my $errMsg = "Aborting job after reaching timeout";
+        
+    # Try to abort the job
+    my $xpath = $ec-&gt;abortJob($jobId);
+    my $errors = $ec-&gt;checkAllErrors($xpath);
+    if ("$errors" ne "") {
+        reportError($cgi, $errMsg . "\n" . $errors);
+    }
+    
+    # Wait for the job to finish aborting
+    $xpath = $ec-&gt;waitForJob($jobId, $gTimeout);
+    $errors = $ec-&gt;checkAllErrors($xpath);
+    if ("$errors" ne "") {
+        reportError($cgi, $errMsg . "\n" . $errors);
+    }
+    
+    # Check to see if the job actually aborted
+    my $status = $xpath-&gt;findvalue("//status");
+    if ("$status" ne "completed") {
+        reportError($cgi, $errMsg . "\nJob still running after abort");
+    }
+    
+    reportError($cgi, $errMsg . "\nJob successfully aborted");
+}
+
+################################
+# reportJobErrors - Look for errors in the job to report.
+#
+# Arguments:
+#   cgi   
+#   ec    - ElectricCommander instance
+#   jobId - int identifier for the job 
+#
+# Returns:
+#   -
+#
+################################
+sub reportJobErrors($$$) {
+    my ($cgi, $ec, $jobId) = @_;
+    
+    # Get job details
+    my $xpath = $ec-&gt;getJobDetails($jobId);
+    my $errors = $ec-&gt;checkAllErrors($xpath);
+    if ("$errors" ne "") {
+        reportError($cgi, $errors);
+    }
+    
+    # Look for configError first
+    my $configError = $xpath-&gt;findvalue("//job/propertySheet/property[propertyName='configError']/value");
+    if (defined $configError &amp;&amp; "$configError" ne "") {
+        reportError($cgi, $configError)
+    }
+    
+    # Find the first error message and report it
+    my @errorMessages = $xpath-&gt;findnodes("//errorMessage");
+    if (@errorMessages &gt; 0) {
+        my $firstMessage = $errorMessages[0]-&gt;string_value();
+        reportError($cgi, $firstMessage);
+    }
+    
+    # Report a generic error message if we couldn't find a specific one on the
+    # job
+    reportError($cgi, "Configuration creation failed");
+}
+
+################################
+# reportError - Print the error message and exit.
+#
+# Arguments:
+#   cgi   
+#   error - string to print
+#
+# Returns:
+#   0 - Success
+#   1 - Error
+#
+################################
+sub reportError($$) {
+    my ($cgi, $error) = @_;
+    
+    print $cgi-&gt;header("text/html");
+    print $error;
+    exit ERROR;
+}
+
+################################
+# reportSuccess - Report success.
+#
+# Arguments:
+#   cgi   
+#
+# Returns:
+#   -
+#
+################################
+sub reportSuccess($) {
+    my ($cgi) = @_;
+    
+    print $cgi-&gt;header("text/html");
+    print "Success";
+}
+
+main();
+exit SUCCESS;
+</value>
+              </property>
+              <property>
+                <propertyName>plugin.cgi</propertyName>
+                <description/>
+                <expandable>1</expandable>
+                <value>#!/bin/sh
+
+exec "$COMMANDER_HOME/bin/ec-perl" -x "$0" "${@}"
+
+################################
+#!perl
+# plugin.cgi -
+#
+# Get/set the plugins configuration info for UI
+#
+# Copyright (c) 2007-2015 Electric Cloud, Inc.
+# All rights reserved
+################################
+
+use strict;
+use warnings;
+use Getopt::Long;
+use File::Spec;
+use File::Temp;
+use ElectricCommander;
+use ElectricCommander::PropMod;
+use ElectricCommander::PropDB;
+use CGI qw(:standard);
+
+use constant {
+    SUCCESS =&gt; 0,
+    ERROR   =&gt; 1,
+};
+
+# used for output redirection
+$::tmpOut = "";
+$::tmpErr = "";
+$::oldout;
+$::olderr;
+
+################################
+# main - Main program for the application.
+#
+# Arguments:
+#   -
+#
+# Returns:
+#   0 - Success
+#   1 - Error
+#
+################################
+sub main() {
+
+    ## globals
+    $::cg = CGI-&gt;new();
+    $::opts = $::cg-&gt;Vars;
+    $::ec = new ElectricCommander();
+    $::ec-&gt;abortOnError(0);
+
+    # make sure no libraries print to STDOUT
+    saveOutErr();
+
+    # Check for required arguments.
+    if (!defined $::opts-&gt;{cmd} || "$::opts-&gt;{cmd}" eq "") {
+        retError("error: cmd is required parameter");
+    }
+
+    # ---------------------------------------------------------------
+    # Dispatch operation
+    # ---------------------------------------------------------------
+    for ($::opts-&gt;{cmd})
+    {
+        # modes
+        /getCfgList/i and do   { getCfgList(); last; };
+    }
+    retError("unknown command $::opts-&gt;{cmd}");
+
+    exit SUCCESS;
+}
+
+
+################################
+# getCfgList - Return the list of configurations from the plugin
+#
+# Arguments:
+#   -
+#
+# Returns:
+#   0 - Success
+#   1 - Error
+#
+################################
+sub getCfgList {
+
+    my $gcfg = new ElectricCommander::PropDB($::ec,"/projects/$[/myJob/pluginName]-$[/myJob/version]/plugin_cfgs");
+
+    my %cfgs = $gcfg-&gt;getRows();
+    # print results as XML block
+    my $xml = "";
+    $xml .= "&lt;cfgs&gt;\n";
+    foreach my $cfg (keys  %cfgs) {
+        $xml .= "  &lt;cfg&gt;\n";
+        $xml .= "     &lt;name&gt;$cfg&lt;/name&gt;\n";
+        $xml .= "  &lt;/cfg&gt;\n";
+    }
+    $xml .= "&lt;/cfgs&gt;\n";
+    
+    printXML($xml);
+    exit SUCCESS;
+}
+
+################################
+# retError - Return an error message
+#
+# Arguments:
+#   msg - Message to return
+#
+# Returns:
+#   0 - Success
+#   1 - Error
+#
+################################
+sub retError {
+    my ($msg) = @_;
+
+    printXML("&lt;error&gt;$msg&lt;/error&gt;\n");
+    exit ERROR;
+}
+
+################################
+# printXML - Print the XML block, add stdout, stderr
+#
+# Arguments:
+#   xml - xml string to print
+#
+# Returns:
+#   -
+#
+################################
+sub printXML {
+    my ($xml) = @_;
+
+    my ($out,$err) = retrieveOutErr();
+    print $::cg-&gt;header("text/html");
+    print "&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;\n";
+    print "&lt;response&gt;\n";
+    print "$xml\n";
+    print "&lt;stdout&gt;" . xmlQuote($out) . "&lt;/stdout&gt;\n";
+    print "&lt;stderr&gt;" . xmlQuote($err) . "&lt;/stderr&gt;\n";
+    print "&lt;/response&gt;";
+}
+
+################################
+# saveOutErr - Redirect stdout/stderr to files so that any spurious output from commands does not end up on the return to the cgi caller
+#
+# Arguments:
+#   -
+#
+# Returns:
+#   -
+#
+################################
+sub saveOutErr {
+    # temporarily save STDOUT/STDERR to files
+    open $::oldout, "&gt;&amp;STDOUT"  or die "Can't dup STDOUT: $!";
+    open $::olderr, "&gt;&amp;STDERR"  or die "Can't dup STDERR: $!";
+    close STDOUT;
+    open STDOUT, '&gt;', \$::tmpOut or die "Can't open STDOUT: $!";
+    close STDERR;
+    open STDERR, '&gt;', \$::tmpErr or die "Can't open STDOUT: $!";
+
+}
+
+################################
+# retrieveOutErr - Reset stdout/sterr back to normal and return the contents of the temp files
+#
+# Arguments:
+#   -
+#
+# Returns:
+#   tmpOut - Content of out file
+#   tmpErr - Content of error file
+#
+################################
+sub retrieveOutErr {
+    # reconnect to normal STDOUT/STDERR
+    open STDOUT, "&gt;&amp;", $::oldout or die "can't reinstate $!";
+    open STDERR, "&gt;&amp;", $::olderr or die "can't reinstate $!";
+    return ($::tmpOut, $::tmpErr);
+}
+
+################################
+# xmlQuote - Quote special characters such as &amp; to generate well-formed XML character data.
+#
+# Arguments:
+#   string - String whose contents should be quoted.
+#
+# Returns:
+#   string - Quoted string
+#
+################################
+sub xmlQuote($) {
+    my ($string) = @_;
+
+    $string =~ s/&amp;/&amp;amp;/g;
+    $string =~ s/&lt;/&amp;lt;/g;
+    $string =~ s/&gt;/&amp;gt;/g;
+    $string =~ s{([\0-\x{08}\x{0b}\x{0c}\x{0e}-\x{1f}])}{
+    sprintf("%%%02x", ord($1))}ge;
+    return $string;
+}
+
+main();
+</value>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>java</propertyName>
+            <description>The java code in src/main/java/ecplugins/XXXX/client</description>
+            <propertySheet>
+              <property>
+                <propertyName>ConfigurationList.java</propertyName>
+                <description/>
+                <expandable>1</expandable>
+                <value>
+// ConfigurationList.java --
+//
+// ConfigurationList.java is part of ElectricCommander.
+//
+// Copyright (c) 2005-2015 Electric Cloud, Inc.
+// All rights reserved.
+//
+
+package ecplugins.$[/myJob/javaName].client;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestException;
+import com.google.gwt.http.client.Response;
+import com.google.gwt.user.client.Window.Location;
+import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Widget;
+
+import com.electriccloud.commander.client.ChainedCallback;
+import com.electriccloud.commander.client.requests.RunProcedureRequest;
+import com.electriccloud.commander.client.responses.DefaultRunProcedureResponseCallback;
+import com.electriccloud.commander.client.responses.RunProcedureResponse;
+import com.electriccloud.commander.gwt.client.requests.CgiRequestProxy;
+import com.electriccloud.commander.gwt.client.ui.ListTable;
+import com.electriccloud.commander.gwt.client.ui.SimpleErrorBox;
+import com.electriccloud.commander.gwt.client.util.CommanderUrlBuilder;
+
+import ecinternal.client.DialogClickHandler;
+import ecinternal.client.ListBase;
+
+import static com.electriccloud.commander.gwt.client.util.CommanderUrlBuilder.createPageUrl;
+import static com.electriccloud.commander.gwt.client.util.CommanderUrlBuilder.createRedirectUrl;
+
+import static ecinternal.client.InternalComponentBaseFactory.getPluginName;
+
+/**
+ * Plugin Configuration List.
+ */
+public class ConfigurationList
+    extends ListBase
+{
+
+    //~ Instance fields --------------------------------------------------------
+
+    private final PluginConfigList m_configList;
+
+    //~ Constructors -----------------------------------------------------------
+
+    public ConfigurationList()
+    {
+        super("ecgc", "$[/myJob/pluginName] Configurations", "All Configurations");
+        m_configList = new PluginConfigList();
+    }
+
+    //~ Methods ----------------------------------------------------------------
+
+    @Override protected Anchor constructCreateLink()
+    {
+        CommanderUrlBuilder urlBuilder = createPageUrl(getPluginName(),
+                "newConfiguration");
+
+        urlBuilder.setParameter("redirectTo",
+            createRedirectUrl().buildString());
+
+        return new Anchor("Create Configuration", urlBuilder.buildString());
+    }
+
+    @Override protected void load()
+    {
+        setStatus("Loading...");
+
+        PluginConfigListLoader loader = new PluginConfigListLoader(m_configList,
+                this, new ChainedCallback() {
+                    @Override public void onComplete()
+                    {
+                        loadList();
+                    }
+                });
+
+        loader.load();
+    }
+
+    private void deleteConfiguration(String configName)
+    {
+        setStatus("Deleting...");
+        clearErrorMessages();
+
+        // Build runProcedure request
+        RunProcedureRequest request = getRequestFactory()
+                .createRunProcedureRequest();
+
+        request.setProjectName("/plugins/$[/myJob/pluginName]/project");
+        request.setProcedureName("DeleteConfiguration");
+        request.addActualParameter("config", configName);
+        request.setCallback(new DefaultRunProcedureResponseCallback(this) {
+                @Override public void handleResponse(
+                        RunProcedureResponse response)
+                {
+
+                    if (getLog().isDebugEnabled()) {
+                        getLog().debug(
+                            "Commander runProcedure request returned job id: "
+                                + response.getJobId());
+                    }
+
+                    waitForJob(response.getJobId().toString());
+                }
+            });
+
+        // Launch the procedure
+        if (getLog().isDebugEnabled()) {
+            getLog().debug("Issuing Commander request: " + request);
+        }
+
+        doRequest(request);
+    }
+
+    private void loadList()
+    {
+        ListTable listTable = getListTable();
+
+        if (!m_configList.isEmpty()) {
+            listTable.addHeaderRow(true, "Configuration Name");
+        }
+
+        for (String configName : m_configList.getConfigNames()) {
+
+            // Config name
+            Label configNameLabel = new Label(configName);
+
+            
+            // "Edit" link
+            CommanderUrlBuilder urlBuilder = createPageUrl(getPluginName(),
+                    "editConfiguration");
+
+            urlBuilder.setParameter("configName", configName);
+            urlBuilder.setParameter("redirectTo",
+                createRedirectUrl().buildString());
+
+            Anchor editConfigLink = new Anchor("Edit",
+                    urlBuilder.buildString());
+
+            // "Delete" link
+            Anchor             deleteConfigLink = new Anchor("Delete");
+            DialogClickHandler dch              = new DialogClickHandler(
+                    new DeleteConfirmationDialog(configName,
+                        "Are you sure you want to delete the $[/myJob/pluginName] configuration '"
+                            + configName + "'?") {
+                        @Override protected void doDelete()
+                        {
+                            deleteConfiguration(m_objectId);
+                        }
+                    });
+
+            deleteConfigLink.addClickHandler(dch);
+
+            // Add the row
+            Widget actions = this.getUIFactory()
+                                 .constructActionList(editConfigLink,
+                                     deleteConfigLink);
+
+            listTable.addRow(configNameLabel, actions);
+        }
+
+        clearStatus();
+    }
+
+    private void waitForJob(final String jobId)
+    {
+        CgiRequestProxy     cgiRequestProxy = new CgiRequestProxy(
+                getPluginName(), "jobMonitor.cgi");
+        Map&lt;String, String&gt; cgiParams       = new HashMap&lt;String, String&gt;();
+
+        cgiParams.put("jobId", jobId);
+
+        // Pass debug flag to CGI, which will use it to determine whether to
+        // clean up a successful job
+        if ("1".equals(getGetParameter("debug"))) {
+            cgiParams.put("debug", "1");
+        }
+
+        try {
+            cgiRequestProxy.issueGetRequest(cgiParams, new RequestCallback() {
+                    @Override public void onError(
+                            Request   request,
+                            Throwable exception)
+                    {
+                        addErrorMessage("CGI request failed:: ", exception);
+                    }
+
+                    @Override public void onResponseReceived(
+                            Request  request,
+                            Response response)
+                    {
+                        String responseString = response.getText();
+
+                        if (getLog().isDebugEnabled()) {
+                            getLog().debug(
+                                "CGI response received: " + responseString);
+                        }
+
+                        if (responseString.startsWith("Success")) {
+
+                            // We're done!
+                            Location.reload();
+                        }
+                        else {
+                            SimpleErrorBox      error      = getUIFactory()
+                                    .createSimpleErrorBox(
+                                        "Error occurred during configuration deletion: "
+                                        + responseString);
+                            CommanderUrlBuilder urlBuilder = CommanderUrlBuilder
+                                    .createUrl("jobDetails.php")
+                                    .setParameter("jobId", jobId);
+
+                            error.add(
+                                new Anchor("(See job for details)",
+                                    urlBuilder.buildString()));
+                            addErrorMessage(error);
+                        }
+                    }
+                });
+        }
+        catch (RequestException e) {
+            addErrorMessage("CGI request failed:: ", e);
+        }
+    }
+}
+</value>
+              </property>
+              <property>
+                <propertyName>ConfigurationManagementFactory.java</propertyName>
+                <description/>
+                <expandable>1</expandable>
+                <value>
+// ConfigurationManagementFactory.java --
+//
+// ConfigurationManagementFactory.java is part of ElectricCommander.
+//
+// Copyright (c) 2005-2015 Electric Cloud, Inc.
+// All rights reserved.
+//
+
+package ecplugins.$[/myJob/javaName].client;
+
+import ecinternal.client.InternalComponentBaseFactory;
+import ecinternal.client.InternalFormBase;
+import ecinternal.client.PropertySheetEditor;
+
+import com.electriccloud.commander.gwt.client.BrowserContext;
+import com.electriccloud.commander.gwt.client.Component;
+import com.electriccloud.commander.gwt.client.ComponentContext;
+import org.jetbrains.annotations.NotNull;
+
+import static com.electriccloud.commander.gwt.client.util.CommanderUrlBuilder.createPageUrl;
+
+public class ConfigurationManagementFactory
+    extends InternalComponentBaseFactory
+{
+
+    //~ Methods ----------------------------------------------------------------
+
+    @NotNull
+    @Override public Component createComponent(ComponentContext jso)
+    {
+        String    panel     = jso.getParameter("panel");
+        Component component;
+
+        if ("create".equals(panel)) {
+            component = new CreateConfiguration();
+        }
+        else if ("edit".equals(panel)) {
+            String configName    = BrowserContext.getInstance()
+                                                 .getGetParameter("configName");
+            String propSheetPath = "/plugins/" + getPluginName()
+                    + "/project/plugin_cfgs/" + configName;
+            String formXmlPath   = "/plugins/" + getPluginName()
+                    + "/project/ui_forms/editConfigForm";
+
+            component = new PropertySheetEditor("ecgc",
+                    "Edit $[/myJob/pluginName] Configuration", configName, propSheetPath,
+                    formXmlPath, getPluginName());
+
+            ((InternalFormBase) component).setDefaultRedirectToUrl(
+                createPageUrl(getPluginName(), "configurations").buildString());
+        }
+        else {
+
+            // Default panel is "list"
+            component = new ConfigurationList();
+        }
+
+        return component;
+    }
+}
+</value>
+              </property>
+              <property>
+                <propertyName>CreateConfiguration.java</propertyName>
+                <description/>
+                <expandable>1</expandable>
+                <value>// CreateConfiguration.java --
+//
+// CreateConfiguration.java is part of ElectricCommander.
+//
+// Copyright (c) 2005-2012 Electric Cloud, Inc.
+// All rights reserved.
+//
+
+package ecplugins.$[/myJob/javaName].client;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestException;
+import com.google.gwt.http.client.Response;
+import com.google.gwt.user.client.ui.Anchor;
+
+import com.electriccloud.commander.client.requests.RunProcedureRequest;
+import com.electriccloud.commander.client.responses.DefaultRunProcedureResponseCallback;
+import com.electriccloud.commander.client.responses.RunProcedureResponse;
+import com.electriccloud.commander.gwt.client.requests.CgiRequestProxy;
+import com.electriccloud.commander.gwt.client.ui.CredentialEditor;
+import com.electriccloud.commander.gwt.client.ui.FormBuilder;
+import com.electriccloud.commander.gwt.client.ui.FormTable;
+import com.electriccloud.commander.gwt.client.ui.SimpleErrorBox;
+import com.electriccloud.commander.gwt.client.util.CommanderUrlBuilder;
+
+import ecinternal.client.InternalFormBase;
+import ecinternal.client.ui.CustomEditorLoader;
+
+import static com.electriccloud.commander.gwt.client.util.CommanderUrlBuilder.createPageUrl;
+import static com.electriccloud.commander.gwt.client.util.CommanderUrlBuilder.createUrl;
+
+import static ecinternal.client.InternalComponentBaseFactory.getPluginName;
+
+/**
+ * Create Plugin Configuration.
+ */
+public class CreateConfiguration
+    extends InternalFormBase
+{
+
+    //~ Constructors -----------------------------------------------------------
+
+    public CreateConfiguration()
+    {
+        //noinspection HardCodedStringLiteral
+        super("New $[/myJob/pluginName] Configuration", "$[/myJob/pluginName] Configurations");
+
+        CommanderUrlBuilder urlBuilder = createPageUrl(getPluginName(),
+                "configurations");
+
+        setDefaultRedirectToUrl(urlBuilder.buildString());
+    }
+
+    //~ Methods ----------------------------------------------------------------
+
+    @Override protected FormTable initializeFormTable()
+    {
+        return getUIFactory().createFormBuilder();
+    }
+
+    @Override protected void load()
+    {
+        FormBuilder fb = (FormBuilder) getFormTable();
+
+        setStatus("Loading...");
+
+        CustomEditorLoader loader = new CustomEditorLoader(fb, this);
+
+        loader.setCustomEditorPath("/plugins/$[/myJob/pluginName]"
+                + "/project/ui_forms/createConfigForm");
+        loader.load();
+        clearStatus();
+    }
+
+    @Override protected void submit()
+    {
+        setStatus("Saving...");
+        clearAllErrors();
+
+        FormBuilder fb = (FormBuilder) getFormTable();
+
+        if (!fb.validate()) {
+            clearStatus();
+
+            return;
+        }
+
+        // Build runProcedure request
+        RunProcedureRequest request = getRequestFactory()
+                .createRunProcedureRequest();
+
+        request.setProjectName("/plugins/$[/myJob/pluginName]/project");
+        request.setProcedureName("CreateConfiguration");
+
+        Map&lt;String, String&gt; params           = fb.getValues();
+        Collection&lt;String&gt;  credentialParams = fb.getCredentialIds();
+
+        for (String paramName : params.keySet()) {
+
+            if (credentialParams.contains(paramName)) {
+                CredentialEditor credential = fb.getCredential(paramName);
+
+                request.addCredentialParameter(paramName,
+                    credential.getUsername(), credential.getPassword());
+            }
+            else {
+                request.addActualParameter(paramName, params.get(paramName));
+            }
+        }
+
+        request.setCallback(new DefaultRunProcedureResponseCallback(this) {
+                @Override public void handleResponse(
+                        RunProcedureResponse response)
+                {
+
+                    if (getLog().isDebugEnabled()) {
+                        getLog().debug(
+                            "Commander runProcedure request returned job id: "
+                                + response.getJobId());
+                    }
+
+                    waitForJob(response.getJobId().toString());
+                }
+            });
+
+        if (getLog().isDebugEnabled()) {
+            getLog().debug("Issuing Commander request: " + request);
+        }
+
+        doRequest(request);
+    }
+
+    private void waitForJob(final String jobId)
+    {
+        CgiRequestProxy     cgiRequestProxy = new CgiRequestProxy(
+                getPluginName(), "jobMonitor.cgi");
+        Map&lt;String, String&gt; cgiParams       = new HashMap&lt;String, String&gt;();
+
+        cgiParams.put("jobId", jobId);
+
+        // Pass debug flag to CGI, which will use it to determine whether to
+        // clean up a successful job
+        if ("1".equals(getGetParameter("debug"))) {
+            cgiParams.put("debug", "1");
+        }
+
+        try {
+            cgiRequestProxy.issueGetRequest(cgiParams, new RequestCallback() {
+                    @Override public void onError(
+                            Request   request,
+                            Throwable exception)
+                    {
+                        addErrorMessage("CGI request failed: ", exception);
+                    }
+
+                    @Override public void onResponseReceived(
+                            Request  request,
+                            Response response)
+                    {
+                        String responseString = response.getText();
+
+                        if (getLog().isDebugEnabled()) {
+                            getLog().debug(
+                                "CGI response received: " + responseString);
+                        }
+
+                        if (responseString.startsWith("Success")) {
+
+                            // We're done!
+                            cancel();
+                        }
+                        else {
+                            SimpleErrorBox      error      = getUIFactory()
+                                    .createSimpleErrorBox(
+                                        "Error occurred during configuration creation: "
+                                        + responseString);
+                            CommanderUrlBuilder urlBuilder = createUrl(
+                                    "jobDetails.php").setParameter("jobId",
+                                    jobId);
+
+                            error.add(
+                                new Anchor("(See job for details)",
+                                    urlBuilder.buildString()));
+                            addErrorMessage(error);
+                        }
+                    }
+                });
+        }
+        catch (RequestException e) {
+            addErrorMessage("CGI request failed: ", e);
+        }
+    }
+}
+</value>
+              </property>
+              <property>
+                <propertyName>PluginConfigList.java</propertyName>
+                <description/>
+                <expandable>1</expandable>
+                <value>
+// PluginConfigList.java --
+//
+// PluginConfigList.java is part of ElectricCommander.
+//
+// Copyright (c) 2005-2015 Electric Cloud, Inc.
+// All rights reserved.
+//
+
+package ecplugins.$[/myJob/javaName].client;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+
+import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.xml.client.Document;
+import com.google.gwt.xml.client.Node;
+import com.google.gwt.xml.client.XMLParser;
+
+import static com.electriccloud.commander.gwt.client.util.XmlUtil.getNodeByName;
+import static com.electriccloud.commander.gwt.client.util.XmlUtil.getNodeValueByName;
+import static com.electriccloud.commander.gwt.client.util.XmlUtil.getNodesByName;
+
+public class PluginConfigList
+{
+
+    //~ Instance fields --------------------------------------------------------
+
+    private final Map&lt;String, PluginConfigInfo&gt; m_configInfo =
+        new TreeMap&lt;String,  PluginConfigInfo&gt;();
+
+    //~ Methods ----------------------------------------------------------------
+
+    public void addConfig(
+            String configName,
+            String configUrl)
+    {
+        m_configInfo.put(configName, new PluginConfigInfo(configUrl));
+    }
+
+    public String parseResponse(String cgiResponse)
+    {
+        Document document     = XMLParser.parse(cgiResponse);
+        Node     responseNode = getNodeByName(document, "response");
+        String   error        = getNodeValueByName(responseNode, "error");
+
+        if (error != null &amp;&amp; !error.isEmpty()) {
+            return error;
+        }
+
+        Node       configListNode = getNodeByName(responseNode, "cfgs");
+        List&lt;Node&gt; configNodes    = getNodesByName(configListNode, "cfg");
+
+        for (Node configNode : configNodes) {
+            String configName   = getNodeValueByName(configNode, "name");
+            String configUrl = getNodeValueByName(configNode, "url");
+
+            addConfig(configName, configUrl);
+        }
+
+        return null;
+    }
+
+    public void populateConfigListBox(ListBox lb)
+    {
+
+        for (String configName : m_configInfo.keySet()) {
+            lb.addItem(configName);
+        }
+    }
+
+    public Set&lt;String&gt; getConfigNames()
+    {
+        return m_configInfo.keySet();
+    }
+
+    public String getConfigUrl(String configName)
+    {
+        return m_configInfo.get(configName).m_url;
+    }
+
+    public String getEditorDefinition(String configName)
+    {
+        return "$[/myJob/pluginName]";
+    }
+
+    public boolean isEmpty()
+    {
+        return m_configInfo.isEmpty();
+    }
+
+    public void setEditorDefinition(
+            String configUrl,
+            String editorDefiniton)
+    {
+    }
+
+    //~ Inner Classes ----------------------------------------------------------
+
+    private class PluginConfigInfo
+    {
+
+        //~ Instance fields ----------------------------------------------------
+
+        private String m_url;
+
+        //~ Constructors -------------------------------------------------------
+
+        public  PluginConfigInfo(String url)
+        {
+            m_url = url;
+        }
+    }
+}
+</value>
+              </property>
+              <property>
+                <propertyName>PluginConfigListLoader.java</propertyName>
+                <description/>
+                <expandable>1</expandable>
+                <value>
+// PluginConfigListLoader.java --
+//
+// PluginConfigListLoader.java is part of ElectricCommander.
+//
+// Copyright (c) 2005-2012 Electric Cloud, Inc.
+// All rights reserved.
+//
+
+package ecplugins.$[/myJob/javaName].client;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.jetbrains.annotations.NonNls;
+
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestException;
+import com.google.gwt.http.client.Response;
+
+import com.electriccloud.commander.client.ChainedCallback;
+import com.electriccloud.commander.client.domain.Property;
+import com.electriccloud.commander.client.requests.GetPropertyRequest;
+import com.electriccloud.commander.client.responses.CommanderError;
+import com.electriccloud.commander.client.responses.PropertyCallback;
+import com.electriccloud.commander.client.util.StringUtil;
+import com.electriccloud.commander.gwt.client.Component;
+import com.electriccloud.commander.gwt.client.requests.CgiRequestProxy;
+
+import ecinternal.client.HasErrorPanel;
+import ecinternal.client.Loader;
+
+import static ecinternal.client.InternalComponentBaseFactory.getPluginName;
+
+public class PluginConfigListLoader
+    extends Loader
+{
+
+    //~ Instance fields --------------------------------------------------------
+
+    private final PluginConfigList m_configList;
+    private final CgiRequestProxy m_cgiRequestProxy;
+    private String                m_editorName;
+
+    //~ Constructors -----------------------------------------------------------
+
+    public PluginConfigListLoader(
+            PluginConfigList configList,
+            Component       component,
+            ChainedCallback callback)
+    {
+        super(component, callback);
+        m_configList      = configList;
+        m_cgiRequestProxy = new CgiRequestProxy(getPluginName(), "plugin.cgi");
+    }
+
+    //~ Methods ----------------------------------------------------------------
+
+    @Override public void load()
+    {
+        Map&lt;String, String&gt; cgiParams = new HashMap&lt;String, String&gt;();
+
+        cgiParams.put("cmd", "getCfgList");
+        loadConfigs(cgiParams);
+    }
+
+    @SuppressWarnings("OverlyComplexAnonymousInnerClass")
+    private void loadConfigs(Map&lt;String, String&gt; cgiParams)
+    {
+
+        try {
+            String request = m_cgiRequestProxy.issueGetRequest(cgiParams,
+                    new RequestCallback() {
+                        @Override public void onError(
+                                Request   request,
+                                Throwable exception)
+                        {
+
+                            // noinspection HardCodedStringLiteral
+                            ((HasErrorPanel) m_component).addErrorMessage(
+                                "Error loading $[/myJob/pluginName] configuration list: ",
+                                exception);
+                        }
+
+                        @Override public void onResponseReceived(
+                                Request  request,
+                                Response response)
+                        {
+                            @NonNls String responseString = response.getText();
+
+                            // if HTML returned we never made it to the CGI
+                            Boolean isHtml = responseString.contains(
+                                    "DOCTYPE HTML");
+                            String  error;
+
+                            if (isHtml) {
+                                error = responseString;
+                            }
+                            else {
+                                error = m_configList.parseResponse(
+                                        responseString);
+                            }
+
+                            if (m_component.getLog()
+                                           .isDebugEnabled()) {
+                                m_component.getLog()
+                                           .debug(
+                                               "Recieved CGI response: "
+                                               + responseString
+                                               + " isHTML:" + isHtml
+                                               + " error:" + error);
+                            }
+
+                            if (error == null) {
+
+                                if (StringUtil.isEmpty(m_editorName)
+                                        || m_configList.isEmpty()) {
+
+                                    // We're done!
+                                    if (m_callback != null) {
+                                        m_callback.onComplete();
+                                    }
+                                }
+                                else {
+                                    loadEditors();
+                                }
+                            }
+                            else {
+                                ((HasErrorPanel) m_component).addErrorMessage(
+                                    error);
+                            }
+                        }
+                    });
+
+            if (m_component.getLog()
+                           .isDebugEnabled()) {
+                m_component.getLog()
+                           .debug("Issued CGI request: " + request);
+            }
+        }
+        catch (RequestException e) {
+
+            if (m_component instanceof HasErrorPanel) {
+
+                // noinspection HardCodedStringLiteral
+                ((HasErrorPanel) m_component).addErrorMessage(
+                    "Error loading $[/myJob/pluginName] configuration list: ", e);
+            }
+            else {
+                m_component.getLog()
+                           .error(e);
+            }
+        }
+    }
+
+    private void loadEditors()
+    {
+        GetPropertyRequest request =
+            m_requestFactory.createGetPropertyRequest();
+
+        request.setPropertyName("/plugins/$[/myJob/pluginName]/project/ui_forms/"
+                + m_editorName);
+        request.setExpand(false);
+        request.setCallback(new EditorLoaderCallback("plugincfg"));
+        m_requestManager.doRequest(new ChainedCallback() {
+                @Override public void onComplete()
+                {
+
+                    // We're done!
+                    if (m_callback != null) {
+                        m_callback.onComplete();
+                    }
+                }
+            }, request);
+    }
+
+    public void setEditorName(String editorName)
+    {
+        m_editorName = editorName;
+    }
+
+    //~ Inner Classes ----------------------------------------------------------
+
+    public class EditorLoaderCallback
+        implements PropertyCallback
+    {
+
+        //~ Instance fields ----------------------------------------------------
+
+        private final String m_configPlugin;
+
+        //~ Constructors -------------------------------------------------------
+
+        public EditorLoaderCallback(@NonNls String configPlugin)
+        {
+            m_configPlugin = configPlugin;
+        }
+
+        //~ Methods ------------------------------------------------------------
+
+        @Override public void handleError(CommanderError error)
+        {
+
+            if (m_component instanceof HasErrorPanel) {
+                ((HasErrorPanel) m_component).addErrorMessage(error);
+            }
+            else {
+                m_component.getLog()
+                           .error(error);
+            }
+        }
+
+        @Override public void handleResponse(Property response)
+        {
+
+            if (m_component.getLog()
+                           .isDebugEnabled()) {
+                m_component.getLog()
+                           .debug("Commander getProperty request returned: "
+                               + response);
+            }
+
+            if (response != null) {
+                String value = response.getValue();
+
+                if (!StringUtil.isEmpty(value)) {
+                    m_configList.setEditorDefinition(m_configPlugin, value);
+
+                    return;
+                }
+            }
+
+            // There was no property value found in the response
+            @SuppressWarnings({"HardCodedStringLiteral", "StringConcatenation"})
+            String errorMsg = "Editor '" + m_editorName
+                    + "' not found for $[/myJob/pluginName] plugin '" + m_configPlugin
+                    + "'";
+
+            if (m_component instanceof HasErrorPanel) {
+                ((HasErrorPanel) m_component).addErrorMessage(errorMsg);
+            }
+            else {
+                m_component.getLog()
+                           .error(errorMsg);
+            }
+        }
+    }
+}
+</value>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>resources</propertyName>
+            <description/>
+            <propertySheet>
+              <property>
+                <propertyName>ConfigurationManagement.gwt.xml</propertyName>
+                <description>    &lt;inherits name="ecinternal.ECInternal"/&gt;
+</description>
+                <expandable>1</expandable>
+                <value>&lt;module&gt;
+    &lt;entry-point class="ecplugins.$[/myJob/javaName].client.ConfigurationManagementFactory"/&gt;
+    &lt;inherits name="com.electriccloud.commander.gwt.ComponentBase"/&gt;
+    &lt;inherits name="com.google.gwt.inject.Inject"/&gt;
+    &lt;inherits name="ecinternal.ECInternal"/&gt;
+    
+    &lt;!-- The following property limits the plugin to work with Firefox.  This saves tremendously
+    during development because the gwt compiler has to generate less &lt;language,browser&gt; sets of
+    javascript files. Be careful to re-comment this when doing a build of your plugin that you
+    plan to publish!
+    &lt;set-property name="user.agent" value="gecko1_8" /&gt;
+    --&gt;
+    &lt;!-- Reduce JAR size by restricting locales to build: remove this if the plugin is localized --&gt;
+    &lt;set-property name="locale" value="default"/&gt;
+&lt;/module&gt;</value>
+              </property>
+              <property>
+                <propertyName>ECInternal.gwt.xml</propertyName>
+                <description/>
+                <expandable>1</expandable>
+                <value>&lt;module&gt;
+  &lt;inherits name="com.google.gwt.resources.Resources"/&gt;
+  &lt;inherits name="com.google.gwt.i18n.I18N"/&gt;
+  &lt;inherits name="com.google.gwt.inject.Inject"/&gt;
+  &lt;inherits name="com.electriccloud.commander.gwt.ComponentBase"/&gt;
+  &lt;!-- Enable SafeHTML template mode for UiBinder for safety. --&gt;
+  &lt;inherits name="com.google.gwt.logging.Logging"/&gt;
+  &lt;set-property name="gwt.logging.popupHandler" value="DISABLED"/&gt;
+  &lt;inherits name="com.gwtplatform.mvp.Mvp"/&gt;
+
+  &lt;define-configuration-property
+    name="gin.ginjector"
+    is-multi-valued="false"/&gt;
+  &lt;set-configuration-property
+    name="gin.ginjector"
+    value="ecinternal.client.gin.CommanderGinjector"/&gt;
+
+  &lt;extend-property name="locale" values="ja,ko,zh"/&gt;
+&lt;/module&gt;
+</value>
               </property>
             </propertySheet>
           </property>
@@ -2126,7 +3754,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>262</value>
+        <value>263</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -2233,6 +3861,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+
+-version 2.7.1
+  + Fixed issue with job template in schedules
 
 -version 2.7.0
   + Fixed Issue #12: jobCleanup_byResult now supports local workspace
@@ -2482,7 +4113,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.7.0</value>
+        <value>2.7.1</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -2508,7 +4139,7 @@ History:
 Changelog:
 --------------
  10-04-2013   lrochette   Add job counter to help abort a job.</description>
-      <jobNameTemplate>$[/myProject/scripts/jobTemplate]</jobNameTemplate>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -2625,7 +4256,7 @@ Changelog:
       <procedureName>artifactRepositorySynchronization</procedureName>
       <description>Syncs the contents of a remote repository to this repository's backingstore.
 The user must specify a list of remote repositories to query and may specify a filter for a subset of Artifact Version to sync.</description>
-      <jobNameTemplate/>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -2780,7 +4411,7 @@ Changelog:
 
  07-29-2013  lrochette     Added ec_parameterForm to give it the same look and feel than jobCleanup
                                          Took advantage of createJobStep to simplify the procedure</description>
-      <jobNameTemplate>$[/myProject/scripts/jobTemplate]</jobNameTemplate>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -2973,7 +4604,7 @@ A resource matching the Repository server is required or some steps will be skip
 Changelog:
 --------------
 </description>
-      <jobNameTemplate>$[/myProject/scripts/jobTemplate]</jobNameTemplate>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -3219,7 +4850,7 @@ Changelog:
     <procedure>
       <procedureName>changeBannerColor</procedureName>
       <description>A procedure to change the color of the banner to easily identify your multiple servers (DEV vs. PROD)</description>
-      <jobNameTemplate>$[/myProject/scripts/jobTemplate]</jobNameTemplate>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -3629,7 +5260,7 @@ Changelog:
       <procedureName>cleanupCacheDirectory</procedureName>
       <description>Clear out all stale artifacts from a given artifact cache.
 Can be called manually on 1 resource or automatically on all</description>
-      <jobNameTemplate/>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName>$[resource]</resourceName>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -3789,7 +5420,7 @@ Can be called manually on 1 resource or automatically on all</description>
       <procedureName>cleanupRepository</procedureName>
       <description>Clear out all stale artifacts from a repository's backing store.
 This procedure can be run on an individual repository or can be called on all repositories by "Artifact Cleanup"</description>
-      <jobNameTemplate>$[/myProject/projectName]-$[/myProcedure/procedureName]_$[/increment /server/ec_counters/$[/myProject/projectName]/jobCounter]-$[/timestamp]</jobNameTemplate>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName>$[resource]</resourceName>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -3920,7 +5551,7 @@ Changelog:
 2014-04-02  lrochette   Fixed problem with ec_setup and procedure names with dot (".")
 2014-04-29  lrochette   Fixed ec_visbility
 2014-04-30  lrochette   Added a step to fix self reference to the project</description>
-      <jobNameTemplate>$[/myProject/scripts/jobTemplate]</jobNameTemplate>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -4610,7 +6241,7 @@ Procedure is added only if property pluginExpose is set</description>
 &lt;li&gt;Rinse and repeat&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/html&gt;</description>
-      <jobNameTemplate/>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -4731,7 +6362,7 @@ Changelog:
 -------------
 12-23-2013  Tanay  Added a sort to prevent job ID range overlap as reporeted in ZD #109574
 </description>
-      <jobNameTemplate>$[/myProject/scripts/jobTemplate]</jobNameTemplate>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>seconds</timeLimitUnits>
@@ -4860,7 +6491,7 @@ Changelog:
     <procedure>
       <procedureName>deleteWorkspaceOrphans</procedureName>
       <description>Procedure to crawl a workspace directory to find orphan jobs (directories without a matching job)</description>
-      <jobNameTemplate>$[/myProject/scripts/jobTemplate]</jobNameTemplate>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -5221,7 +6852,7 @@ Changelog:
       <procedureName>jobCleanup_byResult</procedureName>
       <description>Delete jobs and the associated workspace based on  result: keeping X goods/warning, and Y failed
 Report the number of jobs, the disk space and database space that could/was be deleted.</description>
-      <jobNameTemplate>$[/myProject/scripts/jobTemplate]</jobNameTemplate>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName>local</resourceName>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -5831,7 +7462,7 @@ Changelog:
 09-20-2013  lrochette    Rewritten using JSON to increase performance
                                        Paramater is also now used to skip number of steps computation
  09-12-2013  lrochette   Add a parameter to skip the computation of the disk space used; to speed up the job</description>
-      <jobNameTemplate>$[/myProject/scripts/jobTemplate]</jobNameTemplate>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName>local</resourceName>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -6352,7 +7983,7 @@ Changelog:
     <procedure>
       <procedureName>licenseLogger-report</procedureName>
       <description>&lt;html&gt;&lt;b&gt;Scheduled Procedure&lt;/b&gt; - report on license usage summary and supporting detail&lt;/html&gt;</description>
-      <jobNameTemplate>$[/myProject/scripts/jobTemplate]</jobNameTemplate>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -6470,7 +8101,7 @@ Changelog:
     <procedure>
       <procedureName>licenseLogger-snapshot</procedureName>
       <description>&lt;html&gt;&lt;b&gt;Scheduled Procedure&lt;/b&gt; - gathers and stores the periodic snapshot of license usage&lt;/html&gt;</description>
-      <jobNameTemplate>$[/myProject/scripts/jobTemplate]</jobNameTemplate>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -6542,7 +8173,7 @@ Changelog:
  12-21-2013  lrochette    Added license usage information
  04-16-2014  lrochette    Fixed subprocedure call to myProject instead of a fixed call
  04-18-2014  lrochette    Fixed with resource default  workspace not being used in dynamic steps</description>
-      <jobNameTemplate>$[/myProject/scripts/jobTemplate]</jobNameTemplate>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -7192,7 +8823,7 @@ Changelog:
 2014-04-02  lrochette   Fixed problem with ec_setup and procedure names with dot (".")
 2014-04-29  lrochette   Fixed ec_visbility
 2014-04-30  lrochette   Added a step to fix self reference to the project</description>
-      <jobNameTemplate>$[/myProject/scripts/jobTemplate]</jobNameTemplate>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -7928,7 +9559,18 @@ Procedure is added only if property pluginExpose is set</description>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
         <condition/>
-        <description>create the build.xml</description>
+        <description>create the build.xml
+
+  &lt;!-- Package sources for exported utility classes. --&gt;
+  &lt;fileset id="PLUGIN.srcs" dir="${dir.src}"&gt;
+      &lt;include name="**/PluginConfigList.java"/&gt;
+      &lt;include name="**/PluginConfigListLoader.*"/&gt;
+  &lt;/fileset&gt;
+  &lt;fileset id="images" dir="${dir.htdocs}"&gt;
+      &lt;include name="**/PluginConfigList.java"/&gt;
+      &lt;include name="**/PluginConfigListLoader.*"/&gt;
+  &lt;/fileset&gt;
+ </description>
         <errorHandling>failProcedure</errorHandling>
         <exclusiveMode>none</exclusiveMode>
         <logFileName/>
@@ -8022,6 +9664,131 @@ Procedure is added only if property pluginExpose is set</description>
         <condition/>
         <description>if the property "help" exist for the project, use it to create the pages/help.xml.
 If not and the fie does not already exist, create a "dummy" page to be filled later</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName>$[SDKResource]</resourceName>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory>$[directory]</workingDirectory>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>createConfigure.xml</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition/>
+        <description>if the property "configure" exist for the project, use it to create the files:
+  pages/configurations.xml
+  pages/editConfiguration.xml
+  pages/newConfiguration.xml
+
+If not and the fie does not already exist, create a "dummy" page to be filled later</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName>$[SDKResource]</resourceName>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory>$[directory]</workingDirectory>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>create_cgi-bin_configuration_files</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition/>
+        <description>if the property "configure" exist for the project, create the files:
+  cgi-bin/plugin.cgi
+  cgi-bin/jobMonitor.cgi
+
+If not and the fie does not already exist, create a "dummy" page to be filled later</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName>$[SDKResource]</resourceName>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory>$[directory]</workingDirectory>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>create_java_code</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition/>
+        <description>if the property "configure" exist for the project, create the files in main/java/ecplugins/XXXX/client
+</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName>$[SDKResource]</resourceName>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory>$[directory]</workingDirectory>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>create_ConfigurationManagement.gwt.xml</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition/>
+        <description/>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName>$[SDKResource]</resourceName>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory>$[directory]</workingDirectory>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>create_ECInternal.gwt.xml</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition>0</condition>
+        <description>i</description>
         <errorHandling>failProcedure</errorHandling>
         <exclusiveMode>none</exclusiveMode>
         <logFileName/>
@@ -8139,7 +9906,7 @@ If not and the fie does not already exist, create a "dummy" page to be filled la
 Changelog:
 --------------
  10-04-2013   lrochette   Add job counter to help abort a job.</description>
-      <jobNameTemplate>$[/myProject/scripts/jobTemplate]</jobNameTemplate>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -8241,7 +10008,7 @@ Changelog:
     <procedure>
       <procedureName>removeParameterFromCall</procedureName>
       <description>This procedure parse all the projects, procedures and steps to remove a parameter from the call. To be used after it has been removed from a procedure.</description>
-      <jobNameTemplate/>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -8970,7 +10737,7 @@ Changelog:
     <procedure>
       <procedureName>saveProjects</procedureName>
       <description>a framework to export projects.</description>
-      <jobNameTemplate>$[/myProject/scripts/jobTemplate]</jobNameTemplate>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -9169,7 +10936,7 @@ Changelog:
     <procedure>
       <procedureName>sendAlert</procedureName>
       <description>This procedure allows you to send an email alert to all the users registered in the database</description>
-      <jobNameTemplate/>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -9981,7 +11748,7 @@ jobSteps  	       &lt;5000	&lt;20000	 &gt;20000
     <procedure>
       <procedureName>synchronizePlugins</procedureName>
       <description>A procedure to synchronize plugins between the server and a resource. Plugins are uploaded first as artifacts and downloaded on the resource if it does not already exist.</description>
-      <jobNameTemplate/>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -10079,7 +11846,7 @@ jobSteps  	       &lt;5000	&lt;20000	 &gt;20000
       <procedureName>workflowCleanup</procedureName>
       <description>Delete workflows older than a number of days.
 Report the number of workflows.</description>
-      <jobNameTemplate>$[/myProject/scripts/jobTemplate]</jobNameTemplate>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName>local</resourceName>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -10903,7 +12670,7 @@ Report the number of workflows.</description>
       <misfirePolicy>runOnce</misfirePolicy>
       <monthDays/>
       <priority>normal</priority>
-      <procedureName>saveProjects</procedureName>
+      <procedureName>saveAllObjects</procedureName>
       <scheduleDisabled>1</scheduleDisabled>
       <startTime>4:30</startTime>
       <stopTime/>
@@ -10911,12 +12678,32 @@ Report the number of workflows.</description>
       <weekDays>Tuesday Thursday Saturday </weekDays>
       <actualParameters>
         <property>
-          <propertyName>includeACLs</propertyName>
+          <propertyName>exportDeploy</propertyName>
           <expandable>1</expandable>
           <value>true</value>
         </property>
         <property>
-          <propertyName>includeNotifiers</propertyName>
+          <propertyName>exportGroups</propertyName>
+          <expandable>1</expandable>
+          <value>true</value>
+        </property>
+        <property>
+          <propertyName>exportResourcePools</propertyName>
+          <expandable>1</expandable>
+          <value>true</value>
+        </property>
+        <property>
+          <propertyName>exportResources</propertyName>
+          <expandable>1</expandable>
+          <value>true</value>
+        </property>
+        <property>
+          <propertyName>exportUsers</propertyName>
+          <expandable>1</expandable>
+          <value>true</value>
+        </property>
+        <property>
+          <propertyName>exportWorkspaces</propertyName>
           <expandable>1</expandable>
           <value>true</value>
         </property>
@@ -10924,11 +12711,6 @@ Report the number of workflows.</description>
           <propertyName>pathname</propertyName>
           <expandable>1</expandable>
           <value>/scratch/BACKUP</value>
-        </property>
-        <property>
-          <propertyName>relocatable</propertyName>
-          <expandable>1</expandable>
-          <value>true</value>
         </property>
       </actualParameters>
       <propertySheet>

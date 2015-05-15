@@ -12,9 +12,15 @@ my $description="$[Description]";
 my $comment="$[Comment]";
 
 
+# If plugin name is empty default to the projectName
 if ($pluginName eq "") {
   $pluginName=$project;
 }
+
+# Make the plugin Name java compatible
+my $javaName=$pluginName;
+$javaName =~ s/^EC-//;		# remove EC- prefix
+$javaName =~ s/\.-//g;		# remove . and -
 
 $ec->setProperty("/myJob/shortVersion", $version);
 
@@ -24,8 +30,8 @@ my $completeVersion="$version.$pluginBuildNumber";
 $ec->setProperty("summary", "Processing plugin $pluginName-$completeVersion");
 $ec->setProperty("/myJob/Version", $completeVersion);
 
-# If plugin name is empty default to the projectName
 $ec->setProperty("/myJob/pluginName", $pluginName);
+$ec->setProperty("/myJob/javaName", $javaName);
 
 # If description is empty, use the project description
 if ($description eq "") {

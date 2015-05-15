@@ -34,6 +34,7 @@ printf(FILE "  <version>%s</version>\n", $version);
 printf(FILE "  <label>%s</label>\n", $pluginName);
 printf(FILE "  <description>%s</description>\n", $description);
 
+
 #
 # Create the help entry only if it exists
 my $help=getP("/projects/$project/help");
@@ -46,13 +47,27 @@ printf(FILE "\n");
 
 printf(FILE "  <commander-version min=\"4.1\"/>\n");
 printf(FILE "\n");
-    
+
+#
+# create the configure entry only if the property is defined
+my $configure=getP("/projects/$[Project]/configure");
+if ($configure != undef) {
+  printf(FILE "  <configure>configurations.xml</configure>\n");
+  printf(FILE "  <components>\n");
+  printf(FILE "      <component name=\"ConfigurationManagement\">\n");
+  printf(FILE "          <javascript>war/ecplugins.%s.ConfigurationManagement/ecplugins.%s.ConfigurationManagement.noc
+ache.js</javascript>\n", $pluginName, $pluginName);
+  printf(FILE "      </component>\n");
+  printf(FILE "  </components>\n");
+
+}
+
 printf(FILE "    <!-- Specify a category for this plugin; this is used in filtered lists in the Plugin Manager.
          Typically, it is set to System or Step.
      -->
 ");
 printf(FILE "  <category>%s</category>\n", $category);
-printf(FILE " 	  <depends>EC-Core</depends>\n</plugin>\n");
+printf(FILE "  <depends>EC-Core</depends>\n</plugin>\n");
 
 close FILE;
 

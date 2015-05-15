@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.7.0.262</version>
+  <version>2.7.1.263</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
-2015-04-23 admin Fixed Issue #12: jobCleanup_byResult now supports local workspace</description>
+2015-05-14 admin Fix templates for schedule</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>
@@ -15,5 +15,5 @@
          Typically, it is set to System or Step.
      -->
   <category>Administration</category>
- 	  <depends>EC-Core</depends>
+  <depends>EC-Core</depends>
 </plugin>
