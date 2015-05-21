@@ -11,7 +11,7 @@ $DEBUG=1;
 
 # Parameters
 #
-my $path="$[pathname]";
+my $path='$[pathname]';
 
 my $errorCount=0;
 my $poolCount=0;

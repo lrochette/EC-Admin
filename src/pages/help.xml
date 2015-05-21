@@ -522,6 +522,8 @@ properties can be set up:</p>
 		<dl>
 			<dt>License Logger</dt>
 			<dd>Mike Westerhof (<a href="mailto:mwesterhof@electric-cloud.com">mwesterhof@electric-cloud.com</a>)</dd>
+			<dt>deleteObjects</dt>
+			<dd>Tanay Nagjee (<a href="mailto:tanay@electric-cloud.com">tanay@electric-cloud.com</a>)</dd>
   			<dt>Other</dt>
   			<dd>Laurent Rochette (<a href="mailto:lrochette@electric-cloud.com">lrochette@electric-cloud.com</a>)</dd>
 		</dl>

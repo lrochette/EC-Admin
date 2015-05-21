@@ -9,7 +9,7 @@ $[/myProject/scripts/perlHeaderJSON]
 
 # Parameters
 #
-my $path="$[pathname]";
+my $path='$[pathname]';
 
 my $errorCount=0;
 my $wksCount=0;
