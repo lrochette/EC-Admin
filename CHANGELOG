@@ -1,4 +1,7 @@
 2015-05-21 System Administrator <lrochette@electric-cloud.com>
+  * 2.7.3.265: Fixed Issue #29 in deleteObjects
+
+2015-05-21 System Administrator <lrochette@electric-cloud.com>
   * 2.7.2.264: Fixed issue with network path on Windows for saveAllObjects
 
 2015-05-14 System Administrator <lrochette@electric-cloud.com>

@@ -1,4 +1,10 @@
-use strict;
+#############################################################################
+#
+#  deleteObjects -- Script to delete objects in a more efficient method 
+#                   than deleteJobs for users with a lot to delete.
+#  Copyright 2013-2015 Electric-Cloud Inc.
+#
+#############################################################################use strict;
 use warnings;
 use ElectricCommander;
 use DateTime;
@@ -47,7 +53,7 @@ do {
 
     $numReturned = $result->findnodes("/responses/response/objectId")->size();
     $numDeleted += $numReturned;
-
+    my @objectList;
     foreach my $objectIdNode ($result->findnodes("/responses/response/objectId")) {
         my $objectId = $objectIdNode->string_value;
         if (exists($deletedObjects{$objectId})) {
@@ -57,18 +63,16 @@ do {
             exit 1;
         }
         $deletedObjects{$objectId} = 1;
+        push (@objectList, $objectId);
     }
 
     if ($numReturned > 0) {
         print "Waiting for $numReturned $[objectType]s to be deleted...\n";
-        my $lastId = $result->find("/responses/response/objectId[$numReturned]")->string_value;
-        $ec->abortOnError(0);
-        my $lastObject;
+        my $getObjectsResult;
         do {
             sleep $interval;
-            $lastObject = $ec->getObjects({objectId=>[$lastId]});
-        } while ($lastObject->findvalue("/responses/response/object/objectId"));
-        $ec->abortOnError(1);
+            $getObjectsResult = $ec->getObjects({objectId => \@objectList});
+        } while ($getObjectsResult->findnodes("/responses/response/object")->size() > 0);
         my $overallTime = time() - $overallStart;
         my $percent = ceil(($numDeleted / $[maxObjects]) * 100);
         my $summary = "Deleted $numDeleted $[objectType]s ($percent%) | "
