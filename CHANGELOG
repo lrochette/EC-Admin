@@ -1,11 +1,5 @@
 2015-05-25 System Administrator <lrochette@electric-cloud.com>
-  * 2.8.0.272: Fixed help
-
-2015-05-25 System Administrator <lrochette@electric-cloud.com>
-  * 2.8.0.270: Modified projectAsCode to generate code for credential configuration
-
-2015-05-25 System Administrator <lrochette@electric-cloud.com>
-  * 2.8.0.266: Modified projectAsCode to generate code for credential configuration
+  * 2.8.0.272: Modified projectAsCode to generate code for credential configuration
 
 2015-05-21 System Administrator <lrochette@electric-cloud.com>
   * 2.7.3.265: Fixed Issue #29 in deleteObjects
