@@ -4,7 +4,7 @@ use File::Path;
 #list of tiles to create
 my @files=("ConfigurationManagement.gwt.xml");
 
-my $configure=getP("/projects/$[Project]/configure");
+my $configure=getP("/projects/$[Project]/configureCredentials");
 my $version = "$[/myJob/version]";
 my $plugin  = "$[/myJob/pluginName]";
 my $javaName= "$[/myJob/javaName]";

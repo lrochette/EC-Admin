@@ -3,7 +3,7 @@ $[/myProject/scripts/perlHeaderJSON]
 #list of tiles to create
 my @files=("plugin.cgi", "jobMonitor.cgi");
 
-my $configure=getP("/projects/$[Project]/configure");
+my $configure=getP("/projects/$[Project]/configureCredentials");
 my $version="$[/myJob/version]";
 my $plugin ="$[/myJob/pluginName]";
 

@@ -36,7 +36,7 @@ printf(FILE
   ',
 $pluginName, $pluginName,  $pluginName, $version);  
 
-my $configure=getP("/projects/$[Project]/configure");
+my $configure=getP("/projects/$[Project]/configureCredentials");
 
 if ($configure != undef) {
 	printf(FILE

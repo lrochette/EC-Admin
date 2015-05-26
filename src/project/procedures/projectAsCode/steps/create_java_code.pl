@@ -6,7 +6,7 @@ my @files=("ConfigurationList.java", "ConfigurationManagementFactory.java",
            "CreateConfiguration.java", 
            "PluginConfigList.java", "PluginConfigListLoader.java");
 
-my $configure=getP("/projects/$[Project]/configure");
+my $configure=getP("/projects/$[Project]/configureCredentials");
 my $version = "$[/myJob/version]";
 my $plugin  = "$[/myJob/pluginName]";
 my $javaName= "$[/myJob/javaName]";

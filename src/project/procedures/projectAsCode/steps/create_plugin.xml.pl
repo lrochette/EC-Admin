@@ -6,6 +6,7 @@ my $email='$[Email]';
 my $category="$[Category]";
 
 my $pluginName="$[/myJob/pluginName]";
+my $javaName="$[/myJob/javaName]";
 my $version="$[/myJob/Version]";
 my $description="$[/myJob/pluginDescription]";
 
@@ -50,13 +51,12 @@ printf(FILE "\n");
 
 #
 # create the configure entry only if the property is defined
-my $configure=getP("/projects/$[Project]/configure");
+my $configure=getP("/projects/$[Project]/configureCredentials");
 if ($configure != undef) {
   printf(FILE "  <configure>configurations.xml</configure>\n");
   printf(FILE "  <components>\n");
   printf(FILE "      <component name=\"ConfigurationManagement\">\n");
-  printf(FILE "          <javascript>war/ecplugins.%s.ConfigurationManagement/ecplugins.%s.ConfigurationManagement.noc
-ache.js</javascript>\n", $pluginName, $pluginName);
+  printf(FILE "          <javascript>war/ecplugins.%s.ConfigurationManagement/ecplugins.%s.ConfigurationManagement.nocache.js</javascript>\n", $javaName, $javaName);
   printf(FILE "      </component>\n");
   printf(FILE "  </components>\n");
 

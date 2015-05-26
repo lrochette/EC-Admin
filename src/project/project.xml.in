@@ -16,12 +16,12 @@
               <property>
                 <propertyName>image</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/1826520/images/custom7495578d14d75b57b001.png</value>
+                <value>/commander/jobSteps/1836785/images/custom5ba0606914d8a4de4771.png</value>
               </property>
               <property>
                 <propertyName>link</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/1826520/Performance Report.html</value>
+                <value>/commander/jobSteps/1836785/Performance Report.html</value>
               </property>
             </propertySheet>
           </property>
@@ -1480,6 +1480,106 @@
               </property>
             </propertySheet>
           </property>
+          <property>
+            <propertyName>227602</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1833945</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1833945</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2015-05-24 02:01:56</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>228068</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1836785</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1836785</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2015-05-25 02:00:49</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
         </propertySheet>
       </property>
       <property>
@@ -1607,7 +1707,7 @@
             <description>The cgi-bin scripts</description>
             <propertySheet>
               <property>
-                <propertyName>monitorJob.cgi</propertyName>
+                <propertyName>jobMonitor.cgi</propertyName>
                 <description>Monitors a job: waits for it to complete and reports on its success or failure.</description>
                 <expandable>1</expandable>
                 <value>#!/bin/sh
@@ -2669,8 +2769,7 @@ public class PluginConfigList
                 <propertyName>PluginConfigListLoader.java</propertyName>
                 <description/>
                 <expandable>1</expandable>
-                <value>
-// PluginConfigListLoader.java --
+                <value>// PluginConfigListLoader.java --
 //
 // PluginConfigListLoader.java is part of ElectricCommander.
 //
@@ -2777,7 +2876,7 @@ public class PluginConfigListLoader
                                            .isDebugEnabled()) {
                                 m_component.getLog()
                                            .debug(
-                                               "Recieved CGI response: "
+                                               "Received CGI response: "
                                                + responseString
                                                + " isHTML:" + isHtml
                                                + " error:" + error);
@@ -2934,7 +3033,9 @@ public class PluginConfigListLoader
                 <value>&lt;module&gt;
     &lt;entry-point class="ecplugins.$[/myJob/javaName].client.ConfigurationManagementFactory"/&gt;
     &lt;inherits name="com.electriccloud.commander.gwt.ComponentBase"/&gt;
+&lt;!-- 
     &lt;inherits name="com.google.gwt.inject.Inject"/&gt;
+--&gt;
     &lt;inherits name="ecinternal.ECInternal"/&gt;
     
     &lt;!-- The following property limits the plugin to work with Firefox.  This saves tremendously
@@ -2971,6 +3072,47 @@ public class PluginConfigListLoader
   &lt;extend-property name="locale" values="ja,ko,zh"/&gt;
 &lt;/module&gt;
 </value>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>ui_forms</propertyName>
+            <description/>
+            <propertySheet>
+              <property>
+                <propertyName>createConfigForm</propertyName>
+                <description>Form to create new configuration</description>
+                <expandable>1</expandable>
+                <value>&lt;editor&gt;
+    &lt;formElement&gt;
+        &lt;type&gt;entry&lt;/type&gt;
+        &lt;label&gt;Configuration Name:&lt;/label&gt;
+        &lt;property&gt;config&lt;/property&gt;
+        &lt;value&gt;&lt;/value&gt;
+        &lt;required&gt;1&lt;/required&gt;
+    &lt;/formElement&gt;
+    &lt;formElement&gt;
+        &lt;type&gt;credential&lt;/type&gt;
+        &lt;label&gt;Login as:&lt;/label&gt;
+        &lt;property&gt;credential&lt;/property&gt;
+        &lt;value&gt;&lt;/value&gt;
+        &lt;required&gt;0&lt;/required&gt;
+    &lt;/formElement&gt;
+&lt;/editor&gt;</value>
+              </property>
+              <property>
+                <propertyName>editConfigForm</propertyName>
+                <description/>
+                <expandable>1</expandable>
+                <value>&lt;editor&gt;
+        &lt;formElement&gt;
+        &lt;type&gt;credential&lt;/type&gt;
+        &lt;label&gt;Login as:&lt;/label&gt;
+        &lt;property&gt;credential&lt;/property&gt;
+        &lt;value&gt;&lt;/value&gt;
+        &lt;required&gt;0&lt;/required&gt;
+    &lt;/formElement&gt;
+&lt;/editor&gt;</value>
               </property>
             </propertySheet>
           </property>
@@ -3344,6 +3486,44 @@ but
 #-------------------------------------------------------------------------</description>
             <expandable>1</expandable>
             <value>PLACEHOLDER</value>
+          </property>
+        </propertySheet>
+      </property>
+      <property>
+        <propertyName>ui_forms</propertyName>
+        <propertySheet>
+          <property>
+            <propertyName>createConfigForm</propertyName>
+            <expandable>1</expandable>
+            <value>&lt;editor&gt;
+    &lt;formElement&gt;
+        &lt;type&gt;entry&lt;/type&gt;
+        &lt;label&gt;Configuration Name:&lt;/label&gt;
+        &lt;property&gt;config&lt;/property&gt;
+        &lt;value&gt;&lt;/value&gt;
+        &lt;required&gt;1&lt;/required&gt;
+    &lt;/formElement&gt;
+    &lt;formElement&gt;
+        &lt;type&gt;credential&lt;/type&gt;
+        &lt;label&gt;Login as:&lt;/label&gt;
+        &lt;property&gt;credential&lt;/property&gt;
+        &lt;value&gt;&lt;/value&gt;
+        &lt;required&gt;0&lt;/required&gt;
+    &lt;/formElement&gt;
+&lt;/editor&gt;</value>
+          </property>
+          <property>
+            <propertyName>editConfigForm</propertyName>
+            <expandable>1</expandable>
+            <value>&lt;editor&gt;
+        &lt;formElement&gt;
+        &lt;type&gt;credential&lt;/type&gt;
+        &lt;label&gt;Login as:&lt;/label&gt;
+        &lt;property&gt;credential&lt;/property&gt;
+        &lt;value&gt;&lt;/value&gt;
+        &lt;required&gt;0&lt;/required&gt;
+    &lt;/formElement&gt;
+&lt;/editor&gt;</value>
           </property>
         </propertySheet>
       </property>
@@ -3906,7 +4086,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>265</value>
+        <value>266</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -4013,6 +4193,8 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.8.0
+  + Modified projectAsCode to generate code for credential configuration
 
 - version 2.7.3
   + Fixed Issue #29 in deleteObjects
@@ -4271,7 +4453,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.7.3</value>
+        <value>2.8.0</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <credential>
@@ -5683,6 +5865,58 @@ This procedure can be run on an individual repository or can be called on all re
         <attachedCredentials>
           <credentialName>adminLogin</credentialName>
         </attachedCredentials>
+      </step>
+    </procedure>
+    <procedure>
+      <procedureName>createConfiguration</procedureName>
+      <description>Created by EC-Admin to manage credential configuration</description>
+      <propertySheet>
+      </propertySheet>
+      <formalParameter>
+        <formalParameterName>config</formalParameterName>
+        <description>Configuration Name</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>1</required>
+        <type>entry</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>credential</formalParameterName>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
+        <type>credential</type>
+      </formalParameter>
+      <step>
+        <stepName>CreateConfiguration</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <description>Create a EC-Admin configuration</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <parallel>0</parallel>
+        <postProcessor>postp</postProcessor>
+        <releaseMode>none</releaseMode>
+        <shell>ec-perl</shell>
+        <timeLimit>5</timeLimit>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>createAndAttachCredential</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <parallel>0</parallel>
+        <releaseMode>none</releaseMode>
+        <shell>ec-perl</shell>
+        <propertySheet>
+        </propertySheet>
+        <attachedParameters>
+          <formalParameterName>credential</formalParameterName>
+        </attachedParameters>
       </step>
     </procedure>
     <procedure>
@@ -9507,6 +9741,38 @@ $ec-&gt;setProperty("/projects/$[Project]/ec_visibility", "pickListOnly");
         </propertySheet>
       </step>
       <step>
+        <stepName>createConfigurationCode</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <condition>$[/javascript (typeof(projects.$[Project].configureCredentials) != "undefined")</condition>
+        <description/>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <parallel>0</parallel>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName/>
+        <subprocedure>sub-pac_createConfigurationCode</subprocedure>
+        <subproject/>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workspaceName/>
+        <actualParameters>
+          <property>
+            <propertyName>Project</propertyName>
+            <expandable>1</expandable>
+            <value>$[Project]</value>
+          </property>
+          <property>
+            <propertyName>pluginName</propertyName>
+            <expandable>1</expandable>
+            <value>$[/myJob/pluginName]</value>
+          </property>
+        </actualParameters>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
         <stepName>fixSelfReferences</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
@@ -9942,29 +10208,6 @@ If not and the fie does not already exist, create a "dummy" page to be filled la
         </propertySheet>
       </step>
       <step>
-        <stepName>create_ECInternal.gwt.xml</stepName>
-        <alwaysRun>0</alwaysRun>
-        <broadcast>0</broadcast>
-        <command>PLACEHOLDER</command>
-        <condition>0</condition>
-        <description>i</description>
-        <errorHandling>failProcedure</errorHandling>
-        <exclusiveMode>none</exclusiveMode>
-        <logFileName/>
-        <parallel>0</parallel>
-        <postProcessor/>
-        <precondition/>
-        <releaseMode>none</releaseMode>
-        <resourceName>$[SDKResource]</resourceName>
-        <shell>ec-perl</shell>
-        <timeLimit/>
-        <timeLimitUnits>minutes</timeLimitUnits>
-        <workingDirectory>$[directory]</workingDirectory>
-        <workspaceName/>
-        <propertySheet>
-        </propertySheet>
-      </step>
-      <step>
         <stepName>buildPlugin</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
@@ -10050,6 +10293,29 @@ If not and the fie does not already exist, create a "dummy" page to be filled la
         <releaseMode>none</releaseMode>
         <resourceName/>
         <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>create_createConfiguration_procedure</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition/>
+        <description>create the createConfiguration procedure</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName/>
+        <shell/>
         <timeLimit/>
         <timeLimitUnits>minutes</timeLimitUnits>
         <workingDirectory/>
@@ -11206,6 +11472,191 @@ Changelog:
         <command>PLACEHOLDER</command>
         <condition/>
         <description>get the list of users and send an email</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName/>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+    </procedure>
+    <procedure>
+      <procedureName>sub-pac_createConfigurationCode</procedureName>
+      <description>sub-procedure to create the code, properties on the current project to transform into a plugin to manage credential configuration
+Changelog:
+--------------
+</description>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
+      <resourceName/>
+      <timeLimit/>
+      <timeLimitUnits>minutes</timeLimitUnits>
+      <workspaceName/>
+      <propertySheet>
+        <property>
+          <propertyName>ec_customEditorData</propertyName>
+          <propertySheet>
+            <property>
+              <propertyName>parameters</propertyName>
+              <propertySheet>
+                <property>
+                  <propertyName>Project</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>javaName</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>pluginName</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+              </propertySheet>
+            </property>
+          </propertySheet>
+        </property>
+      </propertySheet>
+      <formalParameter>
+        <formalParameterName>pluginName</formalParameterName>
+        <defaultValue/>
+        <description>The name of the plugin to build</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>1</required>
+        <type>entry</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>Project</formalParameterName>
+        <defaultValue/>
+        <description>The project name</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>1</required>
+        <type>entry</type>
+      </formalParameter>
+      <step>
+        <stepName>create _ui_forms</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition/>
+        <description>those 2 forms are required if you want to create configuration</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName/>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>create _createConfiguration_procedure</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition/>
+        <description>create the "createConfiguration" procedure to match the UI form</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName/>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>create _createConfiguration_CreateConfiguration_step</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition/>
+        <description>create the "createConfiguration" step in the "createConfiguration" procedure to match the UI form</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName/>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>create _createConfiguration_createAndAttachCredential</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition/>
+        <description>create the step createAndAttachCredential in the "createConfiguration" procedure</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName/>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>attach_parameter_credential</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition/>
+        <description>attache the parameter credential to the step "createAndAttachCredential"</description>
         <errorHandling>failProcedure</errorHandling>
         <exclusiveMode>none</exclusiveMode>
         <logFileName/>
