@@ -31,8 +31,6 @@
 	['//project/procedure[procedureName="cleanupCacheDirectory"]/step[stepName="traverseCacheDirectory"]/command', 'procedures/cleanupCacheDirectory/steps/traverseCacheDirectory.pl'],
 	['//project/procedure[procedureName="cleanupCacheDirectory"]/step[stepName="timeBaseDeletion"]/command', 'procedures/cleanupCacheDirectory/steps/timeBaseDeletion.pl'],
 	['//project/procedure[procedureName="cleanupRepository"]/step[stepName="clearInvalidArtifactVersions"]/command', 'procedures/cleanupRepository/steps/clearInvalidArtifactVersions.pl'],
-	['//project/procedure[procedureName="createConfiguration"]/step[stepName="CreateConfiguration"]/command', 'procedures/createConfiguration/steps/CreateConfiguration.pl'],
-	['//project/procedure[procedureName="createConfiguration"]/step[stepName="createAndAttachCredential"]/command', 'procedures/createConfiguration/steps/createAndAttachCredential.pl'],
 	['//project/procedure[procedureName="createPluginFromProject"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/createPluginFromProject/form.xml'],
 	['//project/procedure[procedureName="createPluginFromProject"]/step[stepName="Initialization"]/command', 'procedures/createPluginFromProject/steps/Initialization.pl'],
 	['//project/procedure[procedureName="createPluginFromProject"]/step[stepName="createFileStructure"]/command', 'procedures/createPluginFromProject/steps/createFileStructure.pl'],

@@ -3490,44 +3490,6 @@ but
         </propertySheet>
       </property>
       <property>
-        <propertyName>ui_forms</propertyName>
-        <propertySheet>
-          <property>
-            <propertyName>createConfigForm</propertyName>
-            <expandable>1</expandable>
-            <value>&lt;editor&gt;
-    &lt;formElement&gt;
-        &lt;type&gt;entry&lt;/type&gt;
-        &lt;label&gt;Configuration Name:&lt;/label&gt;
-        &lt;property&gt;config&lt;/property&gt;
-        &lt;value&gt;&lt;/value&gt;
-        &lt;required&gt;1&lt;/required&gt;
-    &lt;/formElement&gt;
-    &lt;formElement&gt;
-        &lt;type&gt;credential&lt;/type&gt;
-        &lt;label&gt;Login as:&lt;/label&gt;
-        &lt;property&gt;credential&lt;/property&gt;
-        &lt;value&gt;&lt;/value&gt;
-        &lt;required&gt;0&lt;/required&gt;
-    &lt;/formElement&gt;
-&lt;/editor&gt;</value>
-          </property>
-          <property>
-            <propertyName>editConfigForm</propertyName>
-            <expandable>1</expandable>
-            <value>&lt;editor&gt;
-        &lt;formElement&gt;
-        &lt;type&gt;credential&lt;/type&gt;
-        &lt;label&gt;Login as:&lt;/label&gt;
-        &lt;property&gt;credential&lt;/property&gt;
-        &lt;value&gt;&lt;/value&gt;
-        &lt;required&gt;0&lt;/required&gt;
-    &lt;/formElement&gt;
-&lt;/editor&gt;</value>
-          </property>
-        </propertySheet>
-      </property>
-      <property>
         <propertyName>ec_visibility</propertyName>
         <expandable>1</expandable>
         <value>pickListOnly</value>
@@ -4086,7 +4048,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>266</value>
+        <value>270</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -4456,22 +4418,6 @@ History:
         <value>2.8.0</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
-    <credential>
-      <credentialName>adminLogin</credentialName>
-      <description/>
-      <password>/DHePBz5RUcyoG7IRp4eyQ==</password>
-      <userName>admin</userName>
-      <propertySheet>
-      </propertySheet>
-    </credential>
-    <credential>
-      <credentialName>productionServerCreds</credentialName>
-      <description>Credentials to log onto the production server to import a project or a set of procedures/workflows</description>
-      <password>/DHePBz5RUcyoG7IRp4eyQ==</password>
-      <userName>admin</userName>
-      <propertySheet>
-      </propertySheet>
-    </credential>
     <procedure>
       <procedureName>acquireSemaphore</procedureName>
       <description>Procedure to acquire a token in order to limit access to a set of procedures
@@ -5862,61 +5808,6 @@ This procedure can be run on an individual repository or can be called on all re
         <workspaceName/>
         <propertySheet>
         </propertySheet>
-        <attachedCredentials>
-          <credentialName>adminLogin</credentialName>
-        </attachedCredentials>
-      </step>
-    </procedure>
-    <procedure>
-      <procedureName>createConfiguration</procedureName>
-      <description>Created by EC-Admin to manage credential configuration</description>
-      <propertySheet>
-      </propertySheet>
-      <formalParameter>
-        <formalParameterName>config</formalParameterName>
-        <description>Configuration Name</description>
-        <expansionDeferred>0</expansionDeferred>
-        <required>1</required>
-        <type>entry</type>
-      </formalParameter>
-      <formalParameter>
-        <formalParameterName>credential</formalParameterName>
-        <expansionDeferred>0</expansionDeferred>
-        <required>0</required>
-        <type>credential</type>
-      </formalParameter>
-      <step>
-        <stepName>CreateConfiguration</stepName>
-        <alwaysRun>0</alwaysRun>
-        <broadcast>0</broadcast>
-        <command>PLACEHOLDER</command>
-        <description>Create a EC-Admin configuration</description>
-        <errorHandling>failProcedure</errorHandling>
-        <exclusiveMode>none</exclusiveMode>
-        <parallel>0</parallel>
-        <postProcessor>postp</postProcessor>
-        <releaseMode>none</releaseMode>
-        <shell>ec-perl</shell>
-        <timeLimit>5</timeLimit>
-        <timeLimitUnits>minutes</timeLimitUnits>
-        <propertySheet>
-        </propertySheet>
-      </step>
-      <step>
-        <stepName>createAndAttachCredential</stepName>
-        <alwaysRun>0</alwaysRun>
-        <broadcast>0</broadcast>
-        <command>PLACEHOLDER</command>
-        <errorHandling>failProcedure</errorHandling>
-        <exclusiveMode>none</exclusiveMode>
-        <parallel>0</parallel>
-        <releaseMode>none</releaseMode>
-        <shell>ec-perl</shell>
-        <propertySheet>
-        </propertySheet>
-        <attachedParameters>
-          <formalParameterName>credential</formalParameterName>
-        </attachedParameters>
       </step>
     </procedure>
     <procedure>
@@ -9744,7 +9635,7 @@ $ec-&gt;setProperty("/projects/$[Project]/ec_visibility", "pickListOnly");
         <stepName>createConfigurationCode</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
-        <condition>$[/javascript (typeof(projects.$[Project].configureCredentials) != "undefined")</condition>
+        <condition>$[/javascript (typeof(projects['$[Project]'].configureCredentials) != "undefined") ;]</condition>
         <description/>
         <errorHandling>failProcedure</errorHandling>
         <exclusiveMode>none</exclusiveMode>

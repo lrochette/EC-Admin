@@ -5,7 +5,7 @@
 
   <!-- Plugin-specific properties -->
   <property name="pluginKey" value="EC-Admin" />
-  <property name="pluginVersion" value="2.8.0.266" />
+  <property name="pluginVersion" value="2.8.0.270" />
 
   
   <import file="/opt/electriccloud/CommanderSDK/build/buildTargets.xml" />
