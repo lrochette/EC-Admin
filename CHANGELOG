@@ -1,4 +1,7 @@
 2015-05-25 System Administrator <lrochette@electric-cloud.com>
+  * 2.8.0.272: Fixed help
+
+2015-05-25 System Administrator <lrochette@electric-cloud.com>
   * 2.8.0.270: Modified projectAsCode to generate code for credential configuration
 
 2015-05-25 System Administrator <lrochette@electric-cloud.com>

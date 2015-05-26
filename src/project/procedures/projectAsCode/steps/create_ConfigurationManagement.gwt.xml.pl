@@ -10,8 +10,8 @@ my $plugin  = "$[/myJob/pluginName]";
 my $javaName= "$[/myJob/javaName]";
 
 if ($configure == undef) {
-	printf("configure property does not exist\n");
-    $ec->setProperty("summary", "skipping: no cgi-bin files to create");
+	printf("configureCredentials property does not exist\n");
+    $ec->setProperty("summary", "skipping: no ConfigurationManagement.gwt.xml file to create");
 	exit(0);
 }
 

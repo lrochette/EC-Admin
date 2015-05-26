@@ -6,13 +6,13 @@ my %files= (
   "editConfiguration" => {title => "Edit %s Configuration", panel => "edit"},
   "newConfiguration"  => {title => "New %s Configuration",  panel => "create"});
 
-my $configure=getP("/projects/$[Project]/configure");
+my $configure=getP("/projects/$[Project]/configureCredentials");
 my $version="$[/myJob/version]";
 my $plugin ="$[/myJob/pluginName]";
 
 if ($configure == undef) {
-	printf("configure property does not exist\n");
-    $ec->setProperty("summary", "skipping: no configure property");
+	printf("configureCredentials property does not exist\n");
+    $ec->setProperty("summary", "skipping: no configureCredentials property");
 	exit(0);
 }
 

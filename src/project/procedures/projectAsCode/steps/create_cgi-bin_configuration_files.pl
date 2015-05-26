@@ -8,7 +8,7 @@ my $version="$[/myJob/version]";
 my $plugin ="$[/myJob/pluginName]";
 
 if ($configure == undef) {
-	printf("configure property does not exist\n");
+	printf("configureCredentials property does not exist\n");
     $ec->setProperty("summary", "skipping: no cgi-bin files to create");
 	exit(0);
 }

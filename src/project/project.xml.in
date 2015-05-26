@@ -3901,6 +3901,20 @@ if ( $promoteAction eq 'promote' ) {
 			&lt;img src="../../plugins/@PLUGIN_KEY@/images/help/projectAsCode.png" 
 				 alt="projectAsCode parameters" /&gt;
 
+		&lt;p&gt;At the project level, you can define the addtional following properties to alter the behavior of the plugin creation:&lt;/p&gt;
+			&lt;dl&gt;
+				&lt;dt&gt;&lt;b&gt;configureCredentials:&lt;/b&gt;&lt;/dt&gt;
+				&lt;dd&gt;this property will indicate to EC-Admin to code to help create configuration to manage credentials for your plugin. It adds:
+					&lt;ul&gt;
+						&lt;li&gt;A procedure name "createConfiguration". You need to modify the code of the step "createAndAttachCredential" in order to reference your own procedures and steps where you want to attach those credentials.&lt;/li&gt;
+						&lt;li&gt;Some cgi-bin scripts.&lt;/li&gt;
+						&lt;li&gt;Some java code to manage the different UI to create, edit and delete configurations.&lt;/li&gt;
+						&lt;li&gt;A "configure" link for your plugin on the pluginManager page.&lt;/li&gt;
+					&lt;/ul&gt;
+				Once the procedures and steps have been created, they will not be overwritten so it's safe to modify them to acoomodate your own needs.
+				&lt;/dd&gt;
+			&lt;/dl&gt;
+
 		&lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; EC-Admin is released on 
 		&lt;a href="https://github.com/electriccommunity/EC-Admin"&gt;GitHub&lt;/a&gt; using 
 		this procedure.&lt;/p&gt;
@@ -4048,7 +4062,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>270</value>
+        <value>272</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
