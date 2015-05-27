@@ -4166,7 +4166,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>277</value>
+        <value>278</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -4273,6 +4273,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.8.2
+  + Fixed Issue #35: allow custom timeout in deleteObjects
+
 - version 2.8.1
   + Added parameter to prevent exported project file deletion 
 
@@ -4536,7 +4539,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.8.1</value>
+        <value>2.8.2</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
@@ -6764,8 +6767,9 @@ directories. This is for customers with huge job or workflow database
 
 Changelog:
 -------------
-05-21-2015  cfulton    Fixed issue #29
-12-23-2013  tnagjee   Added a sort to prevent job ID range overlap as reported in ZD #109574
+05-27-2015  lrochette  Fixed Issue #35: allow custom timeout
+05-21-2015  cfulton     Fixed issue #29
+12-23-2013  tnagjee    Added a sort to prevent job ID range overlap as reported in ZD #109574
 </description>
       <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>

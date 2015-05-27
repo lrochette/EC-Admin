@@ -30,6 +30,10 @@ print "Chunk size: $[chunkSize]\nDays limit: $[daysLimit]\n"
 
 my $ec = new ElectricCommander;
 
+# Set the timeout to config value or 600 if not set
+my $defaultTimeout = getP("/server/EC-Admin/cleanup/config/timeout");
+$ec->setTimeout($defaultTimeout? $defaultTimeout : 600);
+
 my $numReturned;
 my $numDeleted = 0;
 my $numChunks = 0;
