@@ -374,7 +374,11 @@ if ( $promoteAction eq 'promote' ) {
 						<td>if the ec_setup.pl already exists, it is not overwritten. Check this parameter overwrite with a content dynamically generated based on project properties.</td>
 		            </tr>
 					<tr>
-			        	<td>cprojectAsCode</td>
+			        	<td>disableCleanup</td>
+						<td>Prevents the exported project file to be deleted. It can be an issue when  the agent and server run as different users.</td>
+		            </tr>		            
+					<tr>
+			        	<td>projectAsCode</td>
 						<td>Include a bit of code to revert the plugin to a 
 							project upon promotion if this option is checked.</td>
 		            </tr>

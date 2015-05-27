@@ -105,6 +105,17 @@
     </formElement>
 
     <formElement> 
+        <label>Disable cleanup</label>    
+        <property>disableCleanup</property> 
+        <documentation>Prevents the exported project file to be deleted. It can be an issue when  the agent and server run as different users.</documentation> 
+        <type>checkbox</type>    
+        <checkedValue>true</checkedValue> 
+        <uncheckedValue>false</uncheckedValue> 
+        <initiallyChecked>0</initiallyChecked> 
+        <value>true</value>    
+    </formElement>
+
+    <formElement> 
         <label>Project As Code</label>    
         <property>projectAsCode</property> 
         <documentation>Modify the ec_setup.pl to extract the project from the created plugin upon promotion.</documentation> 
@@ -112,7 +123,7 @@
         <checkedValue>true</checkedValue> 
         <uncheckedValue>false</uncheckedValue> 
         <initiallyChecked>0</initiallyChecked> 
-        <value>false</value>    
+        <value>true</value>    
     </formElement>
 
     <formElement> 

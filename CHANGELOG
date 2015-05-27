@@ -1,3 +1,6 @@
+2015-05-27 System Administrator <lrochette@electric-cloud.com>
+  * 2.8.1.273: Added parameter to prevent exported project file deletion
+
 2015-05-25 System Administrator <lrochette@electric-cloud.com>
   * 2.8.0.272: Modified projectAsCode to generate code for credential configuration
 

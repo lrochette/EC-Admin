@@ -16,12 +16,12 @@
               <property>
                 <propertyName>image</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/1836785/images/custom5ba0606914d8a4de4771.png</value>
+                <value>/commander/jobSteps/1842790/images/custom4d3b6cf314d949b92801.png</value>
               </property>
               <property>
                 <propertyName>link</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/1836785/Performance Report.html</value>
+                <value>/commander/jobSteps/1842790/Performance Report.html</value>
               </property>
             </propertySheet>
           </property>
@@ -1565,6 +1565,106 @@
                     <propertyName>reportDate</propertyName>
                     <expandable>1</expandable>
                     <value>2015-05-25 02:00:49</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>228564</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1840137</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1840137</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2015-05-26 02:01:00</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>229012</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1842790</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1842790</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2015-05-27 02:01:02</value>
                   </property>
                   <property>
                     <propertyName>reportType</propertyName>
@@ -3874,7 +3974,11 @@ if ( $promoteAction eq 'promote' ) {
 						&lt;td&gt;if the ec_setup.pl already exists, it is not overwritten. Check this parameter overwrite with a content dynamically generated based on project properties.&lt;/td&gt;
 		            &lt;/tr&gt;
 					&lt;tr&gt;
-			        	&lt;td&gt;cprojectAsCode&lt;/td&gt;
+			        	&lt;td&gt;disableCleanup&lt;/td&gt;
+						&lt;td&gt;Prevents the exported project file to be deleted. It can be an issue when  the agent and server run as different users.&lt;/td&gt;
+		            &lt;/tr&gt;		            
+					&lt;tr&gt;
+			        	&lt;td&gt;projectAsCode&lt;/td&gt;
 						&lt;td&gt;Include a bit of code to revert the plugin to a 
 							project upon promotion if this option is checked.&lt;/td&gt;
 		            &lt;/tr&gt;
@@ -4062,7 +4166,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>272</value>
+        <value>273</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -4169,6 +4273,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.8.1
+  + Added parameter to prevent exported project file deletion 
+
 - version 2.8.0
   + Modified projectAsCode to generate code for credential configuration
 
@@ -4429,7 +4536,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.8.0</value>
+        <value>2.8.1</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
@@ -9269,6 +9376,31 @@ Changelog:
                   </propertySheet>
                 </property>
                 <property>
+                  <propertyName>disableCleanup</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>checkedValue</propertyName>
+                      <expandable>1</expandable>
+                      <value>true</value>
+                    </property>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                    <property>
+                      <propertyName>initiallyChecked</propertyName>
+                      <expandable>1</expandable>
+                      <value>0</value>
+                    </property>
+                    <property>
+                      <propertyName>uncheckedValue</propertyName>
+                      <expandable>1</expandable>
+                      <value>false</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
                   <propertyName>fixSelfReferences</propertyName>
                   <propertySheet>
                     <property>
@@ -9498,6 +9630,14 @@ Changelog:
         <expansionDeferred>0</expansionDeferred>
         <required>0</required>
         <type>entry</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>disableCleanup</formalParameterName>
+        <defaultValue>false</defaultValue>
+        <description>Prevent the procedure to delete the exported project file. Can be an issue when the  agent and server run as different users</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
+        <type>checkbox</type>
       </formalParameter>
       <formalParameter>
         <formalParameterName>Email</formalParameterName>
@@ -9779,7 +9919,7 @@ $ec-&gt;setProperty("/projects/$[Project]/ec_visibility", "pickListOnly");
         <stepName>deleteExportedProject</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
-        <condition/>
+        <condition>$[/javascript !$[disableCleanup] ]</condition>
         <description/>
         <errorHandling>failProcedure</errorHandling>
         <exclusiveMode>none</exclusiveMode>
