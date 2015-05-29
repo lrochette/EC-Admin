@@ -1,5 +1,8 @@
 $[/myProject/scripts/perlHeader]
 
+#
+# promotePlugin PAI does not support JSON format
+
 my $plugin="$[/myJob/pluginName]";
 my $version="$[/myJob/Version]";
 

@@ -1,5 +1,8 @@
 $[/myProject/scripts/perlHeader]
 
+#
+# installPlugin does not support JSON format
+
 my $plugin="$[/myJob/pluginName]";
 my $version="$[/myJob/Version]";
 

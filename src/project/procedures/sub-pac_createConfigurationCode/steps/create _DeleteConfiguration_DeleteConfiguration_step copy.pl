@@ -72,7 +72,7 @@ $ec->deleteProperty("/myProject/plugin_cfgs/$opts->{config}");
 $ec->deleteCredential($projName, $opts->{config});
 exit SUCCESS;
 ',
-	"[/myProject/projectName", "$[config");
+	"[/myProject/projectName", "[config");
 
 #
 # create CreateConfiguration step
