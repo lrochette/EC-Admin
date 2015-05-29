@@ -120,6 +120,8 @@
 	['//project/procedure[procedureName="sub-pac_createConfigurationCode"]/step[stepName="create _createConfiguration_CreateConfiguration_step"]/command', 'procedures/sub-pac_createConfigurationCode/steps/create _createConfiguration_CreateConfiguration_step.pl'],
 	['//project/procedure[procedureName="sub-pac_createConfigurationCode"]/step[stepName="create _createConfiguration_createAndAttachCredential"]/command', 'procedures/sub-pac_createConfigurationCode/steps/create _createConfiguration_createAndAttachCredential.pl'],
 	['//project/procedure[procedureName="sub-pac_createConfigurationCode"]/step[stepName="attach_parameter_credential"]/command', 'procedures/sub-pac_createConfigurationCode/steps/attach_parameter_credential.pl'],
+	['//project/procedure[procedureName="sub-pac_createConfigurationCode"]/step[stepName="create _DeleteConfiguration_procedure"]/command', 'procedures/sub-pac_createConfigurationCode/steps/create _DeleteConfiguration_procedure.pl'],
+	['//project/procedure[procedureName="sub-pac_createConfigurationCode"]/step[stepName="create _DeleteConfiguration_DeleteConfiguration_step copy"]/command', 'procedures/sub-pac_createConfigurationCode/steps/create _DeleteConfiguration_DeleteConfiguration_step copy.pl'],
 	['//project/procedure[procedureName="subJC_deleteWorkspace"]/step[stepName="deleteWorkspaceDirectory"]/command', 'procedures/subJC_deleteWorkspace/steps/deleteWorkspaceDirectory.pl'],
 	['//project/procedure[procedureName="subPM-deploymentSize"]/step[stepName="agents"]/command', 'procedures/subPM-deploymentSize/steps/agents.pl'],
 	['//project/procedure[procedureName="subPM-deploymentSize"]/step[stepName="managedResources"]/command', 'procedures/subPM-deploymentSize/steps/managedResources.pl'],
