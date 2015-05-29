@@ -77,7 +77,7 @@ exit SUCCESS;
 #
 # create CreateConfiguration step
 printf("  Create Step CreateConfiguration\n");
-$ec->createStep($project, $proc, "CreateConfiguration",
+$ec->createStep($project, $proc, $step,
     {
     	description => "Delete a $[/myJob/pluginName] configuration",
         command => $command,

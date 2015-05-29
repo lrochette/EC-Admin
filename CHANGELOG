@@ -1,4 +1,7 @@
 2015-05-29 System Administrator <lrochette@electric-cloud.com>
+  * 2.9.0.286: Fixed Issue #32: added code to delete configuration in projectAsCode.
+
+2015-05-29 System Administrator <lrochette@electric-cloud.com>
   * 2.9.0.279: Fixed Issue #32: added code to delete configuration.
 
 2015-05-27 System Administrator <lrochette@electric-cloud.com>

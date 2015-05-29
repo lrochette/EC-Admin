@@ -4166,7 +4166,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>285</value>
+        <value>286</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -9205,6 +9205,7 @@ Test is from http://xahlee.info/UnixResource_dir/sultra_skami.html</description>
 
 Changelog:
 --------------
+2015-05-29  lrochette   Fixed Issue #32: added code to delete configuration.
 2015-04-02  vijaybandari  Use the plugin directory setting instead of the dataDirectory
 2015-02-27  lrochette   Added a moveJobs option to move jobs from old plugin version to the new one
 2014-12-18  lrochette   JSON lib was missing in Initialization
