@@ -55,7 +55,7 @@ if ($configure != undef) {
               "guice-assistedinject.jar", "guice.jar",
               "annotations.jar");
 	foreach $file (@jars) {
-		printf(FILE '    <pathelement location="%s/$[/myProject/projectName]/lib/%s"/>
+		printf(FILE '    <pathelement location="%s/$[/plugins/EC-Admin/projectName]/lib/%s"/>
 ', $ENV{COMMANDER_PLUGINS}, $file);
     }
 
