@@ -5,8 +5,9 @@
 
   <!-- Plugin-specific properties -->
   <property name="pluginKey" value="EC-Admin" />
-  <property name="pluginVersion" value="2.9.1.287" />
+  <property name="pluginVersion" value="2.9.2.290" />
 
   
   <import file="/opt/electriccloud/CommanderSDK/build/buildTargets.xml" />
+<property name="filesToCopy.extras" value="lib/*.jar" />
 </project>

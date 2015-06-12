@@ -68,7 +68,21 @@ if ($configure != undef) {
 printf(FILE 
 '
   <import file="$[SDKpath]/build/buildTargets.xml" />
-</project>'
+');
+
+#
+# include extra files
+my $extraFiles = getP("/projects/$[Project]/filesToCopy");
+if ($extraFiles) {
+	printf(FILE
+'<property name="filesToCopy.extras" value="%s" />
+', $extraFiles);
+}
+
+
+printf(FILE 
+'</project>
+'
 );
 
 close(FILE);
