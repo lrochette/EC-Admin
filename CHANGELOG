@@ -1,4 +1,5 @@
 2015-06-12 System Administrator <lrochette@electric-cloud.com>
+  * 2.9.2.292: Include the lib directory for configuration management
   * 2.9.1.287: Fix ec_setup expansion
 
 2015-05-29 System Administrator <lrochette@electric-cloud.com>
