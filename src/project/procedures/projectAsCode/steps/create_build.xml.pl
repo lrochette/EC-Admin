@@ -63,12 +63,7 @@ if ($configure != undef) {
   </path>
   <property name="gwt.path.extras" value="extras" />'
 	);
-  }
-  
-printf(FILE 
-'
-  <import file="$[SDKpath]/build/buildTargets.xml" />
-');
+}
 
 #
 # include extra files
@@ -78,6 +73,14 @@ if ($extraFiles) {
 '<property name="filesToCopy.extras" value="%s" />
 ', $extraFiles);
 }
+
+
+printf(FILE 
+'
+  <import file="$[SDKpath]/build/buildTargets.xml" />
+');
+
+
 
 
 printf(FILE 
