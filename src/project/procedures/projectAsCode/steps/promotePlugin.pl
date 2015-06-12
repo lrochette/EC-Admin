@@ -1,7 +1,19 @@
-$[/myProject/scripts/perlHeader]
+#############################################################################
+#
+# Copyright 2013-2015 Electric-Cloud Inc.
+#
+#############################################################################
+use strict;
+use English;
+use ElectricCommander;
+$| = 1;
+
+
+# Create a single instance of the Perl access to ElectricCommander
+my $ec = new ElectricCommander({debug=>1});
 
 #
-# promotePlugin PAI does not support JSON format
+# promotePlugin API does not support JSON format
 
 my $plugin="$[/myJob/pluginName]";
 my $version="$[/myJob/Version]";

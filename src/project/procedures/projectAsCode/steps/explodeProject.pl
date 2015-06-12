@@ -105,6 +105,7 @@ my $projectPropertySheet=$projectXml->findnodes('/exportedData/project/propertyS
 my $ec_setup = $projectXml->ownerDocument->createElement('property');
 $ec_setup->appendTextChild('propertyName',"ec_setup");
 $ec_setup->appendTextChild('value',"PLACEHOLDER");
+$ec_setup->appendTextChild('expandable',"0");
 $projectPropertySheet->[0]->appendChild($ec_setup);
 my $ecSetupFile = "project/ec_setup.pl";
 my $setupContent = $projectXml->find('/exportedData/project/propertySheet/property[propertyName="ec_setup"]/value')->string_value;

@@ -1,16 +1,12 @@
+2015-06-12 System Administrator <lrochette@electric-cloud.com>
+  * 2.9.1.287: Fix ec_setup expansion
+
 2015-05-29 System Administrator <lrochette@electric-cloud.com>
   * 2.9.0.286: Fixed Issue #32: added code to delete configuration in projectAsCode.
 
-2015-05-29 System Administrator <lrochette@electric-cloud.com>
-  * 2.9.0.279: Fixed Issue #32: added code to delete configuration.
-
 2015-05-27 System Administrator <lrochette@electric-cloud.com>
   * 2.8.2.278: Fixed Issue #35: allow custom timeout in deleteObjects
-
-2015-05-27 System Administrator <lrochette@electric-cloud.com>
   * 2.8.1.277: Fixed Issue #30
-
-2015-05-27 System Administrator <lrochette@electric-cloud.com>
   * 2.8.1.273: Added parameter to prevent exported project file deletion
 
 2015-05-25 System Administrator <lrochette@electric-cloud.com>
@@ -18,8 +14,6 @@
 
 2015-05-21 System Administrator <lrochette@electric-cloud.com>
   * 2.7.3.265: Fixed Issue #29 in deleteObjects
-
-2015-05-21 System Administrator <lrochette@electric-cloud.com>
   * 2.7.2.264: Fixed issue with network path on Windows for saveAllObjects
 
 2015-05-14 System Administrator <lrochette@electric-cloud.com>
@@ -27,15 +21,7 @@
 
 2015-04-23 System Administrator <lrochette@electric-cloud.com>
   * 2.7.0.262: Fixed Issue #12: jobCleanup_byResult now supports local workspace
-
-2015-04-23 System Administrator <lrochette@electric-cloud.com>
-  * 2.7.0.261: -version 2.6.0   + Fixed changeBannerColor for 5.4
-
-2015-04-22 System Administrator <lrochette@electric-cloud.com>
-  * 2.6.0.260: Fixed changeBannerColor for 5.4
-
-2015-04-22 System Administrator <lrochette@electric-cloud.com>
-  * 2.6.0.259: Fixed changeBannerColor for 5.4
+  * 2.7.0.261: Fixed changeBannerColor for 5.4
 
 2015-04-09 System Administrator <lrochette@electric-cloud.com>
   * 2.5.9.258: Replace some findObjects by countObjects to get faster results in performanceMetrics
@@ -45,8 +31,6 @@
 
 2015-03-12 System Administrator <lrochette@electric-cloud.com>
   * 2.5.7.256: Skip down resources in performanceMetrics
-
-2015-03-12 System Administrator <lrochette@electric-cloud.com>
   * 2.5.7.255: Fixed Issue #21: winDir should not be compulsory for subJC_deleteWorkspace
 
 2015-03-05 System Administrator <lrochette@electric-cloud.com>
