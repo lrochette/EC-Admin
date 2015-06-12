@@ -4373,6 +4373,9 @@ if ( $promoteAction eq 'promote' ) {
 					&lt;/ul&gt;
 				Once the procedures and steps have been created, they will not be overwritten so it's safe to modify them to acoomodate your own needs.
 				&lt;/dd&gt;
+
+				&lt;dt&gt;&lt;b&gt;filesToCopy:&lt;/b&gt;&lt;/dt&gt;
+				&lt;dd&gt;This property will indicate to the ant plugin builder to add files and directories to your jar file. It will create an entry for the filesToCopy.extras in your build.xml. For example, EC-Admin includes lib/*.jar that is used to manage the configurations required for the credentials.&lt;/dd&gt;
 			&lt;/dl&gt;
 
 		&lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; EC-Admin is released on 
@@ -4522,7 +4525,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>292</value>
+        <value>293</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
