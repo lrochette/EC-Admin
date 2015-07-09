@@ -54,9 +54,20 @@ if ($configure != undef) {
     		  "gwtp-all-0.8-PATCH5.jar", "javax.inject.jar", 
               "guice-assistedinject.jar", "guice.jar",
               "annotations.jar");
+
+	# check that we are running version 5.x or later
+	my ($success, $xPath) = InvokeCommander("SuppressLog", "getVersions");
+	my $version=$xPath->{responses}->[0]->{serverVersion}->{version};
+	printf("%s\n",$version);
+    my $libDir="";
+	if (compareVersion($version, "5.0") < 0) {
+    	$libDir="lib";
+    } else {
+    	$libDir="lib5"
+    }          
 	foreach $file (@jars) {
-		printf(FILE '    <pathelement location="%s/$[/plugins/EC-Admin/projectName]/lib/%s"/>
-', $ENV{COMMANDER_PLUGINS}, $file);
+		printf(FILE '    <pathelement location="%s/$[/plugins/EC-Admin/projectName]/%s/%s"/>
+', $ENV{COMMANDER_PLUGINS}, $libDir, $file);
     }
 
 	printf(FILE '

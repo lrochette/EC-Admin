@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.9.2.294</version>
+  <version>2.9.3.295</version>
   <label>EC-Admin</label>
-  <description>A set of administrative tasks to help manage your server.
-2015-07-09 admin New libs for SDK5</description>
+  <description>A set of administrative tasks to help manage your server.</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>
