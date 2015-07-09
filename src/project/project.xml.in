@@ -4098,7 +4098,7 @@ but
         <propertyName>filesToCopy</propertyName>
         <description>A list of extra files and directories to add to the plugin</description>
         <expandable>1</expandable>
-        <value>lib/*.jar</value>
+        <value>lib/*.jar,lib5/*.jar</value>
       </property>
       <property>
         <propertyName>help</propertyName>
@@ -4675,7 +4675,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>295</value>
+        <value>296</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
