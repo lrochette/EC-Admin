@@ -10,7 +10,7 @@ if ($osIsWindows) {
 }  
 my $file="$wkSpace/$[/myJob/directoryName]/plugin.$[/myJob/jobId]/META-INF/project.xml";
 
-$ec->export($file, {path=> "/projects/" . $project, relocatable => "true"});
+$ec->export($file, {path=> "/projects/" . $project, relocatable => "true", withNotifiers => "true"});
 
 $[/myProject/scripts/perlLib]
 

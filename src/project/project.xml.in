@@ -2180,6 +2180,56 @@
               </property>
             </propertySheet>
           </property>
+          <property>
+            <propertyName>234209</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1882337</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1882337</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2015-07-10 02:01:02</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
         </propertySheet>
       </property>
       <property>
@@ -4675,7 +4725,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>296</value>
+        <value>297</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -4782,6 +4832,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.9.4
+  +  Added --withNotifiers option when exporting in createPluginFromProject
+
 - version 2.9.3
   + added libraries for version 5.x for projectAsCode
 
@@ -5057,7 +5110,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.9.3</value>
+        <value>2.9.4</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
@@ -6460,6 +6513,7 @@ OBSOLETE: being replaced by projectAsCode. Keeping it in EC-Admin for current us
 
 Changelog:
 --------------
+2015-07-11  lrochette   Added --withNotifiers option when exporting the project
 2015-02-27  lrochette   Added a moveJobs option to move jobs from old plugin version to the new one
 2014-06-18  lrochette   Added a hook to allow actions to be taken when the plugin changes state
 2014-05-08  lrochette   Added feature to save plugin as an artifact version
