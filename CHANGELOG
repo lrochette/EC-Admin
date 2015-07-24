@@ -83,7 +83,7 @@ repository servers
   * 2.3.0.205: Added ntest for scripts PS
   * 2.3.0.200: jobsCleanup now supports local workspace
 
-2015-12-30 System Administrator <lrochette@electric-cloud.com>
+2014-12-30 System Administrator <lrochette@electric-cloud.com>
   * 2.2.4.199: Fix issue#1 about ec_reportData
 
 2014-12-18 System Administrator <lrochette@electric-cloud.com>
