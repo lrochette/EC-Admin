@@ -1,3 +1,6 @@
+2015-08-11 System Administrator <lrochette@electric-cloud.com>
+  * 2.10.0.298: Fixed changeBanner for ElectricFlow 6.0
+
 2015-07-11 System Administrator <lrochette@electric-cloud.com>
   * 2.9.4.297:  Added --withNotifiers option when exporting in createPluginFromProject
 
