@@ -88,7 +88,7 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 		            </tr>
 		            <tr>
 		                <td>logoFile</td>
-		                <td>The path on the Commander server to upload your own logo. If this value is not blank it will overwritten the logo paremeter above.</td>
+		                <td>The path on the Commander server to upload your own logo. If this value is not blank it will overwritten the logo parameter above.</td>
 		            </tr>
 		            <tr>
 		                <td>webResource</td>
