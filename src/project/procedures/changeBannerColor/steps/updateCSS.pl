@@ -5,6 +5,13 @@ my $color=lc("$[color]");
 $color="#000000" if ($color eq "default");
 
 my $cssFile= "$ENV{COMMANDER_HOME}/apache/htdocs/commander/lib/styles/StdFrame.css";
+
+# check that we are running version 6.x or later
+my $version=getVersion();
+printf("%s\n",$version);
+if (compareVersion($version, "6.0") >= 0) {
+  $cssFile= "$ENV{COMMANDER_HOME}/apache/htdocs/commander/styles/StdFrame.css"; 
+}
 copy($cssFile,"${cssFile}_$[/timestamp YYYY-MM-dd]") or die "Copy failed: $!";
 
 open(my $FH, "< $cssFile") || die ("Cannot open $cssFile\n");

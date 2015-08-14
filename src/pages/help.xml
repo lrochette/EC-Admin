@@ -96,6 +96,14 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 		            </tr>
 		        </tbody>
 		    </table>
+		    <p><b>Note:</b> if you run your server and agent as different user (as recommended), the agent won't be able to modify the following files:</p>
+		    <ul>
+		    	<li>INSTALL_DIR/apache/htdocs/commander/images/logo.gif</li>
+		    	<li>INSTALL_DIR/apache/htdocs/commander/lib/images/frame_bannerBg.gif (version 4.x only)</li>
+		    	<li>INSTALL_DIR/apache/htdocs/commander/lib/styles/StdFrame.css (version 5.4 and later)</li>
+		    </ul>
+		    <p>Those file permissions need to be opened so the agent user can modify them.</p>
+
 			<img src="../../plugins/@PLUGIN_KEY@/images/help/changeBannerColor.png" 
 				 alt="changeBannerColor parameters" />
 			<p>will produce</p>

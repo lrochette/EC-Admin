@@ -33,8 +33,7 @@ my $fileProjectName="Default";
 my $pName="Default";
 
 # check that we are running version 5.x or later
-($success, $xPath) = InvokeCommander("SuppressLog", "getVersions");
-my $version=$xPath->{responses}->[0]->{serverVersion}->{version};
+my $version=getVersion();
 printf("%s\n",$version);
 if (compareVersion($version, "5.0") < 0) {
   $ec->setProperty("summary", "Version 5.0 or greater is required to save Deploy objects");

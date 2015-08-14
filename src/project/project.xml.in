@@ -16,12 +16,12 @@
               <property>
                 <propertyName>image</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/1909939/images/custom483bb28814f023f53f71.png</value>
+                <value>/commander/jobSteps/1914406/images/custom2c47210814f21244e291.png</value>
               </property>
               <property>
                 <propertyName>link</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/1909939/Performance Report.html</value>
+                <value>/commander/jobSteps/1914406/Performance Report.html</value>
               </property>
             </propertySheet>
           </property>
@@ -2630,6 +2630,56 @@
               </property>
             </propertySheet>
           </property>
+          <property>
+            <propertyName>238486</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1914406</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>1914406</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2015-08-12 02:00:55</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
         </propertySheet>
       </property>
       <property>
@@ -4652,6 +4702,14 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1&lt;/p&gt;
 		            &lt;/tr&gt;
 		        &lt;/tbody&gt;
 		    &lt;/table&gt;
+		    &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; if you run your server and agent as different user (as recommended), the agent won't be able to modify the following files:&lt;/p&gt;
+		    &lt;ul&gt;
+		    	&lt;li&gt;INSTALL_DIR/apache/htdocs/commander/images/logo.gif&lt;/li&gt;
+		    	&lt;li&gt;INSTALL_DIR/apache/htdocs/commander/lib/images/frame_bannerBg.gif (version 4.x only)&lt;/li&gt;
+		    	&lt;li&gt;INSTALL_DIR/apache/htdocs/commander/lib/styles/StdFrame.css (version 5.4 and later)&lt;/li&gt;
+		    &lt;/ul&gt;
+		    &lt;p&gt;Those file permissions need to be opened so the agent user can modify them.&lt;/p&gt;
+
 			&lt;img src="../../plugins/@PLUGIN_KEY@/images/help/changeBannerColor.png" 
 				 alt="changeBannerColor parameters" /&gt;
 			&lt;p&gt;will produce&lt;/p&gt;
@@ -5125,7 +5183,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>298</value>
+        <value>299</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
