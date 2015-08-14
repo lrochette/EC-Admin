@@ -38,3 +38,4 @@ open(my $FH, "> $cssFile") || die ("Cannot open $cssFile\n");
 print $FH @out;
 close($FH);
 
+$[/myProject/scripts/perlLibJSON]
