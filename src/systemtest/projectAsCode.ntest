@@ -34,7 +34,7 @@ ntest "pac_procedures", {}, sub {
 # Test required properties are present
 #-------------------------------------------------------------------------------
 ntest "pac_properties", {}, sub {
-  @propList = qw (
+  my @propList = (
 	"pac_configurations/cgi-bin/jobMonitor.cgi",
 	"pac_configurations/cgi-bin/plugin.cgi",
 	"pac_configurations/java/ConfigurationList.java",
@@ -47,8 +47,8 @@ ntest "pac_properties", {}, sub {
 	"pac_configurations/ui_forms/createConfigForm",
         "pac_configurations/ui_forms/editConfigForm"
   );
-  foreach $prop in (@propList) {
-    assetOK($::N->getProperty($prop, {projectName => $pluginName), "Could not find property $prop");
+  foreach my $prop (@propList) {
+    assertOK($::N->getProperty($prop, {expand => 0, projectName => $pluginName}), "Could not find property $prop");
   }
 };
 
