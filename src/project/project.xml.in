@@ -4636,6 +4636,7 @@ what it is now.&lt;/p&gt;
 			&lt;li&gt;&lt;a href="#perf"&gt;Performance metrics&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#license"&gt;License Logger&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#postp"&gt;postp debugger helper&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#comm"&gt;Communication&lt;/a&gt;&lt;/li&gt;
 		&lt;/ul&gt;
 
 		&lt;h2&gt;&lt;a name="installation"&gt;&lt;/a&gt;Installation&lt;/h2&gt;
@@ -4705,8 +4706,9 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1&lt;/p&gt;
 		    &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; if you run your server and agent as different user (as recommended), the agent won't be able to modify the following files:&lt;/p&gt;
 		    &lt;ul&gt;
 		    	&lt;li&gt;INSTALL_DIR/apache/htdocs/commander/images/logo.gif&lt;/li&gt;
-		    	&lt;li&gt;INSTALL_DIR/apache/htdocs/commander/lib/images/frame_bannerBg.gif (version 4.x only)&lt;/li&gt;
-		    	&lt;li&gt;INSTALL_DIR/apache/htdocs/commander/lib/styles/StdFrame.css (version 5.4 and later)&lt;/li&gt;
+		    	&lt;li&gt;INSTALL_DIR/apache/htdocs/commander/lib/images/frame_bannerBg.gif (version 4.x and later)&lt;/li&gt;
+		    	&lt;li&gt;INSTALL_DIR/apache/htdocs/commander/lib/styles/StdFrame.css (version 5.4 )&lt;/li&gt;
+		    	&lt;li&gt;INSTALL_DIR/apache/htdocs/commander/styles/StdFrame.css (version 6.0 and later)&lt;/li&gt;
 		    &lt;/ul&gt;
 		    &lt;p&gt;Those file permissions need to be opened so the agent user can modify them.&lt;/p&gt;
 
@@ -5153,6 +5155,9 @@ properties can be set up:&lt;/p&gt;
 		&lt;h1&gt;&lt;a name="postp"&gt;&lt;/a&gt;postp debugger helper&lt;/h1&gt;
 		&lt;p&gt;The debugPostp is a simple procedure to help you debug with postp. Traditionally you would call postp from the command line with the jobStepId of the faulty postp and adding some additional option to see details. This new procedure does that for you on Linux and Windows, you just have to pass the jobStepId as a parameter.&lt;/p&gt;
 
+		&lt;h1&gt;&lt;a name="comm"&gt;&lt;/a&gt;Communication&lt;/h1&gt;
+		&lt;p&gt;The sendAlert is a simple procedure to send a message to all registered users with an email address attached to the account. You can format your email in HTML by encapsulating it in a &amp;lt;html&amp;gt; tag.&lt;/p&gt;
+
 		&lt;h1&gt;Contact authors&lt;/h1&gt; 
 		&lt;dl&gt;
 			&lt;dt&gt;License Logger&lt;/dt&gt;
@@ -5183,7 +5188,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>300</value>
+        <value>301</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -5290,6 +5295,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.11.0
+  + Added sendAlert (Issue #25)
+
 - version 2.10.0
   + Fixed changeBanner for version 6.0
 
@@ -5571,7 +5579,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.10.0</value>
+        <value>2.11.0</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
@@ -12507,6 +12515,12 @@ Changelog:
             </property>
           </propertySheet>
         </property>
+        <property>
+          <propertyName>ec_parameterForm</propertyName>
+          <description/>
+          <expandable>1</expandable>
+          <value>PLACEHOLDER</value>
+        </property>
       </propertySheet>
       <formalParameter>
         <formalParameterName>config</formalParameterName>
@@ -12517,16 +12531,8 @@ Changelog:
         <type>entry</type>
       </formalParameter>
       <formalParameter>
-        <formalParameterName>html</formalParameterName>
-        <defaultValue>true</defaultValue>
-        <description/>
-        <expansionDeferred>0</expansionDeferred>
-        <required>0</required>
-        <type>checkbox</type>
-      </formalParameter>
-      <formalParameter>
         <formalParameterName>subject</formalParameterName>
-        <defaultValue>ElectricCommander ALERT:</defaultValue>
+        <defaultValue>ElectricFlow Alert:</defaultValue>
         <description>Subject of the email alert to send to ALL users</description>
         <expansionDeferred>0</expansionDeferred>
         <required>1</required>
@@ -12541,7 +12547,7 @@ Changelog:
         <type>textarea</type>
       </formalParameter>
       <step>
-        <stepName>sendEmail</stepName>
+        <stepName>sendAlert</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>

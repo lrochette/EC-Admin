@@ -30,6 +30,7 @@ what it is now.</p>
 			<li><a href="#perf">Performance metrics</a></li>
 			<li><a href="#license">License Logger</a></li>
 			<li><a href="#postp">postp debugger helper</a></li>
+			<li><a href="#comm">Communication</a></li>
 		</ul>
 
 		<h2><a name="installation"></a>Installation</h2>
@@ -99,8 +100,9 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 		    <p><b>Note:</b> if you run your server and agent as different user (as recommended), the agent won't be able to modify the following files:</p>
 		    <ul>
 		    	<li>INSTALL_DIR/apache/htdocs/commander/images/logo.gif</li>
-		    	<li>INSTALL_DIR/apache/htdocs/commander/lib/images/frame_bannerBg.gif (version 4.x only)</li>
-		    	<li>INSTALL_DIR/apache/htdocs/commander/lib/styles/StdFrame.css (version 5.4 and later)</li>
+		    	<li>INSTALL_DIR/apache/htdocs/commander/lib/images/frame_bannerBg.gif (version 4.x and later)</li>
+		    	<li>INSTALL_DIR/apache/htdocs/commander/lib/styles/StdFrame.css (version 5.4 )</li>
+		    	<li>INSTALL_DIR/apache/htdocs/commander/styles/StdFrame.css (version 6.0 and later)</li>
 		    </ul>
 		    <p>Those file permissions need to be opened so the agent user can modify them.</p>
 
@@ -546,6 +548,9 @@ properties can be set up:</p>
 
 		<h1><a name="postp"></a>postp debugger helper</h1>
 		<p>The debugPostp is a simple procedure to help you debug with postp. Traditionally you would call postp from the command line with the jobStepId of the faulty postp and adding some additional option to see details. This new procedure does that for you on Linux and Windows, you just have to pass the jobStepId as a parameter.</p>
+
+		<h1><a name="comm"></a>Communication</h1>
+		<p>The sendAlert is a simple procedure to send a message to all registered users with an email address attached to the account. You can format your email in HTML by encapsulating it in a &lt;html&gt; tag.</p>
 
 		<h1>Contact authors</h1> 
 		<dl>

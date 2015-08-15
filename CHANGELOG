@@ -1,3 +1,6 @@
+2015-08-15 System Administrator <lrochette@electric-cloud.com>
+  * 2.11.0.301: Added sendAlert (Issue #25)
+
 2015-08-14 System Administrator <lrochette@electric-cloud.com>
   * 2.10.0.300: Path to css changed in 6.0
 
