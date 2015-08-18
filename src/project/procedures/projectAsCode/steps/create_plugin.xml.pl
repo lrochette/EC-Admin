@@ -46,7 +46,12 @@ printf(FILE "  <author>%s</author>\n", $author);
 printf(FILE "  <authorUrl>mailto:%s</authorUrl>\n", $email);
 printf(FILE "\n");
 
-printf(FILE "  <commander-version min=\"4.1\"/>\n");
+# Assigned minimum version to match server version
+my $version=getVersion();
+$version =~ m/^(\d+\.\d+).*/;
+$version = $1;
+
+printf(FILE "  <commander-version min=\"%s\"/>\n", $version);
 printf(FILE "\n");
 
 #
