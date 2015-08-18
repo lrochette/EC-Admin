@@ -1,4 +1,7 @@
 2015-08-18 System Administrator <lrochette@electric-cloud.com>
+  * 2.12.1.303: Fixed issue #39 attachParameter syntax change in EF 6.0
+
+2015-08-18 System Administrator <lrochette@electric-cloud.com>
   * 2.12.0.302: Set minimum version for plugin for current server version
 
 2015-08-15 System Administrator <lrochette@electric-cloud.com>

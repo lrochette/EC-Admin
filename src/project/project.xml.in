@@ -5188,7 +5188,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>302</value>
+        <value>303</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -5295,6 +5295,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.12.1
+  + Fixed issue #39 attachParameter syntax change in EF 6.0
+
 - version 2.12.0
   + Set minimum version for plugin for current server version
 
@@ -5582,7 +5585,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.12.0</value>
+        <value>2.12.1</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
