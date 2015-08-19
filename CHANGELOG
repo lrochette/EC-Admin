@@ -1,3 +1,6 @@
+2015-08-19 System Administrator <lrochette@electric-cloud.com>
+  * 2.12.1.304: Fix Issue #39: attachParameter has changed syntax in 6.0
+
 2015-08-18 System Administrator <lrochette@electric-cloud.com>
   * 2.12.1.303: Fixed issue #39 attachParameter syntax change in EF 6.0
 

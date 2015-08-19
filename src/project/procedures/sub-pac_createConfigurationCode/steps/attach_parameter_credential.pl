@@ -20,7 +20,7 @@ if (compareVersion($version, "6.0")>=0) {
             	procedureName=>$proc, 
                 stepName=>$step
             } );
-else {
+} else {
 	($ok, $json, $errMSg, $errCode) =
 		InvokeCommander("IgnoreError", 'attachParameter', $project, $proc, $step, "credential");
 }
