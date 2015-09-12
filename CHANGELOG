@@ -1,3 +1,6 @@
+2015-09-12 System Administrator <lrochette@electric-cloud.com>
+  * 2.12.2.305: Fix #41: getP missing
+
 2015-08-19 System Administrator <lrochette@electric-cloud.com>
   * 2.12.1.304: Fix Issue #39: attachParameter has changed syntax in 6.0
 

@@ -25,7 +25,6 @@ $::N->createProject("EC-Admin Management");
 # Test procedure present.
 #-------------------------------------------------------------------------------
 ntest "cleanup_procedures", {}, sub {
-	assertOK($::N->getProcedure($pluginName, "deleteObjects"), "procedure deleteObjects missing");
 	assertOK($::N->getProcedure($pluginName, "deleteWorkspaceOrphans"), "procedure deleteWorkspaceOrphans missing");
 	assertOK($::N->getProcedure($pluginName, "jobsCleanup"), "procedure jobsCleanup missing");
 	assertOK($::N->getProcedure($pluginName, "subJC_deleteWorkspace"), "procedure subJC_deleteWorkspace missing");

@@ -5,8 +5,8 @@
 #  Copyright 2013-2015 Electric-Cloud Inc.
 #
 #############################################################################use strict;
-use warnings;
-use ElectricCommander;
+$[/myProject/scripts/perlHeader]
+
 use DateTime;
 use POSIX;
 
@@ -27,8 +27,6 @@ if ($[maxObjects] < $[chunkSize]) {
 print "Chunk size: $[chunkSize]\nDays limit: $[daysLimit]\n"
     . "Max objects: $[maxObjects]\nObject type: $[objectType]\n"
     . "Poll interval: $interval" . "s\n\n";
-
-my $ec = new ElectricCommander;
 
 # Set the timeout to config value or 600 if not set
 my $defaultTimeout = getP("/server/EC-Admin/cleanup/config/timeout");
@@ -89,4 +87,7 @@ do {
 if ($numDeleted == 0) {
     $ec->setProperty("summary", "No $[objectType]s to delete");
 }
+
+$[/myProject/scripts/perlLib]
+
 
