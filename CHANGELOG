@@ -1,4 +1,7 @@
 2015-09-18 System Administrator <lrochette@electric-cloud.com>
+  * 2.13.0.307: Added property to allow to add plugin dependencies in projectAsCode
+
+2015-09-18 System Administrator <lrochette@electric-cloud.com>
   * 2.13.0.306: Added property to allow to add plugin dependencies in projectAsCode
 
 2015-09-12 System Administrator <lrochette@electric-cloud.com>
