@@ -26,12 +26,23 @@ ntest "checkProcedures", {}, sub {
 };
 
 #-------------------------------------------------------------------------------
+#  Load some old jobs
+#-------------------------------------------------------------------------------
+sub loadJobDO {
+  my $name=shift;
+
+  my $xpath= $::N->import({file=>$::gWorkingDirectory . "/data/cleanup/$name.xml", force=>1});
+  assertOK($xpath, "$name job import failed");
+}
+
+
+#-------------------------------------------------------------------------------
 # Issue #41: missing perlLib
 #-------------------------------------------------------------------------------
 ntest "Issue_41_missingGetP", {}, sub {
 
     # Load an old job
-    loadJob("error");
+    loadJobDO("error");
 
     # check the job exist: 210610
     my $xpath = $::N->getJobDetails("saveAllObjects_6038", {structureOnly =>1});
@@ -65,14 +76,5 @@ ntest "Issue_41_missingGetP", {}, sub {
     }
 };
 
-#-------------------------------------------------------------------------------
-#  Load some old jobs
-#-------------------------------------------------------------------------------
-sub loadJob {
-  my $name=shift;
-
-  my $xpath= $::N->import({file=>$::gWorkingDirectory . "/data/cleanup/$name.xml", force=>1});
-  assertOK($xpath, "$name job import failed");
-}
 
 1;

@@ -1,5 +1,14 @@
+#############################################################################
+#
+# Copyright 2014-2015 Electric-Cloud Inc.
+#
+#############################################################################
+
 $[/myProject/scripts/perlHeaderJSON]
 
+#############################################################################
+# Parameters
+#############################################################################
 my $project="$[Project]";
 my $author="$[Author]";
 my $email='$[Email]';
@@ -9,6 +18,8 @@ my $pluginName="$[/myJob/pluginName]";
 my $javaName="$[/myJob/javaName]";
 my $version="$[/myJob/Version]";
 my $description="$[/myJob/pluginDescription]";
+
+$DEBUG=1;
 
 if ($author eq "") {
    $author="Electric Cloud";
@@ -52,6 +63,19 @@ $version =~ m/^(\d+\.\d+).*/;
 $version = $1;
 
 printf(FILE "  <commander-version min=\"%s\"/>\n", $version);
+
+#Add line with plugin dependencies
+my $pluginDep=getP("/projects/$[Project]/pluginDependencies");
+#printf("Plugin dependencies: %s\n", $pluginDep) if ($DEBUG);
+if ($pluginDep) {
+  printf("Processing plugin dependencies\n");
+	foreach my $line (split (/\n/, $pluginDep)) {
+    	#printf("Line: %s\n", $line) if ($DEBUG);
+    	my($plug, $vers)=split(/\s*:\s*/, $line);
+    	printf(FILE "  <depends min=\"$vers\">$plug</depends>\n");
+      printf("  $plug: $vers\n");
+    }
+}
 printf(FILE "\n");
 
 #

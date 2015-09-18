@@ -430,6 +430,8 @@ if ( $promoteAction eq 'promote' ) {
 
 				<dt><b>filesToCopy:</b></dt>
 				<dd>This property will indicate to the ant plugin builder to add files and directories to your jar file. It will create an entry for the filesToCopy.extras in your build.xml. For example, EC-Admin includes lib/*.jar that is used to manage the configurations required for the credentials.</dd>
+				<dt><b>pluginDependencies:</b><dt>
+				<dd>This property allows you to add plugin dependencies that need to be satisfied before you ca install the plugin. Put a a line per dependency with each line being PLUGIN:VERSION</dd>
 			</dl>
 
 		<p><b>Note:</b> EC-Admin is released on 

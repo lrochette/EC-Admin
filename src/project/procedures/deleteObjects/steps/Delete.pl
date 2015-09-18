@@ -4,7 +4,8 @@
 #                   than deleteJobs for users with a lot to delete.
 #  Copyright 2013-2015 Electric-Cloud Inc.
 #
-#############################################################################use strict;
+#############################################################################
+use strict;
 $[/myProject/scripts/perlHeader]
 
 use DateTime;
