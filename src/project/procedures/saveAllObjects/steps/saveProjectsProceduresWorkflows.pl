@@ -67,8 +67,10 @@ foreach my $node ($xPath->findnodes('//project')) {
     my $fileProcedureName=safeFilename($procName);
     printf("  Saving Procedure: %s\n", $procName);
  
+    mkpath("$path/Projects/$fileProjectName/Procedures/$fileProcedureName");
+    chmod(0777, "$path/Projects/$fileProjectName/Procedures/$fileProcedureName");
  	my ($success, $res, $errMsg, $errCode) = 
-      InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Procedures/$fileProcedureName".".xml",
+      InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Procedures/$fileProcedureName/$fileProcedureName".".xml",
   					{ 'path'=> "/projects/$pName/procedures/$procName", 
                                           'relocatable' => 1,
                                           'withAcls'    => 1,
