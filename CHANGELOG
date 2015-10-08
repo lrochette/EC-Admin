@@ -1,3 +1,6 @@
+2015-10-08 Laurent Rochette <lrochette@gmail.com>
+  * 2.14.0.308: Fix #42 adding step export to saveAllObjects
+
 2015-09-18 System Administrator <lrochette@electric-cloud.com>
   * 2.13.0.307: Added property to allow to add plugin dependencies in projectAsCode
 

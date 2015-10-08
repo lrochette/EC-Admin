@@ -9,6 +9,17 @@
     </formElement> 
 
     <formElement> 
+        <label>Backup steps</label>    
+        <property>exportSteps</property> 
+        <documentation>Boolean to export Steps indivdually</documentation> 
+        <type>checkbox</type>    
+        <checkedValue>true</checkedValue> 
+        <uncheckedValue>false</uncheckedValue> 
+        <initiallyChecked>0</initiallyChecked> 
+        <value>false</value>    
+    </formElement> 
+
+    <formElement> 
         <label>Backup Resources</label>    
         <property>exportResources</property> 
         <documentation>Boolean to export Resources</documentation> 

@@ -12,10 +12,12 @@ $DEBUG=1;
 # Parameters
 #
 my $path='$[pathname]';
+my $exportSteps="$[exportSteps]";
 
 my $errorCount=0;
 my $projCount=0;
 my $procCount=0;
+my $stepCount=0;
 my $wkfCount=0;
 
 # Set the timeout to config value or 600 if not set
@@ -47,7 +49,7 @@ foreach my $node ($xPath->findnodes('//project')) {
                                           'withAcls'    => 1,
                                           'withNotifiers'=>1});
   if (! $success) {
-    printf("  Error exporting %s", $pName);
+    printf("  Error exporting project %s", $pName);
     printf("  %s: %s\n", $errCode, $errMsg);
     $errorCount++;
   } else {
@@ -73,14 +75,45 @@ foreach my $node ($xPath->findnodes('//project')) {
                                           'withNotifiers'=>1});
     
     if (! $success) {
-      printf("  Error exporting %s", $procName);
+      printf("  Error exporting procedure %s", $procName);
       printf("  %s: %s\n", $errCode, $errMsg);
       $errorCount++;
     }
     else {
       $procCount++;
     }
-  }
+    #
+    # Save steps
+    #
+    if ($exportSteps) {
+      mkpath("$path/Projects/$fileProjectName/Procedures/$fileProcedureName/Steps");
+      chmod(0777, "$path/Projects/$fileProjectName/Procedures/$fileProcedureName/Steps");
+      
+      my($success, $stepNodes) = InvokeCommander("SuppressLog", "getSteps", $pName, $procName);
+      foreach my $step ($stepNodes->findnodes('//step')) {
+        my $stepName=$step->{'stepName'};
+        my $fileStepName=safeFilename($stepName);
+        printf("    Saving Step: %s\n", $stepName);
+
+ 	    my ($success, $res, $errMsg, $errCode) = 
+           InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Procedures/$fileProcedureName/Steps/$fileStepName".".xml",
+  					{ 'path'=> "/projects/$pName/procedures/$procName/steps/$stepName", 
+                                          'relocatable' => 1,
+                                          'withAcls'    => 1,
+                                          'withNotifiers'=>1});
+    
+        if (! $success) {
+          printf("  Error exporting step %s", $stepName);
+          printf("  %s: %s\n", $errCode, $errMsg);
+          $errorCount++;
+        } else {
+          $stepCount++;
+        }
+
+      }  # step loop
+  
+    } # fi stepExport
+  }   # procedure loop
 
   #
   # Save workflow definitions
