@@ -1,3 +1,6 @@
+2015-10-11 Laurent Rochette <lrochette@gmail.com>
+  * 2.14.1.310: Fixed issue with artifactRepositorySynchronization
+
 2015-10-08 Laurent Rochette <lrochette@gmail.com>
   * 2.14.0.309: save procedure.xml in procedure directory
   * 2.14.0.308: Fix #42 adding step export to saveAllObjects

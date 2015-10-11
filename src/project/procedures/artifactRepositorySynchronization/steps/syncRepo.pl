@@ -30,7 +30,7 @@ use URI::Escape;
 $::gCommander = undef;
 $::gAM = undef;
 $::gFromRepositoryNames = "$[artifactRepositoryList]";
-@::gGavPatterns = split(",", "$[artifactRepositoryPattern]");
+@::gGavPatterns = split(",", "$[artifactVersionPattern]");
 $::gServer = undef;
 $::gUserAgent = createUserAgent();
 $::gHelp = 0;
