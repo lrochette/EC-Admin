@@ -1,3 +1,6 @@
+2015-10-16 Laurent Rochette <lrochette@gmail.com>
+  * 2.14.2.311: Fix #46 : ixed EC-Admin project reference issue in debugPostp
+
 2015-10-11 Laurent Rochette <lrochette@gmail.com>
   * 2.14.1.310: Fixed issue with artifactRepositorySynchronization
 

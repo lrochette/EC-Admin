@@ -43,5 +43,5 @@ $ec->setProperty("/myJob/postpCommand", $postpCommand);
 
 
 
-$[/projects/EC-Admin/scripts/perlLibJSON]
+$[/myProject/scripts/perlLibJSON]
 
