@@ -1,3 +1,6 @@
+2015-11-10 Laurent Rochette <lrochette@gmail.com>
+  * 2.14.3.312: Fixed #45, bad links in deleteWorkspaceOrphans
+
 2015-10-16 Laurent Rochette <lrochette@gmail.com>
   * 2.14.2.311: Fix #46 : ixed EC-Admin project reference issue in debugPostp
 

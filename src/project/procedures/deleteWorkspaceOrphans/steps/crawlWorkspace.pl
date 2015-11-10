@@ -112,6 +112,7 @@ sub getDirSize {
   opendir(D,"$dir") || return 0;
   foreach my $dirContent (grep(!/^\.\.?/,readdir(D))) {
      my $st=stat("$dir/$dirContent");
+     next if (!$st);	# skip incorrect links
      if (S_ISREG($st->mode)) {
        $size += $st->size;
      } elsif (S_ISDIR($st->mode)) {
