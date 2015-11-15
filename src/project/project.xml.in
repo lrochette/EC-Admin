@@ -3697,7 +3697,7 @@ with it to backup your projects on a regular basis.&lt;/p&gt;
 		&lt;p&gt;This set of procedures is to help around schedule enabling and disabling which is very useful when you want to perform maintenace on your server.&lt;/p&gt;
 
 		&lt;h2&gt;schedulesDisable&lt;/h2&gt;
-		&lt;p&gt;This procedure disables all the enabled schdules and optionaly saves the list in a property.&lt;/p&gt;
+		&lt;p&gt;This procedure disables all the enabled schedules and optionaly saves the list in a property.&lt;/p&gt;
 
 		 &lt;table class="grid"&gt;
 		    &lt;thead&gt;
@@ -3723,7 +3723,7 @@ with it to backup your projects on a regular basis.&lt;/p&gt;
 				 alt="schedulesDisable parameters" /&gt;
 
 		&lt;h2&gt;schedulesEnable&lt;/h2&gt;
-		&lt;p&gt;This procedure enables schdules passed in a property, typically saved by schedulesDisabke.&lt;/p&gt;
+		&lt;p&gt;This procedure enables schedules passed as a list in a property, typically saved by schedulesDisable.&lt;/p&gt;
 
 		 &lt;table class="grid"&gt;
 		    &lt;thead&gt;
@@ -3740,7 +3740,7 @@ with it to backup your projects on a regular basis.&lt;/p&gt;
 		        &lt;/tr&gt;
 		        &lt;tr&gt;
 		            &lt;td class='required'&gt;Schedule list property&lt;/td&gt;
-		            &lt;td&gt;Property path containing the list of schedules disabled.&lt;/td&gt;
+		            &lt;td&gt;Property path containing the list of disabled schedules.&lt;/td&gt;
 		        &lt;/tr&gt;
 		    &lt;/tbody&gt;
 		&lt;/table&gt;
@@ -3840,7 +3840,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>315</value>
+        <value>316</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>

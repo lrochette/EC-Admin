@@ -491,7 +491,7 @@ with it to backup your projects on a regular basis.</p>
 		<p>This set of procedures is to help around schedule enabling and disabling which is very useful when you want to perform maintenace on your server.</p>
 
 		<h2>schedulesDisable</h2>
-		<p>This procedure disables all the enabled schdules and optionaly saves the list in a property.</p>
+		<p>This procedure disables all the enabled schedules and optionaly saves the list in a property.</p>
 
 		 <table class="grid">
 		    <thead>
@@ -517,7 +517,7 @@ with it to backup your projects on a regular basis.</p>
 				 alt="schedulesDisable parameters" />
 
 		<h2>schedulesEnable</h2>
-		<p>This procedure enables schdules passed in a property, typically saved by schedulesDisabke.</p>
+		<p>This procedure enables schedules passed as a list in a property, typically saved by schedulesDisable.</p>
 
 		 <table class="grid">
 		    <thead>
@@ -534,7 +534,7 @@ with it to backup your projects on a regular basis.</p>
 		        </tr>
 		        <tr>
 		            <td class='required'>Schedule list property</td>
-		            <td>Property path containing the list of schedules disabled.</td>
+		            <td>Property path containing the list of disabled schedules.</td>
 		        </tr>
 		    </tbody>
 		</table>
