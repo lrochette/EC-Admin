@@ -5,7 +5,7 @@
 
   <!-- Plugin-specific properties -->
   <property name="pluginKey" value="EC-Admin" />
-  <property name="pluginVersion" value="2.14.3.312" />
+  <property name="pluginVersion" value="2.15.0.313" />
 
   <property name="filesToCopy.extras" value="lib/*.jar,lib5/*.jar" />
 
