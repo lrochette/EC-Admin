@@ -3694,7 +3694,7 @@ with it to backup your projects on a regular basis.&lt;/p&gt;
 		granularity you are requiring.&lt;/p&gt;
 
 		&lt;h1&gt;&lt;a name="schedules"&gt;&lt;/a&gt;Schedules&lt;/h1&gt;
-		&lt;p&gt;This set of procedures is to help around schedule enabling and disabling which is very useful when you want to perform maintenace on your server.&lt;/P&gt;
+		&lt;p&gt;This set of procedures is to help around schedule enabling and disabling which is very useful when you want to perform maintenace on your server.&lt;/p&gt;
 
 		&lt;h2&gt;schedulesDisable&lt;/h2&gt;
 		&lt;p&gt;This procedure disables all the enabled schdules and optionaly saves the list in a property.&lt;/p&gt;
@@ -3840,7 +3840,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>314</value>
+        <value>315</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>

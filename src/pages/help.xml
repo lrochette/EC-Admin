@@ -488,7 +488,7 @@ with it to backup your projects on a regular basis.</p>
 		granularity you are requiring.</p>
 
 		<h1><a name="schedules"></a>Schedules</h1>
-		<p>This set of procedures is to help around schedule enabling and disabling which is very useful when you want to perform maintenace on your server.</P>
+		<p>This set of procedures is to help around schedule enabling and disabling which is very useful when you want to perform maintenace on your server.</p>
 
 		<h2>schedulesDisable</h2>
 		<p>This procedure disables all the enabled schdules and optionaly saves the list in a property.</p>
