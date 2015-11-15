@@ -3217,7 +3217,7 @@ but
 &lt;body&gt;
     &lt;div class="help"&gt;
 		&lt;h1&gt;EC-Admin&lt;/h1&gt;
-&lt;p&gt;Plugin Version @PLUGIN_VERSION@&lt;/p&gt;
+		&lt;p&gt;Plugin Version @PLUGIN_VERSION@&lt;/p&gt;
     	&lt;hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" /&gt;
 
         &lt;p&gt;EC-Admin is a collection of administrative procedures to help you
@@ -3232,6 +3232,7 @@ what it is now.&lt;/p&gt;
 			&lt;li&gt;&lt;a href="#plugin"&gt;Plugins&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#artifacts"&gt;Artifacts management&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#backup"&gt;Object export and backup&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#schedules"&gt;Schedules&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#semaphore"&gt;Semaphore management&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#perf"&gt;Performance metrics&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#license"&gt;License Logger&lt;/a&gt;&lt;/li&gt;
@@ -3257,20 +3258,15 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1&lt;/p&gt;
 
 		&lt;p&gt;If you get an error with the passKey, use the "--force 1" option&lt;/p&gt;
 
-    &lt;p&gt;
-        IMPORTANT: For all parameter descriptions below, required
-        parameters are shown in &lt;span class="required"&gt;bold
-        italics&lt;/span&gt;.
-    &lt;/p&gt;
+	    &lt;p&gt;IMPORTANT: For all parameter descriptions below, required
+	        parameters are shown in &lt;span class="required"&gt;bold
+	        italics&lt;/span&gt;.&lt;/p&gt;
 
 		&lt;h1&gt;&lt;a name="look"&gt;&lt;/a&gt;Look and Feel&lt;/h1&gt;
 		&lt;h2&gt;changeBannerColor&lt;/h2&gt;
-		&lt;p&gt;If you work on multiple Commander servers like a development and a 
-			production instances, this procedure is for you. It allows you to change 
-			the color of the top banner and the logo to make it easier to identify your different 
-			servers. Feel free 
-			to &lt;a href="mailto:lrochette@electric-cloud.com"&gt;send me&lt;/a&gt; new ones if 
-			you have a more artistic touch than me. Or better
+		&lt;p&gt;If you work on multiple Commander servers like a development and a
+			production instances, this procedure is for you. It allows you to change the color of the top banner and the logo to make it easier to identify your different servers. Feel free 
+			to &lt;a href="mailto:lrochette@electric-cloud.com"&gt;send me&lt;/a&gt; new ones if you have a more artistic touch than me. Or better
 			push your changes to 
 			&lt;a href="https://github.com/electriccommunity/EC-Admin"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 
@@ -3697,6 +3693,60 @@ with it to backup your projects on a regular basis.&lt;/p&gt;
 		&lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; Use saveProjects or saveAllObjects depending on the
 		granularity you are requiring.&lt;/p&gt;
 
+		&lt;h1&gt;&lt;a name="schedules"&gt;&lt;/a&gt;Schedules&lt;/h1&gt;
+		&lt;p&gt;This set of procedures is to help around schedule enabling and disabling which is very useful when you want to perform maintenace on your server.&lt;/P&gt;
+
+		&lt;h2&gt;schedulesDisable&lt;/h2&gt;
+		&lt;p&gt;This procedure disables all the enabled schdules and optionaly saves the list in a property.&lt;/p&gt;
+
+		 &lt;table class="grid"&gt;
+		    &lt;thead&gt;
+		        &lt;tr&gt;
+		            &lt;th&gt;Parameter&lt;/th&gt;
+		            &lt;th&gt;Description&lt;/th&gt;
+		        &lt;/tr&gt;
+		    &lt;/thead&gt;
+
+		    &lt;tbody&gt;
+		        &lt;tr&gt;
+		            &lt;td class='required'&gt;Disable&lt;/td&gt;
+		            &lt;td&gt;If this option is not set, only report is done. No schedules are disabled.&lt;/td&gt;
+		        &lt;/tr&gt;
+		        &lt;tr&gt;
+		            &lt;td&gt;Schedule list property&lt;/td&gt;
+		            &lt;td&gt;Property path used by the step to save the list of schedules disabled. Can be used by schedulesEnable.&lt;/td&gt;
+		        &lt;/tr&gt;
+		    &lt;/tbody&gt;
+		&lt;/table&gt;
+
+		&lt;img src="../../plugins/@PLUGIN_KEY@/images/help/schedulesDisableParameters.png" 
+				 alt="schedulesDisable parameters" /&gt;
+
+		&lt;h2&gt;schedulesEnable&lt;/h2&gt;
+		&lt;p&gt;This procedure enables schdules passed in a property, typically saved by schedulesDisabke.&lt;/p&gt;
+
+		 &lt;table class="grid"&gt;
+		    &lt;thead&gt;
+		        &lt;tr&gt;
+		            &lt;th&gt;Parameter&lt;/th&gt;
+		            &lt;th&gt;Description&lt;/th&gt;
+		        &lt;/tr&gt;
+		    &lt;/thead&gt;
+
+		    &lt;tbody&gt;
+		        &lt;tr&gt;
+		            &lt;td class='required'&gt;Enable&lt;/td&gt;
+		            &lt;td&gt;If this option is not set, only report is done. No schedules are enabled.&lt;/td&gt;
+		        &lt;/tr&gt;
+		        &lt;tr&gt;
+		            &lt;td class='required'&gt;Schedule list property&lt;/td&gt;
+		            &lt;td&gt;Property path containing the list of schedules disabled.&lt;/td&gt;
+		        &lt;/tr&gt;
+		    &lt;/tbody&gt;
+		&lt;/table&gt;
+
+		&lt;img src="../../plugins/@PLUGIN_KEY@/images/help/schedulesEnableParameters.png" 
+				 alt="schedulesEnable parameters" /&gt;
 		&lt;h1&gt;&lt;a name="semaphore"&gt;&lt;/a&gt;Semaphore Management&lt;/h1&gt;
 
 		&lt;h2&gt;acquireSemaphore and releaseSemaphore:&lt;/h2&gt;
@@ -3790,7 +3840,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>313</value>
+        <value>314</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>

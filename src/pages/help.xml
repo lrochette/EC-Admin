@@ -11,7 +11,7 @@
 <body>
     <div class="help">
 		<h1>EC-Admin</h1>
-<p>Plugin Version @PLUGIN_VERSION@</p>
+		<p>Plugin Version @PLUGIN_VERSION@</p>
     	<hr style="margin-left: -10px; margin-top: 10px; height: 1px; width: 100%; color: #5981BD;" noshade="noshade" />
 
         <p>EC-Admin is a collection of administrative procedures to help you
@@ -26,6 +26,7 @@ what it is now.</p>
 			<li><a href="#plugin">Plugins</a></li>
 			<li><a href="#artifacts">Artifacts management</a></li>
 			<li><a href="#backup">Object export and backup</a></li>
+			<li><a href="#schedules">Schedules</a></li>
 			<li><a href="#semaphore">Semaphore management</a></li>
 			<li><a href="#perf">Performance metrics</a></li>
 			<li><a href="#license">License Logger</a></li>
@@ -51,20 +52,15 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 
 		<p>If you get an error with the passKey, use the "--force 1" option</p>
 
-    <p>
-        IMPORTANT: For all parameter descriptions below, required
-        parameters are shown in <span class="required">bold
-        italics</span>.
-    </p>
+	    <p>IMPORTANT: For all parameter descriptions below, required
+	        parameters are shown in <span class="required">bold
+	        italics</span>.</p>
 
 		<h1><a name="look"></a>Look and Feel</h1>
 		<h2>changeBannerColor</h2>
-		<p>If you work on multiple Commander servers like a development and a 
-			production instances, this procedure is for you. It allows you to change 
-			the color of the top banner and the logo to make it easier to identify your different 
-			servers. Feel free 
-			to <a href="mailto:lrochette@electric-cloud.com">send me</a> new ones if 
-			you have a more artistic touch than me. Or better
+		<p>If you work on multiple Commander servers like a development and a
+			production instances, this procedure is for you. It allows you to change the color of the top banner and the logo to make it easier to identify your different servers. Feel free 
+			to <a href="mailto:lrochette@electric-cloud.com">send me</a> new ones if you have a more artistic touch than me. Or better
 			push your changes to 
 			<a href="https://github.com/electriccommunity/EC-Admin">GitHub</a>.</p>
 
@@ -491,6 +487,60 @@ with it to backup your projects on a regular basis.</p>
 		<p><b>Note:</b> Use saveProjects or saveAllObjects depending on the
 		granularity you are requiring.</p>
 
+		<h1><a name="schedules"></a>Schedules</h1>
+		<p>This set of procedures is to help around schedule enabling and disabling which is very useful when you want to perform maintenace on your server.</P>
+
+		<h2>schedulesDisable</h2>
+		<p>This procedure disables all the enabled schdules and optionaly saves the list in a property.</p>
+
+		 <table class="grid">
+		    <thead>
+		        <tr>
+		            <th>Parameter</th>
+		            <th>Description</th>
+		        </tr>
+		    </thead>
+
+		    <tbody>
+		        <tr>
+		            <td class='required'>Disable</td>
+		            <td>If this option is not set, only report is done. No schedules are disabled.</td>
+		        </tr>
+		        <tr>
+		            <td>Schedule list property</td>
+		            <td>Property path used by the step to save the list of schedules disabled. Can be used by schedulesEnable.</td>
+		        </tr>
+		    </tbody>
+		</table>
+
+		<img src="../../plugins/@PLUGIN_KEY@/images/help/schedulesDisableParameters.png" 
+				 alt="schedulesDisable parameters" />
+
+		<h2>schedulesEnable</h2>
+		<p>This procedure enables schdules passed in a property, typically saved by schedulesDisabke.</p>
+
+		 <table class="grid">
+		    <thead>
+		        <tr>
+		            <th>Parameter</th>
+		            <th>Description</th>
+		        </tr>
+		    </thead>
+
+		    <tbody>
+		        <tr>
+		            <td class='required'>Enable</td>
+		            <td>If this option is not set, only report is done. No schedules are enabled.</td>
+		        </tr>
+		        <tr>
+		            <td class='required'>Schedule list property</td>
+		            <td>Property path containing the list of schedules disabled.</td>
+		        </tr>
+		    </tbody>
+		</table>
+
+		<img src="../../plugins/@PLUGIN_KEY@/images/help/schedulesEnableParameters.png" 
+				 alt="schedulesEnable parameters" />
 		<h1><a name="semaphore"></a>Semaphore Management</h1>
 
 		<h2>acquireSemaphore and releaseSemaphore:</h2>
