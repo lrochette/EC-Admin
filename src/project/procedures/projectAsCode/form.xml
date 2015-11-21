@@ -170,4 +170,15 @@
         <value>false</value> 
     </formElement>
 
+   <formElement> 
+        <label>Enable Change Tracking</label> 
+        <property>changeTracking</property> 
+        <documentation>A boolean to indicate if you want to enable changeTracking on the plugins. Option valid for Electric Flow 5.0 and later.</documentation> 
+        <type>checkbox</type> 
+        <checkedValue>true</checkedValue> 
+        <uncheckedValue>false</uncheckedValue> 
+        <initiallyChecked>0</initiallyChecked> 
+        <value>false</value> 
+    </formElement>
+
 </editor>
