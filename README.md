@@ -12,6 +12,7 @@ what it is now.</p>
 <li><a href="#plugin">Plugins</a></li>
 <li><a href="#artifacts">Artifacts management</a></li>
 <li><a href="#backup">Object export and backup</a></li>
+<li><a href="#schedules">Schedules</a></li>
 <li><a href="#semaphore">Semaphore management</a></li>
 <li><a href="#perf">Performance metrics</a></li>
 <li><a href="#license">License Logger</a></li>
@@ -24,29 +25,27 @@ what it is now.</p>
 
 <p>To install the plugin, use the "Install from File/URL" tab in the administration/Plugins or use the "installPlugin" API.</p>
 
-<p>To install on 4.0.x or or 4.1.x, import the EC_4.0.xml file. Be 
-			aware that some features are not present as the original project 
-			makes use of createJobStep() API which was introduced in 4.2.0:<br/>
-ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
+<p>To install on 4.0.x or or 4.1.x, import the EC_4.0.xml file. Be aware that some features are not present as the original project makes use of createJobStep() API which was introduced in 4.2.0:<br/>
+ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1.</p>
 
-<p>If you get an error with the passKey, use the "--force 1" option</p>
+<p>If you get an error with the passKey, use the "--force 1" option.</p>
 
 <p>IMPORTANT: For more details, consult the Help page after you have installed the plugin.</p>
 
 <h1><a name="look"></a>Look and Feel</h1>
 <h2>changeBannerColor</h2>
 <p>If you work on multiple Commander servers like a development and a 
-			production instances, this procedure is for you. It allows you to change 
-			the color of the top banner and the logo to make it easier to identify your different 
-			servers. Feel free 
-			to <a href="mailto:lrochette@electric-cloud.com">send me</a> new ones if 
-			you have a more artistic touch than me. Or better
-			push your changes to 
+production instances, this procedure is for you. It allows you to change 
+the color of the top banner and the logo to make it easier to identify your different 
+servers. Feel free 
+to <a href="mailto:lrochette@electric-cloud.com">send me</a> new ones if 
+you have a more artistic touch than me. Or better
+push your changes to 
 <a href="https://github.com/electriccommunity/EC-Admin">GitHub</a>.</p>
 
 <h1><a name="jobs"></a>Jobs and Workspaces management</h1>
 <p>This set of procedures will help you manage your old jobs and the 
-			associated workspaces.</p>
+associated workspaces.</p>
 
 <h2>jobsCleanup:</h2> 
 <p>A procedure to delete jobs older than a specified number of
@@ -73,25 +72,23 @@ directories. This is for customers with huge job or workflow database.</p>
 <h1><a name="plugin"></a>Plugins</h1>
 <h2>Plugin Synchronization</h2>
 <p>This procedure synchronizes plugins between the server and 
-		a resource. Plugins are uploaded first as artifacts if it has not been 
-		done already and then downloaded on the resource if it does not 
-		already exist in the plugins directory.</p>
+a resource. Plugins are uploaded first as artifacts if it has not been 
+done already and then downloaded on the resource if it does not 
+already exist in the plugins directory.</p>
 		
 <h2>Plugin creation</h2>
 <h3>createPluginFromProject</h3>
 <p><b>Note:</b> This procedure requires access to the jar or zip 
-			executable in the PATH.</p>
+executable in the PATH.</p>
 <p>The procedure "createPluginFromProject" allows the transformation of a project into a plugin.</p>
-<p>This procedure is obsolete and has been replaced by <i>projectasCode</i> explained below.</p>
+<p>This procedure is <b>obsolete</b> and has been replaced by <i>projectasCode</i> explained below.</p>
 
 <h3>projectAsCode</h3>
 
 <p><b>Note:</b> This procedure requires access to a resource with the Commander SDK installed.</p>
 
-<p>This procedure is an extension of createPluginFromProject. It also
-		creates a plugin but instead of simply exporting the project, it
-		"explodes" each step in its own file for finer granularity check in
-		in your favorite SCM tool.</p>
+<p>This procedure is an extension of createPluginFromProject. It also creates a plugin but instead of simply exporting the project, it "explodes" each step in its own file for finer granularity check in	in your favorite SCM tool.<br>
+You can also add automatically a mechanism to add credential/configuration management to you plugin.</p>
 
 
 <p><b>Note:</b> EC-Admin is released on 
@@ -116,13 +113,10 @@ real deletion.</p>
 
 <h2>artifactsCleanup_byQuantity</h2>
 
-<p>As "ArtifactsCleanup"", this procedure deletes artifact versions 
-			older than a specified number
-of days but keeps only X per Artifact. Again, a property allows preventing the 
-deletion. Once the
+<p>As "ArtifactsCleanup"", this procedure deletes artifact versions older than a specified number
+of days but keeps only X per Artifact. Again, a property allows preventing the deletion. Once the
 artifacts have been deleted, artifact repositories and artifact caches are
-cleaned as well (deleting stale artifacts).  A report only mode prevents any
-real deletion.</p>
+cleaned as well (deleting stale artifacts). A report only mode prevents any real deletion.</p>
 
 <h1><a name="backup"></a>Object export and backup</h1>
 
@@ -151,8 +145,16 @@ with it to backup your projects on a regular basis.</p>
 <p><b>Note:</b> Use saveProjects or saveAllObjects depending on the
 		granularity you are requiring.</p>
 
+<h1><a name="schedules"></a>Schedules</h1>
+<p>This set of procedures is to help around schedule enabling and disabling which is very useful when you want to perform maintenace on your server.</p>
+
+<h2>schedulesDisable</h2>
+<p>This procedure disables all the enabled schedules and optionaly saves the list in a property.</p>
+		
 <h1><a name="semaphore"></a>Semaphore Management</h1>
 
+<h2>schedulesEnable</h2>
+		<p>This procedure enables schedules passed as a list in a property, typically saved by schedulesDisable.</p>		
 <h2>acquireSemaphore and releaseSemaphore:</h2>
 			
 <p>Those 2 procedures are used to create a 
@@ -176,12 +178,17 @@ along with a set of configuration properties.</p>
 <h1><a name="postp"></a>postp debugger helper</h1>
 <p>The debugPostp is a simple procedure to help you debug with postp. Traditionally you would call postp from the command line with the jobStepId of the faulty postp and adding some additional option to see details. This new procedure does that for you on Linux and Windows, you just have to pass the jobStepId as a parameter.</p>
 
+<h1><a name="comm"></a>Communication</h1>
+<p>The sendAlert is a simple procedure to send a message to all registered users with an email address attached to the account. You can format your email in HTML by encapsulating it in a &lt;html&gt; tag.</p>
+		
 <h1>Contact authors</h1> 
 <dl>
 <dt>License Logger</dt>
-<dd>Mike Westerhof (<a href="mailto:mwesterhof@electric-cloud.com">mwesterhof@electric-cloud.com</a>)</dd>
-  <dt>Other</dt>
-  <dd>Laurent Rochette (<a href="mailto:lrochette@electric-cloud.com">lrochette@electric-cloud.com</a>)</dd>
+<dd>Mike Westerhof</dd>
+<dt>deleteObjects</dt>
+<dd>Tanay Nagjee (<a href="mailto:tanay@electric-cloud.com">tanay@electric-cloud.com</a>)</dd>
+<dt>Other</dt>
+<dd>Laurent Rochette (<a href="mailto:lrochette@electric-cloud.com">lrochette@electric-cloud.com</a>)</dd>
 </dl>
 
 <h1>Legal Jumbo</h1>
