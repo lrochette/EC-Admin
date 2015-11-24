@@ -17,6 +17,7 @@ what it is now.</p>
 <li><a href="#perf">Performance metrics</a></li>
 <li><a href="#license">License Logger</a></li>
 <li><a href="#postp">postp debugger helper</a></li>
+<li><a href="#comm">Communication</a></li>
 </ul>
 
 <h2><a name="installation"></a>Installation</h2>
