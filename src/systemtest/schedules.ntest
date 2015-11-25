@@ -22,7 +22,8 @@ my $pluginName = $xpath->findvalue("//pluginName")->value;
 # Test procedure present.
 #-------------------------------------------------------------------------------
 ntest "checkProcedures", {}, sub {
-	assertOK($::N->getProcedure($pluginName, "scheduleDisabling"), "procedure scheduleDisabling missing");
+  assertOK($::N->getProcedure($pluginName, "schedulesDisable"), "procedure schedulesDisable missing");
+  assertOK($::N->getProcedure($pluginName, "schedulesEnable"), "procedure schedulesEnable missing");
 };
 
 
