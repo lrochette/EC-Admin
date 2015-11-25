@@ -315,6 +315,7 @@ sub main {
                         filter => \@gavFilters});
     }
     my $xpath = $::gCommander->findObjects("artifactVersion", {
+        maxIds => 0,
         filter => \@filters,
         sort => [{propertyName => "groupId", order => "ascending"},
                  {propertyName => "artifactKey", order => "ascending"},

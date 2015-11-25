@@ -310,8 +310,10 @@ if ( $promoteAction eq 'promote' ) {
 		<p>This procedure is an extension of createPluginFromProject. It also
 		creates a plugin but instead of simply exporting the project, it
 		"explodes" each step in its own file for finer granularity check in
-		in your favorite SCM tool.<br/>
-		All the properties associated with createPluginFromProject still apply.</p>
+		in your favorite SCM tool.<br/>You can also add automatically a
+		mechanism to add credential/configuration management to you plugin.<br/>
+		All the properties associated with createPluginFromProject still
+		apply.</p>
 
 		    <table class="grid">
 		        <thead>
@@ -607,7 +609,7 @@ properties can be set up:</p>
 		<h1>Contact authors</h1> 
 		<dl>
 			<dt>License Logger</dt>
-			<dd>Mike Westerhof (<a href="mailto:mwesterhof@electric-cloud.com">mwesterhof@electric-cloud.com</a>)</dd>
+			<dd>Mike Westerhof</dd>
 			<dt>deleteObjects</dt>
 			<dd>Tanay Nagjee (<a href="mailto:tanay@electric-cloud.com">tanay@electric-cloud.com</a>)</dd>
   			<dt>Other</dt>

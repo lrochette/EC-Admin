@@ -1,3 +1,6 @@
+2015-11-25 Laurent Rochette <lrochette@gmail.com>
+  * 2.16.1.318: Fixed #49
+
 2015-11-20 System Administrator <lrochette@electric-cloud.com>
   * 2.16.0.317: add option to enable change tracking on the created plugin
 

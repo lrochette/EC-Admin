@@ -1430,6 +1430,71 @@
               </property>
             </propertySheet>
           </property>
+          <property>
+            <propertyName>251528</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2012229</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2012229</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2015-11-24 02:00:55</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>251938</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
         </propertySheet>
       </property>
       <property>
@@ -3666,8 +3731,10 @@ if ( $promoteAction eq 'promote' ) {
 		&lt;p&gt;This procedure is an extension of createPluginFromProject. It also
 		creates a plugin but instead of simply exporting the project, it
 		"explodes" each step in its own file for finer granularity check in
-		in your favorite SCM tool.&lt;br/&gt;
-		All the properties associated with createPluginFromProject still apply.&lt;/p&gt;
+		in your favorite SCM tool.&lt;br/&gt;You can also add automatically a
+		mechanism to add credential/configuration management to you plugin.&lt;br/&gt;
+		All the properties associated with createPluginFromProject still
+		apply.&lt;/p&gt;
 
 		    &lt;table class="grid"&gt;
 		        &lt;thead&gt;
@@ -3963,7 +4030,7 @@ properties can be set up:&lt;/p&gt;
 		&lt;h1&gt;Contact authors&lt;/h1&gt; 
 		&lt;dl&gt;
 			&lt;dt&gt;License Logger&lt;/dt&gt;
-			&lt;dd&gt;Mike Westerhof (&lt;a href="mailto:mwesterhof@electric-cloud.com"&gt;mwesterhof@electric-cloud.com&lt;/a&gt;)&lt;/dd&gt;
+			&lt;dd&gt;Mike Westerhof&lt;/dd&gt;
 			&lt;dt&gt;deleteObjects&lt;/dt&gt;
 			&lt;dd&gt;Tanay Nagjee (&lt;a href="mailto:tanay@electric-cloud.com"&gt;tanay@electric-cloud.com&lt;/a&gt;)&lt;/dd&gt;
   			&lt;dt&gt;Other&lt;/dt&gt;
@@ -3990,7 +4057,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>317</value>
+        <value>318</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -4097,6 +4164,10 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.16.1
+  + Refreshed Help page and README.md
+  + Fixed #49
+
 -version 2.16.0
   + add option to enable change tracking on the created plugin (with projectAsCode)
 
@@ -4411,7 +4482,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.16.0</value>
+        <value>2.16.1</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
