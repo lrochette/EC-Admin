@@ -4057,7 +4057,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>318</value>
+        <value>319</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -4164,9 +4164,12 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.16.2
+  + fixed #47: nproc does not work on RHEL for performanceMetrics
+
 - version 2.16.1
   + Refreshed Help page and README.md
-  + Fixed #49
+  + Fixed #49: limit of 100 artifact versions in artifactRepositorySynchronization
 
 -version 2.16.0
   + add option to enable change tracking on the created plugin (with projectAsCode)
@@ -4482,7 +4485,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.16.1</value>
+        <value>2.16.2</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>

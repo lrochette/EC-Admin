@@ -58,13 +58,6 @@ ntest "promote", {}, sub {
 $::N->promotePlugin($pluginName);
 
 #-------------------------------------------------------------------------------
-# Test procedure present.
-#-------------------------------------------------------------------------------
-ntest "performanceMetrics", {}, sub {
-	assertOK($::N->getProcedure($pluginName, "performanceMetrics"), "procedure missing");
-};
-
-#-------------------------------------------------------------------------------
 # Test for scripts/properties
 #-------------------------------------------------------------------------------
 ntest "scripts_perlCommonLib", {}, sub {
