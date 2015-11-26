@@ -1,4 +1,7 @@
 2015-11-26 Laurent Rochette <lrochette@gmail.com>
+  * 2.16.3.321: Fixed #52: the /server/counters/EC-Admin is not writable
+
+2015-11-26 Laurent Rochette <lrochette@gmail.com>
   * 2.16.3.320: Fixed #52: the /server/counters/EC-Admin is not writable
 
 2015-11-25 Laurent Rochette <lrochette@gmail.com>
