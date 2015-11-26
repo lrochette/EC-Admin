@@ -16,12 +16,12 @@
               <property>
                 <propertyName>image</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/2006784/images/custom49ef1dc91512458040d1.png</value>
+                <value>/commander/jobSteps/2018852/images/custom5ba06069151433dffe71.png</value>
               </property>
               <property>
                 <propertyName>link</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/2006784/Performance Report.html</value>
+                <value>/commander/jobSteps/2018852/Performance Report.html</value>
               </property>
             </propertySheet>
           </property>
@@ -1486,6 +1486,56 @@
               <property>
                 <propertyName>Performance Report_L3</propertyName>
                 <propertySheet>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>252428</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2018852</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2018852</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2015-11-26 02:01:07</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
                   <property>
                     <propertyName>reportUrl</propertyName>
                     <expandable>1</expandable>
@@ -4057,7 +4107,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>319</value>
+        <value>320</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -4106,6 +4156,27 @@ software.&lt;/p&gt;
                 "modifyPrivilege"=&gt;"allow",
              });
     }      
+
+    #
+    # Give Everyone permission on /server/counters/EC-Admin
+    $cfg = $commander-&gt;getProperty("/server/counters/EC-Admin/jobCounter");
+    if ($cfg-&gt;findvalue("//code") eq "NoSuchProperty") {
+        $batch-&gt;setProperty( "/server/counters/EC-Admin/jobCounter", 0);
+    }
+
+    $cfg=$commander-&gt;getProperty("/server/counters/EC-Admin");
+    $psId= $cfg-&gt;findvalue("//propertySheetId");
+
+    $xpath = $commander-&gt;getAclEntry("group", "Everyone", {propertySheetId =&gt; $psId});
+    if ($xpath-&gt;findvalue('//code') eq 'NoSuchAclEntry') {
+        $batch-&gt;createAclEntry("group", "Everyone", 
+             {
+                propertySheetId =&gt; $psId, 
+                "readPrivilege" =&gt;"allow", 
+                "modifyPrivilege" =&gt;"allow",
+             });
+    } 
+
 
     # Give plugin permission on /server/EC-Admin
     $projPrincipal='project: @PLUGIN_NAME@';
@@ -4164,6 +4235,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.16.3
+  + Fixed #52: the /server/counters/EC-Admin is not writable
+
 - version 2.16.2
   + fixed #47: nproc does not work on RHEL for performanceMetrics
 
@@ -4485,7 +4559,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.16.2</value>
+        <value>2.16.3</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
@@ -8355,7 +8429,7 @@ Changelog:
     <procedure>
       <procedureName>licenseLogger-report</procedureName>
       <description>&lt;html&gt;&lt;b&gt;Scheduled Procedure&lt;/b&gt; - report on license usage summary and supporting detail&lt;/html&gt;</description>
-      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
+      <jobNameTemplate>$[/plugins[EC-Admin]project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>
@@ -8473,7 +8547,7 @@ Changelog:
     <procedure>
       <procedureName>licenseLogger-snapshot</procedureName>
       <description>&lt;html&gt;&lt;b&gt;Scheduled Procedure&lt;/b&gt; - gathers and stores the periodic snapshot of license usage&lt;/html&gt;</description>
-      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
+      <jobNameTemplate>$[/plugins[EC-Admin]project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
       <timeLimitUnits>minutes</timeLimitUnits>

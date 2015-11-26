@@ -43,6 +43,27 @@ if ( $promoteAction eq 'promote' ) {
              });
     }      
 
+    #
+    # Give Everyone permission on /server/counters/EC-Admin
+    $cfg = $commander->getProperty("/server/counters/EC-Admin/jobCounter");
+    if ($cfg->findvalue("//code") eq "NoSuchProperty") {
+        $batch->setProperty( "/server/counters/EC-Admin/jobCounter", 0);
+    }
+
+    $cfg=$commander->getProperty("/server/counters/EC-Admin");
+    $psId= $cfg->findvalue("//propertySheetId");
+
+    $xpath = $commander->getAclEntry("group", "Everyone", {propertySheetId => $psId});
+    if ($xpath->findvalue('//code') eq 'NoSuchAclEntry') {
+        $batch->createAclEntry("group", "Everyone", 
+             {
+                propertySheetId => $psId, 
+                "readPrivilege" =>"allow", 
+                "modifyPrivilege" =>"allow",
+             });
+    } 
+
+
     # Give plugin permission on /server/EC-Admin
     $projPrincipal='project: @PLUGIN_NAME@';
     $cfg = $commander->getProperty("/server/EC-Admin");
