@@ -4107,7 +4107,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>321</value>
+        <value>322</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -4121,8 +4121,8 @@ software.&lt;/p&gt;
 	if ($cfg-&gt;findvalue("//code") eq "NoSuchProperty") {
         # we need the top PS later for the ACLs
         $commander-&gt;createProperty("/server/EC-Admin", {propertyType =&gt; 'sheet'});
-		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/emailTo", "admin" );
-		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/emailConfig", "default" );
+		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/emailTo", "admin",{description=&gt;'comma separated list of userid or email'} );
+		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/emailConfig", "default",{description=&gt;'The name of your email configuration'} );
 		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/cleanpOldJobs", 1 );
 		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/resource", "local" );
 		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/workspace", "default" );
