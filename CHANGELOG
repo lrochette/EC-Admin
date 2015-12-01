@@ -1,3 +1,6 @@
+2015-12-01 System Administrator <lrochette@electric-cloud.com>
+  * 2.16.5.324: Fix #50 and #51 for artifactRepositorySynchronization
+
 2015-11-26 Laurent Rochette <lrochette@gmail.com>
   * 2.16.3.321: Fixed #52: the /server/counters/EC-Admin is not writable
 

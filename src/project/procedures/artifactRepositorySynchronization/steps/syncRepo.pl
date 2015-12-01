@@ -32,7 +32,8 @@ $::gAM = undef;
 $::gFromRepositoryNames = "$[artifactRepositoryList]";
 @::gGavPatterns = split(",", "$[artifactVersionPattern]");
 $::gServer = undef;
-$::gUserAgent = createUserAgent();
+my $httpProxy = undef;
+$::gUserAgent = undef;
 $::gHelp = 0;
 
 # ------------------------------------------------------------------------
@@ -51,6 +52,13 @@ sub createUserAgent
     my $httpCookies = HTTP::Cookies->new();
     $userAgent->conn_cache($connCache);
     $userAgent->cookie_jar($httpCookies);
+    
+    # Check for proxy (in a Zone for example)
+    $httpProxy = $::gCommander->getEnv("COMMANDER_HTTP_PROXY");
+    if ($httpProxy) {
+        $userAgent->proxy(https => $httpProxy);
+        $userAgent->proxy(http => $httpProxy);
+    }
     return $userAgent;
 }
 
@@ -82,10 +90,10 @@ sub downloadArtifactVersion($$$$$)
         my $repoUrl = "$repoUrlBase/artifacts/$groupId/$artifactKey/$version";
         my $authorization = "Basic " .
             encode_base64("commanderSession:" . $::gCommander->{sessionId});
-        my $request = GET $repoUrl, "Authorization" => $authorization;
+        my $request = GET $repoUrl, "Authorization" => $authorization,
+                "X-originating-server" => $::gCommander->{server};
         my $response = $::gUserAgent->request($request, $repositoryDir .
                                                   "/artifact");
-
         if ($response->is_success) {
             print "Successfully synced down $gav\n";
             my $fmt = $response->header("Format");
@@ -98,7 +106,8 @@ sub downloadArtifactVersion($$$$$)
 
             # Get the manifest file.
             $request = GET $repoUrl . "?manifest",
-                "Authorization" => $authorization;
+                "Authorization" => $authorization,
+                "X-originating-server" => $::gCommander->{server};
             $::gUserAgent->request($request, $repositoryDir .
                                                   "/manifest");
             if ($response->is_success) {
@@ -113,6 +122,7 @@ sub downloadArtifactVersion($$$$$)
             return;
         } else {
             # Some error occurred.
+            rmtree($repositoryDir);
 
             if ($response->code() == 403) {
                 # We got a Forbidden! This means we lack permissions. If we
@@ -304,6 +314,7 @@ sub main {
     print "backingStorePath: $backingstorePath\n";
     $::gCommander = new ElectricCommander({server => $::gServer});
     $::gAM = new ElectricCommander::ArtifactManagement($::gCommander);
+    $::gUserAgent = createUserAgent();
 
     # Find artifact versions in the server that match the given criteria
     my @filters = ({propertyName => "artifactVersionState",
@@ -343,7 +354,7 @@ sub main {
                 $::gAM->loadRepositoryInfo();
                 my @verifiedRepoList =
                     $::gAM->processRepositoryNames(\@repoNames);
-                @repoUrlList = map {$::gAM->{repoUrl}->{$_}} @verifiedRepoList;
+                @repoUrlList = map {($httpProxy ? "https://$_" : $::gAM->{repoUrl}->{$_}) } @verifiedRepoList;
                 $didLoadRepos = 1;
             }
             downloadArtifactVersion(\@repoUrlList,
@@ -361,4 +372,5 @@ sub main {
 }
 
 main();
+
 
