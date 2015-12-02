@@ -1,4 +1,7 @@
 2015-12-02 System Administrator <lrochette@electric-cloud.com>
+  * 2.16.6.326: Fixed Issue #54: allow custom timeout in jobsCleanup andjobCleanup_byResult
+
+2015-12-02 System Administrator <lrochette@electric-cloud.com>
   * 2.16.6.325: Fixed Issue #54: allow custom timeout in jobsCleanup andjobCleanup_byResult
 
 2015-12-01 System Administrator <lrochette@electric-cloud.com>

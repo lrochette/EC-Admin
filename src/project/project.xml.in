@@ -4107,7 +4107,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>325</value>
+        <value>326</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -7862,30 +7862,6 @@ Report the number of jobs, the disk space and database space that could/was be d
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
         <condition/>
-        <description>Script to delete all jobs and workspaces associated to a project
-It includes CI and workflows jobs.</description>
-        <errorHandling>failProcedure</errorHandling>
-        <exclusiveMode>none</exclusiveMode>
-        <logFileName/>
-        <parallel>0</parallel>
-        <postProcessor/>
-        <precondition/>
-        <releaseMode>none</releaseMode>
-        <resourceName/>
-        <shell>ec-perl</shell>
-        <timeLimit/>
-        <timeLimitUnits>minutes</timeLimitUnits>
-        <workingDirectory/>
-        <workspaceName/>
-        <propertySheet>
-        </propertySheet>
-      </step>
-      <step>
-        <stepName>deleteJobs.byProject ORIGINAL</stepName>
-        <alwaysRun>0</alwaysRun>
-        <broadcast>0</broadcast>
-        <command>PLACEHOLDER</command>
-        <condition>0</condition>
         <description>Script to delete all jobs and workspaces associated to a project
 It includes CI and workflows jobs.</description>
         <errorHandling>failProcedure</errorHandling>
