@@ -54,6 +54,10 @@ printf("%s jobs older than $timeLimit days (%s).\n",
     calculateDate($timeLimit));
 printf("  Skipping over \"%s\" jobs.\n\n", $jobPattern) if ($jobPattern ne "");
 
+# Set the timeout to config value or 600 if not set
+my $defaultTimeout = getP("/server/EC-Admin/cleanup/config/timeout");
+$ec->setTimeout($defaultTimeout? $defaultTimeout : 600);
+
 # create filterList
 my @filterList;
 # only finished jobs

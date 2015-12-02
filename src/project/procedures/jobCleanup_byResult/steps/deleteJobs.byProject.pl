@@ -41,9 +41,9 @@ my $totalNbSteps=0;          # Number of steps to evaluate DB size
 my $DBStepSize=10240;        # Step is about 10K in DB
 $ec->setProperty("/myJob/totalDiskSpace", 0); #Space on disk
 
-my $procGood=0;				       # Number of good jobs in the procedure kept
-my $procFailed=0;		         # Number of failed jobs in the procedure kept
-my $procWarning=0;		       # Number of warning jobs in the procedure kept
+my $procGood=0;				 # Number of good jobs in the procedure kept
+my $procFailed=0;		     # Number of failed jobs in the procedure kept
+my $procWarning=0;	         # Number of warning jobs in the procedure kept
 
 $DEBUG=0;
 
@@ -59,6 +59,9 @@ printf("  Preserving %d GOOD    jobs\n", $nbGood);
 printf("  Preserving %d WARNING jobs\n", $nbWarn);
 printf("  Preserving %d FAIL    jobs\n\n", $nbFail);
 
+# Set the timeout to config value or 600 if not set
+my $defaultTimeout = getP("/server/EC-Admin/cleanup/config/timeout");
+$ec->setTimeout($defaultTimeout? $defaultTimeout : 600);
 
 #
 # Loop over each project 

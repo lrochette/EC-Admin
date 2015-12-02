@@ -4107,7 +4107,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>324</value>
+        <value>325</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -4235,6 +4235,8 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.16.6
+ + Fixed Issue #54: allow custom timeout in jobsCleanup andjobCleanup_byResult
 - version 2.16.5
   + Fixed Issue #51: artifactRepositorySynchronization did not work with Zones and firewalls
   + Fixed Issue #50: delete empty directory in case of error with artifactRepositorySynchronization
@@ -4566,7 +4568,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.16.5</value>
+        <value>2.16.6</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
