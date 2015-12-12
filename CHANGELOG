@@ -1,3 +1,6 @@
+2015-12-12 System Administrator <lrochette@electric-cloud.com>
+  * 2.16.6.327: Add paging mechanism
+
 2015-12-02 System Administrator <lrochette@electric-cloud.com>
   * 2.16.6.326: Fixed Issue #54: allow custom timeout in jobsCleanup andjobCleanup_byResult
 

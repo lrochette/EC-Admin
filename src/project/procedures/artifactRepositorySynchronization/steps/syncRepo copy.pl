@@ -26,16 +26,15 @@ use URI::Escape;
 # ------------------------------------------------------------------------
 # Globals
 # ------------------------------------------------------------------------
+
 $::gCommander = undef;
 $::gAM = undef;
 $::gFromRepositoryNames = "$[artifactRepositoryList]";
 @::gGavPatterns = split(",", "$[artifactVersionPattern]");
-my $pageSize=$[batchSize];
 $::gServer = undef;
 my $httpProxy = undef;
 $::gUserAgent = undef;
 $::gHelp = 0;
-my $DEBUG=0;
 
 # ------------------------------------------------------------------------
 # createUserAgent
@@ -83,9 +82,8 @@ sub downloadArtifactVersion($$$$$)
     my ($repoUrls, $groupId, $artifactKey, $version, $repositoryDir) = @_;
 
     # TODO: Check errors here.
-    if (! mkpath($repositoryDir)) {
-      print ("ERROR: cannot create remote AV directory $repositoryDir: $!\n");
-    }
+    mkpath($repositoryDir);
+
     my $gav = "$groupId:$artifactKey:$version";
     # TODO: Write to a temp dir, then rename.
     foreach my $repoUrlBase (@$repoUrls) {
@@ -121,7 +119,6 @@ sub downloadArtifactVersion($$$$$)
             # All errors are significant.
             print("ERROR: couldn't sync down manifest for $gav: " .
                       $response->content);
-            rmtree($repositoryDir);
             return;
         } else {
             # Some error occurred.
@@ -142,10 +139,7 @@ sub downloadArtifactVersion($$$$$)
             if ($response->code != 404) {
                 print "WARNING: couldn't retrieve $gav from $repoUrlBase: " .
                           $response->content;
-                return;
             }
-            print "ERROR: unknown error: " . $response->code . "\n";
-
         }
     }
 }
@@ -197,6 +191,7 @@ sub parseVersionRange
 # Arguments:
 #      None.
 # ------------------------------------------------------------------------
+
 sub parsePatterns
 {
     my @filters = ();
@@ -272,6 +267,7 @@ sub parsePatterns
 # Arguments:
 #      None.
 # ------------------------------------------------------------------------
+
 sub findBackingStorePath
 {
     if (!exists($ENV{COMMANDER_DATA})) {
@@ -330,84 +326,48 @@ sub main {
     }
     my $xpath = $::gCommander->findObjects("artifactVersion", {
         maxIds => 0,
-        numObjects => $pageSize,
         filter => \@filters,
         sort => [{propertyName => "groupId", order => "ascending"},
                  {propertyName => "artifactKey", order => "ascending"},
                  {propertyName => "version", order => "ascending"}
              ]
     });
-    # Collect objectIds for subsequent requests
-    my @objects = $xpath->findnodes("/responses/response/objectId");
-    my $count = scalar(@objects);
-    printf("$count objects returned.\n");
 
     # Walk through returned artifact versions, checking if we have each in
     # the backingstore. If not, download from one of the repositories.
 
     my @repoUrlList = undef;
     my $didLoadRepos = 0;
-
-    # The starting index for the next getObjects call
-    my $start = 0;
-    #print $xpath->findnodes_as_string("/");
-
-    # Loop through one page at a time
-    my $loopCounter=0;
-    do {
-      $loopCounter++;
-      printf("\nBatch $loopCounter\n");
-      foreach my $node ($xpath->findnodes("/responses/response/object/artifactVersion")) {
-          my $artifactVersion =
-              ElectricCommander::ArtifactManagement::ArtifactVersion->new(
-                  $node);
-          my $repositoryDir = sprintf("%s/%s/%s/%s",
-                                      $backingstorePath,
-                                      $artifactVersion->groupId,
-                                      $artifactVersion->artifactKey,
-                                      $artifactVersion->version);
-          #printf("RepoDir: %s\n", $repositoryDir) if ($DEBUG);
-          if (! -d $repositoryDir) {
-              # Download.
-              if (!$didLoadRepos) {
-                  $::gAM->loadRepositoryInfo();
-                  my @verifiedRepoList =
-                      $::gAM->processRepositoryNames(\@repoNames);
-                  @repoUrlList = map {($httpProxy ? "https://$_" : $::gAM->{repoUrl}->{$_}) } @verifiedRepoList;
-                  $didLoadRepos = 1;
-              }
-              downloadArtifactVersion(\@repoUrlList,
-                                      $artifactVersion->groupId,
-                                      $artifactVersion->artifactKey,
-                                      $artifactVersion->version,
-                                      $repositoryDir);
-          } else {
-              printf("Found %s:%s:%s in repository\n",
-                     $artifactVersion->groupId,
-                     $artifactVersion->artifactKey,
-                     $artifactVersion->version);
-          }
-      }
-
-      # Prepare next loop
-      $count -= $pageSize;
-      if ($count > 0) {
-          # Create an array of object IDs for the next getObjects call
-          $start += $pageSize;
-          my @objectIds = ();
-          for (my $index = $start; $index < $start + $pageSize; $index++) {
-              if (exists($objects[$index])) {
-                  push(@objectIds, $objects[$index]->findvalue("text()")->value());
-              } else {
-                  last;
-              }
-          }
-
-          # Next page getObjects request
-          $xpath = $::gCommander->getObjects({objectId => \@objectIds});
-      }
-
-    } while ($count > 0);
+    foreach my $node ($xpath->findnodes("//artifactVersion")) {
+        my $artifactVersion =
+            ElectricCommander::ArtifactManagement::ArtifactVersion->new(
+                $node);
+        my $repositoryDir = sprintf("%s/%s/%s/%s",
+                                    $backingstorePath,
+                                    $artifactVersion->groupId,
+                                    $artifactVersion->artifactKey,
+                                    $artifactVersion->version);
+        if (! -d $repositoryDir) {
+            # Download.
+            if (!$didLoadRepos) {
+                $::gAM->loadRepositoryInfo();
+                my @verifiedRepoList =
+                    $::gAM->processRepositoryNames(\@repoNames);
+                @repoUrlList = map {($httpProxy ? "https://$_" : $::gAM->{repoUrl}->{$_}) } @verifiedRepoList;
+                $didLoadRepos = 1;
+            }
+            downloadArtifactVersion(\@repoUrlList,
+                                    $artifactVersion->groupId,
+                                    $artifactVersion->artifactKey,
+                                    $artifactVersion->version,
+                                    $repositoryDir);
+        } else {
+            printf("Found %s:%s:%s in repository\n",
+                   $artifactVersion->groupId,
+                   $artifactVersion->artifactKey,
+                   $artifactVersion->version);
+        }
+    }
 }
 
 main();

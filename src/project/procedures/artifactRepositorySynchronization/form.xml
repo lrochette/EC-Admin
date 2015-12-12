@@ -20,4 +20,11 @@
         <type>entry</type>
         <value>*</value>
     </formElement> 
+   <formElement> 
+        <label>Batch Size</label> 
+        <property>batchSize</property> 
+        <documentation>Number of Artifact Versions to bring at once.</documentation> 
+        <type>entry</type>
+        <value>25</value>
+    </formElement> 
 </editor>

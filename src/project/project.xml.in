@@ -4107,7 +4107,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>326</value>
+        <value>327</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -4748,6 +4748,16 @@ The user must specify a list of remote repositories to query and may specify a f
                   </propertySheet>
                 </property>
                 <property>
+                  <propertyName>batchSize</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
                   <propertyName>gAVPattern</propertyName>
                   <propertySheet>
                     <property>
@@ -4815,12 +4825,43 @@ The user must specify a list of remote repositories to query and may specify a f
         <required>1</required>
         <type>entry</type>
       </formalParameter>
+      <formalParameter>
+        <formalParameterName>batchSize</formalParameterName>
+        <defaultValue>25</defaultValue>
+        <description>Batch size</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
+        <type>entry</type>
+      </formalParameter>
       <step>
         <stepName>syncRepo</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
         <condition/>
+        <description/>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName>$[artifactRepositoryResource]</resourceName>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>syncRepo copy</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition>0</condition>
         <description/>
         <errorHandling>failProcedure</errorHandling>
         <exclusiveMode>none</exclusiveMode>

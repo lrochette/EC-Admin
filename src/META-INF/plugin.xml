@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.16.6.326</version>
+  <version>2.16.6.327</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
-2015-12-02 admin Fixed Issue #54: allow custom timeout in jobsCleanup andjobCleanup_byResult</description>
+2015-12-12 admin Add paging mechanism</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>
