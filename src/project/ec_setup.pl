@@ -124,6 +124,14 @@ my %acquireSemaphore = (
   category    => "Administration" 
 );
 
+my %artifactRepositorySynchronization = ( 
+  label       => "EC-Admin - artifactRepositorySynchronization", 
+  procedure   => "artifactRepositorySynchronization", 
+  description => "Syncs the contents of a remote repository to this repository's backingstore.
+The user must specify a list of remote repositories to query and may specify a filter for a subset of Artifact Version to sync.", 
+  category    => "Administration" 
+);
+
 my %artifactsCleanup = ( 
   label       => "EC-Admin - artifactsCleanup", 
   procedure   => "artifactsCleanup", 
@@ -224,4 +232,4 @@ Report the number of workflows.",
   category    => "Administration" 
 );
 
-@::createStepPickerSteps = (\%acquireSemaphore, \%artifactsCleanup, \%artifactsCleanup_byQuantity, \%createPluginFromProject, \%deleteObjects, \%deleteWorkspaceOrphans, \%jobCleanup_byResult, \%jobsCleanup, \%performanceMetrics, \%projectAsCode, \%releaseSemaphore, \%saveAllObjects, \%saveProjects, \%synchronizePlugins, \%workflowCleanup);
+@::createStepPickerSteps = (\%acquireSemaphore, \%artifactRepositorySynchronization, \%artifactsCleanup, \%artifactsCleanup_byQuantity, \%createPluginFromProject, \%deleteObjects, \%deleteWorkspaceOrphans, \%jobCleanup_byResult, \%jobsCleanup, \%performanceMetrics, \%projectAsCode, \%releaseSemaphore, \%saveAllObjects, \%saveProjects, \%synchronizePlugins, \%workflowCleanup);

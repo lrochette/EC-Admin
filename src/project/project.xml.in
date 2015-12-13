@@ -4107,7 +4107,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>328</value>
+        <value>329</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -4800,6 +4800,12 @@ The user must specify a list of remote repositories to query and may specify a f
           <expandable>1</expandable>
           <value>PLACEHOLDER</value>
         </property>
+        <property>
+          <propertyName>exposeToPlugin</propertyName>
+          <description/>
+          <expandable>1</expandable>
+          <value>1</value>
+        </property>
       </propertySheet>
       <formalParameter>
         <formalParameterName>artifactRepositoryList</formalParameterName>
@@ -4842,29 +4848,6 @@ The user must specify a list of remote repositories to query and may specify a f
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
         <condition/>
-        <description/>
-        <errorHandling>failProcedure</errorHandling>
-        <exclusiveMode>none</exclusiveMode>
-        <logFileName/>
-        <parallel>0</parallel>
-        <postProcessor/>
-        <precondition/>
-        <releaseMode>none</releaseMode>
-        <resourceName>$[artifactRepositoryResource]</resourceName>
-        <shell>ec-perl</shell>
-        <timeLimit/>
-        <timeLimitUnits>minutes</timeLimitUnits>
-        <workingDirectory/>
-        <workspaceName/>
-        <propertySheet>
-        </propertySheet>
-      </step>
-      <step>
-        <stepName>syncRepo copy</stepName>
-        <alwaysRun>0</alwaysRun>
-        <broadcast>0</broadcast>
-        <command>PLACEHOLDER</command>
-        <condition>0</condition>
         <description/>
         <errorHandling>failProcedure</errorHandling>
         <exclusiveMode>none</exclusiveMode>

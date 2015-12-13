@@ -1,0 +1,38 @@
+# -*-Perl-*-
+
+# artifactRepoSync.ntest -
+#
+# check the artifactRepositorySynchronization procedures of EC-Admin plugin
+#
+# Copyright (c) 2015 Electric Cloud, Inc.
+# All rights reserved
+
+use strict;
+use warnings;
+use ECTest;
+
+initCommander();
+$::N=$adminSession;
+
+my $pluginKey = "EC-Admin";
+my $xpath = $::N->getPlugin($pluginKey);
+my $pluginName = $xpath->findvalue("//pluginName")->value;
+
+#-------------------------------------------------------------------------------
+# Test procedure present.
+#-------------------------------------------------------------------------------
+ntest "artifactRepoSync_presence", {}, sub {
+	assertOK($::N->getProcedure($pluginName, "artifactRepositorySynchronization"), "procedure artifactRepositorySynchronization missing");
+};
+
+#-------------------------------------------------------------------------------
+# Test procedure present.
+#-------------------------------------------------------------------------------
+ntest "procedures_exposed_to_picker", {}, sub {
+        assertOK($::N->getProperty('exposeToPlugin', {
+			projectName => $pluginName, 
+			procedureName => "artifactRepositorySynchronization"}), 
+		"property exposeToPlugin missing");
+};
+
+1;
