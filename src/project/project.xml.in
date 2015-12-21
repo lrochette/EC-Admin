@@ -4170,7 +4170,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>330</value>
+        <value>331</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -11190,7 +11190,7 @@ All steps need to run on the same host</description>
         <postProcessor/>
         <precondition/>
         <releaseMode>none</releaseMode>
-        <resourceName>win7</resourceName>
+        <resourceName>local</resourceName>
         <shell/>
         <timeLimit/>
         <timeLimitUnits>minutes</timeLimitUnits>
