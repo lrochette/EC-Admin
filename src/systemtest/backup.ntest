@@ -1,8 +1,8 @@
 # -*-Perl-*-
 
-# deleteObjects.ntest -
+# backup.ntest -
 #
-# check the deleteObjects procedure of EC-Admin plugin
+# check the saveAllObjects procedure of EC-Admin plugin
 #
 # Copyright (c) 2015 Electric Cloud, Inc.
 # All rights reserved
@@ -22,58 +22,22 @@ my $pluginName = $xpath->findvalue("//pluginName")->value;
 # Test procedure present.
 #-------------------------------------------------------------------------------
 ntest "checkProcedures", {}, sub {
-	assertOK($::N->getProcedure($pluginName, "deleteObjects"), "procedure deleteObjects missing");
+	assertOK($::N->getProcedure($pluginName, "saveAllObjects"), "procedure saveAllObjects missing");
 };
 
 #-------------------------------------------------------------------------------
-#  Load some old jobs
+#  check default resource is local
 #-------------------------------------------------------------------------------
-sub loadJobDO {
-  my $name=shift;
+ntest "local_resource", {}, sub {
 
-  my $xpath= $::N->import({file=>$::gWorkingDirectory . "/data/cleanup/$name.xml", force=>1});
-  assertOK($xpath, "$name job import failed");
-}
-
-
-#-------------------------------------------------------------------------------
-# Issue #41: missing perlLib
-#-------------------------------------------------------------------------------
-ntest "Issue_41_missingGetP", {}, sub {
-
-    # Load an old job
-    loadJobDO("error");
-
-    # check the job exist: 210610
-    my $xpath = $::N->getJobDetails("saveAllObjects_6038", {structureOnly =>1});
-    assertOK($xpath, "Failed to load job saveAllObjects_6038");
-
-    # delete job
-    $xpath = $::N->runProcedure("EC-Admin", {
-    procedureName=>"deleteObjects",
-    actualParameter=>[
-	    {actualParameterName=>"chunkSize", value=>200},
-	    {actualParameterName=>"daysLimit", value=>365},
-	    {actualParameterName=>"maxObjects", value=>"200"},
-	    {actualParameterName=>"objectType", value=>"job"}
-	]});
-    assertOK($xpath, "Failed to launch EC-Admin::deleteObjects");
-    if ($xpath) {
-	#get new Job ID
-        my $jobId  = $xpath->findvalue("//jobId");
-        waitForJob($jobId);
-	my $jobData  = $::N->getJobDetails($jobId);
-        my $outcome = $jobData->findvalue("//job/outcome");
-	assertEq("success", $outcome, "subJC_deleteWorkspace failed");
-
-        # check for summary
-        my $jsId = $jobData->findvalue("//job/jobStep[stepName='Delete']/jobStepId");
-        my $summary=$::N->getProperty("summary", {jobStepId=>$jsId})->findvalue("//value");
-	assertSubstring("Deleted 1 jobs", $summary, "Only 1 job to delete");
-
-        #check job is now gone
-        $xpath = $::N->getJobDetails("saveAllObjects_6038", {structureOnly =>1});
-    }
+  # check for resource
+  my $res=$::N->getProperty("resourceName", 
+               {
+		  projectName   => $pluginName,
+		  procedureName => 'saveAllObjects',
+		  stepName      => 'grabResource'
+		})->findvalue("//value");
+  assertEq("local", $res, "Resource must be \"local\"");
 };
 
 

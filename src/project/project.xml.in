@@ -4170,7 +4170,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>331</value>
+        <value>332</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -4298,6 +4298,8 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.16.9
+ + Remove spaces from step names
 - version 2.16.8
  + Fixed issue #56 and #57
 - version 2.16.7
@@ -4636,7 +4638,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.16.8</value>
+        <value>2.16.9</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
@@ -8898,7 +8900,7 @@ Changelog:
         <type>entry</type>
       </formalParameter>
       <step>
-        <stepName>Server RAM Amount</stepName>
+        <stepName>serverMemoryAmount</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
@@ -8925,7 +8927,7 @@ Best: More than 12 GB</description>
         </propertySheet>
       </step>
       <step>
-        <stepName>Free RAM</stepName>
+        <stepName>freeMemory</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
@@ -8949,7 +8951,7 @@ Information only</description>
         </propertySheet>
       </step>
       <step>
-        <stepName>Disk Space Available</stepName>
+        <stepName>diskSpaceAvailable</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
@@ -8973,7 +8975,7 @@ Information only</description>
         </propertySheet>
       </step>
       <step>
-        <stepName>Java Heap</stepName>
+        <stepName>javaHeap</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
@@ -9009,7 +9011,7 @@ wrapper.java.maxmemory.percent=40
         </propertySheet>
       </step>
       <step>
-        <stepName>Number of Cores</stepName>
+        <stepName>numberOfCores</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
@@ -9036,7 +9038,7 @@ Best: More than 6</description>
         </propertySheet>
       </step>
       <step>
-        <stepName>Server CPU Speed</stepName>
+        <stepName>serverCpuSpeed</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
@@ -9063,7 +9065,7 @@ Best: More than 2 GHz</description>
         </propertySheet>
       </step>
       <step>
-        <stepName>License Usage</stepName>
+        <stepName>licenseUsage</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
@@ -9086,7 +9088,7 @@ Best: More than 2 GHz</description>
         </propertySheet>
       </step>
       <step>
-        <stepName>Database Type</stepName>
+        <stepName>databaseType</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
@@ -9133,7 +9135,7 @@ Best: mssql or oracle</description>
         </propertySheet>
       </step>
       <step>
-        <stepName>Write Disk Performance</stepName>
+        <stepName>writeDiskPerformance</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
@@ -9160,7 +9162,7 @@ Best: mssql or oracle</description>
         </propertySheet>
       </step>
       <step>
-        <stepName>Read Disk Performance </stepName>
+        <stepName>readDiskPerformance</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
@@ -9240,7 +9242,7 @@ Test is from http://xahlee.info/UnixResource_dir/sultra_skami.html</description>
         </propertySheet>
       </step>
       <step>
-        <stepName>Database Performance</stepName>
+        <stepName>databasePerformance</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
@@ -9287,7 +9289,7 @@ Test is from http://xahlee.info/UnixResource_dir/sultra_skami.html</description>
         </propertySheet>
       </step>
       <step>
-        <stepName>Clean Disk Performance Temporary File</stepName>
+        <stepName>cleanDiskPerformanceTemporaryFile</stepName>
         <alwaysRun>1</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
