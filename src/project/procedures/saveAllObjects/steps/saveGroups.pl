@@ -31,9 +31,9 @@ foreach my $node ($xPath->findnodes('//group')) {
   
   my ($success, $res, $errMsg, $errCode) = 
       InvokeCommander("SuppressLog", "export", "$path/groups/$fileGroupName".".xml",
-  					{ 'path'=> "/groups/".$groupName, 
-                                          'relocatable' => 1,
-                                          'withAcls'    => 1});
+  					{ 'path'        => "/groups[$groupName]", 
+                      'relocatable' => 1,
+                      'withAcls'    => 1});
   if (! $success) {
     printf("  Error exporting %s", $groupName);
     printf("  %s: %s\n", $errCode, $errMsg);
@@ -45,15 +45,7 @@ foreach my $node ($xPath->findnodes('//group')) {
 $ec->setProperty("preSummary", "$groupCount groups exported");
 exit($errorCount);
 
-#
-# Make the name of an object safe to be a file or directory name
-#
-sub safeFilename {
-  my $safe=@_[0];
-  $safe =~ s#[\*\.\"/\[\]\\:;,=\|]#_#g;
-  return $safe;
-}
-
+$[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
 

@@ -16,12 +16,12 @@
               <property>
                 <propertyName>image</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/2018852/images/custom5ba06069151433dffe71.png</value>
+                <value>/commander/jobSteps/2035813/images/custom115ab21b1519ff022f51.png</value>
               </property>
               <property>
                 <propertyName>link</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/2018852/Performance Report.html</value>
+                <value>/commander/jobSteps/2035813/Performance Report.html</value>
               </property>
             </propertySheet>
           </property>
@@ -1530,6 +1530,56 @@
                     <propertyName>reportDate</propertyName>
                     <expandable>1</expandable>
                     <value>2015-11-26 02:01:07</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>254035</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2035813</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2035813</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2015-12-14 02:00:50</value>
                   </property>
                   <property>
                     <propertyName>reportType</propertyName>
@@ -3327,6 +3377,19 @@ sub checkValue
         <description>A list of Perl helpers</description>
         <propertySheet>
           <property>
+            <propertyName>backup</propertyName>
+            <description>properties for saveAllObjects</description>
+            <propertySheet>
+              <property>
+                <propertyName>safeFileName</propertyName>
+                <description>Make the name of an object safe to be a file or directory name
+</description>
+                <expandable>1</expandable>
+                <value>PLACEHOLDER</value>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
             <propertyName>licenseLogger</propertyName>
             <description/>
             <propertySheet>
@@ -4107,7 +4170,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>329</value>
+        <value>330</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -4235,6 +4298,8 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.16.8
+ + Fixed issue #56 and #57
 - version 2.16.7
  + Add Paging mechanism on artifactRepositorySynchronization
   + Fixed issue about error on manifest
@@ -4571,7 +4636,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.16.7</value>
+        <value>2.16.8</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
@@ -11125,7 +11190,7 @@ All steps need to run on the same host</description>
         <postProcessor/>
         <precondition/>
         <releaseMode>none</releaseMode>
-        <resourceName>local</resourceName>
+        <resourceName>win7</resourceName>
         <shell/>
         <timeLimit/>
         <timeLimitUnits>minutes</timeLimitUnits>
@@ -12026,7 +12091,7 @@ Changelog:
         </propertySheet>
       </step>
       <step>
-        <stepName>create _promoteAction</stepName>
+        <stepName>create_promoteAction</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
@@ -12049,7 +12114,7 @@ Changelog:
         </propertySheet>
       </step>
       <step>
-        <stepName>create _createConfiguration_procedure</stepName>
+        <stepName>create_createConfiguration_procedure</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
@@ -12072,7 +12137,7 @@ Changelog:
         </propertySheet>
       </step>
       <step>
-        <stepName>create _createConfiguration_CreateConfiguration_step</stepName>
+        <stepName>create_createConfiguration_CreateConfiguration_step</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
@@ -12095,7 +12160,7 @@ Changelog:
         </propertySheet>
       </step>
       <step>
-        <stepName>create _createConfiguration_createAndAttachCredential</stepName>
+        <stepName>create_createConfiguration_createAndAttachCredential</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
@@ -12141,7 +12206,7 @@ Changelog:
         </propertySheet>
       </step>
       <step>
-        <stepName>create _DeleteConfiguration_procedure</stepName>
+        <stepName>create_DeleteConfiguration_procedure</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
@@ -12164,7 +12229,7 @@ Changelog:
         </propertySheet>
       </step>
       <step>
-        <stepName>create _DeleteConfiguration_DeleteConfiguration_step copy</stepName>
+        <stepName>create_DeleteConfiguration_DeleteConfiguration_step</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>

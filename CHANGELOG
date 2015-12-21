@@ -1,3 +1,6 @@
+2015-12-21 Laurent Rochette <lrochette@gmail.com>
+  * 2.16.8.330: Fixed issue #56 and #57
+
 2015-12-12 System Administrator <lrochette@electric-cloud.com>
   * 2.16.7.328: Add paging mechanism
                 Fixed issue about error on manifest

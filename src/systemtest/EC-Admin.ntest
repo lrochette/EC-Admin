@@ -168,6 +168,28 @@ ntest "resource_config_property", {}, sub {
                 "local", "resource value is incorrect");
 };
 
+#-------------------------------------------------------------------------------
+# Test for "Copy" in the name of procedures and steps
+#-------------------------------------------------------------------------------
+ntest "Copy_in_name", {}, sub {
+  my $xpath=$::N->getProcedures($pluginName);
+
+  foreach my $proc ($xpath->findnodes('//procedure')) {
+    my $name=$proc->findvalue('procedureName');
+    # printf("procedure $name\n");
+    fail("EC-Admin should not have \"Copy\" in procedure name: $name") if ($name =~ m/copy$/i);
+    fail("EC-Admin should not have spaces in procedure name: $name") if ($name =~ m/\s/);
+
+    # get step list
+    foreach my $step ($::N->getSteps($pluginName, $name)->findnodes('//step')) {
+      my $stepName = $step->findvalue('stepName');
+      # printf("    step: $stepName\n");
+      fail("EC-Admin should not have \"Copy\" in step name: ${name}::$stepName") if ($stepName =~ m/copy$/i); 
+      fail("EC-Admin should not have spaces in step name: ${name}::$stepName") if ($stepName =~ m/\s/); 
+    }
+  }
+};
+
 #
 # Recover /server/EC-Admin from the backup copy
 $::N->deleteProperty("/server/EC-Admin");

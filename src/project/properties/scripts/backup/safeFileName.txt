@@ -1,0 +1,8 @@
+#
+# Make the name of an object safe to be a file or directory name
+#
+sub safeFilename {
+  my $safe=@_[0];
+  $safe =~ s#[\*\.\"/\[\]\\:;,=\|\?]#_#g;
+  return $safe;
+}

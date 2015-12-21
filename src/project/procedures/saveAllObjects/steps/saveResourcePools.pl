@@ -46,15 +46,7 @@ foreach my $node ($xPath->findnodes('//resourcePool')) {
 $ec->setProperty("preSummary", "$poolCount pools exported");
 exit($errorCount);
 
-#
-# Make the name of an object safe to be a file or directory name
-#
-sub safeFilename {
-  my $safe=@_[0];
-  $safe =~ s#[\*\.\"/\[\]\\:;,=\|]#_#g;
-  return $safe;
-}
-
+$[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
 

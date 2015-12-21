@@ -29,7 +29,7 @@ my ($success, $xPath) = InvokeCommander("SuppressLog", "getProjects");
 
 # Create the Projects directory
 mkpath("$path/Projects");
-chmod(0777, "$path/Projects");
+chmod(0777, "$path/Projects") or die("Can't change permissions on $path/Projects: $!");
 
 foreach my $node ($xPath->findnodes('//project')) {
   my $pName=$node->{'projectName'};
@@ -41,7 +41,7 @@ foreach my $node ($xPath->findnodes('//project')) {
   my $fileProjectName=safeFilename($pName);
   mkpath("$path/Projects/$fileProjectName");
   chmod(0777, "$path/Projects/$fileProjectName");
-  
+
   my ($success, $res, $errMsg, $errCode) = 
       InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/$fileProjectName".".xml",
   					{ 'path'=> "/projects/".$pName, 
@@ -150,15 +150,7 @@ foreach my $node ($xPath->findnodes('//project')) {
 $ec->setProperty("preSummary", "$projCount projects exported\n  $procCount procedures exported\n  $wkfCount workflows exported");
 exit($errorCount);
 
-#
-# Make the name of an object safe to be a file or directory name
-#
-sub safeFilename {
-  my $safe=@_[0];
-  $safe =~ s#[\*\.\"/\[\]\\:;,=\|]#_#g;
-  return $safe;
-}
-
+$[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
 

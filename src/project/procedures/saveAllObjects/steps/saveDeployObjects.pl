@@ -139,15 +139,7 @@ foreach my $proc ($xPath->findnodes('//environment')) {
 $ec->setProperty("preSummary", "$appCount applications exported\n  $envCount environments exported\n  $compCount components exported");
 exit($errorCount);
 
-#
-# Make the name of an object safe to be a file or directory name
-#
-sub safeFilename {
-  my $safe=@_[0];
-  $safe =~ s#[\*\.\"/\[\]\\:;,=\|]#_#g;
-  return $safe;
-}
-
+$[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
 
