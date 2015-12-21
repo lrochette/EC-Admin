@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.16.9.332</version>
+  <version>2.16.9.333</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
 2015-12-21 lrochette Remove spaces from step names.</description>

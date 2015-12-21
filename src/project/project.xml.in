@@ -4170,7 +4170,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>332</value>
+        <value>333</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -11537,7 +11537,7 @@ $[/server/ec_notifierTemplates/Html_JobTempl/body]</formattingTemplate>
         <type>checkbox</type>
       </formalParameter>
       <step>
-        <stepName>save Projects</stepName>
+        <stepName>saveProjects</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
@@ -12070,7 +12070,7 @@ Changelog:
         <type>entry</type>
       </formalParameter>
       <step>
-        <stepName>create _ui_forms</stepName>
+        <stepName>create_ui_forms</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
