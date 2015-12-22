@@ -4170,7 +4170,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>351</value>
+        <value>354</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -4298,6 +4298,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.17.0
+  + Fixed #58: backup Gateways
+
 - version 2.16.9
  + Remove spaces from step names
 - version 2.16.8
@@ -4310,20 +4313,15 @@ History:
 - version 2.16.5
   + Fixed Issue #51: artifactRepositorySynchronization did not work with Zones and firewalls
   + Fixed Issue #50: delete empty directory in case of error with artifactRepositorySynchronization
-
 - version 2.16.4
   + Add description for some license-logger configuration properties
-
 - version 2.16.3
   + Fixed #52: the /server/counters/EC-Admin is not writable
-
 - version 2.16.2
   + fixed #47: nproc does not work on RHEL for performanceMetrics
-
 - version 2.16.1
   + Refreshed Help page and README.md
   + Fixed #49: limit of 100 artifact versions in artifactRepositorySynchronization
-
 -version 2.16.0
   + add option to enable change tracking on the created plugin (with projectAsCode)
 
@@ -4638,7 +4636,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.16.9</value>
+        <value>2.17.0</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
@@ -10865,6 +10863,31 @@ Changelog:
                   </propertySheet>
                 </property>
                 <property>
+                  <propertyName>exportGateways</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>checkedValue</propertyName>
+                      <expandable>1</expandable>
+                      <value>true</value>
+                    </property>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                    <property>
+                      <propertyName>initiallyChecked</propertyName>
+                      <expandable>1</expandable>
+                      <value>1</value>
+                    </property>
+                    <property>
+                      <propertyName>uncheckedValue</propertyName>
+                      <expandable>1</expandable>
+                      <value>false</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
                   <propertyName>exportGroups</propertyName>
                   <propertySheet>
                     <property>
@@ -11122,6 +11145,14 @@ $[/server/ec_notifierTemplates/Html_JobTempl/body]</formattingTemplate>
         <type>checkbox</type>
       </formalParameter>
       <formalParameter>
+        <formalParameterName>exportGateways</formalParameterName>
+        <defaultValue>true</defaultValue>
+        <description/>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
+        <type>checkbox</type>
+      </formalParameter>
+      <formalParameter>
         <formalParameterName>exportGroups</formalParameterName>
         <defaultValue>true</defaultValue>
         <description/>
@@ -11260,6 +11291,29 @@ Changelog:
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
         <condition>$[exportResourcePools]</condition>
+        <description/>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName>$[/myJob/backupResource]</resourceName>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>saveGateways</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition>$[exportGateways]</condition>
         <description/>
         <errorHandling>failProcedure</errorHandling>
         <exclusiveMode>none</exclusiveMode>

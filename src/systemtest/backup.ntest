@@ -53,6 +53,7 @@ ntest "issue_56_question_mark", {}, sub {
     actualParameter=>[
       {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
       {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"false"},
       {actualParameterName=>"exportGroups", value=>"false"},
       {actualParameterName=>"exportResourcePools", value=>"false"},
       {actualParameterName=>"exportResources", value=>"false"},
@@ -96,6 +97,7 @@ ntest "issue_57_group_with_slash", {}, sub {
       {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
       {actualParameterName=>"exportDeploy", value=>"false"},
       {actualParameterName=>"exportGroups", value=>"true"},
+      {actualParameterName=>"exportGateways", value=>"false"},
       {actualParameterName=>"exportResourcePools", value=>"false"},
       {actualParameterName=>"exportResources", value=>"false"},
       {actualParameterName=>"exportSteps", value=>"false"},
@@ -120,6 +122,53 @@ ntest "issue_57_group_with_slash", {}, sub {
     }
   }
   $::N->deleteGroup($group); 
+};
+
+#-------------------------------------------------------------------------------
+#  Issue 58: backup gateways
+#-------------------------------------------------------------------------------
+ntest "issue_58_gateways", {}, sub {
+  my $gate="GW58";
+
+  my $xpath= $::N->createGateway($gate, {
+     gatewayDisabled => 0,
+     description => "forbackup testing",
+     resourceName1 => "local", resourceName2 => "win7"
+    });
+  assertOK($xpath, "Failed to create gateway $gate");
+
+  rmtree("/tmp/BACKUP");
+  $xpath = $::N->runProcedure("EC-Admin", {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGroups", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"true"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportResources", value=>"false"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"false"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check for file with question mark replaced by _
+    if (! -f "/tmp/BACKUP/Gateways/GW58.xml") {
+      fail("AC_DC.xml group is missing");
+    } else {
+      rmtree("/tmp/BACKUP");
+    }
+  }
+  $::N->deleteGateway($gate);
 };
 
 1;

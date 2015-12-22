@@ -1,3 +1,9 @@
+2015-12-22 Laurent Rochette <lrochette@gmail.com>
+  * 2.17.0.354: Fix #58 backup gateways
+
+2015-12-22 Laurent Rochette <lrochette@gmail.com>
+  * 2.16.9.353: Fix #58 backup gateways
+
 2015-12-21 Laurent Rochette <lrochette@gmail.com>
   * 2.16.9.350: Added test for #56 and #57
   * 2.16.9.333: Remove spaces from step names.
