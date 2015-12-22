@@ -125,7 +125,7 @@ ntest "ACL_on_server_EC-Admin", {}, sub {
 #-------------------------------------------------------------------------------
 ntest "timeout_config_property", {}, sub {
     assertEq($::N->getProperty("/server/EC-Admin/cleanup/config/timeout")->findvalue("//value"), 
-		"800", "timeout value is incorrect");
+		"600", "timeout value is incorrect");
 };
 
 #-------------------------------------------------------------------------------
