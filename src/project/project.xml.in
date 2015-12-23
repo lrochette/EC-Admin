@@ -4170,7 +4170,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>354</value>
+        <value>360</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -4300,6 +4300,7 @@ software.&lt;/p&gt;
 History:
 - version 2.17.0
   + Fixed #58: backup Gateways
+  + Fixed #59: backup Zones
 
 - version 2.16.9
  + Remove spaces from step names
@@ -11038,6 +11039,31 @@ Changelog:
                   </propertySheet>
                 </property>
                 <property>
+                  <propertyName>exportZones</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>checkedValue</propertyName>
+                      <expandable>1</expandable>
+                      <value>true</value>
+                    </property>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                    <property>
+                      <propertyName>initiallyChecked</propertyName>
+                      <expandable>1</expandable>
+                      <value>0</value>
+                    </property>
+                    <property>
+                      <propertyName>uncheckedValue</propertyName>
+                      <expandable>1</expandable>
+                      <value>false</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
                   <propertyName>extractResourcePools</propertyName>
                   <propertySheet>
                     <property>
@@ -11201,6 +11227,14 @@ $[/server/ec_notifierTemplates/Html_JobTempl/body]</formattingTemplate>
         <type>checkbox</type>
       </formalParameter>
       <formalParameter>
+        <formalParameterName>exportZones</formalParameterName>
+        <defaultValue>true</defaultValue>
+        <description/>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
+        <type>checkbox</type>
+      </formalParameter>
+      <formalParameter>
         <formalParameterName>pathname</formalParameterName>
         <defaultValue>/tmp/BACKUP</defaultValue>
         <description>Directory where to saved the XML files</description>
@@ -11314,6 +11348,29 @@ Changelog:
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
         <condition>$[exportGateways]</condition>
+        <description/>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName>$[/myJob/backupResource]</resourceName>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>saveZones</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition>$[exportZones]</condition>
         <description/>
         <errorHandling>failProcedure</errorHandling>
         <exclusiveMode>none</exclusiveMode>

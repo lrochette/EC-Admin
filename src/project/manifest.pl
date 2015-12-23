@@ -108,6 +108,7 @@
 	['//project/procedure[procedureName="saveAllObjects"]/step[stepName="saveResources"]/command', 'procedures/saveAllObjects/steps/saveResources.pl'],
 	['//project/procedure[procedureName="saveAllObjects"]/step[stepName="saveResourcePools"]/command', 'procedures/saveAllObjects/steps/saveResourcePools.pl'],
 	['//project/procedure[procedureName="saveAllObjects"]/step[stepName="saveGateways"]/command', 'procedures/saveAllObjects/steps/saveGateways.pl'],
+	['//project/procedure[procedureName="saveAllObjects"]/step[stepName="saveZones"]/command', 'procedures/saveAllObjects/steps/saveZones.pl'],
 	['//project/procedure[procedureName="saveAllObjects"]/step[stepName="saveWorkspaces"]/command', 'procedures/saveAllObjects/steps/saveWorkspaces.pl'],
 	['//project/procedure[procedureName="saveAllObjects"]/step[stepName="saveUsers"]/command', 'procedures/saveAllObjects/steps/saveUsers.pl'],
 	['//project/procedure[procedureName="saveAllObjects"]/step[stepName="saveGroups"]/command', 'procedures/saveAllObjects/steps/saveGroups.pl'],

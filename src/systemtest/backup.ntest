@@ -162,8 +162,8 @@ ntest "issue_58_gateways", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for file with question mark replaced by _
-    if (! -f "/tmp/BACKUP/Gateways/GW58.xml") {
-      fail("AC_DC.xml group is missing");
+    if (! -f "/tmp/BACKUP/Gateways/$gate.xml") {
+      fail("$gate.xml gate is missing");
     } else {
       rmtree("/tmp/BACKUP");
     }
@@ -171,4 +171,47 @@ ntest "issue_58_gateways", {}, sub {
   $::N->deleteGateway($gate);
 };
 
+#-------------------------------------------------------------------------------
+#  Issue 59: backup zones
+#-------------------------------------------------------------------------------
+ntest "issue_59_zones", {}, sub {
+  my $zone="zone59";
+
+  my $xpath= $::N->createZone($zone, {description => "for backup testing"});
+  assertOK($xpath, "Failed to create zone $zone");
+
+  rmtree("/tmp/BACKUP");
+  $xpath = $::N->runProcedure("EC-Admin", {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGroups", value=>"false"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"true"},
+      {actualParameterName=>"exportResources", value=>"false"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"false"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check for file with question mark replaced by _
+    if (! -f "/tmp/BACKUP/Zones/$zone.xml") {
+      fail("$zone.xml zone is missing");
+    } else {
+      rmtree("/tmp/BACKUP");
+    }
+  }
+  $::N->deleteZone($zone);
+};
 1;
