@@ -18,9 +18,6 @@ my $pluginKey = "EC-Admin";
 my $xpath = $::N->getPlugin($pluginKey);
 my $pluginName = $xpath->findvalue("//pluginName")->value;
 
-#create project to get jobImport
-$::N->createProject("EC-Admin Management");
-
 #-------------------------------------------------------------------------------
 # Test procedure present.
 #-------------------------------------------------------------------------------
