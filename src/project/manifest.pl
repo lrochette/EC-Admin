@@ -141,6 +141,7 @@
 	['//project/procedure[procedureName="subPM-ping"]/step[stepName="ping"]/command', 'procedures/subPM-ping/steps/ping.pl'],
 	['//project/procedure[procedureName="synchronizePlugins"]/step[stepName="uploadPlugins"]/command', 'procedures/synchronizePlugins/steps/uploadPlugins.pl'],
 	['//project/procedure[procedureName="synchronizePlugins"]/step[stepName="downloadPlugins"]/command', 'procedures/synchronizePlugins/steps/downloadPlugins.pl'],
+	['//project/procedure[procedureName="testResources"]/step[stepName="Iterate"]/command', 'procedures/testResources/steps/Iterate.pl'],
 	['//project/procedure[procedureName="workflowCleanup"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/workflowCleanup/form.xml'],
 	['//project/procedure[procedureName="workflowCleanup"]/step[stepName="deleteWorkflows"]/command', 'procedures/workflowCleanup/steps/deleteWorkflows.pl'],
 );
