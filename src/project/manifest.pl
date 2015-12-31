@@ -16,6 +16,8 @@
 	['//project/procedure[procedureName="acquireSemaphore"]/step[stepName="acquireSemaphore"]/command', 'procedures/acquireSemaphore/steps/acquireSemaphore.pl'],
 	['//project/procedure[procedureName="artifactRepositorySynchronization"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/artifactRepositorySynchronization/form.xml'],
 	['//project/procedure[procedureName="artifactRepositorySynchronization"]/step[stepName="syncRepo"]/command', 'procedures/artifactRepositorySynchronization/steps/syncRepo.pl'],
+	['//project/procedure[procedureName="artifactRepositorySynchronizationS3"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/artifactRepositorySynchronizationS3/form.xml'],
+	['//project/procedure[procedureName="artifactRepositorySynchronizationS3"]/step[stepName="syncRepo"]/command', 'procedures/artifactRepositorySynchronizationS3/steps/syncRepo.pl'],
 	['//project/procedure[procedureName="artifactsCleanup"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/artifactsCleanup/form.xml'],
 	['//project/procedure[procedureName="artifactsCleanup"]/step[stepName="deleteArtifactVersions"]/command', 'procedures/artifactsCleanup/steps/deleteArtifactVersions.pl'],
 	['//project/procedure[procedureName="artifactsCleanup"]/step[stepName="dynamicCleanRepoProcedure"]/command', 'procedures/artifactsCleanup/steps/dynamicCleanRepoProcedure.pl'],

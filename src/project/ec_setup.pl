@@ -132,6 +132,14 @@ The user must specify a list of remote repositories to query and may specify a f
   category    => "Administration" 
 );
 
+my %artifactRepositorySynchronizationS3 = ( 
+  label       => "EC-Admin - artifactRepositorySynchronizationS3", 
+  procedure   => "artifactRepositorySynchronizationS3", 
+  description => "Syncs the contents of 2 repositories
+This procedure is under development", 
+  category    => "Administration" 
+);
+
 my %artifactsCleanup = ( 
   label       => "EC-Admin - artifactsCleanup", 
   procedure   => "artifactsCleanup", 
@@ -232,4 +240,4 @@ Report the number of workflows.",
   category    => "Administration" 
 );
 
-@::createStepPickerSteps = (\%acquireSemaphore, \%artifactRepositorySynchronization, \%artifactsCleanup, \%artifactsCleanup_byQuantity, \%createPluginFromProject, \%deleteObjects, \%deleteWorkspaceOrphans, \%jobCleanup_byResult, \%jobsCleanup, \%performanceMetrics, \%projectAsCode, \%releaseSemaphore, \%saveAllObjects, \%saveProjects, \%synchronizePlugins, \%workflowCleanup);
+@::createStepPickerSteps = (\%acquireSemaphore, \%artifactRepositorySynchronization, \%artifactRepositorySynchronizationS3, \%artifactsCleanup, \%artifactsCleanup_byQuantity, \%createPluginFromProject, \%deleteObjects, \%deleteWorkspaceOrphans, \%jobCleanup_byResult, \%jobsCleanup, \%performanceMetrics, \%projectAsCode, \%releaseSemaphore, \%saveAllObjects, \%saveProjects, \%synchronizePlugins, \%workflowCleanup);

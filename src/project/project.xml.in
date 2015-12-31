@@ -16,12 +16,12 @@
               <property>
                 <propertyName>image</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/2070970/images/custom42422400151d37047a41.png</value>
+                <value>/commander/jobSteps/2074465/images/custom59631383151d89629181.png</value>
               </property>
               <property>
                 <propertyName>link</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/2070970/Performance Report.html</value>
+                <value>/commander/jobSteps/2074465/Performance Report.html</value>
               </property>
             </propertySheet>
           </property>
@@ -1630,6 +1630,56 @@
                     <propertyName>reportDate</propertyName>
                     <expandable>1</expandable>
                     <value>2015-12-24 02:02:01</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>256445</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2074465</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2074465</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2015-12-25 02:01:31</value>
                   </property>
                   <property>
                     <propertyName>reportType</propertyName>
@@ -4206,7 +4256,7 @@ properties can be set up:&lt;/p&gt;
 
 			&lt;dt&gt;deleteObjects&lt;/dt&gt;
       &lt;dt&gt;testResources&lt;/dt&gt;
-			&lt;dd&gt;Tanay Nagjee \&lt;/dd&gt;
+			&lt;dd&gt;&lt;a href="https://github.com/tanaynagjee"&gt;Tanay Nagjee&lt;/a&gt;&lt;/dd&gt;
 
       &lt;dt&gt;Other&lt;/dt&gt;
 			&lt;dd&gt;Laurent Rochette (&lt;a href="mailto:lrochette@electric-cloud.com"&gt;lrochette@electric-cloud.com&lt;/a&gt;)&lt;/dd&gt;
@@ -4232,7 +4282,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>371</value>
+        <value>373</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -4360,6 +4410,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.19.0
+  + new Artifact repo sync procedure to deal with S3 (Issue #60)
+
 - version 2.18.0
   + added testResources procedure
 
@@ -4988,6 +5041,236 @@ The user must specify a list of remote repositories to query and may specify a f
         <precondition/>
         <releaseMode>none</releaseMode>
         <resourceName>$[artifactRepositoryResource]</resourceName>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+    </procedure>
+    <procedure>
+      <procedureName>artifactRepositorySynchronizationS3</procedureName>
+      <description>Syncs the contents of 2 repositories
+This procedure is under development</description>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
+      <resourceName/>
+      <timeLimit/>
+      <timeLimitUnits>minutes</timeLimitUnits>
+      <workspaceName/>
+      <propertySheet>
+        <property>
+          <propertyName>ec_customEditorData</propertyName>
+          <propertySheet>
+            <property>
+              <propertyName>parameters</propertyName>
+              <propertySheet>
+                <property>
+                  <propertyName>artifactReposiotyList</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>artifactRepositoryList</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>artifactRepositoryResource</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>artifactVersionPattern</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>batchSize</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>gAVPattern</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>repoList</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>repoResource</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>sourceArtifactRepository</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>sourceRepository</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>syncResource</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>targetArtifactRepository</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>targetRepository</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+              </propertySheet>
+            </property>
+          </propertySheet>
+        </property>
+        <property>
+          <propertyName>ec_parameterForm</propertyName>
+          <description/>
+          <expandable>1</expandable>
+          <value>PLACEHOLDER</value>
+        </property>
+        <property>
+          <propertyName>exposeToPlugin</propertyName>
+          <description/>
+          <expandable>1</expandable>
+          <value>1</value>
+        </property>
+      </propertySheet>
+      <formalParameter>
+        <formalParameterName>artifactVersionPattern</formalParameterName>
+        <defaultValue>*</defaultValue>
+        <description>Pattern of artifact version to sync. Examples:
+   MyGrp:MyKey:* -- all artifact versions with group MyGrp and key MyKey                    
+   MyGrp:*           -- all artifact versions with group MyGrp
+   *                     -- all artifact versions. This is the default.</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>1</required>
+        <type>entry</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>batchSize</formalParameterName>
+        <defaultValue>25</defaultValue>
+        <description>Batch size</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
+        <type>entry</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>sourceRepository</formalParameterName>
+        <defaultValue/>
+        <description>Name of the resource running the repository to sync to</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
+        <type>entry</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>syncResource</formalParameterName>
+        <defaultValue/>
+        <description>the name of the resource on which to run the synchronization</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>1</required>
+        <type>entry</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>targetRepository</formalParameterName>
+        <defaultValue/>
+        <description>The target repository</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>1</required>
+        <type>entry</type>
+      </formalParameter>
+      <step>
+        <stepName>syncRepo</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition/>
+        <description/>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName>$[syncResource]</resourceName>
         <shell>ec-perl</shell>
         <timeLimit/>
         <timeLimitUnits>minutes</timeLimitUnits>

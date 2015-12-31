@@ -1,4 +1,4 @@
-# Copyright (c) 2005-2015 Electric Cloud, Inc.
+# Copyright (c) 2005-2016 Electric Cloud, Inc.
 # All rights reserved.
 
 # TODO: Warnings for bad repo names, or errors connecting to repos.
