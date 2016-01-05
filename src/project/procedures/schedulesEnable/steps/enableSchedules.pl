@@ -59,3 +59,4 @@ $ec->setProperty("/myJob/nbSchedulesEnabled", $nbSchedulesEnabled);
 $[/myProject/scripts/perlLibJSON]
 
 
+

@@ -12,3 +12,4 @@ $ec->installPlugin("./$plugin-$version.jar");
 $ec->setProperty("summary", "$plugin-$version installed");
 
 
+

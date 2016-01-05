@@ -38,7 +38,8 @@ my $targetRepoUrl = undef;
 my $sourceRepoUrl  = undef;
 my $httpProxy = undef;
 my $userAgent = undef;
-my $error=0;
+my $error=0;    # Number of error detected
+my $sync=0;     # Number of AV sync properly
 
 # ------------------------------------------------------------------------
 # downloadArtifactVersion
@@ -105,9 +106,7 @@ sub downloadArtifactVersion($$$) {
 
   my $header=HTTP::Headers->new;
   $header->content_type('application/octet-stream');
-  $header->content_length(-s "$tmpdir/artifact");
   $header->authorization($authorization);
-
   my $request = HTTP::Request->new("PUT", $repoUrl, $header, $readFunc);
   $request->header("X-originating-server" => $ec->{server});
 
@@ -127,17 +126,10 @@ sub downloadArtifactVersion($$$) {
 
   # Now let's upload the manifest to the target repo
   open FH, "$tmpdir/manifest";
-  # For dynamic file upload
-  # my $readFunc = sub {
-  #   read FH, my $buf, 65536;
-  #   return $buf;
-  # };
 
   my $header=HTTP::Headers->new;
   $header->content_type('application/octet-stream');
-  $header->content_length(-s "$tmpdir/manifest");
   $header->authorization($authorization);
-
   my $request = HTTP::Request->new("PUT", $repoUrl . "?manifest", $header, $readFunc);
   $request->header("X-originating-server" => $ec->{server});
 
@@ -156,7 +148,7 @@ sub downloadArtifactVersion($$$) {
   print "  Successfully synced up $gav\n";
 
   printf("\n");
-
+  $sync++;
 }
 
 
@@ -313,12 +305,45 @@ sub checkArtifactVersion ($$$) {
   return  0;
 }
 
+# ------------------------------------------------------------------------
+# checkARepoNames
+#
+#      Check to see if the artifact repo names are valid
+#
+# Arguments:
+#      None
+# Return:
+#       None: exist in case of error
+# ------------------------------------------------------------------------
+sub checkRepoNames() {
+  my $msg="";
+
+  foreach my $repo (($sourceRepo,$targetRepo)) {
+    my ($ok, $xml)=InvokeCommander(
+      "IgnoreError SuppressLog", 'getRepository', $repo);
+    if (!$ok) {
+
+      $msg=sprintf("Artifact Repository '%s' does not exist!", $repo);
+      $ec->setProperty("summary", $msg);
+      printf("$msg\n");
+      exit(1);
+    }
+    if ($xml->findvalue('/responses/response/repository/repositoryDisabled')) {
+      $msg=sprintf("Artifact Repository '%s' is disabled!", $repo);
+      $ec->setProperty("summary", $msg);
+      printf("$msg\n");
+      exit(1);
+    }
+   }
+}
+
 #############################################################################
 #
 #  Main
 #
 #############################################################################
 createUserAgent();
+checkRepoNames();
 
 $gAM->loadRepositoryInfo();
 if ($httpProxy) {
@@ -401,7 +426,10 @@ do {
   }
 } while ($count > 0);
 
+$ec->setProperty("summary", "$sync artifact versions synchronized");
+
 # Set status as error if we encountered any issue
 $ec->setProperty("summary", "$error synchronization errors detected") if ($error);
 
+$[/plugins[EC-Admin]project/scripts/perlLib]
 
