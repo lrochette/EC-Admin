@@ -38,6 +38,7 @@ my $targetRepoUrl = undef;
 my $sourceRepoUrl  = undef;
 my $httpProxy = undef;
 my $userAgent = undef;
+my $error=0;
 
 # ------------------------------------------------------------------------
 # downloadArtifactVersion
@@ -69,6 +70,8 @@ sub downloadArtifactVersion($$$) {
       # print "Successfully synced down manifest for $gav\n";
   } else {
     print "ERROR: couldn't retrieve manifest for $gav\n";
+    $ec->setProperty("outcome", "error");
+    $error++;
     return;
   }
 
@@ -81,6 +84,8 @@ sub downloadArtifactVersion($$$) {
       # print "Successfully synced down artifact for $gav\n";
   } else {
     print "ERROR: couldn't retrieve artifact for $gav\n";
+    $ec->setProperty("outcome", "error");
+    $error++;
     return;
   }
   print "  Successfully synced down $gav\n";
@@ -114,6 +119,8 @@ sub downloadArtifactVersion($$$) {
   } else {
     print "ERROR: couldn't publish artifact for $gav\n";
     print $response->status_line . "\n\n";
+    $ec->setProperty("outcome", "error");
+    $error++;
     return;
   }
   close FH;
@@ -141,7 +148,9 @@ sub downloadArtifactVersion($$$) {
   } else {
     print "ERROR: couldn't publish manifest for $gav\n";
     print $response->status_line . "\n\n";
-    exit 1;
+    $ec->setProperty("outcome", "error");
+    $error++;
+    return;
   }
   close FH;
   print "  Successfully synced up $gav\n";
@@ -320,8 +329,8 @@ if ($httpProxy) {
   $sourceRepoUrl=$gAM->{repoUrl}->{$sourceRepo};
 }
 
-printf ("Source Repo=%s\n", $sourceRepoUrl);
-printf ("Target Repo=%s\n", $targetRepoUrl);
+#printf ("Source Repo=%s\n", $sourceRepoUrl);
+#printf ("Target Repo=%s\n", $targetRepoUrl);
 
 # Find artifact versions in the server that match the given criteria
 my @filters = ({propertyName => "artifactVersionState",
@@ -391,4 +400,7 @@ do {
     $xpath = $ec->getObjects({objectId => \@objectIds});
   }
 } while ($count > 0);
+
+# Set status as error if we encountered any issue
+$ec->setProperty("summary", "$error synchronization errors detected") if ($error);
 

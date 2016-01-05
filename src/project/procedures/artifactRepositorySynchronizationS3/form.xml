@@ -1,6 +1,6 @@
 <editor>
   <formElement> 
-     <label>Source  Repository</label> 
+     <label>Source Artifact Repository</label> 
      <property>sourceRepository</property> 
      <documentation>Name of the source repository to sync from.</documentation> 
      <type>entry</type>
@@ -8,19 +8,21 @@
   </formElement> 
   
    <formElement> 
-        <label>Target Artifact Repository Resource</label> 
+        <label>Target Artifact Repository</label> 
         <property>targetRepository</property> 
         <documentation>Name of the target repository to sync to.</documentation> 
         <type>entry</type>
         <required>1</required>
-    </formElement> 
+   </formElement> 
+   
    <formElement> 
         <label>Synchronization Resource</label> 
         <property>syncResource</property> 
         <documentation>the name of the resource on which to run the synchronization.</documentation> 
         <type>entry</type>
         <required>1</required>
-    </formElement> 
+   </formElement> 
+   
    <formElement> 
         <label>Artifact Version Pattern</label> 
         <property>artifactVersionPattern</property> 

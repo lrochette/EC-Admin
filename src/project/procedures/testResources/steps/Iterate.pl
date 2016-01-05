@@ -25,6 +25,8 @@ foreach my $resource($resources->findnodes("/responses/response/resource")) {
         print "$name is alive, running test...\n";
         $ec->createJobStep({
             jobStepName => $name,
+            resourceName => $name,
+            parallel => 1,
             command => 'print "Hello world!";',
             shell => "ec-perl"
         });
