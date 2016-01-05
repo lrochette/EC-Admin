@@ -1,8 +1,5 @@
-2016-12-31 Laurent Rochette <lrochette@gmail.com>
-  * 2.18.0.373: early new SyncRepo procedure (#60)
-
-2016-12-31 Laurent Rochette <lrochette@gmail.com>
-  * 2.18.0.372: early new SyncRepo procedure (#60)
+2016-01-04 Laurent Rochette <lrochette@gmail.com>
+  * 2.19.0.375: new universal SyncRepo procedure (#60)
 
 2015-12-24 Laurent Rochette <lrochette@gmail.com>
   * 2.18.0.371: Fix #61: added testResources procedure

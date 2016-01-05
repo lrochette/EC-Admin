@@ -90,6 +90,7 @@ sub downloadArtifactVersion($$$$$)
     # TODO: Write to a temp dir, then rename.
     foreach my $repoUrlBase (@$repoUrls) {
         my $repoUrl = "$repoUrlBase/artifacts/$groupId/$artifactKey/$version";
+        printf("Repo URL: %s\n", $repoUrl);
         my $authorization = "Basic " .
             encode_base64("commanderSession:" . $::gCommander->{sessionId});
         my $request = GET $repoUrl, "Authorization" => $authorization,

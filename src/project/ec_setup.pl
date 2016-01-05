@@ -135,8 +135,8 @@ The user must specify a list of remote repositories to query and may specify a f
 my %artifactRepositorySynchronizationS3 = ( 
   label       => "EC-Admin - artifactRepositorySynchronizationS3", 
   procedure   => "artifactRepositorySynchronizationS3", 
-  description => "Syncs the contents of 2 repositories
-This procedure is under development", 
+  description => "Syncs the contents of 2 repositories no matter what is the backing store.
+Each AV backing store  to synchronize is downloaded from the source repo on the resource and uploaded to the target repo", 
   category    => "Administration" 
 );
 
