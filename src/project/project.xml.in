@@ -4382,7 +4382,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>377</value>
+        <value>384</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -10562,7 +10562,7 @@ $ec-&gt;setProperty("/projects/$[Project]/ec_visibility", "pickListOnly");
         <postProcessor/>
         <precondition/>
         <releaseMode>none</releaseMode>
-        <resourceName/>
+        <resourceName>$[SDKResource]</resourceName>
         <shell>ec-perl</shell>
         <timeLimit/>
         <timeLimitUnits>minutes</timeLimitUnits>
@@ -10617,7 +10617,7 @@ Procedure is added only if property pluginExpose is set</description>
         <postProcessor/>
         <precondition/>
         <releaseMode>none</releaseMode>
-        <resourceName/>
+        <resourceName>$[SDKResource]</resourceName>
         <shell>ec-perl</shell>
         <timeLimit/>
         <timeLimitUnits>minutes</timeLimitUnits>
