@@ -4183,9 +4183,42 @@ if ( $promoteAction eq 'promote' ) {
 
 		&lt;h2&gt;artifactRepositorySynchronization&lt;/h2&gt;
 
-		&lt;p&gt;Synchronize the content of remote artifact repositories to a local
-		resource. You can use pattern matching to select specific artifact
+		&lt;p&gt;Synchronize the content of a source artifact repositories to a target
+		one. You can use pattern matching to select specific artifact
 		versions to synchronize.&lt;/p&gt;
+
+    &lt;table class="grid"&gt;
+      &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Parameter&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+       &lt;tbody&gt;
+         &lt;tr&gt;
+           &lt;td class='required'&gt;Source Artifact Repository&lt;/td&gt;
+           &lt;td&gt;The name of the artifact repository from which to synchronize.&lt;/td&gt;
+         &lt;/tr&gt;
+         &lt;tr&gt;
+           &lt;td class='required'&gt;Target Artifact Repository&lt;/td&gt;
+           &lt;td&gt;The name of the artifact repository to which to synchronize.&lt;/td&gt;
+         &lt;/tr&gt;
+         &lt;tr&gt;
+           &lt;td class='required'&gt;Synchronization Resource&lt;/td&gt;
+           &lt;td&gt;The name of a resource used as a buffer to download/upload the files.&lt;/td&gt;
+         &lt;/tr&gt;
+         &lt;tr&gt;
+           &lt;td&gt;Artifact Version Pattern&lt;/td&gt;
+           &lt;td&gt;Pattern of artifact version to sync.&lt;br/&gt;Examples:&lt;br/&gt;
+             MyGrp:MyKey:* (all artifact versions with group MyGrp and key MyKey),&lt;br/&gt;
+             MyGrp:* (all artifact versions with group MyGrp),&lt;br/&gt;
+             * (all artifact versions. This is the default).&lt;/td&gt;
+         &lt;/tr&gt;
+         &lt;tr&gt;
+           &lt;td&gt;Batch Size&lt;/td&gt;
+           &lt;td&gt;Number of ArtifactVersion to process at once. A high number 
+             could overwhelm your gateways.&lt;/td&gt;
+         &lt;/tr&gt;
+       &lt;/tbody&gt;
+   &lt;/table&gt;
+
+   &lt;img src="../../plugins/@PLUGIN_KEY@/images/help/artifactRepositorySynchronization.png"
+        alt="artifactRepositorySynchronization parameters" /&gt;
 
 		&lt;h2&gt;artifactsCleanup&lt;/h2&gt;
 
@@ -4382,7 +4415,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>389</value>
+        <value>390</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -4510,6 +4543,8 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.19.2
+  + make new artifactRepositorySynchronization procedure the default one
 - version 2.19.1
   + fixed issue with testResources (all steps were running on local)
 - version 2.19.0
@@ -4857,7 +4892,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.19.1</value>
+        <value>2.19.2</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
@@ -4982,178 +5017,6 @@ Changelog:
     </procedure>
     <procedure>
       <procedureName>artifactRepositorySynchronization</procedureName>
-      <description>Syncs the contents of a remote repository to this repository's backingstore.
-The user must specify a list of remote repositories to query and may specify a filter for a subset of Artifact Version to sync.</description>
-      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
-      <resourceName/>
-      <timeLimit/>
-      <timeLimitUnits>minutes</timeLimitUnits>
-      <workspaceName/>
-      <propertySheet>
-        <property>
-          <propertyName>ec_customEditorData</propertyName>
-          <propertySheet>
-            <property>
-              <propertyName>parameters</propertyName>
-              <propertySheet>
-                <property>
-                  <propertyName>artifactReposiotyList</propertyName>
-                  <propertySheet>
-                    <property>
-                      <propertyName>formType</propertyName>
-                      <expandable>1</expandable>
-                      <value>standard</value>
-                    </property>
-                  </propertySheet>
-                </property>
-                <property>
-                  <propertyName>artifactRepositoryList</propertyName>
-                  <propertySheet>
-                    <property>
-                      <propertyName>formType</propertyName>
-                      <expandable>1</expandable>
-                      <value>standard</value>
-                    </property>
-                  </propertySheet>
-                </property>
-                <property>
-                  <propertyName>artifactRepositoryResource</propertyName>
-                  <propertySheet>
-                    <property>
-                      <propertyName>formType</propertyName>
-                      <expandable>1</expandable>
-                      <value>standard</value>
-                    </property>
-                  </propertySheet>
-                </property>
-                <property>
-                  <propertyName>artifactVersionPattern</propertyName>
-                  <propertySheet>
-                    <property>
-                      <propertyName>formType</propertyName>
-                      <expandable>1</expandable>
-                      <value>standard</value>
-                    </property>
-                  </propertySheet>
-                </property>
-                <property>
-                  <propertyName>batchSize</propertyName>
-                  <propertySheet>
-                    <property>
-                      <propertyName>formType</propertyName>
-                      <expandable>1</expandable>
-                      <value>standard</value>
-                    </property>
-                  </propertySheet>
-                </property>
-                <property>
-                  <propertyName>gAVPattern</propertyName>
-                  <propertySheet>
-                    <property>
-                      <propertyName>formType</propertyName>
-                      <expandable>1</expandable>
-                      <value>standard</value>
-                    </property>
-                  </propertySheet>
-                </property>
-                <property>
-                  <propertyName>repoList</propertyName>
-                  <propertySheet>
-                    <property>
-                      <propertyName>formType</propertyName>
-                      <expandable>1</expandable>
-                      <value>standard</value>
-                    </property>
-                  </propertySheet>
-                </property>
-                <property>
-                  <propertyName>repoResource</propertyName>
-                  <propertySheet>
-                    <property>
-                      <propertyName>formType</propertyName>
-                      <expandable>1</expandable>
-                      <value>standard</value>
-                    </property>
-                  </propertySheet>
-                </property>
-              </propertySheet>
-            </property>
-          </propertySheet>
-        </property>
-        <property>
-          <propertyName>ec_parameterForm</propertyName>
-          <description/>
-          <expandable>1</expandable>
-          <value>PLACEHOLDER</value>
-        </property>
-        <property>
-          <propertyName>exposeToPlugin</propertyName>
-          <description/>
-          <expandable>1</expandable>
-          <value>1</value>
-        </property>
-      </propertySheet>
-      <formalParameter>
-        <formalParameterName>artifactRepositoryList</formalParameterName>
-        <defaultValue/>
-        <description>Comma-separated list of repositories to sync from.</description>
-        <expansionDeferred>0</expansionDeferred>
-        <required>1</required>
-        <type>entry</type>
-      </formalParameter>
-      <formalParameter>
-        <formalParameterName>artifactRepositoryResource</formalParameterName>
-        <defaultValue/>
-        <description>Name of the resource running the repository to sync to</description>
-        <expansionDeferred>0</expansionDeferred>
-        <required>0</required>
-        <type>entry</type>
-      </formalParameter>
-      <formalParameter>
-        <formalParameterName>artifactVersionPattern</formalParameterName>
-        <defaultValue>*</defaultValue>
-        <description>Pattern of artifact version to sync. Examples:
-   MyGrp:MyKey:* -- all artifact versions with group MyGrp and key MyKey                    
-   MyGrp:*           -- all artifact versions with group MyGrp
-   *                     -- all artifact versions. This is the default.</description>
-        <expansionDeferred>0</expansionDeferred>
-        <required>1</required>
-        <type>entry</type>
-      </formalParameter>
-      <formalParameter>
-        <formalParameterName>batchSize</formalParameterName>
-        <defaultValue>25</defaultValue>
-        <description>Batch size</description>
-        <expansionDeferred>0</expansionDeferred>
-        <required>0</required>
-        <type>entry</type>
-      </formalParameter>
-      <step>
-        <stepName>syncRepo</stepName>
-        <alwaysRun>0</alwaysRun>
-        <broadcast>0</broadcast>
-        <command>PLACEHOLDER</command>
-        <condition/>
-        <description/>
-        <errorHandling>failProcedure</errorHandling>
-        <exclusiveMode>none</exclusiveMode>
-        <logFileName/>
-        <parallel>0</parallel>
-        <postProcessor/>
-        <precondition/>
-        <releaseMode>none</releaseMode>
-        <resourceName>$[artifactRepositoryResource]</resourceName>
-        <shell>ec-perl</shell>
-        <timeLimit/>
-        <timeLimitUnits>minutes</timeLimitUnits>
-        <workingDirectory/>
-        <workspaceName/>
-        <propertySheet>
-        </propertySheet>
-      </step>
-    </procedure>
-    <procedure>
-      <procedureName>artifactRepositorySynchronizationS3</procedureName>
       <description>Syncs the contents of 2 repositories no matter what is the backing store.
 Each AV backing store  to synchronize is downloaded from the source repo on the resource and uploaded to the target repo</description>
       <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
@@ -14116,6 +13979,180 @@ Report the number of workflows.</description>
         <precondition/>
         <releaseMode>none</releaseMode>
         <resourceName/>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+    </procedure>
+    <procedure>
+      <procedureName>ZZZ_DEPRECATED_artifactRepositorySynchronization</procedureName>
+      <description>Syncs the contents of a remote repository to this repository's backingstore.
+The user must specify a list of remote repositories to query and may specify a filter for a subset of Artifact Version to sync.
+
+The procedure has been deprecated in favor of the Universal one that can accommodate a S3 backend store.</description>
+      <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
+      <resourceName/>
+      <timeLimit/>
+      <timeLimitUnits>minutes</timeLimitUnits>
+      <workspaceName/>
+      <propertySheet>
+        <property>
+          <propertyName>ec_customEditorData</propertyName>
+          <propertySheet>
+            <property>
+              <propertyName>parameters</propertyName>
+              <propertySheet>
+                <property>
+                  <propertyName>artifactReposiotyList</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>artifactRepositoryList</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>artifactRepositoryResource</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>artifactVersionPattern</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>batchSize</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>gAVPattern</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>repoList</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
+                  <propertyName>repoResource</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
+              </propertySheet>
+            </property>
+          </propertySheet>
+        </property>
+        <property>
+          <propertyName>ec_parameterForm</propertyName>
+          <description/>
+          <expandable>1</expandable>
+          <value>PLACEHOLDER</value>
+        </property>
+        <property>
+          <propertyName>exposeToPlugin</propertyName>
+          <description/>
+          <expandable>1</expandable>
+          <value>1</value>
+        </property>
+      </propertySheet>
+      <formalParameter>
+        <formalParameterName>artifactRepositoryList</formalParameterName>
+        <defaultValue/>
+        <description>Comma-separated list of repositories to sync from.</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>1</required>
+        <type>entry</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>artifactRepositoryResource</formalParameterName>
+        <defaultValue/>
+        <description>Name of the resource running the repository to sync to</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
+        <type>entry</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>artifactVersionPattern</formalParameterName>
+        <defaultValue>*</defaultValue>
+        <description>Pattern of artifact version to sync. Examples:
+   MyGrp:MyKey:* -- all artifact versions with group MyGrp and key MyKey                    
+   MyGrp:*           -- all artifact versions with group MyGrp
+   *                     -- all artifact versions. This is the default.</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>1</required>
+        <type>entry</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>batchSize</formalParameterName>
+        <defaultValue>25</defaultValue>
+        <description>Batch size</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
+        <type>entry</type>
+      </formalParameter>
+      <step>
+        <stepName>syncRepo</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition/>
+        <description/>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName>$[artifactRepositoryResource]</resourceName>
         <shell>ec-perl</shell>
         <timeLimit/>
         <timeLimitUnits>minutes</timeLimitUnits>

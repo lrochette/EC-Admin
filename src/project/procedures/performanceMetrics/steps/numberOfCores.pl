@@ -18,3 +18,4 @@ $ec->setProperty("/myJob/numberOfCores", $nbCores);
 checkValue("CORE", $nbCores, $str);
 
 
+

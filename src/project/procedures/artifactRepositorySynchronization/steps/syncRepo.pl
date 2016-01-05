@@ -15,7 +15,6 @@ use HTTP::Cookies;
 use LWP::ConnCache;
 use LWP::UserAgent;
 use File::Temp qw (tempdir);
-use File::Path qw (rmtree);
 
 $[/plugins[EC-Admin]project/scripts/perlHeader]
 
@@ -39,8 +38,7 @@ my $targetRepoUrl = undef;
 my $sourceRepoUrl  = undef;
 my $httpProxy = undef;
 my $userAgent = undef;
-my $error=0;              # Number of errors
-my $sync=0;               # NUmber of artifacts synchronized
+my $error=0;
 
 # ------------------------------------------------------------------------
 # downloadArtifactVersion
@@ -107,6 +105,7 @@ sub downloadArtifactVersion($$$) {
 
   my $header=HTTP::Headers->new;
   $header->content_type('application/octet-stream');
+  $header->content_length(-s "$tmpdir/artifact");
   $header->authorization($authorization);
 
   my $request = HTTP::Request->new("PUT", $repoUrl, $header, $readFunc);
@@ -118,7 +117,7 @@ sub downloadArtifactVersion($$$) {
   if ($response->is_success) {
       #print "Successfully synced up artifact for $gav\n";
   } else {
-    print "ERROR: couldn't upload artifact for $gav\n";
+    print "ERROR: couldn't publish artifact for $gav\n";
     print $response->status_line . "\n\n";
     $ec->setProperty("outcome", "error");
     $error++;
@@ -128,10 +127,15 @@ sub downloadArtifactVersion($$$) {
 
   # Now let's upload the manifest to the target repo
   open FH, "$tmpdir/manifest";
+  # For dynamic file upload
+  # my $readFunc = sub {
+  #   read FH, my $buf, 65536;
+  #   return $buf;
+  # };
 
   my $header=HTTP::Headers->new;
   $header->content_type('application/octet-stream');
-  # do not pass content length, it creates some error
+  $header->content_length(-s "$tmpdir/manifest");
   $header->authorization($authorization);
 
   my $request = HTTP::Request->new("PUT", $repoUrl . "?manifest", $header, $readFunc);
@@ -142,7 +146,7 @@ sub downloadArtifactVersion($$$) {
   if ($response->is_success) {
       #print "Successfully synced up manifest for $gav\n";
   } else {
-    print "ERROR: couldn't upload manifest for $gav\n";
+    print "ERROR: couldn't publish manifest for $gav\n";
     print $response->status_line . "\n\n";
     $ec->setProperty("outcome", "error");
     $error++;
@@ -150,9 +154,9 @@ sub downloadArtifactVersion($$$) {
   }
   close FH;
   print "  Successfully synced up $gav\n";
-  rmtree($tmpdir);  # delete Temp directory
-  $sync++;
+
   printf("\n");
+
 }
 
 
@@ -398,6 +402,6 @@ do {
 } while ($count > 0);
 
 # Set status as error if we encountered any issue
-$ec->setProperty("summary", "$sync artifact versions synchronized");
 $ec->setProperty("summary", "$error synchronization errors detected") if ($error);
+
 

@@ -19,3 +19,4 @@ printf("CPU speed: $str\n");
 checkValue("CPU", $CPUspeed, $str);
 
 
+

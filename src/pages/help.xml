@@ -449,9 +449,42 @@ if ( $promoteAction eq 'promote' ) {
 
 		<h2>artifactRepositorySynchronization</h2>
 
-		<p>Synchronize the content of remote artifact repositories to a local
-		resource. You can use pattern matching to select specific artifact
+		<p>Synchronize the content of a source artifact repositories to a target
+		one. You can use pattern matching to select specific artifact
 		versions to synchronize.</p>
+
+    <table class="grid">
+      <thead><tr><th>Parameter</th><th>Description</th></tr></thead>
+       <tbody>
+         <tr>
+           <td class='required'>Source Artifact Repository</td>
+           <td>The name of the artifact repository from which to synchronize.</td>
+         </tr>
+         <tr>
+           <td class='required'>Target Artifact Repository</td>
+           <td>The name of the artifact repository to which to synchronize.</td>
+         </tr>
+         <tr>
+           <td class='required'>Synchronization Resource</td>
+           <td>The name of a resource used as a buffer to download/upload the files.</td>
+         </tr>
+         <tr>
+           <td>Artifact Version Pattern</td>
+           <td>Pattern of artifact version to sync.<br/>Examples:<br/>
+             MyGrp:MyKey:* (all artifact versions with group MyGrp and key MyKey),<br/>
+             MyGrp:* (all artifact versions with group MyGrp),<br/>
+             * (all artifact versions. This is the default).</td>
+         </tr>
+         <tr>
+           <td>Batch Size</td>
+           <td>Number of ArtifactVersion to process at once. A high number 
+             could overwhelm your gateways.</td>
+         </tr>
+       </tbody>
+   </table>
+
+   <img src="../../plugins/@PLUGIN_KEY@/images/help/artifactRepositorySynchronization.png"
+        alt="artifactRepositorySynchronization parameters" />
 
 		<h2>artifactsCleanup</h2>
 

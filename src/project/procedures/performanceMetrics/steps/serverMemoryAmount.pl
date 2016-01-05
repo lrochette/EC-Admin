@@ -36,3 +36,4 @@ printf("RAM amount: $str\n");
 checkValue("RAM", $RAM, $str);
 
 
+

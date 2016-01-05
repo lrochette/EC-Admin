@@ -35,3 +35,4 @@ printf("Disk Write speed: $str\n");
 checkValue("DISKWRITE", $WRITEspeed, $str);
 
 
+

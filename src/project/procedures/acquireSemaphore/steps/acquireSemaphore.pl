@@ -24,3 +24,4 @@ my $xPath = $ec->incrementProperty("/myJob/localSemaphoreCounter");
 $ec->setProperty("summary", "Semaphore acquired");
 
 
+

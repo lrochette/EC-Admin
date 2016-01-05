@@ -127,14 +127,6 @@ my %acquireSemaphore = (
 my %artifactRepositorySynchronization = ( 
   label       => "EC-Admin - artifactRepositorySynchronization", 
   procedure   => "artifactRepositorySynchronization", 
-  description => "Syncs the contents of a remote repository to this repository's backingstore.
-The user must specify a list of remote repositories to query and may specify a filter for a subset of Artifact Version to sync.", 
-  category    => "Administration" 
-);
-
-my %artifactRepositorySynchronizationS3 = ( 
-  label       => "EC-Admin - artifactRepositorySynchronizationS3", 
-  procedure   => "artifactRepositorySynchronizationS3", 
   description => "Syncs the contents of 2 repositories no matter what is the backing store.
 Each AV backing store  to synchronize is downloaded from the source repo on the resource and uploaded to the target repo", 
   category    => "Administration" 
@@ -240,4 +232,14 @@ Report the number of workflows.",
   category    => "Administration" 
 );
 
-@::createStepPickerSteps = (\%acquireSemaphore, \%artifactRepositorySynchronization, \%artifactRepositorySynchronizationS3, \%artifactsCleanup, \%artifactsCleanup_byQuantity, \%createPluginFromProject, \%deleteObjects, \%deleteWorkspaceOrphans, \%jobCleanup_byResult, \%jobsCleanup, \%performanceMetrics, \%projectAsCode, \%releaseSemaphore, \%saveAllObjects, \%saveProjects, \%synchronizePlugins, \%workflowCleanup);
+my %ZZZ_DEPRECATED_artifactRepositorySynchronization = ( 
+  label       => "EC-Admin - ZZZ_DEPRECATED_artifactRepositorySynchronization", 
+  procedure   => "ZZZ_DEPRECATED_artifactRepositorySynchronization", 
+  description => "Syncs the contents of a remote repository to this repository's backingstore.
+The user must specify a list of remote repositories to query and may specify a filter for a subset of Artifact Version to sync.
+
+The procedure has been deprecated in favor of the Universal one that can accommodate a S3 backend store.", 
+  category    => "Administration" 
+);
+
+@::createStepPickerSteps = (\%acquireSemaphore, \%artifactRepositorySynchronization, \%artifactsCleanup, \%artifactsCleanup_byQuantity, \%createPluginFromProject, \%deleteObjects, \%deleteWorkspaceOrphans, \%jobCleanup_byResult, \%jobsCleanup, \%performanceMetrics, \%projectAsCode, \%releaseSemaphore, \%saveAllObjects, \%saveProjects, \%synchronizePlugins, \%workflowCleanup, \%ZZZ_DEPRECATED_artifactRepositorySynchronization);

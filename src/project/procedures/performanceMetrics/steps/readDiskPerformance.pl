@@ -30,3 +30,4 @@ printf("Disk Read speed: $str\n");
 checkValue("DISKREAD", $READspeed, $str);
 
 
+

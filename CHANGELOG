@@ -1,4 +1,7 @@
 2016-01-05 Laurent Rochette <lrochette@gmail.com>
+  * 2.19.2.390: make new artifactRepositorySynchronization procedure the default one
+
+2016-01-05 Laurent Rochette <lrochette@gmail.com>
   * 2.19.1.377: Better error reporting for artRepoSyncS3
 
 2016-01-04 Laurent Rochette <lrochette@gmail.com>

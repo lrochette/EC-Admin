@@ -25,3 +25,4 @@ $ec->setProperty("summary", "<html>&#160;&#160;&#160;<a href=\"/commander/link/p
 $ec->setProperty("/myJob/report-urls/$plugin-$version",
     "/commander/link/projectDetails/projects/$plugin-$version");
 
+
