@@ -4204,14 +4204,14 @@ if ( $promoteAction eq 'promote' ) {
          &lt;/tr&gt;
          &lt;tr&gt;
            &lt;td&gt;Artifact Version Pattern&lt;/td&gt;
-           &lt;td&gt;Pattern of artifact version to sync.&lt;br/&gt;Examples:&lt;br/&gt;
+           &lt;td&gt;Pattern of artifact version to sync. Examples:&lt;br/&gt;
              MyGrp:MyKey:* (all artifact versions with group MyGrp and key MyKey),&lt;br/&gt;
              MyGrp:* (all artifact versions with group MyGrp),&lt;br/&gt;
              * (all artifact versions. This is the default).&lt;/td&gt;
          &lt;/tr&gt;
          &lt;tr&gt;
            &lt;td&gt;Batch Size&lt;/td&gt;
-           &lt;td&gt;Number of ArtifactVersion to process at once. A high number 
+           &lt;td&gt;Number of artifact version to process at once. A high number 
              could overwhelm your gateways.&lt;/td&gt;
          &lt;/tr&gt;
        &lt;/tbody&gt;
@@ -4415,7 +4415,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>390</value>
+        <value>392</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>

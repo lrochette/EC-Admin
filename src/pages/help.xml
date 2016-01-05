@@ -470,14 +470,14 @@ if ( $promoteAction eq 'promote' ) {
          </tr>
          <tr>
            <td>Artifact Version Pattern</td>
-           <td>Pattern of artifact version to sync.<br/>Examples:<br/>
+           <td>Pattern of artifact version to sync. Examples:<br/>
              MyGrp:MyKey:* (all artifact versions with group MyGrp and key MyKey),<br/>
              MyGrp:* (all artifact versions with group MyGrp),<br/>
              * (all artifact versions. This is the default).</td>
          </tr>
          <tr>
            <td>Batch Size</td>
-           <td>Number of ArtifactVersion to process at once. A high number 
+           <td>Number of artifact version to process at once. A high number 
              could overwhelm your gateways.</td>
          </tr>
        </tbody>
