@@ -1,41 +1,160 @@
-# Copyright (c) 2005-2016 Electric Cloud, Inc.
-# All rights reserved.
+#############################################################################
+#
+#  SyncRepo -- Script to synchronize artifact repositories no matter the
+#                 backing store.
+#  Copyright 2005-2016 Electric-Cloud Inc.
+#
+#############################################################################
 
-# TODO: Warnings for bad repo names, or errors connecting to repos.
-#       Include repo names, timestamps in success messages.
-#       General walk through and make sure errors are reported when they
-#       should be.
-
-use strict 'vars';
-use strict 'subs';
-use ElectricCommander;
-use XML::XPath;
 use ElectricCommander::ArtifactManagement;
 use ElectricCommander::ArtifactManagement::ArtifactVersion;
-
-use File::Path;
-use File::Spec;
-use Getopt::Long;
+use MIME::Base64;
+use HTTP::Request::Common qw(HEAD GET PUT POST);
+use HTTP::Headers;
 use HTTP::Cookies;
 use LWP::ConnCache;
 use LWP::UserAgent;
-use HTTP::Request::Common qw(GET);
-use MIME::Base64;
-use URI::Escape;
+use File::Temp qw (tempdir);
+use File::Path qw (rmtree);
+
+$[/plugins[EC-Admin]project/scripts/perlHeader]
+
+#############################################################################
+#
+#  Assign Commander parameters to variables
+#
+#############################################################################
+my $sourceRepo  = "$[sourceRepository]";
+my $targetRepo  = "$[targetRepository]";
+my @gavPatterns = split(",", "$[artifactVersionPattern]");
+my $pageSize    = $[batchSize];
+
+#############################################################################
+#
+#  Global
+#
+#############################################################################
+my $gAM=new ElectricCommander::ArtifactManagement($ec);
+my $targetRepoUrl = undef;
+my $sourceRepoUrl  = undef;
+my $httpProxy = undef;
+my $userAgent = undef;
+my $error=0;              # Number of errors
+my $sync=0;               # NUmber of artifacts synchronized
 
 # ------------------------------------------------------------------------
-# Globals
+# downloadArtifactVersion
+#
+#      Download the given artifact version from one source repo (GET)
+#         then write to the targetRepo (POST)
+#
+# Arguments:
+#      groupId
+#      artifactKey
+#      version
 # ------------------------------------------------------------------------
-$::gCommander = undef;
-$::gAM = undef;
-$::gFromRepositoryNames = "$[artifactRepositoryList]";
-@::gGavPatterns = split(",", "$[artifactVersionPattern]");
-my $pageSize=$[batchSize];
-$::gServer = undef;
-my $httpProxy = undef;
-$::gUserAgent = undef;
-$::gHelp = 0;
-my $DEBUG=0;
+sub downloadArtifactVersion($$$) {
+  my ($groupId, $artifactKey, $version) = @_;
+  my $gav = "$groupId:$artifactKey:$version";
+
+  my $tmpdir = tempdir(CLEANUP => 1);
+  #printf("Temp file: $tmpdir\n");
+
+  my $repoUrl = "$sourceRepoUrl/artifacts/$groupId/$artifactKey/$version";
+  my $authorization = "Basic " . encode_base64("commanderSession:" . $ec->{sessionId});
+
+  # dowload manifest file
+  my $request = GET $repoUrl . "?manifest",
+          "Authorization" => $authorization,
+          "X-originating-server" => $ec->{server};
+  my $response = $userAgent->request($request, "$tmpdir/manifest");
+  if ($response->is_success) {
+      # print "Successfully synced down manifest for $gav\n";
+  } else {
+    print "ERROR: couldn't retrieve manifest for $gav\n";
+    $ec->setProperty("outcome", "error");
+    $error++;
+    return;
+  }
+
+  # dowload artifact file
+  my $request = GET $repoUrl,
+          "Authorization" => $authorization,
+          "X-originating-server" => $ec->{server};
+  my $response = $userAgent->request($request, "$tmpdir/artifact");
+  if ($response->is_success) {
+      # print "Successfully synced down artifact for $gav\n";
+  } else {
+    print "ERROR: couldn't retrieve artifact for $gav\n";
+    $ec->setProperty("outcome", "error");
+    $error++;
+    return;
+  }
+  print "  Successfully synced down $gav\n";
+  #
+  # Upload file to Target Repo
+  #
+  my $repoUrl = "$targetRepoUrl/artifacts/$groupId/$artifactKey/$version";
+  # For dynamic file upload
+  my $readFunc = sub {
+    read FH, my $buf, 65536;
+    return $buf;
+  };
+
+  # Now let's upload the artifact to the target repo
+  open FH, "$tmpdir/artifact";
+  binmode FH;
+
+  my $header=HTTP::Headers->new;
+  $header->content_type('application/octet-stream');
+  $header->authorization($authorization);
+
+  my $request = HTTP::Request->new("PUT", $repoUrl, $header, $readFunc);
+  $request->header("X-originating-server" => $ec->{server});
+
+  #printf("Request: %s\n", $request->as_string());
+  my $response = $userAgent->request($request);
+
+  if ($response->is_success) {
+      #print "Successfully synced up artifact for $gav\n";
+  } else {
+    print "ERROR: couldn't upload artifact for $gav\n";
+    print $response->status_line . "\n\n";
+    $ec->setProperty("outcome", "error");
+    $error++;
+    return;
+  }
+  close FH;
+
+  # Now let's upload the manifest to the target repo
+  open FH, "$tmpdir/manifest";
+
+  my $header=HTTP::Headers->new;
+  $header->content_type('application/octet-stream');
+  # do not pass content length, it creates some error
+  $header->authorization($authorization);
+
+  my $request = HTTP::Request->new("PUT", $repoUrl . "?manifest", $header, $readFunc);
+  $request->header("X-originating-server" => $ec->{server});
+
+  #printf("Request: %s\n", $request->as_string());
+  my $response = $userAgent->request($request);
+  if ($response->is_success) {
+      #print "Successfully synced up manifest for $gav\n";
+  } else {
+    print "ERROR: couldn't upload manifest for $gav\n";
+    print $response->status_line . "\n\n";
+    $ec->setProperty("outcome", "error");
+    $error++;
+    return;
+  }
+  close FH;
+  print "  Successfully synced up $gav\n";
+  rmtree($tmpdir);  # delete Temp directory
+  $sync++;
+  printf("\n");
+}
+
 
 # ------------------------------------------------------------------------
 # createUserAgent
@@ -45,109 +164,18 @@ my $DEBUG=0;
 # Arguments:
 #      None.
 # ------------------------------------------------------------------------
-
-sub createUserAgent
-{
-    my $userAgent = LWP::UserAgent->new();
+sub createUserAgent {
+    $userAgent = LWP::UserAgent->new();
     my $connCache = LWP::ConnCache->new();
     my $httpCookies = HTTP::Cookies->new();
     $userAgent->conn_cache($connCache);
     $userAgent->cookie_jar($httpCookies);
 
     # Check for proxy (in a Zone for example)
-    $httpProxy = $::gCommander->getEnv("COMMANDER_HTTP_PROXY");
+    $httpProxy = $ec->getEnv("COMMANDER_HTTP_PROXY");
     if ($httpProxy) {
         $userAgent->proxy(https => $httpProxy);
         $userAgent->proxy(http => $httpProxy);
-    }
-    return $userAgent;
-}
-
-# ------------------------------------------------------------------------
-# downloadArtifactVersion
-#
-#      Download the given artifact version from one of the given
-#      repository urls.
-#
-# Arguments:
-#      repoUrls - array-ref of repository base urls.
-#      groupId
-#      artifactKey
-#      version
-#      repositoryDir - Directory to download artifact version into
-#              (e.g. /data/g1/a1/1.0.0).
-# ------------------------------------------------------------------------
-
-sub downloadArtifactVersion($$$$$)
-{
-    my ($repoUrls, $groupId, $artifactKey, $version, $repositoryDir) = @_;
-
-    # TODO: Check errors here.
-    if (! mkpath($repositoryDir)) {
-      print ("ERROR: cannot create remote AV directory $repositoryDir: $!\n");
-    }
-    my $gav = "$groupId:$artifactKey:$version";
-    # TODO: Write to a temp dir, then rename.
-    foreach my $repoUrlBase (@$repoUrls) {
-        my $repoUrl = "$repoUrlBase/artifacts/$groupId/$artifactKey/$version";
-        printf("Repo URL: %s\n", $repoUrl);
-        my $authorization = "Basic " .
-            encode_base64("commanderSession:" . $::gCommander->{sessionId});
-        my $request = GET $repoUrl, "Authorization" => $authorization,
-                "X-originating-server" => $::gCommander->{server};
-        my $response = $::gUserAgent->request($request, $repositoryDir .
-                                                  "/artifact");
-        if ($response->is_success) {
-            print "Successfully synced down $gav\n";
-            my $fmt = $response->header("Format");
-            if (!defined($fmt)) {
-                print "WARNING: Could not determine artifact format; leaving " .
-                    "contents of $repositoryDir around for manual analysis.\n";
-            }
-            rename($repositoryDir . "/artifact",
-                   $repositoryDir . "/artifact.$fmt");
-
-            # Get the manifest file.
-            $request = GET $repoUrl . "?manifest",
-                "Authorization" => $authorization,
-                "X-originating-server" => $::gCommander->{server};
-            $::gUserAgent->request($request, $repositoryDir .
-                                                  "/manifest");
-            if ($response->is_success) {
-                # Success! Log a message and return.
-                print "Successfully synced down manifest for $gav\n";
-                return;
-            }
-
-            # All errors are significant.
-            print("ERROR: couldn't sync down manifest for $gav: " .
-                      $response->content);
-            rmtree($repositoryDir);
-            return;
-        } else {
-            # Some error occurred.
-            rmtree($repositoryDir);
-
-            if ($response->code() == 403) {
-                # We got a Forbidden! This means we lack permissions. If we
-                # don't have permission with one repo, we won't have permission
-                # with any (since they all talk to the same Commander server).
-
-                print "ERROR: couldn't retrieve $gav: access denied\n";
-                return;
-            }
-
-            # Log it in diagnostics and move on; don't log 404's since we don't
-            # expect all repos to have all artifacts in a normal running system.
-
-            if ($response->code != 404) {
-                print "WARNING: couldn't retrieve $gav from $repoUrlBase: " .
-                          $response->content;
-                return;
-            }
-            print "ERROR: unknown error: " . $response->code . "\n";
-
-        }
     }
 }
 
@@ -161,9 +189,7 @@ sub downloadArtifactVersion($$$$$)
 #      op        - Operator
 #      value     - The value to compare.
 # ------------------------------------------------------------------------
-
-sub createFilter($$$)
-{
+sub createFilter {
     my ($prop, $op, $value) = @_;
     return {propertyName => $prop,
             operator => $op,
@@ -179,9 +205,7 @@ sub createFilter($$$)
 # Arguments:
 #      versionRange - the version range.
 # ------------------------------------------------------------------------
-
-sub parseVersionRange
-{
+sub parseVersionRange {
     my ($versionRange) = @_;
     if ($versionRange !~ m&^([\[\(])([^,\]\)]*),?([^,\]\)]*)([\]\)])$&) {
         die("version range $versionRange is not valid.\n");
@@ -198,219 +222,182 @@ sub parseVersionRange
 # Arguments:
 #      None.
 # ------------------------------------------------------------------------
-sub parsePatterns
-{
-    my @filters = ();
-    foreach my $pat (@::gGavPatterns) {
-        # Each pattern is of the form g:a:v, where any component may be
-        # omitted or be *.
-        # "", "*", "*:", etc. are all legal. Empty is interpreted as *.
-        # We do parse version ranges and treat them specially.
+sub parsePatterns {
+  my @filters = ();
+  foreach my $pat (@gavPatterns) {
+    # Each pattern is of the form g:a:v, where any component may be
+    # omitted or be *.
+    # "", "*", "*:", etc. are all legal. Empty is interpreted as *.
+    # We do parse version ranges and treat them specially.
 
-        my %patComponents = ();
-        ($patComponents{groupId},
-         $patComponents{artifactKey},
-         $patComponents{version}) = split(":", $pat);
+    my %patComponents = ();
+    ($patComponents{groupId},
+     $patComponents{artifactKey},
+     $patComponents{version}) = split(":", $pat);
 
-        my @gavFilter = ();
+    my @gavFilter = ();
 
-        foreach my $idx (keys(%patComponents)) {
-            my $patComponent = $patComponents{$idx};
-            if (!defined($patComponent) || $patComponent eq "*" ||
-                    $patComponent eq "") {
-                # No pattern for this component of gav, or it's "*";
-                # nothing to filter.
-                next;
-            }
+    foreach my $idx (keys(%patComponents)) {
+      my $patComponent = $patComponents{$idx};
+      if (!defined($patComponent) || $patComponent eq "*" || $patComponent eq "") {
+        # No pattern for this component of gav, or it's "*";
+        # nothing to filter.
+        next;
+      }
 
-            if ($patComponent =~ /\*/) {
-                die("Invalid pattern: '$pat': $idx must be specified " .
-                        "as either a literal, *, or possibly version range.\n");
-            }
+      if ($patComponent =~ /\*/) {
+        die("Invalid pattern: '$pat': $idx must be specified " .
+                "as either a literal, *, or possibly version range.\n");
+      }
 
-            # It's a literal! Or if this is the version piece,
-            # it could be a version range.
-            if ($idx eq "version" && $patComponent =~ /^[\[\(]/) {
-                my ($lowerBnd, $lowerInc, $upperBnd, $upperInc) =
-                    parseVersionRange($patComponent);
-                if (defined($lowerBnd) && $lowerBnd ne "") {
-                    push(@gavFilter,
-                         createFilter($idx, $lowerInc ?
-                                          "greaterOrEqual" : "greaterThan",
-                                      $lowerBnd),
-                     );
-                }
-                if (defined($upperBnd) && $upperBnd ne "") {
-                    push(@gavFilter,
-                         createFilter($idx, $upperInc ?
-                                          "lessOrEqual" : "lessThan",
-                                      $upperBnd),
-                     );
-                }
-            } else {
-                push(@gavFilter, createFilter($idx, "equals",
-                                              $patComponent));
-            }
+      # It's a literal! Or if this is the version piece,
+      # it could be a version range.
+      if ($idx eq "version" && $patComponent =~ /^[\[\(]/) {
+        my ($lowerBnd, $lowerInc, $upperBnd, $upperInc) =
+            parseVersionRange($patComponent);
+        if (defined($lowerBnd) && $lowerBnd ne "") {
+          push(@gavFilter,
+               createFilter($idx, $lowerInc ? "greaterOrEqual" : "greaterThan",
+                            $lowerBnd),
+             );
         }
-
-        if (@gavFilter > 0) {
-            push(@filters, {
-                operator => "and",
-                filter => \@gavFilter
-            });
+        if (defined($upperBnd) && $upperBnd ne "") {
+          push(@gavFilter,
+               createFilter($idx, $upperInc ? "lessOrEqual" : "lessThan",
+                            $upperBnd),
+             );
         }
+      } else {
+        push(@gavFilter, createFilter($idx, "equals", $patComponent));
+      }
     }
 
-    return @filters;
+    if (@gavFilter > 0) {
+        push(@filters, {operator => "and", filter => \@gavFilter} );
+    }
+  }
+
+  return @filters;
 }
 
+
 # ------------------------------------------------------------------------
-# findBackingStorePath
+# checkArtifactVersion
 #
-#      Reads the server.properties file in data-dir/conf/repository
-#      and returns the REPOSITORY_BACKING_STORE value.
+#      Check to see if the artifact version exist in the target Repo
 #
 # Arguments:
-#      None.
+#      $groupId, $artifactKey, $version
+# Return:
+#       0 or 1
 # ------------------------------------------------------------------------
-sub findBackingStorePath
-{
-    if (!exists($ENV{COMMANDER_DATA})) {
-        die(<<EOF);
-COMMANDER_DATA environment variable is not set; this script must run in a
-step or this environment variable must point to the Commander data directory.
-EOF
-    }
+sub checkArtifactVersion ($$$) {
+  my ($groupId, $artifactKey, $version) = @_;
 
-    my $propFile = $ENV{COMMANDER_DATA} . "/conf/repository/server.properties";
-    open PROPFILE, "< $propFile" or die("Couldn't open $propFile: $!\n");
-    my $backingStorePath = undef;
-    while(my $line = <PROPFILE>) {
-        if ($line =~ /^\s*REPOSITORY_BACKING_STORE\s*=\s*(.*)\s*$/) {
-            $backingStorePath = $1;
-            last;
-        }
-    }
-    close(PROPFILE);
+  my $repoUrl = $targetRepoUrl . "/artifacts/$groupId/$artifactKey/$version";
 
-    # A few caveats here: it's possible that REPOSITORY_BACKING_STORE isn't set
-    # at all (in which case we should error out) or it's a relative path
-    # (which we should convert to absolute).
+  # Construct the commander-session auth header.
+  my $authorization = "Basic " . encode_base64("commanderSession:" . $ec->{sessionId});
+  my $request = HEAD $repoUrl, "Authorization" => $authorization, "X-originating-server" => $ec->{server};
+  my $res = $userAgent->request($request);
 
-    if (!defined($backingStorePath) || $backingStorePath eq "") {
-        die("REPOSITORY_BACKING_STORE property not defined in $propFile.\n");
-    }
-    $backingStorePath = File::Spec->rel2abs($backingStorePath,
-                                            $ENV{COMMANDER_DATA});
-    return $backingStorePath;
+  if ($res->is_success) {
+    # printf("Artifact version (%s:%s:%s was found in target.\n", $groupId, $artifactKey, $version);
+    return  1;
+  }
+  printf("Artifact version %s:%s:%s was NOT found in target.\n", $groupId, $artifactKey, $version);
+  return  0;
 }
 
-# ------------------------------------------------------------------------
-# main
+#############################################################################
 #
-#      Main function that orchestrates the sync.
-# ------------------------------------------------------------------------
-sub main {
-    my @repoNames = split(",", $::gFromRepositoryNames);
+#  Main
+#
+#############################################################################
+createUserAgent();
 
-    # Locate our repository backingstore location.
-    my $backingstorePath = findBackingStorePath();
-    print "backingStorePath: $backingstorePath\n";
-    $::gCommander = new ElectricCommander({server => $::gServer});
-    $::gAM = new ElectricCommander::ArtifactManagement($::gCommander);
-    $::gUserAgent = createUserAgent();
+$gAM->loadRepositoryInfo();
+if ($httpProxy) {
+  $targetRepoUrl="https://$targetRepo";
+  $sourceRepoUrl="https://$sourceRepo"
+} else {
+  $targetRepoUrl=$gAM->{repoUrl}->{$targetRepo};
+  $sourceRepoUrl=$gAM->{repoUrl}->{$sourceRepo};
+}
 
-    # Find artifact versions in the server that match the given criteria
-    my @filters = ({propertyName => "artifactVersionState",
+#printf ("Source Repo=%s\n", $sourceRepoUrl);
+#printf ("Target Repo=%s\n", $targetRepoUrl);
+
+# Find artifact versions in the server that match the given criteria
+my @filters = ({propertyName => "artifactVersionState",
                     operator => "notEqual",
                     operand1 => "publishing"});
-    my @gavFilters = parsePatterns();
-    if (@gavFilters > 0) {
-        push(@filters, {operator => "or",
-                        filter => \@gavFilters});
-    }
-    my $xpath = $::gCommander->findObjects("artifactVersion", {
+
+my @gavFilters = parsePatterns();
+if (@gavFilters > 0) {
+  push(@filters, {operator => "or", filter => \@gavFilters});
+}
+
+my $xpath = $ec->findObjects("artifactVersion", {
         maxIds => 0,
         numObjects => $pageSize,
         filter => \@filters,
         sort => [{propertyName => "groupId", order => "ascending"},
                  {propertyName => "artifactKey", order => "ascending"},
                  {propertyName => "version", order => "ascending"}
-             ]
-    });
-    # Collect objectIds for subsequent requests
-    my @objects = $xpath->findnodes("/responses/response/objectId");
-    my $count = scalar(@objects);
-    printf("$count objects returned.\n");
+                ]
+});
 
-    # Walk through returned artifact versions, checking if we have each in
-    # the backingstore. If not, download from one of the repositories.
+# Collect objectIds for subsequent requests
+my @objects = $xpath->findnodes("/responses/response/objectId");
+my $count = scalar(@objects);
+printf("$count objects returned.\n");
 
-    my @repoUrlList = undef;
-    my $didLoadRepos = 0;
+# Walk through returned artifact versions, checking if we have each in
+# the backingstore. If not, download from one of the repositories.
 
-    # The starting index for the next getObjects call
-    my $start = 0;
-    #print $xpath->findnodes_as_string("/");
+# The starting index for the next getObjects call
+my $start = 0;
 
-    # Loop through one page at a time
-    my $loopCounter=0;
-    do {
-      $loopCounter++;
-      printf("\nBatch $loopCounter\n");
-      foreach my $node ($xpath->findnodes("/responses/response/object/artifactVersion")) {
-          my $artifactVersion =
-              ElectricCommander::ArtifactManagement::ArtifactVersion->new(
-                  $node);
-          my $repositoryDir = sprintf("%s/%s/%s/%s",
-                                      $backingstorePath,
-                                      $artifactVersion->groupId,
-                                      $artifactVersion->artifactKey,
-                                      $artifactVersion->version);
-          #printf("RepoDir: %s\n", $repositoryDir) if ($DEBUG);
-          if (! -d $repositoryDir) {
-              # Download.
-              if (!$didLoadRepos) {
-                  $::gAM->loadRepositoryInfo();
-                  my @verifiedRepoList =
-                      $::gAM->processRepositoryNames(\@repoNames);
-                  @repoUrlList = map {($httpProxy ? "https://$_" : $::gAM->{repoUrl}->{$_}) } @verifiedRepoList;
-                  $didLoadRepos = 1;
-              }
-              downloadArtifactVersion(\@repoUrlList,
-                                      $artifactVersion->groupId,
-                                      $artifactVersion->artifactKey,
-                                      $artifactVersion->version,
-                                      $repositoryDir);
-          } else {
-              printf("Found %s:%s:%s in repository\n",
-                     $artifactVersion->groupId,
-                     $artifactVersion->artifactKey,
-                     $artifactVersion->version);
-          }
+# Loop through one page at a time
+my $loopCounter=0;
+do {
+  $loopCounter++;
+  printf("\nBatch $loopCounter\n");
+  foreach my $node ($xpath->findnodes("/responses/response/object/artifactVersion")) {
+    my $artifactVersion = ElectricCommander::ArtifactManagement::ArtifactVersion->new($node);
+
+    # Check if gav is already in target repo
+    if (checkArtifactVersion($artifactVersion->groupId, $artifactVersion->artifactKey,
+                             $artifactVersion->version)) {
+     printf("Found %s:%s:%s in repository\n", $artifactVersion->groupId,
+              $artifactVersion->artifactKey, $artifactVersion->version);
+    } else {
+      downloadArtifactVersion($artifactVersion->groupId,
+                              $artifactVersion->artifactKey,
+                              $artifactVersion->version);
+    }
+  }
+  # Prepare next loop
+  $count -= $pageSize;
+  if ($count > 0) {
+    # Create an array of object IDs for the next getObjects call
+    $start += $pageSize;
+    my @objectIds = ();
+    for (my $index = $start; $index < $start + $pageSize; $index++) {
+      if (exists($objects[$index])) {
+        push(@objectIds, $objects[$index]->findvalue("text()")->value());
+      } else {
+        last;
       }
+    }
 
-      # Prepare next loop
-      $count -= $pageSize;
-      if ($count > 0) {
-          # Create an array of object IDs for the next getObjects call
-          $start += $pageSize;
-          my @objectIds = ();
-          for (my $index = $start; $index < $start + $pageSize; $index++) {
-              if (exists($objects[$index])) {
-                  push(@objectIds, $objects[$index]->findvalue("text()")->value());
-              } else {
-                  last;
-              }
-          }
+    # Next page getObjects request
+    $xpath = $ec->getObjects({objectId => \@objectIds});
+  }
+} while ($count > 0);
 
-          # Next page getObjects request
-          $xpath = $::gCommander->getObjects({objectId => \@objectIds});
-      }
-
-    } while ($count > 0);
-}
-
-main();
-
+# Set status as error if we encountered any issue
+$ec->setProperty("summary", "$sync artifact versions synchronized");
+$ec->setProperty("summary", "$error synchronization errors detected") if ($error);
 
