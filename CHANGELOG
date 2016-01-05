@@ -1,4 +1,7 @@
 2016-01-05 Laurent Rochette <lrochette@gmail.com>
+  * 2.19.2.392: Add repo checking
+
+2016-01-05 Laurent Rochette <lrochette@gmail.com>
   * 2.19.2.391: make new artifactRepositorySynchronization procedure the default oneTest for unknown or disabled repo
 
 2016-01-05 Laurent Rochette <lrochette@gmail.com>
