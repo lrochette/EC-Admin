@@ -1,3 +1,5 @@
 src/out
 *.swp
 .efci
+ElectricFlow-*
+DIR1/
