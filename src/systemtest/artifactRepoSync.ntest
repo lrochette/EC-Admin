@@ -4,7 +4,7 @@
 #
 # check the artifactRepositorySynchronization procedures of EC-Admin plugin
 #
-# Copyright (c) 2015 Electric Cloud, Inc.
+# Copyright (c) 2016 Electric Cloud, Inc.
 # All rights reserved
 
 use strict;
@@ -19,7 +19,7 @@ my $xpath = $::N->getPlugin($pluginKey);
 my $pluginName = $xpath->findvalue("//pluginName")->value;
 
 #-------------------------------------------------------------------------------
-# Test procedure present.
+# Test procedure presence.
 #-------------------------------------------------------------------------------
 ntest "artifactRepoSync presence", {}, sub {
 	assertOK($::N->getProcedure($pluginName, "artifactRepositorySynchronization"),
@@ -27,7 +27,7 @@ ntest "artifactRepoSync presence", {}, sub {
 };
 
 #-------------------------------------------------------------------------------
-# Test procedure present.
+# Test procedure exposed to plugin.
 #-------------------------------------------------------------------------------
 ntest "procedures exposed to picker", {}, sub {
   assertOK($::N->getProperty('exposeToPlugin', {
@@ -113,7 +113,6 @@ ntest "no artifact version to sync", {}, sub {
 		my $jsId = $jobData->findvalue("//job/jobStep[stepName='syncRepo']/jobStepId");
 		my $summary=$::N->getProperty("summary", {jobStepId=>$jsId})->findvalue("//value");
 		assertSubstring("0 artifact versions", $summary, "NO AV to sync");
-
 	}
 };
 1;

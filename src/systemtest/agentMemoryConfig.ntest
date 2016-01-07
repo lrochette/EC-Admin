@@ -1,0 +1,84 @@
+# -*-Perl-*-
+
+# agentMemoryConfig.ntest -
+#
+# check the agentMemoryConfiguration procedure of EC-Admin plugin
+#
+# Copyright (c) 2016 Electric Cloud, Inc.
+# All rights reserved
+
+use strict;
+use warnings;
+use ECTest;
+
+initCommander();
+$::N=$adminSession;
+
+my $pluginKey = "EC-Admin";
+my $xpath = $::N->getPlugin($pluginKey);
+my $pluginName = $xpath->findvalue("//pluginName")->value;
+
+#-------------------------------------------------------------------------------
+# Test procedure presence.
+#-------------------------------------------------------------------------------
+ntest "agentMemoryConfiguration presence", {}, sub {
+	assertOK($::N->getProcedure($pluginName, "agentMemoryConfiguration"),
+		"procedure agentMemoryConfiguration missing");
+};
+
+#-------------------------------------------------------------------------------
+# Test procedure exposed to plugin.
+#-------------------------------------------------------------------------------
+ntest "procedures exposed to picker", {}, sub {
+  assertOK($::N->getProperty('exposeToPlugin', {
+			projectName => $pluginName,
+			procedureName => "agentMemoryConfiguration"}),
+					"property exposeToPlugin missing");
+};
+
+#-------------------------------------------------------------------------------
+# Test init memory value incorrect.
+#-------------------------------------------------------------------------------
+ntest "incorrect init memory", {}, sub {
+	my $xpath = $::N->runProcedure("EC-Admin", {
+		procedureName=>"agentMemoryConfiguration",
+		actualParameter=>[
+			{actualParameterName=>"initMemory", value=>"NaN"},
+			{actualParameterName=>"maxMemory", value=>"256"},
+			{actualParameterName=>"agent", value=>"local"},
+		]
+	});
+	assertOK($xpath, "Failed to launch EC-Admin::agentMemoryConfiguration");
+	if ($xpath) {
+		#get new Job ID
+		my $jobId  = $xpath->findvalue("//jobId");
+		waitForJob($jobId);
+		my $jobData  = $::N->getJobDetails($jobId);
+		my $outcome = $jobData->findvalue("//job/outcome");
+		assertEq("error", $outcome, "incorrect init memory value should error out");
+	}
+};
+
+#-------------------------------------------------------------------------------
+# Test max memory value incorrect.
+#-------------------------------------------------------------------------------
+ntest "incorrect max memory", {}, sub {
+	my $xpath = $::N->runProcedure("EC-Admin", {
+		procedureName=>"agentMemoryConfiguration",
+		actualParameter=>[
+			{actualParameterName=>"initMemory", value=>"64"},
+			{actualParameterName=>"maxMemory", value=>"25ff45"},
+			{actualParameterName=>"agent", value=>"local"},
+		]
+	});
+	assertOK($xpath, "Failed to launch EC-Admin::agentMemoryConfiguration");
+	if ($xpath) {
+		#get new Job ID
+		my $jobId  = $xpath->findvalue("//jobId");
+		waitForJob($jobId);
+		my $jobData  = $::N->getJobDetails($jobId);
+		my $outcome = $jobData->findvalue("//job/outcome");
+		assertEq("error", $outcome, "incorrect max memory value should error out");
+	}
+};
+1;
