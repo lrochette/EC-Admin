@@ -3791,6 +3791,35 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1&lt;/p&gt;
 	    parameters are shown in &lt;span class="required"&gt;bold italics&lt;/span&gt;.&lt;/p&gt;
 
     &lt;h1&gt;&lt;a name="health"&gt;&lt;/a&gt;System Health&lt;/h1&gt;
+    &lt;h2&gt;agentMemoryConfiguration&lt;/h2&gt;
+    &lt;p&gt;This procedure allows you to change the Java heap memory setting of your
+      agents. Electric Cloud support recommend increasing the default for agents
+      with a heavier load like the repository server agent, gateway agent and
+      web server agent.&lt;/p&gt;
+      &lt;table class="grid"&gt;
+        &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Parameter&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+        &lt;tbody&gt;
+          &lt;tr&gt;
+            &lt;td class='required'&gt;agent&lt;/td&gt;
+            &lt;td&gt;The name of the resource on which the agent is located.&lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td class='required'&gt;init memory&lt;/td&gt;
+            &lt;td&gt;The amount of init memory to assign to the Java heap. It can be
+                indicated in Mb or as a % of the toal memory.&lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td class='required'&gt;max memory&lt;/td&gt;
+            &lt;td&gt;The maximum amount of memory to assign to the Java heap. It can be
+                indicated in Mb or as a % of the toal memory.&lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;tr&gt;
+            &lt;td&gt;restartAgent&lt;/td&gt;
+            &lt;td&gt;Unused for now as the agent can be stop but not restarted.&lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/tbody&gt;
+      &lt;/table&gt;
+
     &lt;h2&gt;testResources&lt;/h2&gt;
     &lt;p&gt;This procedure is simply to test connection to all your resources or a
       specific pool. This will create simple step to run an echo command on
@@ -4211,7 +4240,7 @@ if ( $promoteAction eq 'promote' ) {
          &lt;/tr&gt;
          &lt;tr&gt;
            &lt;td&gt;Batch Size&lt;/td&gt;
-           &lt;td&gt;Number of artifact version to process at once. A high number 
+           &lt;td&gt;Number of artifact version to process at once. A high number
              could overwhelm your gateways.&lt;/td&gt;
          &lt;/tr&gt;
        &lt;/tbody&gt;
@@ -4415,7 +4444,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>397</value>
+        <value>398</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>

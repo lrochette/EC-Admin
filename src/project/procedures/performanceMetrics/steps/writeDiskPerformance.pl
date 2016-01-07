@@ -40,3 +40,4 @@ checkValue("DISKWRITE", $WRITEspeed, $str);
 
 
 
+

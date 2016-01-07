@@ -57,6 +57,35 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 	    parameters are shown in <span class="required">bold italics</span>.</p>
 
     <h1><a name="health"></a>System Health</h1>
+    <h2>agentMemoryConfiguration</h2>
+    <p>This procedure allows you to change the Java heap memory setting of your
+      agents. Electric Cloud support recommend increasing the default for agents
+      with a heavier load like the repository server agent, gateway agent and
+      web server agent.</p>
+      <table class="grid">
+        <thead><tr><th>Parameter</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class='required'>agent</td>
+            <td>The name of the resource on which the agent is located.</td>
+          </tr>
+          <tr>
+            <td class='required'>init memory</td>
+            <td>The amount of init memory to assign to the Java heap. It can be
+                indicated in Mb or as a % of the toal memory.</td>
+          </tr>
+          <tr>
+            <td class='required'>max memory</td>
+            <td>The maximum amount of memory to assign to the Java heap. It can be
+                indicated in Mb or as a % of the toal memory.</td>
+          </tr>
+          <tr>
+            <td>restartAgent</td>
+            <td>Unused for now as the agent can be stop but not restarted.</td>
+          </tr>
+        </tbody>
+      </table>
+
     <h2>testResources</h2>
     <p>This procedure is simply to test connection to all your resources or a
       specific pool. This will create simple step to run an echo command on
@@ -477,7 +506,7 @@ if ( $promoteAction eq 'promote' ) {
          </tr>
          <tr>
            <td>Batch Size</td>
-           <td>Number of artifact version to process at once. A high number 
+           <td>Number of artifact version to process at once. A high number
              could overwhelm your gateways.</td>
          </tr>
        </tbody>
