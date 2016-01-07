@@ -58,3 +58,4 @@ checkValue("PING", $avgPing, $str);
 
 
 
+

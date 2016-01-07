@@ -17,10 +17,15 @@ if ($pool eq "") {
 foreach my $resource($resources->findnodes("/responses/response/resource")) {
     my $name = $resource->findvalue("resourceName");
     my $alive = $resource->findvalue("agentState/alive")->value();
+    my $disabled = $resource->findvalue("resourceDisabled")->value();
     if (!$alive) {
         # Don't try the test if the resource isn't alive
         print "Error: $name is not alive, skipping test...\n";
-    } else {
+    } elsif ($disabled) {
+        # Don't try the test if the resource is disabled
+        print "Error: $name is disabled, skipping test...\n";
+    
+    }  else {
         # Try a simple test to ensure the server-agent communication works
         print "$name is alive, running test...\n";
         $ec->createJobStep({
@@ -32,6 +37,7 @@ foreach my $resource($resources->findnodes("/responses/response/resource")) {
         });
     }
 }
+
 
 
 
