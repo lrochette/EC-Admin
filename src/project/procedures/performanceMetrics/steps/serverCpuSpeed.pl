@@ -23,3 +23,4 @@ checkValue("CPU", $CPUspeed, $str);
 
 
 
+

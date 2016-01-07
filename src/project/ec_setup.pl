@@ -124,6 +124,29 @@ my %acquireSemaphore = (
   category    => "Administration" 
 );
 
+my %agentMemoryConfiguration = ( 
+  label       => "EC-Admin - agentMemoryConfiguration", 
+  procedure   => "agentMemoryConfiguration", 
+  description => "WIP: not yet usable
+
+A procedure to modify the java memory setting of an agent.
+# Specify java heap size in percentage OR mb.
+
+# Initial Java Heap Size (in %)
+#wrapper.java.initmemory.percent=15
+
+# Initial Java Heap Size (in mb)
+wrapper.java.initmemory=256
+
+# Maximum Java Heap Size (in %)
+#wrapper.java.maxmemory.percent=15
+
+# Maximum Java Heap Size (in mb)
+wrapper.java.maxmemory=512
+", 
+  category    => "Administration" 
+);
+
 my %artifactRepositorySynchronization = ( 
   label       => "EC-Admin - artifactRepositorySynchronization", 
   procedure   => "artifactRepositorySynchronization", 
@@ -242,4 +265,4 @@ The procedure has been deprecated in favor of the Universal one that can accommo
   category    => "Administration" 
 );
 
-@::createStepPickerSteps = (\%acquireSemaphore, \%artifactRepositorySynchronization, \%artifactsCleanup, \%artifactsCleanup_byQuantity, \%createPluginFromProject, \%deleteObjects, \%deleteWorkspaceOrphans, \%jobCleanup_byResult, \%jobsCleanup, \%performanceMetrics, \%projectAsCode, \%releaseSemaphore, \%saveAllObjects, \%saveProjects, \%synchronizePlugins, \%workflowCleanup, \%ZZZ_DEPRECATED_artifactRepositorySynchronization);
+@::createStepPickerSteps = (\%acquireSemaphore, \%agentMemoryConfiguration, \%artifactRepositorySynchronization, \%artifactsCleanup, \%artifactsCleanup_byQuantity, \%createPluginFromProject, \%deleteObjects, \%deleteWorkspaceOrphans, \%jobCleanup_byResult, \%jobsCleanup, \%performanceMetrics, \%projectAsCode, \%releaseSemaphore, \%saveAllObjects, \%saveProjects, \%synchronizePlugins, \%workflowCleanup, \%ZZZ_DEPRECATED_artifactRepositorySynchronization);

@@ -1,1 +1,2 @@
 ectool pingResource "$[agent]"
+

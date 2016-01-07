@@ -1,3 +1,6 @@
+2016-01-07 Laurent Rochette <lrochette@gmail.com>
+  * 2.20.0.397: Add new procedure to change the java heap memory setup on an agent (Issue #62)
+
 2016-01-05 Laurent Rochette <lrochette@gmail.com>
   * 2.19.2.392: Add repo checking
 

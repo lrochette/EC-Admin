@@ -4415,7 +4415,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>396</value>
+        <value>397</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -4543,6 +4543,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+-version 2.20.0
+  + Add new procedure to change the java heap memory setup on an agent
+
 - version 2.19.3
   + skip disabled resource in testResources
   + new procedure to modify java memory settings on a agent (WIP)
@@ -4896,7 +4899,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.19.3</value>
+        <value>2.20.0</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
@@ -5109,6 +5112,12 @@ wrapper.java.maxmemory=512
             </property>
           </propertySheet>
         </property>
+        <property>
+          <propertyName>exposeToPlugin</propertyName>
+          <description/>
+          <expandable>1</expandable>
+          <value>1</value>
+        </property>
       </propertySheet>
       <formalParameter>
         <formalParameterName>agent</formalParameterName>
@@ -5153,10 +5162,10 @@ wrapper.java.maxmemory=512
         <exclusiveMode>none</exclusiveMode>
         <logFileName/>
         <parallel>0</parallel>
-        <postProcessor/>
+        <postProcessor>postp</postProcessor>
         <precondition/>
         <releaseMode>none</releaseMode>
-        <resourceName/>
+        <resourceName>$[agent]</resourceName>
         <shell>ec-perl</shell>
         <timeLimit/>
         <timeLimitUnits>minutes</timeLimitUnits>
@@ -5170,8 +5179,9 @@ wrapper.java.maxmemory=512
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
-        <condition/>
-        <description/>
+        <condition>0</condition>
+        <description>restart the agent.
+The agent stops but does not restart</description>
         <errorHandling>failProcedure</errorHandling>
         <exclusiveMode>none</exclusiveMode>
         <logFileName/>
@@ -5179,8 +5189,8 @@ wrapper.java.maxmemory=512
         <postProcessor/>
         <precondition/>
         <releaseMode>none</releaseMode>
-        <resourceName/>
-        <shell/>
+        <resourceName>$[agent]</resourceName>
+        <shell>ec-perl</shell>
         <timeLimit/>
         <timeLimitUnits>minutes</timeLimitUnits>
         <workingDirectory/>
@@ -5194,7 +5204,7 @@ wrapper.java.maxmemory=512
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
         <condition/>
-        <description/>
+        <description>ping resource so it's available for next job</description>
         <errorHandling>failProcedure</errorHandling>
         <exclusiveMode>none</exclusiveMode>
         <logFileName/>

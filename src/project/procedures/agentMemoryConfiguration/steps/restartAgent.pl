@@ -13,3 +13,4 @@ if ($osIsWindows) {
 } else {
   system("/etc/init.d/commanderAgent restart");
 }
+
