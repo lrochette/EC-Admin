@@ -3080,7 +3080,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>402</value>
+        <value>403</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -3840,7 +3840,7 @@ wrapper.java.maxmemory=512
         </propertySheet>
       </step>
       <step>
-        <stepName>restartAgent</stepName>
+        <stepName>restartAgentLinux</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
@@ -3856,6 +3856,30 @@ The agent stops but does not restart</description>
         <releaseMode>none</releaseMode>
         <resourceName>$[agent]</resourceName>
         <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>restartAgentWindows</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition>$[restartAgent]</condition>
+        <description>restart the agent.
+The agent stops but does not restart</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName>$[agent]</resourceName>
+        <shell>powershell  "&amp; '{0}.ps1'"</shell>
         <timeLimit/>
         <timeLimitUnits>minutes</timeLimitUnits>
         <workingDirectory/>
