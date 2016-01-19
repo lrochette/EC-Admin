@@ -1,3 +1,0 @@
-ectool pingResource "$[agent]"
-
-

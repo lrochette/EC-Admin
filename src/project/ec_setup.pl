@@ -127,9 +127,7 @@ my %acquireSemaphore = (
 my %agentMemoryConfiguration = ( 
   label       => "EC-Admin - agentMemoryConfiguration", 
   procedure   => "agentMemoryConfiguration", 
-  description => "WIP: not yet usable
-
-A procedure to modify the java memory setting of an agent.
+  description => "A procedure to modify the java memory setting of an agent.
 # Specify java heap size in percentage OR mb.
 
 # Initial Java Heap Size (in %)

@@ -54,6 +54,7 @@ ntest "issue_56_question_mark", {}, sub {
       {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
       {actualParameterName=>"exportDeploy", value=>"false"},
       {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"false"},
       {actualParameterName=>"exportGroups", value=>"false"},
       {actualParameterName=>"exportResourcePools", value=>"false"},
       {actualParameterName=>"exportResources", value=>"false"},
@@ -87,6 +88,7 @@ ntest "issue_56_question_mark", {}, sub {
 ntest "issue_57_group_with_slash", {}, sub {
   my $group="AC/DC";
 
+  $ENV{'EC-ADMIN-TESTING'}='saveAllObjects';
   my $xpath= $::N->createGroup($group);
   assertOK($xpath, "Failed to create group $group");
 
@@ -98,6 +100,7 @@ ntest "issue_57_group_with_slash", {}, sub {
       {actualParameterName=>"exportDeploy", value=>"false"},
       {actualParameterName=>"exportGroups", value=>"true"},
       {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"false"},
       {actualParameterName=>"exportResourcePools", value=>"false"},
       {actualParameterName=>"exportResources", value=>"false"},
       {actualParameterName=>"exportSteps", value=>"false"},
@@ -130,6 +133,7 @@ ntest "issue_57_group_with_slash", {}, sub {
 ntest "issue_58_gateways", {}, sub {
   my $gate="GW58";
 
+  $ENV{'EC-ADMIN-TESTING'}='saveAllObjects';
   my $xpath= $::N->createGateway($gate, {
      gatewayDisabled => 0,
      description => "forbackup testing",
@@ -145,6 +149,7 @@ ntest "issue_58_gateways", {}, sub {
       {actualParameterName=>"exportDeploy", value=>"false"},
       {actualParameterName=>"exportGroups", value=>"false"},
       {actualParameterName=>"exportGateways", value=>"true"},
+      {actualParameterName=>"exportZones", value=>"false"},
       {actualParameterName=>"exportResourcePools", value=>"false"},
       {actualParameterName=>"exportResources", value=>"false"},
       {actualParameterName=>"exportSteps", value=>"false"},
@@ -180,6 +185,7 @@ ntest "issue_59_zones", {}, sub {
   my $xpath= $::N->createZone($zone, {description => "for backup testing"});
   assertOK($xpath, "Failed to create zone $zone");
 
+  $ENV{'EC-ADMIN-TESTING'}='saveAllObjects';
   rmtree("/tmp/BACKUP");
   $xpath = $::N->runProcedure("EC-Admin", {
     procedureName=>"saveAllObjects",
