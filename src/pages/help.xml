@@ -81,7 +81,8 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
           </tr>
           <tr>
             <td>restartAgent</td>
-            <td>Unused for now as the agent can be stop but not restarted.</td>
+            <td>On Linux the agent service is restarted, on Windows the box is
+              rebooted.</td>
           </tr>
         </tbody>
       </table>

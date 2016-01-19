@@ -1,3 +1,9 @@
+2016-01-14 Laurent Rochette <lrochette@gmail.com>
+  * 2.20.0.399: Fixed #62 : Add new procedure to change the java heap memory setup on an agent
+
+2016-01-07 Laurent Rochette <lrochette@gmail.com>
+  * 2.20.0.398: Add help for agentMemoryConfiguration
+
 2016-01-07 Laurent Rochette <lrochette@gmail.com>
   * 2.20.0.397: Add new procedure to change the java heap memory setup on an agent (Issue #62)
 
