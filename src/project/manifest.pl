@@ -16,7 +16,7 @@
 	['//project/procedure[procedureName="acquireSemaphore"]/step[stepName="acquireSemaphore"]/command', 'procedures/acquireSemaphore/steps/acquireSemaphore.pl'],
 	['//project/procedure[procedureName="agentMemoryConfiguration"]/step[stepName="modifyWrapper"]/command', 'procedures/agentMemoryConfiguration/steps/modifyWrapper.pl'],
 	['//project/procedure[procedureName="agentMemoryConfiguration"]/step[stepName="restartAgentLinux"]/command', 'procedures/agentMemoryConfiguration/steps/restartAgentLinux.pl'],
-	['//project/procedure[procedureName="agentMemoryConfiguration"]/step[stepName="restartAgentWindows"]/command', 'procedures/agentMemoryConfiguration/steps/restartAgentWindows.sh'],
+	['//project/procedure[procedureName="agentMemoryConfiguration"]/step[stepName="restartAgentWindows"]/command', 'procedures/agentMemoryConfiguration/steps/restartAgentWindows.ps1'],
 	['//project/procedure[procedureName="agentMemoryConfiguration"]/step[stepName="waitForAgentToGoDown"]/command', 'procedures/agentMemoryConfiguration/steps/waitForAgentToGoDown.pl'],
 	['//project/procedure[procedureName="agentMemoryConfiguration"]/step[stepName="waitForAgentToComeBack"]/command', 'procedures/agentMemoryConfiguration/steps/waitForAgentToComeBack.sh'],
 	['//project/procedure[procedureName="artifactRepositorySynchronization"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/artifactRepositorySynchronization/form.xml'],

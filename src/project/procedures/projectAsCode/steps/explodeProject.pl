@@ -22,7 +22,7 @@ sub fileFriendly($) {
 # Replace file-name reserved characters with % equivalent
 
 # Windows reserved characters:  "   <   >   \   ^   |   :   /   *   ?
-# Linux reserved characters: & 
+# Linux reserved characters: &
 # Commander allows all of these, but double quote will cause parsing of manifest.pl to fail
 
 #
@@ -70,7 +70,7 @@ sub processPS {
 			open (PROP, ">$propFile") or die "$propFile:  $!\n";
 			print PROP $propValue, "\n";
 			close PROP;
-	    
+
 	    	my $node=($prop->findnodes('value'))[0];
 	    	$node->removeChildNodes;			# Remove the current value
 			$node->appendText('PLACEHOLDER'); 	# Insert new value
@@ -121,7 +121,7 @@ if ($PS) {
 	mkdir "project/properties";
 	mkdir "project/properties/scripts";
 	chdir("project");
-	processPS(($PS->findnodes("propertySheet"))[0], "properties/scripts", 
+	processPS(($PS->findnodes("propertySheet"))[0], "properties/scripts",
 						  "//project/propertySheet/property[propertyName=\"scripts\"]/propertySheet", 2);
 	chdir("..");
 }
@@ -147,7 +147,7 @@ foreach my $procedure ($projectXml->findnodes('/exportedData/project/procedure')
 
 	my $procedureName = $procedure->find("procedureName")->string_value;
 	printf("Processing procedure: $procedureName\n") if ($DEBUG);
-	
+
 	# my $procedureFile = $procedureName;
 	# $procedureFile =~ s/\:/_colon_/g;  # Deal with step name characters not allowed in file names
 	my $procedureFile = fileFriendly($procedureName);
@@ -183,7 +183,12 @@ foreach my $procedure ($projectXml->findnodes('/exportedData/project/procedure')
 		}
 		#
 		my $ext=".sh"; # No way to detect whether sh or cmd
-		$ext = ".pl" if ($shell eq 'ec-perl' || $shell eq 'perl');
+		if ($shell eq 'ec-perl' || $shell eq 'perl') {
+			$ext = ".pl";
+		} elsif ($shell =~ /powershell/) {
+			$ext = ".ps1";
+		}
+		
 		# my $stepFile = $stepName;
 		# $stepFile =~ s/\:/_colon_/g;  # Deal with step name characters not allowed in file names
 		my $stepFile = fileFriendly($stepName);
@@ -207,10 +212,4 @@ close TEMPLATE;
 
 # delete the exported XML file
 unlink("project.xml")
-
-
-
-
-
-
 

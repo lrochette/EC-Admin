@@ -107,4 +107,9 @@ open(my $FH, "> $wrapperFile") || die ("Cannot open $wrapperFile\n");
 print $FH @out;
 close($FH);
 
+if ($osIsWindows) {
+  $ec->setProperty("/myJob/platform", "Windows");
+} else {
+  $ec->setProperty("/myJob/platform", "Linux");
+}
 
