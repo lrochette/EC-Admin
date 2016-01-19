@@ -1,0 +1,444 @@
+2016-01-14 Laurent Rochette <lrochette@gmail.com>
+  * 2.20.0.399: Fixed #62 : Add new procedure to change the java heap memory setup on an agent
+
+2016-01-07 Laurent Rochette <lrochette@gmail.com>
+  * 2.20.0.398: Add help for agentMemoryConfiguration
+
+2016-01-07 Laurent Rochette <lrochette@gmail.com>
+  * 2.20.0.397: Add new procedure to change the java heap memory setup on an agent (Issue #62)
+
+2016-01-05 Laurent Rochette <lrochette@gmail.com>
+  * 2.19.2.392: Add repo checking
+
+2016-01-05 Laurent Rochette <lrochette@gmail.com>
+  * 2.19.2.391: make new artifactRepositorySynchronization procedure the default oneTest for unknown or disabled repo
+
+2016-01-05 Laurent Rochette <lrochette@gmail.com>
+  * 2.19.2.390: make new artifactRepositorySynchronization procedure the default one
+
+2016-01-05 Laurent Rochette <lrochette@gmail.com>
+  * 2.19.1.377: Better error reporting for artRepoSyncS3
+
+2016-01-04 Laurent Rochette <lrochette@gmail.com>
+  * 2.19.1.376: fixed issue with testResources (all steps were running on local)
+
+2016-01-04 Laurent Rochette <lrochette@gmail.com>
+  * 2.19.0.375: new universal SyncRepo procedure (#60)
+
+2015-12-24 Laurent Rochette <lrochette@gmail.com>
+  * 2.18.0.371: Fix #61: added testResources procedure
+
+2015-12-24 Laurent Rochette <lrochette@gmail.com>
+  * 2.18.0.370: Fix #61: added testResources procedure
+
+2015-12-23 Laurent Rochette <lrochette@gmail.com>
+  * 2.17.0.355: Fix #59 backup zones
+  * 2.17.0.354: Fix #58 backup gateways
+
+2015-12-21 Laurent Rochette <lrochette@gmail.com>
+  * 2.16.9.350: Added test for #56 and #57
+  * 2.16.9.333: Remove spaces from step names.
+  * 2.16.8.331: Fixed issue with default resource for saveAllObjects
+  * 2.16.8.330: Fixed issue #56 and #57
+
+2015-12-12 System Administrator <lrochette@electric-cloud.com>
+  * 2.16.7.328: Add paging mechanism
+                Fixed issue about error on manifest
+
+2015-12-02 System Administrator <lrochette@electric-cloud.com>
+  * 2.16.6.326: Fixed Issue #54: allow custom timeout in jobsCleanup andjobCleanup_byResult
+
+2015-12-01 System Administrator <lrochette@electric-cloud.com>
+  * 2.16.5.324: Fix #50 and #51 for artifactRepositorySynchronization
+
+2015-11-26 Laurent Rochette <lrochette@gmail.com>
+  * 2.16.3.321: Fixed #52: the /server/counters/EC-Admin is not writable
+
+2015-11-25 Laurent Rochette <lrochette@gmail.com>
+  * 2.16.2.319: fixed #47: nproc does not work on RHEL for performanceMetrics
+
+2015-11-25 Laurent Rochette <lrochette@gmail.com>
+  * 2.16.1.318: Fixed #49
+                Fixed README.md and Help page
+
+2015-11-20 System Administrator <lrochette@electric-cloud.com>
+  * 2.16.0.317: add option to enable change tracking on the created plugin
+
+2015-11-15 Laurent Rochette <lrochette@gmail.com>
+  * 2.15.0.316: Add procedures to disable and enable all schedules
+
+2015-11-10 Laurent Rochette <lrochette@gmail.com>
+  * 2.14.3.312: Fixed #45, bad links in deleteWorkspaceOrphans
+
+2015-10-16 Laurent Rochette <lrochette@gmail.com>
+  * 2.14.2.311: Fix #46 : ixed EC-Admin project reference issue in debugPostp
+
+2015-10-11 Laurent Rochette <lrochette@gmail.com>
+  * 2.14.1.310: Fixed issue with artifactRepositorySynchronization
+
+2015-10-08 Laurent Rochette <lrochette@gmail.com>
+  * 2.14.0.309: save procedure.xml in procedure directory
+  * 2.14.0.308: Fix #42 adding step export to saveAllObjects
+
+2015-09-18 System Administrator <lrochette@electric-cloud.com>
+  * 2.13.0.307: Added property to allow to add plugin dependencies in projectAsCode
+
+2015-09-18 System Administrator <lrochette@electric-cloud.com>
+  * 2.13.0.306: Added property to allow to add plugin dependencies in projectAsCode
+
+2015-09-12 System Administrator <lrochette@electric-cloud.com>
+  * 2.12.2.305: Fix #41: getP missing
+
+2015-08-19 System Administrator <lrochette@electric-cloud.com>
+  * 2.12.1.304: Fix Issue #39: attachParameter has changed syntax in 6.0
+
+2015-08-18 System Administrator <lrochette@electric-cloud.com>
+  * 2.12.1.303: Fixed issue #39 attachParameter syntax change in EF 6.0
+
+2015-08-18 System Administrator <lrochette@electric-cloud.com>
+  * 2.12.0.302: Set minimum version for plugin for current server version
+
+2015-08-15 System Administrator <lrochette@electric-cloud.com>
+  * 2.11.0.301: Added sendAlert (Issue #25)
+
+2015-08-14 System Administrator <lrochette@electric-cloud.com>
+  * 2.10.0.300: Path to css changed in 6.0
+
+2015-08-11 System Administrator <lrochette@electric-cloud.com>
+  * 2.10.0.298: Fixed changeBannerColor for ElectricFlow 6.0
+
+2015-07-11 System Administrator <lrochette@electric-cloud.com>
+  * 2.9.4.297:  Added --withNotifiers option when exporting in createPluginFromProject
+
+2015-07-09 System Administrator <lrochette@electric-cloud.com>
+  * 2.9.2.294: New libs for SDK5
+
+2015-06-12 System Administrator <lrochette@electric-cloud.com>
+  * 2.9.2.293: Fixed Help
+  * 2.9.2.292: Include the lib directory for configuration management
+  * 2.9.1.287: Fix ec_setup expansion
+
+2015-05-29 System Administrator <lrochette@electric-cloud.com>
+  * 2.9.0.286: Fixed Issue #32: added code to delete configuration in projectAsCode.
+
+2015-05-27 System Administrator <lrochette@electric-cloud.com>
+  * 2.8.2.278: Fixed Issue #35: allow custom timeout in deleteObjects
+  * 2.8.1.277: Fixed Issue #30
+  * 2.8.1.273: Added parameter to prevent exported project file deletion
+
+2015-05-25 System Administrator <lrochette@electric-cloud.com>
+  * 2.8.0.272: Modified projectAsCode to generate code for credential configuration
+
+2015-05-21 System Administrator <lrochette@electric-cloud.com>
+  * 2.7.3.265: Fixed Issue #29 in deleteObjects
+  * 2.7.2.264: Fixed issue with network path on Windows for saveAllObjects
+
+2015-05-14 System Administrator <lrochette@electric-cloud.com>
+  * 2.7.1.263: Fix templates for schedule
+
+2015-04-23 System Administrator <lrochette@electric-cloud.com>
+  * 2.7.0.262: Fixed Issue #12: jobCleanup_byResult now supports local workspace
+  * 2.7.0.261: Fixed changeBannerColor for 5.4
+
+2015-04-09 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.9.258: Replace some findObjects by countObjects to get faster results in performanceMetrics
+
+2015-03-26 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.7.257: Fixed help page typos
+
+2015-03-12 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.7.256: Skip down resources in performanceMetrics
+  * 2.5.7.255: Fixed Issue #21: winDir should not be compulsory for subJC_deleteWorkspace
+
+2015-03-05 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.6.254: Fixed Issue #20: getPS does not recurse more than 1 level
+               Fixed Issue #18: bad property in subJC_deleteWorkspace
+
+2015-03-03 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.5.251: Fixed Issue #17: timeout option in global configuration
+               Fixed ACL issue on EC-Admin.
+               Default licenseLogger-report schedule now sends previous month data
+
+2015-03-02 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.4.237: Fixed indentation and empty lines in ec_setup.pl in projectAsCode
+
+2015-03-02 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.3.236: Add tag to EC-Admin release
+
+2015-02-27 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.2.233: Fixed help
+
+2015-02-27 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.2.232: Fix Issue #16: Add option to move jobs from old to new version 
+of the plugin created with createPluginFromProject or projectAsCode
+
+2015-02-26 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.1.228: Remove ACL on /server/EC-Admin when demoting
+               Fixed Issue #14: open ACL for the plugin on /server/EC-Admin
+               Fixed Issue #15: name of the configuration PS should be EC-Admin 
+not plugin name and version
+
+2015-02-16 System Administrator <lrochette@electric-cloud.com>
+  * 2.5.0.211: Added procedure artifactRepositorySynchronization to synchronize 
+repository servers
+
+2015-02-11 System Administrator <lrochette@electric-cloud.com>
+  * 2.4.1.209: saveAllObjects now backups Components as well per Application
+
+2015-02-10 System Administrator <lrochette@electric-cloud.com>
+  * 2.4.0.207: Added Deploy object backup in saveAllObjects
+
+2015-01-11 System Administrator <lrochette@electric-cloud.com>
+  * 2.3.0.205: Added ntest for scripts PS
+  * 2.3.0.200: jobsCleanup now supports local workspace
+
+2014-12-30 System Administrator <lrochette@electric-cloud.com>
+  * 2.2.4.199: Fix issue#1 about ec_reportData
+
+2014-12-18 System Administrator <lrochette@electric-cloud.com>
+  * 2.2.3.173: JSON lib was missing in projectAsCode::Initialization
+
+2014-12-17 System Administrator <lrochette@electric-cloud.com>
+  * 2.2.2.172: Fixed issue in projectasCode::create_ec_setup.pl
+  * 2.2.2.167: Fixed issue in projectasCode::Initialization
+
+2014-10-31 System Administrator <lrochette@electric-cloud.com>
+  * 2.2.1.163: Add total license number for licenseLogger report
+
+2014-10-31 System Administrator <lrochette@electric-cloud.com>
+  * 2.2.0.162: Fixed /myProject issue if run from plugin
+
+2014-10-30 System Administrator <lrochette@electric-cloud.com>
+  * 2.2.0.161: removed DEBUG parameter
+
+2014-10-30 System Administrator <lrochette@electric-cloud.com>
+  * 2.2.0.160: Added a procedure to help debug postp
+
+2014-09-29 System Administrator <lrochette@electric-cloud.com>
+  * 2.1.2.159: Added licenseLogger-reporter schedule
+  * 2.1.1.158: Improved Help
+  * 2.1.0.157: Create dummy licenseLoger configuration upon promotion
+  * 2.0.0.155: Added licenseLogger
+
+2014-08-27 Laurent Rochette <lrochette@electric-cloud.com>
+  * 1.14.1.152: Parse scripts property sheet recursively in projectAsCode
+
+2014-08-26 Laurent Rochette <lrochette@electric-cloud.com>
+  * 1.14.0.151: Extract code as properties in PS named scripts
+
+2014-07-30 Laurent Rochette <lrochette@electric-cloud.com>
+  * 1.13.1.147: Setting up JAVA_HOME to use the provided jre one in projectAsCode
+
+2014-07-30 Laurent Rochette <lrochette@electric-cloud.com>
+  * 1.13.0.146: Extract ec_parameterForm property in projectAsCode
+  * 1.12.0.130: Fixed link to css for help page
+  * 1.12.0.129: Create dummy help page
+  * 1.11.8.128: Fixed summary link to the new plugin version in projectAsCode.
+  * 1.11.8.126: Fixed Help for Directory parameter in projectAsCode
+
+2014-07-26 Laurent Rochette <lrochette@electric-cloud.com>
+  * 1.11.7.124: Improved Help page for projectAsCode
+  * 1.11.7.123: improve help for createPluginFromProject
+
+2014-07-24 Laurent Rochette <lrochette@electric-cloud.com>
+  * 1.11.6.103: Added overwrite option for projectAsCode
+
+2014-07-23 Laurent Rochette <lrochette@electric-cloud.com>
+  * 1.11.5.100: Professional versions of the logo in black and white
+
+2014-07-23 Laurent Rochette <lrochette@electric-cloud.com>
+  * 1.11.4.93: Added draft PROD logo
+
+2014-07-23 Laurent Rochette <lrochette@electric-cloud.com>
+  * 1.11.4.90: Draft of DEV and SDK Logo
+
+2014-07-22 Laurent Rochette <lrochette@electric-cloud.com>
+  * 1.11.3.83: Made pink color really pink instead of magenta
+
+2014-07-22 System Administrator <lrochette@electric-cloud.com>
+  * 1.11.2.82: Added version number to CHANGELOG
+
+2014-07-22 System Administrator <lrochette@electric-cloud.com>
+ * EC-Admin.jar:  new version 1.11.1.81
+     + Added pink and orange color for changeBannerColor procedure
+
+2014-07-22 System Administrator <lrochette@electric-cloud.com>
+ * EC-Admin.jar:  new version 1.11.0.79
+     + Added changeBannerColor procedure
+
+2014-07-17 System Administrator <lrochette@electric-cloud.com>
+  * Appended the release comment to plugin description when it is present.
+  * Added CHANGELOG creation
+
+2014-07-13  Laurent Rochette <lrochette@electric-cloud.com>
+ * EC-Admin.jar & EC-Admin.xml: new version 1.10.0
+     + Added a procedure to create a plugin and by extracting each step individually
+       in single files for finer granularity SCM check in.
+
+2014-06-18  Laurent Rochette <lrochette@electric-cloud.com>
+ * EC-Admin.jar & EC-Admin.xml: new version 1.9.0
+     + Added a hook to allow actions to be taken when the plugin changes state in createPluginFromProject
+
+2014-05-08  Laurent Rochette <lrochette@electric-cloud.com>
+ * EC-Admin.jar & EC-Admin.xml: new version 1.8.0
+     + Added feature to save plugin as an artifact version in createPluginFromProject
+
+2014-05-02  Laurent Rochette <lrochette@electric-cloud.com>
+
+ * EC-Admin.jar & EC-Admin.xml: new version 1.7.1
+     + Fixed location of the saved filter for RunReport_Performance_Schedule schedule
+
+2014-04-30 Laurent Rochette <lrochette@electric-cloud.com>
+
+ * EC-Admin.jar & EC-Admin.xml: new version 1.7.0
+     + Added step to fix self reference to project in createPluginFromProject
+     
+2014-04-29 Laurent Rochette <lrochette@electric-cloud.com>
+
+ * EC-Admin.jar & EC-Admin.xml: new version 1.6.2
+     + Fixed with resource default workspace not being used in dynamic steps in performanceMetrics
+     + Fixed subprocedure call to myProject instead of a fixed call to EC-Admin in performanceMetrics
+     + Fixed ec_visbility in createPluginFromProject
+
+2014-04-03 Laurent Rochette <lrochette@electric-cloud.com>
+
+  * EC-Admin.jar & EC-Admin.xml: new version 1.6.1
+     + Fixed problem with ec_setup and procedure names with dot (".") in createPluginFromProject
+
+  * EC-Admin.jar & EC-Admin.xml: new version 1.6.0
+     + increased perlHeaderJson length to exactly 20 lines
+     + add a procedure subPM-deploymentSize to calculate Commander environment size
+
+  * EC-Admin.jar & EC-Admin.xml: new version 1.5.2
+     + Rewrote localUsage to access jobStepsDirectly
+     + localUsage is also now a standalone procedure (subPM-localUsage)
+
+2014-03-18 Kate McCormack
+
+  * EC-Admin.jar & EC-Admin.xml: new version 1.5.1
+     + Adding setTimeout equal to 600 so the ec commands won't time out in saveAllObjects and saveProjects
+
+2014-03-12 Laurent Rochette <lrochette@electric-cloud.com>
+
+  * EC-Admin.jar & EC-Admin.xml: new version 1.5.0
+     + added synchronizePlugins procedure to copy plugins from the server to an agent
+     + fixed Email address URL in createPluginFromProject
+
+2014-03-11 Laurent Rochette <lrochette@electric-cloud.com>
+
+  * EC-Admin.jar & EC-Admin.xml: new version 1.4.6
+     + Added buildNumber to Version
+
+  * EC-Admin.jar & EC-Admin.xml: new version 1.4.5
+     + Use zip when jar is not available to package plugin
+
+  * EC-Admin.jar & EC-Admin.xml: new version 1.4.4
+     + Fixed Windows path issue for createPluginFromProject
+     + Fixed jar error not reported
+
+2014-03-10 Laurent Rochette <lrochette@electric-cloud.com>
+
+  * EC-Admin.jar & EC-Admin.xml: new version 1.4.3
+     + Ignored sub-steps for localUsage
+     + Added comparison for /server/hostIP and /server/hostrName
+     
+  * EC-Admin.jar & EC-Admin.xml: new version 1.4.2
+     + updated help page
+     
+  * EC-Admin.jar & EC-Admin.xml: new version 1.4.1
+     + Fixed percentage formating in localUsage
+
+  * EC-Admin.jar & EC-Admin.xml: new version 1.4.0
+     + Add localUsage statistics in performanceMetrics
+     + Added a time limit for performanceMetric
+
+
+2014-02-24 Laurent Rochette <lrochette@electric-cloud.com>
+
+  * EC-Admin.jar & EC-Admin.xml: new version 1.3.8
+    + removed jobId references in preparation of EC 5.0
+    + added artifactsCleanup_byQuantity t clean AV but keep at least X.
+    + Fixed ec_visbility  bugs in createPluginFromProject
+    + Fixed descriptionForPlugin  bug in createPluginFromProject
+    + Fixed several procedure descriptions for the plugin
+    + Added help about project level properties for createPluginFromProject
+    + Fixed problem with ec_setup and procedure names with dot (".") in createPluginFromProject
+
+
+2013-12-26 Laurent Rochette <lrochette@electric-cloud.com>
+
+  * Merry Christmas
+  * EC-Admin.jar & EC-Admin.xml: new version 1.3.6
+    + saveProjects:
+          o Add chmod after directory creation for cases when server service and server agent service users are different.
+    + Added saveAllObjects procedure to export a bunch of objects individually for finer granularity in the backup
+    + Completed the plugin help
+    + performanceMetrics
+          o Added license usage information 
+    + Added a sort to deleteObjects to prevent job range overlapping.
+
+2013-11-27 Laurent Rochette <lrochette@electric-cloud.com>
+
+  * Happy Thanksgiving!
+  * EC-Admin.xml: new version 1.3.5
+    + Added automatic performance charting
+    + Bug fixes
+    + Also available as a plugin.
+    +  jobsCleanup and jobCleanup_byResult:
+         o Add a parameter to skip the computation of the disk space used; to speed up the job
+    + Semaphore
+         o Added a local job counter to decrement the global gate value. Useful when aborting a job.
+           Simply a step that "always run" that will decrement your global gate by /myJob/localSemaphoreCounter
+    + createPluginFromProject 
+         o Added to automatically create a plugin from a project
+  
+2013-09-06 Laurent Rochette <lrochette@electric-cloud.com>
+
+  * EC-Admin.xml: new version 1.3.4
+    + Better resource management for artifactsCleanup and cleanupRepository
+    + perforrmanceMetrics:
+          o  Fix bug on Free available RAM with European numbers
+          o  Add error management on fsutil call (Windows)
+          o  Add a cleanup step for temporary file used in Disk Performance
+    + Refactor jobCleanup_byResult to include Workflow and schedule jobs
+       Add time parameter
+    + Add compareVersion in the PerlLib to compare number strings like x.y.z....
+
+
+2013-07-29 Laurent Rochette <lrochette@electric-cloud.com>
+
+  * EC-Admin.xml: new version 1.3.3
+    - artifactCleaup: new ec_paramsterForm to get same look and feel
+      than jobCleanup. Took advantage of createJobStep to simplify the 
+      procedure.
+		- Added getPS() to the Perl pibrary (JSON and XML)
+
+     
+2013-07-24 Laurent Rochette <lrochette@electric-cloud.com>
+
+  * EC-Admin.xml: new version 1.3.2
+		- new "available disk space" metric for performanceMetrics
+		- Fixed bug in getP()
+		- Added Perl header and library for JSON format
+		- Added new parameters for saveProjects (relocatable, ACLs and notifiers)
+
+2013-07-08 Laurent Rochette <lrochette@electric-cloud.com>
+
+	* EC-Admin.xml: new version 1.3.1 (performanceMetrics - add available memory
+	information)
+
+version 1.3:
+    + New procedure to delete jobs by results
+    + New parameter to cleanupJobs to skip jobs matching a pattern
+
+version 1.2:  
+    + New  performance diagnostic procedure
+    + provide a getP Perl function for easy getProperty
+    + New procedure to delete workspace orphan job directories
+
+version 1.1: 
+      semaphore management
+      saveProjects
+
+version 1.0: 
+      initial version including job and artifact management
