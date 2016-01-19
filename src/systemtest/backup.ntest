@@ -33,7 +33,7 @@ ntest "checkProcedures", {}, sub {
 ntest "local_resource", {}, sub {
 
   # check for resource
-  my $res=$::N->getProperty("resourceName", 
+  my $res=$::N->getProperty("resourceName",
                {
 		  projectName   => $pluginName,
 		  procedureName => 'saveAllObjects',
@@ -44,158 +44,41 @@ ntest "local_resource", {}, sub {
 
 #-------------------------------------------------------------------------------
 # Issue 56: Check for question mark
+#       57: group name with "/"
+#       58: backup gateway
+#       59: backup zones
 #-------------------------------------------------------------------------------
-ntest "issue_56_question_mark", {}, sub {
+ntest "issues 56, 57, 58 and 59", {}, sub {
 
-  rmtree("/tmp/BACKUP");
-  my $xpath = $::N->runProcedure("EC-Admin", {
-    procedureName=>"saveAllObjects",
-    actualParameter=>[
-      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
-      {actualParameterName=>"exportDeploy", value=>"false"},
-      {actualParameterName=>"exportGateways", value=>"false"},
-      {actualParameterName=>"exportZones", value=>"false"},
-      {actualParameterName=>"exportGroups", value=>"false"},
-      {actualParameterName=>"exportResourcePools", value=>"false"},
-      {actualParameterName=>"exportResources", value=>"false"},
-      {actualParameterName=>"exportSteps", value=>"false"},
-      {actualParameterName=>"exportUsers", value=>"false"},
-      {actualParameterName=>"exportWorkspaces", value=>"false"},
-    ]
-  });
-  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
-  if ($xpath) {
-    #get new Job ID
-    my $jobId  = $xpath->findvalue("//jobId");
-    waitForJob($jobId);
-    my $jobData  = $::N->getJobDetails($jobId);
-    my $outcome = $jobData->findvalue("//job/outcome"); 
-    assertNe("error", $outcome, "saveAllObjects should not error out");
-  
-    # check for file with question mark replaced by _
-    if (! -f "/tmp/BACKUP/Projects/EC-Admin_Test/Procedures/questionMark/Steps/rerun_.xml") {
-      fail("rerun_.xml is missing");
-    } else {
-      rmtree("/tmp/BACKUP");
-    }
-  }
-};
-
-
-#-------------------------------------------------------------------------------
-#  Issue 57: group name with "/"
-#-------------------------------------------------------------------------------
-ntest "issue_57_group_with_slash", {}, sub {
+  # issue 57: group name with '/'
   my $group="AC/DC";
-
-  $ENV{'EC-ADMIN-TESTING'}='saveAllObjects';
   my $xpath= $::N->createGroup($group);
-  assertOK($xpath, "Failed to create group $group");
+  assertOK($xpath, "Failed to create group $group for issue 57");
 
-  rmtree("/tmp/BACKUP");
-  $xpath = $::N->runProcedure("EC-Admin", {
-    procedureName=>"saveAllObjects",
-    actualParameter=>[
-      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
-      {actualParameterName=>"exportDeploy", value=>"false"},
-      {actualParameterName=>"exportGroups", value=>"true"},
-      {actualParameterName=>"exportGateways", value=>"false"},
-      {actualParameterName=>"exportZones", value=>"false"},
-      {actualParameterName=>"exportResourcePools", value=>"false"},
-      {actualParameterName=>"exportResources", value=>"false"},
-      {actualParameterName=>"exportSteps", value=>"false"},
-      {actualParameterName=>"exportUsers", value=>"false"},
-      {actualParameterName=>"exportWorkspaces", value=>"false"},
-    ]
-  });
-  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
-  if ($xpath) {
-    #get new Job ID
-    my $jobId  = $xpath->findvalue("//jobId");
-    waitForJob($jobId);
-    my $jobData  = $::N->getJobDetails($jobId);
-    my $outcome = $jobData->findvalue("//job/outcome");
-    assertNe("error", $outcome, "saveAllObjects should not error out");
- 
-    # check for file with question mark replaced by _
-    if (! -f "/tmp/BACKUP/groups/AC_DC.xml") {
-      fail("AC_DC.xml group is missing");
-    } else {
-      rmtree("/tmp/BACKUP");
-    }
-  }
-  $::N->deleteGroup($group); 
-};
-
-#-------------------------------------------------------------------------------
-#  Issue 58: backup gateways
-#-------------------------------------------------------------------------------
-ntest "issue_58_gateways", {}, sub {
+  # issue 58: backup gateway
   my $gate="GW58";
-
-  $ENV{'EC-ADMIN-TESTING'}='saveAllObjects';
-  my $xpath= $::N->createGateway($gate, {
+  $xpath= $::N->createGateway($gate, {
      gatewayDisabled => 0,
      description => "forbackup testing",
      resourceName1 => "local", resourceName2 => "win7"
     });
   assertOK($xpath, "Failed to create gateway $gate");
 
-  rmtree("/tmp/BACKUP");
-  $xpath = $::N->runProcedure("EC-Admin", {
-    procedureName=>"saveAllObjects",
-    actualParameter=>[
-      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
-      {actualParameterName=>"exportDeploy", value=>"false"},
-      {actualParameterName=>"exportGroups", value=>"false"},
-      {actualParameterName=>"exportGateways", value=>"true"},
-      {actualParameterName=>"exportZones", value=>"false"},
-      {actualParameterName=>"exportResourcePools", value=>"false"},
-      {actualParameterName=>"exportResources", value=>"false"},
-      {actualParameterName=>"exportSteps", value=>"false"},
-      {actualParameterName=>"exportUsers", value=>"false"},
-      {actualParameterName=>"exportWorkspaces", value=>"false"},
-    ]
-  });
-  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
-  if ($xpath) {
-    #get new Job ID
-    my $jobId  = $xpath->findvalue("//jobId");
-    waitForJob($jobId);
-    my $jobData  = $::N->getJobDetails($jobId);
-    my $outcome = $jobData->findvalue("//job/outcome");
-    assertNe("error", $outcome, "saveAllObjects should not error out");
-
-    # check for file with question mark replaced by _
-    if (! -f "/tmp/BACKUP/Gateways/$gate.xml") {
-      fail("$gate.xml gate is missing");
-    } else {
-      rmtree("/tmp/BACKUP");
-    }
-  }
-  $::N->deleteGateway($gate);
-};
-
-#-------------------------------------------------------------------------------
-#  Issue 59: backup zones
-#-------------------------------------------------------------------------------
-ntest "issue_59_zones", {}, sub {
+  # issue 59: backup zones
   my $zone="zone59";
-
-  my $xpath= $::N->createZone($zone, {description => "for backup testing"});
+  $xpath= $::N->createZone($zone, {description => "for backup testing"});
   assertOK($xpath, "Failed to create zone $zone");
 
-  $ENV{'EC-ADMIN-TESTING'}='saveAllObjects';
   rmtree("/tmp/BACKUP");
   $xpath = $::N->runProcedure("EC-Admin", {
     procedureName=>"saveAllObjects",
     actualParameter=>[
       {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
       {actualParameterName=>"exportDeploy", value=>"false"},
-      {actualParameterName=>"exportGroups", value=>"false"},
-      {actualParameterName=>"exportResourcePools", value=>"false"},
-      {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"true"},
       {actualParameterName=>"exportZones", value=>"true"},
+      {actualParameterName=>"exportGroups", value=>"true"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
       {actualParameterName=>"exportResources", value=>"false"},
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
@@ -211,13 +94,30 @@ ntest "issue_59_zones", {}, sub {
     my $outcome = $jobData->findvalue("//job/outcome");
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
-    # check for file with question mark replaced by _
+    # issue 56: check for file with question mark replaced by _
+    if (! -f "/tmp/BACKUP/Projects/EC-Admin_Test/Procedures/questionMark/Steps/rerun_.xml") {
+      fail("rerun_.xml is missing");
+    }
+
+    # issue 57: check for group file with / mark replaced by _
+    if (! -f "/tmp/BACKUP/groups/AC_DC.xml") {
+      fail("AC_DC.xml group is missing");
+    }
+
+    # issue 58: check for gateway file
+    if (! -f "/tmp/BACKUP/Gateways/$gate.xml") {
+      fail("$gate.xml gate is missing");
+    }
+    # issue 59: check for zone file
     if (! -f "/tmp/BACKUP/Zones/$zone.xml") {
       fail("$zone.xml zone is missing");
-    } else {
-      rmtree("/tmp/BACKUP");
     }
+    # Clean
+    rmtree("/tmp/BACKUP");
+    $::N->deleteGroup($group);
+    $::N->deleteGateway($gate);
+    $::N->deleteZone($zone);
   }
-  $::N->deleteZone($zone);
 };
+
 1;
