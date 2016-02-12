@@ -56,6 +56,7 @@
 	['//project/procedure[procedureName="deleteObjects"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/deleteObjects/form.xml'],
 	['//project/procedure[procedureName="deleteObjects"]/step[stepName="Delete"]/command', 'procedures/deleteObjects/steps/Delete.pl'],
 	['//project/procedure[procedureName="deleteWorkspaceOrphans"]/step[stepName="crawlWorkspace"]/command', 'procedures/deleteWorkspaceOrphans/steps/crawlWorkspace.pl'],
+	['//project/procedure[procedureName="findJobId"]/step[stepName="crawler"]/command', 'procedures/findJobId/steps/crawler.pl'],
 	['//project/procedure[procedureName="jobCleanup_byResult"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/jobCleanup_byResult/form.xml'],
 	['//project/procedure[procedureName="jobCleanup_byResult"]/step[stepName="deleteJobs.byProject"]/command', 'procedures/jobCleanup_byResult/steps/deleteJobs.byProject.pl'],
 	['//project/procedure[procedureName="jobsCleanup"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/jobsCleanup/form.xml'],
