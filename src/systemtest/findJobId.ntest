@@ -21,14 +21,14 @@ my $pluginName = $xpath->findvalue("//pluginName")->value;
 #-------------------------------------------------------------------------------
 # Test procedure present.
 #-------------------------------------------------------------------------------
-ntest "findJobId procedure"{}, sub {
+ntest "findJobId procedure", {}, sub {
 	assertOK($::N->getProcedure($pluginName, "findJobId"), "procedure findJobId missing");
 }
 
 #-------------------------------------------------------------------------------
 # Issue 65:
 #-------------------------------------------------------------------------------
-ntest "Issue 65: findJobId in EC-Admin"{}, sub {
+ntest "Issue 65: findJobId in EC-Admin", {}, sub {
   my $xpath = $::N->runProcedure("EC-Admin", {
     procedureName=>"findJobId",
       actualParameter=>[
