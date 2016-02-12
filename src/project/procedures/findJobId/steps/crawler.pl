@@ -7,10 +7,41 @@ use File::Path;
 
 $[/myProject/scripts/perlHeaderJSON]
 
+############################################################################
+#
+# parameters
+#
+############################################################################
+my $pattern="$[projectPattern]";
+
+############################################################################
+#
+# Global variables
+#
+############################################################################
 $DEBUG=0;
+my ($success, $xPath);
+my $MAX=5000;
+my $nbParams=0;
+my $nbSteps=0;
+
+# create filterList
+my @filterList;
+if ($pattern ne "") {
+  push (@filterList, {"propertyName" => "projectName",
+                      "operator" => "like",
+                      "operand1" => $pattern
+                    }
+  );
+}
+push (@filterList, {"propertyName" => "pluginName",
+                      "operator" => "isNull"});
 
 # Get list of Project
-my ($success, $xPath) = InvokeCommander("SuppressLog", "getProjects");
+  ($success, $xPath) = InvokeCommander("SuppressLog", "findObjects", "project",
+                                      {maxIds => $MAX,
+                                       numObjects => $MAX,
+                                       filter => \@filterList });
 
 foreach my $node ($xPath->findnodes('//project')) {
   my $pName=$node->{'projectName'};
@@ -48,19 +79,29 @@ foreach my $node ($xPath->findnodes('//project')) {
           my $paramName=$param->{actualParameterName};
           my $value=$param->{value};
           if (grep (/jobId/, $value) ) {
-            printf("****        jobId in Parameter: %s::%s::%s::%s\n",
+            $nbParams++;
+            printf("*** jobId in parameter: %s::%s::%s::%s\n",
               $pName, $procName, $stepName, $paramName);
           }
         }
       }
       my $cmd=$node->{command};
       if (grep (/jobId/, $cmd) ) {
-        printf("****        jobId in command: %s::%s::%s\n",
+        $nbSteps++;
+        printf("*** jobId in command: %s::%s::%s\n",
           $pName, $procName, $stepName);
       }
     }
   }
 }
+
+printf("\nSummary:\n");
+printf("  Number of steps: $nbSteps\n");
+printf("  Number of parameters: $nbParams\n");
+
+$ec->setProperty("/myJob/nbSteps", $nbSteps);
+$ec->setProperty("/myJob/nbParams", $nbParams);
+$ec->setProperty("summary", "Steps: $nbSteps\nParams: $nbParams");
 
 $[/myProject/scripts/perlLibJSON]
 

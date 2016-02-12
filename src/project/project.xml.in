@@ -3180,7 +3180,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>409</value>
+        <value>410</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -6764,7 +6764,7 @@ Changelog:
       <formalParameter>
         <formalParameterName>projectPattern</formalParameterName>
         <defaultValue/>
-        <description>a SQL pattern to filter project to proceed (nothing for all)</description>
+        <description>a SQL pattern to filter projects. Default is all projects.</description>
         <expansionDeferred>0</expansionDeferred>
         <required>0</required>
         <type>entry</type>

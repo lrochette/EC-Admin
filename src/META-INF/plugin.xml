@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.21.409</version>
+  <version>2.21.410</version>
   <label>EC-Admin</label>
-  <description>A set of administrative tasks to help manage your server.
-2016-02-12 lrochette Added new procedure to find jobId</description>
+  <description>A set of administrative tasks to help manage your server.</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>
