@@ -108,8 +108,9 @@ print $FH @out;
 close($FH);
 
 if ($osIsWindows) {
-  $ec->setProperty("/myJob/platform", "windows");
+  $ec->setProperty("/myJob/platform", "Windows");
 } else {
-  $ec->setProperty("/myJob/platform", "linux");
+  $ec->setProperty("/myJob/platform", "Linux");
 }
+
 
