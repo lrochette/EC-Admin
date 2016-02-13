@@ -1,9 +1,6 @@
 2016-02-12 Laurent Rochette <lrochette@gmail.com>
   * 2.21.414: Fix #65: new procedure to find jobId
 
-2016-02-12 Laurent Rochette <lrochette@gmail.com>
-  * 2.21.409: Added new procedure to find jobId
-
 2016-01-14 Laurent Rochette <lrochette@gmail.com>
   * 2.20.0.399: Fixed #62 : Add new procedure to change the java heap memory setup on an agent
 
