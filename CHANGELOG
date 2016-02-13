@@ -1,4 +1,7 @@
 2016-02-12 Laurent Rochette <lrochette@gmail.com>
+  * 2.21.414: Fix #65: new procedure to find jobId
+
+2016-02-12 Laurent Rochette <lrochette@gmail.com>
   * 2.21.409: Added new procedure to find jobId
 
 2016-01-14 Laurent Rochette <lrochette@gmail.com>
