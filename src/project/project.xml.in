@@ -530,6 +530,76 @@
               </property>
             </propertySheet>
           </property>
+          <property>
+            <propertyName>264076</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2137381</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2137381</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2016-02-13 02:02:19</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>264686</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
         </propertySheet>
       </property>
       <property>
@@ -3180,7 +3250,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>415</value>
+        <value>417</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -10293,15 +10363,7 @@ Changelog:
       <formalParameter>
         <formalParameterName>directory</formalParameterName>
         <defaultValue/>
-        <description>the path where the files reside</description>
-        <expansionDeferred>0</expansionDeferred>
-        <required>1</required>
-        <type>entry</type>
-      </formalParameter>
-      <formalParameter>
-        <formalParameterName>files</formalParameterName>
-        <defaultValue>*.xml</defaultValue>
-        <description>the name of a file or a pattern.</description>
+        <description>the path where the .xml files reside</description>
         <expansionDeferred>0</expansionDeferred>
         <required>1</required>
         <type>entry</type>
@@ -10336,7 +10398,7 @@ Changelog:
         <postProcessor/>
         <precondition/>
         <releaseMode>none</releaseMode>
-        <resourceName/>
+        <resourceName>$[resource]</resourceName>
         <shell>ec-perl</shell>
         <timeLimit/>
         <timeLimitUnits>minutes</timeLimitUnits>
