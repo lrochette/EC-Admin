@@ -1,4 +1,7 @@
 2016-02-15 Laurent Rochette <lrochette@gmail.com>
+  * 2.22.0.418: Fix #64 add a procedure to restore exported files
+
+2016-02-15 Laurent Rochette <lrochette@gmail.com>
   * 2.22.0.417: Fix #64 add a procedure to restore exported files
 
 2016-02-12 Laurent Rochette <lrochette@gmail.com>

@@ -12,7 +12,6 @@ $[/myProject/scripts/perlHeaderJSON]
 # Parameters
 #
 my $directory='$[directory]';
-my $files='$[files]';
 my $force='$[force]';
 my $resource='$[resource]';
 
@@ -24,6 +23,7 @@ my $forceOption="";
 $forceOption="--force 1" if ($force eq "true");
 chdir($directory) || die "Cannot change to $directory: $!";
 
+# Loop over each .xml in the directory
 opendir(D,".") || return 0;
 foreach my $file (grep(/\.xml$/,readdir(D))) {
   $ec->createJobStep({
