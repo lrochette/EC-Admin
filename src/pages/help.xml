@@ -26,7 +26,7 @@ what it is now.</p>
 			<li><a href="#jobs">Jobs and Workspaces management</a></li>
 			<li><a href="#plugin">Plugins</a></li>
 			<li><a href="#artifacts">Artifacts management</a></li>
-			<li><a href="#backup">Object export and backup</a></li>
+			<li><a href="#backup">Object export backup and restore</a></li>
 			<li><a href="#schedules">Schedules</a></li>
 			<li><a href="#semaphore">Semaphore management</a></li>
 			<li><a href="#perf">Performance metrics</a></li>
@@ -43,15 +43,18 @@ what it is now.</p>
         	in the form of a .jar file or you can simply get the source code
         	and recompile it yourself.</p>
 
-		<p>To install the plugin, use the "Install from File/URL" tab in the
-			administration/Plugins or use the "installPlugin" API.</p>
+		<p>To install the plugin, use one the following methods:</p>
+    <ul>
+      <li>the "Install from File/URL" tab in the administration/Plugins</li>
+      <li>the Perl "$ec->installPlugin()" API.</li>
+      <li> the CLI client "ectool installPlugin --force 1 EC-Admin.jar</li>
+    </ul>
+    <p>Don't forget to promote the plugin after installation.</p>
 
 		<p>To install on 4.0.x or or 4.1.x, import the EC_4.0.xml file. Be
 			aware that some features are not present as the original project
 			makes use of createJobStep() API which was introduced in 4.2.0:<br/>
 ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
-
-		<p>If you get an error with the passKey, use the "--force 1" option</p>
 
 	  <p>IMPORTANT: For all parameter descriptions below, required
 	    parameters are shown in <span class="required">bold italics</span>.</p>
@@ -619,10 +622,40 @@ with it to backup your projects on a regular basis.</p>
 
 		<h2>acquireSemaphore and releaseSemaphore:</h2>
 
-		<p>Those 2 procedures are used to create a
-gate for a set of steps. The important part is to use a resource with a step
-limit of one to ensure the atomicity of increasing and decreasing the gate
-value.</p>
+		<p>Those 2 procedures are used to create a "semaphore" to control the access to
+      a set of steps. In order to insure the atomicity (only one step can modify
+      your sempahore property at any time) of the operation, you first need to create
+      a resource with a 1-step limit.</br>
+      Then you will need to create a property with a value of 0. The location
+      does not matter
+      as long as it will be readable and writable by the plugin.</p>
+
+    <h2>acquireSempahore</h2>
+    <p>This procedure is the "gate". It checks than you have not used more
+      tokens than allowed. If you have, it will simly wait until some become
+      available. This procedure is called just before the steps which access
+      you want to control.</p>
+
+      <table class="grid">
+ 		    <thead><tr><th>Parameter</th><th>Description</th></tr></thead>
+ 		    <tbody>
+ 		        <tr>
+ 		            <td class='required'>maxSemaphoreValue</td>
+ 		            <td>This is the maximum number of token you allow for this semaphore.</td>
+ 		        </tr>
+ 		        <tr>
+ 		            <td class='required'>semaphoreProperty</td>
+ 		            <td>Property path containing your gate current value.</td>
+ 		        </tr>
+            <tr>
+               <td class='required'>serializationResource</td>
+               <td>The name of the 1-step resource to access the semaphore property.</td>
+           </tr>
+ 		    </tbody>
+ 		</table>
+    <img src="../../plugins/@PLUGIN_KEY@/images/help/acquireSemaphore.png"
+				 alt="acquireSemaphore parameters" />
+
 
 		<h1><a name="perf"></a>Performance metrics</h1>
 		<p>This procedure returns some information about your
