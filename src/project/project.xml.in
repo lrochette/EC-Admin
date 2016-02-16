@@ -3103,6 +3103,28 @@ with it to backup your projects on a regular basis.&lt;/p&gt;
 		&lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; Use saveProjects or saveAllObjects depending on the
 		granularity you are requiring.&lt;/p&gt;
 
+    &lt;h2&gt;restoreObjects&lt;/h2&gt;
+    &lt;p&gt;This procedure allows you to import all the .xml files in a directory.
+      Typically those have been created with saveAllObjects above.&lt;/p&gt;
+
+    &lt;table class="grid"&gt;
+      &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Parameter&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+       &lt;tbody&gt;
+           &lt;tr&gt;
+               &lt;td class='required'&gt;directory&lt;/td&gt;
+               &lt;td&gt;The directory where the .xml files are located.&lt;/td&gt;
+           &lt;/tr&gt;
+           &lt;tr&gt;
+               &lt;td&gt;force&lt;/td&gt;
+               &lt;td&gt;A boolean to pass the --force 1 option to import.&lt;/td&gt;
+           &lt;/tr&gt;
+           &lt;tr&gt;
+               &lt;td&gt;resource&lt;/td&gt;
+               &lt;td&gt;The resource on which to read the files.&lt;/td&gt;
+           &lt;/tr&gt;
+       &lt;/tbody&gt;
+   &lt;/table&gt;
+
 		&lt;h1&gt;&lt;a name="schedules"&gt;&lt;/a&gt;Schedules&lt;/h1&gt;
 		&lt;p&gt;This set of procedures is to help around schedule enabling and disabling which is very useful when you want to perform maintenace on your server.&lt;/p&gt;
 
@@ -3110,13 +3132,7 @@ with it to backup your projects on a regular basis.&lt;/p&gt;
 		&lt;p&gt;This procedure disables all the enabled schedules and optionaly saves the list in a property.&lt;/p&gt;
 
 		 &lt;table class="grid"&gt;
-		    &lt;thead&gt;
-		        &lt;tr&gt;
-		            &lt;th&gt;Parameter&lt;/th&gt;
-		            &lt;th&gt;Description&lt;/th&gt;
-		        &lt;/tr&gt;
-		    &lt;/thead&gt;
-
+       &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Parameter&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
 		    &lt;tbody&gt;
 		        &lt;tr&gt;
 		            &lt;td class='required'&gt;Disable&lt;/td&gt;
@@ -3136,13 +3152,7 @@ with it to backup your projects on a regular basis.&lt;/p&gt;
 		&lt;p&gt;This procedure enables schedules passed as a list in a property, typically saved by schedulesDisable.&lt;/p&gt;
 
 		 &lt;table class="grid"&gt;
-		    &lt;thead&gt;
-		        &lt;tr&gt;
-		            &lt;th&gt;Parameter&lt;/th&gt;
-		            &lt;th&gt;Description&lt;/th&gt;
-		        &lt;/tr&gt;
-		    &lt;/thead&gt;
-
+		    &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Parameter&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
 		    &lt;tbody&gt;
 		        &lt;tr&gt;
 		            &lt;td class='required'&gt;Enable&lt;/td&gt;
@@ -3157,6 +3167,7 @@ with it to backup your projects on a regular basis.&lt;/p&gt;
 
 		&lt;img src="../../plugins/@PLUGIN_KEY@/images/help/schedulesEnableParameters.png"
 				 alt="schedulesEnable parameters" /&gt;
+
 		&lt;h1&gt;&lt;a name="semaphore"&gt;&lt;/a&gt;Semaphore Management&lt;/h1&gt;
 
 		&lt;h2&gt;acquireSemaphore and releaseSemaphore:&lt;/h2&gt;
@@ -3301,7 +3312,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>420</value>
+        <value>421</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -3429,6 +3440,8 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+ -version 2.22.2
+   + Issue #67: add help for restoreObjects
  -version 2.22.1
    + Issue #66: improve help for semaphore operations
  -version 2.22.0
@@ -3795,7 +3808,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.22.1</value>
+        <value>2.22.2</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>

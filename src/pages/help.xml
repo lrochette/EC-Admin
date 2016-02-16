@@ -564,6 +564,28 @@ with it to backup your projects on a regular basis.</p>
 		<p><b>Note:</b> Use saveProjects or saveAllObjects depending on the
 		granularity you are requiring.</p>
 
+    <h2>restoreObjects</h2>
+    <p>This procedure allows you to import all the .xml files in a directory.
+      Typically those have been created with saveAllObjects above.</p>
+
+    <table class="grid">
+      <thead><tr><th>Parameter</th><th>Description</th></tr></thead>
+       <tbody>
+           <tr>
+               <td class='required'>directory</td>
+               <td>The directory where the .xml files are located.</td>
+           </tr>
+           <tr>
+               <td>force</td>
+               <td>A boolean to pass the --force 1 option to import.</td>
+           </tr>
+           <tr>
+               <td>resource</td>
+               <td>The resource on which to read the files.</td>
+           </tr>
+       </tbody>
+   </table>
+
 		<h1><a name="schedules"></a>Schedules</h1>
 		<p>This set of procedures is to help around schedule enabling and disabling which is very useful when you want to perform maintenace on your server.</p>
 
@@ -571,13 +593,7 @@ with it to backup your projects on a regular basis.</p>
 		<p>This procedure disables all the enabled schedules and optionaly saves the list in a property.</p>
 
 		 <table class="grid">
-		    <thead>
-		        <tr>
-		            <th>Parameter</th>
-		            <th>Description</th>
-		        </tr>
-		    </thead>
-
+       <thead><tr><th>Parameter</th><th>Description</th></tr></thead>
 		    <tbody>
 		        <tr>
 		            <td class='required'>Disable</td>
@@ -597,13 +613,7 @@ with it to backup your projects on a regular basis.</p>
 		<p>This procedure enables schedules passed as a list in a property, typically saved by schedulesDisable.</p>
 
 		 <table class="grid">
-		    <thead>
-		        <tr>
-		            <th>Parameter</th>
-		            <th>Description</th>
-		        </tr>
-		    </thead>
-
+		    <thead><tr><th>Parameter</th><th>Description</th></tr></thead>
 		    <tbody>
 		        <tr>
 		            <td class='required'>Enable</td>
@@ -618,6 +628,7 @@ with it to backup your projects on a regular basis.</p>
 
 		<img src="../../plugins/@PLUGIN_KEY@/images/help/schedulesEnableParameters.png"
 				 alt="schedulesEnable parameters" />
+
 		<h1><a name="semaphore"></a>Semaphore Management</h1>
 
 		<h2>acquireSemaphore and releaseSemaphore:</h2>
