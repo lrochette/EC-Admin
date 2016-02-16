@@ -656,6 +656,24 @@ with it to backup your projects on a regular basis.</p>
     <img src="../../plugins/@PLUGIN_KEY@/images/help/acquireSemaphore.png"
 				 alt="acquireSemaphore parameters" />
 
+   <h2>acquireSempahore</h2>
+   <p>This procedure simply "releases" of of the token for other to consume.</p>
+
+     <table class="grid">
+		    <thead><tr><th>Parameter</th><th>Description</th></tr></thead>
+		    <tbody>
+		        <tr>
+		            <td class='required'>semaphoreProperty</td>
+		            <td>Property path containing your gate current value.</td>
+		        </tr>
+           <tr>
+              <td class='required'>serializationResource</td>
+              <td>The name of the 1-step resource to access the semaphore property.</td>
+          </tr>
+		    </tbody>
+		</table>
+   <img src="../../plugins/@PLUGIN_KEY@/images/help/releaseSemaphore.png"
+				 alt="releaseSemaphore parameters" />
 
 		<h1><a name="perf"></a>Performance metrics</h1>
 		<p>This procedure returns some information about your
