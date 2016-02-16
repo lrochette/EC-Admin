@@ -625,7 +625,7 @@ with it to backup your projects on a regular basis.</p>
 		<p>Those 2 procedures are used to create a "semaphore" to control the access to
       a set of steps. In order to insure the atomicity (only one step can modify
       your sempahore property at any time) of the operation, you first need to create
-      a resource with a 1-step limit.</br>
+      a resource with a 1-step limit.<br/>
       Then you will need to create a property with a value of 0. The location
       does not matter
       as long as it will be readable and writable by the plugin.</p>

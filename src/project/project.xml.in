@@ -2565,7 +2565,7 @@ what it is now.&lt;/p&gt;
 			&lt;li&gt;&lt;a href="#jobs"&gt;Jobs and Workspaces management&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#plugin"&gt;Plugins&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#artifacts"&gt;Artifacts management&lt;/a&gt;&lt;/li&gt;
-			&lt;li&gt;&lt;a href="#backup"&gt;Object export and backup&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#backup"&gt;Object export backup and restore&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#schedules"&gt;Schedules&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#semaphore"&gt;Semaphore management&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#perf"&gt;Performance metrics&lt;/a&gt;&lt;/li&gt;
@@ -2582,15 +2582,18 @@ what it is now.&lt;/p&gt;
         	in the form of a .jar file or you can simply get the source code
         	and recompile it yourself.&lt;/p&gt;
 
-		&lt;p&gt;To install the plugin, use the "Install from File/URL" tab in the
-			administration/Plugins or use the "installPlugin" API.&lt;/p&gt;
+		&lt;p&gt;To install the plugin, use one the following methods:&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;the "Install from File/URL" tab in the administration/Plugins&lt;/li&gt;
+      &lt;li&gt;the Perl "$ec-&gt;installPlugin()" API.&lt;/li&gt;
+      &lt;li&gt; the CLI client "ectool installPlugin --force 1 EC-Admin.jar&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p&gt;Don't forget to promote the plugin after installation.&lt;/p&gt;
 
 		&lt;p&gt;To install on 4.0.x or or 4.1.x, import the EC_4.0.xml file. Be
 			aware that some features are not present as the original project
 			makes use of createJobStep() API which was introduced in 4.2.0:&lt;br/&gt;
 ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1&lt;/p&gt;
-
-		&lt;p&gt;If you get an error with the passKey, use the "--force 1" option&lt;/p&gt;
 
 	  &lt;p&gt;IMPORTANT: For all parameter descriptions below, required
 	    parameters are shown in &lt;span class="required"&gt;bold italics&lt;/span&gt;.&lt;/p&gt;
@@ -3158,10 +3161,58 @@ with it to backup your projects on a regular basis.&lt;/p&gt;
 
 		&lt;h2&gt;acquireSemaphore and releaseSemaphore:&lt;/h2&gt;
 
-		&lt;p&gt;Those 2 procedures are used to create a
-gate for a set of steps. The important part is to use a resource with a step
-limit of one to ensure the atomicity of increasing and decreasing the gate
-value.&lt;/p&gt;
+		&lt;p&gt;Those 2 procedures are used to create a "semaphore" to control the access to
+      a set of steps. In order to insure the atomicity (only one step can modify
+      your sempahore property at any time) of the operation, you first need to create
+      a resource with a 1-step limit.&lt;br/&gt;
+      Then you will need to create a property with a value of 0. The location
+      does not matter
+      as long as it will be readable and writable by the plugin.&lt;/p&gt;
+
+    &lt;h2&gt;acquireSempahore&lt;/h2&gt;
+    &lt;p&gt;This procedure is the "gate". It checks than you have not used more
+      tokens than allowed. If you have, it will simly wait until some become
+      available. This procedure is called just before the steps which access
+      you want to control.&lt;/p&gt;
+
+      &lt;table class="grid"&gt;
+ 		    &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Parameter&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+ 		    &lt;tbody&gt;
+ 		        &lt;tr&gt;
+ 		            &lt;td class='required'&gt;maxSemaphoreValue&lt;/td&gt;
+ 		            &lt;td&gt;This is the maximum number of token you allow for this semaphore.&lt;/td&gt;
+ 		        &lt;/tr&gt;
+ 		        &lt;tr&gt;
+ 		            &lt;td class='required'&gt;semaphoreProperty&lt;/td&gt;
+ 		            &lt;td&gt;Property path containing your gate current value.&lt;/td&gt;
+ 		        &lt;/tr&gt;
+            &lt;tr&gt;
+               &lt;td class='required'&gt;serializationResource&lt;/td&gt;
+               &lt;td&gt;The name of the 1-step resource to access the semaphore property.&lt;/td&gt;
+           &lt;/tr&gt;
+ 		    &lt;/tbody&gt;
+ 		&lt;/table&gt;
+    &lt;img src="../../plugins/@PLUGIN_KEY@/images/help/acquireSemaphore.png"
+				 alt="acquireSemaphore parameters" /&gt;
+
+   &lt;h2&gt;acquireSempahore&lt;/h2&gt;
+   &lt;p&gt;This procedure simply "releases" of of the token for other to consume.&lt;/p&gt;
+
+     &lt;table class="grid"&gt;
+		    &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Parameter&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+		    &lt;tbody&gt;
+		        &lt;tr&gt;
+		            &lt;td class='required'&gt;semaphoreProperty&lt;/td&gt;
+		            &lt;td&gt;Property path containing your gate current value.&lt;/td&gt;
+		        &lt;/tr&gt;
+           &lt;tr&gt;
+              &lt;td class='required'&gt;serializationResource&lt;/td&gt;
+              &lt;td&gt;The name of the 1-step resource to access the semaphore property.&lt;/td&gt;
+          &lt;/tr&gt;
+		    &lt;/tbody&gt;
+		&lt;/table&gt;
+   &lt;img src="../../plugins/@PLUGIN_KEY@/images/help/releaseSemaphore.png"
+				 alt="releaseSemaphore parameters" /&gt;
 
 		&lt;h1&gt;&lt;a name="perf"&gt;&lt;/a&gt;Performance metrics&lt;/h1&gt;
 		&lt;p&gt;This procedure returns some information about your
@@ -3250,7 +3301,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>418</value>
+        <value>420</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -3378,6 +3429,8 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+ -version 2.22.1
+   + Issue #66: improve help for semaphore operations
  -version 2.22.0
    + added procedure to restore .xml files
 
@@ -3742,7 +3795,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.22.0</value>
+        <value>2.22.1</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>

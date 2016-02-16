@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.22.0.418</version>
+  <version>2.22.1.420</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
-2016-02-15 lrochette Fix #64 add a procedure to restore exported files</description>
+2016-02-15 lrochette Fix Issue #66 improve help for semaphore operations</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>
