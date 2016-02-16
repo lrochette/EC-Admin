@@ -1,3 +1,6 @@
+2016-02-16 Laurent Rochette <lrochette@gmail.com>
+  * 2.22.3.422: Fix #68 help for findJobId
+
 2016-02-15 Laurent Rochette <lrochette@gmail.com>
   * 2.22.2.421: Fix #67 help for restoreObjects
 

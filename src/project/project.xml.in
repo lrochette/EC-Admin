@@ -2572,6 +2572,11 @@ what it is now.&lt;/p&gt;
 			&lt;li&gt;&lt;a href="#license"&gt;License Logger&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#postp"&gt;postp debugger helper&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#comm"&gt;Communication&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#misc"&gt;miscellaneous&lt;/a&gt;&lt;/li&gt;
+        &lt;ul&gt;
+          &lt;li&gt;findJobId&lt;/li&gt;
+        &lt;/ul&gt;
+
 		&lt;/ul&gt;
 
 		&lt;h2&gt;&lt;a name="installation"&gt;&lt;/a&gt;Installation&lt;/h2&gt;
@@ -3241,24 +3246,18 @@ along with a set of configuration properties.&lt;/p&gt;
 The property sheet is created upon promotion if it does not already exists.The following
 properties can be set up:&lt;/p&gt;
 
-		    &lt;table class="grid"&gt;
-		        &lt;thead&gt;
-		            &lt;tr&gt;
-		                &lt;th&gt;Property&lt;/th&gt;
-		                &lt;th&gt;Description&lt;/th&gt;
-		            &lt;/tr&gt;
-		        &lt;/thead&gt;
-
-		        &lt;tbody&gt;
-					&lt;tr&gt;
-			        	&lt;td&gt;resource&lt;/td&gt;
-						&lt;td&gt;The name of the resource on which to run the procedures. Default is "local".&lt;/td&gt;
-		            &lt;/tr&gt;
-					&lt;tr&gt;
-			        	&lt;td&gt;workspace&lt;/td&gt;
-						&lt;td&gt;The name of the workspace used by the procedures. Default is "default".&lt;/td&gt;
-		            &lt;/tr&gt;
-					&lt;tr&gt;
+    &lt;table class="grid"&gt;
+      &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Parameter&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+      &lt;tbody&gt;
+		    &lt;tr&gt;
+		      &lt;td&gt;resource&lt;/td&gt;
+					&lt;td&gt;The name of the resource on which to run the procedures. Default is "local".&lt;/td&gt;
+		    &lt;/tr&gt;
+				&lt;tr&gt;
+			    &lt;td&gt;workspace&lt;/td&gt;
+					&lt;td&gt;The name of the workspace used by the procedures. Default is "default".&lt;/td&gt;
+		    &lt;/tr&gt;
+				&lt;tr&gt;
 			        	&lt;td&gt;cleanOldJobs&lt;/td&gt;
 						&lt;td&gt;A boolean to remove old jobs so only the last one is kept for each procedure. It keeps your job history cleaner.&lt;/td&gt;
 		            &lt;/tr&gt;
@@ -3278,6 +3277,25 @@ properties can be set up:&lt;/p&gt;
 
 		&lt;h1&gt;&lt;a name="comm"&gt;&lt;/a&gt;Communication&lt;/h1&gt;
 		&lt;p&gt;The sendAlert is a simple procedure to send a message to all registered users with an email address attached to the account. You can format your email in HTML by encapsulating it in a &amp;lt;html&amp;gt; tag.&lt;/p&gt;
+
+    &lt;h1&gt;&lt;a name="misc"&gt;&lt;/a&gt;miscellaneous&lt;/h1&gt;
+    &lt;p&gt;For all those procedure I'm not sure where to put&lt;/p&gt;
+    &lt;h2&gt;findJobId&lt;/h2&gt;
+    &lt;p&gt;This procedure is designed for people migratimg away from ElectricCommander
+      4.2 to ElectricFlow 5.x or later. It will simply search in the step commands
+      or parameters to a sub-procedure for any instance of jobId. No change will
+      be done. It's up to the user to make any change.&lt;/p&gt;
+
+    &lt;table class="grid"&gt;
+      &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Parameter&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+      &lt;tbody&gt;
+  		  &lt;tr&gt;
+  	      &lt;td&gt;projectPattern&lt;/td&gt;
+  				&lt;td&gt;A SQL pattern to filter projects for the search.&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+
 
 		&lt;h1&gt;Contact authors&lt;/h1&gt;
 		&lt;dl&gt;
@@ -3312,7 +3330,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>421</value>
+        <value>422</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -3440,6 +3458,8 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+-version 2.22.3
+   + Issue #68: add help for findJobId
  -version 2.22.2
    + Issue #67: add help for restoreObjects
  -version 2.22.1
@@ -3808,7 +3828,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.22.2</value>
+        <value>2.22.3</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>

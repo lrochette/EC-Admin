@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.22.2.421</version>
+  <version>2.22.3.422</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
-2016-02-15 lrochette Fix #67 help for restoreObjects</description>
+2016-02-16 lrochette Fix #68 help for findJobId</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>

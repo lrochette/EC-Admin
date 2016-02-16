@@ -33,6 +33,11 @@ what it is now.</p>
 			<li><a href="#license">License Logger</a></li>
 			<li><a href="#postp">postp debugger helper</a></li>
 			<li><a href="#comm">Communication</a></li>
+      <li><a href="#misc">miscellaneous</a></li>
+        <ul>
+          <li>findJobId</li>
+        </ul>
+
 		</ul>
 
 		<h2><a name="installation"></a>Installation</h2>
@@ -702,24 +707,18 @@ along with a set of configuration properties.</p>
 The property sheet is created upon promotion if it does not already exists.The following
 properties can be set up:</p>
 
-		    <table class="grid">
-		        <thead>
-		            <tr>
-		                <th>Property</th>
-		                <th>Description</th>
-		            </tr>
-		        </thead>
-
-		        <tbody>
-					<tr>
-			        	<td>resource</td>
-						<td>The name of the resource on which to run the procedures. Default is "local".</td>
-		            </tr>
-					<tr>
-			        	<td>workspace</td>
-						<td>The name of the workspace used by the procedures. Default is "default".</td>
-		            </tr>
-					<tr>
+    <table class="grid">
+      <thead><tr><th>Parameter</th><th>Description</th></tr></thead>
+      <tbody>
+		    <tr>
+		      <td>resource</td>
+					<td>The name of the resource on which to run the procedures. Default is "local".</td>
+		    </tr>
+				<tr>
+			    <td>workspace</td>
+					<td>The name of the workspace used by the procedures. Default is "default".</td>
+		    </tr>
+				<tr>
 			        	<td>cleanOldJobs</td>
 						<td>A boolean to remove old jobs so only the last one is kept for each procedure. It keeps your job history cleaner.</td>
 		            </tr>
@@ -739,6 +738,25 @@ properties can be set up:</p>
 
 		<h1><a name="comm"></a>Communication</h1>
 		<p>The sendAlert is a simple procedure to send a message to all registered users with an email address attached to the account. You can format your email in HTML by encapsulating it in a &lt;html&gt; tag.</p>
+
+    <h1><a name="misc"></a>miscellaneous</h1>
+    <p>For all those procedure I'm not sure where to put</p>
+    <h2>findJobId</h2>
+    <p>This procedure is designed for people migratimg away from ElectricCommander
+      4.2 to ElectricFlow 5.x or later. It will simply search in the step commands
+      or parameters to a sub-procedure for any instance of jobId. No change will
+      be done. It's up to the user to make any change.</p>
+
+    <table class="grid">
+      <thead><tr><th>Parameter</th><th>Description</th></tr></thead>
+      <tbody>
+  		  <tr>
+  	      <td>projectPattern</td>
+  				<td>A SQL pattern to filter projects for the search.</td>
+        </tr>
+      </tbody>
+    </table>
+
 
 		<h1>Contact authors</h1>
 		<dl>
