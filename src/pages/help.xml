@@ -22,14 +22,58 @@ what it is now.</p>
 		<p>It contains the following modules:</p>
 		<ul>
       <li><a href="#health">System Health</a></li>
+        <ul>
+          <li>agentMemoryConfiguration</li>
+          <li>testResources</li>
+          <li>performanceMetrics</li>
+        </ul>
+
 			<li><a href="#look">Look and Feel</a></li>
+        <ul>
+          <li>changeBannerColor</li>
+        </ul>
+
 			<li><a href="#jobs">Jobs and Workspaces management</a></li>
+        <ul>
+          <li>jobsCleanup</li>
+          <li>jobsCleanup_byResult</li>
+          <li>deleteWorkspaceOrphans</li>
+          <li>deleteObjects</li>
+        </ul>
+
 			<li><a href="#plugin">Plugins</a></li>
+        <ul>
+          <li>synchronizePlugins</li>
+          <li>createPluginFromProject (deprecated)</li>
+          <li>projectAsCode</li>
+        </ul>
+
 			<li><a href="#artifacts">Artifacts management</a></li>
+        <ul>
+          <li>artifactRepositorySynchronization</li>
+          <li>artifactsCleanup</li>
+          <li>artifactsCleanup_byQuantity</li>
+        </ul>
+
 			<li><a href="#backup">Object export backup and restore</a></li>
+        <ul>
+          <li>saveProjects</li>
+          <li>saveAllObjects</li>
+          <li>restoreObjects</li>
+        </ul>
+
 			<li><a href="#schedules">Schedules</a></li>
+        <ul>
+          <li>schedulesDisable</li>
+          <li>schedulesEnable</li>
+        </ul>
+
 			<li><a href="#semaphore">Semaphore management</a></li>
-			<li><a href="#perf">Performance metrics</a></li>
+        <ul>
+          <li>acquireSemaphore</li>
+          <li>releaseSemaphore</li>
+        </ul>
+
 			<li><a href="#license">License Logger</a></li>
 			<li><a href="#postp">postp debugger helper</a></li>
 			<li><a href="#comm">Communication</a></li>
@@ -110,6 +154,14 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
         </tr>
       </tbody>
     </table>
+
+    <h2><a name="perf"></a>performanceMetrics</h2>
+		<p>This procedure returns some information about your
+			ElectricCommander server like number of processors, total RAM,
+			available RAM,
+ping times with agents, relative performance of agents, ...
+In addition it checks the amount of time spent running steps on the server
+local agents as this should be minimized as much as possible.</p>
 
 		<h1><a name="look"></a>Look and Feel</h1>
 		<h2>changeBannerColor</h2>
@@ -646,7 +698,7 @@ with it to backup your projects on a regular basis.</p>
       does not matter
       as long as it will be readable and writable by the plugin.</p>
 
-    <h2>acquireSempahore</h2>
+    <h2>acquireSemaphore</h2>
     <p>This procedure is the "gate". It checks than you have not used more
       tokens than allowed. If you have, it will simly wait until some become
       available. This procedure is called just before the steps which access
@@ -672,7 +724,7 @@ with it to backup your projects on a regular basis.</p>
     <img src="../../plugins/@PLUGIN_KEY@/images/help/acquireSemaphore.png"
 				 alt="acquireSemaphore parameters" />
 
-   <h2>acquireSempahore</h2>
+   <h2>releaseSemaphore</h2>
    <p>This procedure simply "releases" of of the token for other to consume.</p>
 
      <table class="grid">
@@ -690,14 +742,6 @@ with it to backup your projects on a regular basis.</p>
 		</table>
    <img src="../../plugins/@PLUGIN_KEY@/images/help/releaseSemaphore.png"
 				 alt="releaseSemaphore parameters" />
-
-		<h1><a name="perf"></a>Performance metrics</h1>
-		<p>This procedure returns some information about your
-			ElectricCommander server like number of processors, total RAM,
-			available RAM,
-ping times with agents, relative performance of agents, ...
-In addition it checks the amount of time spent running steps on the server
-local agents as this should be minimized as much as possible.</p>
 
 		<h1><a name="license"></a>License Logger</h1>
 		<p>The License Logger mechanism is intended to collect and email various
@@ -739,7 +783,7 @@ properties can be set up:</p>
 		<h1><a name="comm"></a>Communication</h1>
 		<p>The sendAlert is a simple procedure to send a message to all registered users with an email address attached to the account. You can format your email in HTML by encapsulating it in a &lt;html&gt; tag.</p>
 
-    <h1><a name="misc"></a>miscellaneous</h1>
+    <h1><a name="misc"></a>Miscellaneous</h1>
     <p>For all those procedure I'm not sure where to put</p>
     <h2>findJobId</h2>
     <p>This procedure is designed for people migratimg away from ElectricCommander

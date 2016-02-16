@@ -2561,14 +2561,58 @@ what it is now.&lt;/p&gt;
 		&lt;p&gt;It contains the following modules:&lt;/p&gt;
 		&lt;ul&gt;
       &lt;li&gt;&lt;a href="#health"&gt;System Health&lt;/a&gt;&lt;/li&gt;
+        &lt;ul&gt;
+          &lt;li&gt;agentMemoryConfiguration&lt;/li&gt;
+          &lt;li&gt;testResources&lt;/li&gt;
+          &lt;li&gt;performanceMetrics&lt;/li&gt;
+        &lt;/ul&gt;
+
 			&lt;li&gt;&lt;a href="#look"&gt;Look and Feel&lt;/a&gt;&lt;/li&gt;
+        &lt;ul&gt;
+          &lt;li&gt;changeBannerColor&lt;/li&gt;
+        &lt;/ul&gt;
+
 			&lt;li&gt;&lt;a href="#jobs"&gt;Jobs and Workspaces management&lt;/a&gt;&lt;/li&gt;
+        &lt;ul&gt;
+          &lt;li&gt;jobsCleanup&lt;/li&gt;
+          &lt;li&gt;jobsCleanup_byResult&lt;/li&gt;
+          &lt;li&gt;deleteWorkspaceOrphans&lt;/li&gt;
+          &lt;li&gt;deleteObjects&lt;/li&gt;
+        &lt;/ul&gt;
+
 			&lt;li&gt;&lt;a href="#plugin"&gt;Plugins&lt;/a&gt;&lt;/li&gt;
+        &lt;ul&gt;
+          &lt;li&gt;synchronizePlugins&lt;/li&gt;
+          &lt;li&gt;createPluginFromProject (deprecated)&lt;/li&gt;
+          &lt;li&gt;projectAsCode&lt;/li&gt;
+        &lt;/ul&gt;
+
 			&lt;li&gt;&lt;a href="#artifacts"&gt;Artifacts management&lt;/a&gt;&lt;/li&gt;
+        &lt;ul&gt;
+          &lt;li&gt;artifactRepositorySynchronization&lt;/li&gt;
+          &lt;li&gt;artifactsCleanup&lt;/li&gt;
+          &lt;li&gt;artifactsCleanup_byQuantity&lt;/li&gt;
+        &lt;/ul&gt;
+
 			&lt;li&gt;&lt;a href="#backup"&gt;Object export backup and restore&lt;/a&gt;&lt;/li&gt;
+        &lt;ul&gt;
+          &lt;li&gt;saveProjects&lt;/li&gt;
+          &lt;li&gt;saveAllObjects&lt;/li&gt;
+          &lt;li&gt;restoreObjects&lt;/li&gt;
+        &lt;/ul&gt;
+
 			&lt;li&gt;&lt;a href="#schedules"&gt;Schedules&lt;/a&gt;&lt;/li&gt;
+        &lt;ul&gt;
+          &lt;li&gt;schedulesDisable&lt;/li&gt;
+          &lt;li&gt;schedulesEnable&lt;/li&gt;
+        &lt;/ul&gt;
+
 			&lt;li&gt;&lt;a href="#semaphore"&gt;Semaphore management&lt;/a&gt;&lt;/li&gt;
-			&lt;li&gt;&lt;a href="#perf"&gt;Performance metrics&lt;/a&gt;&lt;/li&gt;
+        &lt;ul&gt;
+          &lt;li&gt;acquireSemaphore&lt;/li&gt;
+          &lt;li&gt;releaseSemaphore&lt;/li&gt;
+        &lt;/ul&gt;
+
 			&lt;li&gt;&lt;a href="#license"&gt;License Logger&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#postp"&gt;postp debugger helper&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;&lt;a href="#comm"&gt;Communication&lt;/a&gt;&lt;/li&gt;
@@ -2649,6 +2693,14 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1&lt;/p&gt;
         &lt;/tr&gt;
       &lt;/tbody&gt;
     &lt;/table&gt;
+
+    &lt;h2&gt;&lt;a name="perf"&gt;&lt;/a&gt;performanceMetrics&lt;/h2&gt;
+		&lt;p&gt;This procedure returns some information about your
+			ElectricCommander server like number of processors, total RAM,
+			available RAM,
+ping times with agents, relative performance of agents, ...
+In addition it checks the amount of time spent running steps on the server
+local agents as this should be minimized as much as possible.&lt;/p&gt;
 
 		&lt;h1&gt;&lt;a name="look"&gt;&lt;/a&gt;Look and Feel&lt;/h1&gt;
 		&lt;h2&gt;changeBannerColor&lt;/h2&gt;
@@ -3185,7 +3237,7 @@ with it to backup your projects on a regular basis.&lt;/p&gt;
       does not matter
       as long as it will be readable and writable by the plugin.&lt;/p&gt;
 
-    &lt;h2&gt;acquireSempahore&lt;/h2&gt;
+    &lt;h2&gt;acquireSemaphore&lt;/h2&gt;
     &lt;p&gt;This procedure is the "gate". It checks than you have not used more
       tokens than allowed. If you have, it will simly wait until some become
       available. This procedure is called just before the steps which access
@@ -3211,7 +3263,7 @@ with it to backup your projects on a regular basis.&lt;/p&gt;
     &lt;img src="../../plugins/@PLUGIN_KEY@/images/help/acquireSemaphore.png"
 				 alt="acquireSemaphore parameters" /&gt;
 
-   &lt;h2&gt;acquireSempahore&lt;/h2&gt;
+   &lt;h2&gt;releaseSemaphore&lt;/h2&gt;
    &lt;p&gt;This procedure simply "releases" of of the token for other to consume.&lt;/p&gt;
 
      &lt;table class="grid"&gt;
@@ -3229,14 +3281,6 @@ with it to backup your projects on a regular basis.&lt;/p&gt;
 		&lt;/table&gt;
    &lt;img src="../../plugins/@PLUGIN_KEY@/images/help/releaseSemaphore.png"
 				 alt="releaseSemaphore parameters" /&gt;
-
-		&lt;h1&gt;&lt;a name="perf"&gt;&lt;/a&gt;Performance metrics&lt;/h1&gt;
-		&lt;p&gt;This procedure returns some information about your
-			ElectricCommander server like number of processors, total RAM,
-			available RAM,
-ping times with agents, relative performance of agents, ...
-In addition it checks the amount of time spent running steps on the server
-local agents as this should be minimized as much as possible.&lt;/p&gt;
 
 		&lt;h1&gt;&lt;a name="license"&gt;&lt;/a&gt;License Logger&lt;/h1&gt;
 		&lt;p&gt;The License Logger mechanism is intended to collect and email various
@@ -3278,7 +3322,7 @@ properties can be set up:&lt;/p&gt;
 		&lt;h1&gt;&lt;a name="comm"&gt;&lt;/a&gt;Communication&lt;/h1&gt;
 		&lt;p&gt;The sendAlert is a simple procedure to send a message to all registered users with an email address attached to the account. You can format your email in HTML by encapsulating it in a &amp;lt;html&amp;gt; tag.&lt;/p&gt;
 
-    &lt;h1&gt;&lt;a name="misc"&gt;&lt;/a&gt;miscellaneous&lt;/h1&gt;
+    &lt;h1&gt;&lt;a name="misc"&gt;&lt;/a&gt;Miscellaneous&lt;/h1&gt;
     &lt;p&gt;For all those procedure I'm not sure where to put&lt;/p&gt;
     &lt;h2&gt;findJobId&lt;/h2&gt;
     &lt;p&gt;This procedure is designed for people migratimg away from ElectricCommander
@@ -3330,7 +3374,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>422</value>
+        <value>423</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
