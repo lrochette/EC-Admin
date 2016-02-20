@@ -24,6 +24,7 @@ my ($success, $xPath);
 my $MAX=5000;
 my $nbParams=0;
 my $nbSteps=0;
+my $nbProps=0;
 
 # create filterList
 my @filterList;
@@ -38,21 +39,43 @@ push (@filterList, {"propertyName" => "pluginName",
                       "operator" => "isNull"});
 
 # Get list of Project
-  ($success, $xPath) = InvokeCommander("SuppressLog", "findObjects", "project",
+my ($success, $xPath) = InvokeCommander("SuppressLog", "findObjects", "project",
                                       {maxIds => $MAX,
                                        numObjects => $MAX,
                                        filter => \@filterList });
 
 foreach my $node ($xPath->findnodes('//project')) {
   my $pName=$node->{'projectName'};
-  my $pluginName=$node->{'pluginName',};
-
-  # skip plugins
-  next if ($pluginName ne "");
   printf("Processing Project: %s\n", $pName) if ($DEBUG);
 
-  my ($suc2, $xPath) = InvokeCommander("SuppressLog", "getProcedures", $pName);
-  foreach my $proc ($xPath->findnodes('//procedure')) {
+  # process top level properties
+  #
+  my ($suc1, $res1) = InvokeCommander("SuppressLog", "getProperties",
+    {
+      projectName => $pName,
+      recurse => 0,
+      expand => 0
+    });
+  foreach my $prop ($res1->findnodes('//property')) {
+    my $propName=$prop->{'propertyName'};
+    my $value=$prop->{'value'};
+    printf("  Property: %s\n", $propName) if ($DEBUG);
+
+    if (grep (/jobId/, $value) ) {
+      $nbProps++;
+      printf("*** jobId in property: %s::%s\n", $pName, $propName);
+    }
+    if (grep (/jobStepId/, $value) ) {
+      $nbProps++;
+      printf("*** jobStepId in property: %s::%s\n", $pName, $propName);
+    }
+
+  }
+
+  # Process procedures
+  #
+  my ($suc2, $res2) = InvokeCommander("SuppressLog", "getProcedures", $pName);
+  foreach my $proc ($res2->findnodes('//procedure')) {
     my $procName=$proc->{'procedureName'};
     printf("  Procedure: %s\n", $procName) if ($DEBUG);
 
@@ -108,10 +131,12 @@ foreach my $node ($xPath->findnodes('//project')) {
 printf("\nSummary:\n");
 printf("  Number of steps: $nbSteps\n");
 printf("  Number of parameters: $nbParams\n");
+printf("  Number of properties: $nbProps\n");
 
 $ec->setProperty("/myJob/nbSteps", $nbSteps);
+$ec->setProperty("/myJob/nbProps", $nbProps);
 $ec->setProperty("/myJob/nbParams", $nbParams);
-$ec->setProperty("summary", "Steps: $nbSteps\nParams: $nbParams");
+$ec->setProperty("summary", "Steps: $nbSteps\nParams: $nbParams\nProps: $nbProps");
 
 $[/myProject/scripts/perlLibJSON]
 
