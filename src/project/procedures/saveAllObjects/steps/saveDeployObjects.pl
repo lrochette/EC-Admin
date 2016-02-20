@@ -1,6 +1,6 @@
 #############################################################################
 #
-#  Copyright 2015 Electric-Cloud Inc.
+#  Copyright 2015-2016 Electric-Cloud Inc.
 #
 # Script to backup the Deploy objects (application, environment, components)
 #############################################################################
@@ -10,14 +10,20 @@ $[/myProject/scripts/perlHeaderJSON]
 
 $DEBUG=1;
 
+#
 # Parameters
 #
-my $path='$[pathname]';
+my $path    = '$[pathname]';
+my $pattern = '$[pattern]';
 
+#
+# Global
+#
 my $errorCount=0;
 my $appCount=0;
 my $envCount=0;
 my $compCount=0;
+my $pipeCount=0;
 
 # Set the timeout to config value or 600 if not set
 my $defaultTimeout = getP("/server/EC-Admin/cleanup/config/timeout");
@@ -37,7 +43,7 @@ my $version=getVersion();
 printf("%s\n",$version);
 if (compareVersion($version, "5.0") < 0) {
   $ec->setProperty("summary", "Version 5.0 or greater is required to save Deploy objects");
-  exit(0); 
+  exit(0);
 }
 
 # Create the Projects directory for Default
@@ -45,8 +51,7 @@ mkpath("$path/Projects");
 chmod(0777, "$path/Projects");
 mkpath("$path/Projects/$fileProjectName");
 chmod(0777, "$path/Projects/Default");
-  
-  
+
 #
 # Save Applications
 #
@@ -56,20 +61,24 @@ chmod(0777, "$path/Projects/$fileProjectName/Applications");
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getApplications", $pName);
 foreach my $app ($xPath->findnodes('//application')) {
   my $appName=$app->{'applicationName'};
+
+  # skip applications that don't fit the pattern
+  next if ($appName !~ /$pattern/ );
+
   my $fileAppName=safeFilename($appName);
   printf("  Saving Application: %s\n", $appName);
 
   mkpath("$path/Projects/$fileProjectName/Applications/$fileAppName");
   chmod(0777, "$path/Projects/$fileProjectName/Applications/$fileAppName");
-  my ($success, $res, $errMsg, $errCode) = 
+  my ($success, $res, $errMsg, $errCode) =
     InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Applications/$fileAppName/$fileAppName".".xml",
-          { 'path'=> "/projects/$pName/applications/$appName", 
+          { 'path'=> "/projects/$pName/applications/$appName",
                                         'relocatable' => 1,
                                         'withAcls'    => 1,
                                         'withNotifiers'=>1});
-  
+
   if (! $success) {
-    printf("  Error exporting %s", $appName);
+    printf("  Error exporting application %s", $appName);
     printf("  %s: %s\n", $errCode, $errMsg);
     $errorCount++;
   }
@@ -87,13 +96,13 @@ foreach my $app ($xPath->findnodes('//application')) {
     my $compName=$comp->{'componentName'};
     my $fileCompName=safeFilename($compName);
 
-    my ($success, $res, $errMsg, $errCode) = 
+    my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Applications/$fileAppName/Components/$fileCompName".".xml",
-          { 'path'=> "/projects/$pName/applications/$appName/components/$compName", 
+          { 'path'=> "/projects/$pName/applications/$appName/components/$compName",
                                         'relocatable' => 1,
                                         'withAcls'    => 1,
                                         'withNotifiers'=>1});
-  
+
   if (! $success) {
     printf("  Error exporting component %s in application", $compName, $appName);
     printf("  %s: %s\n", $errCode, $errMsg);
@@ -107,7 +116,7 @@ foreach my $app ($xPath->findnodes('//application')) {
 }
 
 #
-# Save workflow definitions
+# Save Environments definitions
 #
 mkpath("$path/Projects/$fileProjectName/Environments");
 chmod(0777, "$path/Projects/$fileProjectName/Environments");
@@ -115,18 +124,22 @@ chmod(0777, "$path/Projects/$fileProjectName/Environments");
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getEnvironments", $pName);
 foreach my $proc ($xPath->findnodes('//environment')) {
   my $envName=$proc->{'environmentName'};
+
+  # skip environments that don't fit the pattern
+  next if ($envName !~ /$pattern/ );
+
   my $fileEnvName=safeFilename($envName);
   printf("  Saving Environment Definition: %s\n", $envName);
-  
-  my ($success, $res, $errMsg, $errCode) = 
+
+  my ($success, $res, $errMsg, $errCode) =
     InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Environments/$fileEnvName".".xml",
-          { 'path'=> "/projects/$pName/environments/$envName", 
+          { 'path'=> "/projects/$pName/environments/$envName",
                                         'relocatable' => 1,
                                         'withAcls'    => 1,
                                         'withNotifiers'=>1});
-  
+
   if (! $success) {
-    printf("  Error exporting %s", $envName);
+    printf("  Error exporting environment %s", $envName);
     printf("  %s: %s\n", $errCode, $errMsg);
     $errorCount++;
   }
@@ -135,22 +148,57 @@ foreach my $proc ($xPath->findnodes('//environment')) {
   }
 }
 
+#
+# Export pipelines if version new enough
+#
+if (compareVersion($version, "6.0") < 0) {
+  printf("WARNING: Version 6.0 or greater is required to save Pipeline objects");
+} else {
+  # Save pipeline definitions
+  #
+  mkpath("$path/Projects/$fileProjectName/Pipelines");
+  chmod(0777, "$path/Projects/$fileProjectName/Pipelines");
 
-$ec->setProperty("preSummary", "$appCount applications exported\n  $envCount environments exported\n  $compCount components exported");
+  my ($success, $xPath) = InvokeCommander("SuppressLog", "getPipelines", $pName);
+  foreach my $proc ($xPath->findnodes('//pipeline')) {
+    my $pipeName=$proc->{'pipelineName'};
+
+    # skip pipelines that don't fit the pattern
+    next if ($pipeName !~ /$pattern/ );
+
+    my $filePipeName=safeFilename($pipeName);
+    printf("  Saving Pipeline Definition: %s\n", $pipeName);
+
+    my ($success, $res, $errMsg, $errCode) =
+      InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Pipelines/$filePipeName".".xml",
+            { 'path'=> "/projects/$pName/pipelines/$pipeName",
+                                          'relocatable' => 1,
+                                          'withAcls'    => 1,
+                                          'withNotifiers'=>1});
+
+    if (! $success) {
+      printf("  Error exporting pipeline %s", $pipeName);
+      printf("  %s: %s\n", $errCode, $errMsg);
+      $errorCount++;
+    }
+    else {
+      $envCount++;
+    }
+  }         // Version greater than 6.1
+}
+my $str=sprintf("$appCount applications exported\n" );
+$str .= sprintf("   $envCount environments exported\n");
+$str .= sprintf("   $compCount components exported\n");
+$str .= sprintf("   $pipeCount pipelines exported\n");
+
+$ec->setProperty("preSummary", $str);
+$ec->setProperty("/myJob/papplicationExported", $appCount);
+$ec->setProperty("/myJob/environmentExported", $envCount);
+$ec->setProperty("/myJob/componentExported", $compCount);
+$ec->setProperty("/myJob/pipelineExported", $pipeCount);
 exit($errorCount);
 
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
-
-
-
-
-
-
-
-
-
-
 

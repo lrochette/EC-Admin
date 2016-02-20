@@ -1,6 +1,6 @@
 #############################################################################
 #
-#  Copyright 2013 Electric-Cloud Inc.
+#  Copyright 2013-206 Electric-Cloud Inc.
 #
 #############################################################################
 use File::Path;
@@ -9,29 +9,37 @@ $[/myProject/scripts/perlHeaderJSON]
 
 $DEBUG=1;
 
+#
 # Parameters
 #
 my $path='$[pathname]';
+my $pattern     = '$[pattern]';
 
+#
+# Global
+#
 my $errorCount=0;
 my $groupCount=0;
 
-# Get list of Project
+# Get list of groups
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getGroups", {maximum=>5000});
 
 # Create the Resources directory
-mkpath("$path/groups");
-chmod(0777, "$path/groups");
+mkpath("$path/Groups");
+chmod(0777, "$path/Groups");
 
 foreach my $node ($xPath->findnodes('//group')) {
   my $groupName=$node->{'groupName'};
 
+  # skip groups that don't fit the pattern
+  next if ($groupName !~ /$pattern/ );
+
   printf("Saving group: %s\n", $groupName);
-  my $fileGroupName=safeFilename($groupName); 
-  
-  my ($success, $res, $errMsg, $errCode) = 
-      InvokeCommander("SuppressLog", "export", "$path/groups/$fileGroupName".".xml",
-  					{ 'path'        => "/groups[$groupName]", 
+  my $fileGroupName=safeFilename($groupName);
+
+  my ($success, $res, $errMsg, $errCode) =
+      InvokeCommander("SuppressLog", "export", "$path/Groups/$fileGroupName".".xml",
+  					{ 'path'        => "/groups[$groupName]",
                       'relocatable' => 1,
                       'withAcls'    => 1});
   if (! $success) {
@@ -43,21 +51,10 @@ foreach my $node ($xPath->findnodes('//group')) {
   }
 }
 $ec->setProperty("preSummary", "$groupCount groups exported");
+$ec->setProperty("/myJob/groupExported", $groupCount);
 exit($errorCount);
 
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
-
-
-
-
-
-
-
-
-
-
-
 

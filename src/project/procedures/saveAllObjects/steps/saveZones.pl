@@ -1,20 +1,25 @@
 #############################################################################
 #
-#  Copyright 2015 Electric-Cloud Inc.
+#  Copyright 2015-2016 Electric-Cloud Inc.
 #
 #############################################################################
 use File::Path;
 
 $[/myProject/scripts/perlHeaderJSON]
 
+#
 # Parameters
 #
-my $path='$[pathname]';
+my $path    = '$[pathname]';
+my $pattern = '$[pattern]';
 
+#
+# Global
+#
 my $errorCount=0;
 my $zoneCount=0;
 
-# Get list of Project
+# Get list of Zones
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getZones");
 
 # Create the Zones directory
@@ -24,12 +29,15 @@ chmod(0777, "$path/Zones");
 foreach my $node ($xPath->findnodes('//zone')) {
   my $zoneName=$node->{'zoneName'};
 
+  # skip zones that don't fit the pattern
+  next if ($zoneName !~ /$pattern/ );
+
   printf("Saving Zone: %s\n", $zoneName);
-  my $fileZoneName=safeFilename($zoneName); 
-  
-  my ($success, $res, $errMsg, $errCode) = 
+  my $fileZoneName=safeFilename($zoneName);
+
+  my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Zones/$fileZoneName".".xml",
-  { 'path'=> "/zones/".$zoneName, 
+  { 'path'=> "/zones/".$zoneName,
                                           'relocatable' => 1,
                                           'withAcls'    => 1});
   if (! $success) {
@@ -41,28 +49,10 @@ foreach my $node ($xPath->findnodes('//zone')) {
   }
 }
 $ec->setProperty("preSummary", "$zoneCount Zones exported");
+$ec->setProperty("/myJob/zoneExported", $zoneCount);
 exit($errorCount);
 
-#
-# Make the name of an object safe to be a file or directory name
-#
-sub safeFilename {
-  my $safe=@_[0];
-  $safe =~ s#[\*\.\"/\[\]\\:;,=\|]#_#g;
-  return $safe;
-}
-
+$[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
-
-
-
-
-
-
-
-
-
-
 

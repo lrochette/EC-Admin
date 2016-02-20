@@ -2558,6 +2558,29 @@ manage your server. Its inception was sparked by requests from customers
 during my Professional Services engagements. It has grown over the years to
 what it is now.&lt;/p&gt;
 
+&lt;h2&gt;&lt;a name="installation"&gt;&lt;/a&gt;Installation&lt;/h2&gt;
+
+    &lt;p&gt;This collection of procedures can be found on our
+      &lt;a href="https://github.com/electriccommunity/EC-Admin"&gt;GitHub
+        repository&lt;/a&gt;. It is available as a plugin delivered
+      in the form of a .jar file or you can simply get the source code
+      and recompile it yourself.&lt;/p&gt;
+
+&lt;p&gt;To install the plugin, use one the following methods:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;the "Install from File/URL" tab in the administration/Plugins&lt;/li&gt;
+  &lt;li&gt;the Perl "$ec-&gt;installPlugin()" API.&lt;/li&gt;
+  &lt;li&gt; the CLI client "ectool installPlugin --force 1 EC-Admin.jar&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Don't forget to promote the plugin after installation.&lt;/p&gt;
+
+&lt;p&gt;To install on 4.0.x or or 4.1.x, import the EC_4.0.xml file. Be
+  aware that some features are not present as the original project
+  makes use of createJobStep() API which was introduced in 4.2.0:&lt;br/&gt;
+ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1&lt;/p&gt;
+
+&lt;h2&gt;Content&lt;/h2&gt;
+
 		&lt;p&gt;It contains the following modules:&lt;/p&gt;
 		&lt;ul&gt;
       &lt;li&gt;&lt;a href="#health"&gt;System Health&lt;/a&gt;&lt;/li&gt;
@@ -2623,26 +2646,6 @@ what it is now.&lt;/p&gt;
 
 		&lt;/ul&gt;
 
-		&lt;h2&gt;&lt;a name="installation"&gt;&lt;/a&gt;Installation&lt;/h2&gt;
-
-        &lt;p&gt;This collection of procedures can be found on our
-        	&lt;a href="https://github.com/electriccommunity/EC-Admin"&gt;GitHub
-        		repository&lt;/a&gt;. It is available as a plugin delivered
-        	in the form of a .jar file or you can simply get the source code
-        	and recompile it yourself.&lt;/p&gt;
-
-		&lt;p&gt;To install the plugin, use one the following methods:&lt;/p&gt;
-    &lt;ul&gt;
-      &lt;li&gt;the "Install from File/URL" tab in the administration/Plugins&lt;/li&gt;
-      &lt;li&gt;the Perl "$ec-&gt;installPlugin()" API.&lt;/li&gt;
-      &lt;li&gt; the CLI client "ectool installPlugin --force 1 EC-Admin.jar&lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;p&gt;Don't forget to promote the plugin after installation.&lt;/p&gt;
-
-		&lt;p&gt;To install on 4.0.x or or 4.1.x, import the EC_4.0.xml file. Be
-			aware that some features are not present as the original project
-			makes use of createJobStep() API which was introduced in 4.2.0:&lt;br/&gt;
-ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1&lt;/p&gt;
 
 	  &lt;p&gt;IMPORTANT: For all parameter descriptions below, required
 	    parameters are shown in &lt;span class="required"&gt;bold italics&lt;/span&gt;.&lt;/p&gt;
@@ -3147,11 +3150,11 @@ with it to backup your projects on a regular basis.&lt;/p&gt;
 
 		&lt;h2&gt;saveAllObjects&lt;/h2&gt;
 
-        &lt;p&gt;This procedure brings a finer granularity to a full server export.
+    &lt;p&gt;This procedure brings a finer granularity to a full server export.
 For  example, it may be easier to retrieve a simple project or procedure
-instead of the full server export or database backup to undo r a wrong action
+instead of the full server export or database backup to undo a wrong action
 or a bad code change. By  default it exports projects and each procedure
-individually. In addition by  enabling the matching checkboxes, you can also
+individually. In addition by enabling the matching checkboxes, you can also
 export resources,  resource pools, workspaces, users and groups, and with 5.x
 and later ElectricFlow Deploy objects (Applications, Components and
 Environments). It is recommended to enable the nightly schedule associated
@@ -3159,6 +3162,25 @@ with it to backup your projects on a regular basis.&lt;/p&gt;
 
 		&lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; Use saveProjects or saveAllObjects depending on the
 		granularity you are requiring.&lt;/p&gt;
+
+    &lt;table class="grid"&gt;
+      &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Parameter&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+       &lt;tbody&gt;
+           &lt;tr&gt;
+               &lt;td class='required'&gt;directory&lt;/td&gt;
+               &lt;td&gt;The directory where to save the .xml files.&lt;/td&gt;
+           &lt;/tr&gt;
+           &lt;tr&gt;
+               &lt;td&gt;Pattern&lt;/td&gt;
+               &lt;td&gt;A Perl regular expression to filter the objects to export.
+                 For example "^B" indicates all object starting with a "B"&lt;/td&gt;
+           &lt;/tr&gt;
+           &lt;tr&gt;
+               &lt;td&gt;checkboxes&lt;/td&gt;
+               &lt;td&gt;A checbox to enable export of the different kinds of objects.&lt;/td&gt;
+           &lt;/tr&gt;
+       &lt;/tbody&gt;
+   &lt;/table&gt;
 
     &lt;h2&gt;restoreObjects&lt;/h2&gt;
     &lt;p&gt;This procedure allows you to import all the .xml files in a directory.
@@ -3374,7 +3396,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>423</value>
+        <value>425</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -3502,6 +3524,10 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.23.0
+   + Issue #63: add a filtering pattern to saveAllObjects
+   + Added backup mechanism for pipeline export (6.1+)
+
 -version 2.22.3
    + Issue #68: add help for findJobId
  -version 2.22.2
@@ -3872,7 +3898,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.22.3</value>
+        <value>2.23.0</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
@@ -10846,6 +10872,16 @@ Changelog:
                     </property>
                   </propertySheet>
                 </property>
+                <property>
+                  <propertyName>pattern</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
               </propertySheet>
             </property>
           </propertySheet>
@@ -10963,6 +10999,14 @@ $[/server/ec_notifierTemplates/Html_JobTempl/body]</formattingTemplate>
         <description>Directory where to saved the XML files</description>
         <expansionDeferred>0</expansionDeferred>
         <required>1</required>
+        <type>entry</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>pattern</formalParameterName>
+        <defaultValue/>
+        <description>The Perl pattern to apply to the list of objects to save (except for procedures and steps)</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
         <type>entry</type>
       </formalParameter>
       <step>

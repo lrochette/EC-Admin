@@ -19,6 +19,29 @@ manage your server. Its inception was sparked by requests from customers
 during my Professional Services engagements. It has grown over the years to
 what it is now.</p>
 
+<h2><a name="installation"></a>Installation</h2>
+
+    <p>This collection of procedures can be found on our
+      <a href="https://github.com/electriccommunity/EC-Admin">GitHub
+        repository</a>. It is available as a plugin delivered
+      in the form of a .jar file or you can simply get the source code
+      and recompile it yourself.</p>
+
+<p>To install the plugin, use one the following methods:</p>
+<ul>
+  <li>the "Install from File/URL" tab in the administration/Plugins</li>
+  <li>the Perl "$ec->installPlugin()" API.</li>
+  <li> the CLI client "ectool installPlugin --force 1 EC-Admin.jar</li>
+</ul>
+<p>Don't forget to promote the plugin after installation.</p>
+
+<p>To install on 4.0.x or or 4.1.x, import the EC_4.0.xml file. Be
+  aware that some features are not present as the original project
+  makes use of createJobStep() API which was introduced in 4.2.0:<br/>
+ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
+
+<h2>Content</h2>
+
 		<p>It contains the following modules:</p>
 		<ul>
       <li><a href="#health">System Health</a></li>
@@ -84,26 +107,6 @@ what it is now.</p>
 
 		</ul>
 
-		<h2><a name="installation"></a>Installation</h2>
-
-        <p>This collection of procedures can be found on our
-        	<a href="https://github.com/electriccommunity/EC-Admin">GitHub
-        		repository</a>. It is available as a plugin delivered
-        	in the form of a .jar file or you can simply get the source code
-        	and recompile it yourself.</p>
-
-		<p>To install the plugin, use one the following methods:</p>
-    <ul>
-      <li>the "Install from File/URL" tab in the administration/Plugins</li>
-      <li>the Perl "$ec->installPlugin()" API.</li>
-      <li> the CLI client "ectool installPlugin --force 1 EC-Admin.jar</li>
-    </ul>
-    <p>Don't forget to promote the plugin after installation.</p>
-
-		<p>To install on 4.0.x or or 4.1.x, import the EC_4.0.xml file. Be
-			aware that some features are not present as the original project
-			makes use of createJobStep() API which was introduced in 4.2.0:<br/>
-ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 
 	  <p>IMPORTANT: For all parameter descriptions below, required
 	    parameters are shown in <span class="required">bold italics</span>.</p>
@@ -608,11 +611,11 @@ with it to backup your projects on a regular basis.</p>
 
 		<h2>saveAllObjects</h2>
 
-        <p>This procedure brings a finer granularity to a full server export.
+    <p>This procedure brings a finer granularity to a full server export.
 For  example, it may be easier to retrieve a simple project or procedure
-instead of the full server export or database backup to undo r a wrong action
+instead of the full server export or database backup to undo a wrong action
 or a bad code change. By  default it exports projects and each procedure
-individually. In addition by  enabling the matching checkboxes, you can also
+individually. In addition by enabling the matching checkboxes, you can also
 export resources,  resource pools, workspaces, users and groups, and with 5.x
 and later ElectricFlow Deploy objects (Applications, Components and
 Environments). It is recommended to enable the nightly schedule associated
@@ -620,6 +623,25 @@ with it to backup your projects on a regular basis.</p>
 
 		<p><b>Note:</b> Use saveProjects or saveAllObjects depending on the
 		granularity you are requiring.</p>
+
+    <table class="grid">
+      <thead><tr><th>Parameter</th><th>Description</th></tr></thead>
+       <tbody>
+           <tr>
+               <td class='required'>directory</td>
+               <td>The directory where to save the .xml files.</td>
+           </tr>
+           <tr>
+               <td>Pattern</td>
+               <td>A Perl regular expression to filter the objects to export.
+                 For example "^B" indicates all object starting with a "B"</td>
+           </tr>
+           <tr>
+               <td>checkboxes</td>
+               <td>A checbox to enable export of the different kinds of objects.</td>
+           </tr>
+       </tbody>
+   </table>
 
     <h2>restoreObjects</h2>
     <p>This procedure allows you to import all the .xml files in a directory.

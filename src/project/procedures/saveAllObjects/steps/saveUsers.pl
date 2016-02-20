@@ -1,6 +1,6 @@
 #############################################################################
 #
-#  Copyright 2013 Electric-Cloud Inc.
+#  Copyright 2013-2016 Electric-Cloud Inc.
 #
 #############################################################################
 use File::Path;
@@ -9,14 +9,19 @@ $[/myProject/scripts/perlHeaderJSON]
 
 $DEBUG=1;
 
+#
 # Parameters
 #
-my $path='$[pathname]';
+my $path    = '$[pathname]';
+my $pattern = '$[pattern]';
 
+#
+# Global
+#
 my $errorCount=0;
 my $userCount=0;
 
-# Get list of Project
+# Get list of users
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getUsers", {maximum=>5000});
 
 # Create the Resources directory
@@ -26,12 +31,15 @@ chmod(0777, "$path/Users");
 foreach my $node ($xPath->findnodes('//user')) {
   my $userName=$node->{'userName'};
 
+  # skip project that don't fit the pattern
+  next if ($userName !~ /$pattern/ );
+
   printf("Saving User: %s\n", $userName);
-  my $fileUserName=safeFilename($userName); 
-  
-  my ($success, $res, $errMsg, $errCode) = 
+  my $fileUserName=safeFilename($userName);
+
+  my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Users/$fileUserName".".xml",
-  					{ 'path'=> "/users/".$userName, 
+  					{ 'path'=> "/users/".$userName,
                                           'relocatable' => 1,
                                           'withAcls'    => 1});
   if (! $success) {
@@ -43,21 +51,10 @@ foreach my $node ($xPath->findnodes('//user')) {
   }
 }
 $ec->setProperty("preSummary", "$userCount users exported");
-exit($errorCount);
+e$ec->setProperty("/myJob/userExported", $userCount);
+xit($errorCount);
 
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
-
-
-
-
-
-
-
-
-
-
-
 

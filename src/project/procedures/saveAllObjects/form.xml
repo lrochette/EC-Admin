@@ -9,6 +9,14 @@
     </formElement> 
 
     <formElement> 
+        <label>Filter Pattern</label>    
+        <property>pattern</property>    
+        <documentation>The perl pattern to apply before saving objects (except for procedures and steps).</documentation> 
+        <type>entry</type>
+     <required>0</required> 
+    </formElement> 
+
+    <formElement> 
         <label>Backup steps</label>    
         <property>exportSteps</property> 
         <documentation>Boolean to export Steps indivdually</documentation> 
