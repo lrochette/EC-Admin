@@ -83,12 +83,22 @@ foreach my $node ($xPath->findnodes('//project')) {
             printf("*** jobId in parameter: %s::%s::%s::%s\n",
               $pName, $procName, $stepName, $paramName);
           }
+          if (grep (/jobStepId/, $value) ) {
+            $nbParams++;
+            printf("*** jobStepId in parameter: %s::%s::%s::%s\n",
+              $pName, $procName, $stepName, $paramName);
+          }
         }
       }
       my $cmd=$node->{command};
       if (grep (/jobId/, $cmd) ) {
         $nbSteps++;
         printf("*** jobId in command: %s::%s::%s\n",
+          $pName, $procName, $stepName);
+      }
+      if (grep (/jobStepId/, $cmd) ) {
+        $nbSteps++;
+        printf("*** jobStepId in command: %s::%s::%s\n",
           $pName, $procName, $stepName);
       }
     }
@@ -104,10 +114,4 @@ $ec->setProperty("/myJob/nbParams", $nbParams);
 $ec->setProperty("summary", "Steps: $nbSteps\nParams: $nbParams");
 
 $[/myProject/scripts/perlLibJSON]
-
-
-
-
-
-
 

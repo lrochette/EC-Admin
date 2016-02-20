@@ -1,3 +1,6 @@
+2016-02-19 Laurent Rochette <lrochette@gmail.com>
+  * 2.23.1.429: Fix #69 find jobStepId as well
+
 2016-02-19 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.23.0.428: Issue #63 add a filtering pattern to saveAllObjects
 
