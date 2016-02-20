@@ -1,64 +1,56 @@
-2016-02-19 Laurent Rochette <lrochette@gmail.com>
-  * 2.23.0.426: Improved testing
+2016-02-19 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.23.0.426: Issue #63 add a filtering pattern to saveAllObjects
 
-2016-02-19 Laurent Rochette <lrochette@gmail.com>
-  * 2.23.0.425: #63: add a filtering pattern to saveAllObjects
-
-2016-02-19 Laurent Rochette <lrochette@gmail.com>
-  * 2.23.0.424: #63: add a filtering pattern to saveAllObjects
-
-2016-02-16 Laurent Rochette <lrochette@gmail.com>
+2016-02-16 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.22.3.423: Fix Help page
-
-2016-02-16 Laurent Rochette <lrochette@gmail.com>
   * 2.22.3.422: Fix #68 help for findJobId
 
-2016-02-15 Laurent Rochette <lrochette@gmail.com>
+2016-02-15 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.22.2.421: Fix #67 help for restoreObjects
   * 2.22.1.420: Fix Issue #66 improve help for semaphore operations
   * 2.22.0.418: Fix #64 add a procedure to restore exported files
 
-2016-02-12 Laurent Rochette <lrochette@gmail.com>
+2016-02-12 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.21.414: Fix #65: new procedure to find jobId
 
-2016-01-14 Laurent Rochette <lrochette@gmail.com>
+2016-01-14 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.20.0.399: Fixed #62 : Add new procedure to change the java heap memory setup on an agent
 
-2016-01-07 Laurent Rochette <lrochette@gmail.com>
+2016-01-07 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.20.0.398: Add help for agentMemoryConfiguration
 
-2016-01-07 Laurent Rochette <lrochette@gmail.com>
+2016-01-07 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.20.0.397: Add new procedure to change the java heap memory setup on an agent (Issue #62)
 
-2016-01-05 Laurent Rochette <lrochette@gmail.com>
+2016-01-05 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.19.2.392: Add repo checking
 
-2016-01-05 Laurent Rochette <lrochette@gmail.com>
+2016-01-05 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.19.2.391: make new artifactRepositorySynchronization procedure the default oneTest for unknown or disabled repo
 
-2016-01-05 Laurent Rochette <lrochette@gmail.com>
+2016-01-05 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.19.2.390: make new artifactRepositorySynchronization procedure the default one
 
-2016-01-05 Laurent Rochette <lrochette@gmail.com>
+2016-01-05 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.19.1.377: Better error reporting for artRepoSyncS3
 
-2016-01-04 Laurent Rochette <lrochette@gmail.com>
+2016-01-04 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.19.1.376: fixed issue with testResources (all steps were running on local)
 
-2016-01-04 Laurent Rochette <lrochette@gmail.com>
+2016-01-04 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.19.0.375: new universal SyncRepo procedure (#60)
 
-2015-12-24 Laurent Rochette <lrochette@gmail.com>
+2015-12-24 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.18.0.371: Fix #61: added testResources procedure
 
-2015-12-24 Laurent Rochette <lrochette@gmail.com>
+2015-12-24 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.18.0.370: Fix #61: added testResources procedure
 
-2015-12-23 Laurent Rochette <lrochette@gmail.com>
+2015-12-23 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.17.0.355: Fix #59 backup zones
   * 2.17.0.354: Fix #58 backup gateways
 
-2015-12-21 Laurent Rochette <lrochette@gmail.com>
+2015-12-21 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.16.9.350: Added test for #56 and #57
   * 2.16.9.333: Remove spaces from step names.
   * 2.16.8.331: Fixed issue with default resource for saveAllObjects
@@ -74,32 +66,32 @@
 2015-12-01 System Administrator <lrochette@electric-cloud.com>
   * 2.16.5.324: Fix #50 and #51 for artifactRepositorySynchronization
 
-2015-11-26 Laurent Rochette <lrochette@gmail.com>
+2015-11-26 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.16.3.321: Fixed #52: the /server/counters/EC-Admin is not writable
 
-2015-11-25 Laurent Rochette <lrochette@gmail.com>
+2015-11-25 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.16.2.319: fixed #47: nproc does not work on RHEL for performanceMetrics
 
-2015-11-25 Laurent Rochette <lrochette@gmail.com>
+2015-11-25 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.16.1.318: Fixed #49
                 Fixed README.md and Help page
 
 2015-11-20 System Administrator <lrochette@electric-cloud.com>
   * 2.16.0.317: add option to enable change tracking on the created plugin
 
-2015-11-15 Laurent Rochette <lrochette@gmail.com>
+2015-11-15 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.15.0.316: Add procedures to disable and enable all schedules
 
-2015-11-10 Laurent Rochette <lrochette@gmail.com>
+2015-11-10 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.14.3.312: Fixed #45, bad links in deleteWorkspaceOrphans
 
-2015-10-16 Laurent Rochette <lrochette@gmail.com>
+2015-10-16 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.14.2.311: Fix #46 : ixed EC-Admin project reference issue in debugPostp
 
-2015-10-11 Laurent Rochette <lrochette@gmail.com>
+2015-10-11 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.14.1.310: Fixed issue with artifactRepositorySynchronization
 
-2015-10-08 Laurent Rochette <lrochette@gmail.com>
+2015-10-08 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.14.0.309: save procedure.xml in procedure directory
   * 2.14.0.308: Fix #42 adding step export to saveAllObjects
 
