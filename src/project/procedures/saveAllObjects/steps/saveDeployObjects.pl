@@ -184,8 +184,9 @@ if (compareVersion($version, "6.0") < 0) {
     else {
       $envCount++;
     }
-  }         // Version greater than 6.1
+  }         # Version greater than 6.1
 }
+
 my $str=sprintf("$appCount applications exported\n" );
 $str .= sprintf("   $envCount environments exported\n");
 $str .= sprintf("   $compCount components exported\n");

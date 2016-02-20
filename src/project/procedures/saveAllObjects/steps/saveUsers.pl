@@ -51,7 +51,7 @@ foreach my $node ($xPath->findnodes('//user')) {
   }
 }
 $ec->setProperty("preSummary", "$userCount users exported");
-e$ec->setProperty("/myJob/userExported", $userCount);
+$ec->setProperty("/myJob/userExported", $userCount);
 xit($errorCount);
 
 $[/myProject/scripts/backup/safeFilename]
