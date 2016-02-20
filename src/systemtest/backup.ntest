@@ -225,7 +225,7 @@ ntest "issue 59 zone", {}, sub {
 #-------------------------------------------------------------------------------
 #  Issue 63: filter pattern 
 #-------------------------------------------------------------------------------
-ntest "issue 63 patern", {}, sub {
+ntest "issue 63 pattern", {}, sub {
   my $proj="456GHTVF123";
   my $xpath=$::N->createProject($proj);
   assertOK($xpath, "Failed to create project $proj");
@@ -266,4 +266,43 @@ ntest "issue 63 patern", {}, sub {
 
 };
 
+#-------------------------------------------------------------------------------
+#  save User
+#-------------------------------------------------------------------------------
+ntest "export users", {}, sub {
+
+  rmtree("/tmp/BACKUP");
+  $xpath = $::N->runProcedure("EC-Admin", {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pattern", value=>"admin"},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"false"},
+      {actualParameterName=>"exportGroups", value=>"false"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportResources", value=>"false"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"true"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check only 1 project was exported
+    my $nb=$::N->getProperty("userExported" , {jobId => $jobId})->findvalue("//value");
+    assertEq(1, $nb, "incorrect number of user exported");
+
+    # clean
+    rmtree("/tmp/BACKUP");
+  }
+};
 1;
