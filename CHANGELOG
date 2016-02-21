@@ -1,14 +1,10 @@
-2016-02-21 Laurent Rochette <lrochette@gmail.com>
-  * 2.23.3.432: Fix #71:  findJobId detects in workflowDefinitions
-
-2016-02-19 Laurent Rochette <lrochette@gmail.com>
-  * 2.23.2.430: Fix #70 find jobId in top-level project properties
-
-2016-02-19 Laurent Rochette <lrochette@gmail.com>
-  * 2.23.1.429: Fix #69 find jobStepId as well
+2016-02-21 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.23.3.432: Fix #71 findJobId detects in workflowDefinitions
 
 2016-02-19 Laurent Rochette <lrochette@electric-cloud.com>
-  * 2.23.0.428: Issue #63 add a filtering pattern to saveAllObjects
+  * 2.23.2.430: Fix #70 find jobId in top-level project properties
+  * 2.23.1.429: Fix #69 find jobStepId as well
+  * 2.23.0.428: Fix #63 add a filtering pattern to saveAllObjects
 
 2016-02-16 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.22.3.423: Fix Help page
@@ -23,19 +19,18 @@
   * 2.21.414: Fix #65: new procedure to find jobId
 
 2016-01-14 Laurent Rochette <lrochette@electric-cloud.com>
-  * 2.20.0.399: Fixed #62 : Add new procedure to change the java heap memory setup on an agent
+  * 2.20.0.399: Fixed #62 Add new procedure to change the java heap memory setup on an agent
 
 2016-01-07 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.20.0.398: Add help for agentMemoryConfiguration
-
-2016-01-07 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.20.0.397: Add new procedure to change the java heap memory setup on an agent (Issue #62)
 
 2016-01-05 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.19.2.392: Add repo checking
 
 2016-01-05 Laurent Rochette <lrochette@electric-cloud.com>
-  * 2.19.2.391: make new artifactRepositorySynchronization procedure the default oneTest for unknown or disabled repo
+  * 2.19.2.391: make new artifactRepositorySynchronization procedure the default one
+                Test for unknown or disabled repo
 
 2016-01-05 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.19.2.390: make new artifactRepositorySynchronization procedure the default one
@@ -70,18 +65,16 @@
                 Fixed issue about error on manifest
 
 2015-12-02 System Administrator <lrochette@electric-cloud.com>
-  * 2.16.6.326: Fixed Issue #54: allow custom timeout in jobsCleanup andjobCleanup_byResult
+  * 2.16.6.326: Fixed Issue #54 allow custom timeout in jobsCleanup andjobCleanup_byResult
 
 2015-12-01 System Administrator <lrochette@electric-cloud.com>
   * 2.16.5.324: Fix #50 and #51 for artifactRepositorySynchronization
 
 2015-11-26 Laurent Rochette <lrochette@electric-cloud.com>
-  * 2.16.3.321: Fixed #52: the /server/counters/EC-Admin is not writable
+  * 2.16.3.321: Fixed #52 the /server/counters/EC-Admin is not writable
 
 2015-11-25 Laurent Rochette <lrochette@electric-cloud.com>
-  * 2.16.2.319: fixed #47: nproc does not work on RHEL for performanceMetrics
-
-2015-11-25 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.16.2.319: fixed #47 nproc does not work on RHEL for performanceMetrics
   * 2.16.1.318: Fixed #49
                 Fixed README.md and Help page
 
