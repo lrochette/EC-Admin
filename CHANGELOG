@@ -1,3 +1,6 @@
+2016-02-21 Laurent Rochette <lrochette@gmail.com>
+  * 2.23.3.432: Fix #71:  findJobId detects in workflowDefinitions
+
 2016-02-19 Laurent Rochette <lrochette@gmail.com>
   * 2.23.2.430: Fix #70 find jobId in top-level project properties
 

@@ -140,3 +140,4 @@ $ec->setProperty("summary", "Steps: $nbSteps\nParams: $nbParams\nProps: $nbProps
 
 $[/myProject/scripts/perlLibJSON]
 
+

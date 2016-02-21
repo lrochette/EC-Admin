@@ -43,9 +43,9 @@ ntest "Issue 65: findJobId in EC-Admin", {}, sub {
         my $outcome = $jobData->findvalue("//job/outcome");
 	assertEq("success", $outcome, "findJobId failed");
     my $steps=$::N->getProperty("nbSteps", {jobId => $jobId})->findvalue("//value");
-    assertEq("13", $steps, "incorrect number of jobId occurences found in steps");
-    my $steps=$::N->getProperty("nbParams", {jobId => $jobId})->findvalue("//value");
-    assertEq("0", $steps, "incorrect number of jobId occurences found in parameters");
+    assertEq("15", $steps, "incorrect number of jobId occurences found in steps");
+    my $params=$::N->getProperty("nbParams", {jobId => $jobId})->findvalue("//value");
+    assertEq("0", $params, "incorrect number of jobId occurences found in parameters");
   }
 };
 
