@@ -16,12 +16,12 @@
               <property>
                 <propertyName>image</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/2127205/images/custom7cd6243915268c844821.png</value>
+                <value>/commander/jobSteps/2154995/images/custom3111783d153034799f11.png</value>
               </property>
               <property>
                 <propertyName>link</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/2127205/Performance Report.html</value>
+                <value>/commander/jobSteps/2154995/Performance Report.html</value>
               </property>
             </propertySheet>
           </property>
@@ -586,6 +586,56 @@
               <property>
                 <propertyName>Performance Report_L3</propertyName>
                 <propertySheet>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>266058</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2154995</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2154995</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2016-02-21 02:02:09</value>
+                  </property>
                   <property>
                     <propertyName>reportType</propertyName>
                     <expandable>1</expandable>
@@ -3396,7 +3446,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>430</value>
+        <value>431</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -7003,12 +7053,35 @@ Changelog:
         <type>entry</type>
       </formalParameter>
       <step>
-        <stepName>crawler</stepName>
+        <stepName>procedureCrawler</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
         <command>PLACEHOLDER</command>
         <condition/>
-        <description/>
+        <description>This step searches in top level project properties and procedures/steps</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName/>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
+      <step>
+        <stepName>workflowCrawler</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition/>
+        <description>This step searches in workflow and states</description>
         <errorHandling>failProcedure</errorHandling>
         <exclusiveMode>none</exclusiveMode>
         <logFileName/>
