@@ -1,3 +1,6 @@
+2016-02-26 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.23.3.433: Fix #73
+
 2016-02-21 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.23.3.432: Fix #71 findJobId detects in workflowDefinitions
 

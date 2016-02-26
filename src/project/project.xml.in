@@ -16,12 +16,12 @@
               <property>
                 <propertyName>image</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/2154995/images/custom3111783d153034799f11.png</value>
+                <value>/commander/jobSteps/2156220/images/custom4640a746153058b20071.png</value>
               </property>
               <property>
                 <propertyName>link</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/2154995/Performance Report.html</value>
+                <value>/commander/jobSteps/2156220/Performance Report.html</value>
               </property>
             </propertySheet>
           </property>
@@ -635,6 +635,56 @@
                     <propertyName>reportDate</propertyName>
                     <expandable>1</expandable>
                     <value>2016-02-21 02:02:09</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>266197</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2156220</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2156220</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2016-02-21 12:35:10</value>
                   </property>
                   <property>
                     <propertyName>reportType</propertyName>
@@ -3446,7 +3496,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>432</value>
+        <value>433</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -5331,7 +5381,7 @@ Changelog:
           <property>
             <propertyName>sourceFile</propertyName>
             <expandable>1</expandable>
-            <value>$[/server/Electric Cloud/dataDirectory]/plugins/@PLUGIN_NAME@/htdocs/frame_bannerBg_$[color].gif</value>
+            <value>$[/server/settings/pluginsDirectory]/@PLUGIN_NAME@/htdocs/frame_bannerBg_$[color].gif</value>
           </property>
           <property>
             <propertyName>sourceResourceName</propertyName>
@@ -5406,7 +5456,7 @@ Changelog:
           <property>
             <propertyName>sourceFile</propertyName>
             <expandable>1</expandable>
-            <value>$[/javascript ("$[logoFile]" == "")? "$[/server/Electric Cloud/dataDirectory]/plugins/@PLUGIN_NAME@/htdocs/$[logo]" : "$[logoFile]" ;]</value>
+            <value>$[/javascript ("$[logoFile]" == "")? "$[/server/settings/pluginsDirectory]/@PLUGIN_NAME@/htdocs/$[logo]" : "$[logoFile]" ;]</value>
           </property>
           <property>
             <propertyName>sourceResourceName</propertyName>
