@@ -48,6 +48,7 @@ foreach my $node ($xPath->findnodes('//project')) {
   my $pName=$node->{'projectName'};
   printf("Processing Project: %s\n", $pName) if ($DEBUG);
 
+  #
   # process top level properties
   #
   my ($suc1, $res1) = InvokeCommander("SuppressLog", "getProperties",
@@ -63,11 +64,11 @@ foreach my $node ($xPath->findnodes('//project')) {
 
     if (grep (/jobId/, $value) ) {
       $nbProps++;
-      printf("*** jobId in property: %s::%s\n", $pName, $propName);
+      printf("*** jobId in project property: %s::%s\n", $pName, $propName);
     }
     if (grep (/jobStepId/, $value) ) {
       $nbProps++;
-      printf("*** jobStepId in property: %s::%s\n", $pName, $propName);
+      printf("*** jobStepId in project property: %s::%s\n", $pName, $propName);
     }
 
   }
@@ -79,6 +80,30 @@ foreach my $node ($xPath->findnodes('//project')) {
     my $procName=$proc->{'procedureName'};
     printf("  Procedure: %s\n", $procName) if ($DEBUG);
 
+    #
+    # process procedure top level properties
+    #
+    my ($suc1, $res1) = InvokeCommander("SuppressLog", "getProperties",
+      {
+        projectName   => $pName,
+        procedureName => $procName,
+        recurse       => 0,
+        expand        => 0
+      });
+    foreach my $prop ($res1->findnodes('//property')) {
+      my $propName=$prop->{'propertyName'};
+      my $value=$prop->{'value'};
+      printf("  Property: %s\n", $propName) if ($DEBUG);
+
+      if (grep (/jobId/, $value) ) {
+        $nbProps++;
+        printf("*** jobId in procedure property: %s::%s::%s\n", $pName, $procName, $propName);
+      }
+      if (grep (/jobStepId/, $value) ) {
+        $nbProps++;
+        printf("*** jobStepId in procedure property: %s::%s::%s\n", $pName, $procName, $propName);
+      }
+    }
     #
     # Loop over steps
     #
@@ -139,6 +164,4 @@ $ec->setProperty("/myJob/nbParams", $nbParams);
 $ec->setProperty("summary", "Steps: $nbSteps\nParams: $nbParams\nProps: $nbProps");
 
 $[/myProject/scripts/perlLibJSON]
-
-
 

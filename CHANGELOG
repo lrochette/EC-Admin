@@ -1,4 +1,7 @@
 2016-02-26 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.23.7.438: Fix #76 findJobId searches in top procedure properties
+
+2016-02-26 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.23.6.437: Fix #75 findJobId should detect occurrences in transitionDefinitions
 
 2016-02-26 Laurent Rochette <lrochette@electric-cloud.com>
