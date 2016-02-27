@@ -63,10 +63,10 @@ foreach my $node ($xPath->findnodes('//project')) {
       my $stateName=$node->{stateDefinitionName};
       printf("    State: %s\n", $stateName) if ($DEBUG);
 
-      # is this a sub-procedure or sub-workflow call
+      # is this a sub-procedure or sub-workflow call?
       if (($node->{subprocedure}) || ($node->{subworkflowDefinition})) {
         #
-        # Loop over parameters
+        # Loop over state parameters
         #
         my ($ok4, $res4)=InvokeCommander("SuppressLog IgnoreError", 'getActualParameters',
           {
@@ -79,19 +79,54 @@ foreach my $node ($xPath->findnodes('//project')) {
           my $value=$param->{value};
           if (grep (/jobId/, $value) ) {
             $nbParams++;
-            printf("*** jobId in parameter: %s::%s::%s::%s\n",
+            printf("*** jobId in state parameter: %s::%s::%s::%s\n",
               $pName, $wkfName, $stateName, $paramName);
           }
           if (grep (/jobStepId/, $value) ) {
             $nbParams++;
-            printf("*** jobStepId in parameter: %s::%s::%s::%s\n",
+            printf("*** jobStepId in state parameter: %s::%s::%s::%s\n",
               $pName, $wkfName, $stateName, $paramName);
           }
-        }
-      }
-    }
-  }
-}
+        }     # state parameter loop
+      }       # sub-procedure sub-workflow
+
+      #
+      # loop on transition
+      #
+      my ($ok5, $res5) = InvokeCommander("SuppressLog", 'getTransitionDefinitions',
+          $pName, $wkfName, $stateName);
+      foreach my $trans ($res5->findnodes("//transitionDefinition")) {
+        my $transName = $trans->{transitionDefinitionName};
+
+        #
+        # Loop over transition parameters
+        #
+        my ($ok4, $res4)=InvokeCommander("SuppressLog IgnoreError", 'getActualParameters',
+          {
+            'projectName' => $pName,
+            'workflowDefinitionName' => $wkfName,
+            'stateDefinitionName' => $stateName,
+            'transitionDefinitionName' => $transName
+          } );
+
+        foreach my $param ($res4->findnodes('//actualParameter')) {
+          my $paramName=$param->{actualParameterName};
+          my $value=$param->{value};
+          if (grep (/jobId/, $value) ) {
+            $nbParams++;
+            printf("*** jobId in transition parameter: %s::%s::%s::%s::%s\n",
+              $pName, $wkfName, $stateName, $paramName, $transName);
+          }
+          if (grep (/jobStepId/, $value) ) {
+            $nbParams++;
+            printf("*** jobStepId in transition parameter: %s::%s::%s::%s::%s\n",
+              $pName, $wkfName, $stateName, $paramName, $transName);
+          }
+        }     # transition parameter loop
+      }       # transitionDefinition loop
+    }         # state loop
+  }           # workflowDefinition loop
+}             # project loop
 
 printf("\nSummary:\n");
 printf("  Number of parameters: $nbParams\n");
@@ -100,5 +135,4 @@ $ec->setProperty("/myJob/nbStateParams", $nbParams);
 $ec->setProperty("summary", "Params: $nbParams");
 
 $[/myProject/scripts/perlLibJSON]
-
 

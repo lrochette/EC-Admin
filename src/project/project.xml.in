@@ -3496,7 +3496,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>435</value>
+        <value>437</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -3624,6 +3624,8 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.23.6
+   + Issue #75: findJobId should detect occurrences in transitionDefinitions
 - version 2.23.5
    + Issue #77: / in procedure name
 - version 2.23.4
@@ -4008,7 +4010,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.23.5</value>
+        <value>2.23.6</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>

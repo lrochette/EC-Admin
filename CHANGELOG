@@ -1,4 +1,10 @@
 2016-02-26 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.23.6.437: Fix #75 findJobId should detect occurrences in transitionDefinitions
+
+2016-02-26 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.23.6.436: Fix #75 findJobId should detect occurrences in transitionDefinitions
+
+2016-02-26 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.23.5.435: Fix #77 procedure with slash
 
 2016-02-26 Laurent Rochette <lrochette@electric-cloud.com>
