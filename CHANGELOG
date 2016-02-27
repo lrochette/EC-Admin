@@ -1,4 +1,7 @@
 2016-02-26 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.23.8.439: Fix #74 add option to make search case insensitive
+
+2016-02-26 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.23.7.438: Fix #76 findJobId searches in top procedure properties
 
 2016-02-26 Laurent Rochette <lrochette@electric-cloud.com>

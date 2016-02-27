@@ -15,7 +15,7 @@ $DEBUG=1;
 my $path        = '$[pathname]';
 my $exportSteps = "$[exportSteps]";
 my $pattern     = '$[pattern]';
-
+my $caseSensitive = "i";
 #
 # Global
 #
@@ -44,7 +44,7 @@ foreach my $node ($xPath->findnodes('//project')) {
   next if ($pluginName ne "");
 
   # skip projects that don't fit the pattern
-  next if ($pName !~ /$pattern/ );
+  next if ($pName !~ /$pattern/$[caseSensitive] );
 
   printf("Saving Project: %s\n", $pName);
 

@@ -17,6 +17,17 @@
     </formElement> 
 
     <formElement> 
+        <label>Case sensitive</label>    
+        <property>caseSensitive</property> 
+        <documentation>Boolean to make the pattern case sensitive or not</documentation> 
+        <type>checkbox</type>    
+        <checkedValue></checkedValue> 
+        <uncheckedValue>i</uncheckedValue> 
+        <initiallyChecked>1</initiallyChecked> 
+        <value></value>    
+    </formElement> 
+
+    <formElement> 
         <label>Backup steps</label>    
         <property>exportSteps</property> 
         <documentation>Boolean to export Steps indivdually</documentation> 

@@ -357,4 +357,48 @@ ntest "issues 77 procedure with slash", {}, sub {
   $::N->deleteProject($name);
 };
 
+#-------------------------------------------------------------------------------
+#  Issue 74: case sensitive search
+#-------------------------------------------------------------------------------
+ntest "issue 74 case insensitive", {}, sub {
+  my $proj="ISSUE74";
+  my $xpath=$::N->createProject($proj);
+  assertOK($xpath, "Failed to create project $proj");
+
+  $xpath = $::N->runProcedure("EC-Admin", {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pattern", value=>"issue74"},
+      {actualParameterName=>"caseSensitive", value=>"i"},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"false"},
+      {actualParameterName=>"exportGroups", value=>"false"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportResources", value=>"false"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"false"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check only 1 project was exported
+    my $nb=$::N->getProperty("projectExported" , {jobId => $jobId})->findvalue("//value");
+    assertEq(1, $nb, "incorrect number of project exported");
+
+    # clean
+    rmtree("/tmp/BACKUP");
+    $::N->deleteProject($proj);
+  }
+
+};
 1;
