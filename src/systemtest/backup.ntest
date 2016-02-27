@@ -311,7 +311,7 @@ ntest "export users", {}, sub {
 #-------------------------------------------------------------------------------
 ntest "issues 77 procedure with slash", {}, sub {
 
-  my $name="issue/77";
+  my $name="Issue/77";
   my $xpath= $::N->createProject($name);
   assertOK($xpath, "Failed to create project $name for issue 77");
 
@@ -345,15 +345,15 @@ ntest "issues 77 procedure with slash", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory file with / mark replaced by _
-    if (! -d "/tmp/BACKUP/Project/Issue_77") {
+    if (! -d "/tmp/BACKUP/Projects/Issue_77") {
       fail("Issue_77 Project is missing");
     }
     # check for procedure file file with / mark replaced by _
-    if (! -d "/tmp/BACKUP/Project/Issue_77/Procedures/Issue_77/Issue_77.xml") {
+    if (! -f "/tmp/BACKUP/Projects/Issue_77/Procedures/Issue_77/Issue_77.xml") {
       fail("Issue_77.xml procedure is missing");
     }
   }
-  rmtree("/tmp/BACKUP");
+#  rmtree("/tmp/BACKUP");
   $::N->deleteProject($name);
 };
 

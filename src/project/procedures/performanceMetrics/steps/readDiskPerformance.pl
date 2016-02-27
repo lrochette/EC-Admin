@@ -46,3 +46,4 @@ checkValue("DISKREAD", $READspeed, $str);
 
 
 
+

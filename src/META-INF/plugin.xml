@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.23.4.434</version>
+  <version>2.23.5.435</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
-2016-02-26 lrochette Fix #73</description>
+2016-02-26 lrochette Fix #77 procedure with slash</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>

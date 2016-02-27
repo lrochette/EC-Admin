@@ -54,7 +54,7 @@ foreach my $node ($xPath->findnodes('//project')) {
 
   my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/$fileProjectName".".xml",
-  					{ 'path'=> "/projects/".$pName,
+  					{ 'path'=> "/projects[$pName]",
                                           'relocatable' => 1,
                                           'withAcls'    => 1,
                                           'withNotifiers'=>1});
@@ -81,7 +81,7 @@ foreach my $node ($xPath->findnodes('//project')) {
     chmod(0777, "$path/Projects/$fileProjectName/Procedures/$fileProcedureName");
  	my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Procedures/$fileProcedureName/$fileProcedureName".".xml",
-  					{ 'path'=> "/projects/$pName/procedures/$procName",
+  					{ 'path'=> "/projects[$pName]procedures[$procName]",
                                           'relocatable' => 1,
                                           'withAcls'    => 1,
                                           'withNotifiers'=>1});
@@ -109,7 +109,7 @@ foreach my $node ($xPath->findnodes('//project')) {
 
  	    my ($success, $res, $errMsg, $errCode) =
            InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Procedures/$fileProcedureName/Steps/$fileStepName".".xml",
-  					{ 'path'=> "/projects/$pName/procedures/$procName/steps/$stepName",
+  					{ 'path'=> "/projects[$pName]procedures[$procName]steps[$stepName]",
                                           'relocatable' => 1,
                                           'withAcls'    => 1,
                                           'withNotifiers'=>1});
@@ -141,7 +141,7 @@ foreach my $node ($xPath->findnodes('//project')) {
 
     my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Workflows/$fileWkfName".".xml",
-  					{ 'path'=> "/projects/$pName/workflowDefinitions/$wkfName",
+  					{ 'path'=> "/projects[$pName]workflowDefinitions[$wkfName]",
                                           'relocatable' => 1,
                                           'withAcls'    => 1,
                                           'withNotifiers'=>1});
@@ -167,8 +167,4 @@ exit($errorCount);
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
-
-
-
 
