@@ -1,4 +1,7 @@
 2016-02-29 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.23.8.441: Fix #79 export release
+
+2016-02-29 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.23.8.440: Fix #74 add option to make search case insensitive
 
 2016-02-26 Laurent Rochette <lrochette@electric-cloud.com>

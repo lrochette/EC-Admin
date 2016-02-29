@@ -183,7 +183,7 @@ if (compareVersion($version, "6.0") < 0) {
       $errorCount++;
     }
     else {
-      $envCount++;
+      $pipeCount++;
     }
   }         # Pipeline loop
 }           # Version greater than 6.0
@@ -191,8 +191,8 @@ if (compareVersion($version, "6.0") < 0) {
 
 # Export releases if the version is recent enough
 #
-if (compareVersion($version, "6.2") < 0) {
-  printf("WARNING: Version 6.2 or greater is required to save Release objects");
+if (compareVersion($version, "6.1") < 0) {
+  printf("WARNING: Version 6.1 or greater is required to save Release objects");
 } else {
   # Save release definitions
   #
@@ -222,10 +222,10 @@ if (compareVersion($version, "6.2") < 0) {
       $errorCount++;
     }
     else {
-      $envCount++;
+      $relCount++;
     }
   }         # Release loop
-}           # Version greater than 6.2
+}           # Version greater than 6.1
 
 my $str=sprintf("$appCount applications exported\n" );
 $str .= sprintf("   $envCount environments exported\n");
