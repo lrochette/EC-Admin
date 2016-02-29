@@ -2,22 +2,9 @@
   * 2.23.8.440: Fix #74 add option to make search case insensitive
 
 2016-02-26 Laurent Rochette <lrochette@electric-cloud.com>
-  * 2.23.8.439: Fix #74 add option to make search case insensitive
-
-2016-02-26 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.23.7.438: Fix #76 findJobId searches in top procedure properties
-
-2016-02-26 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.23.6.437: Fix #75 findJobId should detect occurrences in transitionDefinitions
-
-2016-02-26 Laurent Rochette <lrochette@electric-cloud.com>
-  * 2.23.6.436: Fix #75 findJobId should detect occurrences in transitionDefinitions
-
-2016-02-26 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.23.5.435: Fix #77 procedure with slash
-
-2016-02-26 Laurent Rochette <lrochette@electric-cloud.com>
-  * 2.23.4.434: Fix #73
 
 2016-02-21 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.23.3.432: Fix #71 findJobId detects in workflowDefinitions
