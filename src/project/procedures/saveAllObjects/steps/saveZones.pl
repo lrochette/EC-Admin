@@ -30,7 +30,7 @@ foreach my $node ($xPath->findnodes('//zone')) {
   my $zoneName=$node->{'zoneName'};
 
   # skip zones that don't fit the pattern
-  next if ($zoneName !~ /$pattern/ );
+  next if ($zoneName !~ /$pattern/$[caseSensitive] );
 
   printf("Saving Zone: %s\n", $zoneName);
   my $fileZoneName=safeFilename($zoneName);
@@ -55,9 +55,4 @@ exit($errorCount);
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
-
-
-
-
 

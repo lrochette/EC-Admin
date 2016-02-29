@@ -30,7 +30,7 @@ foreach my $node ($xPath->findnodes('//gateway')) {
   my $gateName=$node->{'gatewayName'};
 
   # skip gateways that don't fit the pattern
-  next if ($gateName !~ /$pattern/ );
+  next if ($gateName !~ /$pattern/$[caseSensitive] );
 
   printf("Saving Gateway: %s\n", $gateName);
   my $fileGatewayName=safeFilename($gateName);
@@ -55,9 +55,4 @@ exit($errorCount);
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
-
-
-
-
 

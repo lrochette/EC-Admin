@@ -32,7 +32,7 @@ foreach my $node ($xPath->findnodes('//group')) {
   my $groupName=$node->{'groupName'};
 
   # skip groups that don't fit the pattern
-  next if ($groupName !~ /$pattern/ );
+  next if ($groupName !~ /$pattern/$[caseSensitive] );
 
   printf("Saving group: %s\n", $groupName);
   my $fileGroupName=safeFilename($groupName);
@@ -57,9 +57,4 @@ exit($errorCount);
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
-
-
-
-
 

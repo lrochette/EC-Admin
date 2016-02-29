@@ -32,7 +32,7 @@ foreach my $node ($xPath->findnodes('//user')) {
   my $userName=$node->{'userName'};
 
   # skip project that don't fit the pattern
-  next if ($userName !~ /$pattern/ );
+  next if ($userName !~ /$pattern/$[caseSensitive] );
 
   printf("Saving User: %s\n", $userName);
   my $fileUserName=safeFilename($userName);
@@ -57,7 +57,4 @@ exit($errorCount);
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
-
-
 

@@ -19,11 +19,12 @@ my $pattern = '$[pattern]';
 #
 # Global
 #
-my $errorCount=0;
-my $appCount=0;
-my $envCount=0;
-my $compCount=0;
-my $pipeCount=0;
+my $errorCount = 0;
+my $appCount   = 0;
+my $envCount   = 0;
+my $compCount  = 0;
+my $pipeCount  = 0;
+my $relCount   = 0;
 
 # Set the timeout to config value or 600 if not set
 my $defaultTimeout = getP("/server/EC-Admin/cleanup/config/timeout");
@@ -63,7 +64,7 @@ foreach my $app ($xPath->findnodes('//application')) {
   my $appName=$app->{'applicationName'};
 
   # skip applications that don't fit the pattern
-  next if ($appName !~ /$pattern/ );
+  next if ($appName !~ /$pattern/$[caseSensitive] );
 
   my $fileAppName=safeFilename($appName);
   printf("  Saving Application: %s\n", $appName);
@@ -126,7 +127,7 @@ foreach my $proc ($xPath->findnodes('//environment')) {
   my $envName=$proc->{'environmentName'};
 
   # skip environments that don't fit the pattern
-  next if ($envName !~ /$pattern/ );
+  next if ($envName !~ /$pattern/$[caseSensitive] );
 
   my $fileEnvName=safeFilename($envName);
   printf("  Saving Environment Definition: %s\n", $envName);
@@ -149,7 +150,7 @@ foreach my $proc ($xPath->findnodes('//environment')) {
 }
 
 #
-# Export pipelines if version new enough
+# Export pipelines if the version is recent enough
 #
 if (compareVersion($version, "6.0") < 0) {
   printf("WARNING: Version 6.0 or greater is required to save Pipeline objects");
@@ -164,7 +165,7 @@ if (compareVersion($version, "6.0") < 0) {
     my $pipeName=$proc->{'pipelineName'};
 
     # skip pipelines that don't fit the pattern
-    next if ($pipeName !~ /$pattern/ );
+    next if ($pipeName !~ /$pattern/$[caseSensitive] );
 
     my $filePipeName=safeFilename($pipeName);
     printf("  Saving Pipeline Definition: %s\n", $pipeName);
@@ -184,26 +185,64 @@ if (compareVersion($version, "6.0") < 0) {
     else {
       $envCount++;
     }
-  }         # Version greater than 6.1
-}
+  }         # Pipeline loop
+}           # Version greater than 6.0
+
+
+# Export releases if the version is recent enough
+#
+if (compareVersion($version, "6.2") < 0) {
+  printf("WARNING: Version 6.2 or greater is required to save Release objects");
+} else {
+  # Save release definitions
+  #
+  mkpath("$path/Projects/$fileProjectName/Releases");
+  chmod(0777, "$path/Projects/$fileProjectName/Releases");
+
+  my ($success, $xPath) = InvokeCommander("SuppressLog", "getReleases", $pName);
+  foreach my $proc ($xPath->findnodes('//release')) {
+    my $relName=$proc->{'releaseName'};
+
+    # skip releases that don't fit the pattern
+    next if ($relName !~ /$pattern/$[caseSensitive] );
+
+    my $filePipeName=safeFilename($relName);
+    printf("  Saving Release Definition: %s\n", $relName);
+
+    my ($success, $res, $errMsg, $errCode) =
+      InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Releases/$filePipeName".".xml",
+            { 'path'=> "/projects[$pName]releases[$relName]",
+                                          'relocatable' => 1,
+                                          'withAcls'    => 1,
+                                          'withNotifiers'=>1});
+
+    if (! $success) {
+      printf("  Error exporting release %s", $relName);
+      printf("  %s: %s\n", $errCode, $errMsg);
+      $errorCount++;
+    }
+    else {
+      $envCount++;
+    }
+  }         # Release loop
+}           # Version greater than 6.2
 
 my $str=sprintf("$appCount applications exported\n" );
 $str .= sprintf("   $envCount environments exported\n");
 $str .= sprintf("   $compCount components exported\n");
 $str .= sprintf("   $pipeCount pipelines exported\n");
+$str .= sprintf("   $relCount releases exported\n");
+
 
 $ec->setProperty("preSummary", $str);
 $ec->setProperty("/myJob/papplicationExported", $appCount);
-$ec->setProperty("/myJob/environmentExported", $envCount);
-$ec->setProperty("/myJob/componentExported", $compCount);
-$ec->setProperty("/myJob/pipelineExported", $pipeCount);
+$ec->setProperty("/myJob/environmentExported",  $envCount);
+$ec->setProperty("/myJob/componentExported",    $compCount);
+$ec->setProperty("/myJob/pipelineExported",     $pipeCount);
+$ec->setProperty("/myJob/releaseExported",      $relCount);
 exit($errorCount);
 
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
-
-
-
 

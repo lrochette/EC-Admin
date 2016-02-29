@@ -32,7 +32,7 @@ foreach my $node ($xPath->findnodes('//resourcePool')) {
   my $poolName=$node->{'resourcePoolName'};
 
   # skip pools that don't fit the pattern
-  next if ($poolName !~ /$pattern/ );
+  next if ($poolName !~ /$pattern/$[caseSensitive] );
 
   printf("Saving Resource Pool: %s\n", $poolName);
   my $filePoolName=safeFilename($poolName);
@@ -58,9 +58,4 @@ exit($errorCount);
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
-
-
-
-
 

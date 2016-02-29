@@ -30,7 +30,7 @@ foreach my $node ($xPath->findnodes('//workspace')) {
   my $wksName=$node->{'workspaceName'};
 
   # skip workspaces that don't fit the pattern
-  next if ($wksName !~ /$pattern/ );
+  next if ($wksName !~ /$pattern/$[caseSensitive] );
 
   printf("Saving Workspace: %s\n", $wksName);
   my $fileWorkspaceName=safeFilename($wksName);
@@ -55,9 +55,4 @@ exit($errorCount);
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
-
-
-
-
 

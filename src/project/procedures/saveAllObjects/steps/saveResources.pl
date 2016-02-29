@@ -32,7 +32,7 @@ foreach my $node ($xPath->findnodes('//resource')) {
   my $resName=$node->{'resourceName'};
 
   # skip resources that don't fit the pattern
-  next if ($resName !~ /$pattern/ );
+  next if ($resName !~ /$pattern/$[caseSensitive] );
 
   printf("Saving Resource: %s\n", $resName);
   my $fileResourceName=safeFilename($resName);
@@ -58,9 +58,4 @@ exit($errorCount);
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
-
-
-
-
 
