@@ -24,6 +24,8 @@ my ($success, $xPath);
 my $MAX=5000;
 my $nbParams=0;
 my $nbStates=0;
+my $nbTransConds=0;
+my $nbProps=0;
 
 # create filterList
 my @filterList;
@@ -97,6 +99,48 @@ foreach my $node ($xPath->findnodes('//project')) {
           $pName, $wkfName, $stateName);
       foreach my $trans ($res5->findnodes("//transitionDefinition")) {
         my $transName = $trans->{transitionDefinitionName};
+        my $condition = $trans->{condition};
+        printf("      transition: %s\n", $transName) if ($DEBUG);
+
+        if (grep (/jobId/, $condition) ) {
+          $nbTransConds++;
+          printf("*** jobId in transition condition: %s::%s::%s::%s\n",
+            $pName, $wkfName, $stateName, $transName);
+        }
+        if (grep (/jobStepId/, $condition) ) {
+          $nbTransConds++;
+          printf("*** jobStepId in transition parameter: %s::%s::%s::%s\n",
+            $pName, $wkfName, $stateName, $transName);
+        }
+
+        #
+        # process top level transitionDefinition properties
+        #
+        my ($suc1, $res1) = InvokeCommander("SuppressLog", "getProperties",
+          {
+            projectName              => $pName,
+            workflowDefinitionName   => $wkfName,
+            stateDefinitionName      => $stateName,
+            transitionDefinitionName => $transName,
+            recurse => 0,
+            expand => 0
+          });
+        foreach my $prop ($res1->findnodes('//property')) {
+          my $propName=$prop->{'propertyName'};
+          my $value=$prop->{'value'};
+          printf("  Property: %s\n", $propName) if ($DEBUG);
+
+          if (grep (/jobId/, $value) ) {
+            $nbProps++;
+            printf("*** jobId in transition property: %s::%s::%s::%s::%s\n",
+                   $pName, $wkfName, $stateName, $transName, $propName);
+          }
+          if (grep (/jobStepId/, $value) ) {
+            $nbProps++;
+            printf("*** jobStepId in transition property: %s::%s::%s::%s::%s\n",
+                   $pName, $wkfName, $stateName, $transName, $propName);
+          }
+        }
 
         #
         # Loop over transition parameters
@@ -115,12 +159,12 @@ foreach my $node ($xPath->findnodes('//project')) {
           if (grep (/jobId/, $value) ) {
             $nbParams++;
             printf("*** jobId in transition parameter: %s::%s::%s::%s::%s\n",
-              $pName, $wkfName, $stateName, $paramName, $transName);
+              $pName, $wkfName, $stateName, $transName, $paramName);
           }
           if (grep (/jobStepId/, $value) ) {
             $nbParams++;
             printf("*** jobStepId in transition parameter: %s::%s::%s::%s::%s\n",
-              $pName, $wkfName, $stateName, $paramName, $transName);
+              $pName, $wkfName, $stateName, $transName, $paramName);
           }
         }     # transition parameter loop
       }       # transitionDefinition loop
@@ -130,9 +174,13 @@ foreach my $node ($xPath->findnodes('//project')) {
 
 printf("\nSummary:\n");
 printf("  Number of parameters: $nbParams\n");
+printf("  Number of properties: $nbProps\n");
+printf("  Number of conditions: $nbTransConds\n");
 
 $ec->setProperty("/myJob/nbStateParams", $nbParams);
-$ec->setProperty("summary", "Params: $nbParams");
+$ec->setProperty("/myJob/nbStateProps", $nbProps);
+$ec->setProperty("/myJob/nbTransCond", $nbTransConds);
+$ec->setProperty("summary", "Params: $nbParams\nProps: $nbProps\nConds: $nbTransConds");
 
 $[/myProject/scripts/perlLibJSON]
 

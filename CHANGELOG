@@ -1,3 +1,6 @@
+2016-03-04 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.23.9.442: Fix #81 enhance transition search
+
 2016-02-29 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.23.8.441: Fix #79 export release
 

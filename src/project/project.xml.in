@@ -3496,7 +3496,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>441</value>
+        <value>442</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -3624,9 +3624,10 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.23.9
+   + Issue #81: enhance transition search
 - version 2.23.8
    + Issue #74: add option to make search case insensitive
-
 - version 2.23.7
    + Issue #76: find jobId in top-level procedure properties
 - version 2.23.6
@@ -4015,7 +4016,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.23.8</value>
+        <value>2.23.9</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
