@@ -14,9 +14,16 @@ use ECTest;
 initCommander();
 $::N=$adminSession;
 
-my $pluginKey = "EC-Admin";
-my $xpath = $::N->getPlugin($pluginKey);
-my $pluginName = $xpath->findvalue("//pluginName")->value;
+# Check version to be able to run test with version 4.0 as well
+# EC-Admin is a simple project for version 4.0
+my $version=$::N->getVersions()->findvalue("//version")->value;
+
+my $pluginName="EC-Admin";
+if ($version ge "4.2") {
+  my $pluginKey = "EC-Admin";
+  my $xpath = $::N->getPlugin($pluginKey);
+     $pluginName = $xpath->findvalue("//pluginName")->value;
+}
 
 #-------------------------------------------------------------------------------
 # Test procedure present.
@@ -30,8 +37,10 @@ ntest "checkProcedures", {}, sub {
 #-------------------------------------------------------------------------------
 sub loadJobDO {
   my $name=shift;
+  my $dir="data";
 
-  my $xpath= $::N->import({file=>$::gWorkingDirectory . "/data/cleanup/$name.xml", force=>1});
+  $dir="cleanup.4.0" if ($version lt "4.2");
+  my $xpath= $::N->import({file=>$::gWorkingDirectory . "/data/$dir/$name.xml", force=>1});
   assertOK($xpath, "$name job import failed");
 }
 
@@ -41,12 +50,15 @@ sub loadJobDO {
 #-------------------------------------------------------------------------------
 ntest "Issue_41_missingGetP", {}, sub {
 
+  my $jName="saveAllObjects_6038";
+  $jName="artifactsCleanup_6038" if ($version lt "4.2");
+
     # Load an old job
     loadJobDO("error");
 
     # check the job exist: 210610
-    my $xpath = $::N->getJobDetails("saveAllObjects_6038", {structureOnly =>1});
-    assertOK($xpath, "Failed to load job saveAllObjects_6038");
+    my $xpath = $::N->getJobDetails($jName, {structureOnly =>1});
+    assertOK($xpath, "Failed to load job $jName");
 
     # delete job
     $xpath = $::N->runProcedure("EC-Admin", {
@@ -72,7 +84,7 @@ ntest "Issue_41_missingGetP", {}, sub {
 	assertSubstring("Deleted 1 jobs", $summary, "Only 1 job to delete");
 
         #check job is now gone
-        $xpath = $::N->getJobDetails("saveAllObjects_6038", {structureOnly =>1});
+        $xpath = $::N->getJobDetails($jName, {structureOnly =>1});
     }
 };
 
