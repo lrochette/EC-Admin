@@ -191,10 +191,10 @@ go along different background colors.</td>
 </ul>
 <p>Those file permissions need to be opened so the agent user can modify them.</p>
 
-<img src="blob/master/src/htdocs/images/help/changeBannerColor.png"
+<img src="src/htdocs/images/help/changeBannerColor.png"
 alt="changeBannerColor parameters" />
 <p>will produce</p>
-<img src="blob/master/src/htdocs/images/help/RedDev.png"
+<img src="src/htdocs/images/help/RedDev.png"
 alt="Red DEV example" />
 
 <h1><a name="jobs"></a>Jobs and Workspaces management</h1>
@@ -237,7 +237,7 @@ days. It will also delete associated workspace job directories.</p>
 </tbody>
 </table>
 
-<img src="blob/master/src/htdocs/images/help/jobsCleanup.png"
+<img src="src/htdocs/images/help/jobsCleanup.png"
 alt="jobsCleanup parameters" />
 
 <h2>jobCleanup_byResult:</h2>
@@ -341,7 +341,7 @@ version into the current one upon promotion.</td>
 </tbody>
 </table>
 
-<img src="blob/master/src/htdocs/images/help/createPluginFromProject.png"
+<img src="src/htdocs/images/help/createPluginFromProject.png"
 alt="createPluginFromProject parameters" />
 
 <p>At the project level, you can define the following properties to
@@ -494,7 +494,7 @@ version into the current one upon promotion.</td>
 </tbody>
 </table>
 
-<img src="blob/master/src/htdocs/images/help/projectAsCode.png"
+<img src="src/htdocs/images/help/projectAsCode.png"
 alt="projectAsCode parameters" />
 
 <p>At the project level, you can define the addtional following properties to alter the behavior of the plugin creation:</p>
@@ -558,7 +558,7 @@ could overwhelm your gateways.</td>
 </tbody>
 </table>
 
-<img src="blob/master/src/htdocs/images/help/artifactRepositorySynchronization.png"
+<img src="src/htdocs/images/help/artifactRepositorySynchronization.png"
 alt="artifactRepositorySynchronization parameters" />
 
 <h2>artifactsCleanup</h2>
@@ -648,7 +648,7 @@ Typically those have been created with saveAllObjects above.</p>
 </tbody>
 </table>
 
-<img src="blob/master/src/htdocs/images/help/schedulesDisableParameters.png"
+<img src="src/htdocs/images/help/schedulesDisableParameters.png"
 alt="schedulesDisable parameters" />
 
 <h2>schedulesEnable</h2>
@@ -668,7 +668,7 @@ alt="schedulesDisable parameters" />
 </tbody>
 </table>
 
-<img src="blob/master/src/htdocs/images/help/schedulesEnableParameters.png"
+<img src="src/htdocs/images/help/schedulesEnableParameters.png"
 alt="schedulesEnable parameters" />
 
 <h1><a name="semaphore"></a>Semaphore Management</h1>
@@ -706,7 +706,7 @@ you want to control.</p>
 </tr>
 </tbody>
 </table>
-<img src="blob/master/src/htdocs/images/help/acquireSemaphore.png"
+<img src="src/htdocs/images/help/acquireSemaphore.png"
 alt="acquireSemaphore parameters" />
 
 <h2>releaseSemaphore</h2>
@@ -725,7 +725,7 @@ alt="acquireSemaphore parameters" />
 </tr>
 </tbody>
 </table>
-<img src="blob/master/src/htdocs/images/help/releaseSemaphore.png"
+<img src="src/htdocs/images/help/releaseSemaphore.png"
 alt="releaseSemaphore parameters" />
 
 <h1><a name="license"></a>License Logger</h1>
