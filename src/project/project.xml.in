@@ -3496,7 +3496,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>443</value>
+        <value>444</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -3625,7 +3625,7 @@ software.&lt;/p&gt;
 
 History:
 - version 2.23.10
-   + Issue #81: find jobId in top-level state properties
+   + Issue #82: find jobId in top-level state properties
 - version 2.23.9
    + Issue #81: enhance transition search
 - version 2.23.8

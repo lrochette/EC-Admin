@@ -1,4 +1,7 @@
 2016-03-18 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.23.10.444: FIx #82 find jobId in top-level state properties
+
+2016-03-18 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.23.10.443: FIx #81 find jobId in top-level state properties
 
 2016-03-04 Laurent Rochette <lrochette@electric-cloud.com>
