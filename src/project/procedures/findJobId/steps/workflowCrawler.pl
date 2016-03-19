@@ -93,6 +93,34 @@ foreach my $node ($xPath->findnodes('//project')) {
       }       # sub-procedure sub-workflow
 
       #
+      # process top level stateDefinition properties
+      #
+      my ($suc1, $res1) = InvokeCommander("SuppressLog", "getProperties",
+        {
+          projectName              => $pName,
+          workflowDefinitionName   => $wkfName,
+          stateDefinitionName      => $stateName,
+          recurse => 0,
+          expand => 0
+        });
+      foreach my $prop ($res1->findnodes('//property')) {
+        my $propName=$prop->{'propertyName'};
+        my $value=$prop->{'value'};
+        printf("  Property: %s\n", $propName) if ($DEBUG);
+
+        if (grep (/jobId/, $value) ) {
+          $nbProps++;
+          printf("*** jobId in state property: %s::%s::%s::%s\n",
+                 $pName, $wkfName, $stateName, $propName);
+        }
+        if (grep (/jobStepId/, $value) ) {
+          $nbProps++;
+          printf("*** jobStepId in state property: %s::%s::%s::%s\n",
+                 $pName, $wkfName, $stateName, $propName);
+        }
+      }
+
+      #
       # loop on transition
       #
       my ($ok5, $res5) = InvokeCommander("SuppressLog", 'getTransitionDefinitions',

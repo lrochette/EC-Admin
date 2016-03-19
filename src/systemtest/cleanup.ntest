@@ -106,7 +106,7 @@ sub callJobsCleanup{
 #-------------------------------------------------------------------------------
 sub loadJob {
   my $name=shift;
-  my $dir="data";
+  my $dir="cleanup";
 
   $dir="cleanup.4.0" if ($version lt "4.2");
   my $xpath= $::N->import({file=>$::gWorkingDirectory . "/data/$dir/$name.xml", force=>1});
