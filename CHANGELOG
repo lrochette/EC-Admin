@@ -1,16 +1,11 @@
 2016-03-18 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.23.10.444: FIx #82 find jobId in top-level state properties
 
-2016-03-18 Laurent Rochette <lrochette@electric-cloud.com>
-  * 2.23.10.443: FIx #81 find jobId in top-level state properties
-
 2016-03-04 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.23.9.442: Fix #81 enhance transition search
 
 2016-02-29 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.23.8.441: Fix #79 export release
-
-2016-02-29 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.23.8.440: Fix #74 add option to make search case insensitive
 
 2016-02-26 Laurent Rochette <lrochette@electric-cloud.com>
