@@ -11,7 +11,7 @@
     <formElement> 
         <label>Filter Pattern</label>    
         <property>pattern</property>    
-        <documentation>The perl pattern to apply before saving objects (except for procedures and steps).</documentation> 
+        <documentation>The perl pattern to apply before saving objects (except for procedures and steps; and deploy objects in non Default project).</documentation> 
         <type>entry</type>
      <required>0</required> 
     </formElement> 

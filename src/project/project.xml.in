@@ -3323,7 +3323,9 @@ with it to backup your projects on a regular basis.&lt;/p&gt;
            &lt;tr&gt;
                &lt;td&gt;Pattern&lt;/td&gt;
                &lt;td&gt;A Perl regular expression to filter the objects to export.
-                 For example "^B" indicates all object starting with a "B"&lt;/td&gt;
+                 For example "^B" indicates all object starting with a "B". The
+                 pattern does not apply to the objects inside a project (except
+                 Deploy objects in the Default project).&lt;/td&gt;
            &lt;/tr&gt;
            &lt;tr&gt;
                &lt;td&gt;checkboxes&lt;/td&gt;
@@ -3546,7 +3548,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>447</value>
+        <value>448</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -3674,6 +3676,8 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.24.0
+   + save Deploy objects in all projects (require EF 6.2)
 - version 2.23.11
    + Issue #83: issues trailing spaces for saveAllObjects
 - version 2.23.10
@@ -4070,7 +4074,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.23.11</value>
+        <value>2.24.0</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>

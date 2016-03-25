@@ -72,7 +72,7 @@ foreach my $node ($xPath->findnodes('//project')) {
     my $appName=$app->{'applicationName'};
 
     # skip applications that don't fit the pattern
-    next if ($appName !~ /$pattern/$[caseSensitive] ); # / just for the color
+    next if (($pName  eq "Default") && ($appName !~ /$pattern/$[caseSensitive] )); # / just for the color
 
     my $fileAppName=safeFilename($appName);
     printf("  Saving Application: %s\n", $appName);
@@ -135,7 +135,7 @@ foreach my $node ($xPath->findnodes('//project')) {
     my $envName=$proc->{'environmentName'};
 
     # skip environments that don't fit the pattern
-    next if ($envName !~ /$pattern/$[caseSensitive] );  # / just for the color
+    next if (($pName  eq "Default") && ($envName !~ /$pattern/$[caseSensitive] ));  # / just for the color
 
     my $fileEnvName=safeFilename($envName);
     printf("  Saving Environment Definition: %s\n", $envName);
@@ -173,7 +173,7 @@ foreach my $node ($xPath->findnodes('//project')) {
       my $pipeName=$proc->{'pipelineName'};
 
       # skip pipelines that don't fit the pattern
-      next if ($pipeName !~ /$pattern/$[caseSensitive] ); # / just for the color
+      next if (($pName  eq "Default") && ($pipeName !~ /$pattern/$[caseSensitive] )); # / just for the color
 
       my $filePipeName=safeFilename($pipeName);
       printf("  Saving Pipeline Definition: %s\n", $pipeName);
@@ -212,7 +212,7 @@ foreach my $node ($xPath->findnodes('//project')) {
       my $relName=$proc->{'releaseName'};
 
       # skip releases that don't fit the pattern
-      next if ($relName !~ /$pattern/$[caseSensitive] );  # / just for the color
+      next if (($pName  eq "Default") && ($relName !~ /$pattern/$[caseSensitive] ));  # / just for the color
 
       my $filePipeName=safeFilename($relName);
       printf("  Saving Release Definition: %s\n", $relName);

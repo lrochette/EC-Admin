@@ -634,7 +634,9 @@ with it to backup your projects on a regular basis.</p>
            <tr>
                <td>Pattern</td>
                <td>A Perl regular expression to filter the objects to export.
-                 For example "^B" indicates all object starting with a "B"</td>
+                 For example "^B" indicates all object starting with a "B". The
+                 pattern does not apply to the objects inside a project (except
+                 Deploy objects in the Default project).</td>
            </tr>
            <tr>
                <td>checkboxes</td>
