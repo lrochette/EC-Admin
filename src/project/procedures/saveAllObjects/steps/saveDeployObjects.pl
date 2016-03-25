@@ -59,6 +59,7 @@ foreach my $node ($xPath->findnodes('//project')) {
 
   # skip non Default project for version before 6.2
   next if (($pName ne "Default") && ($version < "6.2"));
+  printf("Saving Project: %s\n", $pName);
 
   my $fileProjectName=safeFilename($pName);
   #
