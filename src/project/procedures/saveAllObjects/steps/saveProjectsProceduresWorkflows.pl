@@ -44,7 +44,7 @@ foreach my $node ($xPath->findnodes('//project')) {
   next if ($pluginName ne "");
 
   # skip projects that don't fit the pattern
-  next if ($pName !~ /$pattern/$[caseSensitive] );
+  next if ($pName !~ /$pattern/$[caseSensitive] );  # / just for the color
 
   printf("Saving Project: %s\n", $pName);
 
@@ -167,5 +167,4 @@ exit($errorCount);
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
 
