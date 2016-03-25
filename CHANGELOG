@@ -1,4 +1,10 @@
 2016-03-24 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.24.0.453: Fix #78 save Deploy objects in all projects (EF 6.2+)
+
+2016-03-24 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.24.0.452: Fix #78 save Deploy objects in all projects (EF 6.2+)
+
+2016-03-24 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.23.11.446: Fix #83 issue with trailing spaces in saveAllObjects
 
 2016-03-18 Laurent Rochette <lrochette@electric-cloud.com>
