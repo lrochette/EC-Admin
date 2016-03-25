@@ -104,8 +104,8 @@ foreach my $node ($xPath->findnodes('//project')) {
     foreach my $comp ($json->findnodes("//component")) {
       my $compName=$comp->{'componentName'};
       my $fileCompName=safeFilename($compName);
-      printf("    Saving Components Definition: %s\n", $compName);
-      
+      printf("    Saving Component: %s\n", $compName);
+
       my ($success, $res, $errMsg, $errCode) =
         InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Applications/$fileAppName/Components/$fileCompName".".xml",
             { 'path'=> "/projects/$pName/applications/$appName/components/$compName",
@@ -139,7 +139,7 @@ foreach my $node ($xPath->findnodes('//project')) {
     next if (($pName  eq "Default") && ($envName !~ /$pattern/$[caseSensitive] ));  # / just for the color
 
     my $fileEnvName=safeFilename($envName);
-    printf("  Saving Environment Definition: %s\n", $envName);
+    printf("  Saving Environment: %s\n", $envName);
 
     my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Environments/$fileEnvName".".xml",
@@ -177,7 +177,7 @@ foreach my $node ($xPath->findnodes('//project')) {
       next if (($pName  eq "Default") && ($pipeName !~ /$pattern/$[caseSensitive] )); # / just for the color
 
       my $filePipeName=safeFilename($pipeName);
-      printf("  Saving Pipeline Definition: %s\n", $pipeName);
+      printf("  Saving Pipeline: %s\n", $pipeName);
 
       my ($success, $res, $errMsg, $errCode) =
         InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Pipelines/$filePipeName".".xml",
@@ -216,7 +216,7 @@ foreach my $node ($xPath->findnodes('//project')) {
       next if (($pName  eq "Default") && ($relName !~ /$pattern/$[caseSensitive] ));  # / just for the color
 
       my $filePipeName=safeFilename($relName);
-      printf("  Saving Release Definition: %s\n", $relName);
+      printf("  Saving Release: %s\n", $relName);
 
       my ($success, $res, $errMsg, $errCode) =
         InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Releases/$filePipeName".".xml",
