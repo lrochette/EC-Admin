@@ -104,7 +104,8 @@ foreach my $node ($xPath->findnodes('//project')) {
     foreach my $comp ($json->findnodes("//component")) {
       my $compName=$comp->{'componentName'};
       my $fileCompName=safeFilename($compName);
-
+      printf("    Saving Components Definition: %s\n", $compName);
+      
       my ($success, $res, $errMsg, $errCode) =
         InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Applications/$fileAppName/Components/$fileCompName".".xml",
             { 'path'=> "/projects/$pName/applications/$appName/components/$compName",
