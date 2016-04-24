@@ -82,7 +82,7 @@ foreach my $node ($xPath->findnodes('//project')) {
     chmod(0777, "$path/Projects/$fileProjectName/Applications/$fileAppName");
     my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Applications/$fileAppName/$fileAppName".".xml",
-            { 'path'=> "/projects/$pName/applications/$appName",
+            { 'path'=> "/projects[$pName]applications[$appName]",
                                           'relocatable' => 1,
                                           'withAcls'    => 1,
                                           'withNotifiers'=>1});
@@ -109,7 +109,7 @@ foreach my $node ($xPath->findnodes('//project')) {
 
       my ($success, $res, $errMsg, $errCode) =
         InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Applications/$fileAppName/Components/$fileCompName".".xml",
-            { 'path'=> "/projects/$pName/applications/$appName/components/$compName",
+            { 'path'=> "/projects[$pName]applications[$appName]components[$compName]",
                                           'relocatable' => 1,
                                           'withAcls'    => 1,
                                           'withNotifiers'=>1});
@@ -144,7 +144,7 @@ foreach my $node ($xPath->findnodes('//project')) {
 
     my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Environments/$fileEnvName".".xml",
-            { 'path'=> "/projects/$pName/environments/$envName",
+            { 'path'=> "/projects[$pName]environments[$envName]",
                                           'relocatable' => 1,
                                           'withAcls'    => 1,
                                           'withNotifiers'=>1});
@@ -182,7 +182,7 @@ foreach my $node ($xPath->findnodes('//project')) {
 
       my ($success, $res, $errMsg, $errCode) =
         InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Pipelines/$filePipeName".".xml",
-              { 'path'=> "/projects/$pName/pipelines/$pipeName",
+              { 'path'=> "/projects[$pName]pipelines[$pipeName]",
                                             'relocatable' => 1,
                                             'withAcls'    => 1,
                                             'withNotifiers'=>1});

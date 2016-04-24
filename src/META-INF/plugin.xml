@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.24.0.453</version>
+  <version>2.24.0.454</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
-2016-03-24 lrochette Fix #78 save Deploy objects in all projects (EF 6.2+)</description>
+2016-04-24 lrochette Fix #88 slashes in resources and pools</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>

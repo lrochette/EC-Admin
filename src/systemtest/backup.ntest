@@ -446,4 +446,50 @@ ntest "issue 83 trailing spaces", {}, sub {
   $::N->deleteProject($proj);
 };
 
+
+#-------------------------------------------------------------------------------
+#  Issue 88: heading and trailing spaces
+#-------------------------------------------------------------------------------
+ntest "issue 88 slash in resource", {}, sub {
+  my $res="res_SA/issue88";
+  my $xpath=$::N->createResource($res);
+  assertOK($xpath, "Failed to create resource $res");
+
+  $xpath = $::N->runProcedure("EC-Admin", {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pattern", value=>"issue88"},
+      {actualParameterName=>"caseSensitive", value=>"i"},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"false"},
+      {actualParameterName=>"exportGroups", value=>"false"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportResources", value=>"true"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"false"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check for resource file file with slash replaced by _
+    if (! -f "/tmp/BACKUP/Resources/res_SA_issue88.xml") {
+      fail("res_SA_issue88.xml resource is missing");
+    }
+  }
+  # clean
+  rmtree("/tmp/BACKUP");
+  $::N->deleteResource($res);
+};
+
+
 1;
