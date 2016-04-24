@@ -1,4 +1,7 @@
 2016-04-24 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.24.1.455: Fix #88 slashes in resources and pools
+
+2016-04-24 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.24.0.454: Fix #88 slashes in resources and pools
 
 2016-03-24 Laurent Rochette <lrochette@electric-cloud.com>

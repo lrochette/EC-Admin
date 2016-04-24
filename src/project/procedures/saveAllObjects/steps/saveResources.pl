@@ -32,16 +32,16 @@ foreach my $node ($xPath->findnodes('//resource')) {
   my $resName=$node->{'resourceName'};
 
   # skip resources that don't fit the pattern
-  next if ($resName !~ /$pattern/$[caseSensitive] );
+  next if ($resName !~ /$pattern/$[caseSensitive] );  # / for color mode
 
   printf("Saving Resource: %s\n", $resName);
   my $fileResourceName=safeFilename($resName);
 
   my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Resources/$fileResourceName".".xml",
-  					{ 'path'=> "/resources[$resName]",
-                                          'relocatable' => 1,
-                                          'withAcls'    => 1});
+  					{ 'path' => "/resources[$resName]",
+              'relocatable' => 1,
+              'withAcls'    => 1});
   if (! $success) {
     printf("  Error exporting %s", $resName);
     printf("  %s: %s\n", $errCode, $errMsg);
@@ -58,6 +58,4 @@ exit($errorCount);
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
-
 

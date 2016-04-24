@@ -32,7 +32,7 @@ foreach my $node ($xPath->findnodes('//group')) {
   my $groupName=$node->{'groupName'};
 
   # skip groups that don't fit the pattern
-  next if ($groupName !~ /$pattern/$[caseSensitive] );
+  next if ($groupName !~ /$pattern/$[caseSensitive] );  # / for color mode
 
   printf("Saving group: %s\n", $groupName);
   my $fileGroupName=safeFilename($groupName);
@@ -40,8 +40,8 @@ foreach my $node ($xPath->findnodes('//group')) {
   my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Groups/$fileGroupName".".xml",
   					{ 'path'        => "/groups[$groupName]",
-                      'relocatable' => 1,
-                      'withAcls'    => 1});
+              'relocatable' => 1,
+              'withAcls'    => 1});
   if (! $success) {
     printf("  Error exporting %s", $groupName);
     printf("  %s: %s\n", $errCode, $errMsg);
@@ -57,6 +57,4 @@ exit($errorCount);
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
-
 

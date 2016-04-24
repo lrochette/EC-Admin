@@ -30,16 +30,16 @@ foreach my $node ($xPath->findnodes('//workspace')) {
   my $wksName=$node->{'workspaceName'};
 
   # skip workspaces that don't fit the pattern
-  next if ($wksName !~ /$pattern/$[caseSensitive] );
+  next if ($wksName !~ /$pattern/$[caseSensitive] );  # / for color mode
 
   printf("Saving Workspace: %s\n", $wksName);
   my $fileWorkspaceName=safeFilename($wksName);
 
   my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Workspaces/$fileWorkspaceName".".xml",
-  					{ 'path'=> "/workspaces/".$wksName,
-                                          'relocatable' => 1,
-                                          'withAcls'    => 1});
+  					{ 'path'        => "/workspaces[$wksName]",
+              'relocatable' => 1,
+              'withAcls'    => 1});
   if (! $success) {
     printf("  Error exporting %s", $wksName);
     printf("  %s: %s\n", $errCode, $errMsg);
@@ -55,6 +55,4 @@ exit($errorCount);
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
-
 

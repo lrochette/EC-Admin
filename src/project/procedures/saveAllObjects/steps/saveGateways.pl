@@ -30,14 +30,14 @@ foreach my $node ($xPath->findnodes('//gateway')) {
   my $gateName=$node->{'gatewayName'};
 
   # skip gateways that don't fit the pattern
-  next if ($gateName !~ /$pattern/$[caseSensitive] );
+  next if ($gateName !~ /$pattern/$[caseSensitive] );   # / for color mode
 
   printf("Saving Gateway: %s\n", $gateName);
   my $fileGatewayName=safeFilename($gateName);
 
   my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Gateways/$fileGatewayName".".xml",
-  { 'path'=> "/gateways/".$gateName,
+  { 'path'=> "/gateways[$gateName]",
                                           'relocatable' => 1,
                                           'withAcls'    => 1});
   if (! $success) {
@@ -55,6 +55,4 @@ exit($errorCount);
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
-
 

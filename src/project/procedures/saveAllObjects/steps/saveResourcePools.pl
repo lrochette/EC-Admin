@@ -32,7 +32,7 @@ foreach my $node ($xPath->findnodes('//resourcePool')) {
   my $poolName=$node->{'resourcePoolName'};
 
   # skip pools that don't fit the pattern
-  next if ($poolName !~ /$pattern/$[caseSensitive] );
+  next if ($poolName !~ /$pattern/$[caseSensitive] ); # / for color mode
 
   printf("Saving Resource Pool: %s\n", $poolName);
   my $filePoolName=safeFilename($poolName);
@@ -40,8 +40,8 @@ foreach my $node ($xPath->findnodes('//resourcePool')) {
   my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Pools/$filePoolName".".xml",
   					{ 'path'=> "/resourcePools/[$poolName]",
-                                          'relocatable' => 1,
-                                          'withAcls'    => 1});
+              'relocatable' => 1,
+              'withAcls'    => 1});
   if (! $success) {
     printf("  Error exporting %s", $poolName);
     printf("  %s: %s\n", $errCode, $errMsg);
@@ -58,6 +58,4 @@ exit($errorCount);
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
-
 

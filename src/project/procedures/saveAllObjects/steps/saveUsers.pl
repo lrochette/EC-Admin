@@ -32,16 +32,16 @@ foreach my $node ($xPath->findnodes('//user')) {
   my $userName=$node->{'userName'};
 
   # skip project that don't fit the pattern
-  next if ($userName !~ /$pattern/$[caseSensitive] );
+  next if ($userName !~ /$pattern/$[caseSensitive] ); # / for color mode
 
   printf("Saving User: %s\n", $userName);
   my $fileUserName=safeFilename($userName);
 
   my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Users/$fileUserName".".xml",
-  					{ 'path'=> "/users/".$userName,
-                                          'relocatable' => 1,
-                                          'withAcls'    => 1});
+  					{ 'path'        => "/users[$userName]",
+              'relocatable' => 1,
+              'withAcls'    => 1});
   if (! $success) {
     printf("  Error exporting %s", $userName);
     printf("  %s: %s\n", $errCode, $errMsg);
@@ -57,6 +57,4 @@ exit($errorCount);
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
-
 

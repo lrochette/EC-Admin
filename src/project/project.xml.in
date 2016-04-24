@@ -3763,7 +3763,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>454</value>
+        <value>455</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -3891,6 +3891,8 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+-version 2.24.1
+  support slashes in saveAllObjects in more places
 - version 2.24.0
    + save Deploy objects in all projects (require EF 6.2)
 - version 2.23.11
@@ -4289,7 +4291,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.24.0</value>
+        <value>2.24.1</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
@@ -9949,6 +9951,7 @@ $ec-&gt;setProperty("/projects/$[Project]/ec_visibility", "pickListOnly");
         <stepName>createConfigurationCode</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
         <condition>$[/javascript (typeof(projects['$[Project]'].configureCredentials) != "undefined") ;]</condition>
         <description/>
         <errorHandling>failProcedure</errorHandling>
@@ -10027,6 +10030,7 @@ $ec-&gt;setProperty("/projects/$[Project]/ec_visibility", "pickListOnly");
         <stepName>copyProjectToResource</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
         <condition/>
         <description/>
         <errorHandling>abortJob</errorHandling>
@@ -10079,6 +10083,7 @@ $ec-&gt;setProperty("/projects/$[Project]/ec_visibility", "pickListOnly");
         <stepName>deleteExportedProject</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
         <condition>$[/javascript !$[disableCleanup] ]</condition>
         <description/>
         <errorHandling>failProcedure</errorHandling>

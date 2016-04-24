@@ -30,16 +30,16 @@ foreach my $node ($xPath->findnodes('//zone')) {
   my $zoneName=$node->{'zoneName'};
 
   # skip zones that don't fit the pattern
-  next if ($zoneName !~ /$pattern/$[caseSensitive] );
+  next if ($zoneName !~ /$pattern/$[caseSensitive] ); # / for color mode
 
   printf("Saving Zone: %s\n", $zoneName);
   my $fileZoneName=safeFilename($zoneName);
 
   my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Zones/$fileZoneName".".xml",
-  { 'path'=> "/zones/".$zoneName,
-                                          'relocatable' => 1,
-                                          'withAcls'    => 1});
+  { 'path'=> "/zones[$zoneName]",
+    'relocatable' => 1,
+    'withAcls'    => 1});
   if (! $success) {
     printf("  Error exporting %s", $zoneName);
     printf("  %s: %s\n", $errCode, $errMsg);
@@ -55,6 +55,4 @@ exit($errorCount);
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
-
 
