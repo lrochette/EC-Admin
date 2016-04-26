@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.24.1.455</version>
+  <version>2.24.2.457</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
-2016-04-24 lrochette Fix #88 slashes in resources and pools</description>
+2016-04-25 lrochette Fix #89 support lesser and greater in saveAllObjects</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>

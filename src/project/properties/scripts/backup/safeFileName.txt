@@ -3,7 +3,7 @@
 #
 sub safeFilename {
   my $safe=@_[0];
-  $safe =~ s#[\*\.\"/\[\]\\:;,=\|\?]#_#g;
+  $safe =~ s#[\*\.\"/\[\]\\:;,=\|\?<>]#_#g;
   $safe =~ s/^\s+//;     # remove heading spaces
   $safe =~ s/\s+$//;      # remove trailing spaces
   return $safe;
