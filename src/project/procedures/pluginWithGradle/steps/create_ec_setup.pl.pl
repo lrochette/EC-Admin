@@ -1,3 +1,8 @@
+#############################################################################
+#
+# Copyright 2013-2016 Electric-Cloud Inc.
+#
+#############################################################################
 $[/myProject/scripts/perlHeader]
 
 #############################################################################
@@ -83,12 +88,12 @@ my $pickerList="";
 my @procList=$ec->getProcedures($project)->findnodes("//procedure");
 foreach $xpath(@procList) {
    my $procName=$xpath->findvalue("//procedureName");
-   
+
    #
    # Skip this procedure if property "exposeToPlugin" is not set to 1
    #
    next if (getP("/projects/$project/procedures/$procName/exposeToPlugin") != 1);
-   
+
    #
    #
    # If property "descrirptionForPlugin" exists, use it
@@ -111,17 +116,17 @@ foreach $xpath(@procList) {
 
 #escape double quote in the description
   $description =~ s/"/\\"/g;
-  
-   $ECsetup .= "my %" . "$procCleanName = ( 
-  label       => \"$pName - $procName\", 
-  procedure   => \"$procName\", 
-  description => \"$description\", 
-  category    => \"$pCategory\" 
+
+   $ECsetup .= "my %" . "$procCleanName = (
+  label       => \"$pName - $procName\",
+  procedure   => \"$procName\",
+  description => \"$description\",
+  category    => \"$pCategory\"
 );
 
 " ;
 
-  $pickerList .= "\\%". $procCleanName . ", "; 
+  $pickerList .= "\\%". $procCleanName . ", ";
 } # end foreach loop
 
 
@@ -135,11 +140,10 @@ $ECsetup .= "\@::createStepPickerSteps = (" . $pickerList . ");\n";
 print "Code generated\n";
 print $ECsetup;
 
-my $ec_setupFile = "project/ec_setup.pl";
+my $ec_setupFile = "src/main/resources/project/ec_setup.pl";
 open (SETUP, ">$ec_setupFile") or die "$ec_setupFile:  $!\n";
 print SETUP $ECsetup;
 close SETUP;
 
 $[/myProject/scripts/perlLib]
-
 

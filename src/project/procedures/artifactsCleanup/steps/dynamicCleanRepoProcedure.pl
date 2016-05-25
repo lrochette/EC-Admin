@@ -22,7 +22,7 @@ foreach my $node ($nodeset->get_nodelist) {
   my $repoName=$node->findvalue('repositoryName');
   my $repoServerName = $node->findvalue('url');
   my $repoDisabled = $node->findvalue('repositoryDisabled');
-  
+
   printf("AR: %s\n", $repoName);
   #
   # Skip disable repositories
@@ -30,10 +30,10 @@ foreach my $node ($nodeset->get_nodelist) {
     printf ("  Repository disabled: Skipping!\n");
     next;
   }
-  $repoServerName =~ s#https?://([\-\w]+)(:\d+)?#$1#;
+  $repoServerName =~ s#https?://([\-\w\.]+)(:\d+)?#$1#;
 
   # checking that the resource exist and is enabled
-  # 
+  #
   ($success, $xPath) = InvokeCommander("SuppressLog IgnoreError", "getResource", $repoServerName);
   if (! $success) {
     printf("  Associated resource '%s' does not exist. Skipping!\n", $repoServerName);
@@ -44,42 +44,19 @@ foreach my $node ($nodeset->get_nodelist) {
     printf("  Associated resource '%s' disabled. Skipping!\n", $repoServerName);
     next;
   }
-    
+
   my $agentAlive=$xPath->findvalue('//resource/agentState/alive');
   if ($agentAlive eq "0") {
     printf("  Associated resource '%s' is not alive. Skipping!\n", $repoServerName);
     next;
   }
-  
+
   my $stepName = "clean Step For ".$repoName;
-  $ec->createJobStep({'jobStepName' => $stepName, 
-                      'subprocedure' => 'cleanupRepository', 
+  $ec->createJobStep({'jobStepName' => $stepName,
+                      'subprocedure' => 'cleanupRepository',
                       'actualParameter' => [{'actualParameterName' => 'executeDeletion', 'value'=>$executeDeletion},
                                          {'actualParameterName' => 'resource', 'value'=>$repoServerName},
                                         ]
                   });
-}                      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 

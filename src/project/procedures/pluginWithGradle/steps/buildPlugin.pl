@@ -4,33 +4,11 @@ use File::Copy qw(move);
 
 my $pluginName="$[/myJob/pluginName]";
 my $Version="$[/myJob/Version]";
+my $gradle="./gradlew";
+$gradle= "gradlew.bat" if ($osIsWindows);
 
-# Using Commander provided Java
-$ENV{'JAVA_HOME'} = $ENV{'COMMANDER_HOME'} . "/jre";
-
-my @args=("\"$[SDKpath]/tools/ant/bin/ant\" build");
-system(@args) == 0 or die("system @args failed: $?");
+system("gradle wrapper");
+system($gradle) == 0 or die("system $gradle failed: $?");
 
 $ec->setProperty("/myJob/report-urls/$pluginName-$Version.jar", "file:/$[/myWorkspace/agentUnixPath]/$[/myJob/directoryName]/$pluginName-$Version.jar");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

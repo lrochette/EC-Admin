@@ -68,19 +68,11 @@
     </formElement> 
 
     <formElement> 
-        <label>SDK Resource</label> 
+        <label>Resource</label> 
         <property>SDKResource</property> 
-        <documentation>A resource where the SDK is installed</documentation> 
+        <documentation>A resource where to build the plugin</documentation> 
         <type>entry</type>
     </formElement> 
-
-    <formElement> 
-        <label>SDK Location</label> 
-        <property>SDKpath</property> 
-        <documentation>Location of the Commander SDK.</documentation> 
-        <type>entry</type>
-         <required>1</required>
-   </formElement> 
 
     <formElement> 
         <label>Fix self references</label>    
