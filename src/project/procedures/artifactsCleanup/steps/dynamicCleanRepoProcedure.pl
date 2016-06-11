@@ -30,6 +30,9 @@ foreach my $node ($nodeset->get_nodelist) {
     printf ("  Repository disabled: Skipping!\n");
     next;
   }
+
+  # Need to access . for FQDN
+  # Issue #92
   $repoServerName =~ s#https?://([\-\w\.]+)(:\d+)?#$1#;
 
   # checking that the resource exist and is enabled

@@ -2437,6 +2437,13 @@ but
             <expandable>1</expandable>
             <value>PLACEHOLDER</value>
           </property>
+          <property>
+            <propertyName>trim</propertyName>
+            <description>a set of function to remove heading and ending spaces
+From perlmaven.com</description>
+            <expandable>1</expandable>
+            <value>PLACEHOLDER</value>
+          </property>
         </propertySheet>
       </property>
       <property>
@@ -3315,7 +3322,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>458</value>
+        <value>459</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -3443,10 +3450,13 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+-version 2.24.3
+  Fix ArtifactRepo cleanup #92 and #93
 -version 2.24.2
   support &lt; and &gt; in saveAllObjects
 -version 2.24.1
   support slashes in saveAllObjects in more places
+
 - version 2.24.0
    + save Deploy objects in all projects (require EF 6.2)
 - version 2.23.11
@@ -3471,6 +3481,7 @@ History:
    + Issue #70: find jobId in top-level project properties
 - version 2.23.1
    + Issue #69: find jobStepId as well
+
 - version 2.23.0
    + Issue #63: add a filtering pattern to saveAllObjects
    + Added backup mechanism for pipeline export (6.1+)
@@ -3845,7 +3856,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.24.2</value>
+        <value>2.24.3</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
@@ -5190,6 +5201,7 @@ Changelog:
         <stepName>copyBannerFile</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
         <condition>$[/javascript ($[/myJob/webVersion] &lt; 5.4) ;]</condition>
         <description>Copy the .gif file for version &lt; 5.4</description>
         <errorHandling>failProcedure</errorHandling>
@@ -5265,6 +5277,7 @@ Changelog:
         <stepName>copyLogoFile</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
         <condition/>
         <description/>
         <errorHandling>failProcedure</errorHandling>
@@ -8713,6 +8726,7 @@ Best: mssql or oracle</description>
         <stepName>deploymentSize</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
         <condition/>
         <description/>
         <errorHandling>failProcedure</errorHandling>
@@ -8784,6 +8798,7 @@ Best: mssql or oracle</description>
         <stepName>localUsage</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
         <condition/>
         <description/>
         <errorHandling>failProcedure</errorHandling>
@@ -10598,6 +10613,7 @@ $ec-&gt;setProperty("/projects/$[Project]/ec_visibility", "pickListOnly");
         <stepName>createConfigurationCode</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
         <condition>$[/javascript (typeof(projects['$[Project]'].configureCredentials) != "undefined") ;]</condition>
         <description/>
         <errorHandling>failProcedure</errorHandling>
@@ -10676,6 +10692,7 @@ $ec-&gt;setProperty("/projects/$[Project]/ec_visibility", "pickListOnly");
         <stepName>copyProjectToResource</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
         <condition/>
         <description/>
         <errorHandling>abortJob</errorHandling>
@@ -10728,6 +10745,7 @@ $ec-&gt;setProperty("/projects/$[Project]/ec_visibility", "pickListOnly");
         <stepName>deleteExportedProject</stepName>
         <alwaysRun>0</alwaysRun>
         <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
         <condition>$[/javascript !$[disableCleanup] ]</condition>
         <description/>
         <errorHandling>failProcedure</errorHandling>

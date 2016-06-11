@@ -12,6 +12,7 @@
 	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="perlHeaderJSON"]/value', "properties/scripts/perlHeaderJSON.txt"],
 	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="perlLib"]/value', "properties/scripts/perlLib.txt"],
 	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="perlLibJSON"]/value', "properties/scripts/perlLibJSON.txt"],
+	['//project/propertySheet/property[propertyName="scripts"]/propertySheet/property[propertyName="trim"]/value', "properties/scripts/trim.txt"],
 	['//project/propertySheet/property[propertyName="ec_setup"]/value', 'ec_setup.pl'],
 	['//project/procedure[procedureName="acquireSemaphore"]/step[stepName="acquireSemaphore"]/command', 'procedures/acquireSemaphore/steps/acquireSemaphore.pl'],
 	['//project/procedure[procedureName="agentMemoryConfiguration"]/step[stepName="modifyWrapper"]/command', 'procedures/agentMemoryConfiguration/steps/modifyWrapper.pl'],

@@ -1,6 +1,6 @@
 #############################################################################
 #
-# Copyright 2014-2016 Electric-Cloud Inc.
+# Copyright 2014 Electric-Cloud Inc.
 #
 #############################################################################
 use strict;
@@ -15,17 +15,15 @@ my $DEBUG=1;
 #
 # Global variables
 #
-# manifest.xml file content
-my $manifest = qq(<?xml version='1.0' standalone='yes'?>);
-$manifest .= qq(<fileset>\n);
-my $PSManifestPath='//project/propertySheet/property[propertyName=&quot;scripts&quot;]/propertySheet';
+my $manifest = qq(\@files = \(\n); # manifest.pl file content
+my $PSManifestPath='//project/propertySheet/property[propertyName="scripts"]/propertySheet';
 
 sub fileFriendly($) {
 # Replace file-name reserved characters with % equivalent
 
 # Windows reserved characters:  "   <   >   \   ^   |   :   /   *   ?
 # Linux reserved characters: &
-# Commander allows all of these, but double quote will cause parsing of manifest.xml to fail
+# Commander allows all of these, but double quote will cause parsing of manifest.pl to fail
 
 #
 #   "   <   >   \   ^   |   :   /   *   ?
@@ -67,11 +65,7 @@ sub processPS {
     		# we have a normal property
 	    	my $propValue=$prop->findvalue("value");
 
-				$manifest .=qq(  <file>\n);
-				$manifest .=qq(    <path>$directory/$propFileName.txt</path>\n);
-				$manifest .=qq(    <xpath>$propPath/property[propertyName=&quot;$propName&quot;]/value'</xpath>\n);
-				$manifest .=qq(  </file>\n);
-
+	    	$manifest .= qq(	['$propPath/property[propertyName="$propName"]/value', "$directory/$propFileName.txt"],\n);
 			my $propFile = "$directory/$propFileName.txt";
 			open (PROP, ">$propFile") or die "$propFile:  $!\n";
 			print PROP $propValue, "\n";
@@ -85,11 +79,12 @@ sub processPS {
 }
 
 # Remove old procedures directory if it exists
-rmtree("procedures");
-mkdir "procedures";
+rmtree("project/procedures");
+mkdir "project";
+mkdir "project/procedures";
 
 # Remove old properties directory if it exists
-rmtree("properties");
+rmtree("project/properties");
 
 # Load export file
 my $filename = "project.xml";
@@ -112,7 +107,7 @@ $ec_setup->appendTextChild('propertyName',"ec_setup");
 $ec_setup->appendTextChild('value',"PLACEHOLDER");
 $ec_setup->appendTextChild('expandable',"0");
 $projectPropertySheet->[0]->appendChild($ec_setup);
-my $ecSetupFile = "ec_setup.pl";
+my $ecSetupFile = "project/ec_setup.pl";
 my $setupContent = $projectXml->find('/exportedData/project/propertySheet/property[propertyName="ec_setup"]/value')->string_value;
 
 open (SETUP, ">$ecSetupFile") or die "$ecSetupFile:  $!\n";
@@ -123,8 +118,9 @@ close SETUP;
 my $PS=($projectXml->findnodes('/exportedData/project/propertySheet/property[propertyName="scripts"]'))[0];
 if ($PS) {
 	printf("Process scripts propertySheet\n");
-	mkdir "properties";
-	mkdir "properties/scripts";
+	mkdir "project/properties";
+	mkdir "project/properties/scripts";
+	chdir("project");
 	processPS(($PS->findnodes("propertySheet"))[0], "properties/scripts",
 						  "//project/propertySheet/property[propertyName=\"scripts\"]/propertySheet", 2);
 	chdir("..");
@@ -145,10 +141,7 @@ my $projectNameNode=($projectXml->findnodes('/exportedData/project/projectName')
 $projectNameNode->removeChildNodes;  # Remove the current value
 $projectNameNode->appendText('@'.'PLUGIN_KEY'.'@'); # Insert new value
 
-$manifest .= qq(  <file>\n);
-$manifest .= qq(    <path>ec_setup.pl</path>\n);
-$manifest .= qq(    <xpath>//project/propertySheet/property[propertyName=&quot;ec_setup&quot;]/value</xpath>\n);
-$manifest .= qq(  </file>\n);
+$manifest .= qq(	['//project/propertySheet/property[propertyName="ec_setup"]/value', 'ec_setup.pl'],\n);
 
 foreach my $procedure ($projectXml->findnodes('/exportedData/project/procedure')) {
 
@@ -158,7 +151,7 @@ foreach my $procedure ($projectXml->findnodes('/exportedData/project/procedure')
 	# my $procedureFile = $procedureName;
 	# $procedureFile =~ s/\:/_colon_/g;  # Deal with step name characters not allowed in file names
 	my $procedureFile = fileFriendly($procedureName);
-	mkdir "procedures/$procedureFile";
+	mkdir "project/procedures/$procedureFile";
 
 	# deal with ec_parameterForm property
 	my $form=($procedure->findnodes('propertySheet/property[propertyName="ec_parameterForm"]/value'))[0];
@@ -167,17 +160,14 @@ foreach my $procedure ($projectXml->findnodes('/exportedData/project/procedure')
 		my $formValue=$form->string_value;
 		$form->removeChildNodes;  			# Remove the current value
 		$form->appendText('PLACEHOLDER'); 	# Insert new value
-		$manifest .= qq(  <file>\n);
-		$manifest .= qq(    <path>ec_setup.pl</path>\n);
-		$manifest .= qq(    <xpath>//project/procedure[procedureName=&quot;$procedureName&quot;]/propertySheet/property[propertyName=&quot;ec_parameterForm&quot;]/value'</xpath>\n);
-		$manifest .= qq(  </file>\n);
-		my $formFile = "procedures/$procedureFile/form.xml";
+		$manifest .= qq(	['//project/procedure[procedureName="$procedureName"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/$procedureFile/form.xml'],\n);
+		my $formFile = "project/procedures/$procedureFile/form.xml";
 		open (FORM, ">$formFile") or die "$formFile:  $!\n";
 		print FORM $formValue, "\n";
 		close FORM;
 
 	}
-	mkdir "procedures/$procedureFile/steps";
+	mkdir "project/procedures/$procedureFile/steps";
 	#print "Procedure: $procedureName\n";
 	foreach my $step ($procedure->findnodes('step')) {
 		my $stepName = $step->find("stepName")->string_value;
@@ -198,28 +188,42 @@ foreach my $procedure ($projectXml->findnodes('/exportedData/project/procedure')
 		} elsif ($shell =~ /powershell/) {
 			$ext = ".ps1";
 		}
-
+		
 		# my $stepFile = $stepName;
 		# $stepFile =~ s/\:/_colon_/g;  # Deal with step name characters not allowed in file names
 		my $stepFile = fileFriendly($stepName);
 		#print "	Modified Step: $stepName\n";
-		my $commandFile = "procedures/$procedureFile/steps/$stepFile${ext}";
+		my $commandFile = "project/procedures/$procedureFile/steps/$stepFile${ext}";
 		open (COMMAND, ">$commandFile") or die "$commandFile:  $!\n";
 		print COMMAND $command, "\n";
 		close COMMAND;
-		$manifest .= qq(  <file>\n);
-		$manifest .= qq(    <path>procedures/$procedureFile/steps/$stepFile${ext}</path>\n);
-		$manifest .= qq(    <xpath>//project/procedure[procedureName=&quot;$procedureName&quot;]/step[stepName=&quot;$stepName&quot;]/command'</xpath>\n);
-		$manifest .= qq(  </file>\n);
+		$manifest .= qq(	['//project/procedure[procedureName="$procedureName"]/step[stepName="$stepName"]/command', 'procedures/$procedureFile/steps/$stepFile${ext}'],\n);
 	} # step
 } # procedure
 
-$manifest .= qq(</fileset>);
-open (MANIFEST, ">manifest.xml") or die "$!\n";
+$manifest .= qq(\););
+open (MANIFEST, ">project/manifest.pl") or die "$!\n";
 print MANIFEST $manifest, "\n";
 close MANIFEST;
 
-open (TEMPLATE, ">project.xml") or die "$!\n";
+open (TEMPLATE, ">project/project.xml.in") or die "$!\n";
 print TEMPLATE $projectXml->toString(1);
 close TEMPLATE;
+
+# delete the exported XML file
+unlink("project.xml")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

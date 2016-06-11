@@ -1,6 +1,6 @@
 #############################################################################
 #
-# Copyright 2014-2016 Electric-Cloud Inc.
+# Copyright 2014-2015 Electric-Cloud Inc.
 #
 #############################################################################
 
@@ -33,10 +33,10 @@ if ($description eq "") {
   $description=getP("/projects/$project/description");
 }
 
-my $file="$[directory]/src/main/resources/META-INF/plugin.xml";
+my $file="$[directory]/META-INF/plugin.xml";
 unless (open FILE, '>'.$file) {
         printf("File: %s\n", $file);
-	die "\nUnable to create $[directory]/src/main/resources/META-INF/plugin.xml\n";
+	die "\nUnable to create $[directory]/META-INF/plugin.xml\n";
 }
 
 printf(FILE '<?xml version="1.0" encoding="UTF-8"?>');
@@ -102,4 +102,5 @@ close FILE;
 
 
 $[/myProject/scripts/perlLibJSON]
+
 
