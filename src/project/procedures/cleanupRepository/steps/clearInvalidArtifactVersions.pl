@@ -35,6 +35,12 @@ close PROPS;
 $propsContents =~ m/REPOSITORY_BACKING_STORE=([^\n]*)/;
 my $backingStore = $1;
 
+# Remove additional CR on Windows
+# Issue #93
+if ($osIsWindows) {
+  $backingStore =~ s/\r//g;
+}
+
 if (!defined($backingStore) || $backingStore eq "") {
     # Invalid backing store.
     die "ERROR: Cannot find backing store in repository configuration file \"$propsFile\".\n";
@@ -63,24 +69,4 @@ if ($executeDeletion eq "true") {
 } else {
     print "Would call cleanupRepository on \"$backingStore\".\n";
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
