@@ -28,20 +28,8 @@ opendir(D,".") || return 0;
 foreach my $file (grep(/\.xml$/,readdir(D))) {
   $ec->createJobStep({
     jobStepName => $file,
-    command =>"ectool import --file $directory/$file $forceOption"
+    command =>"ectool import --file \"$directory/$file\" $forceOption"
   })
 }
 closedir(D);
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -6,5 +6,7 @@ sub safeFilename {
   $safe =~ s#[\*\.\"/\[\]\\:;,=\|\?<>]#_#g;
   $safe =~ s/^\s+//;     # remove heading spaces
   $safe =~ s/\s+$//;      # remove trailing spaces
+  $safe =~ s/\x{2013}/-/g; # repalce long MS dash by normal ones
+
   return $safe;
 }
