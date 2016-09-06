@@ -16,12 +16,12 @@
               <property>
                 <propertyName>image</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/2208308/images/custom1b268984153f51a43351.png</value>
+                <value>/commander/jobSteps/2241842/images/custom758368671553eb1ac991.png</value>
               </property>
               <property>
                 <propertyName>link</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/2208308/Performance Report.html</value>
+                <value>/commander/jobSteps/2241842/Performance Report.html</value>
               </property>
             </propertySheet>
           </property>
@@ -230,6 +230,56 @@
                     <propertyName>reportDate</propertyName>
                     <expandable>1</expandable>
                     <value>2016-04-10 02:00:36</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>274872</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2241842</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2241842</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2016-06-11 02:00:29</value>
                   </property>
                   <property>
                     <propertyName>reportType</propertyName>
@@ -2448,7 +2498,6 @@ From perlmaven.com</description>
       </property>
       <property>
         <propertyName>ec_visibility</propertyName>
-        <description/>
         <expandable>1</expandable>
         <value>all</value>
       </property>
@@ -3323,7 +3372,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>460</value>
+        <value>461</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -3451,6 +3500,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+-version 2.24.4
+  Replace long MS dash by normal one (-)
+  issue #97: Add quotes around import path in restoreObjects
 -version 2.24.3
   Fix ArtifactRepo cleanup #92 and #93
 -version 2.24.2
@@ -3857,7 +3909,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.24.3</value>
+        <value>2.24.4</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
@@ -10491,6 +10543,31 @@ Changelog:
                   </propertySheet>
                 </property>
                 <property>
+                  <propertyName>preserveId</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>checkedValue</propertyName>
+                      <expandable>1</expandable>
+                      <value>true</value>
+                    </property>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                    <property>
+                      <propertyName>initiallyChecked</propertyName>
+                      <expandable>1</expandable>
+                      <value>0</value>
+                    </property>
+                    <property>
+                      <propertyName>uncheckedValue</propertyName>
+                      <expandable>1</expandable>
+                      <value>false</value>
+                    </property>
+                  </propertySheet>
+                </property>
+                <property>
                   <propertyName>resource</propertyName>
                   <propertySheet>
                     <property>
@@ -10517,6 +10594,14 @@ Changelog:
         <formalParameterName>force</formalParameterName>
         <defaultValue>false</defaultValue>
         <description/>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
+        <type>checkbox</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>preserveId</formalParameterName>
+        <defaultValue>false</defaultValue>
+        <description>restore the object with the original owner</description>
         <expansionDeferred>0</expansionDeferred>
         <required>0</required>
         <type>checkbox</type>
