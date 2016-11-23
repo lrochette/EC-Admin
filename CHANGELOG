@@ -1,3 +1,6 @@
+2016-11-22 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.24.5.462: Fix issue #102: replace black diamond question mark by space in safeFileName function
+
 2016-09-01 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.24.4.461: fix #97: Add quotes around import path in restoreObjects
 
