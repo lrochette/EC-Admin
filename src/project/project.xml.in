@@ -16,12 +16,12 @@
               <property>
                 <propertyName>image</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/2241842/images/custom758368671553eb1ac991.png</value>
+                <value>/commander/jobSteps/2252069/images/custom16fac25c1588b7bd5461.png</value>
               </property>
               <property>
                 <propertyName>link</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/2241842/Performance Report.html</value>
+                <value>/commander/jobSteps/2252069/Performance Report.html</value>
               </property>
             </propertySheet>
           </property>
@@ -30,121 +30,6 @@
       <property>
         <propertyName>ec_reportData</propertyName>
         <propertySheet>
-          <property>
-            <propertyName>269425</propertyName>
-            <propertySheet>
-              <property>
-                <propertyName>Performance Report_L2</propertyName>
-                <propertySheet>
-                  <property>
-                    <propertyName>jobStepId</propertyName>
-                    <expandable>1</expandable>
-                    <value>2195445</value>
-                  </property>
-                  <property>
-                    <propertyName>reportType</propertyName>
-                    <expandable>1</expandable>
-                    <value>Performance Report</value>
-                  </property>
-                  <property>
-                    <propertyName>reportUrl</propertyName>
-                    <expandable>1</expandable>
-                    <value>Performance Report.html</value>
-                  </property>
-                </propertySheet>
-              </property>
-              <property>
-                <propertyName>Performance Report_L3</propertyName>
-                <propertySheet>
-                  <property>
-                    <propertyName>jobStepId</propertyName>
-                    <expandable>1</expandable>
-                    <value>2195445</value>
-                  </property>
-                  <property>
-                    <propertyName>reportDate</propertyName>
-                    <expandable>1</expandable>
-                    <value>2016-03-29 02:02:14</value>
-                  </property>
-                  <property>
-                    <propertyName>reportType</propertyName>
-                    <expandable>1</expandable>
-                    <value>Performance Report</value>
-                  </property>
-                  <property>
-                    <propertyName>reportUrl</propertyName>
-                    <expandable>1</expandable>
-                    <value>Performance Report.html</value>
-                  </property>
-                </propertySheet>
-              </property>
-            </propertySheet>
-          </property>
-          <property>
-            <propertyName>270544</propertyName>
-            <propertySheet>
-              <property>
-                <propertyName>Performance Report_L2</propertyName>
-                <propertySheet>
-                  <property>
-                    <propertyName>jobStepId</propertyName>
-                    <expandable>1</expandable>
-                    <value>2203939</value>
-                  </property>
-                  <property>
-                    <propertyName>reportType</propertyName>
-                    <expandable>1</expandable>
-                    <value>Performance Report</value>
-                  </property>
-                  <property>
-                    <propertyName>reportUrl</propertyName>
-                    <expandable>1</expandable>
-                    <value>Performance Report.html</value>
-                  </property>
-                </propertySheet>
-              </property>
-              <property>
-                <propertyName>Performance Report_L3</propertyName>
-                <propertySheet>
-                  <property>
-                    <propertyName>jobStepId</propertyName>
-                    <expandable>1</expandable>
-                    <value>2203939</value>
-                  </property>
-                  <property>
-                    <propertyName>reportDate</propertyName>
-                    <expandable>1</expandable>
-                    <value>2016-04-05 02:01:23</value>
-                  </property>
-                  <property>
-                    <propertyName>reportType</propertyName>
-                    <expandable>1</expandable>
-                    <value>Performance Report</value>
-                  </property>
-                  <property>
-                    <propertyName>reportUrl</propertyName>
-                    <expandable>1</expandable>
-                    <value>Performance Report.html</value>
-                  </property>
-                </propertySheet>
-              </property>
-            </propertySheet>
-          </property>
-          <property>
-            <propertyName>270802</propertyName>
-            <propertySheet>
-              <property>
-                <propertyName>Performance Report_L3</propertyName>
-                <propertySheet>
-                  <property>
-                    <propertyName>reportUrl</propertyName>
-                    <expandable>1</expandable>
-                    <value>Performance Report.html</value>
-                  </property>
-                </propertySheet>
-              </property>
-            </propertySheet>
-          </property>
           <property>
             <propertyName>271250</propertyName>
             <propertySheet>
@@ -280,6 +165,56 @@
                     <propertyName>reportDate</propertyName>
                     <expandable>1</expandable>
                     <value>2016-06-11 02:00:29</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>276233</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2252069</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2252069</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2016-11-22 02:00:37</value>
                   </property>
                   <property>
                     <propertyName>reportType</propertyName>
@@ -3372,7 +3307,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>461</value>
+        <value>462</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -3500,6 +3435,8 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+-version 2.24.5
+  issue #102: Replace black diamond question mark by space
 -version 2.24.4
   Replace long MS dash by normal one (-)
   issue #97: Add quotes around import path in restoreObjects
@@ -3909,7 +3846,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.24.4</value>
+        <value>2.24.5</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
