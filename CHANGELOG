@@ -1,3 +1,9 @@
+2016-12-06 System Administrator <lrochette@electric-cloud.com>
+  * 2.25.0.464: Fix #104: artifactRepositorySynchronization does not support range
+
+2016-12-06 System Administrator <lrochette@electric-cloud.com>
+  * 2.24.5.463: Fix #104: artifactRepositorySynchronization does not support range
+
 2016-11-22 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.24.5.462: Fix issue #102: replace black diamond question mark by space in safeFileName function
 

@@ -25,7 +25,7 @@ $[/plugins[EC-Admin]project/scripts/perlHeader]
 #############################################################################
 my $sourceRepo  = "$[sourceRepository]";
 my $targetRepo  = "$[targetRepository]";
-my @gavPatterns = split(",", "$[artifactVersionPattern]");
+my @gavPatterns = split(";", "$[artifactVersionPattern]");
 my $pageSize    = $[batchSize];
 
 #############################################################################
@@ -432,23 +432,4 @@ $ec->setProperty("summary", "$sync artifact versions synchronized");
 $ec->setProperty("summary", "$error synchronization errors detected") if ($error);
 
 $[/plugins[EC-Admin]project/scripts/perlLib]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

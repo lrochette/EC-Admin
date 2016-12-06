@@ -566,7 +566,8 @@ if ( $promoteAction eq 'promote' ) {
            <td>Pattern of artifact version to sync. Examples:<br/>
              MyGrp:MyKey:* (all artifact versions with group MyGrp and key MyKey),<br/>
              MyGrp:* (all artifact versions with group MyGrp),<br/>
-             * (all artifact versions. This is the default).</td>
+             * (all artifact versions. This is the default).<br/>
+             Multiple patterns can be separated by a semi-column</td>
          </tr>
          <tr>
            <td>Batch Size</td>

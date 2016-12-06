@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.24.5.462</version>
+  <version>2.25.0.464</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
-2016-11-22 lrochette Fix issue #102: replace black diamond question mark by space in safeFileName function</description>
+2016-12-06 admin Fix #104: artifactRepositorySynchronization does not support range</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>
