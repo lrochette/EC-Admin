@@ -230,6 +230,56 @@
               </property>
             </propertySheet>
           </property>
+          <property>
+            <propertyName>276568</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2255333</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2255333</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2016-12-06 14:21:25</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
         </propertySheet>
       </property>
       <property>
@@ -3014,7 +3064,8 @@ if ( $promoteAction eq 'promote' ) {
            &lt;td&gt;Pattern of artifact version to sync. Examples:&lt;br/&gt;
              MyGrp:MyKey:* (all artifact versions with group MyGrp and key MyKey),&lt;br/&gt;
              MyGrp:* (all artifact versions with group MyGrp),&lt;br/&gt;
-             * (all artifact versions. This is the default).&lt;/td&gt;
+             * (all artifact versions. This is the default).&lt;br/&gt;
+             Multiple patterns can be separated by a semi-column&lt;/td&gt;
          &lt;/tr&gt;
          &lt;tr&gt;
            &lt;td&gt;Batch Size&lt;/td&gt;
@@ -3307,7 +3358,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>462</value>
+        <value>463</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
