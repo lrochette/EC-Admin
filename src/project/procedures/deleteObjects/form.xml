@@ -1,85 +1,96 @@
-<editor> 
-   <formElement> 
-        <label>Object Type</label> 
-        <property>objectType</property> 
-        <documentation>The type of objects to delete</documentation> 
-        <type>select</type> 
-        <option> 
-            <name>Jobs</name> 
-            <value>job</value> 
-        </option> 
-        <option> 
-            <name>Workflows</name> 
-            <value>workflow</value> 
-        </option> 
-        <value>job</value> 
+<editor>
+   <formElement>
+        <label>Object Type</label>
+        <property>objectType</property>
+        <documentation>The type of objects to delete</documentation>
+        <type>select</type>
+        <option>
+            <name>Jobs</name>
+            <value>job</value>
+        </option>
+        <option>
+            <name>Workflows</name>
+            <value>workflow</value>
+        </option>
+        <value>job</value>
         <required>1</required>
-    </formElement> 
+    </formElement>
 
-    <formElement> 
-        <label>Delete objects older than</label> 
-        <property>daysLimit</property> 
-        <documentation>Indicate the numbers of days after which jobs should be deleted</documentation> 
-        <type>select</type> 
-        <option> 
-            <name>1 month</name> 
-            <value>30</value> 
-        </option> 
-        <option> 
-            <name>2 months</name> 
-            <value>60</value> 
-        </option> 
-        <option> 
-            <name>3 months</name> 
-            <value>91</value> 
-        </option> 
-        <option> 
-            <name>6 months</name> 
-            <value>182</value> 
-        </option> 
-        <option> 
-            <name>1 year</name> 
-            <value>365</value> 
-        </option> 
-        <value>91</value> 
+    <formElement>
+        <label>Delete objects older than</label>
+        <property>daysLimit</property>
+        <documentation>Indicate the numbers of days after which jobs should be deleted</documentation>
+        <type>select</type>
+        <option>
+            <name>1 month</name>
+            <value>30</value>
+        </option>
+        <option>
+            <name>2 months</name>
+            <value>60</value>
+        </option>
+        <option>
+            <name>3 months</name>
+            <value>91</value>
+        </option>
+        <option>
+            <name>6 months</name>
+            <value>182</value>
+        </option>
+        <option>
+            <name>1 year</name>
+            <value>365</value>
+        </option>
+        <value>91</value>
         <required>1</required>
-    </formElement> 
+    </formElement>
 
-    <formElement> 
-        <label>Maximum number of objects to delete</label> 
-        <property>maxObjects</property> 
-        <documentation>Indicate the maximum numbers of objects to delete</documentation> 
-        <type>select</type> 
-        <option> 
-            <name>200 objects</name> 
-            <value>200</value> 
-        </option> 
-        <option> 
-            <name>500 objects</name> 
-            <value>500</value> 
-        </option> 
-        <option> 
-            <name>1000 objects</name> 
-            <value>1000</value> 
-        </option> 
-        <option> 
-            <name>2000 objects</name> 
-            <value>2000</value> 
-        </option> 
-        <option> 
-            <name>5000 objects</name> 
-            <value>5000</value> 
-        </option> 
-        <value>1000</value> 
+    <formElement>
+        <label>property</label>
+        <property>prop</property>
+        <documentation>Name of a property attached to your objects. If this property is set, your objects won't be deleted.
+        </documentation>
+        <type>entry</type>
+        <value>doNotDelete</value>
+        <required>0</required>
+    </formElement>
+
+    <formElement>
+        <label>Maximum number of objects to delete</label>
+        <property>maxObjects</property>
+        <documentation>Indicate the maximum numbers of objects to delete</documentation>
+        <type>select</type>
+        <option>
+            <name>200 objects</name>
+            <value>200</value>
+        </option>
+        <option>
+            <name>500 objects</name>
+            <value>500</value>
+        </option>
+        <option>
+            <name>1000 objects</name>
+            <value>1000</value>
+        </option>
+        <option>
+            <name>2000 objects</name>
+            <value>2000</value>
+        </option>
+        <option>
+            <name>5000 objects</name>
+            <value>5000</value>
+        </option>
+        <value>1000</value>
         <required>1</required>
-    </formElement> 
+    </formElement>
 
-    <formElement> 
-        <label>Chunk size</label> 
-        <property>chunkSize</property> 
-        <documentation>Chunk size</documentation> 
-        <type>entry</type > 
-        <value>200</value> 
+    <formElement>
+        <label>Chunk size</label>
+        <property>chunkSize</property>
+        <documentation>Chunk size</documentation>
+        <type>entry</type >
+        <value>200</value>
         <required>1</required>
     </formElement>
 </editor>
+

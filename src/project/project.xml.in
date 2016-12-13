@@ -3231,7 +3231,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>465</value>
+        <value>466</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -3359,6 +3359,9 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.26.0
+   + Fix #100: add property to prevent deletion
+
 -version 2.25.1
   + Fix #101: better documentation
 -version 2.25.0
@@ -3775,7 +3778,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.25.1</value>
+        <value>2.26.0</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
@@ -6390,6 +6393,16 @@ Changelog:
                     </property>
                   </propertySheet>
                 </property>
+                <property>
+                  <propertyName>prop</propertyName>
+                  <propertySheet>
+                    <property>
+                      <propertyName>formType</propertyName>
+                      <expandable>1</expandable>
+                      <value>standard</value>
+                    </property>
+                  </propertySheet>
+                </property>
               </propertySheet>
             </property>
           </propertySheet>
@@ -6444,6 +6457,14 @@ Changelog:
         <expansionDeferred>0</expansionDeferred>
         <required>1</required>
         <type>select</type>
+      </formalParameter>
+      <formalParameter>
+        <formalParameterName>prop</formalParameterName>
+        <defaultValue>doNotDelete</defaultValue>
+        <description>Name of a property attached to your objects. If this property is set, your objects won't be deleted.</description>
+        <expansionDeferred>0</expansionDeferred>
+        <required>0</required>
+        <type>entry</type>
       </formalParameter>
       <step>
         <stepName>Delete</stepName>
