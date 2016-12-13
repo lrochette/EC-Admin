@@ -285,124 +285,9 @@ directories. This is for customers with huge job or workflow database.</p>
 
 		<h2>Plugin creation</h2>
 		<h3>createPluginFromProject</h3>
-		<p><b>Note:</b> This procedure requires access to the jar or zip
-			executable in the PATH.</p>
-		<p>The procedure "createPluginFromProject" allows the transformation of a
-			project into a plugin. The parameters are the following:</p>
-		    <table class="grid">
-		        <thead>
-		            <tr>
-		                <th>Parameter</th>
-		                <th>Description</th>
-		            </tr>
-		        </thead>
+    <p><b>Note:</b> This procedure has been obsoleted by "projectAsCode". It is
+      not supported anymore.</p>
 
-		        <tbody>
-					<tr>
-			        	<td class='required'>Project</td>
-						<td>The name of the project to transform into a plugin</td>
-		            </tr>
-					<tr>
-			        	<td>Plugin</td>
-						<td>The name of the plugin. If left empty, it will default to
-					the project name.</td>
-		            </tr>
-					<tr>
-			        	<td>Category</td>
-						<td>The category of the plugin. It helps filter the plugin list in
-					the Plugins page and in the picker list.</td>
-		            </tr>
-					<tr>
-			        	<td  class='required'>Version</td>
-						<td>Version of the plugin to create. A build number is automatically
-							added (after incrementation) to ensure uniq version numbers.</td>
-		            </tr>
-					<tr>
-			        	<td>Description</td>
-						<td>The description of the plugin to display in the main
-						plugin page. If left empty it will default to the
-						description of the project.</td>
-		            </tr>
-					<tr>
-			        	<td>Author</td>
-						<td>Name of he author of the project to transform into a plugin.</td>
-		            </tr>
-					<tr>
-			        	<td>Email</td>
-						<td>The email of the author.</td>
-		            </tr>
-					<tr>
-			        	<td>Comment</td>
-						<td>if this parameter is not empty, it will be added to the CHANGELOG for traceability.</td>
-		            </tr>
-					<tr>
-			        	<td>fixSelfReferences</td>
-						<td>Replace self references to the project in sub-prceodure calls by an empty string to be sure the plugins= created will not call the original project instead of itself.</td>
-		            </tr>
-					<tr>
-			        	<td>createArtifact</td>
-						<td>Save the new created plugin as an artifact version.</td>
-		            </tr>
-					<tr>
-			        	<td>installPlugin</td>
-						<td>A Boolean to install or not the plugin after creation</td>
-		            </tr>
-					<tr>
-			        	<td>promotePlugin</td>
-						<td>A Boolean to promote or not the plugin after installation</td>
-		            </tr>
-					<tr>
-			        	<td>moveJobs</td>
-						<td>A Boolean to move or not jobs from the previous
-							version into the current one upon promotion.</td>
-		            </tr>
-		        </tbody>
-		    </table>
-
-			<img src="../../plugins/@PLUGIN_KEY@/images/help/createPluginFromProject.png"
-				 alt="createPluginFromProject parameters" />
-
-		<p>At the project level, you can define the following properties to
-			alter the behavior of the plugin creation:</p>
-			<dl>
-				<dt><b>ec_visibility:</b></dt>
-				<dd>Choose <b>all</b> to have the plugin shows in the project
-					list (like EC-Admin), or <b>pickListOnly</b> (default) to
-					have your procedures available only through the plugin
-					procedure picker (when you choose plugin as a step).</dd>
-				<dt><b>help:</b></dt>
-				<dd>This property allows you to create a Help page associated
-					with your plugin. The page you are currently reading is
-					created this way so feel free to explore the help property
-					 in the EC-Admin plugin/project for an example.</dd>
-				<dt><b>promoteAction</b></dt>
-				<dd>This property would contain some Perl code to take action
-					when the plugin change state. Look at the ec_setup property
-					in the plugins installed on your system to get a better idea
-					of what you can accomplish.<br/>
-					For example to set a property hwne the plugin is pomoted
-					you could add the the following code to the promoteAction
-					procedure:<br/>
-					<pre><code>
-if ( $promoteAction eq 'promote' ) {
-    $batch->setProperty( "/projects/$pluginName/addedByPromote", "123" );
-}
-					</code></pre>
-				</dd>
-			</dl>
-		<p>In addition each procedure can modify the behavior with the
-			following 2 properties:</p>
-			<dl>
-				<dt><b>exposeToPlugin:</b></dt>
-				<dd>This property if set to 1 will add the procedure to
-					ec_setup to be shown in the procedure picker list when
-					choosing a plugin step.</dd>
-				<dt><b>descriptionForPlugin:</b></dt>
-				<dd>This property will be shown as the description in the
-					picker list mentioned above. If it's empty or non-existent,
-					 the description will be description of the procedure
-					 itself.</dd>
-			</dl>
 
 		<h3>projectAsCode</h3>
 
@@ -413,9 +298,7 @@ if ( $promoteAction eq 'promote' ) {
 		creates a plugin but instead of simply exporting the project, it
 		"explodes" each step in its own file for finer granularity check in
 		in your favorite SCM tool.<br/>You can also add automatically a
-		mechanism to add credential/configuration management to you plugin.<br/>
-		All the properties associated with createPluginFromProject still
-		apply.</p>
+		mechanism to add credential/configuration management to you plugin.</p>
 
 		    <table class="grid">
 		        <thead>
@@ -515,8 +398,33 @@ if ( $promoteAction eq 'promote' ) {
 			<img src="../../plugins/@PLUGIN_KEY@/images/help/projectAsCode.png"
 				 alt="projectAsCode parameters" />
 
-		<p>At the project level, you can define the addtional following properties to alter the behavior of the plugin creation:</p>
-			<dl>
+      <p>At the project level, you can define the following properties to
+       			alter the behavior of the plugin creation:</p>
+ 			<dl>
+ 				<dt><b>ec_visibility:</b></dt>
+ 				<dd>Choose <b>all</b> to have the plugin shows in the project
+ 					list (like EC-Admin), or <b>pickListOnly</b> (default) to
+ 					have your procedures available only through the plugin
+ 					procedure picker (when you choose plugin as a step).</dd>
+ 				<dt><b>help:</b></dt>
+ 				<dd>This property allows you to create a Help page associated
+ 					with your plugin. The page you are currently reading is
+ 					created this way so feel free to explore the help property
+ 					 in the EC-Admin plugin/project for an example.</dd>
+ 				<dt><b>promoteAction</b></dt>
+ 				<dd>This property would contain some Perl code to take action
+ 					when the plugin change state. Look at the ec_setup property
+ 					in the plugins installed on your system to get a better idea
+ 					of what you can accomplish.<br/>
+ 					For example to set a property hwne the plugin is pomoted
+ 					you could add the the following code to the promoteAction
+ 					procedure:<br/>
+ 					<pre><code>
+ if ( $promoteAction eq 'promote' ) {
+     $batch->setProperty( "/projects/$pluginName/addedByPromote", "123" );
+ }
+ 					</code></pre>
+ 				</dd>
 				<dt><b>configureCredentials:</b></dt>
 				<dd>this property will indicate to EC-Admin to code to help create configuration to manage credentials for your plugin. It adds:
 					<ul>
@@ -533,6 +441,21 @@ if ( $promoteAction eq 'promote' ) {
 				<dt><b>pluginDependencies:</b></dt>
 				<dd>This property allows you to add plugin dependencies that need to be satisfied before you ca install the plugin. Put a a line per dependency with each line being PLUGIN:VERSION</dd>
 			</dl>
+
+      <p>In addition each procedure can modify the behavior with the
+  			following 2 properties:</p>
+  			<dl>
+  				<dt><b>exposeToPlugin:</b></dt>
+  				<dd>This property if set to 1 will add the procedure to
+  					ec_setup to be shown in the procedure picker list when
+  					choosing a plugin step.</dd>
+  				<dt><b>descriptionForPlugin:</b></dt>
+  				<dd>This property will be shown as the description in the
+  					picker list mentioned above. If it's empty or non-existent,
+  					 the description will be description of the procedure
+  					 itself.</dd>
+  			</dl>
+
 
 		<p><b>Note:</b> EC-Admin is released on
 		<a href="https://github.com/electriccommunity/EC-Admin">GitHub</a> using

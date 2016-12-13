@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.25.0.464</version>
+  <version>2.25.1.465</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
-2016-12-06 admin Fix #104: artifactRepositorySynchronization does not support range</description>
+2016-12-12 lrochette Fix #101: better documentation</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>
