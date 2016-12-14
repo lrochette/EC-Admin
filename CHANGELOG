@@ -1,3 +1,9 @@
+2016-12-13 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.26.0.466: Fix #100: add property to prevent deletion
+
+2016-12-12 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.25.1.465: Fix #101: better documentation
+
 2016-12-06 System Administrator <lrochette@electric-cloud.com>
   * 2.25.0.464: Fix #104: artifactRepositorySynchronization does not support range
 

@@ -1,6 +1,6 @@
 #############################################################################
 #
-#  deleteObjects -- Script to delete objects in a more efficient method 
+#  deleteObjects -- Script to delete objects in a more efficient method
 #                   than deleteJobs for users with a lot to delete.
 #  Copyright 2013-2015 Electric-Cloud Inc.
 #
@@ -11,8 +11,18 @@ $[/myProject/scripts/perlHeader]
 use DateTime;
 use POSIX;
 
-$| = 1;
+#############################################################################
+#
+#  Assign Commander parameters to variables
+#
+#############################################################################
+my $prop     = "$[prop]";
 
+#############################################################################
+#
+#  Global Variables
+#
+#############################################################################
 my $olderThan = DateTime->now()->subtract(days => "$[daysLimit]")->iso8601() . ".000Z";
 my $interval = floor($[chunkSize] / 20);
 # Maximum 60 seconds interval between checks no matter how large the chunk size is.
@@ -29,6 +39,16 @@ print "Chunk size: $[chunkSize]\nDays limit: $[daysLimit]\n"
     . "Max objects: $[maxObjects]\nObject type: $[objectType]\n"
     . "Poll interval: $interval" . "s\n\n";
 
+# create filterList
+my @filterList;
+# older than
+push (@filterList, {"propertyName" => "finish",
+                    "operator" => "lessThan",
+                    "operand1" => $olderThan});
+# do not have specific  property
+push (@filterList, {"propertyName" => $prop,
+                    "operator" => "isNull"});
+
 # Set the timeout to config value or 600 if not set
 my $defaultTimeout = getP("/server/EC-Admin/cleanup/config/timeout");
 $ec->setTimeout($defaultTimeout? $defaultTimeout : 600);
@@ -43,11 +63,7 @@ do {
     my $maxIds = $[chunkSize] > ($[maxObjects] - $numDeleted) ? $[maxObjects] - $numDeleted : $[chunkSize];
     my $result = $ec->deleteObjects("$[objectType]", {
         maxIds     => $maxIds,
-        filter     => [{
-            propertyName => "finish",
-            operator     => "lessThan",
-            operand1     => $olderThan
-        }],
+        filter     => \@filterList,
         sort => [{
             propertyName => "finish",
             order => "ascending"
@@ -90,26 +106,4 @@ if ($numDeleted == 0) {
 }
 
 $[/myProject/scripts/perlLib]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

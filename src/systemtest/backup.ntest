@@ -536,4 +536,49 @@ ntest "issue 89 < and > in filenames", {}, sub {
   $::N->deleteResource($res);
 };
 
+
+#-------------------------------------------------------------------------------
+#  Issue 90: project starting with _
+#-------------------------------------------------------------------------------
+ntest "issue 90 project starting with _", {}, sub {
+  my $proj="_issue90";
+  my $xpath=$::N->createProject($proj);
+  assertOK($xpath, "Failed to create project $proj");
+
+  $xpath = $::N->runProcedure("EC-Admin", {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pattern", value=>"issue90"},
+      {actualParameterName=>"caseSensitive", value=>"i"},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"false"},
+      {actualParameterName=>"exportGroups", value=>"false"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportResources", value=>"false"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"false"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check for project directory to exist
+    if (! -d "/tmp/BACKUP/Projects/_issue90") {
+      fail("_issue90 project is missing");
+    }
+  }
+  # clean
+  rmtree("/tmp/BACKUP");
+  $::N->deleteProject($proj);
+};
+
 1;

@@ -22,7 +22,7 @@ my $jobProperty     = "$[jobProperty]";
 my $timeLimit       =  $[olderThan];
 my $executeDeletion = "$[executeDeletion]";
 my $jobLevel        = "$[jobLevel]";
-my $jobPattern      = "$[jobPatternMatching]"; 
+my $jobPattern      = "$[jobPatternMatching]";
 my $computeUsage    = "$[computeUsage]";
 
 my $currentResource = "$[assignedResourceName]";  # Resource used to run this
@@ -49,8 +49,8 @@ my $DEBUG=0;
 #
 #############################################################################
 
-printf("%s jobs older than $timeLimit days (%s).\n", 
-    $executeDeletion eq "true"?"Deleting":"Reporting", 
+printf("%s jobs older than $timeLimit days (%s).\n",
+    $executeDeletion eq "true"?"Deleting":"Reporting",
     calculateDate($timeLimit));
 printf("  Skipping over \"%s\" jobs.\n\n", $jobPattern) if ($jobPattern ne "");
 
@@ -76,7 +76,7 @@ if ($jobPattern ne "") {
   push (@filterList, {"propertyName" => "jobName",
                       "operator" => "notLike",
                       "operand1" => $jobPattern});
-}              
+}
 # check for jobLevel
 if ($jobLevel eq "Aborted") {
   push (@filterList, {"propertyName" => "abortStatus",
@@ -91,16 +91,16 @@ if ($jobLevel eq "Aborted") {
 my ($success, $xPath);
 do {
     ($success, $xPath) = InvokeCommander("SuppressLog", "findObjects", "job",
-                                        {maxIds => $MAXJOBS, 
+                                        {maxIds => $MAXJOBS,
                                          numObjects => $MAXJOBS,
-                                         filter => \@filterList ,
+                                         filter => \@filterList,
                                          sort => [ {propertyName => "finish",
                                                     order => "ascending"} ]});
   # Loop over all returned jobs
   my @nodeset=$xPath->findnodes('//job');
   $nbObjs=scalar(@nodeset);
   printf("Search Status: %s.\n%s objects returned.\n", $success?"success":"failure", $nbObjs);
-  
+
   JOB: foreach my $node (@nodeset) {
     printf("\n");
     $totalNbJobs++;
@@ -141,19 +141,19 @@ do {
           $wksList{$wksName}{'win'} = $wsNode->{'winUNC'};
         }
         $wksList{$wksName}{'lin'} = $wsNode->{'unix'};
-        $wksList{$wksName}{'win'} =~ s'/'\\'g; 
+        $wksList{$wksName}{'win'} =~ s'/'\\'g;
         printf("  Workspace: $wksName (%s)\n", $wksList{$wksName}{'local'}?"local":"shared");
         #printf("      Windows: %s\n", $wksList{$wksName}{'win'});
         #printf("      Linux:   %s\n", $wksList{$wksName}{'lin'});
     }
 
-    my ($success, $jSteps) = InvokeCommander("SuppressLog", "findJobSteps", 
+    my ($success, $jSteps) = InvokeCommander("SuppressLog", "findJobSteps",
                   {'jobId' => $jobId});
     STEP: foreach my $step ($jSteps->findnodes('//object/jobStep')) {
       $totalNbSteps ++;
       my $jobStepId=$step->{jobStepId};
 
-	  my $jobStepWks=$step->{workspaceName};  
+	  my $jobStepWks=$step->{workspaceName};
       next if ($jobStepWks eq "");		# Nothing to do for a step without workspace
 
 	  my $jobStepHost=$step->{assignedResourceName};
@@ -163,11 +163,11 @@ do {
       next if ($processedWks{$jobStepWks}{$jobStepHost});
 	  # skip if the workspace does not exist anymore
       next if ($wksList{$jobStepWks}{defined} == 0);
-      
+
 	  printf("  jobStep: %s\t on workspace: %s\n", $jobStepId, $jobStepWks);
 
       # Delete Workspace
-      if ( ($jobStepHost ne $currentResource) && 
+      if ( ($jobStepHost ne $currentResource) &&
            ($wksList{$jobStepWks}{'local'} == 1)) {
         printf("    Deleting workspace $jobStepWks remotely on $jobStepHost\n");
         if ((getP("/resources/$jobStepHost/agentState/state") eq "alive") &&
@@ -185,7 +185,7 @@ do {
               ]});
         } else {
           printf("    Skipping unavailable $jobStepHost\n");
-        }  
+        }
       } else {
           my $wksDir="";
           if ($osIsWindows) {
@@ -202,7 +202,7 @@ do {
       if ($executeDeletion eq "true") {
          InvokeCommander("SuppressLog", "deleteJob", $jobId) ;
          print "  Deleting Job\n\n";
-      } 
+      }
   }  # End foreach $node loop
 } while (($executeDeletion eq "true") && ($nbObjs == $MAXJOBS));
 
@@ -242,26 +242,4 @@ $[/myProject/scripts/getDirSize]
 
 # Perl Commander library
 $[/myProject/scripts/perlLibJSON]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
