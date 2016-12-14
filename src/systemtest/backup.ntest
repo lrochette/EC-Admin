@@ -69,6 +69,8 @@ ntest "issues 56 question mark", {}, sub {
   if ($xpath) {
     #get new Job ID
     my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue56_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
     waitForJob($jobId);
     my $jobData  = $::N->getJobDetails($jobId);
     my $outcome = $jobData->findvalue("//job/outcome");
@@ -114,6 +116,8 @@ ntest "issues 57 group with slash", {}, sub {
   if ($xpath) {
     #get new Job ID
     my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue57_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
     waitForJob($jobId);
     my $jobData  = $::N->getJobDetails($jobId);
     my $outcome = $jobData->findvalue("//job/outcome");
@@ -162,6 +166,8 @@ ntest "issue 58 gateway", {}, sub {
   if ($xpath) {
     #get new Job ID
     my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue58_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
     waitForJob($jobId);
     my $jobData  = $::N->getJobDetails($jobId);
     my $outcome = $jobData->findvalue("//job/outcome");
@@ -207,6 +213,8 @@ ntest "issue 59 zone", {}, sub {
   if ($xpath) {
     #get new Job ID
     my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue59_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
     waitForJob($jobId);
     my $jobData  = $::N->getJobDetails($jobId);
     my $outcome = $jobData->findvalue("//job/outcome");
@@ -250,6 +258,8 @@ ntest "issue 63 pattern", {}, sub {
   if ($xpath) {
     #get new Job ID
     my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue63_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
     waitForJob($jobId);
     my $jobData  = $::N->getJobDetails($jobId);
     my $outcome = $jobData->findvalue("//job/outcome");
@@ -292,6 +302,8 @@ ntest "export users", {}, sub {
   if ($xpath) {
     #get new Job ID
     my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_users_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
     waitForJob($jobId);
     my $jobData  = $::N->getJobDetails($jobId);
     my $outcome = $jobData->findvalue("//job/outcome");
@@ -339,6 +351,8 @@ ntest "issues 77 procedure with slash", {}, sub {
   if ($xpath) {
     #get new Job ID
     my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue77_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
     waitForJob($jobId);
     my $jobData  = $::N->getJobDetails($jobId);
     my $outcome = $jobData->findvalue("//job/outcome");
@@ -386,6 +400,8 @@ ntest "issue 74 case insensitive", {}, sub {
   if ($xpath) {
     #get new Job ID
     my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue74_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
     waitForJob($jobId);
     my $jobData  = $::N->getJobDetails($jobId);
     my $outcome = $jobData->findvalue("//job/outcome");
@@ -431,6 +447,8 @@ ntest "issue 83 trailing spaces", {}, sub {
   if ($xpath) {
     #get new Job ID
     my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue83_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
     waitForJob($jobId);
     my $jobData  = $::N->getJobDetails($jobId);
     my $outcome = $jobData->findvalue("//job/outcome");
@@ -476,6 +494,8 @@ ntest "issue 88 slash in resource", {}, sub {
   if ($xpath) {
     #get new Job ID
     my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue88_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
     waitForJob($jobId);
     my $jobData  = $::N->getJobDetails($jobId);
     my $outcome = $jobData->findvalue("//job/outcome");
@@ -521,6 +541,8 @@ ntest "issue 89 < and > in filenames", {}, sub {
   if ($xpath) {
     #get new Job ID
     my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue89_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
     waitForJob($jobId);
     my $jobData  = $::N->getJobDetails($jobId);
     my $outcome = $jobData->findvalue("//job/outcome");
@@ -566,6 +588,8 @@ ntest "issue 90 project starting with _", {}, sub {
   if ($xpath) {
     #get new Job ID
     my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue90_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
     waitForJob($jobId);
     my $jobData  = $::N->getJobDetails($jobId);
     my $outcome = $jobData->findvalue("//job/outcome");
@@ -578,6 +602,71 @@ ntest "issue 90 project starting with _", {}, sub {
   }
   # clean
   rmtree("/tmp/BACKUP");
+  $::N->deleteProject($proj);
+};
+
+
+#-------------------------------------------------------------------------------
+#  Issue 87: empty pattern
+#-------------------------------------------------------------------------------
+ntest "issue 87 empty pattern", {}, sub {
+  my $proj="issue87";
+  my $xpath=$::N->createProject($proj);
+  assertOK($xpath, "Failed to create project $proj");
+
+  $xpath = $::N->runProcedure("EC-Admin", {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pattern", value=>""},
+      {actualParameterName=>"caseSensitive", value=>"i"},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"true"},
+      {actualParameterName=>"exportGroups", value=>"false"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportResources", value=>"false"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"true"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue87_' . 
+		$::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check for project directory to exist
+    if (! -d "/tmp/BACKUP/Projects/$proj") {
+      fail("$proj project is missing");
+    }
+
+    # check multiple projects were exported
+    my $nb=$::N->getProperty("projectExported" , {jobId => $jobId})->findvalue("//value");
+    if ($nb < 50) {
+      fail("Not enough projects exported");
+    }
+    # check multiple users were exported
+    $nb=$::N->getProperty("userExported" , {jobId => $jobId})->findvalue("//value");
+    if ($nb < 5) {
+      fail("Not enough users exported");
+    }
+    # check multiple zones were exported
+    $nb=$::N->getProperty("zoneExported" , {jobId => $jobId})->findvalue("//value");
+    if ($nb < 2) {
+      fail("Not enough zones exported");
+    }
+
+
+  }
+  # clean
+  #rmtree("/tmp/BACKUP");
   $::N->deleteProject($proj);
 };
 
