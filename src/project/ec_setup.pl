@@ -253,9 +253,9 @@ Report the number of workflows.",
   category    => "Administration" 
 );
 
-my %ZZZ_DEPRECATED_artifactRepositorySynchronization = ( 
-  label       => "EC-Admin - ZZZ_DEPRECATED_artifactRepositorySynchronization", 
-  procedure   => "ZZZ_DEPRECATED_artifactRepositorySynchronization", 
+my %zzz_depracated_artifactRepositorySynchronization = ( 
+  label       => "EC-Admin - zzz_depracated_artifactRepositorySynchronization", 
+  procedure   => "zzz_depracated_artifactRepositorySynchronization", 
   description => "Syncs the contents of a remote repository to this repository's backingstore.
 The user must specify a list of remote repositories to query and may specify a filter for a subset of Artifact Version to sync.
 
@@ -263,4 +263,4 @@ The procedure has been deprecated in favor of the Universal one that can accommo
   category    => "Administration" 
 );
 
-@::createStepPickerSteps = (\%acquireSemaphore, \%agentMemoryConfiguration, \%artifactRepositorySynchronization, \%artifactsCleanup, \%artifactsCleanup_byQuantity, \%createPluginFromProject, \%deleteObjects, \%deleteWorkspaceOrphans, \%jobCleanup_byResult, \%jobsCleanup, \%performanceMetrics, \%projectAsCode, \%releaseSemaphore, \%saveAllObjects, \%saveProjects, \%synchronizePlugins, \%workflowCleanup, \%ZZZ_DEPRECATED_artifactRepositorySynchronization);
+@::createStepPickerSteps = (\%acquireSemaphore, \%agentMemoryConfiguration, \%artifactRepositorySynchronization, \%artifactsCleanup, \%artifactsCleanup_byQuantity, \%createPluginFromProject, \%deleteObjects, \%deleteWorkspaceOrphans, \%jobCleanup_byResult, \%jobsCleanup, \%performanceMetrics, \%projectAsCode, \%releaseSemaphore, \%saveAllObjects, \%saveProjects, \%synchronizePlugins, \%workflowCleanup, \%zzz_depracated_artifactRepositorySynchronization);
