@@ -153,6 +153,6 @@
 	['//project/procedure[procedureName="testResources"]/step[stepName="Iterate"]/command', 'procedures/testResources/steps/Iterate.pl'],
 	['//project/procedure[procedureName="workflowCleanup"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/workflowCleanup/form.xml'],
 	['//project/procedure[procedureName="workflowCleanup"]/step[stepName="deleteWorkflows"]/command', 'procedures/workflowCleanup/steps/deleteWorkflows.pl'],
-	['//project/procedure[procedureName="ZZZ_DEPRECATED_artifactRepositorySynchronization"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/ZZZ_DEPRECATED_artifactRepositorySynchronization/form.xml'],
-	['//project/procedure[procedureName="ZZZ_DEPRECATED_artifactRepositorySynchronization"]/step[stepName="syncRepo"]/command', 'procedures/ZZZ_DEPRECATED_artifactRepositorySynchronization/steps/syncRepo.pl'],
+	['//project/procedure[procedureName="zzz_depracated_artifactRepositorySynchronization"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/zzz_depracated_artifactRepositorySynchronization/form.xml'],
+	['//project/procedure[procedureName="zzz_depracated_artifactRepositorySynchronization"]/step[stepName="syncRepo"]/command', 'procedures/zzz_depracated_artifactRepositorySynchronization/steps/syncRepo.pl'],
 );

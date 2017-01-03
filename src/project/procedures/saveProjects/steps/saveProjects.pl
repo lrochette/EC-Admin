@@ -5,7 +5,7 @@
 #############################################################################
 use File::Path;
 
-$[/myProject/scripts/perlHeader]
+$[/myProject/scripts/perlHeaderJSON]
 
 #
 # Parameters
@@ -24,22 +24,21 @@ my $errorCount=0;
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getProjects");
 
 # Create the directory
-# chmod required for cases when the server agent user and the server user 
+# chmod required for cases when the server agent user and the server user
 # are different and the mask prevent the created directory to be written
 # by the latter.
 mkpath($path);
 chmod 0777, $path;
 
-my $nodeset = $xPath->find('//project');
-foreach my $node ($nodeset->get_nodelist) {
-  my $pName=$xPath->findvalue('projectName', $node);
-  my $pluginName=$xPath->findvalue('pluginName', $node);
+foreach my $node ($xPath->findnodes('//project')) {
+  my $pName=$node->{'projectName'};
+  my $pluginName=$node->{'pluginName'};
 
-  # skip plugins  
+  # skip plugins
   next if ($pluginName ne "");
   printf("Saving Project: %s\n", $pName);
   my ($success, $xPath, $errMsg, $errCode) = InvokeCommander("SuppressLog", "export", $path."/$pName".".xml",
-  					{ 'path'=> "/projects/".$pName, 
+  					{ 'path'=> "/projects/".$pName,
                                           'relocatable' => $relocatable,
                                           'withAcls'    => $includeACLs,
                                           'withNotifiers'=>$includeNotifiers});
@@ -51,26 +50,5 @@ foreach my $node ($nodeset->get_nodelist) {
 }
 exit($errorCount);
 
-$[/myProject/scripts/perlLib]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$[/myProject/scripts/perlLibJSON]
 

@@ -16,12 +16,12 @@
               <property>
                 <propertyName>image</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/2265018/images/custom52ae0ad6158f27a999c1.png</value>
+                <value>/commander/jobSteps/2272876/images/custom75836867158fcc78a121.png</value>
               </property>
               <property>
                 <propertyName>link</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/2265018/Performance Report.html</value>
+                <value>/commander/jobSteps/2272876/Performance Report.html</value>
               </property>
             </propertySheet>
           </property>
@@ -30,106 +30,6 @@
       <property>
         <propertyName>ec_reportData</propertyName>
         <propertySheet>
-          <property>
-            <propertyName>276568</propertyName>
-            <propertySheet>
-              <property>
-                <propertyName>Performance Report_L2</propertyName>
-                <propertySheet>
-                  <property>
-                    <propertyName>jobStepId</propertyName>
-                    <expandable>1</expandable>
-                    <value>2255333</value>
-                  </property>
-                  <property>
-                    <propertyName>reportType</propertyName>
-                    <expandable>1</expandable>
-                    <value>Performance Report</value>
-                  </property>
-                  <property>
-                    <propertyName>reportUrl</propertyName>
-                    <expandable>1</expandable>
-                    <value>Performance Report.html</value>
-                  </property>
-                </propertySheet>
-              </property>
-              <property>
-                <propertyName>Performance Report_L3</propertyName>
-                <propertySheet>
-                  <property>
-                    <propertyName>jobStepId</propertyName>
-                    <expandable>1</expandable>
-                    <value>2255333</value>
-                  </property>
-                  <property>
-                    <propertyName>reportDate</propertyName>
-                    <expandable>1</expandable>
-                    <value>2016-12-06 14:21:25</value>
-                  </property>
-                  <property>
-                    <propertyName>reportType</propertyName>
-                    <expandable>1</expandable>
-                    <value>Performance Report</value>
-                  </property>
-                  <property>
-                    <propertyName>reportUrl</propertyName>
-                    <expandable>1</expandable>
-                    <value>Performance Report.html</value>
-                  </property>
-                </propertySheet>
-              </property>
-            </propertySheet>
-          </property>
-          <property>
-            <propertyName>277003</propertyName>
-            <propertySheet>
-              <property>
-                <propertyName>Performance Report_L2</propertyName>
-                <propertySheet>
-                  <property>
-                    <propertyName>jobStepId</propertyName>
-                    <expandable>1</expandable>
-                    <value>2259599</value>
-                  </property>
-                  <property>
-                    <propertyName>reportType</propertyName>
-                    <expandable>1</expandable>
-                    <value>Performance Report</value>
-                  </property>
-                  <property>
-                    <propertyName>reportUrl</propertyName>
-                    <expandable>1</expandable>
-                    <value>Performance Report.html</value>
-                  </property>
-                </propertySheet>
-              </property>
-              <property>
-                <propertyName>Performance Report_L3</propertyName>
-                <propertySheet>
-                  <property>
-                    <propertyName>jobStepId</propertyName>
-                    <expandable>1</expandable>
-                    <value>2259599</value>
-                  </property>
-                  <property>
-                    <propertyName>reportDate</propertyName>
-                    <expandable>1</expandable>
-                    <value>2016-12-08 02:00:42</value>
-                  </property>
-                  <property>
-                    <propertyName>reportType</propertyName>
-                    <expandable>1</expandable>
-                    <value>Performance Report</value>
-                  </property>
-                  <property>
-                    <propertyName>reportUrl</propertyName>
-                    <expandable>1</expandable>
-                    <value>Performance Report.html</value>
-                  </property>
-                </propertySheet>
-              </property>
-            </propertySheet>
-          </property>
           <property>
             <propertyName>277297</propertyName>
             <propertySheet>
@@ -215,6 +115,56 @@
                     <propertyName>reportDate</propertyName>
                     <expandable>1</expandable>
                     <value>2016-12-12 02:00:36</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>278679</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2272876</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2272876</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2016-12-14 02:00:45</value>
                   </property>
                   <property>
                     <propertyName>reportType</propertyName>
@@ -3231,7 +3181,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>466</value>
+        <value>468</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -3359,6 +3309,10 @@ software.&lt;/p&gt;
         <description>Version of the EC-Admin project
 
 History:
+- version 2.26.1
+   + Rename ZZZ_DEPRECATED_artifactRepositorySynchronization
+   + Change saveProject email configuration to default
+   + Switch parsing to JSON in saveProjects to fix #108
 - version 2.26.0
    + Fix #100: add property to prevent deletion
 
@@ -3778,7 +3732,7 @@ History:
 - version 1.0: 
       initial version including job and artifact management</description>
         <expandable>1</expandable>
-        <value>2.26.0</value>
+        <value>2.26.1</value>
       </property>
     <property><propertyName>ec_setup</propertyName><value>PLACEHOLDER</value><expandable>0</expandable></property><property><propertyName>project_version</propertyName><value>@PLUGIN_VERSION@</value></property></propertySheet>
     <procedure>
@@ -11365,7 +11319,7 @@ Changelog:
     true;
 else
     false;]</condition>
-        <configName>ecloud</configName>
+        <configName>default</configName>
         <description/>
         <destinations>$[/users/admin/email]</destinations>
         <eventType>onCompletion</eventType>
@@ -13437,7 +13391,7 @@ Report the number of workflows.</description>
       </step>
     </procedure>
     <procedure>
-      <procedureName>ZZZ_DEPRECATED_artifactRepositorySynchronization</procedureName>
+      <procedureName>zzz_depracated_artifactRepositorySynchronization</procedureName>
       <description>Syncs the contents of a remote repository to this repository's backingstore.
 The user must specify a list of remote repositories to query and may specify a filter for a subset of Artifact Version to sync.
 
