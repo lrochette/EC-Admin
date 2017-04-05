@@ -91,7 +91,7 @@ foreach $xpath(@procList) {
    
    #
    #
-   # If property "descrirptionForPlugin" exists, use it
+   # If property "descriptionForPlugin" exists, use it
    # if not, use the procedure description itself
    #
    my $description=getP("/projects/$project/procedures/$procName/descriptionForPlugin");
