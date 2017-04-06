@@ -1,3 +1,9 @@
+2017-04-05 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.26.1.471: Fix #22 : find colliding project properties
+
+2017-04-05 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.26.1.470: Fix #22 : find colliding project properties
+
 2017-01-03 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.26.1.468: fix #108: Switch parsing to JSON in saveProjects
 

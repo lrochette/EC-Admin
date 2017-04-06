@@ -16,12 +16,12 @@
               <property>
                 <propertyName>image</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/2272876/images/custom75836867158fcc78a121.png</value>
+                <value>/commander/jobSteps/2285937/images/custom1c209ae915a50ab8a371.png</value>
               </property>
               <property>
                 <propertyName>link</propertyName>
                 <expandable>1</expandable>
-                <value>/commander/jobSteps/2272876/Performance Report.html</value>
+                <value>/commander/jobSteps/2285937/Performance Report.html</value>
               </property>
             </propertySheet>
           </property>
@@ -165,6 +165,156 @@
                     <propertyName>reportDate</propertyName>
                     <expandable>1</expandable>
                     <value>2016-12-14 02:00:45</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>279657</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2280134</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2280134</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2017-01-20 02:00:42</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>280492</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2284826</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2284826</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2017-01-23 02:01:48</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+            </propertySheet>
+          </property>
+          <property>
+            <propertyName>280829</propertyName>
+            <propertySheet>
+              <property>
+                <propertyName>Performance Report_L2</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2285937</value>
+                  </property>
+                  <property>
+                    <propertyName>reportType</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report</value>
+                  </property>
+                  <property>
+                    <propertyName>reportUrl</propertyName>
+                    <expandable>1</expandable>
+                    <value>Performance Report.html</value>
+                  </property>
+                </propertySheet>
+              </property>
+              <property>
+                <propertyName>Performance Report_L3</propertyName>
+                <propertySheet>
+                  <property>
+                    <propertyName>jobStepId</propertyName>
+                    <expandable>1</expandable>
+                    <value>2285937</value>
+                  </property>
+                  <property>
+                    <propertyName>reportDate</propertyName>
+                    <expandable>1</expandable>
+                    <value>2017-02-18 02:00:52</value>
                   </property>
                   <property>
                     <propertyName>reportType</propertyName>
@@ -2382,6 +2532,277 @@ From perlmaven.com</description>
         </propertySheet>
       </property>
       <property>
+        <propertyName>ec_setup</propertyName>
+        <expandable>1</expandable>
+        <value># promote/demote action
+if ( $promoteAction eq 'promote' ) {
+    local $self-&gt;{abortOnError} = 0;
+	
+    # If the licenseLogger config PS does not already exist, create it
+    my $cfg = $commander-&gt;getProperty("/server/EC-Admin/licenseLogger/config");    
+	if ($cfg-&gt;findvalue("//code") eq "NoSuchProperty") {
+        # we need the top PS later for the ACLs
+        $commander-&gt;createProperty("/server/EC-Admin", {propertyType =&gt; 'sheet'});
+		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/emailTo", "admin",{description=&gt;'comma separated list of userid or email'} );
+		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/emailConfig", "default",{description=&gt;'The name of your email configuration'} );
+		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/cleanpOldJobs", 1 );
+		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/resource", "local" );
+		$batch-&gt;setProperty( "/server/EC-Admin/licenseLogger/config/workspace", "default" );
+	}
+
+    # If the cleanup config PS does not already exist, create it
+    $cfg = $commander-&gt;getProperty("/server/EC-Admin/cleanup/config");
+    if ($cfg-&gt;findvalue("//code") eq "NoSuchProperty") {
+        $batch-&gt;setProperty( "/server/EC-Admin/cleanup/config/timeout", 600);
+    }
+
+    # Give project principal "Electric Cloud" write access to our project
+    my $projPrincipal = "project: Electric Cloud";
+    my $ecAdminProj = '@PLUGIN_NAME@';
+    
+    # Give project Electric Cloud permission on ec_reportData
+    $cfg = $commander-&gt;getProperty("ec_reportData", {projectName =&gt; $ecAdminProj});
+    my $psId= $cfg-&gt;findvalue("//propertySheetId");
+
+    my $xpath = $commander-&gt;getAclEntry("user", $projPrincipal, 
+            { 
+                projectName =&gt; $ecAdminProj, 
+                propertySheetId =&gt; $psId 
+            });
+    if ($xpath-&gt;findvalue('//code') eq 'NoSuchAclEntry') {
+        $batch-&gt;createAclEntry("user", "project: Electric Cloud", 
+             {
+                projectName =&gt; $ecAdminProj,
+                propertySheetId =&gt; $psId, 
+                "readPrivilege"=&gt;"allow", 
+                "modifyPrivilege"=&gt;"allow",
+             });
+    }      
+
+    #
+    # Give Everyone permission on /server/counters/EC-Admin
+    $cfg = $commander-&gt;getProperty("/server/counters/EC-Admin/jobCounter");
+    if ($cfg-&gt;findvalue("//code") eq "NoSuchProperty") {
+        $batch-&gt;setProperty( "/server/counters/EC-Admin/jobCounter", 0);
+    }
+
+    $cfg=$commander-&gt;getProperty("/server/counters/EC-Admin");
+    $psId= $cfg-&gt;findvalue("//propertySheetId");
+
+    $xpath = $commander-&gt;getAclEntry("group", "Everyone", {propertySheetId =&gt; $psId});
+    if ($xpath-&gt;findvalue('//code') eq 'NoSuchAclEntry') {
+        $batch-&gt;createAclEntry("group", "Everyone", 
+             {
+                propertySheetId =&gt; $psId, 
+                "readPrivilege" =&gt;"allow", 
+                "modifyPrivilege" =&gt;"allow",
+             });
+    } 
+
+
+    # Give plugin permission on /server/EC-Admin
+    $projPrincipal='project: @PLUGIN_NAME@';
+    $cfg = $commander-&gt;getProperty("/server/EC-Admin");
+    $psId= $cfg-&gt;findvalue("//propertySheetId");
+
+    $xpath = $commander-&gt;getAclEntry("user", $projPrincipal, 
+            {  
+                propertySheetId =&gt; $psId 
+            });
+    if ($xpath-&gt;findvalue('//code') eq 'NoSuchAclEntry') {
+        $batch-&gt;createAclEntry("user", "$projPrincipal", 
+             {
+                propertySheetId =&gt; $psId, 
+                "readPrivilege" =&gt;"allow", 
+                "modifyPrivilege" =&gt;"allow",
+                "changePermissionsPrivilege" =&gt; "allow",
+             });
+    } 
+   # Remove previous plugin permission on /server/EC-Admin
+   if ($otherPluginName ne "") {
+        my $otherProjPrincipal="project: $otherPluginName";
+        # $psId is the same than above
+        $xpath = $commander-&gt;getAclEntry("user", $otherProjPrincipal, 
+                {
+                    propertySheetId =&gt; $psId 
+                });
+        if ($xpath-&gt;findvalue('//principalName') eq $otherProjPrincipal) {
+            $batch-&gt;deleteAclEntry("user", "$otherProjPrincipal", 
+                 {
+                    propertySheetId =&gt; $psId,
+                 });
+        }
+    } 
+
+} elsif ( $promoteAction eq 'demote' ) { 
+    # Remove plugin permission on /server/EC-Admin
+    my $projPrincipal='project: @PLUGIN_NAME@';
+    my $cfg = $commander-&gt;getProperty("/server/EC-Admin");
+    my $psId= $cfg-&gt;findvalue("//propertySheetId");
+
+    my $xpath = $commander-&gt;getAclEntry("user", $projPrincipal, 
+            {
+                propertySheetId =&gt; $psId 
+            });
+    if ($xpath-&gt;findvalue('//principalName') eq $projPrincipal) {
+        $batch-&gt;deleteAclEntry("user", "$projPrincipal", 
+             {
+                propertySheetId =&gt; $psId,
+             });
+    }
+}
+
+# Data that drives the create step picker registration for this plugin.
+my %acquireSemaphore = ( 
+  label       =&gt; "EC-Admin - acquireSemaphore", 
+  procedure   =&gt; "acquireSemaphore", 
+  description =&gt; "Acquire a token in order to limit access to a set of procedures.", 
+  category    =&gt; "Administration" 
+);
+
+my %agentMemoryConfiguration = ( 
+  label       =&gt; "EC-Admin - agentMemoryConfiguration", 
+  procedure   =&gt; "agentMemoryConfiguration", 
+  description =&gt; "A procedure to modify the java memory setting of an agent.
+# Specify java heap size in percentage OR mb.
+
+# Initial Java Heap Size (in %)
+#wrapper.java.initmemory.percent=15
+
+# Initial Java Heap Size (in mb)
+wrapper.java.initmemory=256
+
+# Maximum Java Heap Size (in %)
+#wrapper.java.maxmemory.percent=15
+
+# Maximum Java Heap Size (in mb)
+wrapper.java.maxmemory=512
+", 
+  category    =&gt; "Administration" 
+);
+
+my %artifactRepositorySynchronization = ( 
+  label       =&gt; "EC-Admin - artifactRepositorySynchronization", 
+  procedure   =&gt; "artifactRepositorySynchronization", 
+  description =&gt; "Syncs the contents of 2 repositories no matter what is the backing store.
+Each AV backing store  to synchronize is downloaded from the source repo on the resource and uploaded to the target repo", 
+  category    =&gt; "Administration" 
+);
+
+my %artifactsCleanup = ( 
+  label       =&gt; "EC-Admin - artifactsCleanup", 
+  procedure   =&gt; "artifactsCleanup", 
+  description =&gt; "Delete old artifacts and clean caches.", 
+  category    =&gt; "Administration" 
+);
+
+my %artifactsCleanup_byQuantity = ( 
+  label       =&gt; "EC-Admin - artifactsCleanup_byQuantity", 
+  procedure   =&gt; "artifactsCleanup_byQuantity", 
+  description =&gt; "Delete old artifacts and clean caches.", 
+  category    =&gt; "Administration" 
+);
+
+my %createPluginFromProject = ( 
+  label       =&gt; "EC-Admin - createPluginFromProject", 
+  procedure   =&gt; "createPluginFromProject", 
+  description =&gt; "Transform a project into a plugin", 
+  category    =&gt; "Administration" 
+);
+
+my %deleteObjects = ( 
+  label       =&gt; "EC-Admin - deleteObjects", 
+  procedure   =&gt; "deleteObjects", 
+  description =&gt; "A procedure to quickly delete jobs or workflows older than a specified number of days. It will NOT delete associated workspace job directories.", 
+  category    =&gt; "Administration" 
+);
+
+my %deleteWorkspaceOrphans = ( 
+  label       =&gt; "EC-Admin - deleteWorkspaceOrphans", 
+  procedure   =&gt; "deleteWorkspaceOrphans", 
+  description =&gt; "Procedure to crawl a workspace directory to find orphan jobs (directories without a matching job)", 
+  category    =&gt; "Administration" 
+);
+
+my %jobCleanup_byResult = ( 
+  label       =&gt; "EC-Admin - jobCleanup_byResult", 
+  procedure   =&gt; "jobCleanup_byResult", 
+  description =&gt; "Delete jobs and the associated workspace based on  result: keeping X goods/warning, and Y failed
+Report the number of jobs, the disk space and database space that could/was be deleted.", 
+  category    =&gt; "Administration" 
+);
+
+my %jobsCleanup = ( 
+  label       =&gt; "EC-Admin - jobsCleanup", 
+  procedure   =&gt; "jobsCleanup", 
+  description =&gt; "Delete jobs older than a number of days, along with the associated workspace.", 
+  category    =&gt; "Administration" 
+);
+
+my %performanceMetrics = ( 
+  label       =&gt; "EC-Admin - performanceMetrics", 
+  procedure   =&gt; "performanceMetrics", 
+  description =&gt; "Performance diagnostics for EC server and agents.", 
+  category    =&gt; "Administration" 
+);
+
+my %projectAsCode = ( 
+  label       =&gt; "EC-Admin - projectAsCode", 
+  procedure   =&gt; "projectAsCode", 
+  description =&gt; "Transform a project into a plugin", 
+  category    =&gt; "Administration" 
+);
+
+my %releaseSemaphore = ( 
+  label       =&gt; "EC-Admin - releaseSemaphore", 
+  procedure   =&gt; "releaseSemaphore", 
+  description =&gt; "Procedure to release the token.", 
+  category    =&gt; "Administration" 
+);
+
+my %saveAllObjects = ( 
+  label       =&gt; "EC-Admin - saveAllObjects", 
+  procedure   =&gt; "saveAllObjects", 
+  description =&gt; "This procedure brings a finer granularity to a full server export. For example to retrieve an object after a wrong action or a bad code change. By default it exports projects and each procedure individually. In addition by enabling the matching checkboxes, you can also export resources, resource pools, workspaces, users and groups.", 
+  category    =&gt; "Administration" 
+);
+
+my %saveProjects = ( 
+  label       =&gt; "EC-Admin - saveProjects", 
+  procedure   =&gt; "saveProjects", 
+  description =&gt; "a framework to export projects.", 
+  category    =&gt; "Administration" 
+);
+
+my %synchronizePlugins = ( 
+  label       =&gt; "EC-Admin - synchronizePlugins", 
+  procedure   =&gt; "synchronizePlugins", 
+  description =&gt; "A procedure to synchronize plugins between the server and a resource. Plugins are uploaded first as artifacts and downloaded on the resource if it does not already exist.", 
+  category    =&gt; "Administration" 
+);
+
+my %workflowCleanup = ( 
+  label       =&gt; "EC-Admin - workflowCleanup", 
+  procedure   =&gt; "workflowCleanup", 
+  description =&gt; "Delete workflows older than a number of days.
+Report the number of workflows.", 
+  category    =&gt; "Administration" 
+);
+
+my %zzz_depracated_artifactRepositorySynchronization = ( 
+  label       =&gt; "EC-Admin - zzz_depracated_artifactRepositorySynchronization", 
+  procedure   =&gt; "zzz_depracated_artifactRepositorySynchronization", 
+  description =&gt; "Syncs the contents of a remote repository to this repository's backingstore.
+The user must specify a list of remote repositories to query and may specify a filter for a subset of Artifact Version to sync.
+
+The procedure has been deprecated in favor of the Universal one that can accommodate a S3 backend store.", 
+  category    =&gt; "Administration" 
+);
+
+@::createStepPickerSteps = (\%acquireSemaphore, \%agentMemoryConfiguration, \%artifactRepositorySynchronization, \%artifactsCleanup, \%artifactsCleanup_byQuantity, \%createPluginFromProject, \%deleteObjects, \%deleteWorkspaceOrphans, \%jobCleanup_byResult, \%jobsCleanup, \%performanceMetrics, \%projectAsCode, \%releaseSemaphore, \%saveAllObjects, \%saveProjects, \%synchronizePlugins, \%workflowCleanup, \%zzz_depracated_artifactRepositorySynchronization);
+</value>
+      </property>
+      <property>
         <propertyName>ec_visibility</propertyName>
         <expandable>1</expandable>
         <value>all</value>
@@ -3181,7 +3602,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>468</value>
+        <value>471</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -6816,7 +7237,8 @@ Changelog:
     </procedure>
     <procedure>
       <procedureName>findJobId</procedureName>
-      <description>A procedure to find the occurences of jobId in sub-procedure parameters and command to help with 4.2 to 5.x+ migration</description>
+      <description>A procedure to find the occurrences of jobId in sub-procedure parameters and command to help with 4.2 to 5.x+ migration
+It will also find the project top level properties that could collide with deploy objects like applications or environments</description>
       <jobNameTemplate>$[/plugins[EC-Admin]/project/scripts/jobTemplate]</jobNameTemplate>
       <resourceName/>
       <timeLimit/>
@@ -6852,6 +7274,29 @@ Changelog:
         <required>0</required>
         <type>entry</type>
       </formalParameter>
+      <step>
+        <stepName>findCollidingProperties</stepName>
+        <alwaysRun>0</alwaysRun>
+        <broadcast>0</broadcast>
+        <command>PLACEHOLDER</command>
+        <condition/>
+        <description>Find project level properties that could collide with new Deploy objects</description>
+        <errorHandling>failProcedure</errorHandling>
+        <exclusiveMode>none</exclusiveMode>
+        <logFileName/>
+        <parallel>0</parallel>
+        <postProcessor/>
+        <precondition/>
+        <releaseMode>none</releaseMode>
+        <resourceName/>
+        <shell>ec-perl</shell>
+        <timeLimit/>
+        <timeLimitUnits>minutes</timeLimitUnits>
+        <workingDirectory/>
+        <workspaceName/>
+        <propertySheet>
+        </propertySheet>
+      </step>
       <step>
         <stepName>procedureCrawler</stepName>
         <alwaysRun>0</alwaysRun>
