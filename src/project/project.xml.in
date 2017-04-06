@@ -3602,7 +3602,7 @@ software.&lt;/p&gt;
         <propertyName>pluginBuildNumber</propertyName>
         <description/>
         <expandable>1</expandable>
-        <value>472</value>
+        <value>473</value>
       </property>
       <property>
         <propertyName>promoteAction</propertyName>
@@ -3731,7 +3731,7 @@ software.&lt;/p&gt;
 
 History:
 - version 2.27.1
-   + Add step to findId to search for colliding properties to fix #22
+   + Add step to findId to search for colliding properties to fix #111
 
 - version 2.26.1
    + Rename ZZZ_DEPRECATED_artifactRepositorySynchronization

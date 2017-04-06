@@ -1,4 +1,7 @@
 2017-04-05 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.27.1.473: Fix #111 : find colliding project properties
+
+2017-04-05 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.27.1.472: Fix #22 : find colliding project properties
 
 2017-04-05 Laurent Rochette <lrochette@electric-cloud.com>
