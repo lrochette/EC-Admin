@@ -57,6 +57,7 @@
 	['//project/procedure[procedureName="deleteObjects"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/deleteObjects/form.xml'],
 	['//project/procedure[procedureName="deleteObjects"]/step[stepName="Delete"]/command', 'procedures/deleteObjects/steps/Delete.pl'],
 	['//project/procedure[procedureName="deleteWorkspaceOrphans"]/step[stepName="crawlWorkspace"]/command', 'procedures/deleteWorkspaceOrphans/steps/crawlWorkspace.pl'],
+	['//project/procedure[procedureName="findJobId"]/step[stepName="findCollidingProperties"]/command', 'procedures/findJobId/steps/findCollidingProperties.pl'],
 	['//project/procedure[procedureName="findJobId"]/step[stepName="procedureCrawler"]/command', 'procedures/findJobId/steps/procedureCrawler.pl'],
 	['//project/procedure[procedureName="findJobId"]/step[stepName="workflowCrawler"]/command', 'procedures/findJobId/steps/workflowCrawler.pl'],
 	['//project/procedure[procedureName="jobCleanup_byResult"]/propertySheet/property[propertyName="ec_parameterForm"]/value', 'procedures/jobCleanup_byResult/form.xml'],
