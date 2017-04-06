@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.26.1.471</version>
+  <version>2.27.1.472</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
 2017-04-05 lrochette Fix #22 : find colliding project properties</description>
