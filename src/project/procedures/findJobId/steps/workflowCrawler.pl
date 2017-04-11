@@ -89,6 +89,11 @@ foreach my $node ($xPath->findnodes('//project')) {
             printf("*** jobStepId in state parameter: %s::%s::%s::%s\n",
               $pName, $wkfName, $stateName, $paramName);
           }
+          if (grep (/workflowId/, $value) ) {
+            $nbParams++;
+            printf("*** workflowId in state parameter: %s::%s::%s::%s\n",
+              $pName, $wkfName, $stateName, $paramName);
+          }
         }     # state parameter loop
       }       # sub-procedure sub-workflow
 
@@ -118,6 +123,11 @@ foreach my $node ($xPath->findnodes('//project')) {
           printf("*** jobStepId in state property: %s::%s::%s::%s\n",
                  $pName, $wkfName, $stateName, $propName);
         }
+        if (grep (/workflowId/, $value) ) {
+          $nbProps++;
+          printf("*** workflowId in state property: %s::%s::%s::%s\n",
+                 $pName, $wkfName, $stateName, $propName);
+        }
       }
 
       #
@@ -138,6 +148,11 @@ foreach my $node ($xPath->findnodes('//project')) {
         if (grep (/jobStepId/, $condition) ) {
           $nbTransConds++;
           printf("*** jobStepId in transition parameter: %s::%s::%s::%s\n",
+            $pName, $wkfName, $stateName, $transName);
+        }
+        if (grep (/workflowId/, $condition) ) {
+          $nbTransConds++;
+          printf("*** workflowId in transition parameter: %s::%s::%s::%s\n",
             $pName, $wkfName, $stateName, $transName);
         }
 
@@ -168,8 +183,12 @@ foreach my $node ($xPath->findnodes('//project')) {
             printf("*** jobStepId in transition property: %s::%s::%s::%s::%s\n",
                    $pName, $wkfName, $stateName, $transName, $propName);
           }
+          if (grep (/workflowId/, $value) ) {
+            $nbProps++;
+            printf("*** workflowId in transition property: %s::%s::%s::%s::%s\n",
+                   $pName, $wkfName, $stateName, $transName, $propName);
+          }
         }
-
         #
         # Loop over transition parameters
         #
@@ -194,6 +213,11 @@ foreach my $node ($xPath->findnodes('//project')) {
             printf("*** jobStepId in transition parameter: %s::%s::%s::%s::%s\n",
               $pName, $wkfName, $stateName, $transName, $paramName);
           }
+          if (grep (/workflowId/, $value) ) {
+            $nbParams++;
+            printf("*** workflowId in transition parameter: %s::%s::%s::%s::%s\n",
+              $pName, $wkfName, $stateName, $transName, $paramName);
+          }
         }     # transition parameter loop
       }       # transitionDefinition loop
     }         # state loop
@@ -211,7 +235,4 @@ $ec->setProperty("/myJob/nbTransCond", $nbTransConds);
 $ec->setProperty("summary", "Params: $nbParams\nProps: $nbProps\nConds: $nbTransConds");
 
 $[/myProject/scripts/perlLibJSON]
-
-
-
 

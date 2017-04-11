@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.27.1.472</version>
+  <version>2.27.2.474</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
-2017-04-05 lrochette Fix #22 : find colliding project properties</description>
+2017-04-11 lrochette Search for workflowId in findJobId</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>

@@ -70,6 +70,10 @@ foreach my $node ($xPath->findnodes('//project')) {
       $nbProps++;
       printf("*** jobStepId in project property: %s::%s\n", $pName, $propName);
     }
+    if (grep (/workflowId/, $value) ) {
+      $nbProps++;
+      printf("*** workflowId in project property: %s::%s\n", $pName, $propName);
+    }
 
   }
 
@@ -102,6 +106,10 @@ foreach my $node ($xPath->findnodes('//project')) {
       if (grep (/jobStepId/, $value) ) {
         $nbProps++;
         printf("*** jobStepId in procedure property: %s::%s::%s\n", $pName, $procName, $propName);
+      }
+      if (grep (/workflowId/, $value) ) {
+        $nbProps++;
+        printf("*** workflowId in procedure property: %s::%s::%s\n", $pName, $procName, $propName);
       }
     }
     #
@@ -136,6 +144,11 @@ foreach my $node ($xPath->findnodes('//project')) {
             printf("*** jobStepId in parameter: %s::%s::%s::%s\n",
               $pName, $procName, $stepName, $paramName);
           }
+          if (grep (/workflowId/, $value) ) {
+            $nbParams++;
+            printf("*** workflowId in parameter: %s::%s::%s::%s\n",
+              $pName, $procName, $stepName, $paramName);
+          }
         }
       }
       my $cmd=$node->{command};
@@ -147,6 +160,11 @@ foreach my $node ($xPath->findnodes('//project')) {
       if (grep (/jobStepId/, $cmd) ) {
         $nbSteps++;
         printf("*** jobStepId in command: %s::%s::%s\n",
+          $pName, $procName, $stepName);
+      }
+      if (grep (/workflowId/, $cmd) ) {
+        $nbSteps++;
+        printf("*** workflowId in command: %s::%s::%s\n",
           $pName, $procName, $stepName);
       }
     }
@@ -164,8 +182,4 @@ $ec->setProperty("/myJob/nbParams", $nbParams);
 $ec->setProperty("summary", "Steps: $nbSteps\nParams: $nbParams\nProps: $nbProps");
 
 $[/myProject/scripts/perlLibJSON]
-
-
-
-
 
