@@ -77,3 +77,4 @@ $ec->setProperty("summary", "Props: $nbCollidingProps");
 
 $[/myProject/scripts/perlLibJSON]
 
+

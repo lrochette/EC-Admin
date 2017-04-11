@@ -1,3 +1,6 @@
+2017-04-11 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.27.2.474: Search for workflowId in findJobId
+
 2017-04-05 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.27.1.473: Fix #111 : find colliding project properties
 
