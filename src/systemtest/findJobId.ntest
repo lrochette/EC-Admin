@@ -49,4 +49,13 @@ ntest "Issue 65: findJobId in EC-Admin", {}, sub {
   }
 };
 
+#-------------------------------------------------------------------------------
+# Issue 116: long dashes", {}, sub {
+  my $xpath=$::N->createProject("EC-Admin\x{2013}Issue_116");
+  assertOK($xpath, "Failed to create EC-Admin-Issue_116 project");
+
+  
+
+}
+
 1;
