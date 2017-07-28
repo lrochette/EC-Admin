@@ -173,6 +173,7 @@ do {
         if ((getP("/resources/$jobStepHost/agentState/state") eq "alive") &&
             (getP("/resources/$jobStepHost/resourceDisabled") eq "false")) {
           printf("    winDir: '%s'\n", $wksList{$jobStepWks}{win}) if ($DEBUG);
+          $wksList{$jobStepWks}{win} = tr/\\/\//;
           $ec->createJobStep({
               subprocedure=>"subJC_deleteWorkspace",
               jobStepName => "Delete $jobStepWks-$jobStepHost-$totalNbSteps",
