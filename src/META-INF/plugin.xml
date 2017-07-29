@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>EC-Admin</key>
-  <version>2.27.2.474</version>
+  <version>2.27.3.475</version>
   <label>EC-Admin</label>
   <description>A set of administrative tasks to help manage your server.
-2017-04-11 lrochette Search for workflowId in findJobId</description>
+2017-07-28 lrochette Fix #117</description>
   <help>help.xml</help>
   <author>L. Rochette</author>
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>

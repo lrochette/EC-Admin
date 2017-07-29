@@ -12,7 +12,7 @@ my $pattern="";
 # Global variables
 #
 ############################################################################
-$DEBUG=0;
+$DEBUG=1;
 my ($success, $xPath);
 my $MAX=5000;
 my $nbCollidingProps=0;
@@ -47,7 +47,9 @@ my ($success, $xPath) = InvokeCommander("SuppressLog", "findObjects", "project",
 foreach my $node ($xPath->findnodes('//project')) {
   my $pName=$node->{'projectName'};
   printf("Processing Project: %s\n", $pName) if ($DEBUG);
-
+  if ($pName =~ /.*Issue_115/ ) {
+    print Dumper ($node);
+  }
   #
   # process top level properties
   #
@@ -76,5 +78,4 @@ $ec->setProperty("/myJob/nbCollidingProps", $nbCollidingProps);
 $ec->setProperty("summary", "Props: $nbCollidingProps");
 
 $[/myProject/scripts/perlLibJSON]
-
 
