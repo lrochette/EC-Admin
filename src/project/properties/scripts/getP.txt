@@ -12,7 +12,7 @@ sub getP
 
   return undef if ($success != 1);
   my $val= $xPath->findvalue("//value");
-  return $val ? $val->value : undef;
+  return($val);
 }
 
 

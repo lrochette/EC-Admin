@@ -1,3 +1,9 @@
+2017-07-28 Laurent Rochette <lrochette@electric-cloud.com>
+  * 2.27.3.475: Fix #117
+
+2017-07-38 D. Barringer 
+  * 2.27.3: Fixed #117: problem with backslash on workspace directory
+
 2017-04-11 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.27.2.474: Search for workflowId in findJobId
 
@@ -6,12 +12,6 @@
 
 2017-04-05 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.27.1.472: Fix #22 : find colliding project properties
-
-2017-04-05 Laurent Rochette <lrochette@electric-cloud.com>
-  * 2.26.1.471: Fix #22 : find colliding project properties
-
-2017-04-05 Laurent Rochette <lrochette@electric-cloud.com>
-  * 2.26.1.470: Fix #22 : find colliding project properties
 
 2017-01-03 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.26.1.468: fix #108: Switch parsing to JSON in saveProjects
@@ -27,9 +27,6 @@
 
 2016-12-06 System Administrator <lrochette@electric-cloud.com>
   * 2.25.0.464: Fix #104: artifactRepositorySynchronization does not support range
-
-2016-12-06 System Administrator <lrochette@electric-cloud.com>
-  * 2.24.5.463: Fix #104: artifactRepositorySynchronization does not support range
 
 2016-11-22 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.24.5.462: Fix issue #102: replace black diamond question mark by space in safeFileName function
@@ -48,9 +45,6 @@
 
 2016-04-24 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.24.1.455: Fix #88 slashes in resources and pools
-
-2016-04-24 Laurent Rochette <lrochette@electric-cloud.com>
-  * 2.24.0.454: Fix #88 slashes in resources and pools
 
 2016-03-24 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.24.0.453: Fix #78 save Deploy objects in all projects (EF 6.2+)
@@ -161,7 +155,7 @@
   * 2.14.3.312: Fixed #45, bad links in deleteWorkspaceOrphans
 
 2015-10-16 Laurent Rochette <lrochette@electric-cloud.com>
-  * 2.14.2.311: Fix #46 : ixed EC-Admin project reference issue in debugPostp
+  * 2.14.2.311: Fix #46 : fixed EC-Admin project reference issue in debugPostp
 
 2015-10-11 Laurent Rochette <lrochette@electric-cloud.com>
   * 2.14.1.310: Fixed issue with artifactRepositorySynchronization
