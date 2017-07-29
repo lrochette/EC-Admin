@@ -186,6 +186,29 @@ ntest "Issue_21_local_workspace_on_linux_machine", {}, sub {
     assertEq("1", $nbJobs, "local win mode should return 4 jobs");
 };
 
+#-------------------------------------------------------------------------------
+# Test workspace with error: Issue #114
+#-------------------------------------------------------------------------------
+ntest "Issue_114_workspace_error", {}, sub {
+    my ($summary, $outcome, $nbJobs, $jobId);
+
+    loadJob("missingWorkspace");
+    $::N->modifyWorkspace("Windows", {workspaceDisabled => 1});
+    $::N->modifyResource("win7",  {resourceDisabled => 0});
+
+    # Report mode
+    ($summary, $outcome, $nbJobs, $jobId)=callJobsCleanup(0, "true", "All", "", "doNotDelete", 365);
+    assertEq("error", $outcome, " invalid workspace should return error");
+
+    # confirm step is failing with AGENT_INVALID_MESSAGE
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $jsId = $jobData->findvalue("//job/jobStep[stepName='deleteJobs']/jobStepId");
+    my $summary=$::N->getProperty("summary", {jobStepId=>$jsId})->findvalue("//value");
+    assetEq("AGENT_INVALID_MESSAGE", $summary, "invalid workspace should return INVALID step error");
+
+
+};
+
 # delete project to get jobImport
 $::N->deleteProject("EC-Admin Management");
 

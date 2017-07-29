@@ -3,3 +3,4 @@ src/out
 .efci
 ElectricFlow-*
 DIR1/
+hs_err*.log

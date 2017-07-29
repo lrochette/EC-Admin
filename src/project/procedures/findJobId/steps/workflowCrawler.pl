@@ -237,3 +237,4 @@ $ec->setProperty("summary", "Params: $nbParams\nProps: $nbProps\nConds: $nbTrans
 $[/myProject/scripts/perlLibJSON]
 
 
+
