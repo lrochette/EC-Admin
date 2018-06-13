@@ -203,7 +203,7 @@ ntest "Issue_114_workspace_error", {}, sub {
     # confirm step is failing with AGENT_INVALID_MESSAGE
     my $jobData  = $::N->getJobDetails($jobId);
     my $jsId = $jobData->findvalue("//job/jobStep[stepName='deleteJobs']/jobStepId");
-    my $summary=$::N->getProperty("summary", {jobStepId=>$jsId})->findvalue("//value");
+    $summary=$::N->getProperty("summary", {jobStepId=>$jsId})->findvalue("//value");
     assetEq("AGENT_INVALID_MESSAGE", $summary, "invalid workspace should return INVALID step error");
 
 
