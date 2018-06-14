@@ -96,7 +96,7 @@ sub callJobsCleanup{
         my $outcome = $jobData->findvalue("//job/outcome");
 	my $nbJobs = $::N->getProperty("numberOfJobs", {jobId => $jobId})->findvalue("//value");
 	
-        return($summary, $outcome, $nbJobs);
+        return($summary, $outcome, $nbJobs, $jobId);
     }
     return("", "", -1);
 }
@@ -141,10 +141,14 @@ ntest "jobsCleanup", {}, sub {
     assertEq("success", $outcome, "error test failed");
     assertEq("1 jobs deleted", $summary, "wrong number of error jobs deleted");
 
+    sleep(1);
+
     # Delete mode: 2 jobs (1 success and 1 warning)
     ($summary, $outcome, $nbJobs)=callJobsCleanup(0, "true", "All", "", "doNotDelete", 365);
     assertEq("success", $outcome, "error test failed");
     assertEq("2 jobs deleted", $summary, "wrong number of jobs deleted");
+
+    sleep(1);
 
     # Delete mode: nothing to delete anymore
     ($summary, $outcome, $nbJobs)=callJobsCleanup(0, "true", "All", "", "doNotDelete", 365);
@@ -201,12 +205,15 @@ ntest "Issue_114_workspace_error", {}, sub {
     assertEq("error", $outcome, " invalid workspace should return error");
 
     # confirm step is failing with AGENT_INVALID_MESSAGE
-    my $jobData  = $::N->getJobDetails($jobId);
-    my $jsId = $jobData->findvalue("//job/jobStep[stepName='deleteJobs']/jobStepId");
-    $summary=$::N->getProperty("summary", {jobStepId=>$jsId})->findvalue("//value");
-    assetEq("AGENT_INVALID_MESSAGE", $summary, "invalid workspace should return INVALID step error");
-
-
+    my $jobData  = $::N->findJobSteps({
+      jobId => $jobId, 
+      select => [{propertyName => "stepName"}],
+      filter => [{propertyName => "stepName",
+                       operator => "equals",
+                       operand1 => "deleteWorkspaceDirectory"}]
+    });
+    my $errCode = $jobData->findvalue("//jobStep/errorCode");
+    assertEq("AGENT_INVALID_MESSAGE", $errCode, "invalid workspace should return INVALID step error");
 };
 
 # delete project to get jobImport
