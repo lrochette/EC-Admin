@@ -1,3 +1,6 @@
+2018-06-13 Laurent Rochette <lrochette@electric-cloud.com>
+  * 3.0.0.485: Move to Flow 6.0
+
 2017-07-38 D. Barringer 
   * 2.27.3: Fixed #117: problem with backslash on workspace directory
 

@@ -34,7 +34,7 @@ ntest "Issue 65: findJobId in EC-Admin", {}, sub {
       actualParameter=>[
         {actualParameterName=>"projectPattern", value=>"EC-Admin"}
       ]});
-  assertOK($xpath, "Failed to launch EC-Admin::subJC_deleteWorkspace");
+  assertOK($xpath, "Failed to launch EC-Admin::findJobId");
   if ($xpath) {
 	#get new Job ID
         my $jobId  = $xpath->findvalue("//jobId");
@@ -47,6 +47,32 @@ ntest "Issue 65: findJobId in EC-Admin", {}, sub {
     my $params=$::N->getProperty("nbParams", {jobId => $jobId})->findvalue("//value");
     assertEq("0", $params, "incorrect number of jobId occurences found in parameters");
   }
+};
+
+#-------------------------------------------------------------------------------
+# Issue 115: long dashes
+#-------------------------------------------------------------------------------
+ntest "Issue 115: long dash", {}, sub {
+
+  my $proj="EC-Admin\x{2013}Issue_115";
+  my $xpath=$::N->createProject($proj);
+  assertOK($xpath, "Failed to create $proj");
+
+  $xpath = $::N->runProcedure("EC-Admin", {
+    procedureName=>"findJobId",
+      actualParameter=>[
+        {actualParameterName=>"projectPattern", value=>"EC-Admin"}
+      ]});
+  assertOK($xpath, "Failed to launch EC-Admin::findJobId");
+  if ($xpath) {
+        #get new Job ID
+        my $jobId  = $xpath->findvalue("//jobId");
+        waitForJob($jobId);
+        my $jobData  = $::N->getJobDetails($jobId);
+        my $outcome = $jobData->findvalue("//job/outcome");
+        assertEq("success", $outcome, "findJobId failed");
+  }
+  #$::N->deleteProject($proj);
 };
 
 1;
