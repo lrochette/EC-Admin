@@ -1,0 +1,23 @@
+<editor>
+  <formElement>
+    <type>entry</type>
+    <label>maxSemaphoreValue</label>
+    <property>maxSemaphoreValue</property>
+    <required>1</required>
+    <documentation>The maximum sempahore value to gate some procedures.</documentation>
+  </formElement>
+  <formElement>
+    <type>entry</type>
+    <label>semaphoreProperty</label>
+    <property>semaphoreProperty</property>
+    <required>1</required>
+    <documentation>The path to the property used as a semaphore.</documentation>
+  </formElement>
+  <formElement>
+    <type>entry</type>
+    <label>serializationResource</label>
+    <property>serializationResource</property>
+    <required>1</required>
+    <documentation>This should point to a resouce with a step limit of 1.</documentation>
+  </formElement>
+</editor>

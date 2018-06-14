@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exportedData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="commander.xsd" version="61" buildLabel="build_4.2_77824_2014.09.27_02:09:10" buildVersion="4.2.6.77824" passkey="a30cbf89cfdae202c5227ce40fe867512295566d">
+  <exportPath>/jobs/saveAllObjects_5806</exportPath>
+  <job>
+    <jobId>210211</jobId>
+    <jobName>saveAllObjects_5806</jobName>
+    <createTime>2014-01-29T23:00:00.003Z</createTime>
+    <directoryName>saveAllObjects_5806</directoryName>
+    <external>0</external>
+    <lastModifiedBy>admin</lastModifiedBy>
+    <modifyTime>2014-01-29T23:02:08.125Z</modifyTime>
+    <owner>project: EC-Admin Management</owner>
+    <priority>normal</priority>
+    <procedureName>/projects/EC-Admin/procedures/saveAllObjects</procedureName>
+    <scheduleName>saveObjects</scheduleName>
+    <acl>
+      <aclId>3969628</aclId>
+      <inheriting>1</inheriting>
+      <aclEntry>
+        <aclEntryId>227573</aclEntryId>
+        <allowChangePermissions>1</allowChangePermissions>
+        <allowExecute>1</allowExecute>
+        <allowModify>1</allowModify>
+        <allowRead>1</allowRead>
+        <denyChangePermissions>0</denyChangePermissions>
+        <denyExecute>0</denyExecute>
+        <denyModify>0</denyModify>
+        <denyRead>0</denyRead>
+        <principalName>project: EC-Admin Management</principalName>
+        <principalType>user</principalType>
+      </aclEntry>
+    </acl>
+    <jobStep>
+      <jobStepId>1689595</jobStepId>
+      <stepName>job_34631900402386237-root</stepName>
+      <alwaysRun>0</alwaysRun>
+      <broadcast>0</broadcast>
+      <conditionExpanded>0</conditionExpanded>
+      <createTime>2014-01-29T23:00:00.003Z</createTime>
+      <errorHandling>failProcedure</errorHandling>
+      <exclusiveMode>none</exclusiveMode>
+      <exitCode>0</exitCode>
+      <external>0</external>
+      <finish>2014-01-29T23:02:08.011Z</finish>
+      <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+      <licenseWaitTime>0</licenseWaitTime>
+      <modifyTime>2014-01-29T23:02:08.011Z</modifyTime>
+      <outcome>success</outcome>
+      <owner>project: EC-Admin Management</owner>
+      <parallel>0</parallel>
+      <postExitCode>0</postExitCode>
+      <procedureName>/projects/EC-Admin/procedures/saveAllObjects</procedureName>
+      <releaseMode>none</releaseMode>
+      <resourceWaitTime>0</resourceWaitTime>
+      <retries>0</retries>
+      <runTime>0</runTime>
+      <start>2014-01-29T23:00:00.003Z</start>
+      <status>completed</status>
+      <subprocedure>saveAllObjects</subprocedure>
+      <subproject>EC-Admin</subproject>
+      <timeLimit></timeLimit>
+      <workspaceWaitTime>0</workspaceWaitTime>
+      <acl>
+        <aclId>3969629</aclId>
+        <inheriting>1</inheriting>
+      </acl>
+      <actualParameters>
+        <propertySheetId>1937749</propertySheetId>
+        <createTime>2014-01-29T23:00:00.003Z</createTime>
+        <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+        <modifyTime>2014-01-29T23:00:00.003Z</modifyTime>
+        <owner>project: EC-Admin Management</owner>
+        <acl>
+          <aclId>3969631</aclId>
+          <inheriting>1</inheriting>
+        </acl>
+        <property>
+          <propertyId>3007498</propertyId>
+          <propertyName>exportGroups</propertyName>
+          <createTime>2014-01-29T23:00:00.003Z</createTime>
+          <expandable>0</expandable>
+          <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+          <modifyTime>2014-01-29T23:00:00.003Z</modifyTime>
+          <owner>project: EC-Admin Management</owner>
+          <value>true</value>
+        </property>
+        <property>
+          <propertyId>3007500</propertyId>
+          <propertyName>exportResourcePools</propertyName>
+          <createTime>2014-01-29T23:00:00.003Z</createTime>
+          <expandable>0</expandable>
+          <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+          <modifyTime>2014-01-29T23:00:00.003Z</modifyTime>
+          <owner>project: EC-Admin Management</owner>
+          <value>true</value>
+        </property>
+        <property>
+          <propertyId>3007502</propertyId>
+          <propertyName>exportResources</propertyName>
+          <createTime>2014-01-29T23:00:00.003Z</createTime>
+          <expandable>0</expandable>
+          <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+          <modifyTime>2014-01-29T23:00:00.003Z</modifyTime>
+          <owner>project: EC-Admin Management</owner>
+          <value>true</value>
+        </property>
+        <property>
+          <propertyId>3007504</propertyId>
+          <propertyName>exportUsers</propertyName>
+          <createTime>2014-01-29T23:00:00.003Z</createTime>
+          <expandable>0</expandable>
+          <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+          <modifyTime>2014-01-29T23:00:00.003Z</modifyTime>
+          <owner>project: EC-Admin Management</owner>
+          <value>true</value>
+        </property>
+        <property>
+          <propertyId>3007506</propertyId>
+          <propertyName>exportWorkspaces</propertyName>
+          <createTime>2014-01-29T23:00:00.003Z</createTime>
+          <expandable>0</expandable>
+          <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+          <modifyTime>2014-01-29T23:00:00.003Z</modifyTime>
+          <owner>project: EC-Admin Management</owner>
+          <value>true</value>
+        </property>
+        <property>
+          <propertyId>3007508</propertyId>
+          <propertyName>pathname</propertyName>
+          <createTime>2014-01-29T23:00:00.003Z</createTime>
+          <expandable>0</expandable>
+          <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+          <modifyTime>2014-01-29T23:00:00.003Z</modifyTime>
+          <owner>project: EC-Admin Management</owner>
+          <value>/scratch/BACKUP</value>
+        </property>
+      </actualParameters>
+      <jobId>210211</jobId>
+      <liveProcedure>/projects/EC-Admin/procedures/saveAllObjects</liveProcedure>
+      <propertySheet>
+        <propertySheetId>1937748</propertySheetId>
+        <createTime>2014-01-29T23:00:00.003Z</createTime>
+        <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+        <modifyTime>2014-01-29T23:00:00.003Z</modifyTime>
+        <owner>project: EC-Admin Management</owner>
+        <acl>
+          <aclId>3969630</aclId>
+          <inheriting>1</inheriting>
+        </acl>
+        <property>
+          <propertyId>3007499</propertyId>
+          <propertyName>exportGroups</propertyName>
+          <createTime>2014-01-29T23:00:00.003Z</createTime>
+          <expandable>0</expandable>
+          <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+          <modifyTime>2014-01-29T23:00:00.003Z</modifyTime>
+          <owner>project: EC-Admin Management</owner>
+          <value>true</value>
+        </property>
+        <property>
+          <propertyId>3007501</propertyId>
+          <propertyName>exportResourcePools</propertyName>
+          <createTime>2014-01-29T23:00:00.003Z</createTime>
+          <expandable>0</expandable>
+          <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+          <modifyTime>2014-01-29T23:00:00.003Z</modifyTime>
+          <owner>project: EC-Admin Management</owner>
+          <value>true</value>
+        </property>
+        <property>
+          <propertyId>3007503</propertyId>
+          <propertyName>exportResources</propertyName>
+          <createTime>2014-01-29T23:00:00.003Z</createTime>
+          <expandable>0</expandable>
+          <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+          <modifyTime>2014-01-29T23:00:00.003Z</modifyTime>
+          <owner>project: EC-Admin Management</owner>
+          <value>true</value>
+        </property>
+        <property>
+          <propertyId>3007505</propertyId>
+          <propertyName>exportUsers</propertyName>
+          <createTime>2014-01-29T23:00:00.003Z</createTime>
+          <expandable>0</expandable>
+          <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+          <modifyTime>2014-01-29T23:00:00.003Z</modifyTime>
+          <owner>project: EC-Admin Management</owner>
+          <value>true</value>
+        </property>
+        <property>
+          <propertyId>3007507</propertyId>
+          <propertyName>exportWorkspaces</propertyName>
+          <createTime>2014-01-29T23:00:00.003Z</createTime>
+          <expandable>0</expandable>
+          <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+          <modifyTime>2014-01-29T23:00:00.003Z</modifyTime>
+          <owner>project: EC-Admin Management</owner>
+          <value>true</value>
+        </property>
+        <property>
+          <propertyId>3007509</propertyId>
+          <propertyName>pathname</propertyName>
+          <createTime>2014-01-29T23:00:00.003Z</createTime>
+          <expandable>0</expandable>
+          <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+          <modifyTime>2014-01-29T23:00:00.003Z</modifyTime>
+          <owner>project: EC-Admin Management</owner>
+          <value>/scratch/BACKUP</value>
+        </property>
+      </propertySheet>
+      <calledProcedure>
+        <jobStep>
+          <jobStepId>1689596</jobStepId>
+          <stepName>saveProjectsProceduresWorkflows</stepName>
+          <alwaysRun>0</alwaysRun>
+          <assignedResourceName>local</assignedResourceName>
+          <broadcast>0</broadcast>
+          <command>#############################################################################&#10;#&#10;#  Copyright 2013 Electric-Cloud Inc.&#10;#&#10;#############################################################################&#10;use File::Path;&#10;&#10;#############################################################################&#10;#&#10;# Copyright 2013 Electric-Cloud Inc.&#10;#&#10;#############################################################################&#10;use strict;&#10;use English;&#10;use ElectricCommander;&#10;use Data::Dumper;&#10;$| = 1;&#10;&#10;my $DEBUG=0;&#10;&#10;# Create a single instance of the Perl access to ElectricCommander&#10;my $ec = new ElectricCommander({'format' =&gt; "json"});&#10;&#10;# Check for the OS Type&#10;my $osIsWindows = $^O =~ /MSWin/;&#10;&#10;&#10;#### Line 20 ####&#10;&#10;$DEBUG=1;&#10;&#10;# Parameters&#10;#&#10;my $path="/scratch/BACKUP";&#10;&#10;my $errorCount=0;&#10;my $projCount=0;&#10;my $procCount=0;&#10;my $wkfCount=0;&#10;my $newtimeout=600;&#10;&#10;# Set the time out to newtimeout so the ec commands won't time out at 3 mins&#10;$ec-&gt;setTimeout($newtimeout);&#10;&#10;# Get list of Project&#10;my ($success, $xPath) = InvokeCommander("SuppressLog", "getProjects");&#10;&#10;# Create the Projects directory&#10;mkpath("$path/Projects");&#10;chmod(0777, "$path/Projects");&#10;&#10;foreach my $node ($xPath-&gt;findnodes('//project')) {&#10;  my $pName=$node-&gt;{'projectName'};&#10;  my $pluginName=$node-&gt;{'pluginName',};&#10;&#10;  # skip plugins  &#10;  next if ($pluginName ne "");&#10;  printf("Saving Project: %s\n", $pName);&#10;  my $fileProjectName=safeFilename($pName);&#10;  mkpath("$path/Projects/$fileProjectName");&#10;  chmod(0777, "$path/Projects/$fileProjectName");&#10;  &#10;  my ($success, $res, $errMsg, $errCode) = &#10;      InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/$fileProjectName".".xml",&#10;  					{ 'path'=&gt; "/projects/".$pName, &#10;                                          'relocatable' =&gt; 1,&#10;                                          'withAcls'    =&gt; 1,&#10;                                          'withNotifiers'=&gt;1});&#10;  if (! $success) {&#10;    printf("  Error exporting %s", $pName);&#10;    printf("  %s: %s\n", $errCode, $errMsg);&#10;    $errorCount++;&#10;  } else {&#10;    $projCount++;&#10;  }&#10;  #&#10;  # Save procedures&#10;  #&#10;  mkpath("$path/Projects/$fileProjectName/Procedures");&#10;  chmod(0777, "$path/Projects/$fileProjectName/Procedures");&#10;  &#10;  my ($success, $xPath) = InvokeCommander("SuppressLog", "getProcedures", $pName);&#10;  foreach my $proc ($xPath-&gt;findnodes('//procedure')) {&#10;    my $procName=$proc-&gt;{'procedureName'};&#10;    my $fileProcedureName=safeFilename($procName);&#10;    printf("  Saving Procedure: %s\n", $procName);&#10; &#10; 	my ($success, $res, $errMsg, $errCode) = &#10;      InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Procedures/$fileProcedureName".".xml",&#10;  					{ 'path'=&gt; "/projects/$pName/procedures/$procName", &#10;                                          'relocatable' =&gt; 1,&#10;                                          'withAcls'    =&gt; 1,&#10;                                          'withNotifiers'=&gt;1});&#10;    &#10;    if (! $success) {&#10;      printf("  Error exporting %s", $procName);&#10;      printf("  %s: %s\n", $errCode, $errMsg);&#10;      $errorCount++;&#10;    }&#10;    else {&#10;      $procCount++;&#10;    }&#10;  }&#10;&#10;  #&#10;  # Save workflow definitions&#10;  #&#10;  mkpath("$path/Projects/$fileProjectName/Workflows");&#10;  chmod(0777, "$path/Projects/$fileProjectName/Workflows");&#10;  &#10;  my ($success, $xPath) = InvokeCommander("SuppressLog", "getWorkflowDefinitions", $pName);&#10;  foreach my $proc ($xPath-&gt;findnodes('//workflowDefinition')) {&#10;    my $wkfName=$proc-&gt;{'workflowDefinitionName'};&#10;    my $fileWkfName=safeFilename($wkfName);&#10;    printf("  Saving Workflow Definition: %s\n", $wkfName);&#10;    &#10;    my ($success, $res, $errMsg, $errCode) = &#10;      InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Workflows/$fileWkfName".".xml",&#10;  					{ 'path'=&gt; "/projects/$pName/workflowDefinitions/$wkfName", &#10;                                          'relocatable' =&gt; 1,&#10;                                          'withAcls'    =&gt; 1,&#10;                                          'withNotifiers'=&gt;1});&#10;    &#10;    if (! $success) {&#10;      printf("  Error exporting %s", $wkfName);&#10;      printf("  %s: %s\n", $errCode, $errMsg);&#10;      $errorCount++;&#10;    }&#10;    else {&#10;      $wkfCount++;&#10;    }&#10;  }&#10;&#10;}&#10;$ec-&gt;setProperty("preSummary", "$projCount projects exported\n  $procCount procedures exported\n  $wkfCount workflows exported");&#10;exit($errorCount);&#10;&#10;#&#10;# Make the name of an object safe to be a file or directory name&#10;#&#10;sub safeFilename {&#10;  my $safe=@_[0];&#10;  $safe =~ s#[\*\.\"/\[\]\\:;,=\|]#_#g;&#10;  return $safe;&#10;}&#10;&#10;&#10;#############################################################################&#10;#&#10;# Compare 2 version number strings like x.y.z... section by section&#10;# return 1 if V1 &gt; v2&#10;# return 0 if v1 == v2&#10;# return -1 if v1 &lt; v2&#10;#&#10;#############################################################################&#10;sub compareVersion {&#10;&#10;  my ($v1, $v2)=@_;&#10;  &#10;  my @v1Numbers = split('\.', $v1);&#10;  my @v2Numbers = split('\.', $v2);&#10;&#10;  for (my $index = 0; $index &lt; scalar(@v1Numbers); $index++) {&#10;    &#10;    # We ran out of V2 numbers =&gt; V1 is a bigger version&#10;    return 1 if (scalar(@v2Numbers) == $index);&#10;&#10;    # same value, go to next number&#10;    next if ($v1Numbers[$index] == $v2Numbers[$index]);&#10;        &#10;    # V1 is a bigger version&#10;    return 1 if ($v1Numbers[$index] &gt; $v2Numbers[$index]);&#10;           ;&#10;    # V2 is a bigger version&#10;    return -1;&#10;  }&#10;&#10;  # We ran out of V1 numbers&#10;  return -1 if(scalar(@v1Numbers) != scalar(@v2Numbers));&#10;&#10;  # Same number&#10;  return 0;&#10;}&#10;;&#10;&#10;#############################################################################&#10;#&#10;# Return property value or undef in case of error (non existing)&#10;#&#10;#############################################################################&#10;sub getP&#10;{&#10;  my $prop=shift;&#10;&#10;  my($success, $xPath, $errMsg, $errCode)= InvokeCommander("SuppressLog IgnoreError", "getProperty", $prop);&#10;  return undef if ($success != 1);&#10;  my $val= $xPath-&gt;findvalue("//value");&#10;  return($val);&#10;}&#10;&#10;&#10;;&#10;&#10;#############################################################################&#10;#&#10;# Return human readable size&#10;#&#10;#############################################################################&#10;sub humanSize {&#10;  my $size = shift();&#10;&#10;  if ($size &gt; 1099511627776) { # TB: 1024 GB&#10;      return sprintf("%.2f TB", $size / 1099511627776);&#10;  }&#10;  if ($size &gt; 1073741824) { # GB: 1024 MB&#10;      return sprintf("%.2f GB", $size / 1073741824);&#10;  }&#10;  if ($size &gt; 1048576) { # MB: 1024 KB&#10;      return sprintf("%.2f MB", $size / 1048576);&#10;  }&#10;  elsif ($size &gt; 1024) { # KiB: 1024 B&#10;      return sprintf("%.2f KB", $size / 1024);&#10;  }&#10;                                  # bytes&#10;  return "$size byte" . ($size &lt;= 1 ? "" : "s");&#10;}&#10;;&#10;;&#10;&#10;#############################################################################&#10;#&#10;# Invoke a API call&#10;#&#10;#############################################################################&#10;sub InvokeCommander {&#10;&#10;    my $optionFlags = shift;&#10;    my $commanderFunction = shift;&#10;    my $result;&#10;    my $success = 1;&#10;	my $errMsg;&#10;	my $errCode;&#10;&#10;    my $bSuppressLog = $optionFlags =~ /SuppressLog/i;&#10;    my $bSuppressResult = $bSuppressLog || $optionFlags =~ /SuppressResult/i;&#10;    my $bIgnoreError = $optionFlags =~ /IgnoreError/i;&#10;&#10;    # Run the command&#10;    # print "Request to Commander: $commanderFunction\n" unless ($bSuppressLog);&#10;&#10;    $ec-&gt;abortOnError(0) if $bIgnoreError;&#10;    $result = $ec-&gt;$commanderFunction(@_);&#10;    $ec-&gt;abortOnError(1) if $bIgnoreError;&#10;&#10;    # Check for error return&#10;    if (defined ($result-&gt;{responses}-&gt;[0]-&gt;{error})) {&#10;    	$errCode=$result-&gt;{responses}-&gt;[0]-&gt;{error}-&gt;{code};&#10;    	$errMsg=$result-&gt;{responses}-&gt;[0]-&gt;{error}-&gt;{message};&#10;    }&#10;&#10;    if ($errMsg ne "") {&#10;        $success = 0;&#10;    }&#10;    if ($result) {&#10;        print "Return data from Commander:\n" .&#10;               Dumper($result) . "\n"&#10;            unless $bSuppressResult;&#10;    }&#10;&#10;    # Return the result&#10;    return ($success, $result, $errMsg, $errCode);&#10;}&#10;&#10;&#10;#############################################################################&#10;#&#10;# Return a hash of the properties contained in a Property Sheet.&#10;# Args:&#10;#    1. Property Sheet path&#10;#    2. Recursive boolean&#10;#############################################################################&#10;sub getPS&#10;{&#10;  my $psPath=shift;&#10;  my $recursive=shift;&#10;  &#10;  my $hashRef=undef;;&#10;  &#10;  my($success, $result, $errMsg, $errCode)=InvokeCommander("SuppressLog IgnoreError", "getProperties", {'path'=&gt;$psPath});&#10;  return $hashRef if (!$success);&#10;  &#10;  foreach my $node ($result-&gt;findnodes('//property')) {&#10;	my $propName=$node-&gt;{'propertyName'};&#10;    my $value=$node-&gt;{'value'};&#10;    if (defined ($value)) {&#10;      $hashRef-&gt;{$propName}=$node-&gt;{'value'};&#10;    } else {&#10;      # nested PropertySheet&#10;      if ($recursive) {&#10;        $hashRef-&gt;{$propName}=getPS("$psPath/$propName");&#10;      } else {&#10;        $hashRef-&gt;{$propName}=undef;&#10;      }  &#10;    }&#10;  }&#10;  return $hashRef;&#10;}&#10;&#10;</command>
+          <condition>1</condition>
+          <conditionExpanded>1</conditionExpanded>
+          <createTime>2014-01-29T23:00:00.166Z</createTime>
+          <errorHandling>failProcedure</errorHandling>
+          <exclusiveMode>none</exclusiveMode>
+          <exitCode>0</exitCode>
+          <external>0</external>
+          <finish>2014-01-29T23:01:56.435Z</finish>
+          <hostName>localhost</hostName>
+          <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+          <licenseWaitTime>0</licenseWaitTime>
+          <logFileName>saveProjectsProcedur.1689596.log</logFileName>
+          <modifyTime>2014-01-29T23:01:56.435Z</modifyTime>
+          <outcome>success</outcome>
+          <owner>project: EC-Admin Management</owner>
+          <parallel>0</parallel>
+          <postExitCode>0</postExitCode>
+          <postProcessor></postProcessor>
+          <precondition></precondition>
+          <procedureName>/projects/EC-Admin/procedures/saveAllObjects</procedureName>
+          <releaseMode>none</releaseMode>
+          <resourceWaitTime>0</resourceWaitTime>
+          <retries>0</retries>
+          <runTime>115412</runTime>
+          <runnable>2014-01-29T23:00:00.166Z</runnable>
+          <shell>ec-perl</shell>
+          <start>2014-01-29T23:00:00.998Z</start>
+          <status>completed</status>
+          <timeLimit></timeLimit>
+          <workingDirectory></workingDirectory>
+          <workspaceName>default</workspaceName>
+          <workspaceWaitTime>0</workspaceWaitTime>
+          <acl>
+            <aclId>3969634</aclId>
+            <inheriting>1</inheriting>
+          </acl>
+          <jobId>210211</jobId>
+          <liveProcedure>/projects/EC-Admin/procedures/saveAllObjects</liveProcedure>
+          <liveProcedureStep>saveProjectsProceduresWorkflows</liveProcedureStep>
+          <propertySheet>
+            <propertySheetId>1937758</propertySheetId>
+            <createTime>2014-01-29T23:01:56.346Z</createTime>
+            <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+            <modifyTime>2014-01-29T23:01:56.346Z</modifyTime>
+            <owner>project: EC-Admin Management</owner>
+            <acl>
+              <aclId>3969655</aclId>
+              <inheriting>1</inheriting>
+            </acl>
+            <property>
+              <propertyId>3007526</propertyId>
+              <propertyName>preSummary</propertyName>
+              <createTime>2014-01-29T23:01:56.346Z</createTime>
+              <expandable>1</expandable>
+              <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+              <modifyTime>2014-01-29T23:01:56.346Z</modifyTime>
+              <owner>project: EC-Admin Management</owner>
+              <value>70 projects exported&#10;  545 procedures exported&#10;  38 workflows exported</value>
+            </property>
+          </propertySheet>
+        </jobStep>
+        <jobStep>
+          <jobStepId>1689597</jobStepId>
+          <stepName>saveResources</stepName>
+          <alwaysRun>0</alwaysRun>
+          <assignedResourceName>local</assignedResourceName>
+          <broadcast>0</broadcast>
+          <command>#############################################################################&#10;#&#10;#  Copyright 2013 Electric-Cloud Inc.&#10;#&#10;#############################################################################&#10;use File::Path;&#10;&#10;#############################################################################&#10;#&#10;# Copyright 2013 Electric-Cloud Inc.&#10;#&#10;#############################################################################&#10;use strict;&#10;use English;&#10;use ElectricCommander;&#10;use Data::Dumper;&#10;$| = 1;&#10;&#10;my $DEBUG=0;&#10;&#10;# Create a single instance of the Perl access to ElectricCommander&#10;my $ec = new ElectricCommander({'format' =&gt; "json"});&#10;&#10;# Check for the OS Type&#10;my $osIsWindows = $^O =~ /MSWin/;&#10;&#10;&#10;#### Line 20 ####&#10;&#10;$DEBUG=1;&#10;&#10;# Parameters&#10;#&#10;my $path="/scratch/BACKUP";&#10;&#10;my $errorCount=0;&#10;my $resCount=0;&#10;&#10;# Get list of Project&#10;my ($success, $xPath) = InvokeCommander("SuppressLog", "getResources");&#10;&#10;# Create the Resources directory&#10;mkpath("$path/Resources");&#10;chmod(0777, "$path/Resources");&#10;&#10;foreach my $node ($xPath-&gt;findnodes('//resource')) {&#10;  my $resName=$node-&gt;{'resourceName'};&#10;&#10;  printf("Saving Resource: %s\n", $resName);&#10;  my $fileResourceName=safeFilename($resName); &#10;  &#10;  my ($success, $res, $errMsg, $errCode) = &#10;      InvokeCommander("SuppressLog", "export", "$path/Resources/$fileResourceName".".xml",&#10;  					{ 'path'=&gt; "/resources/".$resName, &#10;                                          'relocatable' =&gt; 1,&#10;                                          'withAcls'    =&gt; 1});&#10;  if (! $success) {&#10;    printf("  Error exporting %s", $resName);&#10;    printf("  %s: %s\n", $errCode, $errMsg);&#10;    $errorCount++;&#10;  } else {&#10;    $resCount++;&#10;  }&#10;}&#10;$ec-&gt;setProperty("preSummary", "$resCount resources exported");&#10;exit($errorCount);&#10;&#10;#&#10;# Make the name of an object safe to be a file or directory name&#10;#&#10;sub safeFilename {&#10;  my $safe=@_[0];&#10;  $safe =~ s#[\*\.\"/\[\]\\:;,=\|]#_#g;&#10;  return $safe;&#10;}&#10;&#10;&#10;#############################################################################&#10;#&#10;# Compare 2 version number strings like x.y.z... section by section&#10;# return 1 if V1 &gt; v2&#10;# return 0 if v1 == v2&#10;# return -1 if v1 &lt; v2&#10;#&#10;#############################################################################&#10;sub compareVersion {&#10;&#10;  my ($v1, $v2)=@_;&#10;  &#10;  my @v1Numbers = split('\.', $v1);&#10;  my @v2Numbers = split('\.', $v2);&#10;&#10;  for (my $index = 0; $index &lt; scalar(@v1Numbers); $index++) {&#10;    &#10;    # We ran out of V2 numbers =&gt; V1 is a bigger version&#10;    return 1 if (scalar(@v2Numbers) == $index);&#10;&#10;    # same value, go to next number&#10;    next if ($v1Numbers[$index] == $v2Numbers[$index]);&#10;        &#10;    # V1 is a bigger version&#10;    return 1 if ($v1Numbers[$index] &gt; $v2Numbers[$index]);&#10;           ;&#10;    # V2 is a bigger version&#10;    return -1;&#10;  }&#10;&#10;  # We ran out of V1 numbers&#10;  return -1 if(scalar(@v1Numbers) != scalar(@v2Numbers));&#10;&#10;  # Same number&#10;  return 0;&#10;}&#10;;&#10;&#10;#############################################################################&#10;#&#10;# Return property value or undef in case of error (non existing)&#10;#&#10;#############################################################################&#10;sub getP&#10;{&#10;  my $prop=shift;&#10;&#10;  my($success, $xPath, $errMsg, $errCode)= InvokeCommander("SuppressLog IgnoreError", "getProperty", $prop);&#10;  return undef if ($success != 1);&#10;  my $val= $xPath-&gt;findvalue("//value");&#10;  return($val);&#10;}&#10;&#10;&#10;;&#10;&#10;#############################################################################&#10;#&#10;# Return human readable size&#10;#&#10;#############################################################################&#10;sub humanSize {&#10;  my $size = shift();&#10;&#10;  if ($size &gt; 1099511627776) { # TB: 1024 GB&#10;      return sprintf("%.2f TB", $size / 1099511627776);&#10;  }&#10;  if ($size &gt; 1073741824) { # GB: 1024 MB&#10;      return sprintf("%.2f GB", $size / 1073741824);&#10;  }&#10;  if ($size &gt; 1048576) { # MB: 1024 KB&#10;      return sprintf("%.2f MB", $size / 1048576);&#10;  }&#10;  elsif ($size &gt; 1024) { # KiB: 1024 B&#10;      return sprintf("%.2f KB", $size / 1024);&#10;  }&#10;                                  # bytes&#10;  return "$size byte" . ($size &lt;= 1 ? "" : "s");&#10;}&#10;;&#10;;&#10;&#10;#############################################################################&#10;#&#10;# Invoke a API call&#10;#&#10;#############################################################################&#10;sub InvokeCommander {&#10;&#10;    my $optionFlags = shift;&#10;    my $commanderFunction = shift;&#10;    my $result;&#10;    my $success = 1;&#10;	my $errMsg;&#10;	my $errCode;&#10;&#10;    my $bSuppressLog = $optionFlags =~ /SuppressLog/i;&#10;    my $bSuppressResult = $bSuppressLog || $optionFlags =~ /SuppressResult/i;&#10;    my $bIgnoreError = $optionFlags =~ /IgnoreError/i;&#10;&#10;    # Run the command&#10;    # print "Request to Commander: $commanderFunction\n" unless ($bSuppressLog);&#10;&#10;    $ec-&gt;abortOnError(0) if $bIgnoreError;&#10;    $result = $ec-&gt;$commanderFunction(@_);&#10;    $ec-&gt;abortOnError(1) if $bIgnoreError;&#10;&#10;    # Check for error return&#10;    if (defined ($result-&gt;{responses}-&gt;[0]-&gt;{error})) {&#10;    	$errCode=$result-&gt;{responses}-&gt;[0]-&gt;{error}-&gt;{code};&#10;    	$errMsg=$result-&gt;{responses}-&gt;[0]-&gt;{error}-&gt;{message};&#10;    }&#10;&#10;    if ($errMsg ne "") {&#10;        $success = 0;&#10;    }&#10;    if ($result) {&#10;        print "Return data from Commander:\n" .&#10;               Dumper($result) . "\n"&#10;            unless $bSuppressResult;&#10;    }&#10;&#10;    # Return the result&#10;    return ($success, $result, $errMsg, $errCode);&#10;}&#10;&#10;&#10;#############################################################################&#10;#&#10;# Return a hash of the properties contained in a Property Sheet.&#10;# Args:&#10;#    1. Property Sheet path&#10;#    2. Recursive boolean&#10;#############################################################################&#10;sub getPS&#10;{&#10;  my $psPath=shift;&#10;  my $recursive=shift;&#10;  &#10;  my $hashRef=undef;;&#10;  &#10;  my($success, $result, $errMsg, $errCode)=InvokeCommander("SuppressLog IgnoreError", "getProperties", {'path'=&gt;$psPath});&#10;  return $hashRef if (!$success);&#10;  &#10;  foreach my $node ($result-&gt;findnodes('//property')) {&#10;	my $propName=$node-&gt;{'propertyName'};&#10;    my $value=$node-&gt;{'value'};&#10;    if (defined ($value)) {&#10;      $hashRef-&gt;{$propName}=$node-&gt;{'value'};&#10;    } else {&#10;      # nested PropertySheet&#10;      if ($recursive) {&#10;        $hashRef-&gt;{$propName}=getPS("$psPath/$propName");&#10;      } else {&#10;        $hashRef-&gt;{$propName}=undef;&#10;      }  &#10;    }&#10;  }&#10;  return $hashRef;&#10;}&#10;&#10;</command>
+          <condition>true</condition>
+          <conditionExpanded>1</conditionExpanded>
+          <createTime>2014-01-29T23:00:00.166Z</createTime>
+          <errorHandling>failProcedure</errorHandling>
+          <exclusiveMode>none</exclusiveMode>
+          <exitCode>0</exitCode>
+          <external>0</external>
+          <finish>2014-01-29T23:01:57.507Z</finish>
+          <hostName>localhost</hostName>
+          <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+          <licenseWaitTime>0</licenseWaitTime>
+          <logFileName>saveResources.1689597.log</logFileName>
+          <modifyTime>2014-01-29T23:01:57.507Z</modifyTime>
+          <outcome>success</outcome>
+          <owner>project: EC-Admin Management</owner>
+          <parallel>0</parallel>
+          <postExitCode>0</postExitCode>
+          <postProcessor></postProcessor>
+          <precondition></precondition>
+          <procedureName>/projects/EC-Admin/procedures/saveAllObjects</procedureName>
+          <releaseMode>none</releaseMode>
+          <resourceWaitTime>0</resourceWaitTime>
+          <retries>0</retries>
+          <runTime>743</runTime>
+          <runnable>2014-01-29T23:01:56.435Z</runnable>
+          <shell>ec-perl</shell>
+          <start>2014-01-29T23:01:56.729Z</start>
+          <status>completed</status>
+          <timeLimit></timeLimit>
+          <workingDirectory></workingDirectory>
+          <workspaceName>default</workspaceName>
+          <workspaceWaitTime>0</workspaceWaitTime>
+          <acl>
+            <aclId>3969635</aclId>
+            <inheriting>1</inheriting>
+          </acl>
+          <jobId>210211</jobId>
+          <liveProcedure>/projects/EC-Admin/procedures/saveAllObjects</liveProcedure>
+          <liveProcedureStep>saveResources</liveProcedureStep>
+          <propertySheet>
+            <propertySheetId>1937759</propertySheetId>
+            <createTime>2014-01-29T23:01:57.421Z</createTime>
+            <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+            <modifyTime>2014-01-29T23:01:57.421Z</modifyTime>
+            <owner>project: EC-Admin Management</owner>
+            <acl>
+              <aclId>3969656</aclId>
+              <inheriting>1</inheriting>
+            </acl>
+            <property>
+              <propertyId>3007527</propertyId>
+              <propertyName>preSummary</propertyName>
+              <createTime>2014-01-29T23:01:57.421Z</createTime>
+              <expandable>1</expandable>
+              <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+              <modifyTime>2014-01-29T23:01:57.421Z</modifyTime>
+              <owner>project: EC-Admin Management</owner>
+              <value>11 resources exported</value>
+            </property>
+          </propertySheet>
+        </jobStep>
+        <jobStep>
+          <jobStepId>1689598</jobStepId>
+          <stepName>saveResourcePools</stepName>
+          <alwaysRun>0</alwaysRun>
+          <assignedResourceName>local</assignedResourceName>
+          <broadcast>0</broadcast>
+          <command>#############################################################################&#10;#&#10;#  Copyright 2013 Electric-Cloud Inc.&#10;#&#10;#############################################################################&#10;use File::Path;&#10;&#10;#############################################################################&#10;#&#10;# Copyright 2013 Electric-Cloud Inc.&#10;#&#10;#############################################################################&#10;use strict;&#10;use English;&#10;use ElectricCommander;&#10;use Data::Dumper;&#10;$| = 1;&#10;&#10;my $DEBUG=0;&#10;&#10;# Create a single instance of the Perl access to ElectricCommander&#10;my $ec = new ElectricCommander({'format' =&gt; "json"});&#10;&#10;# Check for the OS Type&#10;my $osIsWindows = $^O =~ /MSWin/;&#10;&#10;&#10;#### Line 20 ####&#10;&#10;$DEBUG=1;&#10;&#10;# Parameters&#10;#&#10;my $path="/scratch/BACKUP";&#10;&#10;my $errorCount=0;&#10;my $poolCount=0;&#10;&#10;# Get list of Project&#10;my ($success, $xPath) = InvokeCommander("SuppressLog", "getResourcePools");&#10;&#10;# Create the Resources directory&#10;mkpath("$path/Pools");&#10;chmod(0777, "$path/Pools");&#10;&#10;foreach my $node ($xPath-&gt;findnodes('//resourcePool')) {&#10;  my $poolName=$node-&gt;{'resourcePoolName'};&#10;&#10;  printf("Saving Resource Pool: %s\n", $poolName);&#10;  my $filePoolName=safeFilename($poolName);&#10;  &#10;  my ($success, $res, $errMsg, $errCode) = &#10;      InvokeCommander("SuppressLog", "export", "$path/Pools/$filePoolName".".xml",&#10;  					{ 'path'=&gt; "/resourcePools/".$poolName, &#10;                                          'relocatable' =&gt; 1,&#10;                                          'withAcls'    =&gt; 1});&#10;  if (! $success) {&#10;    printf("  Error exporting %s", $poolName);&#10;    printf("  %s: %s\n", $errCode, $errMsg);&#10;    $errorCount++;&#10;  } else {&#10;	$poolCount++;&#10;  }  &#10;}&#10;&#10;$ec-&gt;setProperty("preSummary", "$poolCount pools exported");&#10;exit($errorCount);&#10;&#10;#&#10;# Make the name of an object safe to be a file or directory name&#10;#&#10;sub safeFilename {&#10;  my $safe=@_[0];&#10;  $safe =~ s#[\*\.\"/\[\]\\:;,=\|]#_#g;&#10;  return $safe;&#10;}&#10;&#10;&#10;#############################################################################&#10;#&#10;# Compare 2 version number strings like x.y.z... section by section&#10;# return 1 if V1 &gt; v2&#10;# return 0 if v1 == v2&#10;# return -1 if v1 &lt; v2&#10;#&#10;#############################################################################&#10;sub compareVersion {&#10;&#10;  my ($v1, $v2)=@_;&#10;  &#10;  my @v1Numbers = split('\.', $v1);&#10;  my @v2Numbers = split('\.', $v2);&#10;&#10;  for (my $index = 0; $index &lt; scalar(@v1Numbers); $index++) {&#10;    &#10;    # We ran out of V2 numbers =&gt; V1 is a bigger version&#10;    return 1 if (scalar(@v2Numbers) == $index);&#10;&#10;    # same value, go to next number&#10;    next if ($v1Numbers[$index] == $v2Numbers[$index]);&#10;        &#10;    # V1 is a bigger version&#10;    return 1 if ($v1Numbers[$index] &gt; $v2Numbers[$index]);&#10;           ;&#10;    # V2 is a bigger version&#10;    return -1;&#10;  }&#10;&#10;  # We ran out of V1 numbers&#10;  return -1 if(scalar(@v1Numbers) != scalar(@v2Numbers));&#10;&#10;  # Same number&#10;  return 0;&#10;}&#10;;&#10;&#10;#############################################################################&#10;#&#10;# Return property value or undef in case of error (non existing)&#10;#&#10;#############################################################################&#10;sub getP&#10;{&#10;  my $prop=shift;&#10;&#10;  my($success, $xPath, $errMsg, $errCode)= InvokeCommander("SuppressLog IgnoreError", "getProperty", $prop);&#10;  return undef if ($success != 1);&#10;  my $val= $xPath-&gt;findvalue("//value");&#10;  return($val);&#10;}&#10;&#10;&#10;;&#10;&#10;#############################################################################&#10;#&#10;# Return human readable size&#10;#&#10;#############################################################################&#10;sub humanSize {&#10;  my $size = shift();&#10;&#10;  if ($size &gt; 1099511627776) { # TB: 1024 GB&#10;      return sprintf("%.2f TB", $size / 1099511627776);&#10;  }&#10;  if ($size &gt; 1073741824) { # GB: 1024 MB&#10;      return sprintf("%.2f GB", $size / 1073741824);&#10;  }&#10;  if ($size &gt; 1048576) { # MB: 1024 KB&#10;      return sprintf("%.2f MB", $size / 1048576);&#10;  }&#10;  elsif ($size &gt; 1024) { # KiB: 1024 B&#10;      return sprintf("%.2f KB", $size / 1024);&#10;  }&#10;                                  # bytes&#10;  return "$size byte" . ($size &lt;= 1 ? "" : "s");&#10;}&#10;;&#10;;&#10;&#10;#############################################################################&#10;#&#10;# Invoke a API call&#10;#&#10;#############################################################################&#10;sub InvokeCommander {&#10;&#10;    my $optionFlags = shift;&#10;    my $commanderFunction = shift;&#10;    my $result;&#10;    my $success = 1;&#10;	my $errMsg;&#10;	my $errCode;&#10;&#10;    my $bSuppressLog = $optionFlags =~ /SuppressLog/i;&#10;    my $bSuppressResult = $bSuppressLog || $optionFlags =~ /SuppressResult/i;&#10;    my $bIgnoreError = $optionFlags =~ /IgnoreError/i;&#10;&#10;    # Run the command&#10;    # print "Request to Commander: $commanderFunction\n" unless ($bSuppressLog);&#10;&#10;    $ec-&gt;abortOnError(0) if $bIgnoreError;&#10;    $result = $ec-&gt;$commanderFunction(@_);&#10;    $ec-&gt;abortOnError(1) if $bIgnoreError;&#10;&#10;    # Check for error return&#10;    if (defined ($result-&gt;{responses}-&gt;[0]-&gt;{error})) {&#10;    	$errCode=$result-&gt;{responses}-&gt;[0]-&gt;{error}-&gt;{code};&#10;    	$errMsg=$result-&gt;{responses}-&gt;[0]-&gt;{error}-&gt;{message};&#10;    }&#10;&#10;    if ($errMsg ne "") {&#10;        $success = 0;&#10;    }&#10;    if ($result) {&#10;        print "Return data from Commander:\n" .&#10;               Dumper($result) . "\n"&#10;            unless $bSuppressResult;&#10;    }&#10;&#10;    # Return the result&#10;    return ($success, $result, $errMsg, $errCode);&#10;}&#10;&#10;&#10;#############################################################################&#10;#&#10;# Return a hash of the properties contained in a Property Sheet.&#10;# Args:&#10;#    1. Property Sheet path&#10;#    2. Recursive boolean&#10;#############################################################################&#10;sub getPS&#10;{&#10;  my $psPath=shift;&#10;  my $recursive=shift;&#10;  &#10;  my $hashRef=undef;;&#10;  &#10;  my($success, $result, $errMsg, $errCode)=InvokeCommander("SuppressLog IgnoreError", "getProperties", {'path'=&gt;$psPath});&#10;  return $hashRef if (!$success);&#10;  &#10;  foreach my $node ($result-&gt;findnodes('//property')) {&#10;	my $propName=$node-&gt;{'propertyName'};&#10;    my $value=$node-&gt;{'value'};&#10;    if (defined ($value)) {&#10;      $hashRef-&gt;{$propName}=$node-&gt;{'value'};&#10;    } else {&#10;      # nested PropertySheet&#10;      if ($recursive) {&#10;        $hashRef-&gt;{$propName}=getPS("$psPath/$propName");&#10;      } else {&#10;        $hashRef-&gt;{$propName}=undef;&#10;      }  &#10;    }&#10;  }&#10;  return $hashRef;&#10;}&#10;&#10;</command>
+          <condition>true</condition>
+          <conditionExpanded>1</conditionExpanded>
+          <createTime>2014-01-29T23:00:00.166Z</createTime>
+          <errorHandling>failProcedure</errorHandling>
+          <exclusiveMode>none</exclusiveMode>
+          <exitCode>0</exitCode>
+          <external>0</external>
+          <finish>2014-01-29T23:01:58.323Z</finish>
+          <hostName>localhost</hostName>
+          <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+          <licenseWaitTime>0</licenseWaitTime>
+          <logFileName>saveResourcePools.1689598.log</logFileName>
+          <modifyTime>2014-01-29T23:01:58.323Z</modifyTime>
+          <outcome>success</outcome>
+          <owner>project: EC-Admin Management</owner>
+          <parallel>0</parallel>
+          <postExitCode>0</postExitCode>
+          <postProcessor></postProcessor>
+          <precondition></precondition>
+          <procedureName>/projects/EC-Admin/procedures/saveAllObjects</procedureName>
+          <releaseMode>none</releaseMode>
+          <resourceWaitTime>0</resourceWaitTime>
+          <retries>0</retries>
+          <runTime>490</runTime>
+          <runnable>2014-01-29T23:01:57.507Z</runnable>
+          <shell>ec-perl</shell>
+          <start>2014-01-29T23:01:57.797Z</start>
+          <status>completed</status>
+          <timeLimit></timeLimit>
+          <workingDirectory></workingDirectory>
+          <workspaceName>default</workspaceName>
+          <workspaceWaitTime>0</workspaceWaitTime>
+          <acl>
+            <aclId>3969636</aclId>
+            <inheriting>1</inheriting>
+          </acl>
+          <jobId>210211</jobId>
+          <liveProcedure>/projects/EC-Admin/procedures/saveAllObjects</liveProcedure>
+          <liveProcedureStep>saveResourcePools</liveProcedureStep>
+          <propertySheet>
+            <propertySheetId>1937760</propertySheetId>
+            <createTime>2014-01-29T23:01:58.235Z</createTime>
+            <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+            <modifyTime>2014-01-29T23:01:58.235Z</modifyTime>
+            <owner>project: EC-Admin Management</owner>
+            <acl>
+              <aclId>3969657</aclId>
+              <inheriting>1</inheriting>
+            </acl>
+            <property>
+              <propertyId>3007528</propertyId>
+              <propertyName>preSummary</propertyName>
+              <createTime>2014-01-29T23:01:58.235Z</createTime>
+              <expandable>1</expandable>
+              <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+              <modifyTime>2014-01-29T23:01:58.235Z</modifyTime>
+              <owner>project: EC-Admin Management</owner>
+              <value>5 pools exported</value>
+            </property>
+          </propertySheet>
+        </jobStep>
+        <jobStep>
+          <jobStepId>1689599</jobStepId>
+          <stepName>saveWorkspaces</stepName>
+          <alwaysRun>0</alwaysRun>
+          <assignedResourceName>local</assignedResourceName>
+          <broadcast>0</broadcast>
+          <command>#############################################################################&#10;#&#10;#  Copyright 2013 Electric-Cloud Inc.&#10;#&#10;#############################################################################&#10;use File::Path;&#10;&#10;#############################################################################&#10;#&#10;# Copyright 2013 Electric-Cloud Inc.&#10;#&#10;#############################################################################&#10;use strict;&#10;use English;&#10;use ElectricCommander;&#10;use Data::Dumper;&#10;$| = 1;&#10;&#10;my $DEBUG=0;&#10;&#10;# Create a single instance of the Perl access to ElectricCommander&#10;my $ec = new ElectricCommander({'format' =&gt; "json"});&#10;&#10;# Check for the OS Type&#10;my $osIsWindows = $^O =~ /MSWin/;&#10;&#10;&#10;#### Line 20 ####&#10;&#10;# Parameters&#10;#&#10;my $path="/scratch/BACKUP";&#10;&#10;my $errorCount=0;&#10;my $wksCount=0;&#10;&#10;# Get list of Project&#10;my ($success, $xPath) = InvokeCommander("SuppressLog", "getWorkspaces");&#10;&#10;# Create the Workspaces directory&#10;mkpath("$path/Workspaces");&#10;chmod(0777, "$path/Workspaces");&#10;&#10;foreach my $node ($xPath-&gt;findnodes('//workspace')) {&#10;  my $resName=$node-&gt;{'workspaceName'};&#10;&#10;  printf("Saving Workspace: %s\n", $resName);&#10;  my $fileWorkspaceName=safeFilename($resName); &#10;  &#10;  my ($success, $res, $errMsg, $errCode) = &#10;      InvokeCommander("SuppressLog", "export", "$path/Workspaces/$fileWorkspaceName".".xml",&#10;  					{ 'path'=&gt; "/workspaces/".$resName, &#10;                                          'relocatable' =&gt; 1,&#10;                                          'withAcls'    =&gt; 1});&#10;  if (! $success) {&#10;    printf("  Error exporting %s", $resName);&#10;    printf("  %s: %s\n", $errCode, $errMsg);&#10;    $errorCount++;&#10;  } else {&#10;    $wksCount++;&#10;  }&#10;}&#10;$ec-&gt;setProperty("preSummary", "$wksCount workspaces exported");&#10;exit($errorCount);&#10;&#10;#&#10;# Make the name of an object safe to be a file or directory name&#10;#&#10;sub safeFilename {&#10;  my $safe=@_[0];&#10;  $safe =~ s#[\*\.\"/\[\]\\:;,=\|]#_#g;&#10;  return $safe;&#10;}&#10;&#10;&#10;#############################################################################&#10;#&#10;# Compare 2 version number strings like x.y.z... section by section&#10;# return 1 if V1 &gt; v2&#10;# return 0 if v1 == v2&#10;# return -1 if v1 &lt; v2&#10;#&#10;#############################################################################&#10;sub compareVersion {&#10;&#10;  my ($v1, $v2)=@_;&#10;  &#10;  my @v1Numbers = split('\.', $v1);&#10;  my @v2Numbers = split('\.', $v2);&#10;&#10;  for (my $index = 0; $index &lt; scalar(@v1Numbers); $index++) {&#10;    &#10;    # We ran out of V2 numbers =&gt; V1 is a bigger version&#10;    return 1 if (scalar(@v2Numbers) == $index);&#10;&#10;    # same value, go to next number&#10;    next if ($v1Numbers[$index] == $v2Numbers[$index]);&#10;        &#10;    # V1 is a bigger version&#10;    return 1 if ($v1Numbers[$index] &gt; $v2Numbers[$index]);&#10;           ;&#10;    # V2 is a bigger version&#10;    return -1;&#10;  }&#10;&#10;  # We ran out of V1 numbers&#10;  return -1 if(scalar(@v1Numbers) != scalar(@v2Numbers));&#10;&#10;  # Same number&#10;  return 0;&#10;}&#10;;&#10;&#10;#############################################################################&#10;#&#10;# Return property value or undef in case of error (non existing)&#10;#&#10;#############################################################################&#10;sub getP&#10;{&#10;  my $prop=shift;&#10;&#10;  my($success, $xPath, $errMsg, $errCode)= InvokeCommander("SuppressLog IgnoreError", "getProperty", $prop);&#10;  return undef if ($success != 1);&#10;  my $val= $xPath-&gt;findvalue("//value");&#10;  return($val);&#10;}&#10;&#10;&#10;;&#10;&#10;#############################################################################&#10;#&#10;# Return human readable size&#10;#&#10;#############################################################################&#10;sub humanSize {&#10;  my $size = shift();&#10;&#10;  if ($size &gt; 1099511627776) { # TB: 1024 GB&#10;      return sprintf("%.2f TB", $size / 1099511627776);&#10;  }&#10;  if ($size &gt; 1073741824) { # GB: 1024 MB&#10;      return sprintf("%.2f GB", $size / 1073741824);&#10;  }&#10;  if ($size &gt; 1048576) { # MB: 1024 KB&#10;      return sprintf("%.2f MB", $size / 1048576);&#10;  }&#10;  elsif ($size &gt; 1024) { # KiB: 1024 B&#10;      return sprintf("%.2f KB", $size / 1024);&#10;  }&#10;                                  # bytes&#10;  return "$size byte" . ($size &lt;= 1 ? "" : "s");&#10;}&#10;;&#10;;&#10;&#10;#############################################################################&#10;#&#10;# Invoke a API call&#10;#&#10;#############################################################################&#10;sub InvokeCommander {&#10;&#10;    my $optionFlags = shift;&#10;    my $commanderFunction = shift;&#10;    my $result;&#10;    my $success = 1;&#10;	my $errMsg;&#10;	my $errCode;&#10;&#10;    my $bSuppressLog = $optionFlags =~ /SuppressLog/i;&#10;    my $bSuppressResult = $bSuppressLog || $optionFlags =~ /SuppressResult/i;&#10;    my $bIgnoreError = $optionFlags =~ /IgnoreError/i;&#10;&#10;    # Run the command&#10;    # print "Request to Commander: $commanderFunction\n" unless ($bSuppressLog);&#10;&#10;    $ec-&gt;abortOnError(0) if $bIgnoreError;&#10;    $result = $ec-&gt;$commanderFunction(@_);&#10;    $ec-&gt;abortOnError(1) if $bIgnoreError;&#10;&#10;    # Check for error return&#10;    if (defined ($result-&gt;{responses}-&gt;[0]-&gt;{error})) {&#10;    	$errCode=$result-&gt;{responses}-&gt;[0]-&gt;{error}-&gt;{code};&#10;    	$errMsg=$result-&gt;{responses}-&gt;[0]-&gt;{error}-&gt;{message};&#10;    }&#10;&#10;    if ($errMsg ne "") {&#10;        $success = 0;&#10;    }&#10;    if ($result) {&#10;        print "Return data from Commander:\n" .&#10;               Dumper($result) . "\n"&#10;            unless $bSuppressResult;&#10;    }&#10;&#10;    # Return the result&#10;    return ($success, $result, $errMsg, $errCode);&#10;}&#10;&#10;&#10;#############################################################################&#10;#&#10;# Return a hash of the properties contained in a Property Sheet.&#10;# Args:&#10;#    1. Property Sheet path&#10;#    2. Recursive boolean&#10;#############################################################################&#10;sub getPS&#10;{&#10;  my $psPath=shift;&#10;  my $recursive=shift;&#10;  &#10;  my $hashRef=undef;;&#10;  &#10;  my($success, $result, $errMsg, $errCode)=InvokeCommander("SuppressLog IgnoreError", "getProperties", {'path'=&gt;$psPath});&#10;  return $hashRef if (!$success);&#10;  &#10;  foreach my $node ($result-&gt;findnodes('//property')) {&#10;	my $propName=$node-&gt;{'propertyName'};&#10;    my $value=$node-&gt;{'value'};&#10;    if (defined ($value)) {&#10;      $hashRef-&gt;{$propName}=$node-&gt;{'value'};&#10;    } else {&#10;      # nested PropertySheet&#10;      if ($recursive) {&#10;        $hashRef-&gt;{$propName}=getPS("$psPath/$propName");&#10;      } else {&#10;        $hashRef-&gt;{$propName}=undef;&#10;      }  &#10;    }&#10;  }&#10;  return $hashRef;&#10;}&#10;&#10;</command>
+          <condition>true</condition>
+          <conditionExpanded>1</conditionExpanded>
+          <createTime>2014-01-29T23:00:00.166Z</createTime>
+          <errorHandling>failProcedure</errorHandling>
+          <exclusiveMode>none</exclusiveMode>
+          <exitCode>0</exitCode>
+          <external>0</external>
+          <finish>2014-01-29T23:01:59.090Z</finish>
+          <hostName>localhost</hostName>
+          <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+          <licenseWaitTime>0</licenseWaitTime>
+          <logFileName>saveWorkspaces.1689599.log</logFileName>
+          <modifyTime>2014-01-29T23:01:59.090Z</modifyTime>
+          <outcome>success</outcome>
+          <owner>project: EC-Admin Management</owner>
+          <parallel>0</parallel>
+          <postExitCode>0</postExitCode>
+          <postProcessor></postProcessor>
+          <precondition></precondition>
+          <procedureName>/projects/EC-Admin/procedures/saveAllObjects</procedureName>
+          <releaseMode>none</releaseMode>
+          <resourceWaitTime>0</resourceWaitTime>
+          <retries>0</retries>
+          <runTime>460</runTime>
+          <runnable>2014-01-29T23:01:58.323Z</runnable>
+          <shell>ec-perl</shell>
+          <start>2014-01-29T23:01:58.593Z</start>
+          <status>completed</status>
+          <timeLimit></timeLimit>
+          <workingDirectory></workingDirectory>
+          <workspaceName>default</workspaceName>
+          <workspaceWaitTime>0</workspaceWaitTime>
+          <acl>
+            <aclId>3969637</aclId>
+            <inheriting>1</inheriting>
+          </acl>
+          <jobId>210211</jobId>
+          <liveProcedure>/projects/EC-Admin/procedures/saveAllObjects</liveProcedure>
+          <liveProcedureStep>saveWorkspaces</liveProcedureStep>
+          <propertySheet>
+            <propertySheetId>1937761</propertySheetId>
+            <createTime>2014-01-29T23:01:59.001Z</createTime>
+            <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+            <modifyTime>2014-01-29T23:01:59.001Z</modifyTime>
+            <owner>project: EC-Admin Management</owner>
+            <acl>
+              <aclId>3969658</aclId>
+              <inheriting>1</inheriting>
+            </acl>
+            <property>
+              <propertyId>3007529</propertyId>
+              <propertyName>preSummary</propertyName>
+              <createTime>2014-01-29T23:01:59.001Z</createTime>
+              <expandable>1</expandable>
+              <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+              <modifyTime>2014-01-29T23:01:59.001Z</modifyTime>
+              <owner>project: EC-Admin Management</owner>
+              <value>3 workspaces exported</value>
+            </property>
+          </propertySheet>
+        </jobStep>
+        <jobStep>
+          <jobStepId>1689600</jobStepId>
+          <stepName>saveUsers</stepName>
+          <alwaysRun>0</alwaysRun>
+          <assignedResourceName>local</assignedResourceName>
+          <broadcast>0</broadcast>
+          <command>#############################################################################&#10;#&#10;#  Copyright 2013 Electric-Cloud Inc.&#10;#&#10;#############################################################################&#10;use File::Path;&#10;&#10;#############################################################################&#10;#&#10;# Copyright 2013 Electric-Cloud Inc.&#10;#&#10;#############################################################################&#10;use strict;&#10;use English;&#10;use ElectricCommander;&#10;use Data::Dumper;&#10;$| = 1;&#10;&#10;my $DEBUG=0;&#10;&#10;# Create a single instance of the Perl access to ElectricCommander&#10;my $ec = new ElectricCommander({'format' =&gt; "json"});&#10;&#10;# Check for the OS Type&#10;my $osIsWindows = $^O =~ /MSWin/;&#10;&#10;&#10;#### Line 20 ####&#10;&#10;$DEBUG=1;&#10;&#10;# Parameters&#10;#&#10;my $path="/scratch/BACKUP";&#10;&#10;my $errorCount=0;&#10;my $userCount=0;&#10;&#10;# Get list of Project&#10;my ($success, $xPath) = InvokeCommander("SuppressLog", "getUsers", {maximum=&gt;5000});&#10;&#10;# Create the Resources directory&#10;mkpath("$path/Users");&#10;chmod(0777, "$path/Users");&#10;&#10;foreach my $node ($xPath-&gt;findnodes('//user')) {&#10;  my $userName=$node-&gt;{'userName'};&#10;&#10;  printf("Saving User: %s\n", $userName);&#10;  my $fileUserName=safeFilename($userName); &#10;  &#10;  my ($success, $res, $errMsg, $errCode) = &#10;      InvokeCommander("SuppressLog", "export", "$path/Users/$fileUserName".".xml",&#10;  					{ 'path'=&gt; "/users/".$userName, &#10;                                          'relocatable' =&gt; 1,&#10;                                          'withAcls'    =&gt; 1});&#10;  if (! $success) {&#10;    printf("  Error exporting %s", $userName);&#10;    printf("  %s: %s\n", $errCode, $errMsg);&#10;    $errorCount++;&#10;  } else {&#10;    $userCount++;&#10;  }&#10;}&#10;$ec-&gt;setProperty("preSummary", "$userCount users exported");&#10;exit($errorCount);&#10;&#10;#&#10;# Make the name of an object safe to be a file or directory name&#10;#&#10;sub safeFilename {&#10;  my $safe=@_[0];&#10;  $safe =~ s#[\*\.\"/\[\]\\:;,=\|]#_#g;&#10;  return $safe;&#10;}&#10;&#10;&#10;#############################################################################&#10;#&#10;# Compare 2 version number strings like x.y.z... section by section&#10;# return 1 if V1 &gt; v2&#10;# return 0 if v1 == v2&#10;# return -1 if v1 &lt; v2&#10;#&#10;#############################################################################&#10;sub compareVersion {&#10;&#10;  my ($v1, $v2)=@_;&#10;  &#10;  my @v1Numbers = split('\.', $v1);&#10;  my @v2Numbers = split('\.', $v2);&#10;&#10;  for (my $index = 0; $index &lt; scalar(@v1Numbers); $index++) {&#10;    &#10;    # We ran out of V2 numbers =&gt; V1 is a bigger version&#10;    return 1 if (scalar(@v2Numbers) == $index);&#10;&#10;    # same value, go to next number&#10;    next if ($v1Numbers[$index] == $v2Numbers[$index]);&#10;        &#10;    # V1 is a bigger version&#10;    return 1 if ($v1Numbers[$index] &gt; $v2Numbers[$index]);&#10;           ;&#10;    # V2 is a bigger version&#10;    return -1;&#10;  }&#10;&#10;  # We ran out of V1 numbers&#10;  return -1 if(scalar(@v1Numbers) != scalar(@v2Numbers));&#10;&#10;  # Same number&#10;  return 0;&#10;}&#10;;&#10;&#10;#############################################################################&#10;#&#10;# Return property value or undef in case of error (non existing)&#10;#&#10;#############################################################################&#10;sub getP&#10;{&#10;  my $prop=shift;&#10;&#10;  my($success, $xPath, $errMsg, $errCode)= InvokeCommander("SuppressLog IgnoreError", "getProperty", $prop);&#10;  return undef if ($success != 1);&#10;  my $val= $xPath-&gt;findvalue("//value");&#10;  return($val);&#10;}&#10;&#10;&#10;;&#10;&#10;#############################################################################&#10;#&#10;# Return human readable size&#10;#&#10;#############################################################################&#10;sub humanSize {&#10;  my $size = shift();&#10;&#10;  if ($size &gt; 1099511627776) { # TB: 1024 GB&#10;      return sprintf("%.2f TB", $size / 1099511627776);&#10;  }&#10;  if ($size &gt; 1073741824) { # GB: 1024 MB&#10;      return sprintf("%.2f GB", $size / 1073741824);&#10;  }&#10;  if ($size &gt; 1048576) { # MB: 1024 KB&#10;      return sprintf("%.2f MB", $size / 1048576);&#10;  }&#10;  elsif ($size &gt; 1024) { # KiB: 1024 B&#10;      return sprintf("%.2f KB", $size / 1024);&#10;  }&#10;                                  # bytes&#10;  return "$size byte" . ($size &lt;= 1 ? "" : "s");&#10;}&#10;;&#10;;&#10;&#10;#############################################################################&#10;#&#10;# Invoke a API call&#10;#&#10;#############################################################################&#10;sub InvokeCommander {&#10;&#10;    my $optionFlags = shift;&#10;    my $commanderFunction = shift;&#10;    my $result;&#10;    my $success = 1;&#10;	my $errMsg;&#10;	my $errCode;&#10;&#10;    my $bSuppressLog = $optionFlags =~ /SuppressLog/i;&#10;    my $bSuppressResult = $bSuppressLog || $optionFlags =~ /SuppressResult/i;&#10;    my $bIgnoreError = $optionFlags =~ /IgnoreError/i;&#10;&#10;    # Run the command&#10;    # print "Request to Commander: $commanderFunction\n" unless ($bSuppressLog);&#10;&#10;    $ec-&gt;abortOnError(0) if $bIgnoreError;&#10;    $result = $ec-&gt;$commanderFunction(@_);&#10;    $ec-&gt;abortOnError(1) if $bIgnoreError;&#10;&#10;    # Check for error return&#10;    if (defined ($result-&gt;{responses}-&gt;[0]-&gt;{error})) {&#10;    	$errCode=$result-&gt;{responses}-&gt;[0]-&gt;{error}-&gt;{code};&#10;    	$errMsg=$result-&gt;{responses}-&gt;[0]-&gt;{error}-&gt;{message};&#10;    }&#10;&#10;    if ($errMsg ne "") {&#10;        $success = 0;&#10;    }&#10;    if ($result) {&#10;        print "Return data from Commander:\n" .&#10;               Dumper($result) . "\n"&#10;            unless $bSuppressResult;&#10;    }&#10;&#10;    # Return the result&#10;    return ($success, $result, $errMsg, $errCode);&#10;}&#10;&#10;&#10;#############################################################################&#10;#&#10;# Return a hash of the properties contained in a Property Sheet.&#10;# Args:&#10;#    1. Property Sheet path&#10;#    2. Recursive boolean&#10;#############################################################################&#10;sub getPS&#10;{&#10;  my $psPath=shift;&#10;  my $recursive=shift;&#10;  &#10;  my $hashRef=undef;;&#10;  &#10;  my($success, $result, $errMsg, $errCode)=InvokeCommander("SuppressLog IgnoreError", "getProperties", {'path'=&gt;$psPath});&#10;  return $hashRef if (!$success);&#10;  &#10;  foreach my $node ($result-&gt;findnodes('//property')) {&#10;	my $propName=$node-&gt;{'propertyName'};&#10;    my $value=$node-&gt;{'value'};&#10;    if (defined ($value)) {&#10;      $hashRef-&gt;{$propName}=$node-&gt;{'value'};&#10;    } else {&#10;      # nested PropertySheet&#10;      if ($recursive) {&#10;        $hashRef-&gt;{$propName}=getPS("$psPath/$propName");&#10;      } else {&#10;        $hashRef-&gt;{$propName}=undef;&#10;      }  &#10;    }&#10;  }&#10;  return $hashRef;&#10;}&#10;&#10;</command>
+          <condition>true</condition>
+          <conditionExpanded>1</conditionExpanded>
+          <createTime>2014-01-29T23:00:00.166Z</createTime>
+          <errorHandling>failProcedure</errorHandling>
+          <exclusiveMode>none</exclusiveMode>
+          <exitCode>0</exitCode>
+          <external>0</external>
+          <finish>2014-01-29T23:02:07.108Z</finish>
+          <hostName>localhost</hostName>
+          <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+          <licenseWaitTime>0</licenseWaitTime>
+          <logFileName>saveUsers.1689600.log</logFileName>
+          <modifyTime>2014-01-29T23:02:07.108Z</modifyTime>
+          <outcome>success</outcome>
+          <owner>project: EC-Admin Management</owner>
+          <parallel>0</parallel>
+          <postExitCode>0</postExitCode>
+          <postProcessor></postProcessor>
+          <precondition></precondition>
+          <procedureName>/projects/EC-Admin/procedures/saveAllObjects</procedureName>
+          <releaseMode>none</releaseMode>
+          <resourceWaitTime>0</resourceWaitTime>
+          <retries>0</retries>
+          <runTime>7712</runTime>
+          <runnable>2014-01-29T23:01:59.090Z</runnable>
+          <shell>ec-perl</shell>
+          <start>2014-01-29T23:01:59.365Z</start>
+          <status>completed</status>
+          <timeLimit></timeLimit>
+          <workingDirectory></workingDirectory>
+          <workspaceName>default</workspaceName>
+          <workspaceWaitTime>0</workspaceWaitTime>
+          <acl>
+            <aclId>3969638</aclId>
+            <inheriting>1</inheriting>
+          </acl>
+          <jobId>210211</jobId>
+          <liveProcedure>/projects/EC-Admin/procedures/saveAllObjects</liveProcedure>
+          <liveProcedureStep>saveUsers</liveProcedureStep>
+          <propertySheet>
+            <propertySheetId>1937764</propertySheetId>
+            <createTime>2014-01-29T23:02:07.025Z</createTime>
+            <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+            <modifyTime>2014-01-29T23:02:07.025Z</modifyTime>
+            <owner>project: EC-Admin Management</owner>
+            <acl>
+              <aclId>3969665</aclId>
+              <inheriting>1</inheriting>
+            </acl>
+            <property>
+              <propertyId>3007537</propertyId>
+              <propertyName>preSummary</propertyName>
+              <createTime>2014-01-29T23:02:07.025Z</createTime>
+              <expandable>1</expandable>
+              <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+              <modifyTime>2014-01-29T23:02:07.025Z</modifyTime>
+              <owner>project: EC-Admin Management</owner>
+              <value>5 users exported</value>
+            </property>
+          </propertySheet>
+        </jobStep>
+        <jobStep>
+          <jobStepId>1689602</jobStepId>
+          <stepName>saveGroups</stepName>
+          <alwaysRun>0</alwaysRun>
+          <assignedResourceName>local</assignedResourceName>
+          <broadcast>0</broadcast>
+          <command>#############################################################################&#10;#&#10;#  Copyright 2013 Electric-Cloud Inc.&#10;#&#10;#############################################################################&#10;use File::Path;&#10;&#10;#############################################################################&#10;#&#10;# Copyright 2013 Electric-Cloud Inc.&#10;#&#10;#############################################################################&#10;use strict;&#10;use English;&#10;use ElectricCommander;&#10;use Data::Dumper;&#10;$| = 1;&#10;&#10;my $DEBUG=0;&#10;&#10;# Create a single instance of the Perl access to ElectricCommander&#10;my $ec = new ElectricCommander({'format' =&gt; "json"});&#10;&#10;# Check for the OS Type&#10;my $osIsWindows = $^O =~ /MSWin/;&#10;&#10;&#10;#### Line 20 ####&#10;&#10;$DEBUG=1;&#10;&#10;# Parameters&#10;#&#10;my $path="/scratch/BACKUP";&#10;&#10;my $errorCount=0;&#10;my $groupCount=0;&#10;&#10;# Get list of Project&#10;my ($success, $xPath) = InvokeCommander("SuppressLog", "getGroups", {maximum=&gt;5000});&#10;&#10;# Create the Resources directory&#10;mkpath("$path/groups");&#10;chmod(0777, "$path/groups");&#10;&#10;foreach my $node ($xPath-&gt;findnodes('//group')) {&#10;  my $groupName=$node-&gt;{'groupName'};&#10;&#10;  printf("Saving group: %s\n", $groupName);&#10;  my $fileGroupName=safeFilename($groupName); &#10;  &#10;  my ($success, $res, $errMsg, $errCode) = &#10;      InvokeCommander("SuppressLog", "export", "$path/groups/$fileGroupName".".xml",&#10;  					{ 'path'=&gt; "/groups/".$groupName, &#10;                                          'relocatable' =&gt; 1,&#10;                                          'withAcls'    =&gt; 1});&#10;  if (! $success) {&#10;    printf("  Error exporting %s", $groupName);&#10;    printf("  %s: %s\n", $errCode, $errMsg);&#10;    $errorCount++;&#10;  } else {&#10;    $groupCount++;&#10;  }&#10;}&#10;$ec-&gt;setProperty("preSummary", "$groupCount groups exported");&#10;exit($errorCount);&#10;&#10;#&#10;# Make the name of an object safe to be a file or directory name&#10;#&#10;sub safeFilename {&#10;  my $safe=@_[0];&#10;  $safe =~ s#[\*\.\"/\[\]\\:;,=\|]#_#g;&#10;  return $safe;&#10;}&#10;&#10;&#10;#############################################################################&#10;#&#10;# Compare 2 version number strings like x.y.z... section by section&#10;# return 1 if V1 &gt; v2&#10;# return 0 if v1 == v2&#10;# return -1 if v1 &lt; v2&#10;#&#10;#############################################################################&#10;sub compareVersion {&#10;&#10;  my ($v1, $v2)=@_;&#10;  &#10;  my @v1Numbers = split('\.', $v1);&#10;  my @v2Numbers = split('\.', $v2);&#10;&#10;  for (my $index = 0; $index &lt; scalar(@v1Numbers); $index++) {&#10;    &#10;    # We ran out of V2 numbers =&gt; V1 is a bigger version&#10;    return 1 if (scalar(@v2Numbers) == $index);&#10;&#10;    # same value, go to next number&#10;    next if ($v1Numbers[$index] == $v2Numbers[$index]);&#10;        &#10;    # V1 is a bigger version&#10;    return 1 if ($v1Numbers[$index] &gt; $v2Numbers[$index]);&#10;           ;&#10;    # V2 is a bigger version&#10;    return -1;&#10;  }&#10;&#10;  # We ran out of V1 numbers&#10;  return -1 if(scalar(@v1Numbers) != scalar(@v2Numbers));&#10;&#10;  # Same number&#10;  return 0;&#10;}&#10;;&#10;&#10;#############################################################################&#10;#&#10;# Return property value or undef in case of error (non existing)&#10;#&#10;#############################################################################&#10;sub getP&#10;{&#10;  my $prop=shift;&#10;&#10;  my($success, $xPath, $errMsg, $errCode)= InvokeCommander("SuppressLog IgnoreError", "getProperty", $prop);&#10;  return undef if ($success != 1);&#10;  my $val= $xPath-&gt;findvalue("//value");&#10;  return($val);&#10;}&#10;&#10;&#10;;&#10;&#10;#############################################################################&#10;#&#10;# Return human readable size&#10;#&#10;#############################################################################&#10;sub humanSize {&#10;  my $size = shift();&#10;&#10;  if ($size &gt; 1099511627776) { # TB: 1024 GB&#10;      return sprintf("%.2f TB", $size / 1099511627776);&#10;  }&#10;  if ($size &gt; 1073741824) { # GB: 1024 MB&#10;      return sprintf("%.2f GB", $size / 1073741824);&#10;  }&#10;  if ($size &gt; 1048576) { # MB: 1024 KB&#10;      return sprintf("%.2f MB", $size / 1048576);&#10;  }&#10;  elsif ($size &gt; 1024) { # KiB: 1024 B&#10;      return sprintf("%.2f KB", $size / 1024);&#10;  }&#10;                                  # bytes&#10;  return "$size byte" . ($size &lt;= 1 ? "" : "s");&#10;}&#10;;&#10;;&#10;&#10;#############################################################################&#10;#&#10;# Invoke a API call&#10;#&#10;#############################################################################&#10;sub InvokeCommander {&#10;&#10;    my $optionFlags = shift;&#10;    my $commanderFunction = shift;&#10;    my $result;&#10;    my $success = 1;&#10;	my $errMsg;&#10;	my $errCode;&#10;&#10;    my $bSuppressLog = $optionFlags =~ /SuppressLog/i;&#10;    my $bSuppressResult = $bSuppressLog || $optionFlags =~ /SuppressResult/i;&#10;    my $bIgnoreError = $optionFlags =~ /IgnoreError/i;&#10;&#10;    # Run the command&#10;    # print "Request to Commander: $commanderFunction\n" unless ($bSuppressLog);&#10;&#10;    $ec-&gt;abortOnError(0) if $bIgnoreError;&#10;    $result = $ec-&gt;$commanderFunction(@_);&#10;    $ec-&gt;abortOnError(1) if $bIgnoreError;&#10;&#10;    # Check for error return&#10;    if (defined ($result-&gt;{responses}-&gt;[0]-&gt;{error})) {&#10;    	$errCode=$result-&gt;{responses}-&gt;[0]-&gt;{error}-&gt;{code};&#10;    	$errMsg=$result-&gt;{responses}-&gt;[0]-&gt;{error}-&gt;{message};&#10;    }&#10;&#10;    if ($errMsg ne "") {&#10;        $success = 0;&#10;    }&#10;    if ($result) {&#10;        print "Return data from Commander:\n" .&#10;               Dumper($result) . "\n"&#10;            unless $bSuppressResult;&#10;    }&#10;&#10;    # Return the result&#10;    return ($success, $result, $errMsg, $errCode);&#10;}&#10;&#10;&#10;#############################################################################&#10;#&#10;# Return a hash of the properties contained in a Property Sheet.&#10;# Args:&#10;#    1. Property Sheet path&#10;#    2. Recursive boolean&#10;#############################################################################&#10;sub getPS&#10;{&#10;  my $psPath=shift;&#10;  my $recursive=shift;&#10;  &#10;  my $hashRef=undef;;&#10;  &#10;  my($success, $result, $errMsg, $errCode)=InvokeCommander("SuppressLog IgnoreError", "getProperties", {'path'=&gt;$psPath});&#10;  return $hashRef if (!$success);&#10;  &#10;  foreach my $node ($result-&gt;findnodes('//property')) {&#10;	my $propName=$node-&gt;{'propertyName'};&#10;    my $value=$node-&gt;{'value'};&#10;    if (defined ($value)) {&#10;      $hashRef-&gt;{$propName}=$node-&gt;{'value'};&#10;    } else {&#10;      # nested PropertySheet&#10;      if ($recursive) {&#10;        $hashRef-&gt;{$propName}=getPS("$psPath/$propName");&#10;      } else {&#10;        $hashRef-&gt;{$propName}=undef;&#10;      }  &#10;    }&#10;  }&#10;  return $hashRef;&#10;}&#10;&#10;</command>
+          <condition>true</condition>
+          <conditionExpanded>1</conditionExpanded>
+          <createTime>2014-01-29T23:00:00.166Z</createTime>
+          <errorHandling>failProcedure</errorHandling>
+          <exclusiveMode>none</exclusiveMode>
+          <exitCode>0</exitCode>
+          <external>0</external>
+          <finish>2014-01-29T23:02:08.011Z</finish>
+          <hostName>localhost</hostName>
+          <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+          <licenseWaitTime>0</licenseWaitTime>
+          <logFileName>saveGroups.1689602.log</logFileName>
+          <modifyTime>2014-01-29T23:02:08.011Z</modifyTime>
+          <outcome>success</outcome>
+          <owner>project: EC-Admin Management</owner>
+          <parallel>0</parallel>
+          <postExitCode>0</postExitCode>
+          <postProcessor></postProcessor>
+          <precondition></precondition>
+          <procedureName>/projects/EC-Admin/procedures/saveAllObjects</procedureName>
+          <releaseMode>none</releaseMode>
+          <resourceWaitTime>0</resourceWaitTime>
+          <retries>0</retries>
+          <runTime>639</runTime>
+          <runnable>2014-01-29T23:02:07.108Z</runnable>
+          <shell>ec-perl</shell>
+          <start>2014-01-29T23:02:07.345Z</start>
+          <status>completed</status>
+          <timeLimit></timeLimit>
+          <workingDirectory></workingDirectory>
+          <workspaceName>default</workspaceName>
+          <workspaceWaitTime>0</workspaceWaitTime>
+          <acl>
+            <aclId>3969642</aclId>
+            <inheriting>1</inheriting>
+          </acl>
+          <jobId>210211</jobId>
+          <liveProcedure>/projects/EC-Admin/procedures/saveAllObjects</liveProcedure>
+          <liveProcedureStep>saveGroups</liveProcedureStep>
+          <propertySheet>
+            <propertySheetId>1937765</propertySheetId>
+            <createTime>2014-01-29T23:02:07.938Z</createTime>
+            <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+            <modifyTime>2014-01-29T23:02:07.938Z</modifyTime>
+            <owner>project: EC-Admin Management</owner>
+            <acl>
+              <aclId>3969666</aclId>
+              <inheriting>1</inheriting>
+            </acl>
+            <property>
+              <propertyId>3007538</propertyId>
+              <propertyName>preSummary</propertyName>
+              <createTime>2014-01-29T23:02:07.938Z</createTime>
+              <expandable>1</expandable>
+              <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+              <modifyTime>2014-01-29T23:02:07.938Z</modifyTime>
+              <owner>project: EC-Admin Management</owner>
+              <value>9 groups exported</value>
+            </property>
+          </propertySheet>
+        </jobStep>
+      </calledProcedure>
+    </jobStep>
+    <liveProcedure>/projects/EC-Admin/procedures/saveAllObjects</liveProcedure>
+    <liveSchedule>saveObjects</liveSchedule>
+    <projectName>EC-Admin Management</projectName>
+    <emailNotifier>
+      <emailNotifierId>2339</emailNotifierId>
+      <notifierName>failureNotification</notifierName>
+      <condition>$[/javascript if(getProperty("outcome") == 'error')&#10;    true;&#10;else&#10;    false;]</condition>
+      <configName>default</configName>
+      <createTime>2014-01-29T23:00:00.003Z</createTime>
+      <description>Send email to Admin if it fails</description>
+      <destinations>$[/users/admin/email]</destinations>
+      <eventType>onCompletion</eventType>
+      <formattingTemplate>Subject: Job  '$[jobName]'  from procedure  '$[procedureName]'  $[/myEvent/type]  - Commander notification&#10;&#10;$[/server/ec_notifierTemplates/Html_JobTempl/body]</formattingTemplate>
+      <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+      <modifyTime>2014-01-29T23:00:00.003Z</modifyTime>
+      <owner>project: EC-Admin-1.11.4.93</owner>
+      <acl>
+        <aclId>3969632</aclId>
+        <inheriting>1</inheriting>
+        <aclEntry>
+          <aclEntryId>227572</aclEntryId>
+          <allowChangePermissions>1</allowChangePermissions>
+          <allowExecute>1</allowExecute>
+          <allowModify>1</allowModify>
+          <allowRead>1</allowRead>
+          <denyChangePermissions>0</denyChangePermissions>
+          <denyExecute>0</denyExecute>
+          <denyModify>0</denyModify>
+          <denyRead>0</denyRead>
+          <principalName>project: EC-Admin-1.11.4.93</principalName>
+          <principalType>user</principalType>
+        </aclEntry>
+      </acl>
+      <propertySheet>
+        <propertySheetId>1937750</propertySheetId>
+        <createTime>2014-01-29T23:00:00.003Z</createTime>
+        <lastModifiedBy>project: EC-Admin Management</lastModifiedBy>
+        <modifyTime>2014-01-29T23:00:00.003Z</modifyTime>
+        <owner>project: EC-Admin Management</owner>
+        <acl>
+          <aclId>3969633</aclId>
+          <inheriting>1</inheriting>
+        </acl>
+      </propertySheet>
+    </emailNotifier>
+    <workspaceName>default</workspaceName>
+  </job>
+</exportedData>

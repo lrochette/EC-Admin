@@ -1,1 +1,0 @@
-$[/myProcedure/procedureName]_$[/increment /server/counters/EC-Admin/jobCounter]

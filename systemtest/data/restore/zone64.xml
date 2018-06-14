@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exportedData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="commander.xsd" version="61" buildLabel="build_4.2_77824_2014.09.27_02:09:10" buildVersion="4.2.6.77824" passkey="a30cbf89cfdae202c5227ce40fe867512295566d">
+  <exportPath>/zones/zone64</exportPath>
+  <zone>
+    <zoneName>zone64</zoneName>
+    <description>for backup testing</description>
+    <acl>
+      <inheriting>1</inheriting>
+    </acl>
+    <propertySheet>
+      <acl>
+        <inheriting>1</inheriting>
+      </acl>
+    </propertySheet>
+  </zone>
+</exportedData>

@@ -1,4 +1,4 @@
-import groovy.transform.BaseScript
+ propimport groovy.transform.BaseScript
 import com.electriccloud.commander.dsl.util.BasePlugin
 
 //noinspection GroovyUnusedAssignment
