@@ -91,6 +91,7 @@
 	['//project/procedure[procedureName="projectAsCode"]/step[stepName="fixSelfReferences"]/command', 'procedures/projectAsCode/steps/fixSelfReferences.pl'],
 	['//project/procedure[procedureName="projectAsCode"]/step[stepName="exportProjectToServer"]/command', 'procedures/projectAsCode/steps/exportProjectToServer.pl'],
 	['//project/procedure[procedureName="projectAsCode"]/step[stepName="copyProjectToResource"]/command', 'procedures/projectAsCode/steps/copyProjectToResource.sh'],
+	['//project/procedure[procedureName="projectAsCode"]/step[stepName="copyProjectToDirectory"]/command', 'procedures/projectAsCode/steps/copyProjectToDirectory.sh'],
 	['//project/procedure[procedureName="projectAsCode"]/step[stepName="deleteExportedProject"]/command', 'procedures/projectAsCode/steps/deleteExportedProject.sh'],
 	['//project/procedure[procedureName="projectAsCode"]/step[stepName="explodeProject"]/command', 'procedures/projectAsCode/steps/explodeProject.pl'],
 	['//project/procedure[procedureName="projectAsCode"]/step[stepName="createFileStructure"]/command', 'procedures/projectAsCode/steps/createFileStructure.pl'],
