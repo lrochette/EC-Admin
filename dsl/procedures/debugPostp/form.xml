@@ -1,0 +1,10 @@
+<editor>
+  <formElement>
+    <label>JobStep Id</label>
+    <property>myJobStepId</property>
+    <documentation>jobStepId to use for debugging purpose</documentation>
+    <type>entry</type >
+    <value></value>
+    <required>1</required>
+  </formElement>
+</editor>

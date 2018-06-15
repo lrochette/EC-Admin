@@ -106,7 +106,3 @@ if ($numDeleted == 0) {
 }
 
 $[/myProject/scripts/perlLib]
-
-
-
-
