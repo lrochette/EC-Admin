@@ -1,6 +1,6 @@
 import java.io.File
 
-def procName = 'workflowCleanup'
+def procName= 'workflowCleanup'
 procedure procName,
   description : '''Delete workflows older than a number of days.
 Report the number of workflows.''',
