@@ -1,4 +1,6 @@
+import java.io.File
 
+def procName = 'agentMemoryConfiguration'
 procedure 'agentMemoryConfiguration', {
   description = '''A procedure to modify the java memory setting of an agent.
 # Specify java heap size in percentage OR mb.

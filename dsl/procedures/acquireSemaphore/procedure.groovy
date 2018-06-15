@@ -7,5 +7,5 @@ procedure procName,
   step 'acquireSemaphore',
     command: new File(pluginDir, "dsl/procedures/$procName/steps/acquireSemaphore.pl").text,
     shell: 'ec-perl',
-    resourceName: '$[serializationResource]',
+    resourceName: '$[serializationResource]'
 }
