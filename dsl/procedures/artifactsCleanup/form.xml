@@ -1,0 +1,54 @@
+<editor>
+    <formElement>
+        <label>Delete artifact versions older than</label>
+        <property>olderThan</property>
+        <documentation>Indicate the numbers of days after which artifact versions  should be deleted</documentation>
+        <type>select</type>
+        <option>
+            <name>1 month</name>
+            <value>30</value>
+        </option>
+        <option>
+            <name>2 months</name>
+            <value>60</value>
+        </option>
+        <option>
+            <name>3 months</name>
+            <value>91</value>
+        </option>
+        <option>
+            <name>6 months</name>
+            <value>182</value>
+        </option>
+        <option>
+            <name>1 year</name>
+            <value>365</value>
+        </option>
+        <value>91</value>
+        <required>1</required>
+    </formElement>
+   <formElement>
+        <label>Artifact property</label>
+        <property>artifactProperty</property>
+        <documentation>Name of a property attached to your artifact versions. If this property is set, your artifact version won't be deleted.</documentation> 
+        <type>entry</type>
+        <value>doNotDelete</value>
+        <required>1</required>
+    </formElement>
+    <formElement>
+        <label>Delete</label>
+        <property>executeDeletion</property>
+        <documentation>If this option is not set, only report is done. No real data are deleted</documentation>
+        <type>select</type>
+        <option>
+            <name>Report</name>
+            <value>false</value>
+        </option>
+        <option>
+            <name>Delete</name>
+            <value>true</value>
+        </option>
+        <value>false</value>
+    </formElement>
+
+</editor>

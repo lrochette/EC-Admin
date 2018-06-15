@@ -1,0 +1,26 @@
+<editor>
+  <formElement>
+    <label>Resource Name</label>
+    <property>resource</property>
+    <documentation>The resource on which to run this job. This resource must be running on the same machine as a repository server. The job will detect the repository's backing store location based on the assumption that the resource is installed along with the repository.
+    </documentation>
+    <type>entry</type>
+    <value></value>
+    <required>0</required>
+  </formElement>
+  <formElement>
+      <label>Delete</label>
+      <property>executeDeletion</property>
+      <documentation>If this option is not set, only report is done. No real data are deleted</documentation>
+      <type>select</type>
+      <option>
+          <name>Report</name>
+          <value>false</value>
+      </option>
+      <option>
+          <name>Delete</name>
+          <value>true</value>
+      </option>
+      <value>false</value>
+  </formElement>
+</editor>

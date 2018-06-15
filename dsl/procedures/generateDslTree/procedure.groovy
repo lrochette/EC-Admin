@@ -1,6 +1,6 @@
 import java.io.File
 
-def procName = 'generateDslTree'
+def procName= 'generateDslTree'
 procedure procName,
   description: "Export DSL code for use in PluginWizard structure",
 {

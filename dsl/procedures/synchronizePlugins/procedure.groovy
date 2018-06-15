@@ -1,6 +1,7 @@
 import java.io.File
 
-def procName = 'synchronizePlugins'
+def procName= 'synchronizePlugins'
+
 procedure procName,
   description: 'A procedure to synchronize plugins between the server and a resource. Plugins are uploaded first as artifacts and downloaded on the resource if they do not already exist.',
   jobNameTemplate: '$[/plugins[EC-Admin]/project/scripts/jobTemplate]',
