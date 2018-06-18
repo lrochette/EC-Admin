@@ -3,7 +3,7 @@ import java.io.File
 /*
 Copyright 2016-2018 Electric-Cloud Inc.
 
-Author: L. lrochette
+Author: L. Rochette
 
 History:
 ------------------------------------------------------------------------------
