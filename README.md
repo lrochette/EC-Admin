@@ -5,6 +5,19 @@ manage your server. Its inception was sparked by requests from customers
 during my Professional Services engagements. It has grown over the years to
 what it is now.</p>
 
+<p>In June 2018, the plugin has been converted to the
+  <a href="https://github.com/electric-cloud/PluginWizard">PluginWizard DSL</a>
+  format to the whole plugin code is managed by the SCM without the need to
+  extract the project first.<br/>
+As a side effect the promotion of the plugin can take a couple of minutes as
+the DSL code as to be evaluated on the server.</p>
+
+<p>Requirements:</p>
+<ul>
+  <li>Electric Flow 6.0 minimum</li>
+  <li>EC-PluginManager  1.4.0</li>
+</ul>
+
 <p>It contains the following modules:</p>
 <ul>
 <li><a href="#health">System Health</a></li>
@@ -110,12 +123,12 @@ web server agent.</p>
 <tr>
 <td class='required'>init memory</td>
 <td>The amount of init memory to assign to the Java heap. It can be
-indicated in Mb or as a % of the toal memory.</td>
+indicated in Mb or as a % of the total memory.</td>
 </tr>
 <tr>
 <td class='required'>max memory</td>
 <td>The maximum amount of memory to assign to the Java heap. It can be
-indicated in Mb or as a % of the toal memory.</td>
+indicated in Mb or as a % of the total memory.</td>
 </tr>
 <tr>
 <td>restartAgent</td>
@@ -178,7 +191,7 @@ go along different background colors.</td>
 </tr>
 <tr>
 <td>webResource</td>
-<td>The name of the resource running on your webserver to allow the copy of the logo and banner color files.</td>
+<td>The name of the resource running on your web server to allow the copy of the logo and banner color files.</td>
 </tr>
 </tbody>
 </table>
@@ -319,7 +332,7 @@ description of the project.</td>
 </tr>
 <tr>
 <td>fixSelfReferences</td>
-<td>Replace self references to the project in sub-prceodure calls by an empty string to be sure the plugins= created will not call the original project instead of itself.</td>
+<td>Replace self references to the project in sub-procedure calls by an empty string to be sure the plugins= created will not call the original project instead of itself.</td>
 </tr>
 <tr>
 <td>createArtifact</td>
@@ -362,7 +375,7 @@ in the EC-Admin plugin/project for an example.</dd>
 when the plugin change state. Look at the ec_setup property
 in the plugins installed on your system to get a better idea
 of what you can accomplish.<br/>
-For example to set a property hwne the plugin is pomoted
+For example to set a property when the plugin is promoted
 you could add the the following code to the promoteAction
 procedure:<br/>
 <pre><code>
@@ -443,7 +456,7 @@ description of the project.</td>
 </tr>
 <tr>
 <td>Comment</td>
-<td>if this parameter is not empty, it will be added to the CHANGELOG for traceabiity.</td>
+<td>if this parameter is not empty, it will be added to the CHANGELOG for traceability.</td>
 </tr>
 <tr>
 <td>Directory</td>
@@ -459,7 +472,7 @@ description of the project.</td>
 </tr>
 <tr>
 <td>fixSelfReferences</td>
-<td>Replace self references to the project in sub-prceodure calls by an empty string to be sure the plugins= created will not call the original project instead of itself.</td>
+<td>Replace self references to the project in sub-procedure calls by an empty string to be sure the plugins= created will not call the original project instead of itself.</td>
 </tr>
 <tr>
 <td>overwrite</td>
@@ -497,7 +510,7 @@ version into the current one upon promotion.</td>
 <img src="src/htdocs/images/help/projectAsCode.png"
 alt="projectAsCode parameters" />
 
-<p>At the project level, you can define the addtional following properties to alter the behavior of the plugin creation:</p>
+<p>At the project level, you can define the additional following properties to alter the behavior of the plugin creation:</p>
 <dl>
 <dt><b>configureCredentials:</b></dt>
 <dd>this property will indicate to EC-Admin to code to help create configuration to manage credentials for your plugin. It adds:
@@ -629,10 +642,10 @@ Typically those have been created with saveAllObjects above.</p>
 </table>
 
 <h1><a name="schedules"></a>Schedules</h1>
-<p>This set of procedures is to help around schedule enabling and disabling which is very useful when you want to perform maintenace on your server.</p>
+<p>This set of procedures is to help around schedule enabling and disabling which is very useful when you want to perform maintenance on your server.</p>
 
 <h2>schedulesDisable</h2>
-<p>This procedure disables all the enabled schedules and optionaly saves the list in a property.</p>
+<p>This procedure disables all the enabled schedules and optionally saves the list in a property.</p>
 
 <table class="grid">
 <thead><tr><th>Parameter</th><th>Description</th></tr></thead>
@@ -677,7 +690,7 @@ alt="schedulesEnable parameters" />
 
 <p>Those 2 procedures are used to create a "semaphore" to control the access to
 a set of steps. In order to insure the atomicity (only one step can modify
-your sempahore property at any time) of the operation, you first need to create
+your semaphore property at any time) of the operation, you first need to create
 a resource with a 1-step limit.<br/>
 Then you will need to create a property with a value of 0. The location
 does not matter
@@ -685,7 +698,7 @@ as long as it will be readable and writable by the plugin.</p>
 
 <h2>acquireSemaphore</h2>
 <p>This procedure is the "gate". It checks than you have not used more
-tokens than allowed. If you have, it will simly wait until some become
+tokens than allowed. If you have, it will simply wait until some become
 available. This procedure is called just before the steps which access
 you want to control.</p>
 
@@ -771,7 +784,7 @@ properties can be set up:</p>
 <h1><a name="misc"></a>Miscellaneous</h1>
 <p>For all those procedure I'm not sure where to put</p>
 <h2>findJobId</h2>
-<p>This procedure is designed for people migratimg away from ElectricCommander
+<p>This procedure is designed for people migrating away from ElectricCommander
 4.2 to ElectricFlow 5.x or later. It will simply search in the step commands
 or parameters to a sub-procedure for any instance of jobId. No change will
 be done. It's up to the user to make any change.</p>
@@ -803,11 +816,11 @@ be done. It's up to the user to make any change.</p>
 <h1>Legal Jumbo</h1>
 
 <p>This module is free for use. Modify it however you see fit to better your
-experience using ElectricCommander. Share your enhancements and fixes.</p>
+experience using ElectricFlow. Share your enhancements and fixes.</p>
 
 <p>This module is not officially supported by Electric Cloud. It has undergone no
 formal testing and you may run into issues that have not been uncovered in the
-limited manual testing done so far.</p>
+limited semi automatic and manual testing done so far.</p>
 
 <p>Electric Cloud should not be held liable for any repercussions of using this
 software.</p>
