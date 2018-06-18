@@ -20,7 +20,7 @@ my $version=$::N->getVersions()->findvalue("//version")->value;
 
 my $pluginName="EC-Admin";
 if ($version ge "4.2") {
-  my $pluginKey = "EC-Admin";
+  my $pluginKey = $pluginName;
   my $xpath = $::N->getPlugin($pluginKey);
   $pluginName = $xpath->findvalue("//pluginName")->value;
 }
@@ -41,12 +41,12 @@ ntest "cleanup_procedures", {}, sub {
 };
 
 #-------------------------------------------------------------------------------
-# Issue #18: jobsCleanup fails with property error 
+# Issue #18: jobsCleanup fails with property error
 #-------------------------------------------------------------------------------
 ntest "Issue_18_humanSize", {}, sub {
   return if ($version lt "4.2");
 
-    my $xpath = $::N->runProcedure("EC-Admin", {
+    my $xpath = $::N->runProcedure($pluginName, {
 	procedureName=>"subJC_deleteWorkspace",
 	actualParameter=>[
 	    {actualParameterName=>"computeUsage", value=>0},
@@ -55,7 +55,7 @@ ntest "Issue_18_humanSize", {}, sub {
 	    {actualParameterName=>"winDir", value=>"C:\\TEMP"},
 	    {actualParameterName=>"resName", value=>"local"}
 	]});
-    assertOK($xpath, "Failed to launch EC-Admin::subJC_deleteWorkspace");
+    assertOK($xpath, "Failed to launch $pluginName::subJC_deleteWorkspace");
     if ($xpath) {
 	#get new Job ID
         my $jobId  = $xpath->findvalue("//jobId");
@@ -74,7 +74,7 @@ ntest "Issue_18_humanSize", {}, sub {
 sub callJobsCleanup{
     my ($computeUsage, $executeDeletion, $jobLevel, $pattern, $jobProp, $days)=@_;
 
-    my $xpath = $::N->runProcedure("EC-Admin", {
+    my $xpath = $::N->runProcedure($pluginName, {
         procedureName=>"jobsCleanup",
         actualParameter=>[
             {actualParameterName=>"computeUsage", value=>$computeUsage},
@@ -84,7 +84,7 @@ sub callJobsCleanup{
             {actualParameterName=>"jobProperty", value=>$jobProp},
             {actualParameterName=>"olderThan", value=>$days}
         ]});
-    assertOK($xpath, "Failed to launch EC-Admin::jobsCleanup");
+    assertOK($xpath, "Failed to launch $pluginName::jobsCleanup");
     if ($xpath) {
         #get new Job ID
         my $jobId  = $xpath->findvalue("//jobId");
@@ -95,7 +95,7 @@ sub callJobsCleanup{
         my $summary=$::N->getProperty("summary", {jobStepId=>$jsId})->findvalue("//value");
         my $outcome = $jobData->findvalue("//job/outcome");
 	my $nbJobs = $::N->getProperty("numberOfJobs", {jobId => $jobId})->findvalue("//value");
-	
+
         return($summary, $outcome, $nbJobs, $jobId);
     }
     return("", "", -1);
@@ -124,7 +124,7 @@ ntest "jobsCleanup", {}, sub {
     loadJob("error");
     loadJob("warning");
     loadJob("aborted");
-   
+
     # Report mode
     ($summary, $outcome, $nbJobs)=callJobsCleanup(0, "false","All", "", "doNotDelete", 365);
     assertEq("success", $outcome, "report mode failed");
@@ -206,7 +206,7 @@ ntest "Issue_114_workspace_error", {}, sub {
 
     # confirm step is failing with AGENT_INVALID_MESSAGE
     my $jobData  = $::N->findJobSteps({
-      jobId => $jobId, 
+      jobId => $jobId,
       select => [{propertyName => "stepName"}],
       filter => [{propertyName => "stepName",
                        operator => "equals",

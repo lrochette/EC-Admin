@@ -18,8 +18,9 @@ Report the number of jobs, the disk space and database space that could/was be d
   jobNameTemplate: '$[/plugins[EC-Admin]/project/scripts/jobTemplate]',
   resourceName: 'local',
 {
-  step 'deleteJobs.byProject',
+  step 'deleteJobsByProject',
     description: '''Script to delete all jobs and workspaces associated to a project
 It includes CI and workflows jobs.''',
+    command: new File(pluginDir, "dsl/procedures/$procName/steps/deleteJobsByProject.pl").text,
     shell: 'ec-perl'
 }
