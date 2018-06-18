@@ -55,7 +55,7 @@ ntest "Issue_18_humanSize", {}, sub {
 	    {actualParameterName=>"winDir", value=>"C:\\TEMP"},
 	    {actualParameterName=>"resName", value=>"local"}
 	]});
-    assertOK($xpath, "Failed to launch $pluginName::subJC_deleteWorkspace");
+    assertOK($xpath, "Failed to launch ${pluginName}::subJC_deleteWorkspace");
     if ($xpath) {
 	#get new Job ID
         my $jobId  = $xpath->findvalue("//jobId");
@@ -84,7 +84,7 @@ sub callJobsCleanup{
             {actualParameterName=>"jobProperty", value=>$jobProp},
             {actualParameterName=>"olderThan", value=>$days}
         ]});
-    assertOK($xpath, "Failed to launch $pluginName::jobsCleanup");
+    assertOK($xpath, "Failed to launch ${pluginName}::jobsCleanup");
     if ($xpath) {
         #get new Job ID
         my $jobId  = $xpath->findvalue("//jobId");

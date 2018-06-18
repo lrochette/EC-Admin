@@ -1,0 +1,53 @@
+<editor> 
+    <formElement> 
+        <label>Project</label>    
+        <property>project_Name</property>    
+        <documentation>The name of the project</documentation> 
+        <type>project</type> 
+        <required>1</required>
+    </formElement> 
+
+    <formElement> 
+        <label>Procedure</label>    
+        <property>procedure_Name</property>    
+        <documentation>The name of the procedure for which you have deleted a parameter</documentation> 
+        <type>entry</type> 
+        <required>1</required>
+    </formElement> 
+
+    <formElement> 
+        <label>Pramater</label> 
+        <property>parameter_Name</property> 
+        <documentation>The name of the parameter you have deleted from the procedure above.</documentation> 
+        <type>entry</type> 
+        <required>1</required>
+    </formElement>  
+
+    <formElement> 
+        <label>Delete</label>    
+        <property>delete</property> 
+        <documentation>If this option is not set, only report is done. No parameter is deleted from any sub-procedure call</documentation> 
+        <type>select</type>    
+        <option> 
+            <name>Report</name> 
+            <value>false</value> 
+        </option> 
+        <option> 
+            <name>Delete</name> 
+            <value>true</value> 
+        </option> 
+        <value>false</value>    
+    </formElement> 
+
+    <formElement> 
+        <label>Verbose</label>	
+        <property>debug</property> 
+        <documentation>Check to show more details in the log.</documentation> 
+        <type>checkbox</type>	
+        <checkedValue>true</checkedValue> 
+        <uncheckedValue>false</uncheckedValue> 
+        <initiallyChecked>1</initiallyChecked> 
+        <value>true</value>	
+    </formElement> 
+
+</editor>
