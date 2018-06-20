@@ -1,0 +1,26 @@
+<editor>
+    <formElement> 
+        <label>Enable</label> 
+        <property>execute</property> 
+        <documentation>If this option is not set, only report is done. No schedules are enabled.</documentation> 
+        <type>select</type> 
+        <option> 
+            <name>Report</name> 
+            <value>false</value> 
+        </option> 
+        <option> 
+            <name>Disable</name> 
+            <value>true</value> 
+        </option> 
+        <value>false</value> 
+        <required>1</required>
+    </formElement> 
+
+    <formElement> 
+        <label>Schedule list property</label> 
+        <property>listProperty</property> 
+        <documentation>Property path used that stores the list of schedules to enable.</documentation> 
+        <type>entry</type>
+        <required>1</required>
+    </formElement> 
+</editor>
