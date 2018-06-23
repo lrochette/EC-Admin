@@ -40,7 +40,7 @@ ntest "procedures exposed to picker", {}, sub {
 # Test init memory value incorrect.
 #-------------------------------------------------------------------------------
 ntest "incorrect init memory", {}, sub {
-	my $xpath = $::N->runProcedure("EC-Admin", {
+	my $xpath = $::N->runProcedure($pluginName, {
 		procedureName=>"agentMemoryConfiguration",
 		actualParameter=>[
 			{actualParameterName=>"initMemory", value=>"NaN"},
@@ -63,7 +63,7 @@ ntest "incorrect init memory", {}, sub {
 # Test max memory value incorrect.
 #-------------------------------------------------------------------------------
 ntest "incorrect max memory", {}, sub {
-	my $xpath = $::N->runProcedure("EC-Admin", {
+	my $xpath = $::N->runProcedure($pluginName, {
 		procedureName=>"agentMemoryConfiguration",
 		actualParameter=>[
 			{actualParameterName=>"initMemory", value=>"64"},
