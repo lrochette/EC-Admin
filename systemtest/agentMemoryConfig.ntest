@@ -30,10 +30,11 @@ ntest "agentMemoryConfiguration presence", {}, sub {
 # Test procedure exposed to plugin.
 #-------------------------------------------------------------------------------
 ntest "procedures exposed to picker", {}, sub {
-  assertOK($::N->getProperty('exposeToPlugin', {
+  my $prop=$::N->getProperty('standardStepPicker', {
 			projectName => $pluginName,
-			procedureName => "agentMemoryConfiguration"}),
-					"property exposeToPlugin missing");
+			procedureName => "agentMemoryConfiguration"});
+  # printf("%s\n", $prop->findnodes_as_string("/"));
+  assertEq("NoSuchProperty", $prop->findvalue("//code"), "property standardStepFucker set");
 };
 
 #-------------------------------------------------------------------------------
