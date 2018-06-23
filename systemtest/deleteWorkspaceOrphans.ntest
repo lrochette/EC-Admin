@@ -27,14 +27,14 @@ ntest "Issue_45_badLinks", {}, sub {
   # create FAKE directory with links
   mkdir($dir);
   my $res=symlink("/etc/passwd", "$dir/passwd");
-  assertEq($res, 1, "Cannot create passwd link"); 
+  assertEq($res, 1, "Cannot create passwd link");
   $res=symlink("/opt/electric-cloud/foo", "$dir/foo");
-  assertEq($res, 1, "Cannot create foo link"); 
- 
+  assertEq($res, 1, "Cannot create foo link");
+
   # change time to 2 years back to be deleted
   utime(time(), time()-2*365*24*60*60, $dir);
 
-  my $xpath = $::N->runProcedure("EC-Admin", {
+  my $xpath = $::N->runProcedure($pluginName, {
 	procedureName=>"deleteWorkspaceOrphans",
 	actualParameter=>[
 	    {actualParameterName=>"olderThan", value=>365},

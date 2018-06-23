@@ -23,10 +23,10 @@ my $pluginName = $xpath->findvalue("//pluginName")->value;
 #-------------------------------------------------------------------------------
 ntest "checkProcedures", {}, sub {
   assertOK($::N->getProcedure($pluginName, "performanceMetrics"), "procedure performanceMetrics missing");
-  assertOK($::N->getProcedure($pluginName, "subPM-deploymentSize"), "subPM-deploymentSize procedure missing"); 
-  assertOK($::N->getProcedure($pluginName, "subPM-jobStats"), "subPM-jobStats procedure missing"); 
-  assertOK($::N->getProcedure($pluginName, "subPM-localUsage"), "subPM-localUsage procedure missing"); 
-  assertOK($::N->getProcedure($pluginName, "subPM-performance"), "subPM-performance procedure missing"); 
+  assertOK($::N->getProcedure($pluginName, "subPM-deploymentSize"), "subPM-deploymentSize procedure missing");
+  assertOK($::N->getProcedure($pluginName, "subPM-jobStats"), "subPM-jobStats procedure missing");
+  assertOK($::N->getProcedure($pluginName, "subPM-localUsage"), "subPM-localUsage procedure missing");
+  assertOK($::N->getProcedure($pluginName, "subPM-performance"), "subPM-performance procedure missing");
 };
 
 
@@ -34,7 +34,7 @@ ntest "checkProcedures", {}, sub {
 # Test number of cores is greater than 1
 #-------------------------------------------------------------------------------
 ntest "checkNumberOfCores", {}, sub {
-  my $xpath = $::N->runProcedure("EC-Admin", {
+  my $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"performanceMetrics",
     actualParameter=>[
       {actualParameterName=>"debugMode",        value =>0},
@@ -49,9 +49,9 @@ ntest "checkNumberOfCores", {}, sub {
     my $jobId  = $xpath->findvalue("//jobId");
     waitForJob($jobId);
     my $jobData  = $::N->getJobDetails($jobId);
-    my $outcome = $jobData->findvalue("//job/outcome"); 
+    my $outcome = $jobData->findvalue("//job/outcome");
     assertNe("error", $outcome, "performanceMetrics should not error out");
-  
+
     # check for number of Core property
     my $nbCores=$::N->getProperty("numberOfCores", {jobId=>$jobId})->findvalue("//value");
     assert(1, "<", $nbCores, "Number of Cores should be greater than 1");

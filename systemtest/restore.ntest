@@ -32,7 +32,7 @@ ntest "checkProcedures", {}, sub {
 ntest "issue 64", {}, sub {
   my $zone="zone64";
 
-  $xpath = $::N->runProcedure("EC-Admin", {
+  $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"restoreObjects",
     actualParameter=>[
       {actualParameterName=>"directory", value=>"/home/lrochette/GitHub/EC-Admin/src/systemtest/data/restore"},

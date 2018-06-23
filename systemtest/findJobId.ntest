@@ -29,10 +29,10 @@ ntest "findJobId procedure", {}, sub {
 # Issue 65:
 #-------------------------------------------------------------------------------
 ntest "Issue 65: findJobId in EC-Admin", {}, sub {
-  my $xpath = $::N->runProcedure("EC-Admin", {
+  my $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"findJobId",
       actualParameter=>[
-        {actualParameterName=>"projectPattern", value=>"EC-Admin"}
+        {actualParameterName=>"projectPattern", value=>$pluginName}
       ]});
   assertOK($xpath, "Failed to launch EC-Admin::findJobId");
   if ($xpath) {
@@ -58,10 +58,10 @@ ntest "Issue 115: long dash", {}, sub {
   my $xpath=$::N->createProject($proj);
   assertOK($xpath, "Failed to create $proj");
 
-  $xpath = $::N->runProcedure("EC-Admin", {
+  $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"findJobId",
       actualParameter=>[
-        {actualParameterName=>"projectPattern", value=>"EC-Admin"}
+        {actualParameterName=>"projectPattern", value=>$pluginName}
       ]});
   assertOK($xpath, "Failed to launch EC-Admin::findJobId");
   if ($xpath) {

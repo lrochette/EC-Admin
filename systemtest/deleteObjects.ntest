@@ -18,12 +18,9 @@ $::N=$adminSession;
 # EC-Admin is a simple project for version 4.0
 my $version=$::N->getVersions()->findvalue("//version")->value;
 
-my $pluginName="EC-Admin";
-if ($version ge "4.2") {
-  my $pluginKey = "EC-Admin";
-  my $xpath = $::N->getPlugin($pluginKey);
-     $pluginName = $xpath->findvalue("//pluginName")->value;
-}
+my $pluginKey = "EC-Admin";
+my $xpath = $::N->getPlugin($pluginKey);
+my $pluginName = $xpath->findvalue("//pluginName")->value;
 
 #-------------------------------------------------------------------------------
 # Test procedure present.
@@ -61,7 +58,7 @@ ntest "Issue_41_missingGetP", {}, sub {
     assertOK($xpath, "Failed to load job $jName");
 
     # delete job
-    $xpath = $::N->runProcedure("EC-Admin", {
+    $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"deleteObjects",
     actualParameter=>[
 	    {actualParameterName=>"chunkSize", value=>200},
