@@ -7,8 +7,8 @@
   <depends min="1.4.0">EC-PluginManager</depends>
   <description>A set of administrative tasks to help manage your server.</description>
   <help>help.xml</help>
-  <key>EC-Admin2</key>
-  <label>EC-Admin2</label>
+  <key>EC-Admin</key>
+  <label>EC-Admin</label>
   <pluginWizardBased>true</pluginWizardBased>
-  <version>3.1.0.610</version>
+  <version>3.1.0.618</version>
 </plugin>

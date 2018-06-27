@@ -12,7 +12,7 @@ my $ec = new ElectricCommander->new();
 
 my $pluginVersion = "3.1.0";
 
-my $pluginKey = "EC-Admin2";
+my $pluginKey = "EC-Admin";
 my $description = "A set of administrative tasks to help manage your server.";
 GetOptions ("version=s" => \$pluginVersion,
 			"pluginKey=s"   => \$pluginKey,
