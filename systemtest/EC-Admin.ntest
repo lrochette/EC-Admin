@@ -43,8 +43,9 @@ ntest "install", {}, sub {
     $xpath=$::N->installPlugin("$dir/../$pluginKey.jar");
     assertOK($xpath);
     $pluginName = $xpath->findvalue("/plugin/pluginName")->value;
+    printf ("PluginName: %s\n", $pluginName);
 };
-
+printf ("PluginName: %s\n", $pluginName);
 #-------------------------------------------------------------------------------
 # Test promote & demote behavior.
 #-------------------------------------------------------------------------------
