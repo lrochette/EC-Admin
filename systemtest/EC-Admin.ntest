@@ -42,10 +42,7 @@ ntest "install", {}, sub {
     # install Plugin not promoted
     $xpath=$::N->installPlugin("$dir/../$pluginKey.jar");
     assertOK($xpath);
-    #printf("xpath: %s\n", $xpath->findnodes_as_string("/"));
     $pluginName = $xpath->findvalue("/plugin/pluginName")->value;
-    #printf("PluginName: %s\n", $pluginName);
-
 };
 
 #-------------------------------------------------------------------------------
@@ -55,7 +52,8 @@ ntest "promote", {}, sub {
     # Make sure the plugin's ec_setup script exists
     assertOK($xpath = $::N->getProperty("/projects/$pluginName/ec_setup",
                                       {expand => 0}),
-             "ec_setup property exists");
+             "ec_setup does not property exists");
+    printf("xpath: %s\n", $xpath->findnodes_as_string("/"));
     assertNe("", $xpath->findvalue("//value")->value,
              "ec_setup script not empty");
 
