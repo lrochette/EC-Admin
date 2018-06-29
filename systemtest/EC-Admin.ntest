@@ -40,7 +40,9 @@ ntest "install", {}, sub {
     assertOK($::N->uninstallPlugin($pluginKey));
 
     # install Plugin not promoted
-    assertOK($::N->installPlugin("$dir/../$pluginKey.jar"));
+    $xpath=$::N->installPlugin("$dir/../$pluginKey.jar");
+    assertOK($xpath);
+    printf("xpath: %s\n", $xpath->findnodes_as_string("/"));
     $xpath = $::N->getPlugin($pluginKey);
     $pluginName = $xpath->findvalue("//pluginName")->value;
     printf("PluginName: %s\n", $pluginName);
