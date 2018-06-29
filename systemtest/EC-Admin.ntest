@@ -18,7 +18,9 @@
 use strict;
 use warnings;
 use ECTest;
+use Cwd;
 
+my $dir = getcwd;
 initCommander();
 $::N=$adminSession;
 
@@ -39,7 +41,9 @@ ntest "install", {}, sub {
     assertOK($::N->uninstallPlugin($pluginKey));
 
     # install Plugin not promoted
-    assertOK($::N->installPlugin("../$pluginKey.jar"));
+    assertOK($::N->installPlugin("$dir/../$pluginKey.jar"));
+    $xpath = $::N->getPlugin($pluginKey);
+    $pluginName = $xpath->findvalue("//pluginName")->value;
 };
 
 #-------------------------------------------------------------------------------
