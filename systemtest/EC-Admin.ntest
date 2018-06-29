@@ -131,24 +131,27 @@ ntest "ACL_on_server_EC-Admin", {}, sub {
 # Test timeout property
 #-------------------------------------------------------------------------------
 ntest "timeout_config_property", {}, sub {
-    assertEq($::N->getProperty("/server/EC-Admin/cleanup/config/timeout")->findvalue("//value"),
-		"600", "timeout value is incorrect");
+    assertEq("600",
+             $::N->getProperty("/server/EC-Admin/cleanup/config/timeout")->findvalue("//value"),
+		         "timeout value is incorrect");
 };
 
 #-------------------------------------------------------------------------------
 # Test cleanpOldJobs
 #-------------------------------------------------------------------------------
 ntest "cleanpOldJobs_config_property", {}, sub {
-    assertEq($::N->getProperty("/server/EC-Admin/licenseLogger/config/cleanpOldJobs")->findvalue("//value"),
-                "1", "cleanpOldJobs value is incorrect");
+    assertEq("1",
+             $::N->getProperty("/server/EC-Admin/licenseLogger/config/cleanpOldJobs")->findvalue("//value"),
+             cleanpOldJobs value is incorrect");
 };
 
 #-------------------------------------------------------------------------------
 # Test workspace
 #-------------------------------------------------------------------------------
 ntest "workspace_config_property", {}, sub {
-    assertEq($::N->getProperty("/server/EC-Admin/licenseLogger/config/workspace")->findvalue("//value"),
-                "default", "workspace value is incorrect");
+    assertEq("default",
+             $::N->getProperty("/server/EC-Admin/licenseLogger/config/workspace")->findvalue("//value"),
+             "workspace value is incorrect");
 };
 
 #-------------------------------------------------------------------------------
@@ -163,16 +166,18 @@ ntest "emailConfig_config_property", {}, sub {
 # Test emailTo
 #-------------------------------------------------------------------------------
 ntest "emailTo_config_property", {}, sub {
-    assertEq($::N->getProperty("/server/EC-Admin/licenseLogger/config/emailTo")->findvalue("//value"),
-                "admin", "emailTo value is incorrect");
+    assertEq("admin",
+             $::N->getProperty("/server/EC-Admin/licenseLogger/config/emailTo")->findvalue("//value"),
+             "emailTo value is incorrect");
 };
 
 #-------------------------------------------------------------------------------
 # Test resource
 #-------------------------------------------------------------------------------
 ntest "resource_config_property", {}, sub {
-    assertEq($::N->getProperty("/server/EC-Admin/licenseLogger/config/resource")->findvalue("//value"),
-                "local", "resource value is incorrect");
+    assertEq("local",
+             $::N->getProperty("/server/EC-Admin/licenseLogger/config/resource")->findvalue("//value"),
+             "resource value is incorrect");
 };
 
 #-------------------------------------------------------------------------------
