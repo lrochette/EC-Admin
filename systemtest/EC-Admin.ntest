@@ -4,8 +4,16 @@
 #
 # Exercise basic components of EC-Admin plugin
 #
-# Copyright (c) 2014 Electric Cloud, Inc.
+# Copyright (c) 2014-2018 Electric Cloud, Inc.
 # All rights reserved
+#
+# Author: L. lrochette
+#
+# History
+# ----------------------------------------------------------------------------
+# 2018-06-29  lrochette  Update test to match 6.0 version and PluginWizard
+#
+# ----------------------------------------------------------------------------
 
 use strict;
 use warnings;
@@ -17,7 +25,7 @@ $::N=$adminSession;
 my $pluginKey = "EC-Admin";
 my $xpath = $::N->getPlugin($pluginKey);
 my $pluginName = $xpath->findvalue("//pluginName")->value;
-
+printf("PluginName: %s\n", $pluginName);
 #
 # Move /server/EC-Admin PS out of the way
 $::N->modifyProperty("/server/EC-Admin", {newName=>"EC-Admin.backup"});
@@ -29,7 +37,6 @@ $::N->modifyProperty("/server/EC-Admin", {newName=>"EC-Admin.backup"});
 ntest "install", {}, sub {
     # Start out with the demoted plugin
     assertOK($::N->promotePlugin($pluginName, {promoted => 0}));
-
 };
 
 #-------------------------------------------------------------------------------
@@ -38,12 +45,12 @@ ntest "install", {}, sub {
 ntest "promote", {}, sub {
     # Start out with the demoted plugin
     assertOK($::N->promotePlugin($pluginName, {promoted => 0}));
-    
+
     # Make sure the plugin's ec_setup script exists
     assertOK($xpath = $::N->getProperty("/projects/$pluginName/ec_setup",
                                       {expand => 0}),
              "ec_setup property exists");
-    assertNe("", $xpath->findvalue("//value")->value, 
+    assertNe("", $xpath->findvalue("//value")->value,
              "ec_setup script not empty");
 
     # Promote the plugin
@@ -65,7 +72,7 @@ ntest "scripts_perlCommonLib", {}, sub {
         procedureName=>"scriptsPropertiesTest",
       });
     assertOK($xpath, "run scriptsPropertiesTest");
-    assertDef($xpath, "Procedure scriptsPropertiesTest timed out"); 
+    assertDef($xpath, "Procedure scriptsPropertiesTest timed out");
 
     if ($xpath) {
         # get new job ID
@@ -76,7 +83,7 @@ ntest "scripts_perlCommonLib", {}, sub {
         my $exitCode = $jobData->findvalue("//job/jobStep[stepName='humanSize']/exitCode");
 
 	my $result =$::N->getProperty("result", {jobId=>$jobId, stepName=>"humanSize"})->findvalue("//value");
-        
+
         # testing result=1 Mb and exitCode=0
         assertEq($result, "3.00 MB", "test scriptPropertiesTest returned wrong value $result instead of 3.00 MB");
         assert($exitCode, "==", 0,  "test scriptPropertiesTest failed");
@@ -115,7 +122,7 @@ ntest "ACL_on_server_EC-Admin", {}, sub {
     my $xpath = $::N->getAclEntry("user", "project: $pluginName",
 	{
 		projectName => $pluginName,
-		propertySheetId => $psId 
+		propertySheetId => $psId
         });
     assertOK($xpath, "ACL not set");
 };
@@ -124,7 +131,7 @@ ntest "ACL_on_server_EC-Admin", {}, sub {
 # Test timeout property
 #-------------------------------------------------------------------------------
 ntest "timeout_config_property", {}, sub {
-    assertEq($::N->getProperty("/server/EC-Admin/cleanup/config/timeout")->findvalue("//value"), 
+    assertEq($::N->getProperty("/server/EC-Admin/cleanup/config/timeout")->findvalue("//value"),
 		"600", "timeout value is incorrect");
 };
 
@@ -184,8 +191,8 @@ ntest "Copy_in_name", {}, sub {
     foreach my $step ($::N->getSteps($pluginName, $name)->findnodes('//step')) {
       my $stepName = $step->findvalue('stepName');
       # printf("    step: $stepName\n");
-      fail("EC-Admin should not have \"Copy\" in step name: ${name}::$stepName") if ($stepName =~ m/copy$/i); 
-      fail("EC-Admin should not have spaces in step name: ${name}::$stepName") if ($stepName =~ m/\s/); 
+      fail("EC-Admin should not have \"Copy\" in step name: ${name}::$stepName") if ($stepName =~ m/copy$/i);
+      fail("EC-Admin should not have spaces in step name: ${name}::$stepName") if ($stepName =~ m/\s/);
     }
   }
 };
