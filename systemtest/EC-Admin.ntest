@@ -37,30 +37,29 @@ $::N->modifyProperty("/server/EC-Admin", {newName=>"EC-Admin.backup"});
 ntest "install", {}, sub {
     # Start out with no plugin
     assertOK($::N->installPlugin($pluginKey));
+
+    # install Plugin not promoted
     assertOK($::N->installPlugin($pluginName, {promoted => 0}));
 };
 
 #-------------------------------------------------------------------------------
 # Test promote & demote behavior.
 #-------------------------------------------------------------------------------
-# ntest "promote", {}, sub {
-#     # Start out with the demoted plugin
-#     assertOK($::N->promotePlugin($pluginName, {promoted => 0}));
-#
-#     # Make sure the plugin's ec_setup script exists
-#     assertOK($xpath = $::N->getProperty("/projects/$pluginName/ec_setup",
-#                                       {expand => 0}),
-#              "ec_setup property exists");
-#     assertNe("", $xpath->findvalue("//value")->value,
-#              "ec_setup script not empty");
-#
-#     # Promote the plugin
-#     assertOK($::N->promotePlugin($pluginName));
-#
-#     # Demote the plugin
-#     assertOK($::N->promotePlugin($pluginName, {promoted => 0}));
-#
-# };
+ntest "promote", {}, sub {
+    # Make sure the plugin's ec_setup script exists
+    assertOK($xpath = $::N->getProperty("/projects/$pluginName/ec_setup",
+                                      {expand => 0}),
+             "ec_setup property exists");
+    assertNe("", $xpath->findvalue("//value")->value,
+             "ec_setup script not empty");
+
+    # Promote the plugin
+    assertOK($::N->promotePlugin($pluginName));
+
+    # Demote the plugin
+    assertOK($::N->promotePlugin($pluginName, {promoted => 0}));
+
+};
 
 # Ensure the plugin is promoted for later tests
 $::N->promotePlugin($pluginName);
