@@ -142,7 +142,7 @@ ntest "timeout_config_property", {}, sub {
 ntest "cleanpOldJobs_config_property", {}, sub {
     assertEq("1",
              $::N->getProperty("/server/EC-Admin/licenseLogger/config/cleanpOldJobs")->findvalue("//value"),
-             cleanpOldJobs value is incorrect");
+             "cleanpOldJobs value is incorrect");
 };
 
 #-------------------------------------------------------------------------------
