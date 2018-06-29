@@ -34,35 +34,35 @@ $::N->modifyProperty("/server/EC-Admin", {newName=>"EC-Admin.backup"});
 # Test permissions and visibility, which should be set regardless of whether the
 # plugin is promoted or not.
 #-------------------------------------------------------------------------------
-ntest "demote", {}, sub {
-    # Start out with the demoted plugin
-    assertOK($::N->promotePlugin($pluginName, {promoted => 0}));
-};
+# ntest "demote", {}, sub {
+#     # Start out with the demoted plugin
+#     assertOK($::N->promotePlugin($pluginName, {promoted => 0}));
+# };
 
 #-------------------------------------------------------------------------------
 # Test promote & demote behavior.
 #-------------------------------------------------------------------------------
-ntest "promote", {}, sub {
-    # Start out with the demoted plugin
-    assertOK($::N->promotePlugin($pluginName, {promoted => 0}));
-
-    # Make sure the plugin's ec_setup script exists
-    assertOK($xpath = $::N->getProperty("/projects/$pluginName/ec_setup",
-                                      {expand => 0}),
-             "ec_setup property exists");
-    assertNe("", $xpath->findvalue("//value")->value,
-             "ec_setup script not empty");
-
-    # Promote the plugin
-    assertOK($::N->promotePlugin($pluginName));
-
-    # Demote the plugin
-    assertOK($::N->promotePlugin($pluginName, {promoted => 0}));
-
-};
+# ntest "promote", {}, sub {
+#     # Start out with the demoted plugin
+#     assertOK($::N->promotePlugin($pluginName, {promoted => 0}));
+#
+#     # Make sure the plugin's ec_setup script exists
+#     assertOK($xpath = $::N->getProperty("/projects/$pluginName/ec_setup",
+#                                       {expand => 0}),
+#              "ec_setup property exists");
+#     assertNe("", $xpath->findvalue("//value")->value,
+#              "ec_setup script not empty");
+#
+#     # Promote the plugin
+#     assertOK($::N->promotePlugin($pluginName));
+#
+#     # Demote the plugin
+#     assertOK($::N->promotePlugin($pluginName, {promoted => 0}));
+#
+# };
 
 # Ensure the plugin is promoted for later tests
-$::N->promotePlugin($pluginName);
+# $::N->promotePlugin($pluginName);
 
 #-------------------------------------------------------------------------------
 # Test for scripts/properties
