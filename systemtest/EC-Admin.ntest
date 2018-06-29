@@ -205,6 +205,6 @@ ntest "Copy_in_name", {}, sub {
 #
 # Recover /server/EC-Admin from the backup copy
 $::N->deleteProperty("/server/EC-Admin");
-$::N->modifyProperty("/server/EC-Admin.backup", {newName=>"EC-Admin"});
+#$::N->modifyProperty("/server/EC-Admin.backup", {newName=>"EC-Admin"});
 
 1;
