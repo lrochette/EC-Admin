@@ -59,10 +59,12 @@ ntest "promote", {}, sub {
              "ec_setup script not empty");
 
     # Promote the plugin
-    assertOK($::N->promotePlugin($pluginName));
+    assertOK($::N->promotePlugin($pluginName),
+             "Plugin was not promoted correctly");
 
     # Demote the plugin
-    assertOK($::N->promotePlugin($pluginName, {promoted => 0}));
+    assertOK($::N->promotePlugin($pluginName, {promoted => 0}),
+             "plugin was not demoted properly");
 
 };
 
