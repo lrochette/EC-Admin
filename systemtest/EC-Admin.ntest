@@ -43,9 +43,9 @@ ntest "install", {}, sub {
     $xpath=$::N->installPlugin("$dir/../$pluginKey.jar");
     assertOK($xpath);
     $pluginName = $xpath->findvalue("//plugin/pluginName")->value;
-    printf ("PluginName: %s\n", $pluginName);
+    # printf ("PluginName: %s\n", $pluginName);
 };
-printf ("PluginName: %s\n", $pluginName);
+
 #-------------------------------------------------------------------------------
 # Test promote & demote behavior.
 #-------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ ntest "promote", {}, sub {
     assertOK($xpath = $::N->getProperty("/projects/$pluginName/ec_setup",
                                       {expand => 0}),
              "ec_setup does not property exists");
-    printf("xpath: %s\n", $xpath->findnodes_as_string("/"));
+    # printf("xpath: %s\n", $xpath->findnodes_as_string("/"));
     assertNe("", $xpath->findvalue("//value")->value,
              "ec_setup script not empty");
 
