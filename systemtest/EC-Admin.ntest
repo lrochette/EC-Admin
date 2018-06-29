@@ -43,7 +43,7 @@ ntest "install", {}, sub {
     $xpath=$::N->installPlugin("$dir/../$pluginKey.jar");
     assertOK($xpath);
     #printf("xpath: %s\n", $xpath->findnodes_as_string("/"));
-    $pluginName = $xpath->findvalue("//pluginName")->value;
+    $pluginName = $xpath->findvalue("/plugin/pluginName")->value;
     #printf("PluginName: %s\n", $pluginName);
 
 };
