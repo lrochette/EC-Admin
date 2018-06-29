@@ -36,10 +36,10 @@ $::N->modifyProperty("/server/EC-Admin", {newName=>"EC-Admin.backup"});
 #-------------------------------------------------------------------------------
 ntest "install", {}, sub {
     # Start out with no plugin
-    assertOK($::N->installPlugin($pluginKey));
+    assertOK($::N->uninstallPlugin($pluginKey));
 
     # install Plugin not promoted
-    assertOK($::N->installPlugin($pluginName, {promoted => 0}));
+    assertOK($::N->installPlugin("../$pluginKey.jar", {promoted => 0}));
 };
 
 #-------------------------------------------------------------------------------
