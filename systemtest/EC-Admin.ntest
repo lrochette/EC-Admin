@@ -42,9 +42,9 @@ ntest "install", {}, sub {
     # install Plugin not promoted
     $xpath=$::N->installPlugin("$dir/../$pluginKey.jar");
     assertOK($xpath);
-    printf("xpath: %s\n", $xpath->findnodes_as_string("/"));
+    #printf("xpath: %s\n", $xpath->findnodes_as_string("/"));
     $pluginName = $xpath->findvalue("//pluginName")->value;
-    printf("PluginName: %s\n", $pluginName);
+    #printf("PluginName: %s\n", $pluginName);
 
 };
 
