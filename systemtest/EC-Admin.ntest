@@ -34,10 +34,11 @@ $::N->modifyProperty("/server/EC-Admin", {newName=>"EC-Admin.backup"});
 # Test permissions and visibility, which should be set regardless of whether the
 # plugin is promoted or not.
 #-------------------------------------------------------------------------------
-# ntest "demote", {}, sub {
-#     # Start out with the demoted plugin
-#     assertOK($::N->promotePlugin($pluginName, {promoted => 0}));
-# };
+ntest "install", {}, sub {
+    # Start out with no plugin
+    assertOK($::N->installPlugin($pluginKey));
+    assertOK($::N->installPlugin($pluginName, {promoted => 0}));
+};
 
 #-------------------------------------------------------------------------------
 # Test promote & demote behavior.
