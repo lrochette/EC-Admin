@@ -39,7 +39,7 @@ ntest "install", {}, sub {
     assertOK($::N->uninstallPlugin($pluginKey));
 
     # install Plugin not promoted
-    assertOK($::N->installPlugin("../$pluginKey.jar", {promoted => 0}));
+    assertOK($::N->installPlugin("../$pluginKey.jar");
 };
 
 #-------------------------------------------------------------------------------
