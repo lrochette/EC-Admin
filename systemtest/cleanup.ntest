@@ -41,8 +41,6 @@ ntest "cleanup_procedures", {}, sub {
 # Issue #18: jobsCleanup fails with property error
 #-------------------------------------------------------------------------------
 ntest "Issue_18_humanSize", {}, sub {
-  return if ($version lt "4.2");
-
     my $xpath = $::N->runProcedure($pluginName, {
 	procedureName=>"subJC_deleteWorkspace",
 	actualParameter=>[
@@ -103,10 +101,8 @@ sub callJobsCleanup{
 #-------------------------------------------------------------------------------
 sub loadJob {
   my $name=shift;
-  my $dir="cleanup";
 
-  $dir="cleanup.4.0" if ($version lt "4.2");
-  my $xpath= $::N->import({file=>$::gWorkingDirectory . "/data/$dir/$name.xml", force=>1});
+  my $xpath= $::N->import({file=>$::gWorkingDirectory . "/data/cleanup/$name.xml", force=>1});
   assertOK($xpath, "$name job import failed");
 }
 
