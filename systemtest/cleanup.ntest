@@ -18,9 +18,9 @@ $::N=$adminSession;
 # EC-Admin is a simple project for version 4.0
 my $version=$::N->getVersions()->findvalue("//version")->value;
 
-my $pluginName="EC-Admin";
+my $pluginKey="EC-Admin";
 my $xpath = $::N->getPlugin($pluginKey);
-$pluginName = $xpath->findvalue("//pluginName")->value;
+my $pluginName = $xpath->findvalue("//pluginName")->value;
 
 #create project to get jobImport
 $::N->createProject("EC-Admin Management");
