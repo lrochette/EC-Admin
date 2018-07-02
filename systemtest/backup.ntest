@@ -49,7 +49,7 @@ ntest "issues 56 question mark", {}, sub {
 
   my $error=0;
   rmtree("/tmp/BACKUP");
-  $xpath = $::N->runProcedure("EC-Admin", {
+  $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
       {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
@@ -96,7 +96,7 @@ ntest "issues 57 group with slash", {}, sub {
   assertOK($xpath, "Failed to create group $group for issue 57");
 
   rmtree("/tmp/BACKUP");
-  $xpath = $::N->runProcedure("EC-Admin", {
+  $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
       {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
@@ -146,7 +146,7 @@ ntest "issue 58 gateway", {}, sub {
   assertOK($xpath, "Failed to create gateway $gate");
 
   rmtree("/tmp/BACKUP");
-  $xpath = $::N->runProcedure("EC-Admin", {
+  $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
       {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
@@ -193,7 +193,7 @@ ntest "issue 59 zone", {}, sub {
   assertOK($xpath, "Failed to create zone $zone");
 
   rmtree("/tmp/BACKUP");
-  $xpath = $::N->runProcedure("EC-Admin", {
+  $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
       {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
@@ -238,7 +238,7 @@ ntest "issue 63 pattern", {}, sub {
   my $xpath=$::N->createProject($proj);
   assertOK($xpath, "Failed to create project $proj");
 
-  $xpath = $::N->runProcedure("EC-Admin", {
+  $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
       {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
@@ -282,7 +282,7 @@ ntest "issue 63 pattern", {}, sub {
 ntest "export users", {}, sub {
 
   rmtree("/tmp/BACKUP");
-  $xpath = $::N->runProcedure("EC-Admin", {
+  $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
       {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
@@ -331,7 +331,7 @@ ntest "issues 77 procedure with slash", {}, sub {
   assertOK($xpath, "Failed to create procedure $name for issue 77");
 
   rmtree("/tmp/BACKUP");
-  $xpath = $::N->runProcedure("EC-Admin", {
+  $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
       {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
@@ -379,7 +379,7 @@ ntest "issue 74 case insensitive", {}, sub {
   my $xpath=$::N->createProject($proj);
   assertOK($xpath, "Failed to create project $proj");
 
-  $xpath = $::N->runProcedure("EC-Admin", {
+  $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
       {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
@@ -426,7 +426,7 @@ ntest "issue 83 trailing spaces", {}, sub {
   my $xpath=$::N->createProject($proj);
   assertOK($xpath, "Failed to create project $proj");
 
-  $xpath = $::N->runProcedure("EC-Admin", {
+  $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
       {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
@@ -473,7 +473,7 @@ ntest "issue 88 slash in resource", {}, sub {
   my $xpath=$::N->createResource($res);
   assertOK($xpath, "Failed to create resource $res");
 
-  $xpath = $::N->runProcedure("EC-Admin", {
+  $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
       {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
@@ -520,7 +520,7 @@ ntest "issue 89 < and > in filenames", {}, sub {
   my $xpath=$::N->createResource($res);
   assertOK($xpath, "Failed to create resource $res");
 
-  $xpath = $::N->runProcedure("EC-Admin", {
+  $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
       {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
@@ -567,7 +567,7 @@ ntest "issue 90 project starting with _", {}, sub {
   my $xpath=$::N->createProject($proj);
   assertOK($xpath, "Failed to create project $proj");
 
-  $xpath = $::N->runProcedure("EC-Admin", {
+  $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
       {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
@@ -614,7 +614,7 @@ ntest "issue 87 empty pattern", {}, sub {
   my $xpath=$::N->createProject($proj);
   assertOK($xpath, "Failed to create project $proj");
 
-  $xpath = $::N->runProcedure("EC-Admin", {
+  $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
       {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
@@ -635,7 +635,7 @@ ntest "issue 87 empty pattern", {}, sub {
   if ($xpath) {
     #get new Job ID
     my $jobId  = $xpath->findvalue("//jobId");
-    $::N->setJobName($jobId, 'saveAllObject_Issue87_' . 
+    $::N->setJobName($jobId, 'saveAllObject_Issue87_' .
 		$::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
     waitForJob($jobId);
     my $jobData  = $::N->getJobDetails($jobId);
