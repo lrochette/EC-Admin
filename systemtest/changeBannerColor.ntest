@@ -45,7 +45,7 @@ ntest "banner color files", {}, sub {
 		my $xpath2=$::N->getProperty("ec_customEditorData/parameters/color/options/$pName/value",
 								{projectName=>$pluginName,
 								 procedureName=>"changeBannerColor"});
-	  my $color=$xpath2->findvalue("./value");
+	  my $color=$xpath2->findvalue("//value");
 		printf("Color: %s\n", $color);
 
 		if ($color eq "Default") {
