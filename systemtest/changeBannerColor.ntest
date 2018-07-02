@@ -41,7 +41,7 @@ ntest "banner color files", {}, sub {
 	foreach my $node ($xpath->findnodes('//property')) {
 		my $pName = $node->findvalue("./propertyName");
 		printf("Option: %s\n", $pName);
-		next if  ($pName !~ m/option/);
+		next if  ($pName !~ m/option\d+/);
 		my $xpath2=$::N->getProperty("ec_customEditorData/parameters/color/options/$pName/value",
 								{projectName=>$pluginName,
 								 procedureName=>"changeBannerColor"});
