@@ -1,5 +1,18 @@
 import java.io.File
 
+/*
+Copyright 2014-2018 Electric-Cloud Inc.
+
+Author: L. Rochette
+
+History:
+------------------------------------------------------------------------------
+2014-02-27 Kate McCormack  Adding setTimeout equal to 600 so the ec commands
+                           won't time out
+2015-10-08 lrochette    Add step export as well
+2018-06-15  lrochette   Convert to PluginWizard DSL format
+*/
+
 def procName= 'saveAllObjects'
 
 procedure procName,
@@ -30,16 +43,11 @@ $[/server/ec_notifierTemplates/Html_JobTempl/body]'''
   step 'grabResource',
     description: '''Capture the resource in case local is a pool.
 All steps need to run on the same host''',
-    command: new File(pluginDir, "dsl/procedures/$procName/steps/grabResource.sh").text
+    command: new File(pluginDir, "dsl/procedures/$procName/steps/grabResource.sh").text,
+    resourceName: "local"
 
   step 'saveProjectsProceduresWorkflows',
-    description: '''A step to export each project and procedure individually
-Changelog:
-2015-10-08 Laurent Rochette
-   Add step export as well
-2014-02-27 Kate McCormack
-  Adding setTimeout equal to 600 so the ec commands won\'t time out
-''',
+    description: 'A step to export each project and procedure individually',
     command: new File(pluginDir, "dsl/procedures/$procName/steps/saveProjectsProceduresWorkflows.pl").text,
     resourceName: '$[/myJob/backupResource]',
     shell: 'ec-perl'
