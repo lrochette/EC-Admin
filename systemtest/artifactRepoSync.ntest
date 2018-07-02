@@ -30,10 +30,10 @@ ntest "artifactRepoSync presence", {}, sub {
 # Test procedure exposed to plugin.
 #-------------------------------------------------------------------------------
 ntest "procedures exposed to picker", {}, sub {
-  assertOK($::N->getProperty('exposeToPlugin', {
+  assertUndef($::N->getProperty('standardStepPicker', {
 			projectName => $pluginName,
 			procedureName => "artifactRepositorySynchronization"}),
-					"property exposeToPlugin missing");
+					"property standardStepPicker is set");
 };
 
 #-------------------------------------------------------------------------------
