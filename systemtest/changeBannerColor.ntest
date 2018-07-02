@@ -47,7 +47,6 @@ ntest "banner color files", {}, sub {
 	  my $color=$xpath2->findvalue("//value");
 
 		if ($color eq "Default") {
-			printf("Default: TRUE\n");
 			$defaultPresent=1;
 		}
 		# Check if banner  is present in plugin directory as expected
