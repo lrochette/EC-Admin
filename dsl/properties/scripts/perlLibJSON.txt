@@ -1,12 +1,4 @@
-$[/javascript 
-var p;
-if (typeof(plugins["EC-Admin"].project.Version) == "undefined") {
-  p=projects["EC-Admin"].scripts.perlCommonLib;
-} else {
-  p=plugins["EC-Admin"].project.scripts.perlCommonLib;
-}
-p;
-];
+$[/plugins/EC-Admin/project/scripts/perlCommonLib]
 
 #############################################################################
 #
@@ -75,12 +67,12 @@ sub getPS
 {
   my $psPath=shift;
   my $recursive=shift;
-  
+
   my $hashRef=undef;;
-  
+
   my($success, $result, $errMsg, $errCode)=InvokeCommander("SuppressLog IgnoreError", "getProperties", {'path'=>$psPath});
   return $hashRef if (!$success);
-  
+
   foreach my $node ($result->findnodes('//property')) {
 	my $propName=$node->{'propertyName'};
     my $value=$node->{'value'};
@@ -92,7 +84,7 @@ sub getPS
         $hashRef->{$propName}=getPS("$psPath/$propName", $recursive);
       } else {
         $hashRef->{$propName}=undef;
-      }  
+      }
     }
   }
   return $hashRef;
