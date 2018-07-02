@@ -40,7 +40,7 @@ ntest "procedures exposed to picker", {}, sub {
 # Test source repo incorrect.
 #-------------------------------------------------------------------------------
 ntest "incorrect source repo", {}, sub {
-	my $xpath = $::N->runProcedure("EC-Admin", {
+	my $xpath = $::N->runProcedure($pluginName, {
 		procedureName=>"artifactRepositorySynchronization",
 		actualParameter=>[
 			{actualParameterName=>"sourceRepository", value=>"DOESNOTEXIST"},
@@ -65,7 +65,7 @@ ntest "incorrect source repo", {}, sub {
 # Test target repo incorrect.
 #-------------------------------------------------------------------------------
 ntest "incorrect target repo name", {}, sub {
-	my $xpath = $::N->runProcedure("EC-Admin", {
+	my $xpath = $::N->runProcedure($pluginName, {
 		procedureName=>"artifactRepositorySynchronization",
 		actualParameter=>[
 			{actualParameterName=>"sourceRepository", value=>"default"},
@@ -90,7 +90,7 @@ ntest "incorrect target repo name", {}, sub {
 # Test no AV to sync.
 #-------------------------------------------------------------------------------
 ntest "no artifact version to sync", {}, sub {
-	my $xpath = $::N->runProcedure("EC-Admin", {
+	my $xpath = $::N->runProcedure($pluginName, {
 		procedureName=>"artifactRepositorySynchronization",
 		actualParameter=>[
 			{actualParameterName=>"sourceRepository", value=>"default"},
