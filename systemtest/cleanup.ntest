@@ -19,11 +19,8 @@ $::N=$adminSession;
 my $version=$::N->getVersions()->findvalue("//version")->value;
 
 my $pluginName="EC-Admin";
-if ($version ge "4.2") {
-  my $pluginKey = $pluginName;
-  my $xpath = $::N->getPlugin($pluginKey);
-  $pluginName = $xpath->findvalue("//pluginName")->value;
-}
+my $xpath = $::N->getPlugin($pluginKey);
+$pluginName = $xpath->findvalue("//pluginName")->value;
 
 #create project to get jobImport
 $::N->createProject("EC-Admin Management");
