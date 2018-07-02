@@ -34,7 +34,7 @@ ntest "procedures exposed to picker", {}, sub {
 			projectName => $pluginName,
 			procedureName => "agentMemoryConfiguration"});
   # printf("%s\n", $prop->findnodes_as_string("/"));
-  assertEq("NoSuchProperty", $prop->findvalue("//code"), "property standardStepFucker set");
+  assertEq("NoSuchProperty", $prop->findvalue("//code"), "property standardStepPicker set");
 };
 
 #-------------------------------------------------------------------------------
