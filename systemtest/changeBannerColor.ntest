@@ -34,9 +34,9 @@ my $installDir=$::N->getProperty("/server/Electric Cloud/installDirectory")->fin
 ntest "banner color files", {}, sub {
 	my $defaultPresent=0;
 
-	my $xpath=$::N->getProperties("ec_customEditorData/parameters/color/options",
-							{projectName=>$pluginName,
-							 procedureName=>"changeBannerColor"});
+	my $xpath=$::N->getProperties({
+			path=>"/projects/$pluginName/procedures/changeBannerColor/ec_customEditorData/parameters/color/options",
+		});
 
 	my $color=$xpath->findvalue("//value");
 	foreach my $node ($xpath->findnodes('//property')) {
