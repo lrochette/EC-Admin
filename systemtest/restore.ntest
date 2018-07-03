@@ -35,7 +35,7 @@ ntest "issue 64", {}, sub {
   $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"restoreObjects",
     actualParameter=>[
-      {actualParameterName=>"directory", value=>"/home/lrochette/GitHub/EC-Admin/src/systemtest/data/restore"},
+      {actualParameterName=>"directory", value=>"/home/lrochette/GitHub/EC-Admin/systemtest/data/restore"},
       {actualParameterName=>"force", value=>"false"},
       {actualParameterName=>"resource", value=>"local"},
     ]
