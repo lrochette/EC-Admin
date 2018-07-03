@@ -40,7 +40,7 @@ ntest "checkNumberOfCores", {}, sub {
     {
       procedureName=>"subPM-core",
       actualParameter=>[
-        {actualParameterName=>"debugMode", value =>0}
+        {actualParameterName=>"debugMode", value =>'0'}
       ]
     }
   );

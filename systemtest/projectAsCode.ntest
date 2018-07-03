@@ -32,17 +32,17 @@ ntest "pac_procedures", {}, sub {
 #-------------------------------------------------------------------------------
 ntest "pac_properties", {}, sub {
   my @propList = (
-	"pac_configurations/cgi-bin/jobMonitor.cgi",
-	"pac_configurations/cgi-bin/plugin.cgi",
-	"pac_configurations/java/ConfigurationList.java",
-	"pac_configurations/java/ConfigurationManagementFactory.java",
-        "pac_configurations/java/CreateCOnfiguration.java",
-        "pac_configurations/java/PluginConfigList.java",
-        "pac_configurations/java/PluginConfigListLoader.java",
-	"pac_configurations/resources/ConfigurationManagement.gwt.xml",
-        "pac_configurations/resources/ECInternal.gwt.xml",
-	"pac_configurations/ui_forms/createConfigForm",
-        "pac_configurations/ui_forms/editConfigForm"
+  	"pac_configurations/cgi-bin/jobMonitor.cgi",
+  	"pac_configurations/cgi-bin/plugin.cgi",
+  	"pac_configurations/java/ConfigurationList.java",
+  	"pac_configurations/java/ConfigurationManagementFactory.java",
+    "pac_configurations/java/CreateCOnfiguration.java",
+    "pac_configurations/java/PluginConfigList.java",
+    "pac_configurations/java/PluginConfigListLoader.java",
+  	"pac_configurations/resources/ConfigurationManagement.gwt.xml",
+    "pac_configurations/resources/ECInternal.gwt.xml",
+  	"pac_configurations/ui_forms/createConfigForm",
+    "pac_configurations/ui_forms/editConfigForm"
   );
   foreach my $prop (@propList) {
     assertOK($::N->getProperty($prop, {expand => 0, projectName => $pluginName}), "Could not find property $prop");

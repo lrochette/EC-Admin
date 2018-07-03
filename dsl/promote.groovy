@@ -36,6 +36,14 @@ project pluginName, {
 			}
 		}
 	}
+	property 'pac_configurations', {
+		property 'cgi-bin', {
+			property 'jobMonitor.cgi', description: 'Monitors a job: waits for it to complete and reports on its success or failure.'
+		}
+		property 'ui_forms', {
+			property 'createConfigForm', description: 'Form to create new configuration'
+		}
+	}
 
 }
 
