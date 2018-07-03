@@ -71,4 +71,7 @@ Best: mssql or oracle''',
     resourceName: 'local',
     command: new File(pluginDir, "dsl/procedures/$procName/steps/databaseType.pl").text,
     shell: 'ec-perl'
+
+    // Do not Display in the property picker
+    property 'standardStepPicker', value: false
 }
