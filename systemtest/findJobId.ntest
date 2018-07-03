@@ -29,10 +29,18 @@ ntest "findJobId procedure", {}, sub {
 # Issue 65:
 #-------------------------------------------------------------------------------
 ntest "Issue 65: findJobId in EC-Admin", {}, sub {
+	#
+	# Clone EC-Admin
+	#
+	my $xpath=$::N->clone({
+			projectName=>$pluginName,
+			cloneName=>"$pluginKey-clone"});
+	assertOK($xpath, "Failed to clone $plugingKey");
+
   my $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"findJobId",
       actualParameter=>[
-        {actualParameterName=>"projectPattern", value=>$pluginName}
+        {actualParameterName=>"projectPattern", value=>"$pluginKey-clone"}
       ]});
   assertOK($xpath, "Failed to launch EC-Admin::findJobId");
   if ($xpath) {
@@ -47,6 +55,8 @@ ntest "Issue 65: findJobId in EC-Admin", {}, sub {
     my $params=$::N->getProperty("nbParams", {jobId => $jobId})->findvalue("//value");
     assertEq("0", $params, "incorrect number of jobId occurences found in parameters");
   }
+
+	$::N->deleteProject("$pluginKey-clone");
 };
 
 #-------------------------------------------------------------------------------
@@ -72,7 +82,7 @@ ntest "Issue 115: long dash", {}, sub {
         my $outcome = $jobData->findvalue("//job/outcome");
         assertEq("success", $outcome, "findJobId failed");
   }
-  #$::N->deleteProject($proj);
+  $::N->deleteProject($proj);
 };
 
 1;
