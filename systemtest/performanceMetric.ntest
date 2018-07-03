@@ -35,15 +35,12 @@ ntest "checkProcedures", {}, sub {
 # Test number of cores is greater than 1
 #-------------------------------------------------------------------------------
 ntest "checkNumberOfCores", {}, sub {
-  my $xpath = $::N->runProcedure($pluginName, {
-    procedureName=>"subPM-core",
-    actualParameter=>[
-      {actualParameterName=>"debugMode",        value =>0},
-      {actualParameterName=>"numberOfGB",       value=>1},
-      {actualParameterName=>"numberOfJobSteps", value=>1},
-      {actualParameterName=>"numberOfSteps",    value => 1}
-    ]
-  });
+  my $xpath = $::N->runProcedure(
+    $pluginName,
+    {
+      procedureName=>"subPM-core"
+    }
+  );
   assertOK($xpath, "Failed to launch EC-Admin::subPM-core");
   if ($xpath) {
     #get new Job ID
