@@ -31,6 +31,7 @@ ntest "Issue_45_badLinks", {}, sub {
   assertEq($res, 1, "Cannot create passwd link");
   $res=symlink("/opt/electric-cloud/foo", "$dir/foo");
   assertEq($res, 1, "Cannot create foo link");
+  system("ls -ail $dir");
 
   # change time to 2 years back to be deleted
   utime(time(), time()-2*365*24*60*60, $dir);
