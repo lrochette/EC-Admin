@@ -37,7 +37,7 @@ ntest "Issue 65: findJobId in EC-Admin", {}, sub {
 			cloneName=>"$pluginKey-clone"});
 	assertOK($xpath, "Failed to clone $plugingKey");
 
-  my $xpath = $::N->runProcedure($pluginName, {
+  $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"findJobId",
       actualParameter=>[
         {actualParameterName=>"projectPattern", value=>"$pluginKey-clone"}
