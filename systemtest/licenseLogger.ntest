@@ -36,8 +36,8 @@ ntest "Issue_52 EC-Admin counter is writable" , {}, sub {
   my $xpath=$::N->getAclEntry("group", "Everyone", {propertySheetId => $psId});
   assertOK($xpath, "Cannot get ACL for /server/counters/EC-Admin");
 
-  assertEq("allow", $xpath->findvalue("//aclEntry/readPrivilege"), "PS does not have read privilege"); 
-  assertEq("allow", $xpath->findvalue("//aclEntry/modifyPrivilege"), "PS does not have write privilege"); 
+  assertEq("allow", $xpath->findvalue("//aclEntry/readPrivilege"), "PS does not have read privilege");
+  assertEq("allow", $xpath->findvalue("//aclEntry/modifyPrivilege"), "PS does not have write privilege");
 };
 
 #-------------------------------------------------------------------------------
@@ -47,13 +47,13 @@ ntest "Issue_52 EC-Admin counter is writable" , {}, sub {
 #
 	# create a fake data point (before it was released so 2012-01)
 	#my $month="201201";
-	#my $xpath=$::N->createProperty("/server/$pluginKey/licenseLogger/$month", 
-							#{valueFile=>"licenseLogger$month.txt",
+	#my $xpath=$::N->createProperty("/server/$pluginKey/licenseLogger/$month",
+							#{valueFile=>"data/licenseLogger$month.txt",
 							 #description=>"identity,dataVersion,timeStamp,inUseHosts,inUseLicenses,inUseProxiedHosts,runningSteps"});
 #
 	# Send email
 	#smtpServerUp("licenseLogger");
-	
+
 	# clean
 	#$xpath=$::N->deleteProperty("/server/$pluginKey/licenseLogger/$month");
 	#assertOK($xpath, "CO
