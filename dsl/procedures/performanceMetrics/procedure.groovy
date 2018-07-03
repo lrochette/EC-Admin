@@ -27,7 +27,10 @@ procedure procName,
 
   step 'core',
     subprocedure: 'subPM-core',
-    subproject: '$[/myProject/projectName]'
+    subproject: '$[/myProject/projectName]',
+    actualParameter:  [
+      debugMode: '$[debugMode]'
+    ]
 
   step 'deploymentSize',
     subprocedure: 'subPM-deploymentSize',
@@ -49,7 +52,7 @@ procedure procName,
     subprocedure: 'subPM-localUsage',
     subproject: '$[/myProject/projectName]',
     actualParameter:  [
-      debugMode: "0",
+      debugMode: '$[debugMode]',
       number: "5000"
     ]
 

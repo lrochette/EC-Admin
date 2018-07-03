@@ -1,0 +1,12 @@
+<editor>
+  <formElement>
+      <label>Debug Mode</label>
+      <property>debugMode</property>
+      <documentation>Debug Mode</documentation>
+      <type>checkbox</type>
+      <checkedValue>1</checkedValue>
+      <uncheckedValue>0</uncheckedValue>
+      <initiallyChecked>0</initiallyChecked>
+      <value>0</value>
+  </formElement>
+</editor>

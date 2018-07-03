@@ -38,7 +38,10 @@ ntest "checkNumberOfCores", {}, sub {
   my $xpath = $::N->runProcedure(
     $pluginName,
     {
-      procedureName=>"subPM-core"
+      procedureName=>"subPM-core",
+      actualParameter=>[
+        {actualParameterName=>"debugMode", value =>0}
+      ]
     }
   );
   assertOK($xpath, "Failed to launch EC-Admin::subPM-core");
