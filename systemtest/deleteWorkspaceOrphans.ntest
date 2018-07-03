@@ -26,6 +26,7 @@ ntest "Issue_45_badLinks", {}, sub {
 
   # create FAKE directory with links
   mkdir($dir);
+  system("ls -ail $dir");
   my $res=symlink("/etc/passwd", "$dir/passwd");
   assertEq($res, 1, "Cannot create passwd link");
   $res=symlink("/opt/electric-cloud/foo", "$dir/foo");
@@ -55,7 +56,7 @@ ntest "Issue_45_badLinks", {}, sub {
   if (-d $dir) {
     fail("orphan should have been deleted");
   }
-  rmdir($dir);
+  # rmdir($dir);
 };
 
 1;
