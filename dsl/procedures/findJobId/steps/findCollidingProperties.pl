@@ -24,7 +24,7 @@ my @objectList= qq(=applications= =clusters= =components= =containers=
     =deployers= =environments= =reservations= =environmentTemplates=
     =flowRuntimes= =flows= =pipelines= =processes= =releases=
     =resourceTemplates= =rollingDeployConfigs= =services=
-    =stages=);
+    =stages= =dashboard=);
 
 # create filterList
 my @filterList;
@@ -78,4 +78,3 @@ $ec->setProperty("/myJob/nbCollidingProps", $nbCollidingProps);
 $ec->setProperty("summary", "Props: $nbCollidingProps");
 
 $[/myProject/scripts/perlLibJSON]
-
