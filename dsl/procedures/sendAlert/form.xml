@@ -1,0 +1,28 @@
+<editor> 
+    <formElement> 
+        <label>Email Configuration</label>    
+        <property>config</property>    
+        <documentation>The email configuration used to send alerts.</documentation> 
+        <type>entry</type> 
+        <value>default</value>  
+        <required>1</required>
+    </formElement> 
+
+    <formElement> 
+        <label>Subject</label> 
+        <property>subject</property> 
+        <documentation>Subject of your alert.</documentation> 
+        <type>entry</type> 
+        <value>ElectricFlow Alert:</value> 
+        <required>1</required>
+    </formElement> 
+
+    <formElement> 
+        <label>Body</label> 
+        <property>text</property> 
+        <documentation>The body of your alert. Can be written in HTML if encapsulated in a &lt;html&gt; tag.</documentation> 
+        <type>textarea</type>
+        <value></value>
+        <required>1</required>
+    </formElement> 
+</editor>

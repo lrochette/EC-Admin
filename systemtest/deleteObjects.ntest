@@ -1,0 +1,94 @@
+# -*-Perl-*-
+
+# deleteObjects.ntest -
+#
+# check the deleteObjects procedure of EC-Admin plugin
+#
+# Copyright (c) 2015 Electric Cloud, Inc.
+# All rights reserved
+
+use strict;
+use warnings;
+use ECTest;
+
+initCommander();
+$::N=$adminSession;
+
+# Check version to be able to run test with version 4.0 as well
+# EC-Admin is a simple project for version 4.0
+my $version=$::N->getVersions()->findvalue("//version")->value;
+
+my $pluginKey = "EC-Admin";
+my $xpath = $::N->getPlugin($pluginKey);
+my $pluginName = $xpath->findvalue("//pluginName")->value;
+
+#create project to get jobImport
+$::N->createProject("EC-Admin Management");
+
+#-------------------------------------------------------------------------------
+# Test procedure present.
+#-------------------------------------------------------------------------------
+ntest "checkProcedures", {}, sub {
+	assertOK($::N->getProcedure($pluginName, "deleteObjects"), "procedure deleteObjects missing");
+};
+
+#-------------------------------------------------------------------------------
+#  Load some old jobs
+#-------------------------------------------------------------------------------
+sub loadJobDO {
+  my $name=shift;
+  my $dir="cleanup";
+
+  $dir="cleanup.4.0" if ($version lt "4.2");
+  my $xpath= $::N->import({file=>$::gWorkingDirectory . "/data/$dir/$name.xml", force=>1});
+  assertOK($xpath, "$name job import failed");
+}
+
+
+#-------------------------------------------------------------------------------
+# Issue #41: missing perlLib
+#-------------------------------------------------------------------------------
+ntest "Issue_41_missingGetP", {}, sub {
+
+  my $jName="saveAllObjects_6038";
+  $jName="artifactsCleanup_6038" if ($version lt "4.2");
+
+    # Load an old job
+    loadJobDO("error");
+
+    # check the job exist: 210610
+    my $xpath = $::N->getJobDetails($jName, {structureOnly =>1});
+    assertOK($xpath, "Failed to load job $jName");
+
+    # delete job
+    $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"deleteObjects",
+    actualParameter=>[
+	    {actualParameterName=>"chunkSize", value=>200},
+	    {actualParameterName=>"daysLimit", value=>365},
+	    {actualParameterName=>"maxObjects", value=>"200"},
+	    {actualParameterName=>"objectType", value=>"job"}
+	]});
+    assertOK($xpath, "Failed to launch EC-Admin::deleteObjects");
+    if ($xpath) {
+	#get new Job ID
+        my $jobId  = $xpath->findvalue("//jobId");
+        waitForJob($jobId);
+	my $jobData  = $::N->getJobDetails($jobId);
+        my $outcome = $jobData->findvalue("//job/outcome");
+	assertEq("success", $outcome, "subJC_deleteWorkspace failed");
+
+        # check for summary
+        my $jsId = $jobData->findvalue("//job/jobStep[stepName='Delete']/jobStepId");
+        my $summary=$::N->getProperty("summary", {jobStepId=>$jsId})->findvalue("//value");
+	assertSubstring("Deleted 1 jobs", $summary, "Only 1 job to delete");
+
+        #check job is now gone
+        $xpath = $::N->getJobDetails($jName, {structureOnly =>1});
+    }
+};
+
+# delete project to get jobImport
+$::N->deleteProject("EC-Admin Management");
+
+1;

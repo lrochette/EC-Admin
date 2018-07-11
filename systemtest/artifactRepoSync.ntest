@@ -1,0 +1,118 @@
+# -*-Perl-*-
+
+# artifactRepoSync.ntest -
+#
+# check the artifactRepositorySynchronization procedures of EC-Admin plugin
+#
+# Copyright (c) 2016 Electric Cloud, Inc.
+# All rights reserved
+
+use strict;
+use warnings;
+use ECTest;
+
+initCommander();
+$::N=$adminSession;
+
+my $pluginKey = "EC-Admin";
+my $xpath = $::N->getPlugin($pluginKey);
+my $pluginName = $xpath->findvalue("//pluginName")->value;
+
+#-------------------------------------------------------------------------------
+# Test procedure presence.
+#-------------------------------------------------------------------------------
+ntest "artifactRepoSync presence", {}, sub {
+	assertOK($::N->getProcedure($pluginName, "artifactRepositorySynchronization"),
+		"procedure artifactRepositorySynchronization missing");
+};
+
+#-------------------------------------------------------------------------------
+# Test procedure exposed to plugin.
+#-------------------------------------------------------------------------------
+ntest "procedures exposed to picker", {}, sub {
+  my $prop=$::N->getProperty('standardStepPicker', {
+			projectName => $pluginName,
+			procedureName => "artifactRepositorySynchronization"});
+	assertEq("NoSuchProperty", $prop->findvalue("//code"), "property standardStepPicker set");
+};
+
+#-------------------------------------------------------------------------------
+# Test source repo incorrect.
+#-------------------------------------------------------------------------------
+ntest "incorrect source repo", {}, sub {
+	my $xpath = $::N->runProcedure($pluginName, {
+		procedureName=>"artifactRepositorySynchronization",
+		actualParameter=>[
+			{actualParameterName=>"sourceRepository", value=>"DOESNOTEXIST"},
+			{actualParameterName=>"targetRepository", value=>"default"},
+			{actualParameterName=>"batchSize", value=>10},
+			{actualParameterName=>"syncResource", value=>"local"},
+			{actualParameterName=>"artifactVersionPattern", value=>"*"},
+		]
+	});
+	assertOK($xpath, "Failed to launch EC-Admin::artifactRepositorySynchronization");
+	if ($xpath) {
+		#get new Job ID
+		my $jobId  = $xpath->findvalue("//jobId");
+		waitForJob($jobId);
+		my $jobData  = $::N->getJobDetails($jobId);
+		my $outcome = $jobData->findvalue("//job/outcome");
+		assertEq("error", $outcome, "incorrect source repo should error out");
+	}
+};
+
+#-------------------------------------------------------------------------------
+# Test target repo incorrect.
+#-------------------------------------------------------------------------------
+ntest "incorrect target repo name", {}, sub {
+	my $xpath = $::N->runProcedure($pluginName, {
+		procedureName=>"artifactRepositorySynchronization",
+		actualParameter=>[
+			{actualParameterName=>"sourceRepository", value=>"default"},
+			{actualParameterName=>"targetRepository", value=>"DOESNOTEXIST"},
+			{actualParameterName=>"batchSize", value=>10},
+			{actualParameterName=>"syncResource", value=>"local"},
+			{actualParameterName=>"artifactVersionPattern", value=>"*"},
+		]
+	});
+	assertOK($xpath, "Failed to launch EC-Admin::artifactRepositorySynchronization");
+	if ($xpath) {
+		#get new Job ID
+		my $jobId  = $xpath->findvalue("//jobId");
+		waitForJob($jobId);
+		my $jobData  = $::N->getJobDetails($jobId);
+		my $outcome = $jobData->findvalue("//job/outcome");
+		assertEq("error", $outcome, "incorrect target repo should error out");
+	}
+};
+
+#-------------------------------------------------------------------------------
+# Test no AV to sync.
+#-------------------------------------------------------------------------------
+ntest "no artifact version to sync", {}, sub {
+	my $xpath = $::N->runProcedure($pluginName, {
+		procedureName=>"artifactRepositorySynchronization",
+		actualParameter=>[
+			{actualParameterName=>"sourceRepository", value=>"default"},
+			{actualParameterName=>"targetRepository", value=>"default"},
+			{actualParameterName=>"batchSize", value=>10},
+			{actualParameterName=>"syncResource", value=>"local"},
+			{actualParameterName=>"artifactVersionPattern", value=>"DOESNOTEXIST:*"},
+		]
+	});
+	assertOK($xpath, "Failed to launch EC-Admin::artifactRepositorySynchronization");
+	if ($xpath) {
+		#get new Job ID
+		my $jobId  = $xpath->findvalue("//jobId");
+		waitForJob($jobId);
+		my $jobData  = $::N->getJobDetails($jobId);
+		my $outcome = $jobData->findvalue("//job/outcome");
+		assertEq("success", $outcome, "incorrect target repo should error out");
+
+		# check for summary
+		my $jsId = $jobData->findvalue("//job/jobStep[stepName='syncRepo']/jobStepId");
+		my $summary=$::N->getProperty("summary", {jobStepId=>$jsId})->findvalue("//value");
+		assertSubstring("0 artifact versions", $summary, "NO AV to sync");
+	}
+};
+1;

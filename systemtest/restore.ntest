@@ -1,0 +1,61 @@
+# -*-Perl-*-
+
+# restore.ntest -
+#
+# check the restoreObjects procedure of EC-Admin plugin
+#
+# Copyright (c) 2016 Electric Cloud, Inc.
+# All rights reserved
+
+use strict;
+use warnings;
+use File::Path;
+use ECTest;
+
+initCommander();
+$::N=$adminSession;
+
+my $pluginKey = "EC-Admin";
+my $xpath = $::N->getPlugin($pluginKey);
+my $pluginName = $xpath->findvalue("//pluginName")->value;
+
+#-------------------------------------------------------------------------------
+# Test procedure present.
+#-------------------------------------------------------------------------------
+ntest "checkProcedures", {}, sub {
+    assertOK($::N->getProcedure($pluginName, "restoreObjects"), "procedure restoreObjects missing");
+};
+
+#-------------------------------------------------------------------------------
+# Issue 64: Restore (import) from a .xml file
+#-------------------------------------------------------------------------------
+ntest "issue 64", {}, sub {
+  my $zone="zone64";
+
+  $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"restoreObjects",
+    actualParameter=>[
+      {actualParameterName=>"directory", value=>"/home/lrochette/GitHub/EC-Admin/systemtest/data/restore"},
+      {actualParameterName=>"force", value=>"false"},
+      {actualParameterName=>"resource", value=>"local"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::restoreObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "restoreObjects should not error out");
+
+    # check check that zone64 now exists
+    $xpath=$::N->getZone($zone);
+    assertOK($xpath, "Failed to restore $zone");
+
+    # Clean
+    $::N->deleteZone($zone);
+  }
+};
+
+1;

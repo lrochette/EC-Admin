@@ -1,0 +1,92 @@
+# -*-Perl-*-
+
+# cleanup.ntest -
+#
+# check the cleanup procedures of EC-Admin plugin
+#
+# Copyright (c) 2015 Electric Cloud, Inc.
+# All rights reserved
+
+use strict;
+use warnings;
+use ECTest;
+
+initCommander();
+$::N=$adminSession;
+
+# Check version to be able to run test with version 4.0 as well
+# EC-Admin is a simple project for version 4.0
+my $version=$::N->getVersions()->findvalue("//version")->value;
+
+my $pluginKey = "EC-Admin";
+my $xpath = $::N->getPlugin($pluginKey);
+my $pluginName = $xpath->findvalue("//pluginName")->value;
+
+
+#create project to get jobImport
+$::N->createProject("EC-Admin Management");
+
+#-------------------------------------------------------------------------------
+# Test procedure present.
+#-------------------------------------------------------------------------------
+ntest "cleanup_procedures", {}, sub {
+  assertOK($::N->getProcedure($pluginName, "jobCleanup_byResult"), "procedure jobCleanup_byResult missing");
+  if ($version ge "4.2") {
+    assertOK($::N->getProcedure($pluginName, "subJC_deleteWorkspace"), "procedure subJC_deleteWorkspace missing");
+  }
+};
+
+#-------------------------------------------------------------------------------
+# sub procedure to help calling jobsCleanup_byResult multiple times
+#  Takes the parameters are an input
+#  and return the summary and outcome
+#-------------------------------------------------------------------------------
+sub callJCBR{
+    my ($computeUsage, $executeDeletion, $jobProp, $days, $failed, $good, $warning, $skip)=@_;
+
+    my $xpath = $::N->runProcedure($pluginName, {
+        procedureName=>"jobCleanup_byResult",
+        actualParameter=>[
+            {actualParameterName=>"computeDiskUsage", value=>$computeUsage},
+            {actualParameterName=>"executeDeletion", value=>$executeDeletion},
+            {actualParameterName=>"jobProperty", value=>$jobProp},
+            {actualParameterName=>"nbFailedJobs", value=>$failed},
+            {actualParameterName=>"nbGoodJobs", value=>$good},
+            {actualParameterName=>"nbWarningJobs", value=>$warning},
+            {actualParameterName=>"olderThan", value=>$days},
+            {actualParameterName=>"skipPlugins", value=>$skip},
+        ]});
+    assertOK($xpath, "Failed to launch EC-Admin::jobsCleanup_byResult");
+    if ($xpath) {
+        #get new Job ID
+        my $jobId  = $xpath->findvalue("//jobId");
+        waitForJob($jobId);
+        my $jobData  = $::N->getJobDetails($jobId);
+
+        my $jsId = $jobData->findvalue("//job/jobStep[stepName='deleteJobs.byProject']/jobStepId");
+        my $summary=$::N->getProperty("summary", {jobStepId=>$jsId})->findvalue("//value");
+        my $outcome = $jobData->findvalue("//job/outcome");
+        my $nbJobs = $::N->getProperty("numberOfJobs", {jobId => $jobId})->findvalue("//value");
+
+        return($summary, $outcome, $nbJobs);
+    }
+    return("", "", -1);
+}
+
+#-------------------------------------------------------------------------------
+# Test job Delete
+#-------------------------------------------------------------------------------
+ntest "jobsCleanup_byResult", {}, sub {
+    my ($summary, $outcome, $nbJobs);
+
+    # Nothing to delete
+    ($summary, $outcome, $nbJobs)=callJCBR("false", "false", "doNotDelete", 365, 1, 1, 1, "true");
+    assertEq("success", $outcome, "report mode failed");
+    assertEq("", $summary, "report mode should succeed");
+    assertEq("0", $nbJobs, "report mode should return 0 jobs");
+};
+
+# delete project to get jobImport
+$::N->deleteProject("EC-Admin Management");
+
+1;

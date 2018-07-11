@@ -1,0 +1,78 @@
+<editor>
+    <formElement>
+        <label>Delete artifact versions older than</label>
+        <property>olderThan</property>
+        <documentation>Indicate the numbers of days after which artifact versions  should be deleted</documentation>
+        <required>1</required>
+        <type>select</type>
+        <option>
+            <name>1 month</name>
+            <value>30</value>
+        </option>
+        <option>
+            <name>2 months</name>
+            <value>60</value>
+        </option>
+        <option>
+            <name>3 months</name>
+            <value>91</value>
+        </option>
+        <option>
+            <name>6 months</name>
+            <value>182</value>
+        </option>
+        <option>
+            <name>1 year</name>
+            <value>365</value>
+        </option>
+        <value>91</value>
+    </formElement>
+
+    <formElement>
+        <label>Delete</label>
+        <property>executeDeletion</property>
+        <documentation>If this option is not set, only report is done. No real data are deleted</documentation>
+        <required>1</required>
+        <type>select</type>
+        <option>
+            <name>Report</name>
+            <value>false</value>
+        </option>
+        <option>
+            <name>Delete</name>
+            <value>true</value>
+        </option>
+        <value>false</value>
+    </formElement>
+
+    <formElement>
+      <label>Resource Name</label>
+      <property>resource</property>
+      <documentation>Choose a resource that have full access to the workspace</documentation>
+      <type>entry</type>
+      <value>local</value>
+      <required>1</required>
+    </formElement>
+
+    <formElement>
+      <label>Workspace Name</label>
+      <property>workspace</property>
+      <documentation>Name of the workspace to crawl for orphans</documentation>
+      <type>entry</type>
+      <value>default</value>
+      <required>1</required>
+    </formElement>
+
+    <formElement>
+        <label>Verbose Mode</label>
+        <property>verboseMode</property>
+        <documentation>Display information about directories that are skipped</documentation>
+        <type>checkbox</type>
+        <checkedValue>true</checkedValue>
+        <uncheckedValue>false</uncheckedValue>
+        <initiallyChecked>1</initiallyChecked>
+        <value>true</value>
+        <required>0</required>
+    </formElement>
+
+</editor>

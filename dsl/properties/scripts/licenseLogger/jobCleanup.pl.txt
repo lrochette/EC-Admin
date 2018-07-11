@@ -1,0 +1,92 @@
+# Cleanup: liberally re-used from ElectricSentry::Driver.pm
+# Copyright (c) 2006-2009 Electric Cloud, Inc.
+# All rights reserved
+# Version 1.0.0 (April 2, 2014)
+
+use strict;
+use ElectricCommander;
+use XML::XPath;
+
+# Set to 0 for quit; 1 for informative messages
+my $verbose = 0;
+
+#-------------------------------------------------------------------------
+# Cleanup
+#-------------------------------------------------------------------------
+
+my $ec = ElectricCommander->new();
+
+# Check for the OS Type
+my $osIsWindows = $^O =~ /MSWin/;
+
+#  Find all previous runs of this job
+my @filterList;
+push(
+    @filterList,
+    {
+	"propertyName" => "projectName",
+	"operator"     => "equals",
+	"operand1"     => '$[/myProject/projectName]'
+    }
+);
+push(
+    @filterList,
+    {
+        "propertyName" => "procedureName",
+        "operator"     => "equals",
+        "operand1"     => '$[/myProcedure/procedureName]'
+    }
+);
+push(
+    @filterList,
+    {
+        "propertyName" => "status",
+        "operator"     => "equals",
+        "operand1"     => "completed"
+    }
+);
+
+# Run the Query
+my $xPath = $ec->findObjects("job", {numObjects => "10", filter => \@filterList});
+
+# Delete job counter
+my $jobc = 0;
+
+# Loop over all returned jobs
+my $nodeset = $xPath->find('//job');
+foreach my $node ( $nodeset->get_nodelist ) {
+
+    #  Find the workspaces (there can be more than one if some steps
+    #  were configured to use a different workspace
+    my $jobId   = $xPath->findvalue( 'jobId',   $node );
+    my $jobName = $xPath->findvalue( 'jobName', $node );
+    my $xPath = $ec->getJobInfo($jobId);
+    my $wsNodeset = $xPath->find('//job/workspace');
+    foreach my $wsNode ( $wsNodeset->get_nodelist ) {
+
+        my $workspace = undef;
+        if ($osIsWindows) {
+            $workspace = $xPath->findvalue( './winUNC', $wsNode );
+            $workspace =~ s/\/\//\\\\/g;
+        } else {
+            $workspace = $xPath->findvalue( './unix', $wsNode );
+        }
+
+        # Delete the workspace but make sure it looks like a typical jobName
+        if ( $workspace =~ /[-_][\d]+$/ ) {
+            use File::Path;
+            rmtree( [$workspace] );
+            print "Deleted workspace: $workspace\n" if ($verbose);
+        } else {
+            print "Did not delete workspace; unexpected name format: $workspace\n";
+        }
+    }
+
+    # Delete the job
+    $ec->deleteJob($jobId);
+    print "Deleted job: $jobName\n" if ($verbose);
+    $jobc++;
+}
+
+$ec->setProperty('/myJobStep/postSummary', "Deleted $jobc jobs");
+

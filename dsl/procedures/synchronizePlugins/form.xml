@@ -1,0 +1,11 @@
+<editor>
+  <formElement>
+    <label>agent</label>
+    <property>agent</property>
+    <documentation>Name of the resource on which to synchronize the plugins
+    </documentation>
+    <type>entry</type>
+    <value></value>
+    <required>1</required>
+  </formElement>
+</editor>

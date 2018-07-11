@@ -1,0 +1,11 @@
+<editor>
+  <formElement>
+    <label>Pool name</label>
+    <property>pool</property>
+    <documentation>Optional: specify a resource pool, and the procedure will test all resources in the pool instead of all resources in the system.
+    </documentation>
+    <type>entry</type> 
+    <value></value>
+    <required>0</required>
+  </formElement>
+</editor>

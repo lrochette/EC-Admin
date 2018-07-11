@@ -1,0 +1,106 @@
+<editor>
+  <formElement>
+    <label>Color</label>
+    <property>color</property>
+    <documentation>Choose the color of your banner</documentation>
+    <type>select</type>
+    <required>1</required>
+    <option>
+      <name>Red</name>
+      <value>Red</value>
+    </option>
+    <option>
+      <name>Orange</name>
+      <value>Orange</value>
+    </option>
+    <option>
+      <name>Pink</name>
+      <value>Pink</value>
+    </option>
+    <option>
+      <name>Green</name>
+      <value>Green</value>
+    </option>
+    <option>
+      <name>Purple</name>
+      <value>Purple</value>
+    </option>
+    <option>
+      <name>Yellow</name>
+      <value>Yellow</value>
+    </option>
+    <option>
+      <name>Default</name>
+      <value>Default</value>
+    </option>
+    <value>Red</value>
+  </formElement>
+
+  <formElement>
+    <label>Logo</label>
+    <property>logo</property>
+    <documentation>The logo to display on the top left corner.</documentation>
+    <type>select</type>
+    <required>0</required>
+    <option>
+      <name>Development (black)</name>
+      <value>logo-DEV_black.png</value>
+    </option>
+    <option>
+      <name>SDK (black)</name>
+      <value>logo-SDK_black.png</value>
+    </option>
+    <option>
+      <name>Test (black)</name>
+      <value>logo-TEST_black.png</value>
+    </option>
+    <option>
+      <name>Production (Black)</name>
+      <value>logo-PROD_black.png</value>
+    </option>
+    <option>
+      <name>Development (white)</name>
+      <value>logo-DEV_white.png</value>
+    </option>
+    <option>
+      <name>SDK (white)</name>
+      <value>logo-SDK_white.png</value>
+    </option>
+    <option>
+      <name>Test (white)</name>
+      <value>logo-TEST_white.png</value>
+    </option>
+    <option>
+      <name>Production (white)</name>
+      <value>logo-PROD_white.png</value>
+    </option>
+    <option>
+      <name>Original</name>
+      <value>logo_original.gif</value>
+    </option>
+    <option>
+      <name>Original Version 6</name>
+      <value>logo-version6.gif</value>
+    </option>
+    <value>logo-version6.gif</value>
+  </formElement>
+
+  <formElement>
+       <label>Logo File</label>
+       <property>logoFile</property>
+       <documentation>The path on the Commander server to your personal logo to replace the default one. This value will overwrite the logo parameter if it's not blank</documentation>
+       <type>entry</type>
+       <value></value>
+       <required>0</required>
+   </formElement>
+
+   <formElement>
+        <label>Web resource</label>
+        <property>webResource</property>
+        <documentation>Name of the resource running on the webserver</documentation>
+        <type>entry</type>
+        <value>local</value>
+        <required>0</required>
+    </formElement>
+
+</editor>

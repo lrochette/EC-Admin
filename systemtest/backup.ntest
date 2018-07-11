@@ -1,0 +1,673 @@
+# -*-Perl-*-
+
+# backup.ntest -
+#
+# check the saveAllObjects procedure of EC-Admin plugin
+#
+# Copyright (c) 2015 Electric Cloud, Inc.
+# All rights reserved
+
+use strict;
+use warnings;
+use File::Path;
+use ECTest;
+
+initCommander();
+$::N=$adminSession;
+
+my $pluginKey = "EC-Admin";
+my $xpath = $::N->getPlugin($pluginKey);
+my $pluginName = $xpath->findvalue("//pluginName")->value;
+
+#-------------------------------------------------------------------------------
+# Test procedure present.
+#-------------------------------------------------------------------------------
+ntest "checkProcedures", {}, sub {
+    assertOK($::N->getProcedure($pluginName, "saveAllObjects"), "procedure saveAllObjects missing");
+    assertOK($::N->getProcedure($pluginName, "saveProjects"), "procedure saveProjects is missing");
+};
+
+#-------------------------------------------------------------------------------
+#  check default resource is local
+#-------------------------------------------------------------------------------
+ntest "local_resource", {}, sub {
+
+  # check for resource
+  my $res=$::N->getProperty("resourceName",
+               {
+		  projectName   => $pluginName,
+		  procedureName => 'saveAllObjects',
+		  stepName      => 'grabResource'
+		})->findvalue("//value");
+  assertEq("local", $res, "Resource must be \"local\"");
+};
+
+#-------------------------------------------------------------------------------
+# Issue 56: Check for question mark
+#-------------------------------------------------------------------------------
+ntest "issues 56 question mark", {}, sub {
+
+  my $error=0;
+  rmtree("/tmp/BACKUP");
+  $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pattern", value=>"EC-Admin_Test"},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"false"},
+      {actualParameterName=>"exportGroups", value=>"false"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportResources", value=>"false"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"false"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue56_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # issue 56: check for file with question mark replaced by _
+    if (! -f "/tmp/BACKUP/Projects/EC-Admin_Test/Procedures/questionMark/Steps/rerun_.xml") {
+      fail("rerun_.xml is missing");
+      $error=1;
+    }
+  }
+  # Clean
+  rmtree("/tmp/BACKUP");
+};
+
+#-------------------------------------------------------------------------------
+# Issue 57: group name with "/"
+#-------------------------------------------------------------------------------
+ntest "issues 57 group with slash", {}, sub {
+
+  my $group="AC/DC";
+  my $xpath= $::N->createGroup($group);
+  assertOK($xpath, "Failed to create group $group for issue 57");
+
+  rmtree("/tmp/BACKUP");
+  $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pattern", value=>"AC"},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"false"},
+      {actualParameterName=>"exportGroups", value=>"true"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportResources", value=>"false"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"false"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue57_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check for group file with / mark replaced by _
+    if (! -f "/tmp/BACKUP/Groups/AC_DC.xml") {
+      fail("AC_DC.xml group is missing");
+    }
+  }
+  rmtree("/tmp/BACKUP");
+  $::N->deleteGroup($group);
+};
+
+#-------------------------------------------------------------------------------
+#       58: backup gateway
+#-------------------------------------------------------------------------------
+ntest "issue 58 gateway", {}, sub {
+
+  my $gate="GW58";
+  $xpath= $::N->createGateway($gate, {
+     gatewayDisabled => 0,
+     description => "forbackup testing",
+     resourceName1 => "local", resourceName2 => "win7"
+    });
+  assertOK($xpath, "Failed to create gateway $gate");
+
+  rmtree("/tmp/BACKUP");
+  $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pattern", value=>$gate},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"true"},
+      {actualParameterName=>"exportZones", value=>"false"},
+      {actualParameterName=>"exportGroups", value=>"false"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportResources", value=>"false"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"false"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue58_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # issue 58: check for gateway file
+    if (! -f "/tmp/BACKUP/Gateways/$gate.xml") {
+      fail("$gate.xml gate is missing");
+    }
+  }
+  # clean
+  rmtree("/tmp/BACKUP");
+  $::N->deleteGateway($gate);
+};
+
+#-------------------------------------------------------------------------------
+#       59: backup zones
+#-------------------------------------------------------------------------------
+ntest "issue 59 zone", {}, sub {
+
+  my $zone="zone59";
+  $xpath= $::N->createZone($zone, {description => "for backup testing"});
+  assertOK($xpath, "Failed to create zone $zone");
+
+  rmtree("/tmp/BACKUP");
+  $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pattern", value=>$zone},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"true"},
+      {actualParameterName=>"exportGroups", value=>"false"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportResources", value=>"false"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"false"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue59_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # issue 59: check for zone file
+    if (! -f "/tmp/BACKUP/Zones/$zone.xml") {
+      fail("$zone.xml zone is missing");
+    }
+  }
+  # Clean
+  rmtree("/tmp/BACKUP");
+  $::N->deleteZone($zone);
+};
+
+#-------------------------------------------------------------------------------
+#  Issue 63: filter pattern
+#-------------------------------------------------------------------------------
+ntest "issue 63 pattern", {}, sub {
+  my $proj="456GHTVF123";
+  my $xpath=$::N->createProject($proj);
+  assertOK($xpath, "Failed to create project $proj");
+
+  $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pattern", value=>"GHTVF"},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"false"},
+      {actualParameterName=>"exportGroups", value=>"false"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportResources", value=>"false"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"false"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue63_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check only 1 project was exported
+    my $nb=$::N->getProperty("projectExported" , {jobId => $jobId})->findvalue("//value");
+    assertEq(1, $nb, "incorrect number of project exported");
+
+    # clean
+    rmtree("/tmp/BACKUP");
+    $::N->deleteProject($proj);
+  }
+
+};
+
+#-------------------------------------------------------------------------------
+#  save User
+#-------------------------------------------------------------------------------
+ntest "export users", {}, sub {
+
+  rmtree("/tmp/BACKUP");
+  $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pattern", value=>"admin"},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"false"},
+      {actualParameterName=>"exportGroups", value=>"false"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportResources", value=>"false"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"true"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_users_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check only 1 project was exported
+    my $nb=$::N->getProperty("userExported" , {jobId => $jobId})->findvalue("//value");
+    assertEq(1, $nb, "incorrect number of user exported");
+
+    # clean
+    rmtree("/tmp/BACKUP");
+  }
+};
+
+#-------------------------------------------------------------------------------
+# Issue 77: procedure name with "/"
+#-------------------------------------------------------------------------------
+ntest "issues 77 procedure with slash", {}, sub {
+
+  my $name="Issue/77";
+  my $xpath= $::N->createProject($name);
+  assertOK($xpath, "Failed to create project $name for issue 77");
+
+  $xpath= $::N->createProcedure($name, $name);
+  assertOK($xpath, "Failed to create procedure $name for issue 77");
+
+  rmtree("/tmp/BACKUP");
+  $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pattern", value=>"77"},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"false"},
+      {actualParameterName=>"exportGroups", value=>"false"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportResources", value=>"false"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"false"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue77_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check for project directory file with / mark replaced by _
+    if (! -d "/tmp/BACKUP/Projects/Issue_77") {
+      fail("Issue_77 Project is missing");
+    }
+    # check for procedure file file with / mark replaced by _
+    if (! -f "/tmp/BACKUP/Projects/Issue_77/Procedures/Issue_77/Issue_77.xml") {
+      fail("Issue_77.xml procedure is missing");
+    }
+  }
+#  rmtree("/tmp/BACKUP");
+  $::N->deleteProject($name);
+};
+
+#-------------------------------------------------------------------------------
+#  Issue 74: case sensitive search
+#-------------------------------------------------------------------------------
+ntest "issue 74 case insensitive", {}, sub {
+  my $proj="ISSUE74";
+  my $xpath=$::N->createProject($proj);
+  assertOK($xpath, "Failed to create project $proj");
+
+  $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pattern", value=>"issue74"},
+      {actualParameterName=>"caseSensitive", value=>"i"},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"false"},
+      {actualParameterName=>"exportGroups", value=>"false"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportResources", value=>"false"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"false"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue74_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check only 1 project was exported
+    my $nb=$::N->getProperty("projectExported" , {jobId => $jobId})->findvalue("//value");
+    assertEq(1, $nb, "incorrect number of project exported");
+
+    # clean
+    rmtree("/tmp/BACKUP");
+    $::N->deleteProject($proj);
+  }
+
+};
+
+#-------------------------------------------------------------------------------
+#  Issue 83: heading and trailing spaces
+#-------------------------------------------------------------------------------
+ntest "issue 83 trailing spaces", {}, sub {
+  my $proj=" ISSUE83 ";
+  my $xpath=$::N->createProject($proj);
+  assertOK($xpath, "Failed to create project $proj");
+
+  $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pattern", value=>"issue83"},
+      {actualParameterName=>"caseSensitive", value=>"i"},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"false"},
+      {actualParameterName=>"exportGroups", value=>"false"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportResources", value=>"false"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"false"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue83_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check for project file file with heading and trailing space removed
+    if (! -f "/tmp/BACKUP/Projects/ISSUE83/ISSUE83.xml") {
+      fail("ISSUE83.xml project is missing");
+    }
+  }
+  # clean
+  rmtree("/tmp/BACKUP");
+  $::N->deleteProject($proj);
+};
+
+
+#-------------------------------------------------------------------------------
+#  Issue 88: heading and trailing spaces
+#-------------------------------------------------------------------------------
+ntest "issue 88 slash in resource", {}, sub {
+  my $res="res_SA/issue88";
+  my $xpath=$::N->createResource($res);
+  assertOK($xpath, "Failed to create resource $res");
+
+  $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pattern", value=>"issue88"},
+      {actualParameterName=>"caseSensitive", value=>"i"},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"false"},
+      {actualParameterName=>"exportGroups", value=>"false"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportResources", value=>"true"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"false"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue88_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check for resource file file with slash replaced by _
+    if (! -f "/tmp/BACKUP/Resources/res_SA_issue88.xml") {
+      fail("res_SA_issue88.xml resource is missing");
+    }
+  }
+  # clean
+  rmtree("/tmp/BACKUP");
+  $::N->deleteResource($res);
+};
+
+
+#-------------------------------------------------------------------------------
+#  Issue 89: < and > in file names
+#-------------------------------------------------------------------------------
+ntest "issue 89 < and > in filenames", {}, sub {
+  my $res="res<issue89>end";
+  my $xpath=$::N->createResource($res);
+  assertOK($xpath, "Failed to create resource $res");
+
+  $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pattern", value=>"issue89"},
+      {actualParameterName=>"caseSensitive", value=>"i"},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"false"},
+      {actualParameterName=>"exportGroups", value=>"false"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportResources", value=>"true"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"false"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue89_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check for resource file file with slash replaced by _
+    if (! -f "/tmp/BACKUP/Resources/res_issue89_end.xml") {
+      fail("res_issue89_end.xml resource is missing");
+    }
+  }
+  # clean
+  rmtree("/tmp/BACKUP");
+  $::N->deleteResource($res);
+};
+
+
+#-------------------------------------------------------------------------------
+#  Issue 90: project starting with _
+#-------------------------------------------------------------------------------
+ntest "issue 90 project starting with _", {}, sub {
+  my $proj="_issue90";
+  my $xpath=$::N->createProject($proj);
+  assertOK($xpath, "Failed to create project $proj");
+
+  $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pattern", value=>"issue90"},
+      {actualParameterName=>"caseSensitive", value=>"i"},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"false"},
+      {actualParameterName=>"exportGroups", value=>"false"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportResources", value=>"false"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"false"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue90_' .
+                $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check for project directory to exist
+    if (! -d "/tmp/BACKUP/Projects/_issue90") {
+      fail("_issue90 project is missing");
+    }
+  }
+  # clean
+  rmtree("/tmp/BACKUP");
+  $::N->deleteProject($proj);
+};
+
+
+#-------------------------------------------------------------------------------
+#  Issue 87: empty pattern
+#-------------------------------------------------------------------------------
+ntest "issue 87 empty pattern", {}, sub {
+  my $proj="issue87";
+  my $xpath=$::N->createProject($proj);
+  assertOK($xpath, "Failed to create project $proj");
+
+  $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pattern", value=>""},
+      {actualParameterName=>"caseSensitive", value=>"i"},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"true"},
+      {actualParameterName=>"exportGroups", value=>"false"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportResources", value=>"false"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"true"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue87_' .
+		$::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check for project directory to exist
+    if (! -d "/tmp/BACKUP/Projects/$proj") {
+      fail("$proj project is missing");
+    }
+
+    # check multiple projects were exported
+    my $nb=$::N->getProperty("projectExported" , {jobId => $jobId})->findvalue("//value");
+    if ($nb < 50) {
+      fail("Not enough projects exported");
+    }
+    # check multiple users were exported
+    $nb=$::N->getProperty("userExported" , {jobId => $jobId})->findvalue("//value");
+    if ($nb < 5) {
+      fail("Not enough users exported");
+    }
+    # check multiple zones were exported
+    $nb=$::N->getProperty("zoneExported" , {jobId => $jobId})->findvalue("//value");
+    if ($nb < 2) {
+      fail("Not enough zones exported");
+    }
+
+
+  }
+  # clean
+  #rmtree("/tmp/BACKUP");
+  $::N->deleteProject($proj);
+};
+
+1;

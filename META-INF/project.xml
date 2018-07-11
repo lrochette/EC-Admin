@@ -1,0 +1,196 @@
+<exportedData buildLabel="build_3.5_30434_OPT_2010.01.13_07:32:22" buildVersion="3.5.1.30434" version="39">
+  <exportPath>/projects/EC-Admin-3.1.0.629</exportPath>
+  <project>
+    <projectName>EC-Admin-3.1.0.629</projectName>
+    <propertySheet>
+      <property>
+        <expandable>0</expandable>
+        <propertyName>ec_setup</propertyName>
+        <value>use Cwd;
+use File::Spec;
+use POSIX;
+use MIME::Base64;
+use File::Temp qw(tempfile tempdir);
+use Archive::Zip;
+use Digest::MD5 qw(md5_hex);
+
+my $dir = getcwd;
+my $logfile =&quot;&quot;;
+my $pluginDir;
+
+
+if ( defined $ENV{QUERY_STRING} ) {    # Promotion through UI
+    $pluginDir = $ENV{COMMANDER_PLUGINS} . &quot;/$pluginName&quot;;
+}
+else {
+    my $commanderPluginDir = $commander-&gt;getProperty('/server/settings/pluginsDirectory')-&gt;findvalue('//value');
+    # We are not checking for the directory, because we can run this script on a different machine
+    $pluginDir = File::Spec-&gt;catfile($commanderPluginDir, $pluginName);
+}
+
+$logfile .= &quot;Plugin directory is $pluginDir&quot;;
+
+$commander-&gt;setProperty(&quot;/plugins/$pluginName/project/pluginDir&quot;, {value=&gt;$pluginDir});
+$logfile .= &quot;Plugin Name: $pluginName\n&quot;;
+$logfile .= &quot;Current directory: $dir\n&quot;;
+
+# Evaluate promote.groovy or demote.groovy based on whether plugin is being promoted or demoted ($promoteAction)
+local $/ = undef;
+# If env variable QUERY_STRING exists:
+my $dslFilePath;
+if(defined $ENV{QUERY_STRING}) { # Promotion through UI
+    $dslFilePath = File::Spec-&gt;catfile($ENV{COMMANDER_PLUGINS}, $pluginName, &quot;dsl&quot;, &quot;$promoteAction.groovy&quot;);
+} else {  # Promotion from the command line
+    $dslFilePath = File::Spec-&gt;catfile($pluginDir, &quot;dsl&quot;, &quot;$promoteAction.groovy&quot;);
+}
+
+open FILE, $dslFilePath or die &quot;Couldn't open file: $dslFilePath: $!&quot;;
+my $dsl=&lt;FILE&gt;;
+close FILE;
+
+my $dslReponse = $commander-&gt;evalDsl(
+    $dsl, {
+        parameters =&gt; qq(
+                     {
+                       &quot;pluginName&quot;:&quot;$pluginName&quot;,
+                       &quot;upgradeAction&quot;:&quot;$upgradeAction&quot;,
+                       &quot;otherPluginName&quot;:&quot;$otherPluginName&quot;
+                     }
+              ),
+        debug             =&gt; 'false',
+        serverLibraryPath =&gt; File::Spec-&gt;catdir( $pluginDir, 'dsl' ),
+    },
+);
+
+
+$logfile .= $dslReponse-&gt;findnodes_as_string(&quot;/&quot;);
+my $errorMessage = $commander-&gt;getError();
+# Create output property for plugin setup debug logs
+my $nowString = localtime;
+$commander-&gt;setProperty( &quot;/plugins/$pluginName/project/logs/$nowString&quot;, { value =&gt; $logfile } );
+
+# I suppose, this should go in the promote.groovy or demote.groovy
+# promote/demote action
+if ( $promoteAction eq 'promote' ) {
+    local $self-&gt;{abortOnError} = 0;
+
+    # If the licenseLogger config PS does not already exist, create it
+    my $cfg = $commander-&gt;getProperty(&quot;/server/EC-Admin/licenseLogger/config&quot;);
+	if ($cfg-&gt;findvalue(&quot;//code&quot;) eq &quot;NoSuchProperty&quot;) {
+        # we need the top PS later for the ACLs
+        $commander-&gt;createProperty(&quot;/server/EC-Admin&quot;, {propertyType =&gt; 'sheet'});
+		$batch-&gt;setProperty( &quot;/server/EC-Admin/licenseLogger/config/emailTo&quot;, &quot;admin&quot;,{description=&gt;'comma separated list of userid or email'} );
+		$batch-&gt;setProperty( &quot;/server/EC-Admin/licenseLogger/config/emailConfig&quot;, &quot;default&quot;,{description=&gt;'The name of your email configuration'} );
+		$batch-&gt;setProperty( &quot;/server/EC-Admin/licenseLogger/config/cleanpOldJobs&quot;, 1 );
+		$batch-&gt;setProperty( &quot;/server/EC-Admin/licenseLogger/config/resource&quot;, &quot;local&quot; );
+		$batch-&gt;setProperty( &quot;/server/EC-Admin/licenseLogger/config/workspace&quot;, &quot;default&quot; );
+	}
+
+    # If the cleanup config PS does not already exist, create it
+    $cfg = $commander-&gt;getProperty(&quot;/server/EC-Admin/cleanup/config&quot;);
+    if ($cfg-&gt;findvalue(&quot;//code&quot;) eq &quot;NoSuchProperty&quot;) {
+        $batch-&gt;setProperty( &quot;/server/EC-Admin/cleanup/config/timeout&quot;, 600);
+    }
+
+    # Give project principal &quot;Electric Cloud&quot; write access to our project
+    my $projPrincipal = &quot;project: Electric Cloud&quot;;
+    my $ecAdminProj = '@PLUGIN_NAME@';
+
+    # Give project Electric Cloud permission on ec_reportData
+    $cfg = $commander-&gt;getProperty(&quot;ec_reportData&quot;, {projectName =&gt; $ecAdminProj});
+    my $psId= $cfg-&gt;findvalue(&quot;//propertySheetId&quot;);
+
+    my $xpath = $commander-&gt;getAclEntry(&quot;user&quot;, $projPrincipal,
+            {
+                projectName =&gt; $ecAdminProj,
+                propertySheetId =&gt; $psId
+            });
+    if ($xpath-&gt;findvalue('//code') eq 'NoSuchAclEntry') {
+        $batch-&gt;createAclEntry(&quot;user&quot;, &quot;project: Electric Cloud&quot;,
+             {
+                projectName =&gt; $ecAdminProj,
+                propertySheetId =&gt; $psId,
+                &quot;readPrivilege&quot;=&gt;&quot;allow&quot;,
+                &quot;modifyPrivilege&quot;=&gt;&quot;allow&quot;,
+             });
+    }
+
+    #
+    # Give Everyone permission on /server/counters/EC-Admin
+    $cfg = $commander-&gt;getProperty(&quot;/server/counters/EC-Admin/jobCounter&quot;);
+    if ($cfg-&gt;findvalue(&quot;//code&quot;) eq &quot;NoSuchProperty&quot;) {
+        $batch-&gt;setProperty( &quot;/server/counters/EC-Admin/jobCounter&quot;, 0);
+    }
+
+    $cfg=$commander-&gt;getProperty(&quot;/server/counters/EC-Admin&quot;);
+    $psId= $cfg-&gt;findvalue(&quot;//propertySheetId&quot;);
+
+    $xpath = $commander-&gt;getAclEntry(&quot;group&quot;, &quot;Everyone&quot;, {propertySheetId =&gt; $psId});
+    if ($xpath-&gt;findvalue('//code') eq 'NoSuchAclEntry') {
+        $batch-&gt;createAclEntry(&quot;group&quot;, &quot;Everyone&quot;,
+             {
+                propertySheetId =&gt; $psId,
+                &quot;readPrivilege&quot; =&gt;&quot;allow&quot;,
+                &quot;modifyPrivilege&quot; =&gt;&quot;allow&quot;,
+             });
+    }
+
+
+    # Give plugin permission on /server/EC-Admin
+    $projPrincipal='project: @PLUGIN_NAME@';
+    $cfg = $commander-&gt;getProperty(&quot;/server/EC-Admin&quot;);
+    $psId= $cfg-&gt;findvalue(&quot;//propertySheetId&quot;);
+
+    $xpath = $commander-&gt;getAclEntry(&quot;user&quot;, $projPrincipal,
+            {
+                propertySheetId =&gt; $psId
+            });
+    if ($xpath-&gt;findvalue('//code') eq 'NoSuchAclEntry') {
+        $batch-&gt;createAclEntry(&quot;user&quot;, &quot;$projPrincipal&quot;,
+             {
+                propertySheetId =&gt; $psId,
+                &quot;readPrivilege&quot; =&gt;&quot;allow&quot;,
+                &quot;modifyPrivilege&quot; =&gt;&quot;allow&quot;,
+                &quot;changePermissionsPrivilege&quot; =&gt; &quot;allow&quot;,
+             });
+    }
+   # Remove previous plugin permission on /server/EC-Admin
+   if ($otherPluginName ne &quot;&quot;) {
+        my $otherProjPrincipal=&quot;project: $otherPluginName&quot;;
+        # $psId is the same than above
+        $xpath = $commander-&gt;getAclEntry(&quot;user&quot;, $otherProjPrincipal,
+                {
+                    propertySheetId =&gt; $psId
+                });
+        if ($xpath-&gt;findvalue('//principalName') eq $otherProjPrincipal) {
+            $batch-&gt;deleteAclEntry(&quot;user&quot;, &quot;$otherProjPrincipal&quot;,
+                 {
+                    propertySheetId =&gt; $psId,
+                 });
+        }
+    }
+
+} elsif ( $promoteAction eq 'demote' ) {
+    # Remove plugin permission on /server/EC-Admin
+    my $projPrincipal='project: @PLUGIN_NAME@';
+    my $cfg = $commander-&gt;getProperty(&quot;/server/EC-Admin&quot;);
+    my $psId= $cfg-&gt;findvalue(&quot;//propertySheetId&quot;);
+
+    my $xpath = $commander-&gt;getAclEntry(&quot;user&quot;, $projPrincipal,
+            {
+                propertySheetId =&gt; $psId
+            });
+    if ($xpath-&gt;findvalue('//principalName') eq $projPrincipal) {
+        $batch-&gt;deleteAclEntry(&quot;user&quot;, &quot;$projPrincipal&quot;,
+             {
+                propertySheetId =&gt; $psId,
+             });
+    }
+}
+
+die $errorMessage unless !$errorMessage
+</value>
+      </property>
+    </propertySheet>
+  </project>
+</exportedData>

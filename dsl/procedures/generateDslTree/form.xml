@@ -1,0 +1,25 @@
+<editor>
+  <formElement>
+    <type>project</type>
+    <label>Project</label>
+    <property>pName</property>
+    <required>1</required>
+    <value>EC-Admin</value>
+    <documentation>The name of the project.</documentation>
+  </formElement>
+  <formElement>
+    <type>entry</type>
+    <label>Procedure</label>
+    <property>procName</property>
+    <required>0</required>
+    <documentation>The name of the procedure. Transform all of them if empty.</documentation>
+  </formElement>
+  <formElement>
+    <type>entry</type>
+    <label>Root path</label>
+    <property>rootPath</property>
+    <required>1</required>
+    <value>/Users/lrochette/SourceCode/lrochette</value>
+    <documentation>The name of the procedure. Transform all of them if empty.</documentation>
+  </formElement>
+</editor>
