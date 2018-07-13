@@ -715,10 +715,6 @@ ntest "issue-127 slash in project name", {}, sub {
     # check multiple projects were exported
     my $nb=$::N->getProperty("projectExported" , {jobId => $jobId})->findvalue("//value");
     assertEq("1", $nb, "Only 1 project should be exported");
-    }
-
-
-
   }
   # clean
   #rmtree("/tmp/BACKUP");
