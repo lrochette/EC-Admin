@@ -670,4 +670,69 @@ ntest "issue 87 empty pattern", {}, sub {
   $::N->deleteProject($proj);
 };
 
+
+#-------------------------------------------------------------------------------
+#  Issue 127: slash in name
+#-------------------------------------------------------------------------------
+ntest "issue-127 slash in project name", {}, sub {
+  my $proj='issue127/win';
+  my $xpath=$::N->createProject($proj);
+  assertOK($xpath, "Failed to create project $proj");
+
+  $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pattern", value=>"issue127"},
+      {actualParameterName=>"caseSensitive", value=>"i"},
+      {actualParameterName=>"exportDeploy", value=>"false"},
+      {actualParameterName=>"exportGateways", value=>"false"},
+      {actualParameterName=>"exportZones", value=>"true"},
+      {actualParameterName=>"exportGroups", value=>"false"},
+      {actualParameterName=>"exportResourcePools", value=>"false"},
+      {actualParameterName=>"exportResources", value=>"false"},
+      {actualParameterName=>"exportSteps", value=>"false"},
+      {actualParameterName=>"exportUsers", value=>"true"},
+      {actualParameterName=>"exportWorkspaces", value=>"false"},
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObject_Issue87_' .
+		$::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check for project directory to exist
+    if (! -d "/tmp/BACKUP/Projects/$proj") {
+      fail("$proj project is missing");
+    }
+
+    # check multiple projects were exported
+    my $nb=$::N->getProperty("projectExported" , {jobId => $jobId})->findvalue("//value");
+    if ($nb < 50) {
+      fail("Not enough projects exported");
+    }
+    # check multiple users were exported
+    $nb=$::N->getProperty("userExported" , {jobId => $jobId})->findvalue("//value");
+    if ($nb < 5) {
+      fail("Not enough users exported");
+    }
+    # check multiple zones were exported
+    $nb=$::N->getProperty("zoneExported" , {jobId => $jobId})->findvalue("//value");
+    if ($nb < 2) {
+      fail("Not enough zones exported");
+    }
+
+
+  }
+  # clean
+  #rmtree("/tmp/BACKUP");
+  $::N->deleteProject($proj);
+};
+
 1;
