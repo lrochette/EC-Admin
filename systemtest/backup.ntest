@@ -676,6 +676,7 @@ ntest "issue 87 empty pattern", {}, sub {
 #-------------------------------------------------------------------------------
 ntest "issue-127 slash in project name", {}, sub {
   my $proj='issue127/win';
+  my $projDir='issue127_win';
   my $xpath=$::N->createProject($proj);
   assertOK($xpath, "Failed to create project $proj");
 
@@ -708,7 +709,7 @@ ntest "issue-127 slash in project name", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory to exist
-    if (! -d "/tmp/BACKUP/Projects/$proj") {
+    if (! -d "/tmp/BACKUP/Projects/$projDir") {
       fail("$proj project is missing");
     }
 
