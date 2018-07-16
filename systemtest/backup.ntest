@@ -688,6 +688,9 @@ ntest "issue-127 slash in project name", {}, sub {
   my $xpath=$::N->createProject($proj);
   assertOK($xpath, "Failed to create project $proj");
 
+  $xpath=$::N->createProcedure($proj, 'foo/bar');
+  assertOK($xpath, "Failed to create procedure foo/bar");
+
   rmtree($backupDir);
   $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
@@ -727,8 +730,8 @@ ntest "issue-127 slash in project name", {}, sub {
     assertEq("1", $nb, "Only 1 project should be exported");
   }
   # clean
-  rmtree($backupDir);
-  $::N->deleteProject($proj);
+  #rmtree($backupDir);
+  #$::N->deleteProject($proj);
 };
 
 1;
