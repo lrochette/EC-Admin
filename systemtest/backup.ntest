@@ -46,7 +46,7 @@ ntest "local_resource", {}, sub {
 #-------------------------------------------------------------------------------
 # Issue 56: Check for question mark
 #-------------------------------------------------------------------------------
-ntest "issues 56 question mark", {}, sub {
+ntest "issue 56 question mark", {}, sub {
 
   my $error=0;
   rmtree($backupDir);
@@ -90,7 +90,7 @@ ntest "issues 56 question mark", {}, sub {
 #-------------------------------------------------------------------------------
 # Issue 57: group name with "/"
 #-------------------------------------------------------------------------------
-ntest "issues 57 group with slash", {}, sub {
+ntest "issue 57 group with slash", {}, sub {
 
   my $group="AC/DC";
   my $xpath= $::N->createGroup($group);
@@ -323,7 +323,7 @@ ntest "export users", {}, sub {
 #-------------------------------------------------------------------------------
 # Issue 77: procedure name with "/"
 #-------------------------------------------------------------------------------
-ntest "issues 77 procedure with slash", {}, sub {
+ntest "issue 77 procedure with slash", {}, sub {
 
   my $name="Issue/77";
   my $xpath= $::N->createProject($name);
