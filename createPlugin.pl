@@ -11,8 +11,8 @@ $| = 1;
 my $ec = new ElectricCommander->new();
 
 my $pluginVersion = "3.1.0";
-
 my $pluginKey = "EC-Admin";
+
 my $description = "A set of administrative tasks to help manage your server.";
 GetOptions ("version=s" => \$pluginVersion,
 			"pluginKey=s"   => \$pluginKey,
@@ -89,6 +89,26 @@ $ref->{plugin}[0]->{description}[0] = $description;
 open(my $fh, '>', $xmlFile) or die "Could not open file '$xmlFile' $!";
 print $fh $xs->XMLout($ref);
 close $fh;
+
+# Update help.xml.txt with key, version,
+# Save as help.xml
+print "[INFO] - Processing 'pages/help.xml' file...\n";
+$file = "pages/help.xml.txt";
+{
+  local $/ = undef;
+  open FILE, $file or warn "Couldn't open file: $!";
+        my $value=<FILE>;
+  close FILE;
+
+        $value =~       s/\@PLUGIN_NAME\@/$pluginName/g;
+        $value =~       s/\@PLUGIN_KEY\@/$pluginKey/g;
+        $value =~       s/\@PLUGIN_VERSION\@/$pluginVersion/g;
+
+        open FILE, "> pages/help.xml" or die "Couldn't open file: $!";
+  print FILE $value;
+  close FILE;
+}
+
 
 # Create plugin jar file
 print "[INFO] - Creating plugin jar file, ${pluginKey}.jar\n";
