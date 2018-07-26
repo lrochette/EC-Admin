@@ -36,6 +36,22 @@ $[/server/ec_notifierTemplates/Html_JobTempl/body]'''
 
   step 'saveProjects',
     description: 'A procedure to export each project individually into a XML file for backup',
-    command: new File(pluginDir, "dsl/procedures/$procName/steps/saveProjects.pl").text,
-    shell: 'ec-perl'
+    subprocedure: 'saveAllObjects'
+    actualParameter: [
+      caseSensitive: '',
+      exportDeploy: 'false',
+      exportGateways: 'false',
+      exportGroups: 'false',
+      exportResourcePools: 'false',
+      exportResources: 'false',
+      exportSteps: 'false',
+      exportUsers: 'false',
+      exportWorkspaces: 'false',
+      exportZones: 'false',
+      includeACLs: '$[includeACLs]',
+      includeNotifiers: '$[includeNotifiers]',
+      pathname: '$[pathname]',
+      pattern: '',
+      relocatable: '$[relocatable]',
+    ]
 }

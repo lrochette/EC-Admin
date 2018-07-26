@@ -693,20 +693,12 @@ ntest "issue-127 slash in project name", {}, sub {
 
   rmtree($backupDir);
   $xpath = $::N->runProcedure($pluginName, {
-    procedureName=>"saveAllObjects",
+    procedureName=>"saveProjects",
     actualParameter=>[
       {actualParameterName=>"pathname", value=>$backupDir},
-      {actualParameterName=>"pattern", value=>"issue127"},
-      {actualParameterName=>"caseSensitive", value=>"i"},
-      {actualParameterName=>"exportDeploy", value=>"false"},
-      {actualParameterName=>"exportGateways", value=>"false"},
-      {actualParameterName=>"exportZones", value=>"true"},
-      {actualParameterName=>"exportGroups", value=>"false"},
-      {actualParameterName=>"exportResourcePools", value=>"false"},
-      {actualParameterName=>"exportResources", value=>"false"},
-      {actualParameterName=>"exportSteps", value=>"false"},
-      {actualParameterName=>"exportUsers", value=>"true"},
-      {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"relocatable", value=>"1"},
+      {actualParameterName=>"includeACLs", value=>"0"},
+      {actualParameterName=>"includeNotifiers", value=>"0"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
