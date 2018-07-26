@@ -15,6 +15,9 @@ $DEBUG=1;
 #
 my $path    = '$[pathname]';
 my $pattern = '$[pattern]';
+my $includeACLs="$[includeACLs]";
+my $includeNotifiers="$[includeNotifiers]";
+my $relocatable="$[relocatable]";
 
 #
 # Global
@@ -83,9 +86,9 @@ foreach my $node ($xPath->findnodes('//project')) {
     my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Applications/$fileAppName/$fileAppName".".xml",
             { 'path'=> "/projects[$pName]applications[$appName]",
-                                          'relocatable' => 1,
-                                          'withAcls'    => 1,
-                                          'withNotifiers'=>1});
+              'relocatable' => $relocatable,
+              'withAcls'    => $includeACLs,
+              'withNotifiers'=>$includeNotifiers});
 
     if (! $success) {
       printf("  Error exporting application %s", $appName);
@@ -110,9 +113,9 @@ foreach my $node ($xPath->findnodes('//project')) {
       my ($success, $res, $errMsg, $errCode) =
         InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Applications/$fileAppName/Components/$fileCompName".".xml",
             { 'path'=> "/projects[$pName]applications[$appName]components[$compName]",
-                                          'relocatable' => 1,
-                                          'withAcls'    => 1,
-                                          'withNotifiers'=>1});
+              'relocatable' => $relocatable,
+              'withAcls'    => $includeACLs,
+              'withNotifiers'=>$includeNotifiers});
 
     if (! $success) {
       printf("  Error exporting component %s in application", $compName, $appName);
@@ -145,9 +148,9 @@ foreach my $node ($xPath->findnodes('//project')) {
     my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Environments/$fileEnvName".".xml",
             { 'path'=> "/projects[$pName]environments[$envName]",
-                                          'relocatable' => 1,
-                                          'withAcls'    => 1,
-                                          'withNotifiers'=>1});
+              'relocatable' => $relocatable,
+              'withAcls'    => $includeACLs,
+              'withNotifiers'=>$includeNotifiers});
 
     if (! $success) {
       printf("  Error exporting environment %s", $envName);
@@ -183,9 +186,9 @@ foreach my $node ($xPath->findnodes('//project')) {
       my ($success, $res, $errMsg, $errCode) =
         InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Pipelines/$filePipeName".".xml",
               { 'path'=> "/projects[$pName]pipelines[$pipeName]",
-                                            'relocatable' => 1,
-                                            'withAcls'    => 1,
-                                            'withNotifiers'=>1});
+                'relocatable' => $relocatable,
+                'withAcls'    => $includeACLs,
+                'withNotifiers'=>$includeNotifiers});
 
       if (! $success) {
         printf("  Error exporting pipeline %s", $pipeName);
@@ -222,9 +225,9 @@ foreach my $node ($xPath->findnodes('//project')) {
       my ($success, $res, $errMsg, $errCode) =
         InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Releases/$filePipeName".".xml",
               { 'path'=> "/projects[$pName]releases[$relName]",
-                                            'relocatable' => 1,
-                                            'withAcls'    => 1,
-                                            'withNotifiers'=>1});
+                'relocatable' => $relocatable,
+                'withAcls'    => $includeACLs,
+                'withNotifiers'=>$includeNotifiers});
 
       if (! $success) {
         printf("  Error exporting release %s", $relName);

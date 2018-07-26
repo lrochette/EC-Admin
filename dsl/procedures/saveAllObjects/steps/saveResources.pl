@@ -14,6 +14,9 @@ $DEBUG=1;
 #
 my $path    = '$[pathname]';
 my $pattern = '$[pattern]';
+my $includeACLs="$[includeACLs]";
+my $includeNotifiers="$[includeNotifiers]";
+my $relocatable="$[relocatable]";
 
 #
 # Global
@@ -39,9 +42,9 @@ foreach my $node ($xPath->findnodes('//resource')) {
 
   my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Resources/$fileResourceName".".xml",
-  					{ 'path' => "/resources[$resName]",
-              'relocatable' => 1,
-              'withAcls'    => 1});
+        'relocatable' => $relocatable,
+        'withAcls'    => $includeACLs,
+        'withNotifiers'=>$includeNotifiers});
   if (! $success) {
     printf("  Error exporting %s", $resName);
     printf("  %s: %s\n", $errCode, $errMsg);
@@ -58,4 +61,3 @@ exit($errorCount);
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-

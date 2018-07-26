@@ -12,6 +12,9 @@ $[/myProject/scripts/perlHeaderJSON]
 #
 my $path    = '$[pathname]';
 my $pattern = '$[pattern]';
+my $includeACLs="$[includeACLs]";
+my $includeNotifiers="$[includeNotifiers]";
+my $relocatable="$[relocatable]";
 
 #
 # Global
@@ -38,8 +41,10 @@ foreach my $node ($xPath->findnodes('//gateway')) {
   my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Gateways/$fileGatewayName".".xml",
   { 'path'=> "/gateways[$gateName]",
-                                          'relocatable' => 1,
-                                          'withAcls'    => 1});
+    'relocatable' => $relocatable,
+    'withAcls'    => $includeACLs,
+    'withNotifiers'=>$includeNotifiers});
+
   if (! $success) {
     printf("  Error exporting %s", $gateName);
     printf("  %s: %s\n", $errCode, $errMsg);
@@ -55,4 +60,3 @@ exit($errorCount);
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
