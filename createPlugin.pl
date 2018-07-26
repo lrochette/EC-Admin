@@ -10,7 +10,7 @@ use ElectricCommander ();
 $| = 1;
 my $ec = new ElectricCommander->new();
 
-my $pluginVersion = "3.1.0";
+my $pluginVersion = "3.1.1";
 my $pluginKey = "EC-Admin";
 
 my $description = "A set of administrative tasks to help manage your server.";
@@ -51,6 +51,8 @@ my $xs = XML::Simple->new(
 	KeyAttr    => { },
 	KeepRoot   => 1,
 );
+
+print "[INFO] - Creating plugin '$pluginName'\n";
 
 # Update project.xml with
 #		ec_setup.pl,

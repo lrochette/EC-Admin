@@ -1,7 +1,7 @@
 <exportedData buildLabel="build_3.5_30434_OPT_2010.01.13_07:32:22" buildVersion="3.5.1.30434" version="39">
-  <exportPath>/projects/EC-Admin-3.1.0.629</exportPath>
+  <exportPath>/projects/EC-Admin-3.1.1.662</exportPath>
   <project>
-    <projectName>EC-Admin-3.1.0.629</projectName>
+    <projectName>EC-Admin-3.1.1.662</projectName>
     <propertySheet>
       <property>
         <expandable>0</expandable>
@@ -44,9 +44,22 @@ if(defined $ENV{QUERY_STRING}) { # Promotion through UI
     $dslFilePath = File::Spec-&gt;catfile($pluginDir, &quot;dsl&quot;, &quot;$promoteAction.groovy&quot;);
 }
 
-open FILE, $dslFilePath or die &quot;Couldn't open file: $dslFilePath: $!&quot;;
-my $dsl=&lt;FILE&gt;;
-close FILE;
+my $demoteDsl = q{
+# demote.groovy placeholder
+};
+
+my $promoteDsl = q{
+# promote.groovy placeholder
+};
+
+
+my $dsl;
+if ($promoteAction eq 'promote') {
+  $dsl = $promoteDsl;
+}
+else {
+  $dsl = $demoteDsl;
+}
 
 my $dslReponse = $commander-&gt;evalDsl(
     $dsl, {
@@ -65,9 +78,91 @@ my $dslReponse = $commander-&gt;evalDsl(
 
 $logfile .= $dslReponse-&gt;findnodes_as_string(&quot;/&quot;);
 my $errorMessage = $commander-&gt;getError();
+
+if ( !$errorMessage ) {
+    # This is here because we cannot do publishArtifactVersion in dsl today
+    # delete artifact if it exists first
+
+    my $dependenciesProperty = '/projects/@PLUGIN_NAME@/ec_groovyDependencies';
+    my $base64 = '';
+    my $xpath;
+    eval {
+      $xpath = $commander-&gt;getProperties({path =&gt; $dependenciesProperty});
+      1;
+    };
+    unless($@) {
+      my $blocks = {};
+      my $checksum = '';
+      for my $prop ($xpath-&gt;findnodes('//property')) {
+        my $name = $prop-&gt;findvalue('propertyName')-&gt;string_value;
+        my $value = $prop-&gt;findvalue('value')-&gt;string_value;
+        if ($name eq 'checksum') {
+          $checksum = $value;
+        }
+        else {
+          my ($number) = $name =~ /ec_dependencyChunk_(\d+)$/;
+          $blocks-&gt;{$number} = $value;
+        }
+      }
+      for my $key (sort {$a &lt;=&gt; $b} keys %$blocks) {
+        $base64 .= $blocks-&gt;{$key};
+      }
+
+      my $resultChecksum = md5_hex($base64);
+      unless($checksum) {
+        die &quot;No checksum found in dependendencies property, please reinstall the plugin&quot;;
+      }
+      if ($resultChecksum ne $checksum) {
+        die &quot;Wrong dependency checksum: original checksum is $checksum&quot;;
+      }
+    }
+
+    if ($base64) {
+      my $grapesVersion = '1.0.0';
+      my $cleanup = 1;
+      my $groupId = 'com.electriccloud';
+      $commander-&gt;deleteArtifactVersion($groupId . ':@PLUGIN_KEY@-Grapes:' . $grapesVersion);
+      my $binary = decode_base64($base64);
+      my ($tempFh, $tempFilename) = tempfile(CLEANUP =&gt; $cleanup);
+      binmode($tempFh);
+      print $tempFh $binary;
+      close $tempFh;
+
+      my ($tempDir) = tempdir(CLEANUP =&gt; $cleanup);
+      my $zip = Archive::Zip-&gt;new();
+      unless($zip-&gt;read($tempFilename) == Archive::Zip::AZ_OK()) {
+        die &quot;Cannot read .zip dependencies: $!&quot;;
+      }
+      $zip-&gt;extractTree(&quot;&quot;, File::Spec-&gt;catfile($tempDir, ''));
+
+      if ( $promoteAction eq &quot;promote&quot; ) {
+          #publish jars to the repo server if the plugin project was created successfully
+          my $am = new ElectricCommander::ArtifactManagement($commander);
+          my $artifactVersion = $am-&gt;publish(
+              {   groupId         =&gt; $groupId,
+                  artifactKey     =&gt; '@PLUGIN_KEY@-Grapes',
+                  version         =&gt; $grapesVersion,
+                  includePatterns =&gt; &quot;**&quot;,
+                  fromDirectory   =&gt; &quot;$tempDir/lib/grapes&quot;,
+                  description =&gt; 'JARs that @PLUGIN_KEY@ plugin procedures depend on'
+              }
+          );
+
+          # Print out the xml of the published artifactVersion.
+          $logfile .= $artifactVersion-&gt;xml() . &quot;\n&quot;;
+          if ( $artifactVersion-&gt;diagnostics() ) {
+              $logfile .= &quot;\nDetails:\n&quot; . $artifactVersion-&gt;diagnostics();
+          }
+      }
+    }
+}
+
+
 # Create output property for plugin setup debug logs
 my $nowString = localtime;
 $commander-&gt;setProperty( &quot;/plugins/$pluginName/project/logs/$nowString&quot;, { value =&gt; $logfile } );
+die $errorMessage unless !$errorMessage;
+
 
 # I suppose, this should go in the promote.groovy or demote.groovy
 # promote/demote action
@@ -94,7 +189,7 @@ if ( $promoteAction eq 'promote' ) {
 
     # Give project principal &quot;Electric Cloud&quot; write access to our project
     my $projPrincipal = &quot;project: Electric Cloud&quot;;
-    my $ecAdminProj = '@PLUGIN_NAME@';
+    my $ecAdminProj = $pluginName;
 
     # Give project Electric Cloud permission on ec_reportData
     $cfg = $commander-&gt;getProperty(&quot;ec_reportData&quot;, {projectName =&gt; $ecAdminProj});
@@ -137,7 +232,7 @@ if ( $promoteAction eq 'promote' ) {
 
 
     # Give plugin permission on /server/EC-Admin
-    $projPrincipal='project: @PLUGIN_NAME@';
+    $projPrincipal=&quot;project: $pluginName&quot;;
     $cfg = $commander-&gt;getProperty(&quot;/server/EC-Admin&quot;);
     $psId= $cfg-&gt;findvalue(&quot;//propertySheetId&quot;);
 
@@ -172,7 +267,7 @@ if ( $promoteAction eq 'promote' ) {
 
 } elsif ( $promoteAction eq 'demote' ) {
     # Remove plugin permission on /server/EC-Admin
-    my $projPrincipal='project: @PLUGIN_NAME@';
+    my $projPrincipal=&quot;project: $pluginName&quot;;
     my $cfg = $commander-&gt;getProperty(&quot;/server/EC-Admin&quot;);
     my $psId= $cfg-&gt;findvalue(&quot;//propertySheetId&quot;);
 
@@ -187,8 +282,6 @@ if ( $promoteAction eq 'promote' ) {
              });
     }
 }
-
-die $errorMessage unless !$errorMessage
 </value>
       </property>
     </propertySheet>

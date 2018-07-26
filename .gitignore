@@ -4,4 +4,4 @@ src/out
 ElectricFlow-*
 DIR1/
 hs_err*.log
-pages/help.xml
+build/
