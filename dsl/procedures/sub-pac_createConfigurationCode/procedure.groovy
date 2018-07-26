@@ -32,7 +32,7 @@ project to transform into a plugin to manage credential configuration''',
     shell: 'ec-perl'
 
   step 'create_promoteAction',
-    description: 'The promoteAction is used to add code automatically to ec_seup.pl',
+    description: 'The promoteAction is used to add code automatically to ec_setup.pl',
     command: new File(pluginDir, "dsl/procedures/$procName/steps/create_promoteAction.pl").text,
     shell: 'ec-perl'
 
