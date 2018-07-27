@@ -36,7 +36,7 @@ $[/server/ec_notifierTemplates/Html_JobTempl/body]'''
 
   step 'saveProjects',
     description: 'A procedure to export each project individually into a XML file for backup',
-    subprocedure: 'saveAllObjects'
+    subprocedure: 'saveAllObjects',
     actualParameter: [
       caseSensitive: '',
       exportDeploy: 'false',

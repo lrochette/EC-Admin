@@ -708,7 +708,7 @@ ntest "issue-127 slash in project name with saveProjects", {}, sub {
   if ($xpath) {
     #get new Job ID
     my $jobId  = $xpath->findvalue("//jobId");
-    $::N->setJobName($jobId, 'saveAllObject_Issue127_' .
+    $::N->setJobName($jobId, 'saveProjects_Issue127_' .
 		$::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
     waitForJob($jobId);
     my $jobData  = $::N->getJobDetails($jobId);

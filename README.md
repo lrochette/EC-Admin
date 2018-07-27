@@ -24,7 +24,7 @@ the DSL code as to be evaluated on the server.</p>
 <a href="https://github.com/electric-cloud/EC-Admin">GitHub
 repository</a>. It is available as a plugin delivered
 in the form of a .jar file or you can simply get the source code
-and recompile it yourself.</p>
+and build it yourself.</p>
 
 <p>To install the plugin, use one the following methods:</p>
 <ul>
@@ -32,7 +32,9 @@ and recompile it yourself.</p>
 <li>the Perl "$ec->installPlugin()" API.</li>
 <li> the CLI client "ectool installPlugin --force 1 EC-Admin.jar</li>
 </ul>
-<p>Don't forget to promote the plugin after installation.</p>
+<p>Don't forget to promote the plugin after installation. Now the plugin has
+  been converted to PluginWizard and DSL format, the promotion takes a little
+  longer. You have to increase to DSL timeout setting to at least 180 (3 minutes).</p>
 
 <p>To install on 4.0.x or or 4.1.x, import the EC_4.0.xml file. Be
 aware that some features are not present as the original project
