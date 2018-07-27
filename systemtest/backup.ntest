@@ -512,9 +512,9 @@ ntest "issue 88 slash in resource", {}, sub {
     } else {
       # clean
       rmtree($backupDir);
-      $::N->deleteResource($res);
     }
   }
+  $::N->deleteResource($res);
 };
 
 
@@ -558,10 +558,11 @@ ntest "issue 89 < and > in filenames", {}, sub {
     # check for resource file file with slash replaced by _
     if (! -f "/tmp/BACKUP/Resources/res_issue89_end.xml") {
       fail("res_issue89_end.xml resource is missing");
+    } else {
+      # clean
+      rmtree($backupDir);
     }
   }
-  # clean
-  rmtree($backupDir);
   $::N->deleteResource($res);
 };
 
@@ -606,10 +607,11 @@ ntest "issue 90 project starting with _", {}, sub {
     # check for project directory to exist
     if (! -d "/tmp/BACKUP/Projects/_issue90") {
       fail("_issue90 project is missing");
+    } else {
+      # clean
+      rmtree($backupDir);
     }
   }
-  # clean
-  rmtree($backupDir);
   $::N->deleteProject($proj);
 };
 
@@ -675,7 +677,7 @@ ntest "issue 87 empty pattern", {}, sub {
 
   }
   # clean
-  #rmtree($backupDir);
+  rmtree($backupDir);
   $::N->deleteProject($proj);
 };
 
@@ -723,8 +725,8 @@ ntest "issue-127 slash in project name with saveProjects", {}, sub {
     assertEq("1", $nb, "Only 1 project should be exported");
   }
   # clean
-  #rmtree($backupDir);
-  #$::N->deleteProject($proj);
+  rmtree($backupDir);
+  $::N->deleteProject($proj);
 };
 
 1;
