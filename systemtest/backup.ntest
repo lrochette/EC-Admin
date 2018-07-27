@@ -720,9 +720,15 @@ ntest "issue-127 slash in project name with saveProjects", {}, sub {
       fail("$proj project is missing");
     }
 
-    # check multiple projects were exported
-    my $nb=$::N->getProperty("projectExported" , {jobId => $jobId})->findvalue("//value");
-    assertEq("1", $nb, "Only 1 project should be exported");
+
+    # check for project file with slash replaced by _
+    if (! -f "/tmp/BACKUP/Projects/$projDir/${$projeDir}xml") {
+      fail("res_issue89_end.xml resource is missing");
+    } else {
+      # clean
+      rmtree($backupDir);
+    }
+
   }
   # clean
   rmtree($backupDir);
