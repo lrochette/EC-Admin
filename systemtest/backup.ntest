@@ -509,11 +509,12 @@ ntest "issue 88 slash in resource", {}, sub {
     # check for resource file file with slash replaced by _
     if (! -f "/tmp/BACKUP/Resources/res_SA_issue88.xml") {
       fail("res_SA_issue88.xml resource is missing");
+    } else {
+      # clean
+      rmtree($backupDir);
+      $::N->deleteResource($res);
     }
   }
-  # clean
-  rmtree($backupDir);
-  $::N->deleteResource($res);
 };
 
 
