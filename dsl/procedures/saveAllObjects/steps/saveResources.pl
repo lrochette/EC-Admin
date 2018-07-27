@@ -42,7 +42,7 @@ foreach my $node ($xPath->findnodes('//resource')) {
 
   my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Resources/$fileResourceName".".xml",
-        'relocatable' => $relocatable,
+        {'relocatable' => $relocatable,
         'withAcls'    => $includeACLs,
         'withNotifiers'=>$includeNotifiers});
   if (! $success) {

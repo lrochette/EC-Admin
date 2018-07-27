@@ -682,7 +682,7 @@ ntest "issue 87 empty pattern", {}, sub {
 #-------------------------------------------------------------------------------
 #  Issue 127: slash in name
 #-------------------------------------------------------------------------------
-ntest "issue-127 slash in project name", {}, sub {
+ntest "issue-127 slash in project name with saveProjects", {}, sub {
   my $proj='issue127/win';
   my $projDir='issue127_win';
   my $xpath=$::N->createProject($proj);
@@ -701,7 +701,7 @@ ntest "issue-127 slash in project name", {}, sub {
       {actualParameterName=>"includeNotifiers", value=>"0"}
     ]
   });
-  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  assertOK($xpath, "Failed to launch EC-Admin::saveProjects");
   if ($xpath) {
     #get new Job ID
     my $jobId  = $xpath->findvalue("//jobId");
