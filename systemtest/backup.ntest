@@ -717,13 +717,13 @@ ntest "issue-127 slash in project name with saveProjects", {}, sub {
 
     # check for project directory to exist
     if (! -d "/tmp/BACKUP/Projects/$projDir") {
-      fail("$proj project is missing");
+      fail("$projDir project is missing");
     }
 
 
     # check for project file with slash replaced by _
-    if (! -f "/tmp/BACKUP/Projects/$projDir/${$projeDir}xml") {
-      fail("res_issue89_end.xml resource is missing");
+    if (! -f "/tmp/BACKUP/Projects/$projDir/${projDir}.xml") {
+      fail("${projDir}.xml project is missing");
     } else {
       # clean
       rmtree($backupDir);
@@ -731,7 +731,6 @@ ntest "issue-127 slash in project name with saveProjects", {}, sub {
 
   }
   # clean
-  rmtree($backupDir);
   $::N->deleteProject($proj);
 };
 
