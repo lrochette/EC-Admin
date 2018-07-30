@@ -25,7 +25,7 @@ my $errorCount=0;
 my $groupCount=0;
 
 # Get list of groups
-my ($success, $xPath) = InvokeCommander("SuppressLog", "getGroups", {maximum=>5000});
+my ($success, $xPath) = InvokeCommander("SuppressLog", "getGroups", {maximum=>1000});
 
 # Create the Resources directory
 mkpath("$path/Groups");
