@@ -25,7 +25,7 @@ my $errorCount=0;
 my $userCount=0;
 
 # Get list of users
-my ($success, $xPath) = InvokeCommander("SuppressLog", "getUsers", {maximum=>5000});
+my ($success, $xPath) = InvokeCommander("SuppressLog", "getUsers", {maximum=>1000});
 
 # Create the Resources directory
 mkpath("$path/Users");
