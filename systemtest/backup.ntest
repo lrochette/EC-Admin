@@ -18,6 +18,7 @@ $::N=$adminSession;
 my $pluginKey = "EC-Admin";
 my $xpath = $::N->getPlugin($pluginKey);
 my $pluginName = $xpath->findvalue("//pluginName")->value;
+my $backupDir="/tmp/BACKUP";
 
 #-------------------------------------------------------------------------------
 # Test procedure present.
@@ -45,14 +46,14 @@ ntest "local_resource", {}, sub {
 #-------------------------------------------------------------------------------
 # Issue 56: Check for question mark
 #-------------------------------------------------------------------------------
-ntest "issues 56 question mark", {}, sub {
+ntest "issue 56 question mark", {}, sub {
 
   my $error=0;
-  rmtree("/tmp/BACKUP");
+  rmtree($backupDir);
   $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
-      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pathname", value=>$backupDir},
       {actualParameterName=>"pattern", value=>"EC-Admin_Test"},
       {actualParameterName=>"exportDeploy", value=>"false"},
       {actualParameterName=>"exportGateways", value=>"false"},
@@ -83,23 +84,23 @@ ntest "issues 56 question mark", {}, sub {
     }
   }
   # Clean
-  rmtree("/tmp/BACKUP");
+  rmtree($backupDir);
 };
 
 #-------------------------------------------------------------------------------
 # Issue 57: group name with "/"
 #-------------------------------------------------------------------------------
-ntest "issues 57 group with slash", {}, sub {
+ntest "issue 57 group with slash", {}, sub {
 
   my $group="AC/DC";
   my $xpath= $::N->createGroup($group);
   assertOK($xpath, "Failed to create group $group for issue 57");
 
-  rmtree("/tmp/BACKUP");
+  rmtree($backupDir);
   $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
-      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pathname", value=>$backupDir},
       {actualParameterName=>"pattern", value=>"AC"},
       {actualParameterName=>"exportDeploy", value=>"false"},
       {actualParameterName=>"exportGateways", value=>"false"},
@@ -128,7 +129,7 @@ ntest "issues 57 group with slash", {}, sub {
       fail("AC_DC.xml group is missing");
     }
   }
-  rmtree("/tmp/BACKUP");
+  rmtree($backupDir);
   $::N->deleteGroup($group);
 };
 
@@ -145,11 +146,11 @@ ntest "issue 58 gateway", {}, sub {
     });
   assertOK($xpath, "Failed to create gateway $gate");
 
-  rmtree("/tmp/BACKUP");
+  rmtree($backupDir);
   $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
-      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pathname", value=>$backupDir},
       {actualParameterName=>"pattern", value=>$gate},
       {actualParameterName=>"exportDeploy", value=>"false"},
       {actualParameterName=>"exportGateways", value=>"true"},
@@ -179,7 +180,7 @@ ntest "issue 58 gateway", {}, sub {
     }
   }
   # clean
-  rmtree("/tmp/BACKUP");
+  rmtree($backupDir);
   $::N->deleteGateway($gate);
 };
 
@@ -192,11 +193,11 @@ ntest "issue 59 zone", {}, sub {
   $xpath= $::N->createZone($zone, {description => "for backup testing"});
   assertOK($xpath, "Failed to create zone $zone");
 
-  rmtree("/tmp/BACKUP");
+  rmtree($backupDir);
   $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
-      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pathname", value=>$backupDir},
       {actualParameterName=>"pattern", value=>$zone},
       {actualParameterName=>"exportDeploy", value=>"false"},
       {actualParameterName=>"exportGateways", value=>"false"},
@@ -226,7 +227,7 @@ ntest "issue 59 zone", {}, sub {
     }
   }
   # Clean
-  rmtree("/tmp/BACKUP");
+  rmtree($backupDir);
   $::N->deleteZone($zone);
 };
 
@@ -238,10 +239,11 @@ ntest "issue 63 pattern", {}, sub {
   my $xpath=$::N->createProject($proj);
   assertOK($xpath, "Failed to create project $proj");
 
+  rmtree($backupDir);
   $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
-      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pathname", value=>$backupDir},
       {actualParameterName=>"pattern", value=>"GHTVF"},
       {actualParameterName=>"exportDeploy", value=>"false"},
       {actualParameterName=>"exportGateways", value=>"false"},
@@ -270,7 +272,7 @@ ntest "issue 63 pattern", {}, sub {
     assertEq(1, $nb, "incorrect number of project exported");
 
     # clean
-    rmtree("/tmp/BACKUP");
+    rmtree($backupDir);
     $::N->deleteProject($proj);
   }
 
@@ -281,11 +283,11 @@ ntest "issue 63 pattern", {}, sub {
 #-------------------------------------------------------------------------------
 ntest "export users", {}, sub {
 
-  rmtree("/tmp/BACKUP");
+  rmtree($backupDir);
   $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
-      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pathname", value=>$backupDir},
       {actualParameterName=>"pattern", value=>"admin"},
       {actualParameterName=>"exportDeploy", value=>"false"},
       {actualParameterName=>"exportGateways", value=>"false"},
@@ -314,14 +316,14 @@ ntest "export users", {}, sub {
     assertEq(1, $nb, "incorrect number of user exported");
 
     # clean
-    rmtree("/tmp/BACKUP");
+    rmtree($backupDir);
   }
 };
 
 #-------------------------------------------------------------------------------
 # Issue 77: procedure name with "/"
 #-------------------------------------------------------------------------------
-ntest "issues 77 procedure with slash", {}, sub {
+ntest "issue 77 procedure with slash", {}, sub {
 
   my $name="Issue/77";
   my $xpath= $::N->createProject($name);
@@ -330,11 +332,11 @@ ntest "issues 77 procedure with slash", {}, sub {
   $xpath= $::N->createProcedure($name, $name);
   assertOK($xpath, "Failed to create procedure $name for issue 77");
 
-  rmtree("/tmp/BACKUP");
+  rmtree($backupDir);
   $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
-      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pathname", value=>$backupDir},
       {actualParameterName=>"pattern", value=>"77"},
       {actualParameterName=>"exportDeploy", value=>"false"},
       {actualParameterName=>"exportGateways", value=>"false"},
@@ -367,7 +369,7 @@ ntest "issues 77 procedure with slash", {}, sub {
       fail("Issue_77.xml procedure is missing");
     }
   }
-#  rmtree("/tmp/BACKUP");
+  rmtree($backupDir);
   $::N->deleteProject($name);
 };
 
@@ -379,10 +381,11 @@ ntest "issue 74 case insensitive", {}, sub {
   my $xpath=$::N->createProject($proj);
   assertOK($xpath, "Failed to create project $proj");
 
+  rmtree($backupDir);
   $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
-      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pathname", value=>$backupDir},
       {actualParameterName=>"pattern", value=>"issue74"},
       {actualParameterName=>"caseSensitive", value=>"i"},
       {actualParameterName=>"exportDeploy", value=>"false"},
@@ -412,7 +415,7 @@ ntest "issue 74 case insensitive", {}, sub {
     assertEq(1, $nb, "incorrect number of project exported");
 
     # clean
-    rmtree("/tmp/BACKUP");
+    rmtree($backupDir);
     $::N->deleteProject($proj);
   }
 
@@ -426,10 +429,11 @@ ntest "issue 83 trailing spaces", {}, sub {
   my $xpath=$::N->createProject($proj);
   assertOK($xpath, "Failed to create project $proj");
 
+  rmtree($backupDir);
   $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
-      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pathname", value=>$backupDir},
       {actualParameterName=>"pattern", value=>"issue83"},
       {actualParameterName=>"caseSensitive", value=>"i"},
       {actualParameterName=>"exportDeploy", value=>"false"},
@@ -460,7 +464,7 @@ ntest "issue 83 trailing spaces", {}, sub {
     }
   }
   # clean
-  rmtree("/tmp/BACKUP");
+  rmtree($backupDir);
   $::N->deleteProject($proj);
 };
 
@@ -473,10 +477,11 @@ ntest "issue 88 slash in resource", {}, sub {
   my $xpath=$::N->createResource($res);
   assertOK($xpath, "Failed to create resource $res");
 
+  rmtree($backupDir);
   $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
-      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pathname", value=>$backupDir},
       {actualParameterName=>"pattern", value=>"issue88"},
       {actualParameterName=>"caseSensitive", value=>"i"},
       {actualParameterName=>"exportDeploy", value=>"false"},
@@ -504,10 +509,11 @@ ntest "issue 88 slash in resource", {}, sub {
     # check for resource file file with slash replaced by _
     if (! -f "/tmp/BACKUP/Resources/res_SA_issue88.xml") {
       fail("res_SA_issue88.xml resource is missing");
+    } else {
+      # clean
+      rmtree($backupDir);
     }
   }
-  # clean
-  rmtree("/tmp/BACKUP");
   $::N->deleteResource($res);
 };
 
@@ -520,10 +526,11 @@ ntest "issue 89 < and > in filenames", {}, sub {
   my $xpath=$::N->createResource($res);
   assertOK($xpath, "Failed to create resource $res");
 
+  rmtree($backupDir);
   $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
-      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pathname", value=>$backupDir},
       {actualParameterName=>"pattern", value=>"issue89"},
       {actualParameterName=>"caseSensitive", value=>"i"},
       {actualParameterName=>"exportDeploy", value=>"false"},
@@ -551,10 +558,11 @@ ntest "issue 89 < and > in filenames", {}, sub {
     # check for resource file file with slash replaced by _
     if (! -f "/tmp/BACKUP/Resources/res_issue89_end.xml") {
       fail("res_issue89_end.xml resource is missing");
+    } else {
+      # clean
+      rmtree($backupDir);
     }
   }
-  # clean
-  rmtree("/tmp/BACKUP");
   $::N->deleteResource($res);
 };
 
@@ -567,10 +575,11 @@ ntest "issue 90 project starting with _", {}, sub {
   my $xpath=$::N->createProject($proj);
   assertOK($xpath, "Failed to create project $proj");
 
+  rmtree($backupDir);
   $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
-      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pathname", value=>$backupDir},
       {actualParameterName=>"pattern", value=>"issue90"},
       {actualParameterName=>"caseSensitive", value=>"i"},
       {actualParameterName=>"exportDeploy", value=>"false"},
@@ -598,10 +607,11 @@ ntest "issue 90 project starting with _", {}, sub {
     # check for project directory to exist
     if (! -d "/tmp/BACKUP/Projects/_issue90") {
       fail("_issue90 project is missing");
+    } else {
+      # clean
+      rmtree($backupDir);
     }
   }
-  # clean
-  rmtree("/tmp/BACKUP");
   $::N->deleteProject($proj);
 };
 
@@ -614,10 +624,11 @@ ntest "issue 87 empty pattern", {}, sub {
   my $xpath=$::N->createProject($proj);
   assertOK($xpath, "Failed to create project $proj");
 
+  rmtree($backupDir);
   $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
     actualParameter=>[
-      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
+      {actualParameterName=>"pathname", value=>$backupDir},
       {actualParameterName=>"pattern", value=>""},
       {actualParameterName=>"caseSensitive", value=>"i"},
       {actualParameterName=>"exportDeploy", value=>"false"},
@@ -666,7 +677,7 @@ ntest "issue 87 empty pattern", {}, sub {
 
   }
   # clean
-  #rmtree("/tmp/BACKUP");
+  rmtree($backupDir);
   $::N->deleteProject($proj);
 };
 
@@ -674,34 +685,30 @@ ntest "issue 87 empty pattern", {}, sub {
 #-------------------------------------------------------------------------------
 #  Issue 127: slash in name
 #-------------------------------------------------------------------------------
-ntest "issue-127 slash in project name", {}, sub {
+ntest "issue-127 slash in project name with saveProjects", {}, sub {
   my $proj='issue127/win';
   my $projDir='issue127_win';
   my $xpath=$::N->createProject($proj);
   assertOK($xpath, "Failed to create project $proj");
 
+  $xpath=$::N->createProcedure($proj, 'foo/bar');
+  assertOK($xpath, "Failed to create procedure foo/bar");
+
+  rmtree($backupDir);
   $xpath = $::N->runProcedure($pluginName, {
-    procedureName=>"saveAllObjects",
+    procedureName=>"saveProjects",
     actualParameter=>[
-      {actualParameterName=>"pathname", value=>"/tmp/BACKUP"},
-      {actualParameterName=>"pattern", value=>"issue127"},
-      {actualParameterName=>"caseSensitive", value=>"i"},
-      {actualParameterName=>"exportDeploy", value=>"false"},
-      {actualParameterName=>"exportGateways", value=>"false"},
-      {actualParameterName=>"exportZones", value=>"true"},
-      {actualParameterName=>"exportGroups", value=>"false"},
-      {actualParameterName=>"exportResourcePools", value=>"false"},
-      {actualParameterName=>"exportResources", value=>"false"},
-      {actualParameterName=>"exportSteps", value=>"false"},
-      {actualParameterName=>"exportUsers", value=>"true"},
-      {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"pathname", value=>$backupDir},
+      {actualParameterName=>"relocatable", value=>"1"},
+      {actualParameterName=>"includeACLs", value=>"0"},
+      {actualParameterName=>"includeNotifiers", value=>"0"}
     ]
   });
-  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  assertOK($xpath, "Failed to launch EC-Admin::saveProjects");
   if ($xpath) {
     #get new Job ID
     my $jobId  = $xpath->findvalue("//jobId");
-    $::N->setJobName($jobId, 'saveAllObject_Issue127_' .
+    $::N->setJobName($jobId, 'saveProjects_Issue127_' .
 		$::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
     waitForJob($jobId);
     my $jobData  = $::N->getJobDetails($jobId);
@@ -710,15 +717,20 @@ ntest "issue-127 slash in project name", {}, sub {
 
     # check for project directory to exist
     if (! -d "/tmp/BACKUP/Projects/$projDir") {
-      fail("$proj project is missing");
+      fail("$projDir project is missing");
     }
 
-    # check multiple projects were exported
-    my $nb=$::N->getProperty("projectExported" , {jobId => $jobId})->findvalue("//value");
-    assertEq("1", $nb, "Only 1 project should be exported");
+
+    # check for project file with slash replaced by _
+    if (! -f "/tmp/BACKUP/Projects/$projDir/${projDir}.xml") {
+      fail("${projDir}.xml project is missing");
+    } else {
+      # clean
+      rmtree($backupDir);
+    }
+
   }
   # clean
-  #rmtree("/tmp/BACKUP");
   $::N->deleteProject($proj);
 };
 

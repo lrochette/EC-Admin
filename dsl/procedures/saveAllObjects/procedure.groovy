@@ -25,7 +25,8 @@ procedure procName,
   Users
   Groups
 ''',
-  jobNameTemplate: '$[/myProject/scripts/jobTemplate]',
+  // Need full path or else scheduled jobs don't work
+  jobNameTemplate: '$[/plugins/EC-Admin/project/scripts/jobTemplate]',
 {
   emailNotifier 'failureNotification',
     description: 'Send email to Admin if it fails',

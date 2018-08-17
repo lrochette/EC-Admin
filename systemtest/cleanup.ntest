@@ -14,10 +14,6 @@ use ECTest;
 initCommander();
 $::N=$adminSession;
 
-# Check version to be able to run test with version 4.0 as well
-# EC-Admin is a simple project for version 4.0
-my $version=$::N->getVersions()->findvalue("//version")->value;
-
 my $pluginKey="EC-Admin";
 my $xpath = $::N->getPlugin($pluginKey);
 my $pluginName = $xpath->findvalue("//pluginName")->value;
@@ -32,9 +28,7 @@ ntest "cleanup_procedures", {}, sub {
 	assertOK($::N->getProcedure($pluginName, "deleteWorkspaceOrphans"), "procedure deleteWorkspaceOrphans missing");
 	assertOK($::N->getProcedure($pluginName, "jobsCleanup"), "procedure jobsCleanup missing");
 	assertOK($::N->getProcedure($pluginName, "workflowCleanup"), "procedure workflowCleanup missing");
-        if ($version ge "4.2") {
-	  assertOK($::N->getProcedure($pluginName, "subJC_deleteWorkspace"), "procedure subJC_deleteWorkspace missing");
-        }
+  assertOK($::N->getProcedure($pluginName, "subJC_deleteWorkspace"), "procedure subJC_deleteWorkspace missing");        }
 };
 
 #-------------------------------------------------------------------------------
@@ -196,6 +190,8 @@ ntest "Issue_114_workspace_error", {}, sub {
     # Report mode
     ($summary, $outcome, $nbJobs, $jobId)=callJobsCleanup(0, "true", "All", "", "doNotDelete", 365);
     assertEq("error", $outcome, " invalid workspace should return error");
+		$::N->setJobName($jobId, 'jobsCleanup_Issue114_' .
+			$::N->getProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
 
     # confirm step is failing with AGENT_INVALID_MESSAGE
     my $jobData  = $::N->findJobSteps({

@@ -16,6 +16,10 @@ my $path        = '$[pathname]';
 my $exportSteps = "$[exportSteps]";
 my $pattern     = '$[pattern]';
 my $caseSensitive = "i";
+my $includeACLs="$[includeACLs]";
+my $includeNotifiers="$[includeNotifiers]";
+my $relocatable="$[relocatable]";
+
 #
 # Global
 #
@@ -55,9 +59,9 @@ foreach my $node ($xPath->findnodes('//project')) {
   my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/$fileProjectName".".xml",
   					{ 'path'          => "/projects[$pName]",
-              'relocatable'   => 1,
-              'withAcls'      => 1,
-              'withNotifiers' => 1});
+              'relocatable' => $relocatable,
+              'withAcls'    => $includeACLs,
+              'withNotifiers'=>$includeNotifiers});
   if (! $success) {
     printf("  Error exporting project %s", $pName);
     printf("  %s: %s\n", $errCode, $errMsg);
@@ -82,9 +86,9 @@ foreach my $node ($xPath->findnodes('//project')) {
  	my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Procedures/$fileProcedureName/$fileProcedureName".".xml",
   					{ 'path'          => "/projects[$pName]procedures[$procName]",
-              'relocatable'   => 1,
-              'withAcls'      => 1,
-              'withNotifiers' => 1});
+              'relocatable' => $relocatable,
+              'withAcls'    => $includeACLs,
+              'withNotifiers'=>$includeNotifiers});
 
     if (! $success) {
       printf("  Error exporting procedure %s", $procName);
@@ -110,9 +114,9 @@ foreach my $node ($xPath->findnodes('//project')) {
  	    my ($success, $res, $errMsg, $errCode) =
            InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Procedures/$fileProcedureName/Steps/$fileStepName".".xml",
   					{ 'path'=> "/projects[$pName]procedures[$procName]steps[$stepName]",
-              'relocatable' => 1,
-              'withAcls'    => 1,
-              'withNotifiers' => 1});
+              'relocatable' => $relocatable,
+              'withAcls'    => $includeACLs,
+              'withNotifiers'=>$includeNotifiers});
 
         if (! $success) {
           printf("  Error exporting step %s", $stepName);
@@ -142,9 +146,9 @@ foreach my $node ($xPath->findnodes('//project')) {
     my ($success, $res, $errMsg, $errCode) =
       InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Workflows/$fileWkfName".".xml",
   					{ 'path'=> "/projects[$pName]workflowDefinitions[$wkfName]",
-              'relocatable' => 1,
-              'withAcls'    => 1,
-              'withNotifiers'=>1});
+              'relocatable' => $relocatable,
+              'withAcls'    => $includeACLs,
+              'withNotifiers'=>$includeNotifiers});
 
     if (! $success) {
       printf("  Error exporting %s", $wkfName);
@@ -167,4 +171,3 @@ exit($errorCount);
 $[/myProject/scripts/backup/safeFilename]
 
 $[/myProject/scripts/perlLibJSON]
-
