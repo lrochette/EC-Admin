@@ -1,5 +1,8 @@
+2018-08-16 Laurent Rochette <lrochette@electric-cloud.com>
+  * 3.1.2.672: Fix #130 Remove plugin Configuration page and procedures
+
 2018-07-03 Laurent Rochette <lrochette@electric-cloud.com>
-  * 3.1.0.629: Concert to PluginWizard/DSL format
+  * 3.1.0.629: Convert to PluginWizard/DSL format
 
 2018-06-14 Laurent Rochette <lrochette@electric-cloud.com>
   * 3.0.0.486: Move to Flow 6.0
