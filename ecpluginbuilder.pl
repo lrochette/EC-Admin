@@ -14,7 +14,7 @@ my $ec = new ElectricCommander->new();
 
 my $epb="../ecpluginbuilder";
 
-my $pluginVersion = "3.1.1";
+my $pluginVersion = "3.1.2";
 my $pluginKey = "EC-Admin";
 
 GetOptions ("version=s" => \$pluginVersion)
@@ -59,8 +59,8 @@ system ("$epb -pack-jar -plugin-name $pluginKey -plugin-version $pluginVersion "
 move("build/${pluginKey}.jar", ".");
 
 # Uninstall old plugin
-print "[INFO] - Uninstalling old plugin...\n";
-$ec->uninstallPlugin($pluginKey) || print "No old plugin\n";
+#print "[INFO] - Uninstalling old plugin...\n";
+#$ec->uninstallPlugin($pluginKey) || print "No old plugin\n";
 
 # Install plugin
 print "[INFO] - Installing plugin ${pluginKey}.jar...\n";

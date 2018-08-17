@@ -3,7 +3,7 @@
   <authorUrl>mailto:lrochette@electric-cloud.com</authorUrl>
   <category>Administration</category>
   <commander-version min="6.0" />
-  <configure>ec_config</configure>
+  <!-- <configure>ec_config</configure> -->
   <depends min="1.4.0">EC-PluginManager</depends>
   <description>A set of administrative tasks to help manage your server.</description>
   <help>help.xml</help>
