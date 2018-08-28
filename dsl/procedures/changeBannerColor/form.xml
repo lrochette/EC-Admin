@@ -42,10 +42,11 @@
     <documentation>The logo to display on the top left corner.</documentation>
     <type>select</type>
     <required>0</required>
-    <option>
-      <name>default</name>
-      <value>logo.png</value>
-    </option>
+    <option><name>default</name><value>logo.png</value></option>
+    <option><name>Dev (black)</name><value>logo-dev-black.gif</value></option>
+    <option><name>Dev (white)</name><value>logo-dev-white.gif</value></option>
+    <option><name>Prod (black)</name><value>logo-prod-black.gif</value></option>
+    <option><name>Prod (white)</name><value>logo-prod-white.gif</value></option>
     <value>logo.png</value>
   </formElement>
 
