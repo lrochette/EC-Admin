@@ -43,46 +43,10 @@
     <type>select</type>
     <required>0</required>
     <option>
-      <name>Development (black)</name>
-      <value>logo-DEV_black.png</value>
+      <name>default</name>
+      <value>logo.png</value>
     </option>
-    <option>
-      <name>SDK (black)</name>
-      <value>logo-SDK_black.png</value>
-    </option>
-    <option>
-      <name>Test (black)</name>
-      <value>logo-TEST_black.png</value>
-    </option>
-    <option>
-      <name>Production (Black)</name>
-      <value>logo-PROD_black.png</value>
-    </option>
-    <option>
-      <name>Development (white)</name>
-      <value>logo-DEV_white.png</value>
-    </option>
-    <option>
-      <name>SDK (white)</name>
-      <value>logo-SDK_white.png</value>
-    </option>
-    <option>
-      <name>Test (white)</name>
-      <value>logo-TEST_white.png</value>
-    </option>
-    <option>
-      <name>Production (white)</name>
-      <value>logo-PROD_white.png</value>
-    </option>
-    <option>
-      <name>Original</name>
-      <value>logo_original.gif</value>
-    </option>
-    <option>
-      <name>Original Version 6</name>
-      <value>logo-version6.gif</value>
-    </option>
-    <value>logo-version6.gif</value>
+    <value>logo.png</value>
   </formElement>
 
   <formElement>
