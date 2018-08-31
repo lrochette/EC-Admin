@@ -4,36 +4,24 @@
     <property>color</property>
     <documentation>Choose the color of your banner</documentation>
     <type>select</type>
-    <required>1</required>
-    <option>
-      <name>Red</name>
-      <value>Red</value>
-    </option>
-    <option>
-      <name>Orange</name>
-      <value>Orange</value>
-    </option>
-    <option>
-      <name>Pink</name>
-      <value>Pink</value>
-    </option>
-    <option>
-      <name>Green</name>
-      <value>Green</value>
-    </option>
-    <option>
-      <name>Purple</name>
-      <value>Purple</value>
-    </option>
-    <option>
-      <name>Yellow</name>
-      <value>Yellow</value>
-    </option>
-    <option>
-      <name>Default</name>
-      <value>Default</value>
-    </option>
+    <required>0</required>
+    <option><name>Red</name><value>Red</value></option>
+    <option><name>Orange</name><value>Orange</value></option>
+    <option><name>Pink</name><value>Pink</value></option>
+    <option><name>Green</name><value>Green</value></option>
+    <option><name>Purple</name><value>Purple</value></option>
+    <option><name>Yellow</name><value>Yellow</value></option>
+    <option><name>Default</name><value>Default</value></option>
     <value>Red</value>
+  </formElement>
+
+  <formElement>
+     <label>Color Code</label>
+     <property>colorCode</property>
+     <documentation>A color string or code accepted by a CSS so you can fill your own. This value will overwrite the color parameter if it's not blank</documentation>
+     <type>entry</type>
+     <value></value>
+     <required>0</required>
   </formElement>
 
   <formElement>
@@ -45,27 +33,31 @@
     <option><name>default</name><value>logo.png</value></option>
     <option><name>Dev (black)</name><value>logo-dev-black.gif</value></option>
     <option><name>Dev (white)</name><value>logo-dev-white.gif</value></option>
+    <option><name>Test (black)</name><value>logo-test-black.gif</value></option>
+    <option><name>Test (white)</name><value>logo-test-white.gif</value></option>
+    <option><name>QA (black)</name><value>logo-qa-black.gif</value></option>
+    <option><name>QA (white)</name><value>logo-qa-white.gif</value></option>
     <option><name>Prod (black)</name><value>logo-prod-black.gif</value></option>
     <option><name>Prod (white)</name><value>logo-prod-white.gif</value></option>
     <value>logo.png</value>
   </formElement>
 
   <formElement>
-       <label>Logo File</label>
-       <property>logoFile</property>
-       <documentation>The path on the Commander server to your personal logo to replace the default one. This value will overwrite the logo parameter if it's not blank</documentation>
-       <type>entry</type>
-       <value></value>
-       <required>0</required>
-   </formElement>
+     <label>Logo File</label>
+     <property>logoFile</property>
+     <documentation>The path on the Commander server to your personal logo to replace the default one. This value will overwrite the logo parameter if it's not blank</documentation>
+     <type>entry</type>
+     <value></value>
+     <required>0</required>
+  </formElement>
 
-   <formElement>
-        <label>Web resource</label>
-        <property>webResource</property>
-        <documentation>Name of the resource running on the webserver</documentation>
-        <type>entry</type>
-        <value>local</value>
-        <required>0</required>
-    </formElement>
+  <formElement>
+    <label>Web resource</label>
+    <property>webResource</property>
+    <documentation>Name of the resource running on the webserver</documentation>
+    <type>entry</type>
+    <value>local</value>
+    <required>0</required>
+  </formElement>
 
 </editor>

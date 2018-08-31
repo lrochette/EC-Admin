@@ -2,7 +2,9 @@ $[/myProject/scripts/perlHeaderJSON]
 use File::Copy;
 
 my $color=lc("$[color]");
+my $colorCode=lc('$[colorCode]');
 $color="#4d4d4d" if ($color eq "default");
+$color=$colorCode if ($colorCode ne "");
 
 my $cssFile= "$ENV{COMMANDER_HOME}/apache/htdocs/flow/public/app/assets/css/main.css";
 copy($cssFile,"${cssFile}_$[/timestamp YYYY-MM-dd]") or die "Copy failed: $!";

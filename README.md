@@ -242,9 +242,9 @@ go along different background colors.</td>
 <p><b>Note:</b> if you run your server and agent as different user (as recommended), the agent won't be able to modify the following files:</p>
 <ul>
 <li>INSTALL_DIR/apache/htdocs/commander/images/logo.gif</li>
-<li>INSTALL_DIR/apache/htdocs/commander/lib/images/frame_bannerBg.gif (version 4.x and later)</li>
-<li>INSTALL_DIR/apache/htdocs/commander/lib/styles/StdFrame.css (version 5.4 )</li>
-<li>INSTALL_DIR/apache/htdocs/commander/styles/StdFrame.css (version 6.0 and later)</li>
+<li>INSTALL_DIR/apache/htdocs/flow/public/app/assets/img/logo.png</li>
+<li>INSTALL_DIR/apache/htdocs/commander/styles/StdFrame.css</li>
+<li>INSTALL_DIR/apache/htdocs/flow/public/app/assets/css/main.css</li>
 </ul>
 <p>Those file permissions need to be opened so the agent user can modify them.</p>
 
