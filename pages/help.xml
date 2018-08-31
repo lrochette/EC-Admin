@@ -197,29 +197,32 @@ local agents as this should be minimized as much as possible.</p>
         </tr>
         <tr>
           <td>logoFile</td>
-          <td>The path on the Commander server to upload your own logo. If this value is not blank it will overwritten the logo parameter above.</td>
+          <td>The path on the Commander server to upload your own logo (up to
+            225x90 px). If this value is not blank it will overwritten the logo
+            parameter above.</td>
         </tr>
         <tr>
-          <td>webResource</td>
-          <td>The name of the resource running on your webserver to allow the copy of the logo and banner color files.</td>
+          <td class='required'>webResource</td>
+          <td>The name of the resource running on your webserver to allow the
+            copy of the logo and banner color files.</td>
         </tr>
 		  </tbody>
 		</table>
-		    <p><b>Note:</b> if you run your server and agent as different user (as recommended), the agent won't be able to modify the following files:</p>
-		    <ul>
-		    	<li>INSTALL_DIR/apache/htdocs/commander/images/logo.gif</li>
-          <li>INSTALL_DIR/apache/htdocs/flow/public/app/assets/img/logo.png</li>
-		    	<li>INSTALL_DIR/apache/htdocs/commander/styles/StdFrame.css</li>
-          <li>INSTALL_DIR/apache/htdocs/flow/public/app/assets/css/main.css</li>
-		    </ul>
-		    <p>Those file permissions need to be opened so the agent user can modify them.</p>
+    <p><b>Note:</b> if you run your server and agent as different user
+    (as recommended), the agent won't be able to modify the following files:</p>
+    <ul>
+    	<li>INSTALL_DIR/apache/htdocs/commander/images/logo.gif</li>
+      <li>INSTALL_DIR/apache/htdocs/flow/public/app/assets/img/logo.png</li>
+    	<li>INSTALL_DIR/apache/htdocs/commander/styles/StdFrame.css</li>
+      <li>INSTALL_DIR/apache/htdocs/flow/public/app/assets/css/main.css</li>
+    </ul>
+    <p>Those file permissions need to be opened so the agent user can modify them.</p>
 
-			<img src="../../plugins/@PLUGIN_KEY@/images/help/changeBannerColor.png"
-				 alt="changeBannerColor parameters" />
-			<p>will produce</p>
-			<img src="../../plugins/@PLUGIN_KEY@/images/help/bannerExample.png"
-				 alt="Blue Test example" />
-
+    <img src="../../plugins/@PLUGIN_KEY@/images/help/changeBannerColor.png"
+    	 alt="changeBannerColor parameters" />
+    <p>will produce</p>
+    <img src="../../plugins/@PLUGIN_KEY@/images/help/bannerExample.png"
+    	 alt="Blue Test example" />
 
 		<h1><a name="jobs"></a>Jobs and Workspaces management</h1>
 		<p>This set of procedures will help you manage your old jobs and the

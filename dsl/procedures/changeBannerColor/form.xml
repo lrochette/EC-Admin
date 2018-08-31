@@ -57,7 +57,7 @@
     <documentation>Name of the resource running on the webserver</documentation>
     <type>entry</type>
     <value>local</value>
-    <required>0</required>
+    <required>1</required>
   </formElement>
 
 </editor>

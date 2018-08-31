@@ -17,7 +17,10 @@ my @out=();
 my $foundBlock =0;
 
 my $line=$lines[0];
+# Change background color
 $line =~ s/\.context-header \.gh-background\{position:relative;height:50px;background-color:[^;]+;/.context-header .gh-background{position:relative;height:50px;background-color:$color;/;
+# Change logo
+$line =~ s!(\.context-header \.gh-background \.logo\{background-image:url)\(([^)])+\);background-repeat:no-repeat;width:\d+px;?!$1(../img/logo.png);background-repeat:no-repeat;width:225px;!;
 push (@out, $line);
 open(my $FH, "> $cssFile") || die ("Cannot open $cssFile\n");
 print $FH @out;
