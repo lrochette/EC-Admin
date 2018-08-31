@@ -6,10 +6,17 @@ procedure procName,
   description: 'A procedure to change the color of the banner to easily identify your multiple servers (DEV vs. PROD)',
   jobNameTemplate: '$[/plugins[EC-Admin]/project/scripts/jobTemplate]',
 {
+  step 'check',
+    command: new File(pluginDir, "dsl/procedures/$procName/steps/check.pl").text,
+    shell: 'ec-perl',
+    resourceName: '$[webResource]',
+    errorHandling: 'abortProcedure'
+
   step 'updateCSSPlatform',
     command: new File(pluginDir, "dsl/procedures/$procName/steps/updateCSSPlatform.pl").text,
     shell: 'ec-perl',
     resourceName: '$[webResource]'
+
   step 'updateCSSDeploy',
     command: new File(pluginDir, "dsl/procedures/$procName/steps/updateCSSDeploy.pl").text,
     shell: 'ec-perl',

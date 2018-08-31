@@ -3,6 +3,8 @@ use File::Copy;
 
 my $color=lc("$[color]");
 $color="#000000" if ($color eq "default");
+my $colorCode=lc('$[colorCode]');
+$color=$colorCode if ($colorCode ne "");
 
 my $cssFile= "$ENV{COMMANDER_HOME}/apache/htdocs/commander/lib/styles/StdFrame.css";
 
