@@ -1,7 +1,8 @@
 2018-08-30 Laurent Rochette <lrochette@electric-cloud.com>
-  * 3.1.3.690:
+  * 3.1.3.693:
     Fix #84 Allow banner color change on deploy side as well
     You can now choose your own color
+    Fix #136 Logo is now visible also on deploy side
 
 2018-08-16 Laurent Rochette <lrochette@electric-cloud.com>
   * 3.1.2.672: Fix #130 Remove plugin Configuration page and procedures
