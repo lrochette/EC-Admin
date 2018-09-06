@@ -39,6 +39,7 @@ $[/server/ec_notifierTemplates/Html_JobTempl/body]'''
     subprocedure: 'saveAllObjects',
     actualParameter: [
       caseSensitive: '',
+      exportArtifacts: 'false',
       exportDeploy: 'false',
       exportGateways: 'false',
       exportGroups: 'false',

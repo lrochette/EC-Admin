@@ -10,7 +10,8 @@ History:
 2014-02-27 Kate McCormack  Adding setTimeout equal to 600 so the ec commands
                            won't time out
 2015-10-08 lrochette    Add step export as well
-2018-06-15  lrochette   Convert to PluginWizard DSL format
+2018-06-15 lrochette    Convert to PluginWizard DSL format
+2018-09-05 lrochette    Issue #72: added artifact and artifact versions
 */
 
 def procName= 'saveAllObjects'
@@ -94,6 +95,12 @@ All steps need to run on the same host''',
     condition: '$[exportGroups]',
     resourceName: '$[/myJob/backupResource]',
     shell: 'ec-perl'
+
+  step 'saveArtifacts',
+      command: new File(pluginDir, "dsl/procedures/$procName/steps/saveArtifacts.pl").text,
+      condition: '$[exportArtifacts]',
+      resourceName: '$[/myJob/backupResource]',
+      shell: 'ec-perl'
 
   step 'saveDeployObjects',
     command: new File(pluginDir, "dsl/procedures/$procName/steps/saveDeployObjects.pl").text,
