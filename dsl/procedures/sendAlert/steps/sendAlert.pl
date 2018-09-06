@@ -14,7 +14,7 @@ my $mailConfig = "$[config]";
 # Global variables
 #
 ###################################################################
-my $MAX = 10000;
+my $MAX = 1000;
 my @mailingList=();
 my %emailList=();
 
