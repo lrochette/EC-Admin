@@ -1,4 +1,5 @@
 2018-09-07 Laurent Rochette <lrochette@electric-cloud.com>
+  * 3.1.6.709: Fix #143 Add recursive option to restoreObjects
   * 3.1.5.706: Fix #135 re-add schedules that did not make the trip to PluginWizard
 
 2018-09-05 Laurent Rochette <lrochette@electric-cloud.com>
