@@ -45,6 +45,69 @@ project pluginName, {
 		}
 	}
 
+	// Schedules
+	schedule 'CleanJobs',
+	  description: 'A Schedule to automatically delete jobs older than 30 days',
+	  misfirePolicy: 'runOnce',
+	  procedureName: 'jobsCleanup',
+	  scheduleDisabled: '1',
+	  startTime: '2:00',
+	  weekDays: 'Tuesday Friday',
+	  actualParameter : [
+	    computeUsage: 'false',
+	    executeDeletion: 'true',
+	    jobLevel: 'All',
+	    jobProperty: 'doNotDeleteThisJob',
+	    olderThan: '30'
+	  ]
+
+	schedule 'licenseLogger-reporter',
+	  description: 'Generates and (optionally) emails the periodic license report',
+	  misfirePolicy: 'runOnce',
+	  monthDays: '2',
+	  procedureName: 'licenseLogger-report',
+	  scheduleDisabled: '1',
+	  startTime: '8:00',
+	  actualParameter: [
+	    sendEmail: 'true'
+	  ]
+
+	schedule 'licenseLogger-snapshot',
+	  description: 'Gathers a periodic snapshot of license usage',
+	  interval: '5',
+	  intervalUnits: 'minutes',
+	  misfirePolicy: 'ignore',
+	  procedureName: 'licenseLogger-snapshot',
+	  scheduleDisabled: '1',
+	  startTime: '0:02',
+	  stopTime: '23:59'
+
+	schedule 'weeklySaveProjects',
+	  description: 'Export weekly a bunch of objects for grnualrity',
+	  misfirePolicy: 'runOnce',
+	  procedureName: 'saveAllObjects',
+	  scheduleDisabled: '1',
+	  startTime: '4:30',
+	  weekDays: 'Tuesday Thursday Saturday',
+	  actualParameter: [
+	    exportDeploy: 			 'true',
+	    exportGroups:        'true',
+	    exportResourcePools: 'true',
+	    exportResources: 		 'true',
+	    exportUsers: 				 'true',
+	    exportWorkspaces: 	 'true',
+			exportArtifacts: 		 'true',
+			exportGateways: 		 'true',
+			exportSteps: 				 'true',
+			exportZones: 				 'true',
+			includeACLs: 				 'true',
+			includeNotifiers: 	 'true',
+	    pathname: 					 '/tmp/BACKUP',
+			pattern: 						 '',
+			caseSensitive:       '',
+			relocatable: 				 'true'
+
+	  ]
 }
 
 // Copy existing plugin configurations from the previous
