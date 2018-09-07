@@ -21,6 +21,12 @@ procedure procName,
     required: '1',
     type: 'entry'
 
+  formalParameter 'recursive',
+    description: 'Load files in sub-directories as well',
+    defaultValue: 'false',
+    required: '0',
+    type: 'checkbox'
+
   formalParameter 'force',
     defaultValue: 'false',
     required: '0',
