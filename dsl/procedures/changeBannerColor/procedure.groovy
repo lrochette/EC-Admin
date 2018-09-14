@@ -23,26 +23,22 @@ procedure procName,
     resourceName: '$[webResource]'
 
   step 'copyLogoFilePlatform',
-    subprocedure: 'Remote Copy - Native',
+    subprocedure: 'Copy',
     subproject: '/plugins/EC-FileOps/project',
+    resourceName: '$[webResource]',
     actualParameter: [
-       destinationFile: '$[/server/Electric Cloud/installDirectory]/apache/htdocs/commander/images/logo.gif',
-      destinationResourceName: '$[webResource]',
-      destinationWorkspaceName: 'default',
+      destinationFile: '$[/server/Electric Cloud/installDirectory]/apache/htdocs/commander/images/logo.gif',
       sourceFile: '$[/javascript ("$[logoFile]" == "")? "$[/server/settings/pluginsDirectory]/$[/myProject]/htdocs/$[logo]" : "$[logoFile]" ;]',
-      sourceResourceName: 'local',
-      sourceWorkspaceName: 'default'
+      replaceDestinationIfPreexists: '1'
     ]
 
   step 'copyLogoFileDeploy',
-    subprocedure: 'Remote Copy - Native',
+    subprocedure: 'Copy',
     subproject: '/plugins/EC-FileOps/project',
+    resourceName: '$[webResource]',
     actualParameter: [
       destinationFile: '$[/server/Electric Cloud/installDirectory]/apache/htdocs/flow/public/app/assets/img/logo.png',
-      destinationResourceName: '$[webResource]',
-      destinationWorkspaceName: 'default',
       sourceFile: '$[/javascript ("$[logoFile]" == "")? "$[/server/settings/pluginsDirectory]/$[/myProject]/htdocs/$[logo]" : "$[logoFile]" ;]',
-      sourceResourceName: 'local',
-      sourceWorkspaceName: 'default'
+      replaceDestinationIfPreexists: '1'
     ]
 }

@@ -1,3 +1,6 @@
+2018-09-13 Laurent Rochette <lrochette@electric-cloud.com>
+  * 3.1.7.711: Fix #140 Change logo file copy to to simple Copy for changeBannerColor
+
 2018-09-07 Laurent Rochette <lrochette@electric-cloud.com>
   * 3.1.6.709: Fix #143 Add recursive option to restoreObjects
   * 3.1.5.706: Fix #135 re-add schedules that did not make the trip to PluginWizard
