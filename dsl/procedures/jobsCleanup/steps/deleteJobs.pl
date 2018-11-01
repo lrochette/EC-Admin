@@ -178,6 +178,8 @@ do {
           $ec->createJobStep({
               subprocedure=>"subJC_deleteWorkspace",
               jobStepName => "Delete $jobStepWks-$jobStepHost-$totalNbSteps",
+              timeLimit => "5",
+              timeLimitUnits => "minutes",
               actualParameter => [
                 {actualParameterName => "computeUsage",    value => $computeUsage},
                 {actualParameterName => "executeDeletion", value => $executeDeletion},
