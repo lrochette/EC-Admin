@@ -14,7 +14,7 @@ my $ec = new ElectricCommander->new();
 
 my $epb="../ecpluginbuilder";
 
-my $pluginVersion = "3.1.8";
+my $pluginVersion = "3.1.9";
 my $pluginKey = "EC-Admin";
 
 GetOptions ("version=s" => \$pluginVersion)
@@ -65,11 +65,11 @@ move("build/${pluginKey}.jar", ".");
 # Install plugin
 print "[INFO] - Installing plugin ${pluginKey}.jar...\n";
 system ('date');
-$ec->installPlugin("${pluginKey}.jar");
+$ec->installPlugin("${pluginKey}.jar", {timeout => 420});
 system ('date');
 
 # Promote plugin
 print "[INFO] - Promoting plugin...\n";
 system ('date');
-$ec->promotePlugin($pluginName);
+$ec->promotePlugin($pluginName, {timeout => 420});
 system ('date');

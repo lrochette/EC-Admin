@@ -176,7 +176,18 @@ email notifiers or lastModifiedBy information, and the export file result will b
     <formElement>
         <label>Backup Deploy</label>
         <property>exportDeploy</property>
-        <documentation>Boolean to export Deploy objects. Require Commander 5.x</documentation>
+        <documentation>Boolean to export Deploy objects.</documentation>
+        <type>checkbox</type>
+        <checkedValue>true</checkedValue>
+        <uncheckedValue>false</uncheckedValue>
+        <initiallyChecked>1</initiallyChecked>
+        <value>true</value>
+    </formElement>
+
+    <formElement>
+        <label>Server Properties</label>
+        <property>exportServerProperties</property>
+        <documentation>Boolean to export Server properties.</documentation>
         <type>checkbox</type>
         <checkedValue>true</checkedValue>
         <uncheckedValue>false</uncheckedValue>

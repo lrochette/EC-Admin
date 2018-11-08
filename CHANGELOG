@@ -1,3 +1,6 @@
+2018-11-08 Laurent Rochette <lrochette@electric-cloud.com>
+  * 3.1.9.719: Fix #151 saveAllObjects export server properties
+
 2018-09-14 Laurent Rochette <lrochette@electric-cloud.com>
   * 3.1.8.715: Fix #144 Issue promoting on Windows
 
