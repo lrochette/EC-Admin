@@ -25,6 +25,7 @@ procedure procName,
   Workspaces
   Users
   Groups
+  Server Properties
 ''',
   // Need full path or else scheduled jobs don't work
   jobNameTemplate: '$[/plugins/EC-Admin/project/scripts/jobTemplate]',
@@ -105,6 +106,12 @@ All steps need to run on the same host''',
   step 'saveDeployObjects',
     command: new File(pluginDir, "dsl/procedures/$procName/steps/saveDeployObjects.pl").text,
     condition: '$[exportDeploy]',
+    resourceName: '$[/myJob/backupResource]',
+    shell: 'ec-perl'
+
+  step 'saveServerProperties',
+    command: new File(pluginDir, "dsl/procedures/$procName/steps/saveServerProperties.pl").text,
+    condition: '$[exportServerProperties]',
     resourceName: '$[/myJob/backupResource]',
     shell: 'ec-perl'
 }
