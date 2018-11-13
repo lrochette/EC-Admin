@@ -1,0 +1,28 @@
+$[/myProject/scripts/perlHeader]
+$[/myProject/scripts/perlLib]
+
+sub checkValue
+{
+  my $test=shift; # the test to perform
+  my $value=shift; # the value to test
+  my $summary=shift; # the summary to display on the job page
+
+  printf("Value to test: %s\n", $value) if ($DEBUG);
+  printf("Checking Performance for %s: ", $test);
+ 
+  InvokeCommander("SuppressLog", "setProperty", "summary", $summary);
+  if (eval $value . getP("/myProject/performances/$test/BAD")) {
+    printf("BAD\n");
+    InvokeCommander("SuppressLog", "setProperty", "outcome", "warning");
+    return -1;
+  } elsif (eval $value . getP("/myProject/performances/$test/GOOD")) {
+    printf("GOOD\n");
+    return 0;
+  } elsif(eval $value . getP("/myProject/performances/$test/BEST")) {
+    printf("BEST\n");
+    return +1;
+  } else {
+    printf ("\nTest for %s does not resolve. Verify your values in the performances property sheet\n", $test);
+    exit (2);
+  }
+} 

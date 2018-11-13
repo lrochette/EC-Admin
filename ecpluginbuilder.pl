@@ -10,11 +10,11 @@ use File::Copy;
 
 use ElectricCommander ();
 $| = 1;
-my $ec = new ElectricCommander->new();
+my $ec = new ElectricCommander->new({timeout => 420});
 
 my $epb="../ecpluginbuilder";
 
-my $pluginVersion = "3.1.9";
+my $pluginVersion = "3.2.0";
 my $pluginKey = "EC-Admin";
 
 GetOptions ("version=s" => \$pluginVersion)
@@ -53,7 +53,6 @@ system ("$epb -pack-jar -plugin-name $pluginKey -plugin-version $pluginVersion "
  " -folder dsl" .
  " -folder htdocs" .
  " -folder lib" .
- " -folder lib5" .
  " -folder pages");
 
 move("build/${pluginKey}.jar", ".");
@@ -65,11 +64,12 @@ move("build/${pluginKey}.jar", ".");
 # Install plugin
 print "[INFO] - Installing plugin ${pluginKey}.jar...\n";
 system ('date');
-$ec->installPlugin("${pluginKey}.jar", {timeout => 420});
+$ec->installPlugin("${pluginKey}.jar");
 system ('date');
+print "\n";
 
 # Promote plugin
 print "[INFO] - Promoting plugin...\n";
 system ('date');
-$ec->promotePlugin($pluginName, {timeout => 420});
+$ec->promotePlugin($pluginName);
 system ('date');

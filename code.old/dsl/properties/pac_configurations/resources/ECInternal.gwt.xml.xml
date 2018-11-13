@@ -1,0 +1,19 @@
+<module>
+  <inherits name="com.google.gwt.resources.Resources"/>
+  <inherits name="com.google.gwt.i18n.I18N"/>
+  <inherits name="com.google.gwt.inject.Inject"/>
+  <inherits name="com.electriccloud.commander.gwt.ComponentBase"/>
+  <!-- Enable SafeHTML template mode for UiBinder for safety. -->
+  <inherits name="com.google.gwt.logging.Logging"/>
+  <set-property name="gwt.logging.popupHandler" value="DISABLED"/>
+  <inherits name="com.gwtplatform.mvp.Mvp"/>
+
+  <define-configuration-property
+    name="gin.ginjector"
+    is-multi-valued="false"/>
+  <set-configuration-property
+    name="gin.ginjector"
+    value="ecinternal.client.gin.CommanderGinjector"/>
+
+  <extend-property name="locale" values="ja,ko,zh"/>
+</module>
