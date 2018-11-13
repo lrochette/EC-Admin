@@ -47,9 +47,7 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 		<ul>
       <li><a href="#health">System Health</a></li>
         <ul>
-          <li>agentMemoryConfiguration</li>
           <li>testResources</li>
-          <li>performanceMetrics</li>
         </ul>
 
 			<li><a href="#look">Look and Feel</a></li>
@@ -68,8 +66,6 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 			<li><a href="#plugin">Plugins</a></li>
         <ul>
           <li>synchronizePlugins</li>
-          <li>createPluginFromProject (deprecated)</li>
-          <li>projectAsCode</li>
         </ul>
 
 			<li><a href="#artifacts">Artifacts management</a></li>
@@ -113,35 +109,6 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 	    parameters are shown in <span class="required">bold italics</span>.</p>
 
     <h1><a name="health"></a>System Health</h1>
-    <h2>agentMemoryConfiguration</h2>
-    <p>This procedure allows you to change the Java heap memory setting of your
-      agents. Electric Cloud support recommend increasing the default for agents
-      with a heavier load like the repository server agent, gateway agent and
-      web server agent.</p>
-      <table class="grid">
-        <thead><tr><th>Parameter</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr>
-            <td class='required'>agent</td>
-            <td>The name of the resource on which the agent is located.</td>
-          </tr>
-          <tr>
-            <td class='required'>init memory</td>
-            <td>The amount of init memory to assign to the Java heap. It can be
-                indicated in Mb or as a % of the toal memory.</td>
-          </tr>
-          <tr>
-            <td class='required'>max memory</td>
-            <td>The maximum amount of memory to assign to the Java heap. It can be
-                indicated in Mb or as a % of the toal memory.</td>
-          </tr>
-          <tr>
-            <td>restartAgent</td>
-            <td>On Linux the agent service is restarted, on Windows the box is
-              rebooted.</td>
-          </tr>
-        </tbody>
-      </table>
 
     <h2>testResources</h2>
     <p>This procedure is simply to test connection to all your resources or a
@@ -159,13 +126,6 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
       </tbody>
     </table>
 
-    <h2><a name="perf"></a>performanceMetrics</h2>
-		<p>This procedure returns some information about your
-			ElectricCommander server like number of processors, total RAM,
-			available RAM,
-ping times with agents, relative performance of agents, ...
-In addition it checks the amount of time spent running steps on the server
-local agents as this should be minimized as much as possible.</p>
 
 		<h1><a name="look"></a>Look and Feel</h1>
 		<h2>changeBannerColor</h2>
@@ -291,184 +251,6 @@ directories. This is for customers with huge job or workflow database.</p>
 		a resource. Plugins are uploaded first as artifacts if it has not been
 		done already and then downloaded on the resource if it does not
 		already exist in the plugins directory.</p>
-
-		<h2>Plugin creation</h2>
-		<h3>createPluginFromProject</h3>
-    <p><b>Note:</b> This procedure has been obsoleted by "projectAsCode". It is
-      not supported anymore.</p>
-
-
-		<h3>projectAsCode</h3>
-
-		<p><b>Note:</b> This procedure requires access to a resource with the
-			Commander SDK installed.</p>
-
-		<p>This procedure is an extension of createPluginFromProject. It also
-		creates a plugin but instead of simply exporting the project, it
-		"explodes" each step in its own file for finer granularity check in
-		in your favorite SCM tool.<br/>You can also add automatically a
-		mechanism to add credential/configuration management to you plugin.</p>
-
-		    <table class="grid">
-		        <thead>
-		            <tr>
-		                <th>Parameter</th>
-		                <th>Description</th>
-		            </tr>
-		        </thead>
-
-		        <tbody>
-					<tr>
-			        	<td class='required'>Project</td>
-						<td>The name of the project to transform into a plugin</td>
-		            </tr>
-					<tr>
-			        	<td>Plugin</td>
-						<td>The name of the plugin. If left empty, it will default to
-					the project name.</td>
-		            </tr>
-					<tr>
-			        	<td>Category</td>
-						<td>The category of the plugin. It helps filter the plugin list in
-					the Plugins page and in the picker list.</td>
-		            </tr>
-					<tr>
-			        	<td  class='required'>Version</td>
-						<td>Version of the plugin to create. A build number is automatically
-							added (after incrementation) to ensure uniq version numbers.</td>
-		            </tr>
-					<tr>
-			        	<td>Description</td>
-						<td>The description of the plugin to display in the main
-						plugin page. If left empty it will default to the
-						description of the project.</td>
-		            </tr>
-					<tr>
-			        	<td>Author</td>
-						<td>Name of he author of the project to transform into a plugin.</td>
-		            </tr>
-					<tr>
-			        	<td>Email</td>
-						<td>The email of the author.</td>
-		            </tr>
-					<tr>
-			        	<td>Comment</td>
-						<td>if this parameter is not empty, it will be added to the CHANGELOG for traceabiity.</td>
-		            </tr>
-					<tr>
-			        	<td>Directory</td>
-						<td>The name of the directory where to create the complete file structure. Typically a directory you will check in in your SCM.</td>
-		            </tr>
-					<tr>
-			        	<td>SDK resource</td>
-						<td>The name of an agent where the Commander SDK is installed. Required to build the plugin.</td>
-		            </tr>
-					<tr>
-			        	<td>SDK Location</td>
-						<td>The path where the Commander SDK is installed on the above resources..</td>
-		            </tr>
-					<tr>
-			        	<td>fixSelfReferences</td>
-						<td>Replace self references to the project in sub-prceodure calls by an empty string to be sure the plugins= created will not call the original project instead of itself.</td>
-		            </tr>
-					<tr>
-			        	<td>overwrite</td>
-						<td>if the ec_setup.pl already exists, it is not overwritten. Check this parameter overwrite with a content dynamically generated based on project properties.</td>
-		            </tr>
-					<tr>
-			        	<td>disableCleanup</td>
-						<td>Prevents the exported project file to be deleted. It can be an issue when  the agent and server run as different users.</td>
-		            </tr>
-					<tr>
-			        	<td>projectAsCode</td>
-						<td>Include a bit of code to revert the plugin to a
-							project upon promotion if this option is checked.</td>
-		            </tr>
-					<tr>
-			        	<td>createArtifact</td>
-						<td>Save the new created plugin as an artifact version.</td>
-		            </tr>
-					<tr>
-			        	<td>installPlugin</td>
-						<td>A Boolean to install or not the plugin after creation</td>
-		            </tr>
-					<tr>
-			        	<td>promotePlugin</td>
-						<td>A Boolean to promote or not the plugin after installation</td>
-		            </tr>
-					<tr>
-			        	<td>moveJobs</td>
-						<td>A Boolean to move or not jobs from the previous
-							version into the current one upon promotion.</td>
-		            </tr>
-		        </tbody>
-		    </table>
-
-			<img src="../../plugins/@PLUGIN_KEY@/images/help/projectAsCode.png"
-				 alt="projectAsCode parameters" />
-
-      <p>At the project level, you can define the following properties to
-       			alter the behavior of the plugin creation:</p>
- 			<dl>
- 				<dt><b>ec_visibility:</b></dt>
- 				<dd>Choose <b>all</b> to have the plugin shows in the project
- 					list (like EC-Admin), or <b>pickListOnly</b> (default) to
- 					have your procedures available only through the plugin
- 					procedure picker (when you choose plugin as a step).</dd>
- 				<dt><b>help:</b></dt>
- 				<dd>This property allows you to create a Help page associated
- 					with your plugin. The page you are currently reading is
- 					created this way so feel free to explore the help property
- 					 in the EC-Admin plugin/project for an example.</dd>
- 				<dt><b>promoteAction</b></dt>
- 				<dd>This property would contain some Perl code to take action
- 					when the plugin change state. Look at the ec_setup property
- 					in the plugins installed on your system to get a better idea
- 					of what you can accomplish.<br/>
- 					For example to set a property hwne the plugin is pomoted
- 					you could add the the following code to the promoteAction
- 					procedure:<br/>
- 					<pre><code>
- if ( $promoteAction eq 'promote' ) {
-     $batch->setProperty( "/projects/$pluginName/addedByPromote", "123" );
- }
- 					</code></pre>
- 				</dd>
-				<dt><b>configureCredentials:</b></dt>
-				<dd>this property will indicate to EC-Admin to code to help create configuration to manage credentials for your plugin. It adds:
-					<ul>
-						<li>A procedure name "createConfiguration". You need to modify the code of the step "createAndAttachCredential" in order to reference your own procedures and steps where you want to attach those credentials.</li>
-						<li>Some cgi-bin scripts.</li>
-						<li>Some java code to manage the different UI to create, edit and delete configurations.</li>
-						<li>A "configure" link for your plugin on the pluginManager page.</li>
-					</ul>
-				Once the procedures and steps have been created, they will not be overwritten so it's safe to modify them to acoomodate your own needs.
-				</dd>
-
-				<dt><b>filesToCopy:</b></dt>
-				<dd>This property will indicate to the ant plugin builder to add files and directories to your jar file. It will create an entry for the filesToCopy.extras in your build.xml. For example, EC-Admin includes lib/*.jar that is used to manage the configurations required for the credentials.</dd>
-				<dt><b>pluginDependencies:</b></dt>
-				<dd>This property allows you to add plugin dependencies that need to be satisfied before you ca install the plugin. Put a a line per dependency with each line being PLUGIN:VERSION</dd>
-			</dl>
-
-      <p>In addition each procedure can modify the behavior with the
-  			following 2 properties:</p>
-  			<dl>
-  				<dt><b>exposeToPlugin:</b></dt>
-  				<dd>This property if set to 1 will add the procedure to
-  					ec_setup to be shown in the procedure picker list when
-  					choosing a plugin step.</dd>
-  				<dt><b>descriptionForPlugin:</b></dt>
-  				<dd>This property will be shown as the description in the
-  					picker list mentioned above. If it's empty or non-existent,
-  					 the description will be description of the procedure
-  					 itself.</dd>
-  			</dl>
-
-
-		<p><b>Note:</b> EC-Admin is released on
-		<a href="https://github.com/electriccommunity/EC-Admin">GitHub</a> using
-		this procedure.</p>
 
 		<h1><a name="artifacts"></a>Artifact Management</h1>
 

@@ -53,7 +53,6 @@ system ("$epb -pack-jar -plugin-name $pluginKey -plugin-version $pluginVersion "
  " -folder dsl" .
  " -folder htdocs" .
  " -folder lib" .
- " -folder lib5" .
  " -folder pages");
 
 move("build/${pluginKey}.jar", ".");
@@ -67,6 +66,7 @@ print "[INFO] - Installing plugin ${pluginKey}.jar...\n";
 system ('date');
 $ec->installPlugin("${pluginKey}.jar");
 system ('date');
+print "\n";
 
 # Promote plugin
 print "[INFO] - Promoting plugin...\n";
