@@ -36,7 +36,10 @@ project pluginName, {
 			}
 		}
 	}
-	property 'pac_configurations', {
+/*
+  the whole projectAsCode has been archived
+  
+  property 'pac_configurations', {
 		property 'cgi-bin', {
 			property 'jobMonitor.cgi', description: 'Monitors a job: waits for it to complete and reports on its success or failure.'
 		}
@@ -44,7 +47,7 @@ project pluginName, {
 			property 'createConfigForm', description: 'Form to create new configuration'
 		}
 	}
-
+*/
 	// Schedules
 	schedule 'CleanJobs',
 	  description: 'A Schedule to automatically delete jobs older than 30 days',

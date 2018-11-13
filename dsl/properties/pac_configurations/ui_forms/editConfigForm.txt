@@ -1,9 +1,0 @@
-<editor>
-        <formElement>
-        <type>credential</type>
-        <label>Login as:</label>
-        <property>credential</property>
-        <value></value>
-        <required>0</required>
-    </formElement>
-</editor>

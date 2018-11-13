@@ -1,0 +1,52 @@
+# -*-Perl-*-
+
+# projectAsCode.ntest -
+#
+# Test the projectAsCode procedure of EC-Admin plugin
+#
+# Copyright (c) 2015 Electric Cloud, Inc.
+# All rights reserved
+
+use strict;
+use warnings;
+use ECTest;
+
+initCommander();
+$::N=$adminSession;
+
+my $pluginKey = "EC-Admin";
+my $xpath = $::N->getPlugin($pluginKey);
+my $pluginName = $xpath->findvalue("//pluginName")->value;
+
+#-------------------------------------------------------------------------------
+# Test procedure present.
+#-------------------------------------------------------------------------------
+ntest "pac_procedures", {}, sub {
+    assertOK($::N->getProcedure($pluginName, "projectAsCode"), "procedure projectAsCode is missing");
+    assertOK($::N->getProcedure($pluginName, "sub-pac_createConfigurationCode"), "procedure sub-pac_createConfigurationCode is missing");
+};
+
+
+#-------------------------------------------------------------------------------
+# Test required properties are present
+#-------------------------------------------------------------------------------
+ntest "pac_properties", {}, sub {
+  my @propList = (
+  	"pac_configurations/cgi-bin/jobMonitor.cgi",
+  	"pac_configurations/cgi-bin/plugin.cgi",
+  	"pac_configurations/java/ConfigurationList.java",
+  	"pac_configurations/java/ConfigurationManagementFactory.java",
+    "pac_configurations/java/CreateCOnfiguration.java",
+    "pac_configurations/java/PluginConfigList.java",
+    "pac_configurations/java/PluginConfigListLoader.java",
+  	"pac_configurations/resources/ConfigurationManagement.gwt.xml",
+    "pac_configurations/resources/ECInternal.gwt.xml",
+  	"pac_configurations/ui_forms/createConfigForm",
+    "pac_configurations/ui_forms/editConfigForm"
+  );
+  foreach my $prop (@propList) {
+    assertOK($::N->getProperty($prop, {expand => 0, projectName => $pluginName}), "Could not find property $prop");
+  }
+};
+
+1;
