@@ -21,7 +21,7 @@ $[/myProject/scripts/perlHeaderJSON]
 #############################################################################
 my $executeDeletion = "$[executeDeletion]";
 my $computeUsage    = "$[computeUsage]";
-my $winDir          = "$[winDir]";
+my $winDir          = '$[winDir]';
 my $linDir		    = "$[linDir]";
 
 my $wksDir="";
