@@ -1,3 +1,6 @@
+2018-11-13 David Hubbell <dhubbell@spkaa.com>
+  * 3.2.1.726: fix #154: jobsCleanup fails when trying to expand windows path
+
 2018-11-13 Laurent Rochette <lrochette@electric-cloud.com>
   * 3.2.0.725: Remove old and unused procedures to speed up promotion
 
