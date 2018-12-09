@@ -561,6 +561,12 @@ be done. It's up to the user to make any change.</p>
 <dd>Laurent Rochette (<a href="mailto:lrochette@electric-cloud.com">lrochette@electric-cloud.com</a>)</dd>
 </dl>
 
+<h1>Thanks</h1>
+<p>Thanks to Mark Hall for providing the Dev and Prod logos for
+  changeBannerColor.</p>
+<p>Thanks to <a href="mailto:dhubbell@spkaa.com">David Hubbell</a> for his
+constant flow of fixes to my poor code.</p>
+
 <h1>Legal Jumbo</h1>
 
 <p>This module is free for use. Modify it however you see fit to better your
