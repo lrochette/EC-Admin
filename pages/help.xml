@@ -6,7 +6,7 @@
 <head>
 	<meta content="text/html; charset=us-ascii" http-equiv="content-type" />
 	<title>@PLUGIN_KEY@ Plugin</title>
-    <link rel="stylesheet" href= "../../plugins/EC-Admin/pluginhelp.css" type="text/css" media= "screen" />
+    <link rel="stylesheet" href= "../../plugins/@PLUGIN_KEY@/pluginhelp.css" type="text/css" media= "screen" />
 </head>
 
 <body>
@@ -557,6 +557,8 @@ properties can be set up:</p>
   <h1>Thanks</h1>
   <p>Thanks to Mark Hall for providing the Dev and Prod logos for
     changeBannerColor.</p>
+  <p>Thanks to <a href="mailto:dhubbell@spkaa.com">David Hubbell</a> for his
+  constant flow of fixes to my poor code.</p>
 
 	<h1>Legal Jumbo</h1>
 
