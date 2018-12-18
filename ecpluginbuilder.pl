@@ -10,7 +10,7 @@ use File::Copy;
 
 use ElectricCommander ();
 $| = 1;
-my $ec = new ElectricCommander->new({timeout => 420});
+my $ec = new ElectricCommander->new({timeout => 600});
 
 my $epb="../ecpluginbuilder";
 
