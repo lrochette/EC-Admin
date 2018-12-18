@@ -1,5 +1,5 @@
 2018-12-18 Laurent Rochette <lrochette@electric-cloud.com>
-  * 3.2.2.729: Fix #158: max the number of job deleted in jobsCleanup (NMB-24602 and NMB-25946)
+  * 3.2.2.730: Fix #158: max the number of job deleted in jobsCleanup (NMB-24602 and NMB-25946)
 
 2018-12-09 Laurent Rochette <lrochette@electric-cloud.com>
   * 3.2.1.728: Fix #156: references to src are not valid anymore
