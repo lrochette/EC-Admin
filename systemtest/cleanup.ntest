@@ -61,36 +61,36 @@ ntest "Issue_18_humanSize", {}, sub {
 #  and return the summary and outcome
 #-------------------------------------------------------------------------------
 sub callJobsCleanup{
-    my ($computeUsage, $executeDeletion, $jobLevel, $pattern, $jobProp, $days,
-        $jobNameSuffix)=@_;
+  my ($computeUsage, $executeDeletion, $jobLevel, $pattern, $jobProp, $days,
+      $jobNameSuffix)=@_;
 
-    my $xpath = $::N->runProcedure($pluginName, {
-        procedureName=>"jobsCleanup",
-        actualParameter=>[
-            {actualParameterName=>"computeUsage", value=>$computeUsage},
-            {actualParameterName=>"executeDeletion", value=>$executeDeletion},
-            {actualParameterName=>"jobLevel", value=>$jobLevel},
-            {actualParameterName=>"jobPatternMatching", value=>$pattern},
-            {actualParameterName=>"jobProperty", value=>$jobProp},
-            {actualParameterName=>"olderThan", value=>$days}
-        ]});
-    assertOK($xpath, "Failed to launch ${pluginName}::jobsCleanup");
-    if ($xpath) {
-        #get new Job ID
-        my $jobId  = $xpath->findvalue("//jobId");
-		    $::N->setJobName($jobId, "jobsCleanup_" . $jobNameSuffix . '_' .
-			     $::N->getProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
-        waitForJob($jobId);
-        my $jobData  = $::N->getJobDetails($jobId);
+  my $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"jobsCleanup",
+    actualParameter=>[
+      {actualParameterName=>"computeUsage", value=>$computeUsage},
+      {actualParameterName=>"executeDeletion", value=>$executeDeletion},
+      {actualParameterName=>"jobLevel", value=>$jobLevel},
+      {actualParameterName=>"jobPatternMatching", value=>$pattern},
+      {actualParameterName=>"jobProperty", value=>$jobProp},
+      {actualParameterName=>"olderThan", value=>$days}
+    ]});
+  assertOK($xpath, "Failed to launch ${pluginName}::jobsCleanup");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, "jobsCleanup_" . $jobNameSuffix . '_' .
+	     $::N->getProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
 
-        my $jsId = $jobData->findvalue("//job/jobStep[stepName='deleteJobs']/jobStepId");
-        my $summary=$::N->getProperty("summary", {jobStepId=>$jsId})->findvalue("//value");
-        my $outcome = $jobData->findvalue("//job/outcome");
-	my $nbJobs = $::N->getProperty("numberOfJobs", {jobId => $jobId})->findvalue("//value");
+    my $jsId = $jobData->findvalue("//job/jobStep[stepName='deleteJobs']/jobStepId");
+    my $summary=$::N->getProperty("summary", {jobStepId=>$jsId})->findvalue("//value");
+    my $outcome = $jobData->findvalue("//job/outcome");
+    my $nbJobs = $::N->getProperty("numberOfJobs", {jobId => $jobId})->findvalue("//value");
 
-        return($summary, $outcome, $nbJobs, $jobId);
-    }
-    return("", "", -1);
+    return($summary, $outcome, $nbJobs, $jobId);
+  }
+  return("", "", -1);
 }
 
 #-------------------------------------------------------------------------------
