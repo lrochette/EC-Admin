@@ -24,8 +24,8 @@ my $executeDeletion = "$[executeDeletion]";
 my $jobLevel        = "$[jobLevel]";
 my $jobPattern      = "$[jobPatternMatching]";
 my $computeUsage    = "$[computeUsage]";
-
 my $currentResource = "$[assignedResourceName]";  # Resource used to run this
+my $maxJobs         = $[maxObjects];              # Limiting the number of Objects returned
 
 #############################################################################
 #
@@ -38,7 +38,6 @@ my $totalNbSteps=0;          # Number of steps to evaluate DB size
 my $DBStepSize=10240;        # Step is about 10K in DB
 $ec->setProperty("/myJob/totalDiskSpace", 0); #Space on disk
 
-my $MAXJOBS=5000;            # Limiting the number of Objects returned
 my $nbObjs;                  # Number of Objects returned
 
 my $DEBUG=0;
@@ -49,7 +48,7 @@ my $DEBUG=0;
 #
 #############################################################################
 
-printf("%s jobs older than $timeLimit days (%s).\n",
+printf("%s $maxJobs jobs older than $timeLimit days (%s).\n",
     $executeDeletion eq "true"?"Deleting":"Reporting",
     calculateDate($timeLimit));
 printf("  Skipping over \"%s\" jobs.\n\n", $jobPattern) if ($jobPattern ne "");
@@ -91,8 +90,8 @@ if ($jobLevel eq "Aborted") {
 my ($success, $xPath);
 do {
     ($success, $xPath) = InvokeCommander("SuppressLog", "findObjects", "job",
-                                        {maxIds => $MAXJOBS,
-                                         numObjects => $MAXJOBS,
+                                        {maxIds => $maxJobs,
+                                         numObjects => $maxJobs,
                                          filter => \@filterList,
                                          sort => [ {propertyName => "finish",
                                                     order => "ascending"} ]});
@@ -208,13 +207,13 @@ do {
          print "  Deleting Job\n\n";
       }
   }  # End foreach $node loop
-} while (($executeDeletion eq "true") && ($nbObjs == $MAXJOBS));
+} while (($executeDeletion eq "true") && ($nbObjs > 0));
 
 printf("\nSUMMARY:\n");
 printf("Total number of jobs:  %d\n", $totalNbJobs);
 $ec->setProperty("/myJob/numberOfJobs", $totalNbJobs);
 
-if ($totalNbJobs == $MAXJOBS) {
+if ($totalNbJobs == $maxJobs) {
   printf("There are potentially more jobs to access. Click Run again!\n");
   $ec->setProperty("summary", $totalNbJobs . " jobs deleted. RUN AGAIN!" ) if ($executeDeletion eq "true");
 } else {

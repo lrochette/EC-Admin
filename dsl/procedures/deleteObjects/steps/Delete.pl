@@ -5,7 +5,6 @@
 #  Copyright 2013-2015 Electric-Cloud Inc.
 #
 #############################################################################
-use strict;
 $[/myProject/scripts/perlHeader]
 
 use DateTime;
