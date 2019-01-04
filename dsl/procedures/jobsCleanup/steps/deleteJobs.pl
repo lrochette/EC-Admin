@@ -25,22 +25,20 @@ my $jobLevel        = "$[jobLevel]";
 my $jobPattern      = "$[jobPatternMatching]";
 my $computeUsage    = "$[computeUsage]";
 my $currentResource = "$[assignedResourceName]";  # Resource used to run this
-my $maxJobs         = $[maxObjects];              # Limiting the number of Objects returned
+my $maxJobs         = $[maxJobs];                 # Limiting the number of Objects returned
 
 #############################################################################
 #
 #  Global Variables
 #
 #############################################################################
-my $version="1.0";
 my $totalNbJobs=0;           # Number of jobs to delete potentially
 my $totalNbSteps=0;          # Number of steps to evaluate DB size
 my $DBStepSize=10240;        # Step is about 10K in DB
-$ec->setProperty("/myJob/totalDiskSpace", 0); #Space on disk
+$ec->setProperty("/myJob/totalDiskSpace", 0); # Space on disk
 
 my $nbObjs;                  # Number of Objects returned
-
-my $DEBUG=0;
+my $DEBUG=1;
 
 #############################################################################
 #
@@ -70,6 +68,10 @@ push (@filterList, {"propertyName" => "finish",
 # do not have specific job property
 push (@filterList, {"propertyName" => $jobProperty,
                     "operator" => "isNull"});
+# do not try to delete jobs alreadyy marked for deletion
+push (@filterList, {"propertyName" => "deleted",
+                    "operator" => "isNull"});
+
 # job pattern does not match
 if ($jobPattern ne "") {
   push (@filterList, {"propertyName" => "jobName",
@@ -88,7 +90,9 @@ if ($jobLevel eq "Aborted") {
 }
 
 my ($success, $xPath);
+my $loop=1;
 do {
+    printf ("Loop: %d\n", $loop) if ($DEBUG);
     ($success, $xPath) = InvokeCommander("SuppressLog", "findObjects", "job",
                                         {maxIds => $maxJobs,
                                          numObjects => $maxJobs,
@@ -207,6 +211,7 @@ do {
          print "  Deleting Job\n\n";
       }
   }  # End foreach $node loop
+  $loop++;
 } while (($executeDeletion eq "true") && ($nbObjs > 0));
 
 printf("\nSUMMARY:\n");

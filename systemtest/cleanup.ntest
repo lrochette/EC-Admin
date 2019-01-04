@@ -129,8 +129,8 @@ ntest "jobsCleanup", {}, sub {
     assertEq("1 jobs deleted", $summary, "wrong number of aborted jobs deleted");
 
     # Delete mode: 1 error job
-    ($summary, $outcome, $nbJobs)=c
-      allJobsCleanup(0, "true", "Error", "", "doNotDelete", 365, "Error");
+    ($summary, $outcome, $nbJobs)=
+      callJobsCleanup(0, "true", "Error", "", "doNotDelete", 365, "Error");
     assertEq("success", $outcome, "error test failed");
     assertEq("1 jobs deleted", $summary, "wrong number of error jobs deleted");
 
@@ -216,5 +216,4 @@ ntest "Issue_114_workspace_error", {}, sub {
 
 # delete project to get jobImport
 $::N->deleteProject("EC-Admin Management");
-
 1;
