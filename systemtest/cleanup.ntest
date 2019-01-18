@@ -200,7 +200,7 @@ ntest "Issue_114_workspace_error", {}, sub {
     # Report mode
     ($summary, $outcome, $nbJobs, $jobId)=
       callJobsCleanup(0, "true", "All", "", "doNotDelete", 365, "Issue114");
-    assertEq("error", $outcome, " invalid workspace should return error");
+    assertEq("error", $outcome, "invalid workspace should return error");
 
     # confirm step is failing with AGENT_INVALID_MESSAGE
     my $jobData  = $::N->findJobSteps({

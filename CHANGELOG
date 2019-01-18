@@ -1,3 +1,6 @@
+2019-01-18 Laurent Rochette <lrochette@electric-cloud.com>
+  * 3.2.3.735: Fix #156 issue with getP since 8.5
+
 2019-01-04 Laurent Rochette <lrochette@electric-cloud.com>
   * 3.2.2.733: Fix #158: max the number of job deleted in jobsCleanup (NMB-24602 and NMB-25946)
 
