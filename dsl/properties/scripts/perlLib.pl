@@ -92,6 +92,6 @@ sub getP
   my($success, $xPath, $errMsg, $errCode)= InvokeCommander("SuppressLog IgnoreError", "getProperty", $prop);
 
   return undef if ($success != 1);
-  my $val= bless $xPath->findvalue("//value");
-  return $val;
+  my $val= $xPath->findvalue("//value");
+  return $val? $val->value : undef;
 }
