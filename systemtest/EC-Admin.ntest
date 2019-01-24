@@ -89,7 +89,7 @@ ntest "scripts_perlCommonLib", {}, sub {
         my $jobData  = $::N->getJobDetails($jobId);
         my $exitCode = $jobData->findvalue("//job/jobStep[stepName='humanSize']/exitCode");
 
-	      my $result =$::N->getProperty("result", {jobId=>$jobId, stepName=>"humanSize"})->findvalue("//value");
+        my $result =$::N->getProperty("result", {jobId=>$jobId, stepName=>"humanSize"})->findvalue("//value");
 
         # testing result=1 Mb and exitCode=0
         assertEq("3.00 MB", $result, "test scriptPropertiesTest returned wrong value $result instead of 3.00 MB");
@@ -127,10 +127,10 @@ ntest "getPS", {}, sub {
 ntest "ACL_on_server_EC-Admin", {}, sub {
     my $psId = $::N->getProperty("/server/EC-Admin")->findvalue("//propertySheetId");
     my $xpath = $::N->getAclEntry("user", "project: $pluginName",
-	{
-		projectName => $pluginName,
-		propertySheetId => $psId
-        });
+      {
+        projectName => $pluginName,
+        propertySheetId => $psId
+      });
     assertOK($xpath, "ACL not set");
 };
 
@@ -140,7 +140,7 @@ ntest "ACL_on_server_EC-Admin", {}, sub {
 ntest "timeout_config_property", {}, sub {
     assertEq("600",
              $::N->getProperty("/server/EC-Admin/cleanup/config/timeout")->findvalue("//value"),
-		         "timeout value is incorrect");
+             "timeout value is incorrect");
 };
 
 #-------------------------------------------------------------------------------

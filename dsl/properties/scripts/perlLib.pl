@@ -78,3 +78,20 @@ sub getPS
   }
   return $hashRef;
 }
+
+#############################################################################
+#
+# Return property value or undef in case of error (non existing)
+#
+#############################################################################
+sub getP
+{
+  my $prop=shift;
+  my $expand=shift;
+
+  my($success, $xPath, $errMsg, $errCode)= InvokeCommander("SuppressLog IgnoreError", "getProperty", $prop);
+
+  return undef if ($success != 1);
+  my $val= $xPath->findvalue("//value");
+  return $val? $val->value : undef;
+}
