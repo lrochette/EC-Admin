@@ -685,7 +685,7 @@ ntest "issue 87 empty pattern", {}, sub {
 #-------------------------------------------------------------------------------
 #  Issue 127: slash in name
 #-------------------------------------------------------------------------------
-ntest "issue-127 slash in project name with saveProjects", {}, sub {
+ntest "issue 127 slash in project name with saveProjects", {}, sub {
   my $proj='issue127/win';
   my $projDir='issue127_win';
   my $xpath=$::N->createProject($proj);
