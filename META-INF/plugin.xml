@@ -9,6 +9,6 @@
   <help>help.xml</help>
   <key>EC-Admin</key>
   <label>EC-Admin</label>
-  <pluginWizardBased>true</pluginWizardBased>
+  <!-- <pluginWizardBased>true</pluginWizardBased>    Bug PLUGINWIZ-7 -->
   <version>3.1.1.662</version>
 </plugin>
