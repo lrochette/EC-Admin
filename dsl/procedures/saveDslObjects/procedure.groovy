@@ -48,7 +48,7 @@ $[/server/ec_notifierTemplates/Html_JobTempl/body]'''
     description: '''Capture the resource in case local is a pool.
 All steps need to run on the same host''',
     command: new File(pluginDir, "dsl/procedures/$procName/steps/grabResource.sh").text,
-    resourceName: "local"
+    resourceName: '$[pool]'
 
   step 'saveProjectsProceduresWorkflows',
     description: 'A step to export each project and procedure individually',
