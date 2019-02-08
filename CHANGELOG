@@ -1,3 +1,7 @@
+2019-02-07 Laurent Rochette <lrochette@electric-cloud.com>
+  * 3.2.4.745 : Add generateDsl procedure
+                Fix #162: Add exportPlugins
+
 2019-01-23 Laurent Rochette <lrochette@electric-cloud.com>
   * 3.2.3.736: Fix #156 issue with getP since 8.5
 

@@ -44,17 +44,6 @@
         <value></value>
     </formElement>
     <formElement>
-        <label>Relocatable</label>
-        <property>relocatable</property>
-        <documentation>If set to "true", the export will not include object IDs, ACLs, system property sheets, create/modify times, owners,
-email notifiers or lastModifiedBy information, and the export file result will be much smaller than a normal export.</documentation>
-        <type>checkbox</type>
-        <checkedValue>true</checkedValue>
-        <uncheckedValue>false</uncheckedValue>
-        <initiallyChecked>1</initiallyChecked>
-        <value>true</value>
-    </formElement>
-    <formElement>
         <label>ACLs</label>
         <property>includeACLs</property>
         <documentation>If set to "true", the export will include ACLs.</documentation>
@@ -64,17 +53,7 @@ email notifiers or lastModifiedBy information, and the export file result will b
         <initiallyChecked>1</initiallyChecked>
         <value>true</value>
     </formElement>
-    <formElement>
-        <label>Notifiers</label>
-        <property>includeNotifiers</property>
-        <documentation>If set to "true", the export will include email notifiers.</documentation>
-        <type>checkbox</type>
-        <checkedValue>true</checkedValue>
-        <uncheckedValue>false</uncheckedValue>
-        <initiallyChecked>1</initiallyChecked>
-        <value>true</value>
-    </formElement>
-
+ 
     <formElement>
         <label>Backup steps</label>
         <property>exportSteps</property>
@@ -194,16 +173,5 @@ email notifiers or lastModifiedBy information, and the export file result will b
         <initiallyChecked>1</initiallyChecked>
         <value>true</value>
     </formElement>
-
-   <formElement>
-       <label>Backup Plugins</label>
-       <property>exportPlugins</property>
-       <documentation>Boolean to export Plugins</documentation>
-       <type>checkbox</type>
-       <checkedValue>true</checkedValue>
-       <uncheckedValue>false</uncheckedValue>
-       <initiallyChecked>0</initiallyChecked>
-       <value>false</value>
-   </formElement>
 
 </editor>
