@@ -1,7 +1,7 @@
 import java.io.File
 
 /*
-Copyright 2014-2018 Electric-Cloud Inc.
+Copyright 2014-2019 Electric-Cloud Inc.
 
 Author: L. Rochette
 
@@ -12,12 +12,13 @@ History:
 2015-10-08 lrochette    Add step export as well
 2018-06-15 lrochette    Convert to PluginWizard DSL format
 2018-09-05 lrochette    Issue #72: added artifact and artifact versions
+2019-02-07 lrochette    use generateDsl instead of export
 */
 
-def procName= 'saveAllObjects'
+def procName= 'saveDslObjects'
 
 procedure procName,
-  description: '''export objects individually in a tree like structure for further CMS checkin:
+  description: '''generateDsl for objects individually in a tree like structure for further CMS checkin:
   Projects
   Procedures
   Resources
@@ -47,7 +48,7 @@ $[/server/ec_notifierTemplates/Html_JobTempl/body]'''
     description: '''Capture the resource in case local is a pool.
 All steps need to run on the same host''',
     command: new File(pluginDir, "dsl/procedures/$procName/steps/grabResource.sh").text,
-    resourceName: "local"
+    resourceName: '$[pool]'
 
   step 'saveProjectsProceduresWorkflows',
     description: 'A step to export each project and procedure individually',
@@ -106,12 +107,6 @@ All steps need to run on the same host''',
   step 'saveDeployObjects',
     command: new File(pluginDir, "dsl/procedures/$procName/steps/saveDeployObjects.pl").text,
     condition: '$[exportDeploy]',
-    resourceName: '$[/myJob/backupResource]',
-    shell: 'ec-perl'
-
-  step 'savePlugins',
-    command: new File(pluginDir, "dsl/procedures/$procName/steps/savePlugins.pl").text,
-    condition: '$[exportPlugins]',
     resourceName: '$[/myJob/backupResource]',
     shell: 'ec-perl'
 
