@@ -25,6 +25,7 @@ my $backupDir="/tmp/BACKUP";
 #-------------------------------------------------------------------------------
 ntest "checkProcedures", {}, sub {
     assertOK($::N->getProcedure($pluginName, "saveAllObjects"), "procedure saveAllObjects missing");
+    assertOK($::N->getProcedure($pluginName, "saveDslObjects"), "procedure saveDslObjects missing");
     assertOK($::N->getProcedure($pluginName, "saveProjects"), "procedure saveProjects is missing");
 };
 
@@ -823,7 +824,7 @@ ntest "issue 161 save services", {}, sub {
     }
 
     # check for project file with slash replaced by _
-    if (! -f "${backupDir}/Projects/Default/$proj/${service}.xml") {
+    if (! -f "${backupDir}/Projects/$proj/${service}.xml") {
       fail("${service}.xml service file is missing in project $proj");
     } else {
       # clean
@@ -836,7 +837,7 @@ ntest "issue 161 save services", {}, sub {
 };
 
 #-------------------------------------------------------------------------------
-#  Issue 161: save services
+#  Issue 161: save persona
 #-------------------------------------------------------------------------------
 ntest "issue 161 save personas", {}, sub {
   rmtree($backupDir);
@@ -878,7 +879,7 @@ ntest "issue 161 save personas", {}, sub {
 };
 
 #-------------------------------------------------------------------------------
-#  Issue 161: save services
+#  Issue 161: save persona
 #-------------------------------------------------------------------------------
 ntest "issue 161 save persona pages", {}, sub {
   rmtree($backupDir);
