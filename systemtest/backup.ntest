@@ -144,10 +144,15 @@ ntest "issue 57 group with slash", {}, sub {
 ntest "issue 58 gateway", {}, sub {
 
   my $gate="GW58";
+  my $res="gw_resource_58";
+
+  $xpath= $::N->createResource($res, {hostName=> "localhost"});
+  assertOK($xpath, "Failed to create resource $res");
+
   $xpath= $::N->createGateway($gate, {
      gatewayDisabled => 0,
      description => "forbackup testing",
-     resourceName1 => "local", resourceName2 => "win7"
+     resourceName1 => "local", resourceName2 => $res
     });
   assertOK($xpath, "Failed to create gateway $gate");
 
@@ -187,6 +192,7 @@ ntest "issue 58 gateway", {}, sub {
   # clean
   rmtree($backupDir);
   $::N->deleteGateway($gate);
+  $::N->deleteResource($res);
 };
 
 #-------------------------------------------------------------------------------
