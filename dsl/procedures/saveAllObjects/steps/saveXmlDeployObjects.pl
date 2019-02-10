@@ -255,7 +255,7 @@ foreach my $node ($xPath->findnodes('//project')) {
 
       my ($success, $res, $errMsg, $errCode) =
         InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Services/$fileServName".".xml",
-              { 'path'=> "/projects[$pName]services[$relName]",
+              { 'path'=> "/projects[$pName]services[$servName]",
                 'relocatable' => $relocatable,
                 'withAcls'    => $includeACLs,
                 'withNotifiers'=>$includeNotifiers});
@@ -277,7 +277,7 @@ $str .= sprintf("   $envCount environments exported\n");
 $str .= sprintf("   $compCount components exported\n");
 $str .= sprintf("   $pipeCount pipelines exported\n");
 $str .= sprintf("   $relCount releases exported\n");
-$str .= sprintf("   $servCount releases exported\n");
+$str .= sprintf("   $servCount services exported\n");
 
 $ec->setProperty("preSummary", $str);
 $ec->setProperty("/myJob/papplicationExported", $appCount);

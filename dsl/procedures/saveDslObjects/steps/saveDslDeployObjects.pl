@@ -238,7 +238,7 @@ foreach my $node ($xPath->findnodes('//project')) {
 
       my ($success, $res, $errMsg, $errCode) =
         saveDslFile("$path/Projects/$fileProjectName/Services/$fileServName".".groovy",
-              "/projects[$pName]services[$relName]", $includeACLs);
+              "/projects[$pName]services[$servName]", $includeACLs);
 
       if (! $success) {
         printf("  Error exporting service %s", $servName);
@@ -257,7 +257,7 @@ $str .= sprintf("   $envCount environments exported\n");
 $str .= sprintf("   $compCount components exported\n");
 $str .= sprintf("   $pipeCount pipelines exported\n");
 $str .= sprintf("   $relCount releases exported\n");
-$str .= sprintf("   $servCount releases exported\n");
+$str .= sprintf("   $servCount services exported\n");
 
 $ec->setProperty("preSummary", $str);
 $ec->setProperty("/myJob/papplicationExported", $appCount);

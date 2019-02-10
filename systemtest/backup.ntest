@@ -827,7 +827,7 @@ ntest "issue 161 save services", {}, sub {
 
   }
   # clean
-  $::N->deleteService("Default", $Service);
+  $::N->deleteService("Default", $service);
 };
 
 1;
