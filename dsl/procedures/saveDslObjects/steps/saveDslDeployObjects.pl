@@ -252,7 +252,7 @@ foreach my $node ($xPath->findnodes('//project')) {
   }           # Version greater than 8.1
 }             # project loop
 
-my $str=sprintf("$appCount applications exported\n" );
+my $str=sprintf("   $appCount applications exported\n" );
 $str .= sprintf("   $envCount environments exported\n");
 $str .= sprintf("   $compCount components exported\n");
 $str .= sprintf("   $pipeCount pipelines exported\n");
