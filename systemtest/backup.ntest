@@ -633,8 +633,7 @@ ntest "issue 90 project starting with _", {}, sub {
 ntest "issue 87 empty pattern", {}, sub {
   my $proj="issue87";
 
-  my $xpath=$::N->deleteProject($proj);
-  $xpath=$::N->createProject($proj);
+  my $xpath=$::N->evalDsl("project \"$proj\"");
   assertOK($xpath, "Failed to create project $proj");
 
   rmtree($backupDir);
@@ -678,12 +677,12 @@ ntest "issue 87 empty pattern", {}, sub {
     }
     # check multiple users were exported
     $nb=$::N->getProperty("userExported" , {jobId => $jobId})->findvalue("//value");
-    if ($nb < 5) {
+    if ($nb < 16) {
       fail("Not enough users exported");
     }
     # check multiple zones were exported
     $nb=$::N->getProperty("zoneExported" , {jobId => $jobId})->findvalue("//value");
-    if ($nb < 2) {
+    if ($nb < 1) {
       fail("Not enough zones exported");
     }
 
