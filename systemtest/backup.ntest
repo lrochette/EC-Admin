@@ -678,7 +678,7 @@ ntest "issue 87 empty pattern", {}, sub {
           operator => "equal",
           operand1 => ""
         }
-      })
+      });
     assertEq ($nb, $nbExp, "Not enough projects exported");
     }
     # check multiple users were exported
