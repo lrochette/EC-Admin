@@ -11,6 +11,7 @@ use strict;
 use warnings;
 use File::Path;
 use ECTest;
+use Data::Dumper;
 
 initCommander();
 $::N=$adminSession;
