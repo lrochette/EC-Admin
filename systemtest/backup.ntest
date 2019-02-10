@@ -672,15 +672,15 @@ ntest "issue 87 empty pattern", {}, sub {
 
     # check all projects were exported
     my $nbExp=int($::N->getProperty("projectExported" , {jobId => $jobId})->findvalue("//value"));
-    my $nb=countObjects('project', {
+    my $nb=int(countObjects('project', {
         filter => {
           propertyName => "pluginName",
           operator => "equal",
           operand1 => ""
         }
-      });
+      }));
     assertEq ($nb, $nbExp, "Not enough projects exported");
-    }
+
     # check multiple users were exported
     $nb=int($::N->getProperty("userExported" , {jobId => $jobId})->findvalue("//value"));
     if ($nb < 7) {
@@ -691,7 +691,7 @@ ntest "issue 87 empty pattern", {}, sub {
     if ($nb < 1) {
       fail("Not enough zones exported $nb");
     }
-
+  }
   # clean
   rmtree($backupDir);
   $::N->deleteProject($proj);
