@@ -689,7 +689,7 @@ ntest "issue 87 empty pattern", {}, sub {
     # check multiple zones were exported
     $nb=int($::N->getProperty("zoneExported" , {jobId => $jobId})->findvalue("//value"));
     if ($nb < 1) {
-      fail("Not enough zones exported" $nb);
+      fail("Not enough zones exported $nb");
     }
 
 
