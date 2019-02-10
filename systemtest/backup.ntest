@@ -671,19 +671,19 @@ ntest "issue 87 empty pattern", {}, sub {
     }
 
     # check multiple projects were exported
-    my $nb=$::N->getProperty("projectExported" , {jobId => $jobId})->findvalue("//value");
-    if (int($nb) < 14) {
-      fail("Not enough projects exported");
+    my $nb=int($::N->getProperty("projectExported" , {jobId => $jobId})->findvalue("//value"));
+    if ($nb < 14) {
+      fail("Not enough projects exported $nb");
     }
     # check multiple users were exported
-    $nb=$::N->getProperty("userExported" , {jobId => $jobId})->findvalue("//value");
-    if (int($nb) < 7) {
-      fail("Not enough users exported");
+    $nb=int($::N->getProperty("userExported" , {jobId => $jobId})->findvalue("//value"));
+    if ($nb < 7) {
+      fail("Not enough users exported $nb");
     }
     # check multiple zones were exported
-    $nb=$::N->getProperty("zoneExported" , {jobId => $jobId})->findvalue("//value");
-    if (int($nb) < 1) {
-      fail("Not enough zones exported");
+    $nb=int($::N->getProperty("zoneExported" , {jobId => $jobId})->findvalue("//value"));
+    if ($nb < 1) {
+      fail("Not enough zones exported" $nb);
     }
 
 
