@@ -779,6 +779,6 @@ ntest "issue 161 save tags", {}, sub {
 
   }
   # clean
-  $::N->deleteProject($proj);
+  $::N->deleteTag($tag);
 };
 1;
