@@ -672,13 +672,15 @@ ntest "issue 87 empty pattern", {}, sub {
 
     # check all projects were exported
     my $nbExp=int($::N->getProperty("projectExported" , {jobId => $jobId})->findvalue("//value"));
-    my $nb=int($::N->countObjects('project', {
+    my $ref=$::N->countObjects('project', {
         filter => {
           propertyName => "pluginName",
           operator => "equal",
           operand1 => ""
         }
-      })->find('/response/count'));
+      });
+    print Dumper($ref);
+    my $nb=int($ref->find('/response/count'));
     assertEq ($nb, $nbExp, "Not enough projects exported");
 
     # check multiple users were exported
