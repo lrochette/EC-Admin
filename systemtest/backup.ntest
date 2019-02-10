@@ -20,6 +20,10 @@ my $xpath = $::N->getPlugin($pluginKey);
 my $pluginName = $xpath->findvalue("//pluginName")->value;
 my $backupDir="/tmp/BACKUP";
 
+#
+# Load EC-Admin_Test which is required by some tests
+$xpath=$::N->import({file=>$::gWorkingDirectory . "/data/EC-Admin_Test.xml", force=>1});
+  assertOK($xpath, "Cannot import EC-Admin_Test");
 #-------------------------------------------------------------------------------
 # Test procedure present.
 #-------------------------------------------------------------------------------
