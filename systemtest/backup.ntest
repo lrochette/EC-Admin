@@ -692,8 +692,6 @@ ntest "issue 87 empty pattern", {}, sub {
       fail("Not enough zones exported $nb");
     }
 
-
-  }
   # clean
   rmtree($backupDir);
   $::N->deleteProject($proj);
