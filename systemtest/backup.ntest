@@ -753,12 +753,12 @@ ntest "issue 161 save tags", {}, sub {
       {actualParameterName=>"pattern", value=>"161"}
     ]
   });
-  assertOK($xpath, "Failed to launch EC-Admin::saveProjects");
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
   if ($xpath) {
     #get new Job ID
     my $jobId  = $xpath->findvalue("//jobId");
     $::N->setJobName($jobId, 'saveAllObjects_Issue161_Tags_' .
-		$::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+		  $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
     waitForJob($jobId);
     my $jobData  = $::N->getJobDetails($jobId);
     my $outcome = $jobData->findvalue("//job/outcome");
@@ -781,4 +781,53 @@ ntest "issue 161 save tags", {}, sub {
   # clean
   $::N->deleteTag($tag);
 };
+
+#-------------------------------------------------------------------------------
+#  Issue 161: save services
+#-------------------------------------------------------------------------------
+ntest "issue 161 save services", {}, sub {
+  my $service='service161';
+  my $xpath=$::N->createService("Default", $service);
+  assertOK($xpath, "Failed to create service $service");
+
+  rmtree($backupDir);
+  $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>$backupDir},
+      {actualParameterName=>"relocatable", value=>"1"},
+      {actualParameterName=>"includeACLs", value=>"0"},
+      {actualParameterName=>"includeNotifiers", value=>"0"},
+       {actualParameterName=>"pattern", value=>"161"}
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObjects_Issue161_Services_' .
+		  $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check for project directory to exist
+    if (! -d "${backupDir}/Projects/Default/Services") {
+      fail("Services directory is missing");
+    }
+
+    # check for project file with slash replaced by _
+    if (! -f "${backupDir}/Projects/Default/Services/${service}.xml") {
+      fail("${service}.xml service file is missing");
+    } else {
+      # clean
+      rmtree($backupDir);
+    }
+
+  }
+  # clean
+  $::N->deleteService("Default", $Service);
+};
+
 1;
