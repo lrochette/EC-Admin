@@ -47,6 +47,7 @@ $[/server/ec_notifierTemplates/Html_JobTempl/body]'''
     description: '''Capture the resource in case local is a pool.
 All steps need to run on the same host''',
     command: new File(pluginDir, "dsl/procedures/$procName/steps/grabResource.sh").text,
+    errorHandling: 'abortProcedure',
     resourceName: "local"
 
   step 'saveProjectsProceduresWorkflows',
@@ -118,6 +119,12 @@ All steps need to run on the same host''',
   step 'saveServerProperties',
     command: new File(pluginDir, "dsl/procedures/$procName/steps/saveServerProperties.pl").text,
     condition: '$[exportServerProperties]',
+    resourceName: '$[/myJob/backupResource]',
+    shell: 'ec-perl'
+
+  step 'saveTags',
+    command: new File(pluginDir, "dsl/procedures/$procName/steps/saveXmlTags.pl").text,
+    condition: '$[exportTags]',
     resourceName: '$[/myJob/backupResource]',
     shell: 'ec-perl'
 }

@@ -78,7 +78,7 @@ ntest "issue 56 question mark", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # issue 56: check for file with question mark replaced by _
-    if (! -f "/tmp/BACKUP/Projects/EC-Admin_Test/Procedures/questionMark/Steps/rerun_.xml") {
+    if (! -f "${backupDir}/Projects/EC-Admin_Test/Procedures/questionMark/Steps/rerun_.xml") {
       fail("rerun_.xml is missing");
       $error=1;
     }
@@ -125,7 +125,7 @@ ntest "issue 57 group with slash", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for group file with / mark replaced by _
-    if (! -f "/tmp/BACKUP/Groups/AC_DC.xml") {
+    if (! -f "${backupDir}/Groups/AC_DC.xml") {
       fail("AC_DC.xml group is missing");
     }
   }
@@ -175,7 +175,7 @@ ntest "issue 58 gateway", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # issue 58: check for gateway file
-    if (! -f "/tmp/BACKUP/Gateways/$gate.xml") {
+    if (! -f "${backupDir}/Gateways/$gate.xml") {
       fail("$gate.xml gate is missing");
     }
   }
@@ -222,7 +222,7 @@ ntest "issue 59 zone", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # issue 59: check for zone file
-    if (! -f "/tmp/BACKUP/Zones/$zone.xml") {
+    if (! -f "${backupDir}/Zones/$zone.xml") {
       fail("$zone.xml zone is missing");
     }
   }
@@ -361,11 +361,11 @@ ntest "issue 77 procedure with slash", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory file with / mark replaced by _
-    if (! -d "/tmp/BACKUP/Projects/Issue_77") {
+    if (! -d "${backupDir}/Projects/Issue_77") {
       fail("Issue_77 Project is missing");
     }
     # check for procedure file file with / mark replaced by _
-    if (! -f "/tmp/BACKUP/Projects/Issue_77/Procedures/Issue_77/Issue_77.xml") {
+    if (! -f "${backupDir}/Projects/Issue_77/Procedures/Issue_77/Issue_77.xml") {
       fail("Issue_77.xml procedure is missing");
     }
   }
@@ -459,7 +459,7 @@ ntest "issue 83 trailing spaces", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project file file with heading and trailing space removed
-    if (! -f "/tmp/BACKUP/Projects/ISSUE83/ISSUE83.xml") {
+    if (! -f "${backupDir}/Projects/ISSUE83/ISSUE83.xml") {
       fail("ISSUE83.xml project is missing");
     }
   }
@@ -507,7 +507,7 @@ ntest "issue 88 slash in resource", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for resource file file with slash replaced by _
-    if (! -f "/tmp/BACKUP/Resources/res_SA_issue88.xml") {
+    if (! -f "${backupDir}/Resources/res_SA_issue88.xml") {
       fail("res_SA_issue88.xml resource is missing");
     } else {
       # clean
@@ -556,7 +556,7 @@ ntest "issue 89 < and > in filenames", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for resource file file with slash replaced by _
-    if (! -f "/tmp/BACKUP/Resources/res_issue89_end.xml") {
+    if (! -f "${backupDir}/Resources/res_issue89_end.xml") {
       fail("res_issue89_end.xml resource is missing");
     } else {
       # clean
@@ -605,7 +605,7 @@ ntest "issue 90 project starting with _", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory to exist
-    if (! -d "/tmp/BACKUP/Projects/_issue90") {
+    if (! -d "${backupDir}/Projects/_issue90") {
       fail("_issue90 project is missing");
     } else {
       # clean
@@ -654,7 +654,7 @@ ntest "issue 87 empty pattern", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory to exist
-    if (! -d "/tmp/BACKUP/Projects/$proj") {
+    if (! -d "${backupDir}/Projects/$proj") {
       fail("$proj project is missing");
     }
 
@@ -713,16 +713,16 @@ ntest "issue 127 slash in project name with saveProjects", {}, sub {
     waitForJob($jobId);
     my $jobData  = $::N->getJobDetails($jobId);
     my $outcome = $jobData->findvalue("//job/outcome");
-    assertNe("error", $outcome, "saveAllObjects should not error out");
+    assertNe("error", $outcome, "saveProjects should not error out");
 
     # check for project directory to exist
-    if (! -d "/tmp/BACKUP/Projects/$projDir") {
+    if (! -d "${backupDir}/Projects/$projDir") {
       fail("$projDir project is missing");
     }
 
 
     # check for project file with slash replaced by _
-    if (! -f "/tmp/BACKUP/Projects/$projDir/${projDir}.xml") {
+    if (! -f "${backupDir}/Projects/$projDir/${projDir}.xml") {
       fail("${projDir}.xml project is missing");
     } else {
       # clean
@@ -734,4 +734,51 @@ ntest "issue 127 slash in project name with saveProjects", {}, sub {
   $::N->deleteProject($proj);
 };
 
+#-------------------------------------------------------------------------------
+#  Issue 161: save tags
+#-------------------------------------------------------------------------------
+ntest "issue 161 save tags", {}, sub {
+  my $tag='tag161';
+  my $xpath=$::N->createTag($tag);
+  assertOK($xpath, "Failed to create tag $tag");
+
+  rmtree($backupDir);
+  $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>$backupDir},
+      {actualParameterName=>"relocatable", value=>"1"},
+      {actualParameterName=>"includeACLs", value=>"0"},
+      {actualParameterName=>"includeNotifiers", value=>"0"},
+      {actualParameterName=>"pattern", value=>"161"}
+    ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveProjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObjects_Issue161_Tags_' .
+		$::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check for project directory to exist
+    if (! -d "${backupDir}/Tags") {
+      fail("Tags directory is missing");
+    }
+
+    # check for project file with slash replaced by _
+    if (! -f "${backupDir}/Tags/${tag}.xml") {
+      fail("${tag}.xml tag file is missing");
+    } else {
+      # clean
+      rmtree($backupDir);
+    }
+
+  }
+  # clean
+  $::N->deleteProject($proj);
+};
 1;
