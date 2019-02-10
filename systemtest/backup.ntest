@@ -680,8 +680,8 @@ ntest "issue 87 empty pattern", {}, sub {
           operand1 => ""
         }
       });
-    print Dumper($ref);
-    my $nb=int($ref->find('/response/count'));
+    #print Dumper($ref);
+    my $nb=int($ref->find('//response/count'));
     assertEq ($nb, $nbExp, "Not enough projects exported");
 
     # check multiple users were exported
