@@ -788,7 +788,11 @@ ntest "issue 161 save tags", {}, sub {
 ntest "issue 161 save services", {}, sub {
   my $service='service161';
   my $proj="issue161";
-  my $xpath=$::N->createService($proj, $service);
+
+  my $xpath=$::N->createProject($proj);
+  assertOK($xpath, "Failed to create project $proj");
+
+  $xpath=$::N->createService($proj, $service);
   assertOK($xpath, "Failed to create service $service in project $proj");
 
   rmtree($backupDir);
