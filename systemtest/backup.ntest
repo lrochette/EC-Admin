@@ -823,8 +823,8 @@ ntest "issue 161 save services", {}, sub {
     }
 
     # check for project file with slash replaced by _
-    if (! -f "${backupDir}/Projects/Default/Services/${service}.xml") {
-      fail("${service}.xml service file is missing");
+    if (! -f "${backupDir}/Projects/Default/$proj/${service}.xml") {
+      fail("${service}.xml service file is missing in project $proj");
     } else {
       # clean
       rmtree($backupDir);
