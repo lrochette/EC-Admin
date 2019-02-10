@@ -24,6 +24,7 @@ my $relocatable="$[relocatable]";
 my $errorCount=0;
 my $personaCount=0;
 my $personaPageCount=0;
+my $personaCategoryCount=0;
 
 # personas were introduced in 9.0
 my $version=getVersion();
@@ -106,9 +107,49 @@ foreach my $node ($xPath->findnodes('//personaPage')) {
   }
 }
 
-$ec->setProperty("preSummary", "$personaCount Personas exported\n$personaPageCount Persona Pages exported");
+#
+# Persona Categories
+#
+
+# Get list of Persona Categories
+($success, $xPath) = InvokeCommander("SuppressLog", "getPersonaCategories");
+
+# Create the Persona Categories directory
+mkpath("$path/PersonaCategories");
+chmod(0777, "$path/PersonaCategories");
+printf("\nSaving PersonaCategories:\n");
+printf("--------------------\n");
+
+foreach my $node ($xPath->findnodes('//personaCategory')) {
+  my $personaCategoryName=$node->{'personaCategoryName'};
+
+  # skip personaCategories that don't fit the pattern
+  next if ($personaCategoryName !~ /$pattern/$[caseSensitive] ); # / for color mode
+
+  printf("  Saving PersonaCategory: %s\n", $personaCategoryName);
+  my $filePersonaCategoryName=safeFilename($personaCategoryName);
+
+  my ($success, $res, $errMsg, $errCode) =
+      InvokeCommander("SuppressLog", "export", "$path/PersonaCategories/$filePersonaCategoryName".".xml",
+  { 'path'=> "/personaCategories[$personaCategoryName]",
+    'relocatable' => $relocatable,
+    'withAcls'    => $includeACLs,
+    'withNotifiers'=>$includeNotifiers});
+  if (! $success) {
+    printf("    Error exporting %s", $personaCategoryName);
+    printf("  %s: %s\n", $errCode, $errMsg);
+    $errorCount++;
+  } else {
+    $personaCategoryCount++;
+  }
+}
+
+$ec->setProperty("preSummary", "$personaCount Personas exported\n" .
+  "$personaPageCount Persona Pages exported\n" .
+  "$personaCategoryCount Persona Categories exported");
 $ec->setProperty("/myJob/personaExported", $personaCount);
 $ec->setProperty("/myJob/personaPageExported", $personaPageCount);
+$ec->setProperty("/myJob/personaCategoryExported", $personaCategoryCount);
 exit($errorCount);
 
 $[/myProject/scripts/backup/safeFilename]

@@ -147,7 +147,7 @@ foreach my $node ($xPath->findnodes('//project')) {
   }
 
 }
-$ec->setProperty("preSummary", " $projCount projects exported\n  $procCount procedures exported\n  $wkfCount workflows exported");
+$ec->setProperty("preSummary", " $projCount projects exported\n $procCount procedures exported\n $wkfCount workflows exported");
 $ec->setProperty("/myJob/projectExported", $projCount);
 $ec->setProperty("/myJob/procedureExported", $procCount);
 $ec->setProperty("/myJob/workflowExported", $wkfCount);
