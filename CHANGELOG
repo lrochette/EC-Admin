@@ -1,3 +1,9 @@
+2019-02-10 Laurent Rochette <lrochette@electric-cloud.com>
+  * 3.2.5.763: Add save tags (issue #161)
+               Add save services (issue #161)
+               Add save personas, personaPages and personaCategories (issue #161)
+               saveDSL directories are in lower case to match EC-DslDeploy
+
 2019-02-08 Laurent Rochette <lrochette@electric-cloud.com>
   * 3.2.4.748 : Add generateDsl procedure
                 Fix #162: Add exportPlugins

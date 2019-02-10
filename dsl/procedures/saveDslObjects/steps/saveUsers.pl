@@ -26,8 +26,8 @@ my $userCount=0;
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getUsers", {maximum=>1000});
 
 # Create the Resources directory
-mkpath("$path/Users");
-chmod(0777, "$path/Users");
+mkpath("$path/users");
+chmod(0777, "$path/users");
 
 foreach my $node ($xPath->findnodes('//user')) {
   my $userName=$node->{'userName'};
@@ -39,7 +39,7 @@ foreach my $node ($xPath->findnodes('//user')) {
   my $fileUserName=safeFilename($userName);
 
   my ($success, $res, $errMsg, $errCode) =
-      saveDslFile("$path/Users/$fileUserName".".groovy",
+      saveDslFile("$path/users/$fileUserName".".groovy",
   					"/users[$userName]", $includeACLs);
   if (! $success) {
     printf("  Error exporting %s", $userName);

@@ -26,8 +26,8 @@ my $groupCount=0;
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getGroups", {maximum=>1000});
 
 # Create the Resources directory
-mkpath("$path/Groups");
-chmod(0777, "$path/Groups");
+mkpath("$path/groups");
+chmod(0777, "$path/groups");
 
 foreach my $node ($xPath->findnodes('//group')) {
   my $groupName=$node->{'groupName'};
@@ -39,7 +39,7 @@ foreach my $node ($xPath->findnodes('//group')) {
   my $fileGroupName=safeFilename($groupName);
 
   my ($success, $res, $errMsg, $errCode) =
-      saveDslFile("$path/Groups/$fileGroupName".".groovy",
+      saveDslFile("$path/groups/$fileGroupName".".groovy",
   					"/groups[$groupName]", $includeACLs);
   if (! $success) {
     printf("  Error exporting %s", $groupName);

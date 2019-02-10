@@ -24,8 +24,8 @@ my $zoneCount=0;
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getZones");
 
 # Create the Zones directory
-mkpath("$path/Zones");
-chmod(0777, "$path/Zones");
+mkpath("$path/zones");
+chmod(0777, "$path/zones");
 
 foreach my $node ($xPath->findnodes('//zone')) {
   my $zoneName=$node->{'zoneName'};
@@ -37,7 +37,7 @@ foreach my $node ($xPath->findnodes('//zone')) {
   my $fileZoneName=safeFilename($zoneName);
 
   my ($success, $res, $errMsg, $errCode) =
-      saveDslFile("$path/Zones/$fileZoneName".".groovy",
+      saveDslFile("$path/zones/$fileZoneName".".groovy",
                   "/zones[$zoneName]", $includeACLs);
   if (! $success) {
     printf("  Error exporting %s", $zoneName);

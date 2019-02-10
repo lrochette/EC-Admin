@@ -26,8 +26,8 @@ my $poolCount=0;
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getResourcePools");
 
 # Create the Resources directory
-mkpath("$path/Pools");
-chmod(0777, "$path/Pools");
+mkpath("$path/resourcePools");
+chmod(0777, "$path/resourcePools");
 
 foreach my $node ($xPath->findnodes('//resourcePool')) {
   my $poolName=$node->{'resourcePoolName'};
@@ -39,7 +39,7 @@ foreach my $node ($xPath->findnodes('//resourcePool')) {
   my $filePoolName=safeFilename($poolName);
 
   my ($success, $res, $errMsg, $errCode) =
-      saveDslFile("$path/Pools/$filePoolName".".groovy",
+      saveDslFile("$path/resourcePools/$filePoolName".".groovy",
   					"/resourcePools/[$poolName]", $includeACLs);
   if (! $success) {
     printf("  Error exporting %s", $poolName);

@@ -1,6 +1,6 @@
 #############################################################################
 #
-#  Copyright 2015-2016 Electric-Cloud Inc.
+#  Copyright 2015-2019 Electric-Cloud Inc.
 #
 # Script to backup the Deploy objects (application, environment, components)
 #############################################################################
@@ -22,25 +22,18 @@ my $relocatable="$[relocatable]";
 #
 # Global
 #
+my $version=getVersion();
 my $errorCount = 0;
 my $appCount   = 0;
 my $envCount   = 0;
 my $compCount  = 0;
 my $pipeCount  = 0;
 my $relCount   = 0;
+my $servCount  = 0;
 
 # Set the timeout to config value or 600 if not set
 my $defaultTimeout = getP("/server/EC-Admin/cleanup/config/timeout");
 $ec->setTimeout($defaultTimeout? $defaultTimeout : 600);
-
-
-# check that we are running version 5.x or later
-my $version=getVersion();
-printf("%s\n",$version);
-if (compareVersion($version, "5.0") < 0) {
-  $ec->setProperty("summary", "Version 5.0 or greater is required to save Deploy objects");
-  exit(0);
-}
 
 #
 # Get list of Project
@@ -239,14 +232,52 @@ foreach my $node ($xPath->findnodes('//project')) {
       }
     }         # Release loop
   }           # Version greater than 6.1
+
+  # Export services if the version is recent enough
+  #
+  if (compareVersion($version, "8.1") < 0) {
+    printf("WARNING: Version 8.1 or greater is required to save Services objects");
+  } else {
+    # Save release definitions
+    #
+    mkpath("$path/Projects/$fileProjectName/Services");
+    chmod(0777, "$path/Projects/$fileProjectName/Services");
+
+    my ($success, $xPath) = InvokeCommander("SuppressLog", "getServices", $pName);
+    foreach my $proc ($xPath->findnodes('//service')) {
+      my $servName=$proc->{'serviceName'};
+
+      # skip services that don't fit the pattern
+      next if (($pName  eq "Default") && ($servName !~ /$pattern/$[caseSensitive] ));  # / just for the color
+
+      my $fileServName=safeFilename($servName);
+      printf("  Saving Service: %s\n", $servName);
+
+      my ($success, $res, $errMsg, $errCode) =
+        InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Services/$fileServName".".xml",
+              { 'path'=> "/projects[$pName]services[$servName]",
+                'relocatable' => $relocatable,
+                'withAcls'    => $includeACLs,
+                'withNotifiers'=>$includeNotifiers});
+
+      if (! $success) {
+        printf("  Error exporting service %s", $servName);
+        printf("  %s: %s\n", $errCode, $errMsg);
+        $errorCount++;
+      }
+      else {
+        $servCount++;
+      }
+    }         # Release loop
+  }           # Version greater than 8.1
 }             # project loop
 
-my $str=sprintf("$appCount applications exported\n" );
+my $str=sprintf("   $appCount applications exported\n" );
 $str .= sprintf("   $envCount environments exported\n");
 $str .= sprintf("   $compCount components exported\n");
 $str .= sprintf("   $pipeCount pipelines exported\n");
 $str .= sprintf("   $relCount releases exported\n");
-
+$str .= sprintf("   $servCount services exported\n");
 
 $ec->setProperty("preSummary", $str);
 $ec->setProperty("/myJob/papplicationExported", $appCount);
@@ -254,6 +285,7 @@ $ec->setProperty("/myJob/environmentExported",  $envCount);
 $ec->setProperty("/myJob/componentExported",    $compCount);
 $ec->setProperty("/myJob/pipelineExported",     $pipeCount);
 $ec->setProperty("/myJob/releaseExported",      $relCount);
+$ec->setProperty("/myJob/serviceExported",      $servCount);
 exit($errorCount);
 
 $[/myProject/scripts/backup/safeFilename]

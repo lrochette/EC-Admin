@@ -53,8 +53,8 @@ $ec->setTimeout($defaultTimeout? $defaultTimeout : 600);
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getArtifacts");
 
 # Create the Projects directory
-mkpath("$path/Artifacts");
-chmod(0777, "$path/Artifacts") or die("Can't change permissions on $path/Artifacts: $!");
+mkpath("$path/artifacts");
+chmod(0777, "$path/artifacts") or die("Can't change permissions on $path/artifacts: $!");
 
 foreach my $node ($xPath->findnodes('//artifact')) {
   my $artName=$node->{'artifactName'};
@@ -65,11 +65,11 @@ foreach my $node ($xPath->findnodes('//artifact')) {
   printf("Saving Artifact: %s\n", $artName);
 
   my $fileArtifactName=safeFilename($artName);
-  mkpath("$path/Artifacts/$fileArtifactName");
-  chmod(0777, "$path/Artifacts/$fileArtifactName");
+  mkpath("$path/artifacts/$fileArtifactName");
+  chmod(0777, "$path/artifacts/$fileArtifactName");
 
   my ($success, $res, $errMsg, $errCode) =
-    saveDslFile("$path/Artifacts/$fileArtifactName/$fileArtifactName".".groovy",
+    saveDslFile("$path/artifacts/$fileArtifactName/$fileArtifactName".".groovy",
   					  "/artifacts[$artName]",
               $includeACLs);
   if (! $success) {
@@ -83,8 +83,8 @@ foreach my $node ($xPath->findnodes('//artifact')) {
   #
   # Save Artifact Versions
   #
-  mkpath("$path/Artifacts/$fileArtifactName/ArtifactVersions");
-  chmod(0777, "$path/Artifacts/$fileArtifactName/ArtifactVersions");
+  mkpath("$path/artifacts/$fileArtifactName/artifactVersions");
+  chmod(0777, "$path/artifacts/$fileArtifactName/artifactVersions");
 
   my ($success, $xPath) = InvokeCommander("SuppressLog", "getArtifactVersions",
       {'artifactName' => $artName});
@@ -94,7 +94,7 @@ foreach my $node ($xPath->findnodes('//artifact')) {
     my $fileVersion=safeFilename($version);
     printf("  Saving version: %s\n", $version);
 
- 	  my ($success, $res, $errMsg, $errCode)= saveDslFile("$path/Artifacts/$fileArtifactName/ArtifactVersions/$fileVersion".".groovy",
+ 	  my ($success, $res, $errMsg, $errCode)= saveDslFile("$path/artifacts/$fileArtifactName/artifactVersions/$fileVersion".".groovy",
   					 "/artifactVersions[$avName]",
               $includeACLs);
     if (! $success) {
