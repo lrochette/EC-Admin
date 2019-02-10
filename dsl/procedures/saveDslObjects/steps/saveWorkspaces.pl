@@ -24,8 +24,8 @@ my $wksCount=0;
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getWorkspaces");
 
 # Create the Workspaces directory
-mkpath("$path/Workspaces");
-chmod(0777, "$path/Workspaces");
+mkpath("$path/workspaces");
+chmod(0777, "$path/workspaces");
 
 foreach my $node ($xPath->findnodes('//workspace')) {
   my $wksName=$node->{'workspaceName'};
@@ -37,7 +37,7 @@ foreach my $node ($xPath->findnodes('//workspace')) {
   my $fileWorkspaceName=safeFilename($wksName);
 
   my ($success, $res, $errMsg, $errCode) =
-      saveDslFile("$path/Workspaces/$fileWorkspaceName".".groovy",
+      saveDslFile("$path/workspaces/$fileWorkspaceName".".groovy",
   					      "/workspaces[$wksName]", $includeACLs);
   if (! $success) {
     printf("  Error exporting %s", $wksName);

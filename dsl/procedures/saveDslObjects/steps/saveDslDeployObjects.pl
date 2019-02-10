@@ -38,8 +38,8 @@ $ec->setTimeout($defaultTimeout? $defaultTimeout : 600);
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getProjects");
 
 # Create the Projects directory
-mkpath("$path/Projects");
-chmod(0777, "$path/Projects") or die("Can't change permissions on $path/Projects: $!");
+mkpath("$path/projects");
+chmod(0777, "$path/projects") or die("Can't change permissions on $path/projects: $!");
 
 foreach my $node ($xPath->findnodes('//project')) {
   my $pName=$node->{'projectName'};
@@ -59,8 +59,8 @@ foreach my $node ($xPath->findnodes('//project')) {
   #
   # Save Applications
   #
-  mkpath("$path/Projects/$fileProjectName/Applications");
-  chmod(0777, "$path/Projects/$fileProjectName/Applications");
+  mkpath("$path/projects/$fileProjectName/applications");
+  chmod(0777, "$path/projects/$fileProjectName/applications");
 
   my ($success, $xPath) = InvokeCommander("SuppressLog", "getApplications", $pName);
   foreach my $app ($xPath->findnodes('//application')) {
@@ -72,10 +72,10 @@ foreach my $node ($xPath->findnodes('//project')) {
     my $fileAppName=safeFilename($appName);
     printf("  Saving Application: %s\n", $appName);
 
-    mkpath("$path/Projects/$fileProjectName/Applications/$fileAppName");
-    chmod(0777, "$path/Projects/$fileProjectName/Applications/$fileAppName");
+    mkpath("$path/projects/$fileProjectName/applications/$fileAppName");
+    chmod(0777, "$path/projects/$fileProjectName/applications/$fileAppName");
     my ($success, $res, $errMsg, $errCode) =
-      saveDslFile("$path/Projects/$fileProjectName/Applications/$fileAppName/$fileAppName".".groovy",
+      saveDslFile("$path/projects/$fileProjectName/applications/$fileAppName/$fileAppName".".groovy",
             "/projects[$pName]applications[$appName]",$includeACLs);
 
     if (! $success) {
@@ -89,8 +89,8 @@ foreach my $node ($xPath->findnodes('//project')) {
 
     #
     # backup Components
-    mkpath("$path/Projects/$fileProjectName/Applications/$fileAppName/Components");
-    chmod(0777, "$path/Projects/$fileProjectName/Applications/$fileAppName/Components");
+    mkpath("$path/projects/$fileProjectName/applications/$fileAppName/components");
+    chmod(0777, "$path/projects/$fileProjectName/applications/$fileAppName/components");
 
     my ($ok, $json) = InvokeCommander("SuppressLog", "getComponents", $pName, {applicationName => $appName});
     foreach my $comp ($json->findnodes("//component")) {
@@ -99,7 +99,7 @@ foreach my $node ($xPath->findnodes('//project')) {
       printf("    Saving Component: %s\n", $compName);
 
       my ($success, $res, $errMsg, $errCode) =
-        saveDslFile("$path/Projects/$fileProjectName/Applications/$fileAppName/Components/$fileCompName".".groovy",
+        saveDslFile("$path/projects/$fileProjectName/applications/$fileAppName/components/$fileCompName".".groovy",
             "/projects[$pName]applications[$appName]components[$compName]", $includeACLs);
 
     if (! $success) {
@@ -117,8 +117,8 @@ foreach my $node ($xPath->findnodes('//project')) {
   #
   # Save Environments definitions
   #
-  mkpath("$path/Projects/$fileProjectName/Environments");
-  chmod(0777, "$path/Projects/$fileProjectName/Environments");
+  mkpath("$path/projects/$fileProjectName/environments");
+  chmod(0777, "$path/projects/$fileProjectName/environments");
 
   my ($success, $xPath) = InvokeCommander("SuppressLog", "getEnvironments", $pName);
   foreach my $proc ($xPath->findnodes('//environment')) {
@@ -131,7 +131,7 @@ foreach my $node ($xPath->findnodes('//project')) {
     printf("  Saving Environment: %s\n", $envName);
 
     my ($success, $res, $errMsg, $errCode) =
-      saveDslFile("$path/Projects/$fileProjectName/Environments/$fileEnvName".".groovy",
+      saveDslFile("$path/projects/$fileProjectName/environments/$fileEnvName".".groovy",
             "/projects[$pName]environments[$envName]", $includeACLs);
 
     if (! $success) {
@@ -152,8 +152,8 @@ foreach my $node ($xPath->findnodes('//project')) {
   } else {
     # Save pipeline definitions
     #
-    mkpath("$path/Projects/$fileProjectName/Pipelines");
-    chmod(0777, "$path/Projects/$fileProjectName/Pipelines");
+    mkpath("$path/projects/$fileProjectName/pipelines");
+    chmod(0777, "$path/projects/$fileProjectName/pipelines");
 
     my ($success, $xPath) = InvokeCommander("SuppressLog", "getPipelines", $pName);
     foreach my $proc ($xPath->findnodes('//pipeline')) {
@@ -166,7 +166,7 @@ foreach my $node ($xPath->findnodes('//project')) {
       printf("  Saving Pipeline: %s\n", $pipeName);
 
       my ($success, $res, $errMsg, $errCode) =
-        saveDslFile("$path/Projects/$fileProjectName/Pipelines/$filePipeName".".groovy",
+        saveDslFile("$path/projects/$fileProjectName/pipelines/$filePipeName".".groovy",
                "/projects[$pName]pipelines[$pipeName]", $includeACLs);
 
       if (! $success) {
@@ -188,8 +188,8 @@ foreach my $node ($xPath->findnodes('//project')) {
   } else {
     # Save release definitions
     #
-    mkpath("$path/Projects/$fileProjectName/Releases");
-    chmod(0777, "$path/Projects/$fileProjectName/Releases");
+    mkpath("$path/projects/$fileProjectName/releases");
+    chmod(0777, "$path/projects/$fileProjectName/releases");
 
     my ($success, $xPath) = InvokeCommander("SuppressLog", "getReleases", $pName);
     foreach my $proc ($xPath->findnodes('//release')) {
@@ -202,7 +202,7 @@ foreach my $node ($xPath->findnodes('//project')) {
       printf("  Saving Release: %s\n", $relName);
 
       my ($success, $res, $errMsg, $errCode) =
-        saveDslFile("$path/Projects/$fileProjectName/Releases/$filePipeName".".groovy",
+        saveDslFile("$path/projects/$fileProjectName/releases/$filePipeName".".groovy",
               "/projects[$pName]releases[$relName]", $includeACLs);
 
       if (! $success) {
@@ -223,8 +223,8 @@ foreach my $node ($xPath->findnodes('//project')) {
   } else {
     # Save release definitions
     #
-    mkpath("$path/Projects/$fileProjectName/Services");
-    chmod(0777, "$path/Projects/$fileProjectName/Services");
+    mkpath("$path/projects/$fileProjectName/services");
+    chmod(0777, "$path/projects/$fileProjectName/services");
 
     my ($success, $xPath) = InvokeCommander("SuppressLog", "getServices", $pName);
     foreach my $proc ($xPath->findnodes('//service')) {
@@ -237,7 +237,7 @@ foreach my $node ($xPath->findnodes('//project')) {
       printf("  Saving Service: %s\n", $servName);
 
       my ($success, $res, $errMsg, $errCode) =
-        saveDslFile("$path/Projects/$fileProjectName/Services/$fileServName".".groovy",
+        saveDslFile("$path/projects/$fileProjectName/services/$fileServName".".groovy",
               "/projects[$pName]services[$servName]", $includeACLs);
 
       if (! $success) {

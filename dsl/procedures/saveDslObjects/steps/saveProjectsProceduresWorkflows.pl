@@ -35,8 +35,8 @@ $ec->setTimeout($defaultTimeout? $defaultTimeout : 600);
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getProjects");
 
 # Create the Projects directory
-mkpath("$path/Projects");
-chmod(0777, "$path/Projects") or die("Can't change permissions on $path/Projects: $!");
+mkpath("$path/projects");
+chmod(0777, "$path/projects") or die("Can't change permissions on $path/projects: $!");
 
 foreach my $node ($xPath->findnodes('//project')) {
   my $pName=$node->{'projectName'};
@@ -51,11 +51,11 @@ foreach my $node ($xPath->findnodes('//project')) {
   printf("Saving Project: %s\n", $pName);
 
   my $fileProjectName=safeFilename($pName);
-  mkpath("$path/Projects/$fileProjectName");
-  chmod(0777, "$path/Projects/$fileProjectName");
+  mkpath("$path/projects/$fileProjectName");
+  chmod(0777, "$path/projects/$fileProjectName");
 
   my ($success, $res, $errMsg, $errCode) =
-      saveDslFile("$path/Projects/$fileProjectName/$fileProjectName".".grooy",
+      saveDslFile("$path/projects/$fileProjectName/$fileProjectName".".grooy",
   					"/projects[$pName]", $includeACLs);
   if (! $success) {
     printf("  Error exporting project %s", $pName);
@@ -67,8 +67,8 @@ foreach my $node ($xPath->findnodes('//project')) {
   #
   # Save procedures
   #
-  mkpath("$path/Projects/$fileProjectName/Procedures");
-  chmod(0777, "$path/Projects/$fileProjectName/Procedures");
+  mkpath("$path/projects/$fileProjectName/procedures");
+  chmod(0777, "$path/projects/$fileProjectName/procedures");
 
   my ($success, $xPath) = InvokeCommander("SuppressLog", "getProcedures", $pName);
   foreach my $proc ($xPath->findnodes('//procedure')) {
@@ -76,10 +76,10 @@ foreach my $node ($xPath->findnodes('//project')) {
     my $fileProcedureName=safeFilename($procName);
     printf("  Saving Procedure: %s\n", $procName);
 
-    mkpath("$path/Projects/$fileProjectName/Procedures/$fileProcedureName");
-    chmod(0777, "$path/Projects/$fileProjectName/Procedures/$fileProcedureName");
+    mkpath("$path/projects/$fileProjectName/procedures/$fileProcedureName");
+    chmod(0777, "$path/projects/$fileProjectName/procedures/$fileProcedureName");
  	my ($success, $res, $errMsg, $errCode) =
-      saveDslFile( "$path/Projects/$fileProjectName/Procedures/$fileProcedureName/$fileProcedureName".".groovy",
+      saveDslFile( "$path/projects/$fileProjectName/procedures/$fileProcedureName/$fileProcedureName".".groovy",
   					"/projects[$pName]procedures[$procName]", $includeACLs);
 
     if (! $success) {
@@ -94,8 +94,8 @@ foreach my $node ($xPath->findnodes('//project')) {
     # Save steps
     #
     if ($exportSteps) {
-      mkpath("$path/Projects/$fileProjectName/Procedures/$fileProcedureName/Steps");
-      chmod(0777, "$path/Projects/$fileProjectName/Procedures/$fileProcedureName/Steps");
+      mkpath("$path/projects/$fileProjectName/procedures/$fileProcedureName/steps");
+      chmod(0777, "$path/projects/$fileProjectName/procedures/$fileProcedureName/steps");
 
       my($success, $stepNodes) = InvokeCommander("SuppressLog", "getSteps", $pName, $procName);
       foreach my $step ($stepNodes->findnodes('//step')) {
@@ -104,7 +104,7 @@ foreach my $node ($xPath->findnodes('//project')) {
         printf("    Saving Step: %s\n", $stepName);
 
  	    my ($success, $res, $errMsg, $errCode) =
-           saveDslFile("$path/Projects/$fileProjectName/Procedures/$fileProcedureName/Steps/$fileStepName".".groovy",
+           saveDslFile("$path/projects/$fileProjectName/procedures/$fileProcedureName/steps/$fileStepName".".groovy",
   					"/projects[$pName]procedures[$procName]steps[$stepName]",$includeACLs);
 
         if (! $success) {
@@ -123,8 +123,8 @@ foreach my $node ($xPath->findnodes('//project')) {
   #
   # Save workflow definitions
   #
-  mkpath("$path/Projects/$fileProjectName/Workflows");
-  chmod(0777, "$path/Projects/$fileProjectName/Workflows");
+  mkpath("$path/projects/$fileProjectName/workflows");
+  chmod(0777, "$path/projects/$fileProjectName/workflows");
 
   my ($success, $xPath) = InvokeCommander("SuppressLog", "getWorkflowDefinitions", $pName);
   foreach my $proc ($xPath->findnodes('//workflowDefinition')) {
@@ -133,7 +133,7 @@ foreach my $node ($xPath->findnodes('//project')) {
     printf("  Saving Workflow Definition: %s\n", $wkfName);
 
     my ($success, $res, $errMsg, $errCode) =
-      saveDslFile("$path/Projects/$fileProjectName/Workflows/$fileWkfName".".groovy",
+      saveDslFile("$path/projects/$fileProjectName/workflows/$fileWkfName".".groovy",
   					"/projects[$pName]workflowDefinitions[$wkfName]",$includeACLs);
 
     if (! $success) {

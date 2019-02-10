@@ -24,8 +24,8 @@ my $gateCount=0;
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getGateways");
 
 # Create the Gateways directory
-mkpath("$path/Gateways");
-chmod(0777, "$path/Gateways");
+mkpath("$path/gateways");
+chmod(0777, "$path/gateways");
 
 foreach my $node ($xPath->findnodes('//gateway')) {
   my $gateName=$node->{'gatewayName'};
@@ -37,7 +37,7 @@ foreach my $node ($xPath->findnodes('//gateway')) {
   my $fileGatewayName=safeFilename($gateName);
 
   my ($success, $res, $errMsg, $errCode) =
-      saveDslFile("$path/Gateways/$fileGatewayName".".groovy",
+      saveDslFile("$path/gateways/$fileGatewayName".".groovy",
                   "/gateways[$gateName]", $includeACLs);
 
   if (! $success) {

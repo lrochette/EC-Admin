@@ -52,17 +52,17 @@ my ($success, $xPath) = InvokeCommander("SuppressLog",
   "getProperties",
   {path => "/server"});
 
-# Create the /Server/Properties directory
-mkpath("$path/Server/Properties");
-chmod(0777, "$path/Server") or die("Can't change permissions on $path/Server: $!");
-chmod(0777, "$path/Server/Properties") or die("Can't change permissions on $path/Server/Properties: $!");
+# Create the /server/properties directory
+mkpath("$path/server/properties");
+chmod(0777, "$path/server") or die("Can't change permissions on $path/server: $!");
+chmod(0777, "$path/server/properties") or die("Can't change permissions on $path/server/properties: $!");
 
 foreach my $node ($xPath->findnodes('//property')) {
   my $pName=$node->{'propertyName'};
   my $filePropName=safeFilename($pName);
 
   my ($success, $res, $errMsg, $errCode) =
-     saveDslFile("$path/Server/Properties/${filePropName}.groovy",
+     saveDslFile("$path/server/properties/${filePropName}.groovy",
                  "/server[$pName]", $includeACLs);
   if (! $success) {
     printf("  Error exporting property %s", $pName);

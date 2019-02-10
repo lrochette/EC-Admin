@@ -39,8 +39,8 @@ if (compareVersion($version, "9.0") < 0) {
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getPersonas");
 
 # Create the Personas directory
-mkpath("$path/Personas");
-chmod(0777, "$path/Personas");
+mkpath("$path/personas");
+chmod(0777, "$path/personas");
 printf("\nSaving Personas:\n");
 printf("--------------------\n");
 
@@ -54,7 +54,7 @@ foreach my $node ($xPath->findnodes('//persona')) {
   my $filePersonaName=safeFilename($personaName);
 
   my ($success, $res, $errMsg, $errCode) =
-      saveDslFile("$path/Personas/$filePersonaName".".groovy",
+      saveDslFile("$path/personas/$filePersonaName".".groovy",
                   "/personas[$personaName]", $includeACLs);
   if (! $success) {
     printf("    Error exporting %s", $personaName);
@@ -73,8 +73,8 @@ foreach my $node ($xPath->findnodes('//persona')) {
 ($success, $xPath) = InvokeCommander("SuppressLog", "getPersonaPages");
 
 # Create the Persona Pages directory
-mkpath("$path/PersonaPages");
-chmod(0777, "$path/PersonaPages");
+mkpath("$path/personaPages");
+chmod(0777, "$path/personaPages");
 printf("\nSaving PersonaPages:\n");
 printf("--------------------\n");
 
@@ -88,7 +88,7 @@ foreach my $node ($xPath->findnodes('//personaPage')) {
   my $filePersonaPageName=safeFilename($personaPageName);
 
   my ($success, $res, $errMsg, $errCode) =
-      saveDslFile("$path/PersonaPages/$filePersonaPageName".".xml",
+      saveDslFile("$path/personaPages/$filePersonaPageName".".xml",
         "/personaPages[$personaPageName]", $includeACLs);
   if (! $success) {
     printf("    Error exporting %s", $personaPageName);
@@ -107,8 +107,8 @@ foreach my $node ($xPath->findnodes('//personaPage')) {
 ($success, $xPath) = InvokeCommander("SuppressLog", "getPersonaCategories");
 
 # Create the Persona Categories directory
-mkpath("$path/PersonaCategories");
-chmod(0777, "$path/PersonaCategories");
+mkpath("$path/personaCategories");
+chmod(0777, "$path/personaCategories");
 printf("\nSaving PersonaCategories:\n");
 printf("--------------------\n");
 
@@ -122,7 +122,7 @@ foreach my $node ($xPath->findnodes('//personaCategory')) {
   my $filePersonaCategoryName=safeFilename($personaCategoryName);
 
   my ($success, $res, $errMsg, $errCode) =
-      saveDslFile("$path/PersonaCategories/$filePersonaCategoryName".".xml",
+      saveDslFile("$path/personaCategories/$filePersonaCategoryName".".xml",
         "/personaCategories[$personaCategoryName]", $includeACLs);
   if (! $success) {
     printf("    Error exporting %s", $personaCategoryName);
