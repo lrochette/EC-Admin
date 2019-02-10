@@ -818,8 +818,8 @@ ntest "issue 161 save services", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory to exist
-    if (! -d "${backupDir}/Projects/Default/Services") {
-      fail("Services directory is missing");
+    if (! -d "${backupDir}/Projects/$proj/Services") {
+      fail("Services directory is missing in project $proj");
     }
 
     # check for project file with slash replaced by _
