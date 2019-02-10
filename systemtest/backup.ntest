@@ -680,20 +680,21 @@ ntest "issue 87 empty pattern", {}, sub {
           operand1 => ""
         }
       });
-    #print Dumper($ref);
     my $nb=int($ref->find('//response/count'));
     assertEq ($nb, $nbExp, "Not enough projects exported");
 
     # check multiple users were exported
-    $nb=int($::N->getProperty("userExported" , {jobId => $jobId})->findvalue("//value"));
-    if ($nb < 7) {
-      fail("Not enough users exported $nb");
-    }
+    $nbExp=int($::N->getProperty("userExported" , {jobId => $jobId})->findvalue("//value"));
+    $ref=$::N->countObjects('user');
+    $nb=int($ref->find('//response/count'));
+    assertEq ($nb, $nbExp, "Not enough users exported");
+
     # check multiple zones were exported
-    $nb=int($::N->getProperty("zoneExported" , {jobId => $jobId})->findvalue("//value"));
-    if ($nb < 1) {
-      fail("Not enough zones exported $nb");
-    }
+    $nbExp=int($::N->getProperty("zoneExported" , {jobId => $jobId})->findvalue("//value"));
+    $ref=$::N->countObjects('zone');
+    $nb=int($ref->find('//response/count'));
+    assertEq ($nb, $nbExp, "Not enough zones exported $nb");
+
   }
   # clean
   rmtree($backupDir);
