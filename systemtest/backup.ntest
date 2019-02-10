@@ -831,4 +831,87 @@ ntest "issue 161 save services", {}, sub {
   $::N->deleteProject($proj);
 };
 
+#-------------------------------------------------------------------------------
+#  Issue 161: save services
+#-------------------------------------------------------------------------------
+ntest "issue 161 save personas", {}, sub {
+  rmtree($backupDir);
+  $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>$backupDir},
+      {actualParameterName=>"relocatable", value=>"true"},
+      {actualParameterName=>"includeACLs", value=>"false"},
+      {actualParameterName=>"includeNotifiers", value=>"false"},
+     ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObjects_Issue161_Personas_' .
+		  $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check for project directory to exist
+    if (! -d "${backupDir}/Personas") {
+      fail("Personas directory is missing");
+    }
+
+    # check for project file with slash replaced by _
+    if (! -f "${backupDir}/Personas/Global.xml") {
+      fail("Global.xml persona file is missing");
+    } else {
+      # clean
+      rmtree($backupDir);
+    }
+
+  }
+  # clean
+};
+
+#-------------------------------------------------------------------------------
+#  Issue 161: save services
+#-------------------------------------------------------------------------------
+ntest "issue 161 save persona pages", {}, sub {
+  rmtree($backupDir);
+  $xpath = $::N->runProcedure($pluginName, {
+    procedureName=>"saveAllObjects",
+    actualParameter=>[
+      {actualParameterName=>"pathname", value=>$backupDir},
+      {actualParameterName=>"relocatable", value=>"true"},
+      {actualParameterName=>"includeACLs", value=>"false"},
+      {actualParameterName=>"includeNotifiers", value=>"false"},
+     ]
+  });
+  assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
+  if ($xpath) {
+    #get new Job ID
+    my $jobId  = $xpath->findvalue("//jobId");
+    $::N->setJobName($jobId, 'saveAllObjects_Issue161_Personas_' .
+		  $::N->incrementProperty("/server/counters/EC-Admin/jobCounter")->findvalue("//value"));
+    waitForJob($jobId);
+    my $jobData  = $::N->getJobDetails($jobId);
+    my $outcome = $jobData->findvalue("//job/outcome");
+    assertNe("error", $outcome, "saveAllObjects should not error out");
+
+    # check for project directory to exist
+    if (! -d "${backupDir}/PersonaPages") {
+      fail("PersonaPages directory is missing");
+    }
+
+    # check for project file with slash replaced by _
+    if (! -f "${backupDir}/PersonaPages/Users.xml") {
+      fail("Users.xml persona page file is missing");
+    } else {
+      # clean
+      rmtree($backupDir);
+    }
+
+  }
+  # clean
+};
 1;

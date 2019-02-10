@@ -123,4 +123,10 @@ All steps need to run on the same host''',
     resourceName: '$[/myJob/backupResource]',
     shell: 'ec-perl'
 
+  step 'savePersonas',
+    command: new File(pluginDir, "dsl/procedures/$procName/steps/saveDslPersonas.pl").text,
+    condition: '$[exportPersonas]',
+    resourceName: '$[/myJob/backupResource]',
+    shell: 'ec-perl'
+
 }

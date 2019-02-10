@@ -1,6 +1,7 @@
 2019-02-10 Laurent Rochette <lrochette@electric-cloud.com>
-  * 3.2.5.754: Add save tags (issue #161)
+  * 3.2.5.755: Add save tags (issue #161)
                Add save services (issue #161)
+               Add save personas (issue #161)
 
 2019-02-08 Laurent Rochette <lrochette@electric-cloud.com>
   * 3.2.4.748 : Add generateDsl procedure
