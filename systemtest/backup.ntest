@@ -676,7 +676,7 @@ ntest "issue 87 empty pattern", {}, sub {
     my $ref=$::N->countObjects('project', {
         filter => {
           propertyName => "pluginName",
-          operator => "equal",
+          operator => "equals",
           operand1 => ""
         }
       });
