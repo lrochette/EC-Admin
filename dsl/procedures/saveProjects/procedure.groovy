@@ -43,9 +43,12 @@ $[/server/ec_notifierTemplates/Html_JobTempl/body]'''
       exportDeploy: 'false',
       exportGateways: 'false',
       exportGroups: 'false',
+      exportPersonas: 'false',
       exportResourcePools: 'false',
       exportResources: 'false',
+      exportServerProperties: 'false',
       exportSteps: 'false',
+      exportTags: 'false',
       exportUsers: 'false',
       exportWorkspaces: 'false',
       exportZones: 'false',
@@ -54,5 +57,6 @@ $[/server/ec_notifierTemplates/Html_JobTempl/body]'''
       pathname: '$[pathname]',
       pattern: '',
       relocatable: '$[relocatable]',
+      format: 'XML'
     ]
 }

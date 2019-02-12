@@ -1,7 +1,26 @@
 #############################################################################
 #
-#  Copyright 2015-2016 Electric-Cloud Inc.
+#  Save Zones (in DSL or XML)
 #
+#  Author: L.Rochette
+#
+#  Copyright 2015-2019 Electric-Cloud Inc.
+#
+#     Licensed under the Apache License, Version 2.0 (the "License");
+#     you may not use this file except in compliance with the License.
+#     You may obtain a copy of the License at
+#
+#         http://www.apache.org/licenses/LICENSE-2.0
+#
+#     Unless required by applicable law or agreed to in writing, software
+#     distributed under the License is distributed on an "AS IS" BASIS,
+#     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#     See the License for the specific language governing permissions and
+#     limitations under the License.
+#
+# History
+# ---------------------------------------------------------------------------
+# 2019-Feb-11 lrochette Foundation for merge DSL and XML export
 #############################################################################
 use File::Path;
 
@@ -10,11 +29,12 @@ $[/myProject/scripts/perlHeaderJSON]
 #
 # Parameters
 #
-my $path    = '$[pathname]';
-my $pattern = '$[pattern]';
-my $includeACLs="$[includeACLs]";
-my $includeNotifiers="$[includeNotifiers]";
-my $relocatable="$[relocatable]";
+my $path             = '$[pathname]';
+my $pattern          = '$[pattern]';
+my $includeACLs      = "$[includeACLs]";
+my $includeNotifiers = "$[includeNotifiers]";
+my $relocatable      = "$[relocatable]";
+my $format           = '$[format]';
 
 #
 # Global
@@ -39,11 +59,8 @@ foreach my $node ($xPath->findnodes('//zone')) {
   my $fileZoneName=safeFilename($zoneName);
 
   my ($success, $res, $errMsg, $errCode) =
-      InvokeCommander("SuppressLog", "export", "$path/Zones/$fileZoneName".".xml",
-  { 'path'=> "/zones[$zoneName]",
-    'relocatable' => $relocatable,
-    'withAcls'    => $includeACLs,
-    'withNotifiers'=>$includeNotifiers});
+    backupObject($format, "$path/Zones/$fileZoneName",
+    "/zones[$zoneName]", $relocatable, $includeACLs, $includeNotifiers);
   if (! $success) {
     printf("  Error exporting %s", $zoneName);
     printf("  %s: %s\n", $errCode, $errMsg);
@@ -56,6 +73,5 @@ $ec->setProperty("preSummary", "$zoneCount Zones exported");
 $ec->setProperty("/myJob/zoneExported", $zoneCount);
 exit($errorCount);
 
-$[/myProject/scripts/backup/safeFilename]
-
+$[/myProject/scripts/perlBackupLib]
 $[/myProject/scripts/perlLibJSON]

@@ -26,6 +26,16 @@
     </formElement>
 
     <formElement>
+        <label>Format</label>
+        <property>format</property>
+        <documentation>Backup as XML or DSL.</documentation>
+        <type>select</type>
+        <value>XML</value>
+        <option><name>XML (export)</name><value>XML</value></option>
+        <required>1</required>
+    </formElement>
+
+    <formElement>
         <label>Filter Pattern</label>
         <property>pattern</property>
         <documentation>The perl pattern to apply before saving objects (except for procedures and steps; and deploy objects in non Default project).</documentation>

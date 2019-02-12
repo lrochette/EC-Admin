@@ -1,7 +1,7 @@
 #############################################################################
 #
 # Save top server properties (as /server export is the whole thing)
-#
+#   DSL or XML format
 # Author: L.Rochette
 #
 #  Copyright 2018 Electric-Cloud Inc.
@@ -21,7 +21,7 @@
 # History
 # ---------------------------------------------------------------------------
 # 2018-11-07 lrochette Initial Version
-#
+# 2019-02-11 lrochette Foundation for merge DSL and XML export
 #############################################################################
 use File::Path;
 
@@ -32,11 +32,12 @@ $DEBUG=1;
 #
 # Parameters
 #
-my $path        = '$[pathname]';
-my $pattern     = '$[pattern]';
+my $path          = '$[pathname]';
+my $pattern       = '$[pattern]';
 my $caseSensitive = "i";
-my $includeACLs="$[includeACLs]";
-my $relocatable="$[relocatable]";
+my $includeACLs   = "$[includeACLs]";
+my $relocatable   = "$[relocatable]";
+my $format        = '$[format]';
 
 #
 # Global
@@ -63,10 +64,8 @@ foreach my $node ($xPath->findnodes('//property')) {
   my $filePropName=safeFilename($pName);
 
   my ($success, $res, $errMsg, $errCode) =
-     InvokeCommander("SuppressLog", "export", "$path/Server/Properties/${filePropName}.xml",
-           { 'path'          => "/server[$pName]",
-             'withAcls'    => $includeACLs,
-           });
+     backupObject($format, "$path/Server/Properties/${filePropName}",
+       "/server[$pName]", "false", $includeACLs, "false");
   if (! $success) {
     printf("  Error exporting property %s", $pName);
     printf("  %s: %s\n", $errCode, $errMsg);
@@ -81,5 +80,5 @@ $ec->setProperty("/myJob/serverPropertiesExported", $propCount);
 
 exit($errorCount);
 
-$[/myProject/scripts/backup/safeFilename]
+$[/myProject/scripts/perlBackupLib]
 $[/myProject/scripts/perlLibJSON]

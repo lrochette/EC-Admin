@@ -1,23 +1,41 @@
 #############################################################################
 #
+#  Script to backup the Deploy objects (application, environment, components,
+#     releases, services, ...) in XML or DSL dformat
+#
+#  Author: L.Rochette
+#
 #  Copyright 2015-2019 Electric-Cloud Inc.
 #
-# Script to backup the Deploy objects (application, environment, components)
-#############################################################################
+#     Licensed under the Apache License, Version 2.0 (the "License");
+#     you may not use this file except in compliance with the License.
+#     You may obtain a copy of the License at
+#
+#         http://www.apache.org/licenses/LICENSE-2.0
+#
+#     Unless required by applicable law or agreed to in writing, software
+#     distributed under the License is distributed on an "AS IS" BASIS,
+#     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#     See the License for the specific language governing permissions and
+#     limitations under the License.
+#
+# History
+# ---------------------------------------------------------------------------
+# 2019-Feb-11 lrochette Foundation for merge DSL and XML export
+##############################################################################
 use File::Path;
 
 $[/myProject/scripts/perlHeaderJSON]
 
-$DEBUG=1;
-
 #
 # Parameters
 #
-my $path    = '$[pathname]';
-my $pattern = '$[pattern]';
-my $includeACLs="$[includeACLs]";
-my $includeNotifiers="$[includeNotifiers]";
-my $relocatable="$[relocatable]";
+my $path             = '$[pathname]';
+my $pattern          = '$[pattern]';
+my $includeACLs      = "$[includeACLs]";
+my $includeNotifiers = "$[includeNotifiers]";
+my $relocatable      = "$[relocatable]";
+my $format           = '$[format]';
 
 #
 # Global
@@ -77,11 +95,10 @@ foreach my $node ($xPath->findnodes('//project')) {
     mkpath("$path/Projects/$fileProjectName/Applications/$fileAppName");
     chmod(0777, "$path/Projects/$fileProjectName/Applications/$fileAppName");
     my ($success, $res, $errMsg, $errCode) =
-      InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Applications/$fileAppName/$fileAppName".".xml",
-            { 'path'=> "/projects[$pName]applications[$appName]",
-              'relocatable' => $relocatable,
-              'withAcls'    => $includeACLs,
-              'withNotifiers'=>$includeNotifiers});
+      backupObject($format,
+        "$path/Projects/$fileProjectName/Applications/$fileAppName/$fileAppName",
+        "/projects[$pName]applications[$appName]",
+        $relocatable, $includeACLs, $includeNotifiers);
 
     if (! $success) {
       printf("  Error exporting application %s", $appName);
@@ -104,11 +121,10 @@ foreach my $node ($xPath->findnodes('//project')) {
       printf("    Saving Component: %s\n", $compName);
 
       my ($success, $res, $errMsg, $errCode) =
-        InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Applications/$fileAppName/Components/$fileCompName".".xml",
-            { 'path'=> "/projects[$pName]applications[$appName]components[$compName]",
-              'relocatable' => $relocatable,
-              'withAcls'    => $includeACLs,
-              'withNotifiers'=>$includeNotifiers});
+        backupObject($format,
+          "$path/Projects/$fileProjectName/Applications/$fileAppName/Components/$fileCompName",
+          "/projects[$pName]applications[$appName]components[$compName]",
+          $relocatable, $includeACLs, $includeNotifiers);
 
     if (! $success) {
       printf("  Error exporting component %s in application", $compName, $appName);
@@ -139,11 +155,9 @@ foreach my $node ($xPath->findnodes('//project')) {
     printf("  Saving Environment: %s\n", $envName);
 
     my ($success, $res, $errMsg, $errCode) =
-      InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Environments/$fileEnvName".".xml",
-            { 'path'=> "/projects[$pName]environments[$envName]",
-              'relocatable' => $relocatable,
-              'withAcls'    => $includeACLs,
-              'withNotifiers'=>$includeNotifiers});
+      backupObject($format, "$path/Projects/$fileProjectName/Environments/$fileEnvName",
+        "/projects[$pName]environments[$envName]",
+        $relocatable, $includeACLs, $includeNotifiers);
 
     if (! $success) {
       printf("  Error exporting environment %s", $envName);
@@ -177,11 +191,10 @@ foreach my $node ($xPath->findnodes('//project')) {
       printf("  Saving Pipeline: %s\n", $pipeName);
 
       my ($success, $res, $errMsg, $errCode) =
-        InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Pipelines/$filePipeName".".xml",
-              { 'path'=> "/projects[$pName]pipelines[$pipeName]",
-                'relocatable' => $relocatable,
-                'withAcls'    => $includeACLs,
-                'withNotifiers'=>$includeNotifiers});
+        backupObject($format,
+          "$path/Projects/$fileProjectName/Pipelines/$filePipeName",
+          "/projects[$pName]pipelines[$pipeName]",
+          $relocatable, $includeACLs, $includeNotifiers);
 
       if (! $success) {
         printf("  Error exporting pipeline %s", $pipeName);
@@ -216,11 +229,10 @@ foreach my $node ($xPath->findnodes('//project')) {
       printf("  Saving Release: %s\n", $relName);
 
       my ($success, $res, $errMsg, $errCode) =
-        InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Releases/$filePipeName".".xml",
-              { 'path'=> "/projects[$pName]releases[$relName]",
-                'relocatable' => $relocatable,
-                'withAcls'    => $includeACLs,
-                'withNotifiers'=>$includeNotifiers});
+        backupObject($format,
+          "$path/Projects/$fileProjectName/Releases/$filePipeName",
+          "/projects[$pName]releases[$relName]",
+          $relocatable, $includeACLs, $includeNotifiers);
 
       if (! $success) {
         printf("  Error exporting release %s", $relName);
@@ -254,11 +266,10 @@ foreach my $node ($xPath->findnodes('//project')) {
       printf("  Saving Service: %s\n", $servName);
 
       my ($success, $res, $errMsg, $errCode) =
-        InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Services/$fileServName".".xml",
-              { 'path'=> "/projects[$pName]services[$servName]",
-                'relocatable' => $relocatable,
-                'withAcls'    => $includeACLs,
-                'withNotifiers'=>$includeNotifiers});
+        backupObject($format,
+          "$path/Projects/$fileProjectName/Services/$fileServName",
+          "/projects[$pName]services[$servName]",
+          $relocatable, $includeACLs, $includeNotifiers);
 
       if (! $success) {
         printf("  Error exporting service %s", $servName);
@@ -288,6 +299,5 @@ $ec->setProperty("/myJob/releaseExported",      $relCount);
 $ec->setProperty("/myJob/serviceExported",      $servCount);
 exit($errorCount);
 
-$[/myProject/scripts/backup/safeFilename]
-
+$[/myProject/scripts/perlBackupLib]
 $[/myProject/scripts/perlLibJSON]
