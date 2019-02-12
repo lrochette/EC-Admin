@@ -21,6 +21,12 @@ my $xpath = $::N->getPlugin($pluginKey);
 my $pluginName = $xpath->findvalue("//pluginName")->value;
 my $backupDir="/tmp/BACKUP";
 
+sub getVersion
+{
+  my $v= $::N->getVersions()->findvalue("//version")->value;
+  return $v;
+}
+
 #
 # Load EC-Admin_Test which is required by some tests
 $xpath=$::N->import({file=>$::gWorkingDirectory . "/data/EC-Admin_Test.xml", force=>1});
@@ -70,6 +76,7 @@ ntest "issue 56 question mark", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -117,6 +124,7 @@ ntest "issue 57 group with slash", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -172,6 +180,7 @@ ntest "issue 58 gateway", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -220,6 +229,7 @@ ntest "issue 59 zone", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -266,6 +276,8 @@ ntest "issue 63 pattern", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"format", value=>"XML"},
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -310,6 +322,7 @@ ntest "export users", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"true"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -359,6 +372,7 @@ ntest "issue 77 procedure with slash", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -409,6 +423,7 @@ ntest "issue 74 case insensitive", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -457,6 +472,7 @@ ntest "issue 83 trailing spaces", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -505,6 +521,7 @@ ntest "issue 88 slash in resource", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -554,6 +571,7 @@ ntest "issue 89 < and > in filenames", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -603,6 +621,7 @@ ntest "issue 90 project starting with _", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -653,6 +672,7 @@ ntest "issue 87 empty pattern", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"true"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -758,6 +778,12 @@ ntest "issue 127 slash in project name with saveProjects", {}, sub {
 #  Issue 161: save tags
 #-------------------------------------------------------------------------------
 ntest "issue 161 save tags", {}, sub {
+  # skip tagging for version below 8.5
+  if (getVersion() lt "8.5") {
+    skip("no tag in current version");
+    return;
+  }
+
   my $tag='tag161';
   my $xpath=$::N->createTag($tag);
   assertOK($xpath, "Failed to create tag $tag");
@@ -770,7 +796,8 @@ ntest "issue 161 save tags", {}, sub {
       {actualParameterName=>"relocatable", value=>"true"},
       {actualParameterName=>"includeACLs", value=>"false"},
       {actualParameterName=>"includeNotifiers", value=>"false"},
-      {actualParameterName=>"pattern", value=>"161"}
+      {actualParameterName=>"pattern", value=>"161"},
+      {actualParameterName=>"format", value=>"XML"},
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -806,6 +833,12 @@ ntest "issue 161 save tags", {}, sub {
 #  Issue 161: save services
 #-------------------------------------------------------------------------------
 ntest "issue 161 save services", {}, sub {
+  # skip service for version below 8.1
+  if (getVersion() lt "8.1") {
+    skip("no service in current version");
+    return;
+  }
+
   my $service='service161';
   my $proj="issue161";
 
@@ -823,7 +856,8 @@ ntest "issue 161 save services", {}, sub {
       {actualParameterName=>"relocatable", value=>"true"},
       {actualParameterName=>"includeACLs", value=>"false"},
       {actualParameterName=>"includeNotifiers", value=>"false"},
-       {actualParameterName=>"pattern", value=>"161"}
+       {actualParameterName=>"pattern", value=>"161"},
+       {actualParameterName=>"format", value=>"XML"},
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -859,6 +893,12 @@ ntest "issue 161 save services", {}, sub {
 #  Issue 161: save persona
 #-------------------------------------------------------------------------------
 ntest "issue 161 save personas", {}, sub {
+  # skip persona for version below 9.0
+  if (getVersion() lt "9.o") {
+    skip("no persona in current version");
+    return;
+  }
+
   rmtree($backupDir);
   $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
@@ -867,6 +907,7 @@ ntest "issue 161 save personas", {}, sub {
       {actualParameterName=>"relocatable", value=>"true"},
       {actualParameterName=>"includeACLs", value=>"false"},
       {actualParameterName=>"includeNotifiers", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
      ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -901,6 +942,12 @@ ntest "issue 161 save personas", {}, sub {
 #  Issue 161: save persona
 #-------------------------------------------------------------------------------
 ntest "issue 161 save persona pages", {}, sub {
+  # skip persona page for version below 9.0
+  if (getVersion() lt "9.0") {
+    skip("no persona page in current version");
+    return;
+  }
+
   rmtree($backupDir);
   $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
@@ -909,6 +956,7 @@ ntest "issue 161 save persona pages", {}, sub {
       {actualParameterName=>"relocatable", value=>"true"},
       {actualParameterName=>"includeACLs", value=>"false"},
       {actualParameterName=>"includeNotifiers", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
      ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
