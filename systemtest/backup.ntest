@@ -92,7 +92,7 @@ ntest "issue 56 question mark", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # issue 56: check for file with question mark replaced by _
-    if (! -f "${backupDir}/projects/EC-Admin_Test/procedures/questionMark/Steps/rerun_.xml") {
+    if (! -f "${backupDir}/projects/EC-Admin_Test/procedures/questionMark/steps/rerun_.xml") {
       fail("rerun_.xml is missing");
       $error=1;
     }
@@ -141,7 +141,7 @@ ntest "issue 57 group with slash", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for group file with / mark replaced by _
-    if (! -f "${backupDir}/Groups/AC_DC.xml") {
+    if (! -f "${backupDir}/groups/AC_DC.xml") {
       fail("AC_DC.xml group is missing");
     }
   }
@@ -198,7 +198,7 @@ ntest "issue 58 gateway", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # issue 58: check for gateway file
-    if (! -f "${backupDir}/Gateways/$gate.xml") {
+    if (! -f "${backupDir}/gateways/$gate.xml") {
       fail("$gate.xml gate is missing");
     }
   }
@@ -248,7 +248,7 @@ ntest "issue 59 zone", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # issue 59: check for zone file
-    if (! -f "${backupDir}/Zones/$zone.xml") {
+    if (! -f "${backupDir}/zones/$zone.xml") {
       fail("$zone.xml zone is missing");
     }
   }
@@ -545,7 +545,7 @@ ntest "issue 88 slash in resource", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for resource file file with slash replaced by _
-    if (! -f "${backupDir}/Resources/res_SA_issue88.xml") {
+    if (! -f "${backupDir}/resources/res_SA_issue88.xml") {
       fail("res_SA_issue88.xml resource is missing");
     } else {
       # clean
@@ -596,7 +596,7 @@ ntest "issue 89 < and > in filenames", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for resource file file with slash replaced by _
-    if (! -f "${backupDir}/Resources/res_issue89_end.xml") {
+    if (! -f "${backupDir}/resources/res_issue89_end.xml") {
       fail("res_issue89_end.xml resource is missing");
     } else {
       # clean
@@ -825,12 +825,12 @@ ntest "issue 161 save tags", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory to exist
-    if (! -d "${backupDir}/Tags") {
+    if (! -d "${backupDir}/tags") {
       fail("Tags directory is missing");
     }
 
     # check for project file with slash replaced by _
-    if (! -f "${backupDir}/Tags/${tag}.xml") {
+    if (! -f "${backupDir}/tags/${tag}.xml") {
       fail("${tag}.xml tag file is missing");
     } else {
       # clean
@@ -886,12 +886,12 @@ ntest "issue 161 save services", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory to exist
-    if (! -d "${backupDir}/projects/$proj/Services") {
+    if (! -d "${backupDir}/projects/$proj/services") {
       fail("Services directory is missing in project $proj");
     }
 
     # check for project file with slash replaced by _
-    if (! -f "${backupDir}/projects/$proj/Services/${service}.xml") {
+    if (! -f "${backupDir}/projects/$proj/services/${service}.xml") {
       fail("${service}.xml service file is missing in project $proj");
     } else {
       # clean
@@ -937,12 +937,12 @@ ntest "issue 161 save personas", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory to exist
-    if (! -d "${backupDir}/Personas") {
+    if (! -d "${backupDir}/personas") {
       fail("Personas directory is missing");
     }
 
     # check for project file with slash replaced by _
-    if (! -f "${backupDir}/Personas/Global.xml") {
+    if (! -f "${backupDir}/personas/Global.xml") {
       fail("Global.xml persona file is missing");
     } else {
       # clean
@@ -987,12 +987,12 @@ ntest "issue 161 save persona pages", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory to exist
-    if (! -d "${backupDir}/PersonaPages") {
+    if (! -d "${backupDir}/personaPages") {
       fail("PersonaPages directory is missing");
     }
 
     # check for project file with slash replaced by _
-    if (! -f "${backupDir}/PersonaPages/Users.xml") {
+    if (! -f "${backupDir}/personaPages/Users.xml") {
       fail("Users.xml persona page file is missing");
     } else {
       # clean
