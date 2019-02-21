@@ -250,11 +250,13 @@ ntest "issue 59 zone", {}, sub {
     # issue 59: check for zone file
     if (! -f "${backupDir}/zones/$zone.xml") {
       fail("$zone.xml zone is missing");
+    } else {
+      # Clean
+      rmtree($backupDir);
+      $::N->deleteZone($zone);
+
     }
   }
-  # Clean
-  rmtree($backupDir);
-  $::N->deleteZone($zone);
 };
 
 #-------------------------------------------------------------------------------
@@ -753,7 +755,8 @@ ntest "issue 127 slash in project name with saveProjects", {}, sub {
       {actualParameterName=>"pathname", value=>$backupDir},
       {actualParameterName=>"relocatable", value=>"1"},
       {actualParameterName=>"includeACLs", value=>"0"},
-      {actualParameterName=>"includeNotifiers", value=>"0"}
+      {actualParameterName=>"includeNotifiers", value=>"0"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveProjects");
@@ -908,7 +911,7 @@ ntest "issue 161 save services", {}, sub {
 #-------------------------------------------------------------------------------
 ntest "issue 161 save personas", {}, sub {
   # skip persona for version below 9.0
-  if (getVersion() lt "9.o") {
+  if (getVersion() lt "9.0") {
     skip("no persona in current version");
     return;
   }
