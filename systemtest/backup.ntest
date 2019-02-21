@@ -92,7 +92,7 @@ ntest "issue 56 question mark", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # issue 56: check for file with question mark replaced by _
-    if (! -f "${backupDir}/Projects/EC-Admin_Test/Procedures/questionMark/Steps/rerun_.xml") {
+    if (! -f "${backupDir}/projects/EC-Admin_Test/procedures/questionMark/Steps/rerun_.xml") {
       fail("rerun_.xml is missing");
       $error=1;
     }
@@ -393,12 +393,12 @@ ntest "issue 77 procedure with slash", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory file with / mark replaced by _
-    if (! -d "${backupDir}/Projects/Issue_77") {
+    if (! -d "${backupDir}/projects/Issue_77") {
       fail("Issue_77 Project is missing");
     }
     # check for procedure file file with / mark replaced by _
-    if (! -f "${backupDir}/Projects/Issue_77/Procedures/Issue_77/Issue_77.xml") {
-      fail("Issue_77.xml procedure is missing");
+    if (! -f "${backupDir}/projects/Issue_77/procedures/Issue_77/procedure.xml") {
+      fail("procedure.xml procedure is missing");
     }
   }
   rmtree($backupDir);
@@ -495,8 +495,8 @@ ntest "issue 83 trailing spaces", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project file file with heading and trailing space removed
-    if (! -f "${backupDir}/Projects/ISSUE83/ISSUE83.xml") {
-      fail("ISSUE83.xml project is missing");
+    if (! -f "${backupDir}/projects/ISSUE83/project.xml") {
+      fail("project.xml project is missing");
     }
   }
   # clean
@@ -647,7 +647,7 @@ ntest "issue 90 project starting with _", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory to exist
-    if (! -d "${backupDir}/Projects/_issue90") {
+    if (! -d "${backupDir}/projects/_issue90") {
       fail("_issue90 project is missing");
     } else {
       # clean
@@ -699,7 +699,7 @@ ntest "issue 87 empty pattern", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory to exist
-    if (! -d "${backupDir}/Projects/$proj") {
+    if (! -d "${backupDir}/projects/$proj") {
       fail("$proj project is missing");
     }
 
@@ -768,14 +768,14 @@ ntest "issue 127 slash in project name with saveProjects", {}, sub {
     assertNe("error", $outcome, "saveProjects should not error out");
 
     # check for project directory to exist
-    if (! -d "${backupDir}/Projects/$projDir") {
+    if (! -d "${backupDir}/projects/$projDir") {
       fail("$projDir project is missing");
     }
 
 
     # check for project file with slash replaced by _
-    if (! -f "${backupDir}/Projects/$projDir/${projDir}.xml") {
-      fail("${projDir}.xml project is missing");
+    if (! -f "${backupDir}/projects/$projDir/project.xml") {
+      fail("project.xml project is missing");
     } else {
       # clean
       rmtree($backupDir);
@@ -886,12 +886,12 @@ ntest "issue 161 save services", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory to exist
-    if (! -d "${backupDir}/Projects/$proj/Services") {
+    if (! -d "${backupDir}/projects/$proj/Services") {
       fail("Services directory is missing in project $proj");
     }
 
     # check for project file with slash replaced by _
-    if (! -f "${backupDir}/Projects/$proj/Services/${service}.xml") {
+    if (! -f "${backupDir}/projects/$proj/Services/${service}.xml") {
       fail("${service}.xml service file is missing in project $proj");
     } else {
       # clean
