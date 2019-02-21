@@ -11,8 +11,8 @@ sub InvokeCommander {
     my $commanderFunction = shift;
     my $result;
     my $success = 1;
-	my $errMsg;
-	my $errCode;
+	  my $errMsg;
+	  my $errCode;
 
     my $bSuppressLog = $optionFlags =~ /SuppressLog/i;
     my $bSuppressResult = $bSuppressLog || $optionFlags =~ /SuppressResult/i;
@@ -28,7 +28,7 @@ sub InvokeCommander {
     # Check for error return
     if (defined ($result->{responses}->[0]->{error})) {
     	$errCode=$result->{responses}->[0]->{error}->{code};
-    	$errMsg=$result->{responses}->[0]->{error}->{message};
+    	$errMsg =$result->{responses}->[0]->{error}->{message};
     }
 
     if ($errMsg ne "") {

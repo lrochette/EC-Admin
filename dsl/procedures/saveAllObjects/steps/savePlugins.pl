@@ -21,6 +21,7 @@
 # History
 # ---------------------------------------------------------------------------
 # 2019-Feb-11 lrochette Foundation for merge DSL and XML export
+# 2019-Feb 21 lrochette Changing paths to match EC-DslDeploy
 ##############################################################################
 use File::Path;
 
@@ -57,8 +58,8 @@ $ec->setTimeout($defaultTimeout? $defaultTimeout : 600);
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getProjects");
 
 # Create the Plugins directory
-mkpath("$path/Plugins");
-chmod(0777, "$path/Plugins") or die("Can't change permissions on $path/Plugins: $!");
+mkpath("$path/plugins");
+chmod(0777, "$path/plugins") or die("Can't change permissions on $path/plugins: $!");
 
 foreach my $node ($xPath->findnodes('//project')) {
   my $pName=$node->{'projectName'};
@@ -73,11 +74,9 @@ foreach my $node ($xPath->findnodes('//project')) {
   printf("Saving Plugin: %s\n", $pName);
 
   my $fileProjectName=safeFilename($pName);
-  mkpath("$path/Plugins/$fileProjectName");
-  chmod(0777, "$path/Plugins/$fileProjectName");
 
   my ($success, $res, $errMsg, $errCode) =
-    backupObject($format, "$path/Plugins/$fileProjectName/$fileProjectName",
+    backupObject($format, "$path/plugins/$fileProjectName",
   		"/projects[$pName]", $relocatable, $includeACLs, $includeNotifiers);
   if (! $success) {
     printf("  Error exporting plugin %s", $pName);

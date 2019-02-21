@@ -50,7 +50,7 @@ sub backupObject {
             }
       );
   } else {
-    return saveDslFile($path, $obj, $includeACLs);
+    return saveDslFile("$path.groovy", $obj, $includeACLs);
   }
 
 }         # backupObject function
@@ -60,12 +60,18 @@ sub saveDslFile {
   my $obj     = @_[1];
   my $withAcl = @_[2];
 
+  my $ret;
+  if (getVersion() lt "6.1") {
+    $ret=system("ectool generateDsl \"$obj\" > \"$path\"");
+  } else {
+    $ret=system("ectool generateDsl \"$obj\" --withAcls $withAcl > \"$path\"");
+  }
 
-  my $ret=system("ectool generateDsl \"$obj\" --withAcls $withAcl > \"$path\"");
   if ($ret == 0) {
-# my ($success, $res, $errMsg, $errCode)
+    # my ($success, $res, $errMsg, $errCode)
     return (1, "", "", "");
   } else {
+    printf(" generateDsl error $ret");
     return (0, "", "", "");
   }
 }

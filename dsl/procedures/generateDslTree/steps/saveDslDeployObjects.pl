@@ -1,41 +1,21 @@
 #############################################################################
 #
-#  Script to backup the Deploy objects (application, environment, components,
-#     releases, services, ...) in XML or DSL dformat
-#
-#  Author: L.Rochette
-#
 #  Copyright 2015-2019 Electric-Cloud Inc.
 #
-#     Licensed under the Apache License, Version 2.0 (the "License");
-#     you may not use this file except in compliance with the License.
-#     You may obtain a copy of the License at
-#
-#         http://www.apache.org/licenses/LICENSE-2.0
-#
-#     Unless required by applicable law or agreed to in writing, software
-#     distributed under the License is distributed on an "AS IS" BASIS,
-#     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#     See the License for the specific language governing permissions and
-#     limitations under the License.
-#
-# History
-# ---------------------------------------------------------------------------
-# 2019-Feb-11 lrochette Foundation for merge DSL and XML export
-##############################################################################
+# Script to backup the Deploy objects (application, environment, components)
+#############################################################################
 use File::Path;
 
 $[/myProject/scripts/perlHeaderJSON]
 
+$DEBUG=1;
+
 #
 # Parameters
 #
-my $path             = '$[pathname]';
-my $pattern          = '$[pattern]';
-my $includeACLs      = "$[includeACLs]";
-my $includeNotifiers = "$[includeNotifiers]";
-my $relocatable      = "$[relocatable]";
-my $format           = '$[format]';
+my $path    = '$[pathname]';
+my $pattern = '$[pattern]';
+my $includeACLs="$[includeACLs]";
 
 #
 # Global
@@ -58,8 +38,8 @@ $ec->setTimeout($defaultTimeout? $defaultTimeout : 600);
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getProjects");
 
 # Create the Projects directory
-mkpath("$path/Projects");
-chmod(0777, "$path/Projects") or die("Can't change permissions on $path/Projects: $!");
+mkpath("$path/projects");
+chmod(0777, "$path/projects") or die("Can't change permissions on $path/projects: $!");
 
 foreach my $node ($xPath->findnodes('//project')) {
   my $pName=$node->{'projectName'};
@@ -79,8 +59,8 @@ foreach my $node ($xPath->findnodes('//project')) {
   #
   # Save Applications
   #
-  mkpath("$path/Projects/$fileProjectName/Applications");
-  chmod(0777, "$path/Projects/$fileProjectName/Applications");
+  mkpath("$path/projects/$fileProjectName/applications");
+  chmod(0777, "$path/projects/$fileProjectName/applications");
 
   my ($success, $xPath) = InvokeCommander("SuppressLog", "getApplications", $pName);
   foreach my $app ($xPath->findnodes('//application')) {
@@ -92,13 +72,11 @@ foreach my $node ($xPath->findnodes('//project')) {
     my $fileAppName=safeFilename($appName);
     printf("  Saving Application: %s\n", $appName);
 
-    mkpath("$path/Projects/$fileProjectName/Applications/$fileAppName");
-    chmod(0777, "$path/Projects/$fileProjectName/Applications/$fileAppName");
+    mkpath("$path/projects/$fileProjectName/applications/$fileAppName");
+    chmod(0777, "$path/projects/$fileProjectName/applications/$fileAppName");
     my ($success, $res, $errMsg, $errCode) =
-      backupObject($format,
-        "$path/Projects/$fileProjectName/Applications/$fileAppName/$fileAppName",
-        "/projects[$pName]applications[$appName]",
-        $relocatable, $includeACLs, $includeNotifiers);
+      saveDslFile("$path/projects/$fileProjectName/applications/$fileAppName/$fileAppName".".groovy",
+            "/projects[$pName]applications[$appName]",$includeACLs);
 
     if (! $success) {
       printf("  Error exporting application %s", $appName);
@@ -111,8 +89,8 @@ foreach my $node ($xPath->findnodes('//project')) {
 
     #
     # backup Components
-    mkpath("$path/Projects/$fileProjectName/Applications/$fileAppName/Components");
-    chmod(0777, "$path/Projects/$fileProjectName/Applications/$fileAppName/Components");
+    mkpath("$path/projects/$fileProjectName/applications/$fileAppName/components");
+    chmod(0777, "$path/projects/$fileProjectName/applications/$fileAppName/components");
 
     my ($ok, $json) = InvokeCommander("SuppressLog", "getComponents", $pName, {applicationName => $appName});
     foreach my $comp ($json->findnodes("//component")) {
@@ -121,10 +99,8 @@ foreach my $node ($xPath->findnodes('//project')) {
       printf("    Saving Component: %s\n", $compName);
 
       my ($success, $res, $errMsg, $errCode) =
-        backupObject($format,
-          "$path/Projects/$fileProjectName/Applications/$fileAppName/Components/$fileCompName",
-          "/projects[$pName]applications[$appName]components[$compName]",
-          $relocatable, $includeACLs, $includeNotifiers);
+        saveDslFile("$path/projects/$fileProjectName/applications/$fileAppName/components/$fileCompName".".groovy",
+            "/projects[$pName]applications[$appName]components[$compName]", $includeACLs);
 
     if (! $success) {
       printf("  Error exporting component %s in application", $compName, $appName);
@@ -141,8 +117,8 @@ foreach my $node ($xPath->findnodes('//project')) {
   #
   # Save Environments definitions
   #
-  mkpath("$path/Projects/$fileProjectName/Environments");
-  chmod(0777, "$path/Projects/$fileProjectName/Environments");
+  mkpath("$path/projects/$fileProjectName/environments");
+  chmod(0777, "$path/projects/$fileProjectName/environments");
 
   my ($success, $xPath) = InvokeCommander("SuppressLog", "getEnvironments", $pName);
   foreach my $proc ($xPath->findnodes('//environment')) {
@@ -155,9 +131,8 @@ foreach my $node ($xPath->findnodes('//project')) {
     printf("  Saving Environment: %s\n", $envName);
 
     my ($success, $res, $errMsg, $errCode) =
-      backupObject($format, "$path/Projects/$fileProjectName/Environments/$fileEnvName",
-        "/projects[$pName]environments[$envName]",
-        $relocatable, $includeACLs, $includeNotifiers);
+      saveDslFile("$path/projects/$fileProjectName/environments/$fileEnvName".".groovy",
+            "/projects[$pName]environments[$envName]", $includeACLs);
 
     if (! $success) {
       printf("  Error exporting environment %s", $envName);
@@ -177,8 +152,8 @@ foreach my $node ($xPath->findnodes('//project')) {
   } else {
     # Save pipeline definitions
     #
-    mkpath("$path/Projects/$fileProjectName/Pipelines");
-    chmod(0777, "$path/Projects/$fileProjectName/Pipelines");
+    mkpath("$path/projects/$fileProjectName/pipelines");
+    chmod(0777, "$path/projects/$fileProjectName/pipelines");
 
     my ($success, $xPath) = InvokeCommander("SuppressLog", "getPipelines", $pName);
     foreach my $proc ($xPath->findnodes('//pipeline')) {
@@ -191,10 +166,8 @@ foreach my $node ($xPath->findnodes('//project')) {
       printf("  Saving Pipeline: %s\n", $pipeName);
 
       my ($success, $res, $errMsg, $errCode) =
-        backupObject($format,
-          "$path/Projects/$fileProjectName/Pipelines/$filePipeName",
-          "/projects[$pName]pipelines[$pipeName]",
-          $relocatable, $includeACLs, $includeNotifiers);
+        saveDslFile("$path/projects/$fileProjectName/pipelines/$filePipeName".".groovy",
+               "/projects[$pName]pipelines[$pipeName]", $includeACLs);
 
       if (! $success) {
         printf("  Error exporting pipeline %s", $pipeName);
@@ -215,8 +188,8 @@ foreach my $node ($xPath->findnodes('//project')) {
   } else {
     # Save release definitions
     #
-    mkpath("$path/Projects/$fileProjectName/Releases");
-    chmod(0777, "$path/Projects/$fileProjectName/Releases");
+    mkpath("$path/projects/$fileProjectName/releases");
+    chmod(0777, "$path/projects/$fileProjectName/releases");
 
     my ($success, $xPath) = InvokeCommander("SuppressLog", "getReleases", $pName);
     foreach my $proc ($xPath->findnodes('//release')) {
@@ -229,10 +202,8 @@ foreach my $node ($xPath->findnodes('//project')) {
       printf("  Saving Release: %s\n", $relName);
 
       my ($success, $res, $errMsg, $errCode) =
-        backupObject($format,
-          "$path/Projects/$fileProjectName/Releases/$filePipeName",
-          "/projects[$pName]releases[$relName]",
-          $relocatable, $includeACLs, $includeNotifiers);
+        saveDslFile("$path/projects/$fileProjectName/releases/$filePipeName".".groovy",
+              "/projects[$pName]releases[$relName]", $includeACLs);
 
       if (! $success) {
         printf("  Error exporting release %s", $relName);
@@ -243,7 +214,7 @@ foreach my $node ($xPath->findnodes('//project')) {
         $relCount++;
       }
     }         # Release loop
-  }           # Version greater than 6.1
+ }           # Version greater than 6.1
 
   # Export services if the version is recent enough
   #
@@ -252,8 +223,8 @@ foreach my $node ($xPath->findnodes('//project')) {
   } else {
     # Save release definitions
     #
-    mkpath("$path/Projects/$fileProjectName/Services");
-    chmod(0777, "$path/Projects/$fileProjectName/Services");
+    mkpath("$path/projects/$fileProjectName/services");
+    chmod(0777, "$path/projects/$fileProjectName/services");
 
     my ($success, $xPath) = InvokeCommander("SuppressLog", "getServices", $pName);
     foreach my $proc ($xPath->findnodes('//service')) {
@@ -266,10 +237,8 @@ foreach my $node ($xPath->findnodes('//project')) {
       printf("  Saving Service: %s\n", $servName);
 
       my ($success, $res, $errMsg, $errCode) =
-        backupObject($format,
-          "$path/Projects/$fileProjectName/Services/$fileServName",
-          "/projects[$pName]services[$servName]",
-          $relocatable, $includeACLs, $includeNotifiers);
+        saveDslFile("$path/projects/$fileProjectName/services/$fileServName".".groovy",
+              "/projects[$pName]services[$servName]", $includeACLs);
 
       if (! $success) {
         printf("  Error exporting service %s", $servName);
@@ -300,4 +269,6 @@ $ec->setProperty("/myJob/serviceExported",      $servCount);
 exit($errorCount);
 
 $[/myProject/scripts/perlBackupLib]
+
+
 $[/myProject/scripts/perlLibJSON]

@@ -22,6 +22,7 @@
 # ---------------------------------------------------------------------------
 # 2018-11-07 lrochette Initial Version
 # 2019-02-11 lrochette Foundation for merge DSL and XML export
+# 2019-Feb 21 lrochette Changing paths to match EC-DslDeploy
 #############################################################################
 use File::Path;
 
@@ -54,17 +55,17 @@ my ($success, $xPath) = InvokeCommander("SuppressLog",
   "getProperties",
   {path => "/server"});
 
-# Create the /Server/Properties directory
-mkpath("$path/Server/Properties");
-chmod(0777, "$path/Server") or die("Can't change permissions on $path/Server: $!");
-chmod(0777, "$path/Server/Properties") or die("Can't change permissions on $path/Server/Properties: $!");
+# Create the /server/properties directory
+mkpath("$path/server/properties");
+chmod(0777, "$path/server") or die("Can't change permissions on $path/server: $!");
+chmod(0777, "$path/server/properties") or die("Can't change permissions on $path/server/properties: $!");
 
 foreach my $node ($xPath->findnodes('//property')) {
   my $pName=$node->{'propertyName'};
   my $filePropName=safeFilename($pName);
 
   my ($success, $res, $errMsg, $errCode) =
-     backupObject($format, "$path/Server/Properties/${filePropName}",
+     backupObject($format, "$path/server/properties/${filePropName}",
        "/server[$pName]", "false", $includeACLs, "false");
   if (! $success) {
     printf("  Error exporting property %s", $pName);

@@ -77,6 +77,7 @@ ntest "issue 56 question mark", {}, sub {
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
       {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -125,6 +126,7 @@ ntest "issue 57 group with slash", {}, sub {
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
       {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -181,6 +183,7 @@ ntest "issue 58 gateway", {}, sub {
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
       {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -230,6 +233,7 @@ ntest "issue 59 zone", {}, sub {
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
       {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -277,7 +281,7 @@ ntest "issue 63 pattern", {}, sub {
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
       {actualParameterName=>"format", value=>"XML"},
-      {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -323,6 +327,7 @@ ntest "export users", {}, sub {
       {actualParameterName=>"exportUsers", value=>"true"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
       {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -373,6 +378,7 @@ ntest "issue 77 procedure with slash", {}, sub {
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
       {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -424,6 +430,7 @@ ntest "issue 74 case insensitive", {}, sub {
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
       {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -473,6 +480,7 @@ ntest "issue 83 trailing spaces", {}, sub {
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
       {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -522,6 +530,7 @@ ntest "issue 88 slash in resource", {}, sub {
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
       {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -572,6 +581,7 @@ ntest "issue 89 < and > in filenames", {}, sub {
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
       {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -622,6 +632,7 @@ ntest "issue 90 project starting with _", {}, sub {
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
       {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -673,6 +684,7 @@ ntest "issue 87 empty pattern", {}, sub {
       {actualParameterName=>"exportUsers", value=>"true"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
       {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -798,6 +810,7 @@ ntest "issue 161 save tags", {}, sub {
       {actualParameterName=>"includeNotifiers", value=>"false"},
       {actualParameterName=>"pattern", value=>"161"},
       {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -856,8 +869,9 @@ ntest "issue 161 save services", {}, sub {
       {actualParameterName=>"relocatable", value=>"true"},
       {actualParameterName=>"includeACLs", value=>"false"},
       {actualParameterName=>"includeNotifiers", value=>"false"},
-       {actualParameterName=>"pattern", value=>"161"},
-       {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pattern", value=>"161"},
+      {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -908,7 +922,8 @@ ntest "issue 161 save personas", {}, sub {
       {actualParameterName=>"includeACLs", value=>"false"},
       {actualParameterName=>"includeNotifiers", value=>"false"},
       {actualParameterName=>"format", value=>"XML"},
-     ]
+      {actualParameterName=>"pool", value=>"default"}
+    ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
   if ($xpath) {
@@ -957,7 +972,8 @@ ntest "issue 161 save persona pages", {}, sub {
       {actualParameterName=>"includeACLs", value=>"false"},
       {actualParameterName=>"includeNotifiers", value=>"false"},
       {actualParameterName=>"format", value=>"XML"},
-     ]
+      {actualParameterName=>"pool", value=>"default"}
+    ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
   if ($xpath) {

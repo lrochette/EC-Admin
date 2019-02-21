@@ -23,6 +23,7 @@
 # ---------------------------------------------------------------------------
 # 2018-Sep-05 lrochette Initial Version
 # 2019-Feb-11 lrochette Foundation for merge DSL and XML export
+# 2019-Feb 21 lrochette Changing paths to match EC-DslDeploy
 #############################################################################
 use File::Path;
 
@@ -56,8 +57,8 @@ $ec->setTimeout($defaultTimeout? $defaultTimeout : 600);
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getArtifacts");
 
 # Create the Projects directory
-mkpath("$path/Artifacts");
-chmod(0777, "$path/Artifacts") or die("Can't change permissions on $path/Artifacts: $!");
+mkpath("$path/artifacts");
+chmod(0777, "$path/artifacts") or die("Can't change permissions on $path/artifacts: $!");
 
 foreach my $node ($xPath->findnodes('//artifact')) {
   my $artName=$node->{'artifactName'};
@@ -68,11 +69,11 @@ foreach my $node ($xPath->findnodes('//artifact')) {
   printf("Saving Artifact: %s\n", $artName);
 
   my $fileArtifactName=safeFilename($artName);
-  mkpath("$path/Artifacts/$fileArtifactName");
-  chmod(0777, "$path/Artifacts/$fileArtifactName");
+  mkpath("$path/artifacts/$fileArtifactName");
+  chmod(0777, "$path/artifacts/$fileArtifactName");
 
   my ($success, $res, $errMsg, $errCode) =
-      backupObject($format, "$path/Artifacts/$fileArtifactName/$fileArtifactName",
+      backupObject($format, "$path/artifacts/$fileArtifactName/artifact",
   					"/artifacts[$artName]", $relocatable, $includeACLs, "false");
   if (! $success) {
     printf("  Error exporting artifact %s", $artName);
@@ -84,8 +85,8 @@ foreach my $node ($xPath->findnodes('//artifact')) {
   #
   # Save Artifact Versions
   #
-  mkpath("$path/Artifacts/$fileArtifactName/ArtifactVersions");
-  chmod(0777, "$path/Artifacts/$fileArtifactName/ArtifactVersions");
+  mkpath("$path/artifacts/$fileArtifactName/artifactVersions");
+  chmod(0777, "$path/artifacts/$fileArtifactName/artifactVersions");
 
   my ($success, $xPath) = InvokeCommander("SuppressLog", "getArtifactVersions",
       {'artifactName' => $artName});
@@ -96,7 +97,7 @@ foreach my $node ($xPath->findnodes('//artifact')) {
     printf("  Saving version: %s\n", $version);
 
  	  my ($success, $res, $errMsg, $errCode) =
-      backupObject($format, "$path/Artifacts/$fileArtifactName/ArtifactVersions/$fileVersion",
+      backupObject($format, "$path/artifacts/$fileArtifactName/artifactVersions/$fileVersion",
   					"/artifactVersions[$avName]", $relocatable, $includeACLs, "false");
 
     if (! $success) {

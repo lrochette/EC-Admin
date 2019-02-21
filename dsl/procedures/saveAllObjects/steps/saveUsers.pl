@@ -21,6 +21,7 @@
 # History
 # ---------------------------------------------------------------------------
 # 2019-Feb-11 lrochette Foundation for merge DSL and XML export
+# 2019-Feb 21 lrochette Changing paths to match EC-DslDeploy
 #############################################################################
 use File::Path;
 
@@ -46,8 +47,8 @@ my $userCount=0;
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getUsers", {maximum=>1000});
 
 # Create the Resources directory
-mkpath("$path/Users");
-chmod(0777, "$path/Users");
+mkpath("$path/users");
+chmod(0777, "$path/users");
 
 foreach my $node ($xPath->findnodes('//user')) {
   my $userName=$node->{'userName'};
@@ -59,7 +60,7 @@ foreach my $node ($xPath->findnodes('//user')) {
   my $fileUserName=safeFilename($userName);
 
   my ($success, $res, $errMsg, $errCode) =
-    backupObject($format, "$path/Users/$fileUserName",
+    backupObject($format, "$path/users/$fileUserName",
   		"/users[$userName]", $relocatable, $includeACLs, $includeNotifiers);
   if (! $success) {
     printf("  Error exporting %s", $userName);

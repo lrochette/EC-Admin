@@ -21,6 +21,7 @@
 # History
 # ---------------------------------------------------------------------------
 # 2019-Feb-11 lrochette Foundation for merge DSL and XML export
+# 2019-Feb 21 lrochette Changing paths to match EC-DslDeploy
 #############################################################################
 use File::Path;
 
@@ -46,8 +47,8 @@ my $gateCount=0;
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getGateways");
 
 # Create the Gateways directory
-mkpath("$path/Gateways");
-chmod(0777, "$path/Gateways");
+mkpath("$path/gateways");
+chmod(0777, "$path/gateways");
 
 foreach my $node ($xPath->findnodes('//gateway')) {
   my $gateName=$node->{'gatewayName'};
@@ -59,7 +60,7 @@ foreach my $node ($xPath->findnodes('//gateway')) {
   my $fileGatewayName=safeFilename($gateName);
 
   my ($success, $res, $errMsg, $errCode) =
-    backupObject($format, "$path/Gateways/$fileGatewayName",
+    backupObject($format, "$path/gateways/$fileGatewayName",
       "/gateways[$gateName]", $relocatable, $includeACLs, $includeNotifiers);
 
   if (! $success) {

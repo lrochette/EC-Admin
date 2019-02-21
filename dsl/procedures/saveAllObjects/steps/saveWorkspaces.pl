@@ -21,6 +21,7 @@
 # History
 # ---------------------------------------------------------------------------
 # 2019-Feb-11 lrochette Foundation for merge DSL and XML export
+# 2019-Feb 21 lrochette Changing paths to match EC-DslDeploy
 #############################################################################
 use File::Path;
 
@@ -46,8 +47,8 @@ my $wksCount=0;
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getWorkspaces");
 
 # Create the Workspaces directory
-mkpath("$path/Workspaces");
-chmod(0777, "$path/Workspaces");
+mkpath("$path/workspaces");
+chmod(0777, "$path/workspaces");
 
 foreach my $node ($xPath->findnodes('//workspace')) {
   my $wksName=$node->{'workspaceName'};
@@ -59,7 +60,7 @@ foreach my $node ($xPath->findnodes('//workspace')) {
   my $fileWorkspaceName=safeFilename($wksName);
 
   my ($success, $res, $errMsg, $errCode) =
-    backupObject($format, "$path/Workspaces/$fileWorkspaceName",
+    backupObject($format, "$path/workspaces/$fileWorkspaceName",
   		"/workspaces[$wksName]", $relocatable, $includeACLs, $includeNotifiers);
   if (! $success) {
     printf("  Error exporting %s", $wksName);

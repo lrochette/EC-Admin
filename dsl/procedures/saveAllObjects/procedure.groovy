@@ -105,7 +105,7 @@ All steps need to run on the same host''',
       shell: 'ec-perl'
 
   step 'saveDeployObjects',
-    command: new File(pluginDir, "dsl/procedures/$procName/steps/saveXmlDeployObjects.pl").text,
+    command: new File(pluginDir, "dsl/procedures/$procName/steps/saveDeployObjects.pl").text,
     condition: '$[exportDeploy]',
     resourceName: '$[/myJob/backupResource]',
     shell: 'ec-perl'
@@ -123,13 +123,13 @@ All steps need to run on the same host''',
     shell: 'ec-perl'
 
   step 'saveTags',
-    command: new File(pluginDir, "dsl/procedures/$procName/steps/saveXmlTags.pl").text,
+    command: new File(pluginDir, "dsl/procedures/$procName/steps/saveTags.pl").text,
     condition: '$[exportTags]',
     resourceName: '$[/myJob/backupResource]',
     shell: 'ec-perl'
 
   step 'savePersonas',
-    command: new File(pluginDir, "dsl/procedures/$procName/steps/saveXmlPersonas.pl").text,
+    command: new File(pluginDir, "dsl/procedures/$procName/steps/savePersonas.pl").text,
     condition: '$[exportPersonas]',
     resourceName: '$[/myJob/backupResource]',
     shell: 'ec-perl'

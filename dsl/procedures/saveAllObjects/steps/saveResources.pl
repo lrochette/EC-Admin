@@ -21,6 +21,7 @@
 # History
 # ---------------------------------------------------------------------------
 # 2019-Feb-11 lrochette Foundation for merge DSL and XML export
+# 2019-Feb 21 lrochette Changing paths to match EC-DslDeploy
 #############################################################################
 use File::Path;
 
@@ -45,8 +46,8 @@ my $resCount=0;
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getResources");
 
 # Create the Resources directory
-mkpath("$path/Resources");
-chmod(0777, "$path/Resources");
+mkpath("$path/resources");
+chmod(0777, "$path/resources");
 
 foreach my $node ($xPath->findnodes('//resource')) {
   my $resName=$node->{'resourceName'};
@@ -58,7 +59,7 @@ foreach my $node ($xPath->findnodes('//resource')) {
   my $fileResourceName=safeFilename($resName);
 
   my ($success, $res, $errMsg, $errCode) =
-    backupObject($format, "$path/Resources/$fileResourceName",
+    backupObject($format, "$path/resources/$fileResourceName",
       "/resources[$resName]", $relocatable, $includeACLs, "false");
   if (! $success) {
     printf("  Error exporting %s", $resName);

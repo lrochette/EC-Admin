@@ -21,6 +21,7 @@
 # History
 # ---------------------------------------------------------------------------
 # 2019-Feb-11 lrochette Foundation for merge DSL and XML export
+# 2019-Feb 21 lrochette Changing paths to match EC-DslDeploy
 #############################################################################
 use File::Path;
 
@@ -59,8 +60,8 @@ if (compareVersion($version, "9.0") < 0) {
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getPersonas");
 
 # Create the Personas directory
-mkpath("$path/Personas");
-chmod(0777, "$path/Personas");
+mkpath("$path/personas");
+chmod(0777, "$path/personas");
 printf("Saving Personas:\n");
 printf("----------------\n");
 
@@ -74,7 +75,7 @@ foreach my $node ($xPath->findnodes('//persona')) {
   my $filePersonaName=safeFilename($personaName);
 
   my ($success, $res, $errMsg, $errCode) =
-    backupObject($format, "$path/Personas/$filePersonaName",
+    backupObject($format, "$path/personas/$filePersonaName",
     "/personas[$personaName]", $relocatable, $includeACLs, $includeNotifiers);
   if (! $success) {
     printf("    Error exporting %s", $personaName);
@@ -93,8 +94,8 @@ foreach my $node ($xPath->findnodes('//persona')) {
 ($success, $xPath) = InvokeCommander("SuppressLog", "getPersonaPages");
 
 # Create the Persona Pages directory
-mkpath("$path/PersonaPages");
-chmod(0777, "$path/PersonaPages");
+mkpath("$path/personaPages");
+chmod(0777, "$path/personaPages");
 printf("\nSaving PersonaPages:\n");
 printf("--------------------\n");
 
@@ -108,7 +109,7 @@ foreach my $node ($xPath->findnodes('//personaPage')) {
   my $filePersonaPageName=safeFilename($personaPageName);
 
   my ($success, $res, $errMsg, $errCode) =
-    backupObject($format, "$path/PersonaPages/$filePersonaPageName",
+    backupObject($format, "$path/personaPages/$filePersonaPageName",
     "/personaPages[$personaPageName]", $relocatable, $includeACLs, $includeNotifiers);
   if (! $success) {
     printf("    Error exporting %s", $personaPageName);
@@ -127,8 +128,8 @@ foreach my $node ($xPath->findnodes('//personaPage')) {
 ($success, $xPath) = InvokeCommander("SuppressLog", "getPersonaCategories");
 
 # Create the Persona Categories directory
-mkpath("$path/PersonaCategories");
-chmod(0777, "$path/PersonaCategories");
+mkpath("$path/personaCategories");
+chmod(0777, "$path/personaCategories");
 printf("\nSaving PersonaCategories:\n");
 printf("--------------------\n");
 
@@ -142,7 +143,7 @@ foreach my $node ($xPath->findnodes('//personaCategory')) {
   my $filePersonaCategoryName=safeFilename($personaCategoryName);
 
   my ($success, $res, $errMsg, $errCode) =
-    backupObject($format, "$path/PersonaCategories/$filePersonaCategoryName",
+    backupObject($format, "$path/personaCategories/$filePersonaCategoryName",
     "/personaCategories[$personaCategoryName]", $relocatable, $includeACLs, $includeNotifiers);
   if (! $success) {
     printf("    Error exporting %s", $personaCategoryName);

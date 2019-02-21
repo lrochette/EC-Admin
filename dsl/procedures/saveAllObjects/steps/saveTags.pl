@@ -21,6 +21,7 @@
 # History
 # ---------------------------------------------------------------------------
 # 2019-Feb-11 lrochette Foundation for merge DSL and XML export
+# 2019-Feb 21 lrochette Changing paths to match EC-DslDeploy
 #############################################################################
 use File::Path;
 
@@ -53,8 +54,8 @@ if (compareVersion($version, "8.5") < 0) {
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getTags");
 
 # Create the Tags directory
-mkpath("$path/Tags");
-chmod(0777, "$path/Tags");
+mkpath("$path/tags");
+chmod(0777, "$path/tags");
 
 foreach my $node ($xPath->findnodes('//tag')) {
   my $tagName=$node->{'tagName'};
@@ -66,7 +67,7 @@ foreach my $node ($xPath->findnodes('//tag')) {
   my $fileTagName=safeFilename($tagName);
 
   my ($success, $res, $errMsg, $errCode) =
-    backupObject($format, "$path/Tags/$fileTagName",
+    backupObject($format, "$path/tags/$fileTagName",
     "/tags[$tagName]", $relocatable, $includeACLs, $includeNotifiers);
   if (! $success) {
     printf("  Error exporting %s", $tagName);
