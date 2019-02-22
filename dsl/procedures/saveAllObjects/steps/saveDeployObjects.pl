@@ -50,6 +50,7 @@ my $pipeCount  = 0;
 my $relCount   = 0;
 my $servCount  = 0;
 my $catCount   = 0;
+my $itemCount  = 0;
 # Set the timeout to config value or 600 if not set
 my $defaultTimeout = getP("/server/EC-Admin/cleanup/config/timeout");
 $ec->setTimeout($defaultTimeout? $defaultTimeout : 600);
@@ -127,14 +128,14 @@ foreach my $node ($xPath->findnodes('//project')) {
           "/projects[$pName]applications[$appName]components[$compName]",
           $relocatable, $includeACLs, $includeNotifiers);
 
-    if (! $success) {
-      printf("  Error exporting component %s in application", $compName, $appName);
-      printf("  %s: %s\n", $errCode, $errMsg);
-      $errorCount++;
-    }
-    else {
-      $compCount++;
-    }
+      if (! $success) {
+        printf("  Error exporting component %s in application", $compName, $appName);
+        printf("  %s: %s\n", $errCode, $errMsg);
+        $errorCount++;
+      }
+      else {
+        $compCount++;
+      }
 
     }
   }
@@ -288,35 +289,63 @@ foreach my $node ($xPath->findnodes('//project')) {
   if (compareVersion($version, "7.3") < 0) {
     printf("WARNING: Version 7.3 or greater is required to save Catalog objects");
   } else {
-    # Save release definitions
+    # Save catalog definitions
     #
     mkpath("$path/projects/$fileProjectName/catalogs");
     chmod(0777, "$path/projects/$fileProjectName/catalogs");
 
     my ($success, $xPath) = InvokeCommander("SuppressLog", "getCatalogs", $pName);
     foreach my $proc ($xPath->findnodes('//catalog')) {
-      my $servName=$proc->{'catalogName'};
+      my $catName=$proc->{'catalogName'};
 
       # skip catalogs that don't fit the pattern
-      next if (($pName  eq "Default") && ($servName !~ /$pattern/$[caseSensitive] ));  # / just for the color
+      next if (($pName  eq "Default") && ($catName !~ /$pattern/$[caseSensitive] ));  # / just for the color
 
-      my $fileServName=safeFilename($servName);
-      printf("  Saving Service: %s\n", $servName);
+      my $fileCatName=safeFilename($catName);
+      printf("  Saving Catalog: %s\n", $catName);
+
+     mkpath("$path/projects/$fileProjectName/catalogs/$fileCatName");
+     chmod(0777, "$path/projects/$fileProjectName/catalogs/$fileCatName");
 
       my ($success, $res, $errMsg, $errCode) =
         backupObject($format,
-          "$path/projects/$fileProjectName/catalogs/$fileServName",
-          "/projects[$pName]catalogs[$servName]",
+          "$path/projects/$fileProjectName/catalogs/$fileCatName/catalog",
+          "/projects[$pName]catalogs[$catName]",
           $relocatable, $includeACLs, $includeNotifiers);
 
       if (! $success) {
-        printf("  Error exporting catalog %s", $servName);
+        printf("  Error exporting catalog %s", $catName);
         printf("  %s: %s\n", $errCode, $errMsg);
         $errorCount++;
       }
       else {
         $servCount++;
       }
+
+      # backup catalogItems
+      my ($ok, $json) = InvokeCommander("SuppressLog", "getCatalogItemss", $pName, $catName);
+      foreach my $item ($json->findnodes("//catalogItem")) {
+        my $itemName=$item->{'catalogItemName'};
+        my $fileItemName=safeFilename($itemName);
+        printf("    Saving Catalog Item: %s\n", $itemName);
+
+        my ($success, $res, $errMsg, $errCode) =
+          backupObject($format,
+            "$path/projects/$fileProjectName/catalogs/$fileAppName/items/$fileItemName",
+            "/projects[$pName]catalogs[$catName]catalogItems[$itemName]",
+            $relocatable, $includeACLs, $includeNotifiers);
+
+        if (! $success) {
+          printf("  Error exporting catalog item %s in catalog", $itemName, $catName);
+          printf("  %s: %s\n", $errCode, $errMsg);
+          $errorCount++;
+        }
+        else {
+          $itemCount++;
+        }
+
+      }
+
     }         # catalog loop
   }           # Version greater than 8.1
 
@@ -328,7 +357,8 @@ $str .= sprintf("   $compCount components exported\n");
 $str .= sprintf("   $pipeCount pipelines exported\n");
 $str .= sprintf("   $relCount releases exported\n");
 $str .= sprintf("   $servCount services exported\n");
-$str .= sprintf("   $servCount catalogs exported\n");
+$str .= sprintf("   $catCount catalogs exported\n");
+$str .= sprintf("   $itemCount catalog items exported\n");
 
 $ec->setProperty("preSummary", $str);
 $ec->setProperty("/myJob/papplicationExported", $appCount);
@@ -338,6 +368,7 @@ $ec->setProperty("/myJob/pipelineExported",     $pipeCount);
 $ec->setProperty("/myJob/releaseExported",      $relCount);
 $ec->setProperty("/myJob/serviceExported",      $servCount);
 $ec->setProperty("/myJob/catalogExported",      $catCount);
+$ec->setProperty("/myJob/catalogItemExported",  $itemCount);
 exit($errorCount);
 
 $[/myProject/scripts/perlBackupLib]
