@@ -1,10 +1,11 @@
 #############################################################################
 #
-# Save Artifacts and ArtifactVersions (but not the artifact files themselves)
+# Save Artifacts and ArtifactVersions in DSL or XML Format
+#     (but not the artifact files themselves)
 #
 # Author: L.Rochette
 #
-# Copyright 2018 Electric Cloud, Inc.
+# Copyright 2018-2019 Electric Cloud, Inc.
 #
 #     Licensed under the Apache License, Version 2.0 (the "License");
 #     you may not use this file except in compliance with the License.
@@ -21,7 +22,8 @@
 # History
 # ---------------------------------------------------------------------------
 # 2018-Sep-05 lrochette Initial Version
-#
+# 2019-Feb-11 lrochette Foundation for merge DSL and XML export
+# 2019-Feb 21 lrochette Changing paths to match EC-DslDeploy
 #############################################################################
 use File::Path;
 
@@ -38,6 +40,7 @@ my $pattern          = '$[pattern]';
 my $caseSensitive    = "i";
 my $includeACLs      = "$[includeACLs]";
 my $relocatable      = "$[relocatable]";
+my $format           = '$[format]';
 
 #
 # Global
@@ -54,8 +57,8 @@ $ec->setTimeout($defaultTimeout? $defaultTimeout : 600);
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getArtifacts");
 
 # Create the Projects directory
-mkpath("$path/Artifacts");
-chmod(0777, "$path/Artifacts") or die("Can't change permissions on $path/Artifacts: $!");
+mkpath("$path/artifacts");
+chmod(0777, "$path/artifacts") or die("Can't change permissions on $path/artifacts: $!");
 
 foreach my $node ($xPath->findnodes('//artifact')) {
   my $artName=$node->{'artifactName'};
@@ -66,14 +69,12 @@ foreach my $node ($xPath->findnodes('//artifact')) {
   printf("Saving Artifact: %s\n", $artName);
 
   my $fileArtifactName=safeFilename($artName);
-  mkpath("$path/Artifacts/$fileArtifactName");
-  chmod(0777, "$path/Artifacts/$fileArtifactName");
+  mkpath("$path/artifacts/$fileArtifactName");
+  chmod(0777, "$path/artifacts/$fileArtifactName");
 
   my ($success, $res, $errMsg, $errCode) =
-      InvokeCommander("SuppressLog", "export", "$path/Artifacts/$fileArtifactName/$fileArtifactName".".xml",
-  					{ 'path'          => "/artifacts[$artName]",
-              'relocatable' => $relocatable,
-              'withAcls'    => $includeACLs});
+      backupObject($format, "$path/artifacts/$fileArtifactName/artifact",
+  					"/artifacts[$artName]", $relocatable, $includeACLs, "false");
   if (! $success) {
     printf("  Error exporting artifact %s", $artName);
     printf("  %s: %s\n", $errCode, $errMsg);
@@ -84,8 +85,8 @@ foreach my $node ($xPath->findnodes('//artifact')) {
   #
   # Save Artifact Versions
   #
-  mkpath("$path/Artifacts/$fileArtifactName/ArtifactVersions");
-  chmod(0777, "$path/Artifacts/$fileArtifactName/ArtifactVersions");
+  mkpath("$path/artifacts/$fileArtifactName/artifactVersions");
+  chmod(0777, "$path/artifacts/$fileArtifactName/artifactVersions");
 
   my ($success, $xPath) = InvokeCommander("SuppressLog", "getArtifactVersions",
       {'artifactName' => $artName});
@@ -96,10 +97,8 @@ foreach my $node ($xPath->findnodes('//artifact')) {
     printf("  Saving version: %s\n", $version);
 
  	  my ($success, $res, $errMsg, $errCode) =
-      InvokeCommander("SuppressLog", "export", "$path/Artifacts/$fileArtifactName/ArtifactVersions/$fileVersion".".xml",
-  					{ 'path'          => "/artifactVersions[$avName]",
-              'relocatable' => $relocatable,
-              'withAcls'    => $includeACLs});
+      backupObject($format, "$path/artifacts/$fileArtifactName/artifactVersions/$fileVersion",
+  					"/artifactVersions[$avName]", $relocatable, $includeACLs, "false");
 
     if (! $success) {
       printf("  Error exporting artifact version %s", $version);
@@ -118,6 +117,5 @@ $ec->setProperty("/myJob/avExported", $avCount);
 
 exit($errorCount);
 
-$[/myProject/scripts/backup/safeFilename]
-
+$[/myProject/scripts/perlBackupLib]
 $[/myProject/scripts/perlLibJSON]

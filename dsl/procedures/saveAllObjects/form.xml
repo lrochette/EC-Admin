@@ -19,16 +19,37 @@
     <formElement>
         <label>Backup directory</label>
         <property>pathname</property>
-        <documentation>Directory where to saved the XML files.</documentation>
+        <documentation>Directory where to saved the XML or DSL files.</documentation>
         <type>entry</type>
         <value>/tmp/BACKUP</value>
      <required>1</required>
     </formElement>
 
     <formElement>
+        <label>Resource</label>
+        <property>pool</property>
+        <documentation>Resource or pool on which to backup the objectsa.</documentation>
+        <type>entry</type>
+        <value>default</value>
+     <required>1</required>
+    </formElement>
+
+    <formElement>
+        <label>Format</label>
+        <property>format</property>
+        <documentation>Backup as XML or DSL.</documentation>
+        <type>select</type>
+        <value>XML</value>
+        <option><name>XML (export)</name><value>XML</value></option>
+        <option><name>DSL (generateDsl)</name><value>DSL</value></option>
+        <required>1</required>
+    </formElement>
+
+    <formElement>
         <label>Filter Pattern</label>
         <property>pattern</property>
-        <documentation>The perl pattern to apply before saving objects (except for procedures and steps; and deploy objects in non Default project).</documentation>
+        <documentation>The perl pattern to apply before saving objects (except
+          for procedures and steps; and deploy objects in non Default project).</documentation>
         <type>entry</type>
      <required>0</required>
     </formElement>
@@ -46,8 +67,10 @@
     <formElement>
         <label>Relocatable</label>
         <property>relocatable</property>
-        <documentation>If set to "true", the export will not include object IDs, ACLs, system property sheets, create/modify times, owners,
-email notifiers or lastModifiedBy information, and the export file result will be much smaller than a normal export.</documentation>
+        <documentation>If set to "true", the export will not include object IDs,
+          ACLs, system property sheets, create/modify times, owners,
+email notifiers or lastModifiedBy information, and the export file result will
+be much smaller than a normal export.</documentation>
         <type>checkbox</type>
         <checkedValue>true</checkedValue>
         <uncheckedValue>false</uncheckedValue>
@@ -165,7 +188,8 @@ email notifiers or lastModifiedBy information, and the export file result will b
     <formElement>
         <label>Backup Artifacts</label>
         <property>exportArtifacts</property>
-        <documentation>Boolean to export Artifacts and Artifact Versions (not the artifact files)</documentation>
+        <documentation>Boolean to export Artifacts and Artifact Versions
+          (not the artifact files)</documentation>
         <type>checkbox</type>
         <checkedValue>true</checkedValue>
         <uncheckedValue>false</uncheckedValue>

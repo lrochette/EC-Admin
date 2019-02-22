@@ -1,10 +1,10 @@
 #############################################################################
 #
-# Save Groups in DSL or XML Format
+#  Save Tags (in DSL or XML)
 #
-# Author: L.Rochette
+#  Author: L.Rochette
 #
-#  Copyright 2013-2019 Electric-Cloud Inc.
+#  Copyright 2015-2019 Electric-Cloud Inc.
 #
 #     Licensed under the Apache License, Version 2.0 (the "License");
 #     you may not use this file except in compliance with the License.
@@ -27,53 +27,58 @@ use File::Path;
 
 $[/myProject/scripts/perlHeaderJSON]
 
-$DEBUG=1;
-
 #
 # Parameters
 #
-my $path='$[pathname]';
-my $pattern     = '$[pattern]';
-my $includeACLs="$[includeACLs]";
-my $includeNotifiers="$[includeNotifiers]";
-my $relocatable="$[relocatable]";
+my $path             = '$[pathname]';
+my $pattern          = '$[pattern]';
+my $includeACLs      = "$[includeACLs]";
+my $includeNotifiers = "$[includeNotifiers]";
+my $relocatable      = "$[relocatable]";
 my $format           = '$[format]';
 
 #
 # Global
 #
 my $errorCount=0;
-my $groupCount=0;
+my $tagCount=0;
 
-# Get list of groups
-my ($success, $xPath) = InvokeCommander("SuppressLog", "getGroups", {maximum=>1000});
+# tags were introduced in 8.5
+my $version=getVersion();
+if (compareVersion($version, "8.5") < 0) {
+  $ec->setProperty("summary", "Tags were introduced only in 8.5");
+  exit(0);
+}
 
-# Create the Resources directory
-mkpath("$path/groups");
-chmod(0777, "$path/groups");
+# Get list of Tags
+my ($success, $xPath) = InvokeCommander("SuppressLog", "getTags");
 
-foreach my $node ($xPath->findnodes('//group')) {
-  my $groupName=$node->{'groupName'};
+# Create the Tags directory
+mkpath("$path/tags");
+chmod(0777, "$path/tags");
 
-  # skip groups that don't fit the pattern
-  next if ($groupName !~ /$pattern/$[caseSensitive] );  # / for color mode
+foreach my $node ($xPath->findnodes('//tag')) {
+  my $tagName=$node->{'tagName'};
 
-  printf("Saving group: %s\n", $groupName);
-  my $fileGroupName=safeFilename($groupName);
+  # skip tags that don't fit the pattern
+  next if ($tagName !~ /$pattern/$[caseSensitive] ); # / for color mode
+
+  printf("Saving Tag: %s\n", $tagName);
+  my $fileTagName=safeFilename($tagName);
 
   my ($success, $res, $errMsg, $errCode) =
-    backupObject($format, "$path/groups/$fileGroupName",
-  		"/groups[$groupName]", $relocatable, $includeACLs, $includeNotifiers);
+    backupObject($format, "$path/tags/$fileTagName",
+    "/tags[$tagName]", $relocatable, $includeACLs, $includeNotifiers);
   if (! $success) {
-    printf("  Error exporting %s", $groupName);
+    printf("  Error exporting %s", $tagName);
     printf("  %s: %s\n", $errCode, $errMsg);
     $errorCount++;
   } else {
-    $groupCount++;
+    $tagCount++;
   }
 }
-$ec->setProperty("preSummary", "$groupCount groups exported");
-$ec->setProperty("/myJob/groupExported", $groupCount);
+$ec->setProperty("preSummary", "$tagCount Tags exported");
+$ec->setProperty("/myJob/tagExported", $tagCount);
 exit($errorCount);
 
 $[/myProject/scripts/perlBackupLib]

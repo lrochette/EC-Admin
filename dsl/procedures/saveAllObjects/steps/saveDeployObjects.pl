@@ -1,21 +1,43 @@
 #############################################################################
 #
+#  Script to backup the Deploy objects (application, environment, components,
+#     releases, services, ...) in XML or DSL format
+#
+#  Author: L.Rochette
+#
 #  Copyright 2015-2019 Electric-Cloud Inc.
 #
-# Script to backup the Deploy objects (application, environment, components)
-#############################################################################
+#     Licensed under the Apache License, Version 2.0 (the "License");
+#     you may not use this file except in compliance with the License.
+#     You may obtain a copy of the License at
+#
+#         http://www.apache.org/licenses/LICENSE-2.0
+#
+#     Unless required by applicable law or agreed to in writing, software
+#     distributed under the License is distributed on an "AS IS" BASIS,
+#     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#     See the License for the specific language governing permissions and
+#     limitations under the License.
+#
+# History
+# ---------------------------------------------------------------------------
+# 2019-Feb-11 lrochette Foundation for merge DSL and XML export
+# 2019-Feb 21 lrochette Changing paths to match EC-DslDeploy
+# 2019-Feb-22 lrochette Fix #166: save catalogs and catalogItems
+##############################################################################
 use File::Path;
 
 $[/myProject/scripts/perlHeaderJSON]
 
-$DEBUG=1;
-
 #
 # Parameters
 #
-my $path    = '$[pathname]';
-my $pattern = '$[pattern]';
-my $includeACLs="$[includeACLs]";
+my $path             = '$[pathname]';
+my $pattern          = '$[pattern]';
+my $includeACLs      = "$[includeACLs]";
+my $includeNotifiers = "$[includeNotifiers]";
+my $relocatable      = "$[relocatable]";
+my $format           = '$[format]';
 
 #
 # Global
@@ -28,7 +50,8 @@ my $compCount  = 0;
 my $pipeCount  = 0;
 my $relCount   = 0;
 my $servCount  = 0;
-
+my $catCount   = 0;
+my $itemCount  = 0;
 # Set the timeout to config value or 600 if not set
 my $defaultTimeout = getP("/server/EC-Admin/cleanup/config/timeout");
 $ec->setTimeout($defaultTimeout? $defaultTimeout : 600);
@@ -75,8 +98,10 @@ foreach my $node ($xPath->findnodes('//project')) {
     mkpath("$path/projects/$fileProjectName/applications/$fileAppName");
     chmod(0777, "$path/projects/$fileProjectName/applications/$fileAppName");
     my ($success, $res, $errMsg, $errCode) =
-      saveDslFile("$path/projects/$fileProjectName/applications/$fileAppName/$fileAppName".".groovy",
-            "/projects[$pName]applications[$appName]",$includeACLs);
+      backupObject($format,
+        "$path/projects/$fileProjectName/applications/$fileAppName/application.groovy",
+        "/projects[$pName]applications[$appName]",
+        $relocatable, $includeACLs, $includeNotifiers);
 
     if (! $success) {
       printf("  Error exporting application %s", $appName);
@@ -99,17 +124,19 @@ foreach my $node ($xPath->findnodes('//project')) {
       printf("    Saving Component: %s\n", $compName);
 
       my ($success, $res, $errMsg, $errCode) =
-        saveDslFile("$path/projects/$fileProjectName/applications/$fileAppName/components/$fileCompName".".groovy",
-            "/projects[$pName]applications[$appName]components[$compName]", $includeACLs);
+        backupObject($format,
+          "$path/projects/$fileProjectName/applications/$fileAppName/components/$fileCompName",
+          "/projects[$pName]applications[$appName]components[$compName]",
+          $relocatable, $includeACLs, $includeNotifiers);
 
-    if (! $success) {
-      printf("  Error exporting component %s in application", $compName, $appName);
-      printf("  %s: %s\n", $errCode, $errMsg);
-      $errorCount++;
-    }
-    else {
-      $compCount++;
-    }
+      if (! $success) {
+        printf("  Error exporting component %s in application", $compName, $appName);
+        printf("  %s: %s\n", $errCode, $errMsg);
+        $errorCount++;
+      }
+      else {
+        $compCount++;
+      }
 
     }
   }
@@ -131,8 +158,9 @@ foreach my $node ($xPath->findnodes('//project')) {
     printf("  Saving Environment: %s\n", $envName);
 
     my ($success, $res, $errMsg, $errCode) =
-      saveDslFile("$path/projects/$fileProjectName/environments/$fileEnvName".".groovy",
-            "/projects[$pName]environments[$envName]", $includeACLs);
+      backupObject($format, "$path/projects/$fileProjectName/environments/$fileEnvName",
+        "/projects[$pName]environments[$envName]",
+        $relocatable, $includeACLs, $includeNotifiers);
 
     if (! $success) {
       printf("  Error exporting environment %s", $envName);
@@ -166,8 +194,10 @@ foreach my $node ($xPath->findnodes('//project')) {
       printf("  Saving Pipeline: %s\n", $pipeName);
 
       my ($success, $res, $errMsg, $errCode) =
-        saveDslFile("$path/projects/$fileProjectName/pipelines/$filePipeName".".groovy",
-               "/projects[$pName]pipelines[$pipeName]", $includeACLs);
+        backupObject($format,
+          "$path/projects/$fileProjectName/pipelines/$filePipeName",
+          "/projects[$pName]pipelines[$pipeName]",
+          $relocatable, $includeACLs, $includeNotifiers);
 
       if (! $success) {
         printf("  Error exporting pipeline %s", $pipeName);
@@ -202,8 +232,10 @@ foreach my $node ($xPath->findnodes('//project')) {
       printf("  Saving Release: %s\n", $relName);
 
       my ($success, $res, $errMsg, $errCode) =
-        saveDslFile("$path/projects/$fileProjectName/releases/$filePipeName".".groovy",
-              "/projects[$pName]releases[$relName]", $includeACLs);
+        backupObject($format,
+          "$path/projects/$fileProjectName/releases/$filePipeName",
+          "/projects[$pName]releases[$relName]",
+          $relocatable, $includeACLs, $includeNotifiers);
 
       if (! $success) {
         printf("  Error exporting release %s", $relName);
@@ -214,7 +246,7 @@ foreach my $node ($xPath->findnodes('//project')) {
         $relCount++;
       }
     }         # Release loop
- }           # Version greater than 6.1
+  }           # Version greater than 6.1
 
   # Export services if the version is recent enough
   #
@@ -237,8 +269,10 @@ foreach my $node ($xPath->findnodes('//project')) {
       printf("  Saving Service: %s\n", $servName);
 
       my ($success, $res, $errMsg, $errCode) =
-        saveDslFile("$path/projects/$fileProjectName/services/$fileServName".".groovy",
-              "/projects[$pName]services[$servName]", $includeACLs);
+        backupObject($format,
+          "$path/projects/$fileProjectName/services/$fileServName",
+          "/projects[$pName]services[$servName]",
+          $relocatable, $includeACLs, $includeNotifiers);
 
       if (! $success) {
         printf("  Error exporting service %s", $servName);
@@ -248,8 +282,76 @@ foreach my $node ($xPath->findnodes('//project')) {
       else {
         $servCount++;
       }
-    }         # Release loop
+    }         # service loop
   }           # Version greater than 8.1
+
+  # Export catalogs if the version is recent enough
+  #
+  if (compareVersion($version, "7.3") < 0) {
+    printf("WARNING: Version 7.3 or greater is required to save Catalog objects");
+  } else {
+    # Save catalog definitions
+    #
+    mkpath("$path/projects/$fileProjectName/catalogs");
+    chmod(0777, "$path/projects/$fileProjectName/catalogs");
+
+    my ($success, $xPath) = InvokeCommander("SuppressLog", "getCatalogs", $pName);
+    foreach my $proc ($xPath->findnodes('//catalog')) {
+      my $catName=$proc->{'catalogName'};
+
+      # skip catalogs that don't fit the pattern
+      next if (($pName  eq "Default") && ($catName !~ /$pattern/$[caseSensitive] ));  # / just for the color
+
+      my $fileCatName=safeFilename($catName);
+      printf("  Saving Catalog: %s\n", $catName);
+
+     mkpath("$path/projects/$fileProjectName/catalogs/$fileCatName");
+     chmod(0777, "$path/projects/$fileProjectName/catalogs/$fileCatName");
+
+      my ($success, $res, $errMsg, $errCode) =
+        backupObject($format,
+          "$path/projects/$fileProjectName/catalogs/$fileCatName/catalog",
+          "/projects[$pName]catalogs[$catName]",
+          $relocatable, $includeACLs, $includeNotifiers);
+
+      if (! $success) {
+        printf("  Error exporting catalog %s", $catName);
+        printf("  %s: %s\n", $errCode, $errMsg);
+        $errorCount++;
+      }
+      else {
+        $servCount++;
+      }
+
+      # backup catalogItems
+      my ($ok, $json) = InvokeCommander("SuppressLog", "getCatalogItems", $pName, $catName);
+      foreach my $item ($json->findnodes("//catalogItem")) {
+        my $itemName=$item->{'catalogItemName'};
+        my $fileItemName=safeFilename($itemName);
+        printf("    Saving Catalog Item: %s\n", $itemName);
+        mkpath("$path/projects/$fileProjectName/catalogs/$fileCatName/items");
+        chmod(0777, "$path/projects/$fileProjectName/catalogs/$fileCatName/items");
+
+        my ($success, $res, $errMsg, $errCode) =
+          backupObject($format,
+            "$path/projects/$fileProjectName/catalogs/$fileCatName/items/$fileItemName",
+            "/projects[$pName]catalogs[$catName]catalogItems[$itemName]",
+            $relocatable, $includeACLs, $includeNotifiers);
+
+        if (! $success) {
+          printf("  Error exporting catalog item %s in catalog", $itemName, $catName);
+          printf("  %s: %s\n", $errCode, $errMsg);
+          $errorCount++;
+        }
+        else {
+          $itemCount++;
+        }
+
+      }
+
+    }         # catalog loop
+  }           # Version greater than 8.1
+
 }             # project loop
 
 my $str=sprintf("   $appCount applications exported\n" );
@@ -258,6 +360,8 @@ $str .= sprintf("   $compCount components exported\n");
 $str .= sprintf("   $pipeCount pipelines exported\n");
 $str .= sprintf("   $relCount releases exported\n");
 $str .= sprintf("   $servCount services exported\n");
+$str .= sprintf("   $catCount catalogs exported\n");
+$str .= sprintf("   $itemCount catalog items exported\n");
 
 $ec->setProperty("preSummary", $str);
 $ec->setProperty("/myJob/papplicationExported", $appCount);
@@ -266,9 +370,9 @@ $ec->setProperty("/myJob/componentExported",    $compCount);
 $ec->setProperty("/myJob/pipelineExported",     $pipeCount);
 $ec->setProperty("/myJob/releaseExported",      $relCount);
 $ec->setProperty("/myJob/serviceExported",      $servCount);
+$ec->setProperty("/myJob/catalogExported",      $catCount);
+$ec->setProperty("/myJob/catalogItemExported",  $itemCount);
 exit($errorCount);
 
-$[/myProject/scripts/backup/safeFilename]
-$[/myProject/scripts/backup/saveDslFile]
-
+$[/myProject/scripts/perlBackupLib]
 $[/myProject/scripts/perlLibJSON]

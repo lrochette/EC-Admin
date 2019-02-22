@@ -1,24 +1,43 @@
 #############################################################################
 #
-#  Copyright 2013-2016 Electric-Cloud Inc.
+#  Save projects, procedures and workflows (DSL or XML)
 #
+#  Author: L.Rochette
+#
+#  Copyright 2013-2018 Electric-Cloud Inc.
+#
+#     Licensed under the Apache License, Version 2.0 (the "License");
+#     you may not use this file except in compliance with the License.
+#     You may obtain a copy of the License at
+#
+#         http://www.apache.org/licenses/LICENSE-2.0
+#
+#     Unless required by applicable law or agreed to in writing, software
+#     distributed under the License is distributed on an "AS IS" BASIS,
+#     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#     See the License for the specific language governing permissions and
+#     limitations under the License.
+#
+# History
+# ---------------------------------------------------------------------------
+# 2019-Feb-11 lrochette Foundation for merge DSL and XML export
+# 2019-Feb 21 lrochette Changing paths to match EC-DslDeploy
 #############################################################################
 use File::Path;
 
 $[/myProject/scripts/perlHeaderJSON]
 
-$DEBUG=1;
-
 #
 # Parameters
 #
-my $path        = '$[pathname]';
-my $exportSteps = "$[exportSteps]";
-my $pattern     = '$[pattern]';
-my $caseSensitive = "i";
-my $includeACLs="$[includeACLs]";
-my $includeNotifiers="$[includeNotifiers]";
-my $relocatable="$[relocatable]";
+my $path             = '$[pathname]';
+my $exportSteps      = "$[exportSteps]";
+my $pattern          = '$[pattern]';
+my $caseSensitive    = "i";
+my $includeACLs      = "$[includeACLs]";
+my $includeNotifiers = "$[includeNotifiers]";
+my $relocatable      = "$[relocatable]";
+my $format           = '$[format]';
 
 #
 # Global
@@ -37,8 +56,8 @@ $ec->setTimeout($defaultTimeout? $defaultTimeout : 600);
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getProjects");
 
 # Create the Projects directory
-mkpath("$path/Projects");
-chmod(0777, "$path/Projects") or die("Can't change permissions on $path/Projects: $!");
+mkpath("$path/projects");
+chmod(0777, "$path/projects") or die("Can't change permissions on $path/projects: $!");
 
 foreach my $node ($xPath->findnodes('//project')) {
   my $pName=$node->{'projectName'};
@@ -53,15 +72,12 @@ foreach my $node ($xPath->findnodes('//project')) {
   printf("Saving Project: %s\n", $pName);
 
   my $fileProjectName=safeFilename($pName);
-  mkpath("$path/Projects/$fileProjectName");
-  chmod(0777, "$path/Projects/$fileProjectName");
+  mkpath("$path/projects/$fileProjectName");
+  chmod(0777, "$path/projects/$fileProjectName");
 
   my ($success, $res, $errMsg, $errCode) =
-      InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/$fileProjectName".".xml",
-  					{ 'path'          => "/projects[$pName]",
-              'relocatable' => $relocatable,
-              'withAcls'    => $includeACLs,
-              'withNotifiers'=>$includeNotifiers});
+    backupObject($format, "$path/projects/$fileProjectName/project",
+  		"/projects[$pName]", $relocatable, $includeACLs, $includeNotifiers);
   if (! $success) {
     printf("  Error exporting project %s", $pName);
     printf("  %s: %s\n", $errCode, $errMsg);
@@ -72,8 +88,8 @@ foreach my $node ($xPath->findnodes('//project')) {
   #
   # Save procedures
   #
-  mkpath("$path/Projects/$fileProjectName/Procedures");
-  chmod(0777, "$path/Projects/$fileProjectName/Procedures");
+  mkpath("$path/projects/$fileProjectName/procedures");
+  chmod(0777, "$path/projects/$fileProjectName/procedures");
 
   my ($success, $xPath) = InvokeCommander("SuppressLog", "getProcedures", $pName);
   foreach my $proc ($xPath->findnodes('//procedure')) {
@@ -81,14 +97,11 @@ foreach my $node ($xPath->findnodes('//project')) {
     my $fileProcedureName=safeFilename($procName);
     printf("  Saving Procedure: %s\n", $procName);
 
-    mkpath("$path/Projects/$fileProjectName/Procedures/$fileProcedureName");
-    chmod(0777, "$path/Projects/$fileProjectName/Procedures/$fileProcedureName");
- 	my ($success, $res, $errMsg, $errCode) =
-      InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Procedures/$fileProcedureName/$fileProcedureName".".xml",
-  					{ 'path'          => "/projects[$pName]procedures[$procName]",
-              'relocatable' => $relocatable,
-              'withAcls'    => $includeACLs,
-              'withNotifiers'=>$includeNotifiers});
+    mkpath("$path/projects/$fileProjectName/procedures/$fileProcedureName");
+    chmod(0777, "$path/projects/$fileProjectName/procedures/$fileProcedureName");
+ 	  my ($success, $res, $errMsg, $errCode) =
+      backupObject($format, "$path/projects/$fileProjectName/procedures/$fileProcedureName/procedure",
+  			"/projects[$pName]procedures[$procName]", $relocatable, $includeACLs, $includeNotifiers);
 
     if (! $success) {
       printf("  Error exporting procedure %s", $procName);
@@ -102,8 +115,8 @@ foreach my $node ($xPath->findnodes('//project')) {
     # Save steps
     #
     if ($exportSteps) {
-      mkpath("$path/Projects/$fileProjectName/Procedures/$fileProcedureName/Steps");
-      chmod(0777, "$path/Projects/$fileProjectName/Procedures/$fileProcedureName/Steps");
+      mkpath("$path/projects/$fileProjectName/procedures/$fileProcedureName/steps");
+      chmod(0777, "$path/projects/$fileProjectName/procedures/$fileProcedureName/steps");
 
       my($success, $stepNodes) = InvokeCommander("SuppressLog", "getSteps", $pName, $procName);
       foreach my $step ($stepNodes->findnodes('//step')) {
@@ -111,12 +124,11 @@ foreach my $node ($xPath->findnodes('//project')) {
         my $fileStepName=safeFilename($stepName);
         printf("    Saving Step: %s\n", $stepName);
 
- 	    my ($success, $res, $errMsg, $errCode) =
-           InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Procedures/$fileProcedureName/Steps/$fileStepName".".xml",
-  					{ 'path'=> "/projects[$pName]procedures[$procName]steps[$stepName]",
-              'relocatable' => $relocatable,
-              'withAcls'    => $includeACLs,
-              'withNotifiers'=>$includeNotifiers});
+ 	      my ($success, $res, $errMsg, $errCode) =
+          backupObject($format,
+            "$path/projects/$fileProjectName/procedures/$fileProcedureName/steps/$fileStepName",
+  					"/projects[$pName]procedures[$procName]steps[$stepName]", $relocatable,
+            $includeACLs, $includeNotifiers);
 
         if (! $success) {
           printf("  Error exporting step %s", $stepName);
@@ -134,8 +146,8 @@ foreach my $node ($xPath->findnodes('//project')) {
   #
   # Save workflow definitions
   #
-  mkpath("$path/Projects/$fileProjectName/Workflows");
-  chmod(0777, "$path/Projects/$fileProjectName/Workflows");
+  mkpath("$path/projects/$fileProjectName/Workflows");
+  chmod(0777, "$path/projects/$fileProjectName/Workflows");
 
   my ($success, $xPath) = InvokeCommander("SuppressLog", "getWorkflowDefinitions", $pName);
   foreach my $proc ($xPath->findnodes('//workflowDefinition')) {
@@ -144,11 +156,8 @@ foreach my $node ($xPath->findnodes('//project')) {
     printf("  Saving Workflow Definition: %s\n", $wkfName);
 
     my ($success, $res, $errMsg, $errCode) =
-      InvokeCommander("SuppressLog", "export", "$path/Projects/$fileProjectName/Workflows/$fileWkfName".".xml",
-  					{ 'path'=> "/projects[$pName]workflowDefinitions[$wkfName]",
-              'relocatable' => $relocatable,
-              'withAcls'    => $includeACLs,
-              'withNotifiers'=>$includeNotifiers});
+      backupObject($format, "$path/projects/$fileProjectName/Workflows/$fileWkfName",
+  			"/projects[$pName]workflowDefinitions[$wkfName]", $relocatable, $includeACLs, $includeNotifiers);
 
     if (! $success) {
       printf("  Error exporting %s", $wkfName);
@@ -168,6 +177,5 @@ $ec->setProperty("/myJob/workflowExported", $wkfCount);
 
 exit($errorCount);
 
-$[/myProject/scripts/backup/safeFilename]
-
+$[/myProject/scripts/perlBackupLib]
 $[/myProject/scripts/perlLibJSON]

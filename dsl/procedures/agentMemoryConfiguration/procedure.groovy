@@ -21,8 +21,8 @@ wrapper.java.maxmemory=512
   step 'modifyWrapper',
     description: 'Modify the wrapper.conf',
     command: new File(pluginDir, "dsl/procedures/$procName/steps/modifyWrapper.pl").text,
-    postProcessor: 'postp',
     resourceName: '$[agent]',
+    exclusiveMode: 'job',
     shell: 'ec-perl'
 
   step 'restartAgentLinux',
@@ -43,12 +43,12 @@ The agent stops but does not restart''',
 
   step 'waitForAgentToGoDown',
     description: 'This gives time to the agent to go down',
-    command: '''sleep(30)''',
+    command: 'sleep(30)',
     shell: 'ec-perl'
 
   step 'waitForAgentToComeBack',
     description: 'The step will be blocked until the agent is available again',
-    command: '''echo "Hello world" ''',
+    command: 'echo "Hello world" ',
     condition: '$[agent]',
     resourceName: '$[agent]'
 }

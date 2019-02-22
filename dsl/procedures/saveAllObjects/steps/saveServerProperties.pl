@@ -1,7 +1,7 @@
 #############################################################################
 #
 # Save top server properties (as /server export is the whole thing)
-#
+#   DSL or XML format
 # Author: L.Rochette
 #
 #  Copyright 2018 Electric-Cloud Inc.
@@ -21,7 +21,8 @@
 # History
 # ---------------------------------------------------------------------------
 # 2018-11-07 lrochette Initial Version
-#
+# 2019-02-11 lrochette Foundation for merge DSL and XML export
+# 2019-Feb 21 lrochette Changing paths to match EC-DslDeploy
 #############################################################################
 use File::Path;
 
@@ -32,11 +33,12 @@ $DEBUG=1;
 #
 # Parameters
 #
-my $path        = '$[pathname]';
-my $pattern     = '$[pattern]';
+my $path          = '$[pathname]';
+my $pattern       = '$[pattern]';
 my $caseSensitive = "i";
-my $includeACLs="$[includeACLs]";
-my $relocatable="$[relocatable]";
+my $includeACLs   = "$[includeACLs]";
+my $relocatable   = "$[relocatable]";
+my $format        = '$[format]';
 
 #
 # Global
@@ -53,20 +55,18 @@ my ($success, $xPath) = InvokeCommander("SuppressLog",
   "getProperties",
   {path => "/server"});
 
-# Create the /Server/Properties directory
-mkpath("$path/Server/Properties");
-chmod(0777, "$path/Server") or die("Can't change permissions on $path/Server: $!");
-chmod(0777, "$path/Server/Properties") or die("Can't change permissions on $path/Server/Properties: $!");
+# Create the /server/properties directory
+mkpath("$path/server/properties");
+chmod(0777, "$path/server") or die("Can't change permissions on $path/server: $!");
+chmod(0777, "$path/server/properties") or die("Can't change permissions on $path/server/properties: $!");
 
 foreach my $node ($xPath->findnodes('//property')) {
   my $pName=$node->{'propertyName'};
   my $filePropName=safeFilename($pName);
 
   my ($success, $res, $errMsg, $errCode) =
-     InvokeCommander("SuppressLog", "export", "$path/Server/Properties/${filePropName}.xml",
-           { 'path'          => "/server[$pName]",
-             'withAcls'    => $includeACLs,
-           });
+     backupObject($format, "$path/server/properties/${filePropName}",
+       "/server[$pName]", "false", $includeACLs, "false");
   if (! $success) {
     printf("  Error exporting property %s", $pName);
     printf("  %s: %s\n", $errCode, $errMsg);
@@ -81,5 +81,5 @@ $ec->setProperty("/myJob/serverPropertiesExported", $propCount);
 
 exit($errorCount);
 
-$[/myProject/scripts/backup/safeFilename]
+$[/myProject/scripts/perlBackupLib]
 $[/myProject/scripts/perlLibJSON]

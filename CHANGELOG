@@ -1,3 +1,12 @@
+2019-02-22 Laurent Rochette <lrochette@electric-cloud.com>
+  * 3.4.1.792: Fix non deletion when schedule is in a different project for licensing
+  * 3.4.0.791: Fix #166 - backup catalogs with saveAllObjects
+  * 3.3.1.786: Changing paths in saveAllObjects to match EC-DslDeploy
+
+2019-02-11 Laurent Rochette <lrochette@electric-cloud.com>
+  * 3.2.7.775: Fix #163 merge saveAllObjects and saveDslObjects
+  * 3.2.6.769: Reactivate agentMemoryConfiguration and fixed #168.
+
 2019-02-10 Laurent Rochette <lrochette@electric-cloud.com>
   * 3.2.5.763: Add save tags (issue #161)
                Add save services (issue #161)

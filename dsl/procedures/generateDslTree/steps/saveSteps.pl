@@ -7,16 +7,11 @@ use File::Path;
 
 $[/myProject/scripts/perlHeaderJSON]
 
-$DEBUG=1;
-
 #
 # Parameters
 #
 my $path        = '$[pathname]';
-my $exportSteps = "$[exportSteps]";
 my $pattern     = '$[pattern]';
-my $caseSensitive = "i";
-my $includeACLs="$[includeACLs]";
 
 #
 # Global
@@ -46,7 +41,7 @@ foreach my $node ($xPath->findnodes('//project')) {
   next if ($pluginName ne "");
 
   # skip projects that don't fit the pattern
-  next if ($pName !~ /$pattern/$[caseSensitive] );  # / just for the color
+  next if ($pName !~ /$pattern/ );
 
   printf("Saving Project: %s\n", $pName);
 
@@ -55,8 +50,8 @@ foreach my $node ($xPath->findnodes('//project')) {
   chmod(0777, "$path/projects/$fileProjectName");
 
   my ($success, $res, $errMsg, $errCode) =
-      saveDslFile("$path/projects/$fileProjectName/$fileProjectName".".grooy",
-  					"/projects[$pName]", $includeACLs);
+      backupObject("DSL", "$path/projects/$fileProjectName/project",
+  					"/projects[$pName]", "true", "true", "true");
   if (! $success) {
     printf("  Error exporting project %s", $pName);
     printf("  %s: %s\n", $errCode, $errMsg);
@@ -79,8 +74,9 @@ foreach my $node ($xPath->findnodes('//project')) {
     mkpath("$path/projects/$fileProjectName/procedures/$fileProcedureName");
     chmod(0777, "$path/projects/$fileProjectName/procedures/$fileProcedureName");
  	my ($success, $res, $errMsg, $errCode) =
-      saveDslFile( "$path/projects/$fileProjectName/procedures/$fileProcedureName/$fileProcedureName".".groovy",
-  					"/projects[$pName]procedures[$procName]", $includeACLs);
+    backupObject("DSL",
+      "$path/projects/$fileProjectName/procedures/$fileProcedureName/procedure",
+  		"/projects[$pName]procedures[$procName]", "true", "true", "true");
 
     if (! $success) {
       printf("  Error exporting procedure %s", $procName);
@@ -93,31 +89,32 @@ foreach my $node ($xPath->findnodes('//project')) {
     #
     # Save steps
     #
-    if ($exportSteps) {
-      mkpath("$path/projects/$fileProjectName/procedures/$fileProcedureName/steps");
-      chmod(0777, "$path/projects/$fileProjectName/procedures/$fileProcedureName/steps");
+    mkpath("$path/projects/$fileProjectName/procedures/$fileProcedureName/steps");
+    chmod(0777, "$path/projects/$fileProjectName/procedures/$fileProcedureName/steps");
 
-      my($success, $stepNodes) = InvokeCommander("SuppressLog", "getSteps", $pName, $procName);
-      foreach my $step ($stepNodes->findnodes('//step')) {
-        my $stepName=$step->{'stepName'};
-        my $fileStepName=safeFilename($stepName);
-        printf("    Saving Step: %s\n", $stepName);
+    my($success, $stepNodes) = InvokeCommander("SuppressLog", "getSteps", $pName, $procName);
+    foreach my $step ($stepNodes->findnodes('//step')) {
+      my $stepName=$step->{'stepName'};
+      my $fileStepName=safeFilename($stepName);
+      printf("    Saving Step: %s\n", $stepName);
 
- 	    my ($success, $res, $errMsg, $errCode) =
-           saveDslFile("$path/projects/$fileProjectName/procedures/$fileProcedureName/steps/$fileStepName".".groovy",
-  					"/projects[$pName]procedures[$procName]steps[$stepName]",$includeACLs);
-
-        if (! $success) {
-          printf("  Error exporting step %s", $stepName);
-          printf("  %s: %s\n", $errCode, $errMsg);
-          $errorCount++;
-        } else {
-          $stepCount++;
-        }
-
-      }  # step loop
-
-    } # fi stepExport
+      my $shell=$ec->getProperty("/projects[$pName]procedures[$procName]steps[$stepName]/shell")->findvalue("//value");
+      my $stepExt='.sh';
+      $stepExt=".pl" if ($shell =~ /perl/);
+      $stepExt=".groovy" if (($shell =~ /dsl/i) || ($shell =~ /groovy/));
+      $stepExt=".ps1" if ($shell =~ /powershell/i);
+      my $cmd=$ec->getProperty("/projects[$pName]procedures[$procName]steps[$stepName]/command",
+                        {expand=>'0'}
+                  )->findvalue("//value");
+      if (! open(my $CMD, "> $path/projects/$fileProjectName/procedures/$fileProcedureName/steps/$fileStepName$stepExt")) {
+        printf("  Error exporting step '%s' command", $stepName);
+        $errorCount++;
+      } else {
+        print $CMD $cmd;
+        close($CMD);
+      }
+    }  # step loop
+    printf("\n");
   }   # procedure loop
 
   #
@@ -133,8 +130,9 @@ foreach my $node ($xPath->findnodes('//project')) {
     printf("  Saving Workflow Definition: %s\n", $wkfName);
 
     my ($success, $res, $errMsg, $errCode) =
-      saveDslFile("$path/projects/$fileProjectName/workflows/$fileWkfName".".groovy",
-  					"/projects[$pName]workflowDefinitions[$wkfName]",$includeACLs);
+      backupObject("DSL", "$path/projects/$fileProjectName/workflows/workflow",
+				"/projects[$pName]workflowDefinitions[$wkfName]",
+        "true", "true", "true");
 
     if (! $success) {
       printf("  Error exporting %s", $wkfName);
@@ -144,7 +142,10 @@ foreach my $node ($xPath->findnodes('//project')) {
     else {
       $wkfCount++;
     }
+    printf("\n");
+
   }
+  printf("\n");
 
 }
 $ec->setProperty("preSummary", " $projCount projects exported\n $procCount procedures exported\n $wkfCount workflows exported");
@@ -154,7 +155,5 @@ $ec->setProperty("/myJob/workflowExported", $wkfCount);
 
 exit($errorCount);
 
-$[/myProject/scripts/backup/safeFilename]
-$[/myProject/scripts/backup/saveDslFile]
-
+$[/myProject/scripts/perlBackupLib]
 $[/myProject/scripts/perlLibJSON]

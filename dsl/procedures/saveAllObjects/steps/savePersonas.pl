@@ -1,9 +1,27 @@
 #############################################################################
 #
+#  Save Personas and tied objects (in DSL or XML)
+#
+#  Author: L.Rochette
+#
 #  Copyright 2015-2019 Electric-Cloud Inc.
 #
-#  Author: L. Rochette
+#     Licensed under the Apache License, Version 2.0 (the "License");
+#     you may not use this file except in compliance with the License.
+#     You may obtain a copy of the License at
 #
+#         http://www.apache.org/licenses/LICENSE-2.0
+#
+#     Unless required by applicable law or agreed to in writing, software
+#     distributed under the License is distributed on an "AS IS" BASIS,
+#     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#     See the License for the specific language governing permissions and
+#     limitations under the License.
+#
+# History
+# ---------------------------------------------------------------------------
+# 2019-Feb-11 lrochette Foundation for merge DSL and XML export
+# 2019-Feb 21 lrochette Changing paths to match EC-DslDeploy
 #############################################################################
 use File::Path;
 
@@ -12,11 +30,12 @@ $[/myProject/scripts/perlHeaderJSON]
 #
 # Parameters
 #
-my $path    = '$[pathname]';
-my $pattern = '$[pattern]';
-my $includeACLs="$[includeACLs]";
-my $includeNotifiers="$[includeNotifiers]";
-my $relocatable="$[relocatable]";
+my $path             = '$[pathname]';
+my $pattern          = '$[pattern]';
+my $includeACLs      = "$[includeACLs]";
+my $includeNotifiers = "$[includeNotifiers]";
+my $relocatable      = "$[relocatable]";
+my $format           = '$[format]';
 
 #
 # Global
@@ -29,7 +48,7 @@ my $personaCategoryCount=0;
 # personas were introduced in 9.0
 my $version=getVersion();
 if (compareVersion($version, "9.0") < 0) {
-  $ec->setProperty("Personas were introduced only 9.0");
+  $ec->setProperty("summary", "Personas were introduced only in 9.0");
   exit(0);
 }
 
@@ -41,8 +60,8 @@ if (compareVersion($version, "9.0") < 0) {
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getPersonas");
 
 # Create the Personas directory
-mkpath("$path/Personas");
-chmod(0777, "$path/Personas");
+mkpath("$path/personas");
+chmod(0777, "$path/personas");
 printf("Saving Personas:\n");
 printf("----------------\n");
 
@@ -56,11 +75,8 @@ foreach my $node ($xPath->findnodes('//persona')) {
   my $filePersonaName=safeFilename($personaName);
 
   my ($success, $res, $errMsg, $errCode) =
-      InvokeCommander("SuppressLog", "export", "$path/Personas/$filePersonaName".".xml",
-  { 'path'=> "/personas[$personaName]",
-    'relocatable' => $relocatable,
-    'withAcls'    => $includeACLs,
-    'withNotifiers'=>$includeNotifiers});
+    backupObject($format, "$path/personas/$filePersonaName",
+    "/personas[$personaName]", $relocatable, $includeACLs, $includeNotifiers);
   if (! $success) {
     printf("    Error exporting %s", $personaName);
     printf("  %s: %s\n", $errCode, $errMsg);
@@ -78,8 +94,8 @@ foreach my $node ($xPath->findnodes('//persona')) {
 ($success, $xPath) = InvokeCommander("SuppressLog", "getPersonaPages");
 
 # Create the Persona Pages directory
-mkpath("$path/PersonaPages");
-chmod(0777, "$path/PersonaPages");
+mkpath("$path/personaPages");
+chmod(0777, "$path/personaPages");
 printf("\nSaving PersonaPages:\n");
 printf("--------------------\n");
 
@@ -93,11 +109,8 @@ foreach my $node ($xPath->findnodes('//personaPage')) {
   my $filePersonaPageName=safeFilename($personaPageName);
 
   my ($success, $res, $errMsg, $errCode) =
-      InvokeCommander("SuppressLog", "export", "$path/PersonaPages/$filePersonaPageName".".xml",
-  { 'path'=> "/personaPages[$personaPageName]",
-    'relocatable' => $relocatable,
-    'withAcls'    => $includeACLs,
-    'withNotifiers'=>$includeNotifiers});
+    backupObject($format, "$path/personaPages/$filePersonaPageName",
+    "/personaPages[$personaPageName]", $relocatable, $includeACLs, $includeNotifiers);
   if (! $success) {
     printf("    Error exporting %s", $personaPageName);
     printf("  %s: %s\n", $errCode, $errMsg);
@@ -115,8 +128,8 @@ foreach my $node ($xPath->findnodes('//personaPage')) {
 ($success, $xPath) = InvokeCommander("SuppressLog", "getPersonaCategories");
 
 # Create the Persona Categories directory
-mkpath("$path/PersonaCategories");
-chmod(0777, "$path/PersonaCategories");
+mkpath("$path/personaCategories");
+chmod(0777, "$path/personaCategories");
 printf("\nSaving PersonaCategories:\n");
 printf("--------------------\n");
 
@@ -130,11 +143,8 @@ foreach my $node ($xPath->findnodes('//personaCategory')) {
   my $filePersonaCategoryName=safeFilename($personaCategoryName);
 
   my ($success, $res, $errMsg, $errCode) =
-      InvokeCommander("SuppressLog", "export", "$path/PersonaCategories/$filePersonaCategoryName".".xml",
-  { 'path'=> "/personaCategories[$personaCategoryName]",
-    'relocatable' => $relocatable,
-    'withAcls'    => $includeACLs,
-    'withNotifiers'=>$includeNotifiers});
+    backupObject($format, "$path/personaCategories/$filePersonaCategoryName",
+    "/personaCategories[$personaCategoryName]", $relocatable, $includeACLs, $includeNotifiers);
   if (! $success) {
     printf("    Error exporting %s", $personaCategoryName);
     printf("  %s: %s\n", $errCode, $errMsg);
@@ -152,6 +162,5 @@ $ec->setProperty("/myJob/personaPageExported", $personaPageCount);
 $ec->setProperty("/myJob/personaCategoryExported", $personaCategoryCount);
 exit($errorCount);
 
-$[/myProject/scripts/backup/safeFilename]
-
+$[/myProject/scripts/perlBackupLib]
 $[/myProject/scripts/perlLibJSON]

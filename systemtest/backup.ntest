@@ -21,6 +21,12 @@ my $xpath = $::N->getPlugin($pluginKey);
 my $pluginName = $xpath->findvalue("//pluginName")->value;
 my $backupDir="/tmp/BACKUP";
 
+sub getVersion
+{
+  my $v= $::N->getVersions()->findvalue("//version")->value;
+  return $v;
+}
+
 #
 # Load EC-Admin_Test which is required by some tests
 $xpath=$::N->import({file=>$::gWorkingDirectory . "/data/EC-Admin_Test.xml", force=>1});
@@ -70,6 +76,8 @@ ntest "issue 56 question mark", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -84,7 +92,7 @@ ntest "issue 56 question mark", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # issue 56: check for file with question mark replaced by _
-    if (! -f "${backupDir}/Projects/EC-Admin_Test/Procedures/questionMark/Steps/rerun_.xml") {
+    if (! -f "${backupDir}/projects/EC-Admin_Test/procedures/questionMark/steps/rerun_.xml") {
       fail("rerun_.xml is missing");
       $error=1;
     }
@@ -99,7 +107,7 @@ ntest "issue 56 question mark", {}, sub {
 ntest "issue 57 group with slash", {}, sub {
 
   my $group="AC/DC";
-  my $xpath= $::N->createGroup($group);
+  my $xpath= $::N->evalDsl("group \"$group\"");
   assertOK($xpath, "Failed to create group $group for issue 57");
 
   rmtree($backupDir);
@@ -117,6 +125,8 @@ ntest "issue 57 group with slash", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -131,7 +141,7 @@ ntest "issue 57 group with slash", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for group file with / mark replaced by _
-    if (! -f "${backupDir}/Groups/AC_DC.xml") {
+    if (! -f "${backupDir}/groups/AC_DC.xml") {
       fail("AC_DC.xml group is missing");
     }
   }
@@ -172,6 +182,8 @@ ntest "issue 58 gateway", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -186,7 +198,7 @@ ntest "issue 58 gateway", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # issue 58: check for gateway file
-    if (! -f "${backupDir}/Gateways/$gate.xml") {
+    if (! -f "${backupDir}/gateways/$gate.xml") {
       fail("$gate.xml gate is missing");
     }
   }
@@ -202,7 +214,7 @@ ntest "issue 58 gateway", {}, sub {
 ntest "issue 59 zone", {}, sub {
 
   my $zone="zone59";
-  $xpath= $::N->createZone($zone, {description => "for backup testing"});
+  $xpath=$::N->evalDsl("zone \"$zone\", description: 'for backup testing'");
   assertOK($xpath, "Failed to create zone $zone");
 
   rmtree($backupDir);
@@ -220,6 +232,8 @@ ntest "issue 59 zone", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -234,13 +248,15 @@ ntest "issue 59 zone", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # issue 59: check for zone file
-    if (! -f "${backupDir}/Zones/$zone.xml") {
+    if (! -f "${backupDir}/zones/$zone.xml") {
       fail("$zone.xml zone is missing");
+    } else {
+      # Clean
+      rmtree($backupDir);
+      $::N->deleteZone($zone);
+
     }
   }
-  # Clean
-  rmtree($backupDir);
-  $::N->deleteZone($zone);
 };
 
 #-------------------------------------------------------------------------------
@@ -266,6 +282,8 @@ ntest "issue 63 pattern", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -310,6 +328,8 @@ ntest "export users", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"true"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -359,6 +379,8 @@ ntest "issue 77 procedure with slash", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -373,12 +395,12 @@ ntest "issue 77 procedure with slash", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory file with / mark replaced by _
-    if (! -d "${backupDir}/Projects/Issue_77") {
+    if (! -d "${backupDir}/projects/Issue_77") {
       fail("Issue_77 Project is missing");
     }
     # check for procedure file file with / mark replaced by _
-    if (! -f "${backupDir}/Projects/Issue_77/Procedures/Issue_77/Issue_77.xml") {
-      fail("Issue_77.xml procedure is missing");
+    if (! -f "${backupDir}/projects/Issue_77/procedures/Issue_77/procedure.xml") {
+      fail("procedure.xml procedure is missing");
     }
   }
   rmtree($backupDir);
@@ -409,6 +431,8 @@ ntest "issue 74 case insensitive", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -457,6 +481,8 @@ ntest "issue 83 trailing spaces", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -471,8 +497,8 @@ ntest "issue 83 trailing spaces", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project file file with heading and trailing space removed
-    if (! -f "${backupDir}/Projects/ISSUE83/ISSUE83.xml") {
-      fail("ISSUE83.xml project is missing");
+    if (! -f "${backupDir}/projects/ISSUE83/project.xml") {
+      fail("project.xml project is missing");
     }
   }
   # clean
@@ -505,6 +531,8 @@ ntest "issue 88 slash in resource", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -519,7 +547,7 @@ ntest "issue 88 slash in resource", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for resource file file with slash replaced by _
-    if (! -f "${backupDir}/Resources/res_SA_issue88.xml") {
+    if (! -f "${backupDir}/resources/res_SA_issue88.xml") {
       fail("res_SA_issue88.xml resource is missing");
     } else {
       # clean
@@ -554,6 +582,8 @@ ntest "issue 89 < and > in filenames", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -568,7 +598,7 @@ ntest "issue 89 < and > in filenames", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for resource file file with slash replaced by _
-    if (! -f "${backupDir}/Resources/res_issue89_end.xml") {
+    if (! -f "${backupDir}/resources/res_issue89_end.xml") {
       fail("res_issue89_end.xml resource is missing");
     } else {
       # clean
@@ -603,6 +633,8 @@ ntest "issue 90 project starting with _", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"false"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -617,7 +649,7 @@ ntest "issue 90 project starting with _", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory to exist
-    if (! -d "${backupDir}/Projects/_issue90") {
+    if (! -d "${backupDir}/projects/_issue90") {
       fail("_issue90 project is missing");
     } else {
       # clean
@@ -653,6 +685,8 @@ ntest "issue 87 empty pattern", {}, sub {
       {actualParameterName=>"exportSteps", value=>"false"},
       {actualParameterName=>"exportUsers", value=>"true"},
       {actualParameterName=>"exportWorkspaces", value=>"false"},
+      {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -667,7 +701,7 @@ ntest "issue 87 empty pattern", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory to exist
-    if (! -d "${backupDir}/Projects/$proj") {
+    if (! -d "${backupDir}/projects/$proj") {
       fail("$proj project is missing");
     }
 
@@ -736,14 +770,14 @@ ntest "issue 127 slash in project name with saveProjects", {}, sub {
     assertNe("error", $outcome, "saveProjects should not error out");
 
     # check for project directory to exist
-    if (! -d "${backupDir}/Projects/$projDir") {
+    if (! -d "${backupDir}/projects/$projDir") {
       fail("$projDir project is missing");
     }
 
 
     # check for project file with slash replaced by _
-    if (! -f "${backupDir}/Projects/$projDir/${projDir}.xml") {
-      fail("${projDir}.xml project is missing");
+    if (! -f "${backupDir}/projects/$projDir/project.xml") {
+      fail("project.xml project is missing");
     } else {
       # clean
       rmtree($backupDir);
@@ -758,6 +792,12 @@ ntest "issue 127 slash in project name with saveProjects", {}, sub {
 #  Issue 161: save tags
 #-------------------------------------------------------------------------------
 ntest "issue 161 save tags", {}, sub {
+  # skip tagging for version below 8.5
+  if (getVersion() lt "8.5") {
+    skip("no tag in current version");
+    return;
+  }
+
   my $tag='tag161';
   my $xpath=$::N->createTag($tag);
   assertOK($xpath, "Failed to create tag $tag");
@@ -770,7 +810,9 @@ ntest "issue 161 save tags", {}, sub {
       {actualParameterName=>"relocatable", value=>"true"},
       {actualParameterName=>"includeACLs", value=>"false"},
       {actualParameterName=>"includeNotifiers", value=>"false"},
-      {actualParameterName=>"pattern", value=>"161"}
+      {actualParameterName=>"pattern", value=>"161"},
+      {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -785,12 +827,12 @@ ntest "issue 161 save tags", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory to exist
-    if (! -d "${backupDir}/Tags") {
+    if (! -d "${backupDir}/tags") {
       fail("Tags directory is missing");
     }
 
     # check for project file with slash replaced by _
-    if (! -f "${backupDir}/Tags/${tag}.xml") {
+    if (! -f "${backupDir}/tags/${tag}.xml") {
       fail("${tag}.xml tag file is missing");
     } else {
       # clean
@@ -806,6 +848,12 @@ ntest "issue 161 save tags", {}, sub {
 #  Issue 161: save services
 #-------------------------------------------------------------------------------
 ntest "issue 161 save services", {}, sub {
+  # skip service for version below 8.1
+  if (getVersion() lt "8.1") {
+    skip("no service in current version");
+    return;
+  }
+
   my $service='service161';
   my $proj="issue161";
 
@@ -823,7 +871,9 @@ ntest "issue 161 save services", {}, sub {
       {actualParameterName=>"relocatable", value=>"true"},
       {actualParameterName=>"includeACLs", value=>"false"},
       {actualParameterName=>"includeNotifiers", value=>"false"},
-       {actualParameterName=>"pattern", value=>"161"}
+      {actualParameterName=>"pattern", value=>"161"},
+      {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
@@ -838,12 +888,12 @@ ntest "issue 161 save services", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory to exist
-    if (! -d "${backupDir}/Projects/$proj/Services") {
+    if (! -d "${backupDir}/projects/$proj/services") {
       fail("Services directory is missing in project $proj");
     }
 
     # check for project file with slash replaced by _
-    if (! -f "${backupDir}/Projects/$proj/Services/${service}.xml") {
+    if (! -f "${backupDir}/projects/$proj/services/${service}.xml") {
       fail("${service}.xml service file is missing in project $proj");
     } else {
       # clean
@@ -859,6 +909,12 @@ ntest "issue 161 save services", {}, sub {
 #  Issue 161: save persona
 #-------------------------------------------------------------------------------
 ntest "issue 161 save personas", {}, sub {
+  # skip persona for version below 9.0
+  if (getVersion() lt "9.0") {
+    skip("no persona in current version");
+    return;
+  }
+
   rmtree($backupDir);
   $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
@@ -867,7 +923,9 @@ ntest "issue 161 save personas", {}, sub {
       {actualParameterName=>"relocatable", value=>"true"},
       {actualParameterName=>"includeACLs", value=>"false"},
       {actualParameterName=>"includeNotifiers", value=>"false"},
-     ]
+      {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
+    ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
   if ($xpath) {
@@ -881,12 +939,12 @@ ntest "issue 161 save personas", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory to exist
-    if (! -d "${backupDir}/Personas") {
+    if (! -d "${backupDir}/personas") {
       fail("Personas directory is missing");
     }
 
     # check for project file with slash replaced by _
-    if (! -f "${backupDir}/Personas/Global.xml") {
+    if (! -f "${backupDir}/personas/Global.xml") {
       fail("Global.xml persona file is missing");
     } else {
       # clean
@@ -901,6 +959,12 @@ ntest "issue 161 save personas", {}, sub {
 #  Issue 161: save persona
 #-------------------------------------------------------------------------------
 ntest "issue 161 save persona pages", {}, sub {
+  # skip persona page for version below 9.0
+  if (getVersion() lt "9.0") {
+    skip("no persona page in current version");
+    return;
+  }
+
   rmtree($backupDir);
   $xpath = $::N->runProcedure($pluginName, {
     procedureName=>"saveAllObjects",
@@ -909,7 +973,9 @@ ntest "issue 161 save persona pages", {}, sub {
       {actualParameterName=>"relocatable", value=>"true"},
       {actualParameterName=>"includeACLs", value=>"false"},
       {actualParameterName=>"includeNotifiers", value=>"false"},
-     ]
+      {actualParameterName=>"format", value=>"XML"},
+      {actualParameterName=>"pool", value=>"default"}
+    ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveAllObjects");
   if ($xpath) {
@@ -923,12 +989,12 @@ ntest "issue 161 save persona pages", {}, sub {
     assertNe("error", $outcome, "saveAllObjects should not error out");
 
     # check for project directory to exist
-    if (! -d "${backupDir}/PersonaPages") {
+    if (! -d "${backupDir}/personaPages") {
       fail("PersonaPages directory is missing");
     }
 
     # check for project file with slash replaced by _
-    if (! -f "${backupDir}/PersonaPages/Users.xml") {
+    if (! -f "${backupDir}/personaPages/Users.xml") {
       fail("Users.xml persona page file is missing");
     } else {
       # clean
