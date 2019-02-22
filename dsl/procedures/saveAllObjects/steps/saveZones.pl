@@ -21,6 +21,7 @@
 # History
 # ---------------------------------------------------------------------------
 # 2019-Feb-11 lrochette Foundation for merge DSL and XML export
+# 2019-Feb 21 lrochette Changing paths to match EC-DslDeploy
 #############################################################################
 use File::Path;
 
@@ -46,8 +47,8 @@ my $zoneCount=0;
 my ($success, $xPath) = InvokeCommander("SuppressLog", "getZones");
 
 # Create the Zones directory
-mkpath("$path/Zones");
-chmod(0777, "$path/Zones");
+mkpath("$path/zones");
+chmod(0777, "$path/zones");
 
 foreach my $node ($xPath->findnodes('//zone')) {
   my $zoneName=$node->{'zoneName'};
@@ -59,7 +60,7 @@ foreach my $node ($xPath->findnodes('//zone')) {
   my $fileZoneName=safeFilename($zoneName);
 
   my ($success, $res, $errMsg, $errCode) =
-    backupObject($format, "$path/Zones/$fileZoneName",
+    backupObject($format, "$path/zones/$fileZoneName",
     "/zones[$zoneName]", $relocatable, $includeACLs, $includeNotifiers);
   if (! $success) {
     printf("  Error exporting %s", $zoneName);

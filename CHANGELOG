@@ -1,5 +1,5 @@
-2019-02-21 Laurent Rochette <lrochette@electric-cloud.com>
-  * 3.3.1.784 : Changing paths in saveAllObjects to match EC-DslDeploy
+2019-02-22 Laurent Rochette <lrochette@electric-cloud.com>
+  * 3.3.1.786 : Changing paths in saveAllObjects to match EC-DslDeploy
 
 2019-02-11 Laurent Rochette <lrochette@electric-cloud.com>
   * 3.2.7.775: Fix #163 merge saveAllObjects and saveDslObjects

@@ -214,7 +214,7 @@ ntest "issue 58 gateway", {}, sub {
 ntest "issue 59 zone", {}, sub {
 
   my $zone="zone59";
-  $xpath= $::N->createZone($zone, {description => "for backup testing"});
+  $xpath=$::N->evalDsl("zone \"$zone\", description: 'for backup testing'");
   assertOK($xpath, "Failed to create zone $zone");
 
   rmtree($backupDir);
