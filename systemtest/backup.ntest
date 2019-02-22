@@ -755,8 +755,7 @@ ntest "issue 127 slash in project name with saveProjects", {}, sub {
       {actualParameterName=>"pathname", value=>$backupDir},
       {actualParameterName=>"relocatable", value=>"1"},
       {actualParameterName=>"includeACLs", value=>"0"},
-      {actualParameterName=>"includeNotifiers", value=>"0"},
-      {actualParameterName=>"pool", value=>"default"}
+      {actualParameterName=>"includeNotifiers", value=>"0"}
     ]
   });
   assertOK($xpath, "Failed to launch EC-Admin::saveProjects");

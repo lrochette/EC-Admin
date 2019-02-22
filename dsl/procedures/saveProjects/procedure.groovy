@@ -56,6 +56,7 @@ $[/server/ec_notifierTemplates/Html_JobTempl/body]'''
       includeNotifiers: '$[includeNotifiers]',
       pathname: '$[pathname]',
       pattern: '',
+      pool: 'default',
       relocatable: '$[relocatable]',
       format: 'XML'
     ]
