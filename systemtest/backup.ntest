@@ -107,7 +107,7 @@ ntest "issue 56 question mark", {}, sub {
 ntest "issue 57 group with slash", {}, sub {
 
   my $group="AC/DC";
-  my $xpath= $::N->createGroup($group);
+  my $xpath= $::N->evalDsl("group \"$group\"");
   assertOK($xpath, "Failed to create group $group for issue 57");
 
   rmtree($backupDir);
