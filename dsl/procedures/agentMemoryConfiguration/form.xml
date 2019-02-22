@@ -9,6 +9,15 @@
   </formElement>
 
   <formElement>
+    <label>Ping Agent Name</label>
+    <property>pingAgent</property>
+    <documentation>Name of the agent used to ping the agent above to re-enable it. It need to be different (even different resource pool) than the agent to modify.</documentation>
+    <type>entry</type>
+    <value>default</value>
+    <required>0</required>
+  </formElement>
+
+  <formElement>
     <label>initMemory</label>
     <property>initMemory</property>
     <documentation>a value in mb or a %</documentation>

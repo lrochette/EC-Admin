@@ -24,6 +24,7 @@
 # 2019-Feb-11 lrochette Foundation for merge DSL and XML export
 # 2019-Feb 21 lrochette Changing paths to match EC-DslDeploy
 # 2019-Feb-22 lrochette Fix #166: save catalogs and catalogItems
+#                       Fix #165: save dashbaords
 ##############################################################################
 use File::Path;
 
@@ -52,6 +53,9 @@ my $relCount   = 0;
 my $servCount  = 0;
 my $catCount   = 0;
 my $itemCount  = 0;
+my $dashCount  = 0;
+my $widgetCount= 0;
+
 # Set the timeout to config value or 600 if not set
 my $defaultTimeout = getP("/server/EC-Admin/cleanup/config/timeout");
 $ec->setTimeout($defaultTimeout? $defaultTimeout : 600);
@@ -350,7 +354,75 @@ foreach my $node ($xPath->findnodes('//project')) {
       }
 
     }         # catalog loop
-  }           # Version greater than 8.1
+  }           # Version greater than 7.3
+
+
+  # Export dashboards if the version is recent enough
+  #
+  if (compareVersion($version, "7.1") < 0) {
+    printf("WARNING: Version 7.1 or greater is required to save Dashboards objects");
+  } else {
+    # Save dashboard definitions
+    #
+    mkpath("$path/projects/$fileProjectName/dashboards");
+    chmod(0777, "$path/projects/$fileProjectName/dashboards");
+
+    my ($success, $xPath) = InvokeCommander("SuppressLog", "getDashboards", $pName);
+    foreach my $dash ($xPath->findnodes('//dashboard')) {
+      my $dashName=$dash->{'dashboardName'};
+
+      # skip dashboards that don't fit the pattern
+      next if (($pName  eq "Default") && ($dashName !~ /$pattern/$[caseSensitive] ));  # / just for the color
+
+      my $fileDashName=safeFilename($dashName);
+      printf("  Saving Dashboard: %s\n", $dashName);
+
+     mkpath("$path/projects/$fileProjectName/dashboards/$fileDashName");
+     chmod(0777, "$path/projects/$fileProjectName/dashboards/$fileDashName");
+
+      my ($success, $res, $errMsg, $errCode) =
+        backupObject($format,
+          "$path/projects/$fileProjectName/dashboards/$fileDashName/dashboard",
+          "/projects[$pName]dashboards[$dashName]",
+          $relocatable, $includeACLs, $includeNotifiers);
+
+      if (! $success) {
+        printf("  Error exporting dashboard %s", $dashName);
+        printf("  %s: %s\n", $errCode, $errMsg);
+        $errorCount++;
+      }
+      else {
+        $servCount++;
+      }
+
+      # backup widget
+      my ($ok, $json) = InvokeCommander("SuppressLog", "getWidgets", $pName, $dashName);
+      foreach my $widget ($json->findnodes("//widget")) {
+        my $widgetName=$widget->{'widgetName'};
+        my $fileWidgetName=safeFilename($widgetName);
+        printf("    Saving Widget: %s\n", $widgetName);
+        mkpath("$path/projects/$fileProjectName/dashboards/$fileDashName/widgets");
+        chmod(0777, "$path/projects/$fileProjectName/dashboards/$fileDashName/widgets");
+
+        my ($success, $res, $errMsg, $errCode) =
+          backupObject($format,
+            "$path/projects/$fileProjectName/dashboards/$fileDashName/widgets/$fileWidgetName",
+            "/projects[$pName]dashboards[$dashName]widgets[$widgetName]",
+            $relocatable, $includeACLs, $includeNotifiers);
+
+        if (! $success) {
+          printf("  Error exporting widget %s in dashboard", $widgetName, $dashName);
+          printf("  %s: %s\n", $errCode, $errMsg);
+          $errorCount++;
+        }
+        else {
+          $widgetCount++;
+        }
+
+      }
+
+    }         # dashboard loop
+  }           # Version greater than 7.3
 
 }             # project loop
 
@@ -362,8 +434,11 @@ $str .= sprintf("   $relCount releases exported\n");
 $str .= sprintf("   $servCount services exported\n");
 $str .= sprintf("   $catCount catalogs exported\n");
 $str .= sprintf("   $itemCount catalog items exported\n");
+$str .= sprintf("   $dashCount dashboards exported\n");
+$str .= sprintf("   $dashCount widgets exported\n");
 
 $ec->setProperty("preSummary", $str);
+
 $ec->setProperty("/myJob/papplicationExported", $appCount);
 $ec->setProperty("/myJob/environmentExported",  $envCount);
 $ec->setProperty("/myJob/componentExported",    $compCount);
@@ -372,6 +447,8 @@ $ec->setProperty("/myJob/releaseExported",      $relCount);
 $ec->setProperty("/myJob/serviceExported",      $servCount);
 $ec->setProperty("/myJob/catalogExported",      $catCount);
 $ec->setProperty("/myJob/catalogItemExported",  $itemCount);
+$ec->setProperty("/myJob/dashboardExported",    $dashCount);
+$ec->setProperty("/myJob/widgetExported",       $widgetCount);
 exit($errorCount);
 
 $[/myProject/scripts/perlBackupLib]
