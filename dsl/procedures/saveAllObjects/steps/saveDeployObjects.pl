@@ -1,7 +1,7 @@
 #############################################################################
 #
 #  Script to backup the Deploy objects (application, environment, components,
-#     releases, services, ...) in XML or DSL dformat
+#     releases, services, ...) in XML or DSL format
 #
 #  Author: L.Rochette
 #
@@ -324,15 +324,17 @@ foreach my $node ($xPath->findnodes('//project')) {
       }
 
       # backup catalogItems
-      my ($ok, $json) = InvokeCommander("SuppressLog", "getCatalogItemss", $pName, $catName);
+      my ($ok, $json) = InvokeCommander("SuppressLog", "getCatalogItems", $pName, $catName);
       foreach my $item ($json->findnodes("//catalogItem")) {
         my $itemName=$item->{'catalogItemName'};
         my $fileItemName=safeFilename($itemName);
         printf("    Saving Catalog Item: %s\n", $itemName);
+        mkpath("$path/projects/$fileProjectName/catalogs/$fileCatName/items");
+        chmod(0777, "$path/projects/$fileProjectName/catalogs/$fileCatName/items");
 
         my ($success, $res, $errMsg, $errCode) =
           backupObject($format,
-            "$path/projects/$fileProjectName/catalogs/$fileAppName/items/$fileItemName",
+            "$path/projects/$fileProjectName/catalogs/$fileCatName/items/$fileItemName",
             "/projects[$pName]catalogs[$catName]catalogItems[$itemName]",
             $relocatable, $includeACLs, $includeNotifiers);
 
