@@ -1,4 +1,5 @@
 2019-02-22 Laurent Rochette <lrochette@electric-cloud.com>
+  * 3.4.1.792: Fix non deletion when schedule is in a different project for licensing
   * 3.4.0.791: Fix #166 - backup catalogs with saveAllObjects
   * 3.3.1.786: Changing paths in saveAllObjects to match EC-DslDeploy
 

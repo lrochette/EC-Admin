@@ -1,7 +1,11 @@
 # Cleanup: liberally re-used from ElectricSentry::Driver.pm
-# Copyright (c) 2006-2009 Electric Cloud, Inc.
+# Copyright (c) 2006-2019 Electric Cloud, Inc.
 # All rights reserved
 # Version 1.0.0 (April 2, 2014)
+#
+# History
+# ---------------------------------------------------------------------------
+# 2019-Feb-22 lrochette Fix non deletion when schedule is in a different project
 
 use strict;
 use ElectricCommander;
@@ -26,15 +30,15 @@ push(
     {
 	"propertyName" => "projectName",
 	"operator"     => "equals",
-	"operand1"     => '$[/myProject/projectName]'
+	"operand1"     => '$[/myJob/projectName]'
     }
 );
 push(
     @filterList,
     {
-        "propertyName" => "procedureName",
+        "propertyName" => "scheduleName",
         "operator"     => "equals",
-        "operand1"     => '$[/myProcedure/procedureName]'
+        "operand1"     => '$[/myJob/scheduleName]'
     }
 );
 push(
@@ -89,4 +93,3 @@ foreach my $node ( $nodeset->get_nodelist ) {
 }
 
 $ec->setProperty('/myJobStep/postSummary', "Deleted $jobc jobs");
-
