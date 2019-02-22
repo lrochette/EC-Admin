@@ -23,6 +23,7 @@
 # ---------------------------------------------------------------------------
 # 2019-Feb-11 lrochette Foundation for merge DSL and XML export
 # 2019-Feb 21 lrochette Changing paths to match EC-DslDeploy
+# 2019-Feb-22 lrochette Fix #166: save catalogs and catalogItems
 ##############################################################################
 use File::Path;
 
