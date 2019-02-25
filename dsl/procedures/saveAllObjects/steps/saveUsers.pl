@@ -70,7 +70,7 @@ foreach my $node ($xPath->findnodes('//user')) {
     $userCount++;
   }
 }
-$ec->setProperty("preSummary", "$userCount users exported");
+$ec->setProperty("preSummary", createExportString($userCount, "user"));
 $ec->setProperty("/myJob/userExported", $userCount);
 exit($errorCount);
 

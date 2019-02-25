@@ -72,8 +72,10 @@ foreach my $node ($xPath->findnodes('//group')) {
     $groupCount++;
   }
 }
-$ec->setProperty("preSummary", "$groupCount groups exported");
+
+$ec->setProperty("preSummary", createExportString($groupCount, "group"));
 $ec->setProperty("/myJob/groupExported", $groupCount);
+
 exit($errorCount);
 
 $[/myProject/scripts/perlBackupLib]

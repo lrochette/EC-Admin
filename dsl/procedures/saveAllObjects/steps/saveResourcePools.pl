@@ -71,7 +71,7 @@ foreach my $node ($xPath->findnodes('//resourcePool')) {
   }
 }
 
-$ec->setProperty("preSummary", "$poolCount pools exported");
+$ec->setProperty("preSummary", createExportString($poolCount, "pool"));
 $ec->setProperty("/myJob/poolExported", $poolCount);
 exit($errorCount);
 

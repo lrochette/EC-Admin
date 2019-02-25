@@ -87,7 +87,7 @@ foreach my $node ($xPath->findnodes('//project')) {
   }
 
 }
-$ec->setProperty("preSummary", "$projCount plugins exported");
+$ec->setProperty("preSummary", createExportString($projCount, "plugin"));
 $ec->setProperty("/myJob/pluginExported", $projCount);
 
 exit($errorCount);

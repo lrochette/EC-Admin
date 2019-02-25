@@ -111,7 +111,11 @@ foreach my $node ($xPath->findnodes('//artifact')) {
 
   }   # AV loop
 }     # Artifact loop
-$ec->setProperty("preSummary", "$artCount artifacts exported\n  $avCount Artifact versions exported");
+my $str="";
+$str .= createExportString($artCount,  "artifact");
+$str .= createExportString($avCount,  "artifact version");
+$ec->setProperty("preSummary", $str);
+
 $ec->setProperty("/myJob/artifactExported", $artCount);
 $ec->setProperty("/myJob/avExported", $avCount);
 

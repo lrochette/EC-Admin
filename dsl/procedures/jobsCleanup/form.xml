@@ -2,7 +2,10 @@
     <formElement>
         <label>Delete jobs older than</label>
         <property>olderThan</property>
-        <documentation>Indicate the numbers of days after which jobs should be deleted</documentation>
+        <documentation>Indicate the numbers of days after which jobs should be
+          deleted. To specify a custom value, use the "Switch to property view"
+          icon located on the right hand side of the page, then type in the
+          exact number of days desired.</documentation>
         <type>select</type>
         <option>
             <name>1 month</name>
@@ -31,7 +34,7 @@
     <formElement>
         <label>Type of jobs to delete</label>
         <property>jobLevel</property>
-        <documentation>define what jobs you want to delete: Aborted, Error, All</documentation>
+        <documentation>define what jobs you want to delete: Aborted, Error, All.</documentation>
         <type>select</type>
         <option>
             <name>Aborted</name>
@@ -52,7 +55,8 @@
     <formElement>
         <label>Job property</label>
         <property>jobProperty</property>
-        <documentation>Name of a property attached to your jobs. If this property is set, your job won't be deleted.
+        <documentation>Name of a property attached to your jobs. If this
+          property is set, your job won't be deleted.
         </documentation>
         <type>entry</type>
         <value>doNotDelete</value>
@@ -94,14 +98,16 @@ delete the local workspace logfiles.</documentation>
     <formElement>
         <label>Pattern matching</label>
         <property>jobPatternMatching</property>
-        <documentation>a SQL pattern matching to automatically preserve some jobs. The pattern must solve for a LIKE statement.</documentation>
+        <documentation>a SQL pattern matching to automatically preserve some jobs.
+          The pattern must solve for a LIKE statement.</documentation>
         <type>entry</type>
     </formElement>
 
     <formElement>
         <label>Delete</label>
         <property>executeDeletion</property>
-        <documentation>If this option is not set, only report is done. No real data are deleted</documentation>
+        <documentation>If this option is not set, only report is done. No real
+          data are deleted.</documentation>
         <type>select</type>
         <option>
             <name>Report</name>
@@ -117,7 +123,9 @@ delete the local workspace logfiles.</documentation>
     <formElement>
         <label>Compute Usage</label>
         <property>computeUsage</property>
-        <documentation>Check off to skip the computation of the number of steps and the file space used for the job. This will speed up the execution.</documentation>
+        <documentation>Check off to skip the computation of the number of steps
+          and the file space used for the job. This will speed up the execution.
+        </documentation>
         <type>checkbox</type>
         <checkedValue>true</checkedValue>
         <uncheckedValue>false</uncheckedValue>

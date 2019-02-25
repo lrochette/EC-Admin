@@ -71,8 +71,10 @@ foreach my $node ($xPath->findnodes('//gateway')) {
     $gateCount++;
   }
 }
-$ec->setProperty("preSummary", "$gateCount Gateways exported");
+
+$ec->setProperty("preSummary", createExportString($gateCount, "gateway"));
 $ec->setProperty("/myJob/gatewayExported", $gateCount);
+
 exit($errorCount);
 
 $[/myProject/scripts/perlBackupLib]

@@ -69,7 +69,7 @@ foreach my $node ($xPath->findnodes('//resource')) {
     $resCount++;
   }
 }
-$ec->setProperty("preSummary", "$resCount resources exported");
+$ec->setProperty("preSummary", createExportString($resCount, "resources"));
 $ec->setProperty("/myJob/resourceExported", $resCount);
 
 exit($errorCount);

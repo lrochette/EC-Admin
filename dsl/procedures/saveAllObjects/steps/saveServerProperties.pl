@@ -76,7 +76,7 @@ foreach my $node ($xPath->findnodes('//property')) {
   }
 }
 
-$ec->setProperty("preSummary", "$propCount server properties exported");
+$ec->setProperty("preSummary", createExportString($propCount, "server property"));
 $ec->setProperty("/myJob/serverPropertiesExported", $propCount);
 
 exit($errorCount);
