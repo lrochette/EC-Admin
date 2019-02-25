@@ -2,7 +2,10 @@
     <formElement>
         <label>Delete jobs older than</label>
         <property>olderThan</property>
-        <documentation>Indicate the numbers of days after which jobs should be deleted</documentation>
+        <documentation>Indicate the numbers of days after which jobs should be
+          deleted. To specify a custom value, use the "Switch to property view"
+          icon located on the right hand side of the page, then type in the
+          exact number of days desired</documentation>
         <type>select</type>
         <option>
             <name>1 month</name>

@@ -77,7 +77,7 @@ foreach my $node ($xPath->findnodes('//tag')) {
     $tagCount++;
   }
 }
-$ec->setProperty("preSummary", "$tagCount Tags exported");
+$ec->setProperty("preSummary", createExportString($tagCount, "tag"));
 $ec->setProperty("/myJob/tagExported", $tagCount);
 exit($errorCount);
 

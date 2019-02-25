@@ -22,6 +22,7 @@
 # ---------------------------------------------------------------------------
 # 2019-Feb-11 lrochette Foundation for merge DSL and XML export
 # 2019-Feb 21 lrochette Changing paths to match EC-DslDeploy
+# 2019-Feb-25 lrochette Save schedules
 #############################################################################
 use File::Path;
 
@@ -42,11 +43,12 @@ my $format           = '$[format]';
 #
 # Global
 #
-my $errorCount=0;
-my $projCount=0;
-my $procCount=0;
-my $stepCount=0;
-my $wkfCount=0;
+my $errorCount = 0;
+my $projCount  = 0;
+my $procCount  = 0;
+my $stepCount  = 0;
+my $wkfCount   = 0;
+my $schedCount = 0;
 
 # Set the timeout to config value or 600 if not set
 my $defaultTimeout = getP("/server/EC-Admin/cleanup/config/timeout");
@@ -85,6 +87,35 @@ foreach my $node ($xPath->findnodes('//project')) {
   } else {
     $projCount++;
   }
+
+  #
+  # Save schedules
+  #
+  mkpath("$path/projects/$fileProjectName/schedules");
+  chmod(0777, "$path/projects/$fileProjectName/schedules");
+
+  my ($success, $xPath) = InvokeCommander("SuppressLog", "getSchedules", $pName);
+  foreach my $proc ($xPath->findnodes('//schedule')) {
+    my $schedName=$proc->{'scheduleName'};
+    my $fileScheduleName=safeFilename($schedName);
+    printf("  Saving schedule: %s\n", $schedName);
+
+    mkpath("$path/projects/$fileProjectName/schedules/$fileScheduleName");
+    chmod(0777, "$path/projects/$fileProjectName/schedules/$fileScheduleName");
+ 	  my ($success, $res, $errMsg, $errCode) =
+      backupObject($format, "$path/projects/$fileProjectName/schedules/$fileScheduleName/schedule",
+  			"/projects[$pName]schedules[$schedName]", $relocatable, $includeACLs, $includeNotifiers);
+
+    if (! $success) {
+      printf("  Error exporting schedule %s", $schedName);
+      printf("  %s: %s\n", $errCode, $errMsg);
+      $errorCount++;
+    }
+    else {
+      $schedCount++;
+    }
+  }     #schedule loop
+
   #
   # Save procedures
   #
@@ -170,10 +201,18 @@ foreach my $node ($xPath->findnodes('//project')) {
   }
 
 }
-$ec->setProperty("preSummary", "$projCount projects exported\n  $procCount procedures exported\n  $wkfCount workflows exported");
+my $str="";
+$str .= createExportString($projCount,  "project");
+$str .= createExportString($procCount,  "procedure");
+$str .= createExportString($wkfCount,   "workflow");
+$str .= createExportString($schedCount, "schedule");
+
+$ec->setProperty("preSummary", $str);
+
 $ec->setProperty("/myJob/projectExported", $projCount);
 $ec->setProperty("/myJob/procedureExported", $procCount);
 $ec->setProperty("/myJob/workflowExported", $wkfCount);
+$ec->setProperty("/myJob/scheduleExported", $schedCount);
 
 exit($errorCount);
 

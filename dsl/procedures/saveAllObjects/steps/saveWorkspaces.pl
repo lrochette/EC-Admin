@@ -70,7 +70,7 @@ foreach my $node ($xPath->findnodes('//workspace')) {
     $wksCount++;
   }
 }
-$ec->setProperty("preSummary", "$wksCount workspaces exported");
+$ec->setProperty("preSummary", createExportString($wksCount, "workspace"));
 $ec->setProperty("/myJob/workspaceExported", $wksCount);
 exit($errorCount);
 

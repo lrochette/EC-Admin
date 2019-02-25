@@ -22,6 +22,7 @@ for ($i=1;$i<10;$i++) {
   else {
     if (($phase == 0) && ($state =~ /down/)) {
       $phase=1;
+      $ec->setProperty("summary", "Agent restarting");
     }
   }
   printf("\n\n\n-----------------\n\n");

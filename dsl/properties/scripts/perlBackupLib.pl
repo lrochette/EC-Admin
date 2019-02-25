@@ -20,6 +20,23 @@ sub safeFilename {
 
 #############################################################################
 #
+# Function to create a string "X OBJ(s) exported"
+# Parameters:
+#  0. Number of objects
+#  1. Object name
+#
+#############################################################################
+sub createExportString {
+   my $nb  = @_[0];
+   my $obj = @_[1];
+
+   return "" if ($nb <= 0);
+   my $plural=($obj eq "server property") ? "server properties" : $obj . "s";
+   return sprintf("%d %s exported\n", $nb, ($nb == 1 ? $obj : $plural));
+}
+
+#############################################################################
+#
 # Function to backup an object to a DSL (generateDsl) or XML (export) file.
 # Parameters:
 #  0. Format: XML or DSL
@@ -28,6 +45,7 @@ sub safeFilename {
 #  3. Relocatable flag
 #  4. WithACL flag
 #  5. withNotifiers flag
+#
 #############################################################################
 sub backupObject {
   my $format           = @_[0];

@@ -70,7 +70,7 @@ foreach my $node ($xPath->findnodes('//zone')) {
     $zoneCount++;
   }
 }
-$ec->setProperty("preSummary", "$zoneCount Zones exported");
+$ec->setProperty("preSummary", createExportString($zoneCount, "zone"));
 $ec->setProperty("/myJob/zoneExported", $zoneCount);
 exit($errorCount);
 

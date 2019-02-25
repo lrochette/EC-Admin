@@ -1,3 +1,7 @@
+2019-02-25 Laurent Rochette <lrochette@electric-cloud.com>
+  * 3.5.0.813: Fix #165: backup dashboards, widgets, reports with saveAllObjects
+               backup schedules with saveAllObjects
+               Fix #121: improve tooltip for "olderThan" in jobsCleanup
 2019-02-22 Laurent Rochette <lrochette@electric-cloud.com>
   * 3.4.2.800: Fix #168: Ping agent when changing memory configuration
   * 3.4.1.792: Fix non-deletion of the jobs when the schedule is in a different

@@ -154,9 +154,13 @@ foreach my $node ($xPath->findnodes('//personaCategory')) {
   }
 }
 
-$ec->setProperty("preSummary", "$personaCount Personas exported\n" .
-  "$personaPageCount Persona Pages exported\n" .
-  "$personaCategoryCount Persona Categories exported");
+my $str="";
+$str .= createExportString($personaCount,         "persona");
+$str .= createExportString($personaPageCount,     "persona page");
+$str .= createExportString($personaCategoryCount, "persona Categorie");
+
+$ec->setProperty("preSummary", $str);
+
 $ec->setProperty("/myJob/personaExported", $personaCount);
 $ec->setProperty("/myJob/personaPageExported", $personaPageCount);
 $ec->setProperty("/myJob/personaCategoryExported", $personaCategoryCount);
