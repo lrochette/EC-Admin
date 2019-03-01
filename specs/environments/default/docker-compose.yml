@@ -13,23 +13,6 @@ services:
     tty: true
     environment:
       - COMMANDER_SERVER=electricflow
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/rest/v1.0/server/info"]
-      interval: 120s
-      timeout: 10s
-      retries: 3
-      start_period: 120s
-    restart: always
-
-  # Needed to restart failed EF
-  autoheal:
-    restart: always
-    image: willfarrell/autoheal
-    environment:
-      - AUTOHEAL_CONTAINER_LABEL=all
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-
 networks:
   internal:
     driver: bridge
