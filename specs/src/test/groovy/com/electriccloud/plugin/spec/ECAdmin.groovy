@@ -11,8 +11,8 @@ class ECAdmin extends PluginTestHelper {
   }
 
   def doCleanupSpec() {
-    // conditionallyDeleteProject('EC-Admin_Test')
-    // dsl """deleteResource(resourceName: 'ecadmin-lin')"""
+    conditionallyDeleteProject('EC-Admin_Test')
+    dsl """deleteResource(resourceName: 'ecadmin-lin')"""
   }
 
   // Check promotion
