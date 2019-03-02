@@ -49,4 +49,49 @@ class ECAdmin extends PluginTestHelper {
       assert getStepProperty(result.jobId, "getPSXML", "exitCode") == "0"
   }
 
+  def "ACL_on_server"() {
+    def psID = getProperty("/server/EC-Admin").propertySheetId
+    def result = dsl """
+      getAclEntry(
+        principalType: 'user',
+        principalName: "project: /plugins/EC-Admin/project"),
+        projectName: "/plugins/EC-Admin/project",
+        propertySheetId: $psId) """
+    assert result
+  }
+
+  def "timeout_config_property"() {
+    def timeout=getProperty("/server/EC-Admin/cleanup/config/timeout")
+    assert timeout == "600"
+  }
+
+  def "cleanpOldJobs_config_property"() {
+    def timeout=getProperty("/server/EC-Admin/licenseLogger/config/cleanpOldJobs")
+    assert timeout == "1"
+  }
+
+  def "workspace_config_property"() {
+    def timeout=getProperty("/server/EC-Admin/licenseLogger/config/workspace")
+    assert timeout == "default"
+  }
+
+  def "emailConfig_config_property"() {
+    def timeout=getProperty("/server/EC-Admin/licenseLogger/config/emailConfig")
+    assert timeout == "default"
+  }
+
+  def "resource_config_property"() {
+    def timeout=getProperty("/server/EC-Admin/licenseLogger/config/resource")
+    assert timeout == "local"
+  }
+
+  def "copy in name"() {
+    def result = dsl """ getProcedures(projectName: "/plugins/EC-Admin/project")"""
+    result.each {
+      assert ! it.procedureName.coontains("/?icopy/")
+      assert ! it.procedureName.coontains("/ /")
+    }
+  }
+
+
 }

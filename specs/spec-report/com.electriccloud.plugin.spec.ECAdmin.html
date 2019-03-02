@@ -251,7 +251,7 @@ div.footer {
 </div>
 <div class='summary-report'>
 <h3>Summary:</h3>
-<div class='date-test-ran'>Created on Fri Mar 01 16:34:54 CET 2019 by lrochette</div>
+<div class='date-test-ran'>Created on Sat Mar 02 13:16:44 CET 2019 by lrochette</div>
 <table class='summary-table'>
 <thead>
 <th>Executed features</th>
@@ -263,12 +263,12 @@ div.footer {
 </thead>
 <tbody>
 <tr>
-<td>3</td>
+<td>1</td>
+<td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0</td>
-<td>100.0%</td>
-<td>19.453 seconds</td>
+<td>0.0%</td>
+<td>15 minutes, 5.795 seconds</td>
 </tr>
 </tbody>
 </table>
@@ -282,18 +282,18 @@ div.footer {
 <tbody>
 <ul id='toc'>
 <li>
-<a href='#1159949302' class='feature-toc-pass'>plugin promotion</a>
+<a href='#1159949302' class='feature-toc-failure'>plugin promotion</a>
 </li>
 <li>
-<a href='#-9933964' class='feature-toc-pass'>scripts_perlCommonLib</a>
+<a href='#-9933964' class='feature-toc-ignored'>scripts_perlCommonLib</a>
 </li>
 <li>
-<a href='#98245593' class='feature-toc-pass'>getPS</a>
+<a href='#98245593' class='feature-toc-ignored'>getPS</a>
 </li>
 </ul>
 <tr>
 <td colspan='10'>
-<div class='feature-description' id='1159949302'>
+<div class='feature-description failure' id='1159949302'>
 <span>plugin promotion</span>
 <span style='float: right; font-size: 60%;'>
 <a href='#toc'>Return</a>
@@ -336,7 +336,26 @@ assert prop.property.value == 'pickListOnly'</pre>
 </tr>
 <tr>
 <td colspan='10'>
-<div class='feature-description' id='-9933964'>
+<div class='problem-description'>
+<div class='problem-header'>The following problems occurred:</div>
+<div class='problem-list'>
+<ul>
+<li>
+<pre>Condition not satisfied after 604.19 seconds and 9 attempts</pre>
+</li>
+</ul>
+<ul>
+<li>
+<pre>Condition not satisfied after 150.68 seconds and 3 attempts</pre>
+</li>
+</ul>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td colspan='10'>
+<div class='feature-description ignored' id='-9933964'>
 <span>scripts_perlCommonLib</span>
 <span style='float: right; font-size: 60%;'>
 <a href='#toc'>Return</a>
@@ -364,7 +383,7 @@ assert getStepProperty(result.jobId, "humanSize", "exitCode") == "0"</pre>
 </tr>
 <tr>
 <td colspan='10'>
-<div class='feature-description' id='98245593'>
+<div class='feature-description ignored' id='98245593'>
 <span>getPS</span>
 <span style='float: right; font-size: 60%;'>
 <a href='#toc'>Return</a>
