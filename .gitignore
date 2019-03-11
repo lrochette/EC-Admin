@@ -1,5 +1,7 @@
 src/out
 specs/logs/
+specs/.gradle/
+specs/spec-report/
 *.swp
 .efci
 ElectricFlow-*
@@ -11,4 +13,3 @@ EC-Admin.jar
 .idea
 *.iml
 .DS_Store
-.gradle
