@@ -50,47 +50,68 @@ class ECAdmin extends PluginTestHelper {
   }
 
   def "ACL_on_server"() {
-    def psID = getProperty("/server/EC-Admin").propertySheetId
-    def result = dsl """
-      getAclEntry(
-        principalType: 'user',
-        principalName: "project: /plugins/EC-Admin/project"),
-        projectName: "/plugins/EC-Admin/project",
-        propertySheetId: $psId) """
-    assert result
+     given:
+     when:
+      def psID = getProperty("/server/EC-Admin").propertySheetId
+      def result = dsl """
+        getAclEntry(
+          principalType: 'user',
+          principalName: "project: /plugins/EC-Admin/project"),
+          projectName: "/plugins/EC-Admin/project",
+          propertySheetId: $psId) """
+    then:
+      assert result
   }
 
   def "timeout_config_property"() {
-    def timeout=getProperty("/server/EC-Admin/cleanup/config/timeout")
-    assert timeout == "600"
+    given:
+    when:
+      def timeout=getProperty("/server/EC-Admin/cleanup/config/timeout")
+    then:
+      assert timeout == "600"
   }
 
   def "cleanpOldJobs_config_property"() {
-    def timeout=getProperty("/server/EC-Admin/licenseLogger/config/cleanpOldJobs")
-    assert timeout == "1"
+    given:
+    when:
+      def timeout=getProperty("/server/EC-Admin/licenseLogger/config/cleanpOldJobs")
+    then:
+      assert timeout == "1"
   }
 
   def "workspace_config_property"() {
-    def timeout=getProperty("/server/EC-Admin/licenseLogger/config/workspace")
-    assert timeout == "default"
+    given:
+    when:
+      def timeout=getProperty("/server/EC-Admin/licenseLogger/config/workspace")
+    then:
+      assert timeout == "default"
   }
 
   def "emailConfig_config_property"() {
-    def timeout=getProperty("/server/EC-Admin/licenseLogger/config/emailConfig")
-    assert timeout == "default"
+    given:
+    when:
+      def timeout=getProperty("/server/EC-Admin/licenseLogger/config/emailConfig")
+    then:
+      assert timeout == "default"
   }
 
   def "resource_config_property"() {
-    def timeout=getProperty("/server/EC-Admin/licenseLogger/config/resource")
-    assert timeout == "local"
+    given:
+    when:
+      def timeout=getProperty("/server/EC-Admin/licenseLogger/config/resource")
+    then:
+      assert timeout == "local"
   }
 
   def "copy in name"() {
-    def result = dsl """ getProcedures(projectName: "/plugins/EC-Admin/project")"""
-    result.each {
-      assert ! it.procedureName.coontains("/?icopy/")
-      assert ! it.procedureName.coontains("/ /")
-    }
+    given:
+    when:
+      def result = dsl """ getProcedures(projectName: "/plugins/EC-Admin/project")"""
+     then:
+       result.each {
+         assert ! it.procedureName.coontains("/?icopy/")
+         assert ! it.procedureName.coontains("/ /")
+       }
   }
 
 
