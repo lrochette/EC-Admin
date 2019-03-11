@@ -244,14 +244,14 @@ div.footer {
 </style>
 </head>
 <body>
-<h2>Report for com.electriccloud.plugin.spec.ECAdmin</h2>
+<h2>Report for com.electriccloud.plugin.spec.restore</h2>
 <hr></hr>
 <div class='back-link'>
 <a href='index.html'>&lt;&lt; Back</a>
 </div>
 <div class='summary-report'>
 <h3>Summary:</h3>
-<div class='date-test-ran'>Created on Mon Mar 11 14:25:24 CDT 2019 by lrochette</div>
+<div class='date-test-ran'>Created on Mon Mar 11 14:25:27 CDT 2019 by lrochette</div>
 <table class='summary-table'>
 <thead>
 <th>Executed features</th>
@@ -263,12 +263,12 @@ div.footer {
 </thead>
 <tbody>
 <tr>
-<td>3</td>
+<td>1</td>
 <td>0</td>
+<td>1</td>
 <td>0</td>
-<td>0</td>
-<td>100.0%</td>
-<td>20.829 seconds</td>
+<td>0.0%</td>
+<td>2.308 seconds</td>
 </tr>
 </tbody>
 </table>
@@ -282,19 +282,13 @@ div.footer {
 <tbody>
 <ul id='toc'>
 <li>
-<a href='#1159949302' class='feature-toc-pass'>plugin promotion</a>
-</li>
-<li>
-<a href='#-9933964' class='feature-toc-pass'>scripts_perlCommonLib</a>
-</li>
-<li>
-<a href='#98245593' class='feature-toc-pass'>getPS</a>
+<a href='#698645349' class='feature-toc-error'>issue 64</a>
 </li>
 </ul>
 <tr>
 <td colspan='10'>
-<div class='feature-description' id='1159949302'>
-<span>plugin promotion</span>
+<div class='feature-description error' id='698645349'>
+<span>issue 64</span>
 <span style='float: right; font-size: 60%;'>
 <a href='#toc'>Return</a>
 </span>
@@ -303,26 +297,22 @@ div.footer {
 </tr>
 <tr>
 <td>
-<div class='block-kind'>Given:</div>
-</td>
-<td>
-<pre class='block-source'>def pName='EC-Admin'</pre>
-</td>
-</tr>
-<tr>
-<td>
 <div class='block-kind'>When:</div>
 </td>
 <td>
-<div class='block-text'>the plugin is promoted</div>
-</td>
-</tr>
-<tr>
-<td></td>
-<td>
-<pre class='block-source'>def result = dsl """promotePlugin(pluginName: "$pName")"""
-def version = dsl """getProperty("/plugins/$pName/pluginVersion")"""
-def prop = dsl """getProperty("/plugins/$pName/project/ec_visibility")"""</pre>
+<pre class='block-source post-error'>def result=runProcedureDsl """
+runProcedure(
+  projectName: "/plugins/EC-Admin/project",
+  procedureName: "restoreObjects",
+  actualParameter: [
+    directory: "/tmp/$zone/restore",
+    force: "false"
+    resource: "local"
+  ]
+)"""
+def z=dsl """
+  getZone(zoneName: "$zone")
+"""</pre>
 </td>
 </tr>
 <tr>
@@ -330,64 +320,23 @@ def prop = dsl """getProperty("/plugins/$pName/project/ec_visibility")"""</pre>
 <div class='block-kind'>Then:</div>
 </td>
 <td>
-<pre class='block-source'>assert result.plugin.pluginVersion == version.property.value
-assert prop.property.value == 'pickListOnly'</pre>
+<pre class='block-source post-error'>assert result.jobId
+assert result?.outcome == 'success'
+assert z.zone.zoneName == $zone</pre>
 </td>
 </tr>
 <tr>
 <td colspan='10'>
-<div class='feature-description' id='-9933964'>
-<span>scripts_perlCommonLib</span>
-<span style='float: right; font-size: 60%;'>
-<a href='#toc'>Return</a>
-</span>
+<div class='problem-description'>
+<div class='problem-header'>The following problems occurred:</div>
+<div class='problem-list'>
+<ul>
+<li>
+<pre>: /Users/lrochette/SourceCode/lrochette/Admin.LR/specs/data/class com.electriccloud.plugin.spec.restore does not exist.</pre>
+</li>
+</ul>
 </div>
-</td>
-</tr>
-<tr>
-<td>
-<div class='block-kind'>When:</div>
-</td>
-<td>
-<pre class='block-source'>def result=runProcedureDsl """runProcedure(projectName: "EC-Admin_Test", procedureName: "scriptsPropertiesTest") """</pre>
-</td>
-</tr>
-<tr>
-<td>
-<div class='block-kind'>Then:</div>
-</td>
-<td>
-<pre class='block-source'>assert result.outcome == 'success'
-assert getStepProperty(result.jobId, "humanSize", "result") == "3.00 MB"
-assert getStepProperty(result.jobId, "humanSize", "exitCode") == "0"</pre>
-</td>
-</tr>
-<tr>
-<td colspan='10'>
-<div class='feature-description' id='98245593'>
-<span>getPS</span>
-<span style='float: right; font-size: 60%;'>
-<a href='#toc'>Return</a>
-</span>
 </div>
-</td>
-</tr>
-<tr>
-<td>
-<div class='block-kind'>When:</div>
-</td>
-<td>
-<pre class='block-source'>def result=runProcedureDsl """runProcedure(projectName: "EC-Admin_Test", procedureName: "getPS") """</pre>
-</td>
-</tr>
-<tr>
-<td>
-<div class='block-kind'>Then:</div>
-</td>
-<td>
-<pre class='block-source'>assert result.outcome == 'success'
-assert getStepProperty(result.jobId, "getPSJSON", "exitCode") == "0"
-assert getStepProperty(result.jobId, "getPSXML", "exitCode") == "0"</pre>
 </td>
 </tr>
 </tbody>
