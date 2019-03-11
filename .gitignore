@@ -11,3 +11,4 @@ EC-Admin.jar
 .idea
 *.iml
 .DS_Store
+.gradle
