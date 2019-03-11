@@ -60,7 +60,7 @@ class ECAdmin extends PluginTestHelper {
           principalType: 'user',
           principalName: "project: /plugins/EC-Admin/project"),
           projectName: "/plugins/EC-Admin/project",
-          propertySheetId: $psId) """
+          propertySheetId: "$psId") """
     then:
       assert result
   }
@@ -105,7 +105,7 @@ class ECAdmin extends PluginTestHelper {
       assert timeout == "local"
   }
 
-  def "copy in name"() {
+  def "Naming convention"() {
     given:
     when:
       def result = dsl """
@@ -113,7 +113,8 @@ class ECAdmin extends PluginTestHelper {
           projectName: "/plugins/EC-Admin/project"
         )"""
      then:
-        result.each {
+       println "Naming convention"
+       result.each {
          println "Procedure: " + it.procedureName
          assert ! it.procedureName.contains("/?icopy/")
          assert ! it.procedureName.contains("/ /")
