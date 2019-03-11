@@ -59,7 +59,7 @@ class ECAdmin extends PluginTestHelper {
       def result = dsl """
         getAclEntry(
           principalType: 'user',
-          principalName: "project: /plugins/EC-Admin/project"),
+          principalName: "project: /plugins/EC-Admin/project",
           projectName: "/plugins/EC-Admin/project",
           propertySheetId: "$psId") """
     then:
@@ -116,7 +116,7 @@ class ECAdmin extends PluginTestHelper {
         )"""
      then:
        println "Naming convention"
-       procedures.each { proc ->
+       procedures.procedure.each { proc ->
          println "Procedure: " + proc.procedureName
 //         assert ! proc.procedureName.contains("/?icopy/")
 //         assert ! proc.procedureName.contains("/ /")
