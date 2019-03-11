@@ -53,6 +53,7 @@ class ECAdmin extends PluginTestHelper {
      given:
      when:
       def ps = dsl """getProperty(propertyName: "/server/EC-Admin")"""
+      println "ps: " + ps
       def psID = ps.property.propertySheetId
       def result = dsl """
         getAclEntry(
@@ -112,7 +113,9 @@ class ECAdmin extends PluginTestHelper {
           projectName: "/plugins/EC-Admin/project"
         )"""
      then:
+      println "name convention: " + result
        result.each {
+         println "Procedure: " + it
          assert ! it.procedure.procedureName.contains("/?icopy/")
          assert ! it.procedure.procedureName.contains("/ /")
        }
