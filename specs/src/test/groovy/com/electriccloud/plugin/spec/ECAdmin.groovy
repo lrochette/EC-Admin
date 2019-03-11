@@ -52,7 +52,7 @@ class ECAdmin extends PluginTestHelper {
   def "ACL_on_server"() {
      given:
      when:
-      def ps = dsl """getProperty("/server/EC-Admin")"""
+      def ps = dsl """getProperty(propertyName: "/server/EC-Admin")"""
       def psID = ps.property.propertySheetId
       def result = dsl """
         getAclEntry(
@@ -107,7 +107,10 @@ class ECAdmin extends PluginTestHelper {
   def "copy in name"() {
     given:
     when:
-      def result = dsl """ getProcedures(projectName: "/plugins/EC-Admin/project")"""
+      def result = dsl """
+        getProcedures(
+          projectName: "/plugins/EC-Admin/project"
+        )"""
      then:
        result.each {
          assert ! it.procedure.procedureName.contains("/?icopy/")
