@@ -24,7 +24,7 @@ class restore extends PluginTestHelper {
           projectName: "/plugins/EC-Admin/project",
           procedureName: "restoreObjects",
           actualParameter: [
-            directory: "/tmp/$zone/restore",
+            directory: "/tmp/$zone/",
             force: "false",
             resource: "local"
           ]
