@@ -52,7 +52,8 @@ class ECAdmin extends PluginTestHelper {
   def "ACL_on_server"() {
      given:
      when:
-      def psID = dsl """getProperty("/server/EC-Admin")""".property.propertySheetId
+      def ps = dsl """getProperty("/server/EC-Admin")"""
+      def psID = ps.property.propertySheetId
       def result = dsl """
         getAclEntry(
           principalType: 'user',
@@ -66,7 +67,7 @@ class ECAdmin extends PluginTestHelper {
   def "timeout_config_property"() {
     given:
     when:
-      def timeout=getProperty("/server/EC-Admin/cleanup/config/timeout")
+      def timeout=getP("/server/EC-Admin/cleanup/config/timeout")
     then:
       assert timeout == "600"
   }
@@ -109,8 +110,8 @@ class ECAdmin extends PluginTestHelper {
       def result = dsl """ getProcedures(projectName: "/plugins/EC-Admin/project")"""
      then:
        result.each {
-         assert ! it.procedureName.contains("/?icopy/")
-         assert ! it.procedureName.contains("/ /")
+         assert ! it.procedure.procedureName.contains("/?icopy/")
+         assert ! it.procedure.procedureName.contains("/ /")
        }
   }
 
