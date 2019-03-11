@@ -52,7 +52,7 @@ class ECAdmin extends PluginTestHelper {
   def "ACL_on_server"() {
      given:
      when:
-      def psID = getProperty("/server/EC-Admin").propertySheetId
+      def psID = dsl """getProperty("/server/EC-Admin")""".property.propertySheetId
       def result = dsl """
         getAclEntry(
           principalType: 'user',
@@ -74,7 +74,7 @@ class ECAdmin extends PluginTestHelper {
   def "cleanpOldJobs_config_property"() {
     given:
     when:
-      def timeout=getProperty("/server/EC-Admin/licenseLogger/config/cleanpOldJobs")
+      def timeout=getP("/server/EC-Admin/licenseLogger/config/cleanpOldJobs")
     then:
       assert timeout == "1"
   }
@@ -82,7 +82,7 @@ class ECAdmin extends PluginTestHelper {
   def "workspace_config_property"() {
     given:
     when:
-      def timeout=getProperty("/server/EC-Admin/licenseLogger/config/workspace")
+      def timeout=getP("/server/EC-Admin/licenseLogger/config/workspace")
     then:
       assert timeout == "default"
   }
@@ -90,7 +90,7 @@ class ECAdmin extends PluginTestHelper {
   def "emailConfig_config_property"() {
     given:
     when:
-      def timeout=getProperty("/server/EC-Admin/licenseLogger/config/emailConfig")
+      def timeout=getP("/server/EC-Admin/licenseLogger/config/emailConfig")
     then:
       assert timeout == "default"
   }
@@ -98,7 +98,7 @@ class ECAdmin extends PluginTestHelper {
   def "resource_config_property"() {
     given:
     when:
-      def timeout=getProperty("/server/EC-Admin/licenseLogger/config/resource")
+      def timeout=getP("/server/EC-Admin/licenseLogger/config/resource")
     then:
       assert timeout == "local"
   }
@@ -109,8 +109,8 @@ class ECAdmin extends PluginTestHelper {
       def result = dsl """ getProcedures(projectName: "/plugins/EC-Admin/project")"""
      then:
        result.each {
-         assert ! it.procedureName.coontains("/?icopy/")
-         assert ! it.procedureName.coontains("/ /")
+         assert ! it.procedureName.contains("/?icopy/")
+         assert ! it.procedureName.contains("/ /")
        }
   }
 
