@@ -6,6 +6,7 @@ class restore extends PluginTestHelper {
   static String zone="zone64"
 
   def doSetupSpec() {
+    dsl """deleteZone(zoneName: "$zone")"""
     new AntBuilder().copy( todir:"/tmp/$zone" ) {
       fileset( dir:"data/restore" )
     }
