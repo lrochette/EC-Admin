@@ -7,7 +7,7 @@ class restore extends PluginTestHelper {
 
   def doSetupSpec() {
     new AntBuilder().copy( todir:"/tmp/$zone" ) {
-      fileset( dir:"data/$restore" )
+      fileset( dir:"data/restore" )
     }
   }
 
