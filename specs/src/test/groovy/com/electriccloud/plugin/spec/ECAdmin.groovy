@@ -116,7 +116,7 @@ class ECAdmin extends PluginTestHelper {
         )"""
      then:
        println "Naming convention"
-       result.each {
+       result.procedure.each {
          println "Procedure: " + it.procedureName
          assert ! it.procedureName.contains("/?icopy/")
          assert ! it.procedureName.contains("/ /")
