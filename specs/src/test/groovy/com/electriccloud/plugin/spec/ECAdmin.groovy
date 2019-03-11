@@ -110,16 +110,16 @@ class ECAdmin extends PluginTestHelper {
   def "Naming convention"() {
     given:
     when:
-      def result = dsl """
+      def procedures = dsl """
         getProcedures(
           projectName: "/plugins/EC-Admin/project"
         )"""
      then:
        println "Naming convention"
-       result.procedure.each {
-         println "Procedure: " + it.procedureName
-         assert ! it.procedureName.contains("/?icopy/")
-         assert ! it.procedureName.contains("/ /")
+       procedures.each { proc ->
+         println "Procedure: " + proc.procedureName
+         assert ! proc.procedureName.contains("/?icopy/")
+         assert ! proc.procedureName.contains("/ /")
        }
   }
 
