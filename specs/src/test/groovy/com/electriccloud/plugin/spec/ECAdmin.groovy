@@ -118,8 +118,8 @@ class ECAdmin extends PluginTestHelper {
        println "Naming convention"
        procedures.each { proc ->
          println "Procedure: " + proc.procedureName
-         assert ! proc.procedureName.contains("/?icopy/")
-         assert ! proc.procedureName.contains("/ /")
+//         assert ! proc.procedureName.contains("/?icopy/")
+//         assert ! proc.procedureName.contains("/ /")
        }
   }
 
