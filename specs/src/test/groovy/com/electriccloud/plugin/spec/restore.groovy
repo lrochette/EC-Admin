@@ -25,7 +25,7 @@ class restore extends PluginTestHelper {
           procedureName: "restoreObjects",
           actualParameter: [
             directory: "/tmp/$zone/restore",
-            force: "false"
+            force: "false",
             resource: "local"
           ]
         )"""
