@@ -55,6 +55,7 @@ class ECAdmin extends PluginTestHelper {
       def ps = dsl """getProperty(propertyName: "/server/EC-Admin")"""
       println "ps: " + ps
       def psId = ps.property.propertySheetId
+      println "PsId:" + psId
       def result = dsl """
         getAclEntry(
           principalType: 'user',
@@ -62,6 +63,7 @@ class ECAdmin extends PluginTestHelper {
           projectName: "/plugins/EC-Admin/project",
           propertySheetId: "$psId") """
     then:
+      println "ACL result: " + result
       assert result
   }
 
