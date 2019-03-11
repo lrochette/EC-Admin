@@ -35,6 +35,6 @@ class restore extends PluginTestHelper {
     then:
       assert result.jobId
       assert result?.outcome == 'success'
-      assert z.zone.zoneName == $zone
+      assert z.zone.zoneName == zone
   }
 }
