@@ -46,13 +46,13 @@ class changeBannerColor extends PluginTestHelper {
         if (propName ==~ /option\d+/) {
           println "Color: $propName"
           def color=getP("/projects/$pluginName/procedures/changeBannerColor/ec_customEditorData/parameters/color/options/$propName/value")
-          if ($color == "Default") {
+          if (color == "Default") {
             defaultPresent = true
           }
+          assert File("$installDir/plugins/$pluginName/htdocs/frame_bannerBg_$color.gif")
         } else {
           println "Skip: $propName"
         }
-        // assert File("$installDir/plugins/$pluginName/htdocs/frame_bannerBg_$color.gif")
       }
       assert defaultPresent == "true"
   }
