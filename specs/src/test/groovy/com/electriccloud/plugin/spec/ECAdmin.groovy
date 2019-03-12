@@ -11,6 +11,7 @@ class ECAdmin extends PluginTestHelper {
     dslFile "dsl/${pName}_Test.groovy"
     this.pluginName=getP("/plugins/$pName/project/projectName")
     println "pluginVersion: $pluginName"
+    println "pluginVersion: " + this.$pluginName
   }
 
   def doCleanupSpec() {
