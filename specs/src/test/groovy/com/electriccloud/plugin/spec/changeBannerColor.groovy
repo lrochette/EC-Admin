@@ -30,31 +30,18 @@ class changeBannerColor extends PluginTestHelper {
       assert res1?.procedure.procedureName == 'changeBannerColor'
  }
 
-  // Banner color files
-  def "Banner color files"() {
-    given : "a list of color"
-      Boolean defaultPresent=false
+  // Check that the color files are present for each color in the menu
+  def "Banner logo files"() {
+    given : "a list of logo"
     when: "looping through"
-      def props=dsl """
-        getProperties(
-          path: "/projects/$pluginName/procedures/changeBannerColor/ec_customEditorData/parameters/color/options"
-        ) """
+      def count=getP("/projects/$pluginName/procedures/changeBannerColor/ec_customEditorData/parameters/logo/options/optionCount").toInteger()
+
     then: "the files should be found"
-      props.propertySheet.property.each { prop ->
-        def propName=prop.propertyName
-        println "PropName: $propName"
-        if (propName ==~ /option\d+/) {
-          println "Color: $propName"
-          def color=getP("/projects/$pluginName/procedures/changeBannerColor/ec_customEditorData/parameters/color/options/$propName/value")
-          if (color == "Default") {
-            defaultPresent = true
-          }
-          assert File("$installDir/plugins/$pluginName/htdocs/frame_bannerBg_$color.gif")
-        } else {
-          println "Skip: $propName"
-        }
+       for (def index = 1; index <= count.; index++) {
+        def logo=getP("/projects/$pluginName/procedures/changeBannerColor/ec_customEditorData/parameters/logo/options/option$index/value")
+        def file=new File("$installDir/plugins/$pluginName/htdocs/$logo")
+        assert file.exists()
       }
-      assert defaultPresent == "true"
   }
 
 }
