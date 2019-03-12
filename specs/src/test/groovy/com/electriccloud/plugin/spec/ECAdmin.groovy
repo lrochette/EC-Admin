@@ -59,11 +59,11 @@ class ECAdmin extends PluginTestHelper {
       println "ps: " + ps
       def psId = ps.property.propertySheetId
       println "PsId:" + psId
-      println "Plugin version: " + pluginName
+      println "Plugin version: " + this.pluginName
       def result = dsl """
         getAclEntry(
           principalType: 'user',
-          principalName: "project: $pluginName",
+          principalName: "project: " + this.pluginName,
           projectName: "/plugins/$pName/project",
           propertySheetId: "$psId") """
     then:
