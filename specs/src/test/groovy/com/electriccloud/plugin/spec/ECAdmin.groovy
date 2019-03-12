@@ -4,12 +4,12 @@ import spock.lang.*
 
 class ECAdmin extends PluginTestHelper {
   static String pName='EC-Admin'
-  String pluginName=''
+  String pluginName
 
   def doSetupSpec() {
     dsl """resource 'ecadmin-lin', hostName: 'localhost' """
     dslFile "dsl/${pName}_Test.groovy"
-    //dsl "pingResource(resourceName: 'ecadmin-lin')"
+    this.pluginName=getP("/plugins/$pName/project/projectName")
   }
 
   def doCleanupSpec() {
@@ -24,7 +24,6 @@ class ECAdmin extends PluginTestHelper {
       def result = dsl """promotePlugin(pluginName: "$pName")"""
       def version = dsl """getProperty("/plugins/$pName/pluginVersion")"""
       def prop = dsl """getProperty("/plugins/$pName/project/ec_visibility")"""
-      this.pluginName=result.plugin.pluginName
     then:
       assert result.plugin.pluginVersion == version.property.value
       assert prop.property.value == 'pickListOnly'
@@ -118,9 +117,7 @@ class ECAdmin extends PluginTestHelper {
           projectName: "/plugins/$pName/project"
         )"""
      then:
-       println "Naming convention"
        procedures.procedure.each { proc ->
-         println "Procedure: " + proc.procedureName
          assert ! proc.procedureName.contains("/?icopy/")
          assert ! proc.procedureName.contains("/ /")
        }
