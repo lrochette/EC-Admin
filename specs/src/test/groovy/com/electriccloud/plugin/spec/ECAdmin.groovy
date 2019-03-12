@@ -24,7 +24,7 @@ class ECAdmin extends PluginTestHelper {
       def result = dsl """promotePlugin(pluginName: "$pName")"""
       def version = dsl """getProperty("/plugins/$pName/pluginVersion")"""
       def prop = dsl """getProperty("/plugins/$pName/project/ec_visibility")"""
-      pluginName=result.plugin.pluginName
+      this.pluginName=result.plugin.pluginName
     then:
       assert result.plugin.pluginVersion == version.property.value
       assert prop.property.value == 'pickListOnly'
@@ -58,6 +58,7 @@ class ECAdmin extends PluginTestHelper {
       println "ps: " + ps
       def psId = ps.property.propertySheetId
       println "PsId:" + psId
+      println "Plugin version: $pluginName"
       def result = dsl """
         getAclEntry(
           principalType: 'user',
