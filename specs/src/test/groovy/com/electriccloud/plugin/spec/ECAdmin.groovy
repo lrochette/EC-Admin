@@ -54,16 +54,17 @@ class ECAdmin extends PluginTestHelper {
 
   def "ACL_on_server"() {
      given:
+      def pluginName=this.pluginName
      when:
       def ps = dsl """getProperty(propertyName: "/server/$pName")"""
       println "ps: " + ps
       def psId = ps.property.propertySheetId
       println "PsId:" + psId
-      println "Plugin version: " + this.pluginName
+      println "Plugin version: " + pluginName
       def result = dsl """
         getAclEntry(
           principalType: 'user',
-          principalName: "project: " + this.pluginName,
+          principalName: "project: $pluginName",
           projectName: "/plugins/$pName/project",
           propertySheetId: "$psId") """
     then:
