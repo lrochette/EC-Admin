@@ -3,6 +3,7 @@ import spock.lang.*
 import org.apache.tools.ant.BuildLogger
 
 class licesneLogger extends PluginTestHelper {
+  static String pName='EC-Admin'
 
   def doSetupSpec() {
   }
@@ -16,12 +17,12 @@ class licesneLogger extends PluginTestHelper {
     when:
       def res1=dsl """
         getProcedure(
-          projectName: "/plugins/EC-Admin/project",
+          projectName: "/plugins/$pName/project",
           procedureName: "icenseLogger-snapshot"
         ) """
       def res2=dsl """
         getProcedure(
-          projectName: "/plugins/EC-Admin/project",
+          projectName: "/plugins/$pName/project",
           procedureName: "licenseLogger-report"
         ) """
 
@@ -34,7 +35,6 @@ class licesneLogger extends PluginTestHelper {
   // EC-Admin counter is writable
   def "issue 52"() {
     given:
-      def pluginName=this.pluginName
     when:
       def ps = dsl """getProperty(propertyName: "/server/counters/$pName")"""
       def psId = ps.property.propertySheetId

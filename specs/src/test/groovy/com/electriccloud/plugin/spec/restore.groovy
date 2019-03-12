@@ -4,6 +4,7 @@ import org.apache.tools.ant.BuildLogger
 
 class restore extends PluginTestHelper {
   static String zone="zone64"
+  static String pName='EC-Admin'
 
   def doSetupSpec() {
     dsl """deleteZone(zoneName: "$zone")"""
@@ -22,7 +23,7 @@ class restore extends PluginTestHelper {
     when:
       def result=runProcedureDsl """
         runProcedure(
-          projectName: "/plugins/EC-Admin/project",
+          projectName: "/plugins/$pName/project",
           procedureName: "restoreObjects",
           actualParameter: [
             directory: "/tmp/$zone/",
