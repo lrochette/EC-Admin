@@ -8,7 +8,7 @@ class backup extends PluginTestHelper {
 
   def doSetupSpec() {
     dslFile 'dsl/EC-Admin_Test.groovy'
-    new AntBuilder().delete(dir:"$backupDir" )
+    // new AntBuilder().delete(dir:"$backupDir" )
     // {
     //   fileset( dir:"data/restore" )
     // }
