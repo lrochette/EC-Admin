@@ -4,7 +4,7 @@ import spock.lang.*
 
 class ECAdmin extends PluginTestHelper {
   static String pName='EC-Admin'
-  String pluginName
+  @Shared String pluginName
 
   def doSetupSpec() {
     dsl """resource 'ecadmin-lin', hostName: 'localhost' """
