@@ -43,7 +43,7 @@ class changeBannerColor extends PluginTestHelper {
       props.each { prop ->
         def propName=prop.propertyName
         println "Color: $propName"
-        if (propName.eqauals("/option\d+/")) {
+        if (propName ==~ /option/) {
           println "Color: $propName"
           def color=getP("/projects/$pluginName/procedures/changeBannerColor/ec_customEditorData/parameters/color/options/$propName/value")
           if ($color == "Default") {
