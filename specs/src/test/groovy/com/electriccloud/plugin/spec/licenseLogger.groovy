@@ -2,7 +2,7 @@ package com.electriccloud.plugin.spec
 import spock.lang.*
 import org.apache.tools.ant.BuildLogger
 
-class licesneLogger extends PluginTestHelper {
+class licenseLogger extends PluginTestHelper {
   static String pName='EC-Admin'
 
   def doSetupSpec() {
@@ -18,7 +18,7 @@ class licesneLogger extends PluginTestHelper {
       def res1=dsl """
         getProcedure(
           projectName: "/plugins/$pName/project",
-          procedureName: "icenseLogger-snapshot"
+          procedureName: "licenseLogger-snapshot"
         ) """
       def res2=dsl """
         getProcedure(
@@ -27,7 +27,7 @@ class licesneLogger extends PluginTestHelper {
         ) """
 
     then:
-      assert res1?.procedure.procedureName == 'icenseLogger-snapshot'
+      assert res1?.procedure.procedureName == 'licenseLogger-snapshot'
       assert res2?.procedure.procedureName == 'licenseLogger-report'
  }
 
