@@ -88,7 +88,7 @@ class artifactRepoSync extends PluginTestHelper {
       assert result.outcome == "success"
       def summary=getStepProperty(result.jobId, 'syncRepo', "summary")
       assert summary == "0 artifact versions synchronized"
-      assert getJobProperty("avSynchronized", result.jobId)
+      assert getJobProperty("avSynchronized", result.jobId) == '0'
   }
 
 }
