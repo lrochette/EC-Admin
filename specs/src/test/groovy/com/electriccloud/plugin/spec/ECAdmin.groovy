@@ -10,8 +10,6 @@ class ECAdmin extends PluginTestHelper {
     dsl """resource 'ecadmin-lin', hostName: 'localhost' """
     dslFile "dsl/${pName}_Test.groovy"
     this.pluginName=getP("/plugins/$pName/project/projectName")
-    println "pluginVersion: $pluginName"
-    println "pluginVersion: " + this.pluginName
   }
 
   def doCleanupSpec() {
@@ -57,18 +55,14 @@ class ECAdmin extends PluginTestHelper {
       def pluginName=this.pluginName
      when:
       def ps = dsl """getProperty(propertyName: "/server/$pName")"""
-      println "ps: " + ps
       def psId = ps.property.propertySheetId
-      println "PsId:" + psId
-      println "Plugin version: " + pluginName
-      def result = dsl """
+       def result = dsl """
         getAclEntry(
           principalType: 'user',
           principalName: "project: $pluginName",
           projectName: "/plugins/$pName/project",
           propertySheetId: "$psId") """
     then:
-      println "ACL result: " + result
       assert result
   }
 
