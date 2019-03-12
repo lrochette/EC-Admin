@@ -4,11 +4,11 @@ import org.apache.tools.ant.BuildLogger
 
 class backup extends PluginTestHelper {
   static String pName='EC-Admin'
-  static String backupDir="/tmp/BACKUP"
+  static String backupDir="/tmp"
 
   def doSetupSpec() {
     dslFile 'dsl/EC-Admin_Test.groovy'
-    new AntBuilder().delete( dir:"$backupDir" )
+    new AntBuilder().delete(dir:"$backupDir" )
     // {
     //   fileset( dir:"data/restore" )
     // }
@@ -18,7 +18,8 @@ class backup extends PluginTestHelper {
   def doCleanupSpec() {
   }
 
-  def runSAO(String jobName, def additionnalParams) {
+  def runSaveAllObjects(String jobName, def additionnalParams) {
+    println "Running runSaveAllObjects"
     def params=[
         pathname: "$backupDir",
         pattern: "",
@@ -37,15 +38,17 @@ class backup extends PluginTestHelper {
     assert jobName
 
     additionnalParams.each {k, v ->
-      params[k]=v
+      params[k]="$v"
     }
     def res=runProcedureDslAndRename(
       jobName,
       """runProcedure(
-       projectName: "/plugins/$pName/project",
-       procedureName: "saveAllObjects",
-       actualParameter: params
-    )"""
+            projectName: "/plugins/$pName/project",
+            procedureName: "saveAllObjects",
+            actualParameter: $params
+         )
+      """
+    )
     return res
   }
 
@@ -70,34 +73,15 @@ class backup extends PluginTestHelper {
  }
 
   // Issue 56: question mark
-  def "issue 64"() {
-    given:
-    when:
-      def result=runProcedureDsl """
-        runProcedure(
-          projectName: "/plugins/$pName/project",
-          procedureName: "saveAllObjects",
-          actualParameter: [
-            pathname: "$backupDir",
-            pattern: "EC-Admin_Test",
-            exportDeploy: "false",
-            exportGateways: "false",
-            exportZones: "false",
-            exportGroups: "false",
-            exportResourcePools: "false",
-            exportResources: "false",
-            exportSteps: "false",
-            exportUsers: "false",
-            exportWorkspaces: "false",
-            format: "XML",
-            pool: "default"
-          ]
-        )"""
-
-      def file=new File("$backupDir/projects/EC-Admin_Test/procedures/questionMark/steps/rerun_.xml")
-    then:
+  def "issue 56 - question mark"() {
+    given: "a project with a question mark"
+    when: "save objects in XML format"
+      def result=runSaveAllObjects("Issue56", [pattern: "EC-Admin_Test"])
+    then: "question mark replaced by _"
       assert result.jobId
       assert result?.outcome == 'success'
-      assert file.exists
+
+      def file=new File("$backupDir/projects/EC-Admin_Test/procedures/questionMark/steps/rerun_.xml")
+      assert file.exists()
   }
 }

@@ -41,12 +41,14 @@ class PluginTestHelper extends PluginSpockTestSupport {
   }
 
   def runProcedureDslAndRename(jobName, dslString) {
+    println "Running runProcedureDslAndRename"
     redirectLogs()
     assert dslString
 
     def result = dsl(dslString)
     assert result.jobId
-
+    println "Renaming job to $jobname"
+    
     def renameJob=dsl """setJobName(
       jobId: "${result.jobId},
       newName: "saveAllObjects_$jobName_\$[/increment /server/counters/EC-Admin/jobCounter]"
