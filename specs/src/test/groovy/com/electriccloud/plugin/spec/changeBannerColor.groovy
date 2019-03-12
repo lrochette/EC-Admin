@@ -42,8 +42,8 @@ class changeBannerColor extends PluginTestHelper {
     then: "the files should be found"
       props.propertySheet.property.each { prop ->
         def propName=prop.propertyName
-        println "Color: $propName"
-        if (propName ==~ /option/) {
+        println "PropName: $propName"
+        if (propName ==~ /option\d+/) {
           println "Color: $propName"
           def color=getP("/projects/$pluginName/procedures/changeBannerColor/ec_customEditorData/parameters/color/options/$propName/value")
           if ($color == "Default") {
