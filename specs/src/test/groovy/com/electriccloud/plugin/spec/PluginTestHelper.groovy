@@ -40,6 +40,29 @@ class PluginTestHelper extends PluginSpockTestSupport {
     logs
   }
 
+  def runProcedureDslAndRename(jobName, dslString) {
+    redirectLogs()
+    assert dslString
+
+    def result = dsl(dslString)
+    assert result.jobId
+
+    def renameJob=dsl """setJobName(
+      jobId: "${result.jobId},
+      newName: "saveAllObjects_$jobName_\$[/increment /server/counters/EC-Admin/jobCounter]"
+    ) """
+
+    waitUntil {
+     jobCompleted result.jobId
+    }
+    def logs = getJobLogs(result.jobId)
+    def outcome = jobStatus(result.jobId).outcome
+    logger.debug("DSL: $dslString")
+    logger.debug("Logs: $logs")
+    logger.debug("Outcome: $outcome")
+    [logs: logs, outcome: outcome, jobId: result.jobId]
+  }
+
   def runProcedureDsl(dslString) {
     redirectLogs()
     assert dslString

@@ -37,7 +37,7 @@ class changeBannerColor extends PluginTestHelper {
       def count=getP("/projects/$pluginName/procedures/changeBannerColor/ec_customEditorData/parameters/logo/options/optionCount").toInteger()
 
     then: "the files should be found"
-       for (def index = 1; index <= count.; index++) {
+       for (def index = 1; index <= count; index++) {
         def logo=getP("/projects/$pluginName/procedures/changeBannerColor/ec_customEditorData/parameters/logo/options/option$index/value")
         def file=new File("$installDir/plugins/$pluginName/htdocs/$logo")
         assert file.exists()
