@@ -23,7 +23,8 @@ wrapper.java.maxmemory=512
     command: new File(pluginDir, "dsl/procedures/$procName/steps/modifyWrapper.pl").text,
     resourceName: '$[agent]',
     exclusiveMode: 'job',
-    shell: 'ec-perl'
+    shell: 'ec-perl',
+    errorHandling: 'abortProcedure'
 
   step 'restartAgentLinux',
     description: '''restart the agent.

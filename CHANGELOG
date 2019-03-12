@@ -1,3 +1,7 @@
+2019-03-12 Laurent Rochette <lrochette@electric-cloud.com>
+  * 3.5.1.814: Stop agentMemnoryConfiguration when data is incorrect
+               Convert tests to ec-spec-tools
+
 2019-02-25 Laurent Rochette <lrochette@electric-cloud.com>
   * 3.5.0.813: Fix #165: backup dashboards, widgets, reports with saveAllObjects
                backup schedules with saveAllObjects
