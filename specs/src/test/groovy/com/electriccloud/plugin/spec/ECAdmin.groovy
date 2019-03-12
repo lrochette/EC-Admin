@@ -3,22 +3,21 @@ import spock.lang.*
 //import com.electriccloud.spec.PluginSpockTestSupport
 
 class ECAdmin extends PluginTestHelper {
-
+  static String pName='EC-Admin'
   def doSetupSpec() {
     dsl """resource 'ecadmin-lin', hostName: 'localhost' """
-    dslFile 'dsl/EC-Admin_Test.groovy'
+    dslFile "dsl/${pName}_Test.groovy"
     //dsl "pingResource(resourceName: 'ecadmin-lin')"
   }
 
   def doCleanupSpec() {
-    conditionallyDeleteProject('EC-Admin_Test')
+    conditionallyDeleteProject('${pName}_Test')
     dsl """deleteResource(resourceName: 'ecadmin-lin')"""
   }
 
   // Check promotion
   def "plugin promotion"() {
     given:
-      def pName='EC-Admin'
     when: 'the plugin is promoted'
       def result = dsl """promotePlugin(pluginName: "$pName")"""
       def version = dsl """getProperty("/plugins/$pName/pluginVersion")"""
@@ -28,11 +27,11 @@ class ECAdmin extends PluginTestHelper {
       assert prop.property.value == 'pickListOnly'
     }
 
-  // Check properties /plugins/EC-Admin/projects/scripts work properly
+  // Check properties /plugins/$pName/projects/scripts work properly
   def "scripts_perlCommonLib"() {
     given:
     when:
-      def result=runProcedureDsl """runProcedure(projectName: "EC-Admin_Test", procedureName: "scriptsPropertiesTest") """
+      def result=runProcedureDsl """runProcedure(projectName: "${pName}_Test", procedureName: "scriptsPropertiesTest") """
     then:
       assert result.outcome == 'success'
       assert getStepProperty(result.jobId, "humanSize", "result") == "3.00 MB"
@@ -42,7 +41,7 @@ class ECAdmin extends PluginTestHelper {
   def "getPS"() {
     given:
     when:
-      def result=runProcedureDsl """runProcedure(projectName: "EC-Admin_Test", procedureName: "getPS") """
+      def result=runProcedureDsl """runProcedure(projectName: "${pName}_Test", procedureName: "getPS") """
     then:
       assert result.outcome == 'success'
       assert getStepProperty(result.jobId, "getPSJSON", "exitCode") == "0"
@@ -52,15 +51,15 @@ class ECAdmin extends PluginTestHelper {
   def "ACL_on_server"() {
      given:
      when:
-      def ps = dsl """getProperty(propertyName: "/server/EC-Admin")"""
+      def ps = dsl """getProperty(propertyName: "/server/$pName")"""
       println "ps: " + ps
       def psId = ps.property.propertySheetId
       println "PsId:" + psId
       def result = dsl """
         getAclEntry(
           principalType: 'user',
-          principalName: "project: /plugins/EC-Admin/project",
-          projectName: "/plugins/EC-Admin/project",
+          principalName: "project: $pluginName",
+          projectName: "/plugins/$pName/project",
           propertySheetId: "$psId") """
     then:
       println "ACL result: " + result
@@ -70,7 +69,7 @@ class ECAdmin extends PluginTestHelper {
   def "timeout_config_property"() {
     given:
     when:
-      def timeout=getP("/server/EC-Admin/cleanup/config/timeout")
+      def timeout=getP("/server/$pName/cleanup/config/timeout")
     then:
       assert timeout == "600"
   }
@@ -78,7 +77,7 @@ class ECAdmin extends PluginTestHelper {
   def "cleanpOldJobs_config_property"() {
     given:
     when:
-      def timeout=getP("/server/EC-Admin/licenseLogger/config/cleanpOldJobs")
+      def timeout=getP("/server/$pName/licenseLogger/config/cleanpOldJobs")
     then:
       assert timeout == "1"
   }
@@ -86,7 +85,7 @@ class ECAdmin extends PluginTestHelper {
   def "workspace_config_property"() {
     given:
     when:
-      def timeout=getP("/server/EC-Admin/licenseLogger/config/workspace")
+      def timeout=getP("/server/$pName/licenseLogger/config/workspace")
     then:
       assert timeout == "default"
   }
@@ -94,7 +93,7 @@ class ECAdmin extends PluginTestHelper {
   def "emailConfig_config_property"() {
     given:
     when:
-      def timeout=getP("/server/EC-Admin/licenseLogger/config/emailConfig")
+      def timeout=getP("/server/$pName/licenseLogger/config/emailConfig")
     then:
       assert timeout == "default"
   }
@@ -102,7 +101,7 @@ class ECAdmin extends PluginTestHelper {
   def "resource_config_property"() {
     given:
     when:
-      def timeout=getP("/server/EC-Admin/licenseLogger/config/resource")
+      def timeout=getP("/server/$pName/licenseLogger/config/resource")
     then:
       assert timeout == "local"
   }
@@ -112,14 +111,14 @@ class ECAdmin extends PluginTestHelper {
     when:
       def procedures = dsl """
         getProcedures(
-          projectName: "/plugins/EC-Admin/project"
+          projectName: "/plugins/$pName/project"
         )"""
      then:
        println "Naming convention"
        procedures.procedure.each { proc ->
          println "Procedure: " + proc.procedureName
-//         assert ! proc.procedureName.contains("/?icopy/")
-//         assert ! proc.procedureName.contains("/ /")
+         assert ! proc.procedureName.contains("/?icopy/")
+         assert ! proc.procedureName.contains("/ /")
        }
   }
 
