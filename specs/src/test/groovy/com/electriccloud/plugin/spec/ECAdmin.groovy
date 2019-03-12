@@ -54,8 +54,8 @@ class ECAdmin extends PluginTestHelper {
      given:
       def pluginName=this.pluginName
      when:
-      def ps = dsl """getProperty(propertyName: "/server/$pName")"""
-      def psId = ps.property.propertySheetId
+       def ps = dsl """getProperty(propertyName: "/server/$pName")"""
+       def psId = ps.property.propertySheetId
        def result = dsl """
         getAclEntry(
           principalType: 'user',
