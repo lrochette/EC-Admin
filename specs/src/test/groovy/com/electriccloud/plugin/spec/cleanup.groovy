@@ -28,7 +28,6 @@ class cleanup extends PluginTestHelper {
             procedureName: "$proc"
           ) """
       }
-
     then: "they exist"
       list.each  {proc ->
         println "Checking $proc"
@@ -37,6 +36,7 @@ class cleanup extends PluginTestHelper {
   }
 
   // Issue 5
+
   def "issue5 - delete Completed pipeline"() {
     given: "an old completed pipeline"
       dslFile "dsl/cleanup/pipe5_completed_1.groovy"
@@ -58,4 +58,6 @@ class cleanup extends PluginTestHelper {
     then: " 1 pipeline was deleted"
       assert getJobProperty("nbFlowRuntimes", red.jobId) == "1"
   }
+ 
+
 }
