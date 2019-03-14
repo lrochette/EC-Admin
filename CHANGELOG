@@ -1,5 +1,5 @@
 2019-03-14 Laurent Rochette <lrochette@electric-cloud.com>
-  * 3.6.0.824: Fix #5 (formerly #119) New procedure to clean old pipelineRuntimes
+  * 3.6.0: Fix #5 (formerly #119) New procedure to clean old pipelineRuntimes
 
 2019-03-12 Laurent Rochette <lrochette@electric-cloud.com>
   * 3.5.1.814: Stop agentMemnoryConfiguration when data is incorrect

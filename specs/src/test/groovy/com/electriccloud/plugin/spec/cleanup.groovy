@@ -6,6 +6,7 @@ class cleanup extends PluginTestHelper {
   static String pName='EC-Admin'
 
   def doSetupSpec() {
+    dsl """ project "pipe5" """
   }
 
   def doCleanupSpec() {

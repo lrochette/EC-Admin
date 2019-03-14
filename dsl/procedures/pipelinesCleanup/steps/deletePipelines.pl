@@ -54,9 +54,22 @@ $ec->setTimeout($defaultTimeout? $defaultTimeout : 600);
 # create filterList
 my @filterList;
 # older than
-push (@filterList, {"propertyName" => "finish",
-                    "operator" => "lessThan",
-                    "operand1" => calculateDate($timeLimit)});
+# check for pipelineLevel
+if ($completed  eq "true") {
+  printf("Limiting to only completed pipelineRuntimes\n") if ($DEBUG);
+  push (@filterList, {"propertyName" => "completed",
+                      "operator" => "equals",
+                      "operand1" => "1"});
+
+  push (@filterList, {"propertyName" => "finish",
+                      "operator" => "lessThan",
+                      "operand1" => calculateDate($timeLimit)});
+} else {
+  push (@filterList, {"propertyName" => "start",
+                      "operator" => "lessThan",
+                      "operand1" => calculateDate($timeLimit)});
+
+}
 # do not have specific pipeline property
 push (@filterList, {"propertyName" => $pipelineProperty,
                     "operator" => "isNull"});
@@ -70,12 +83,7 @@ if ($pattern  ne "") {
                       "operator" => "like",
                       "operand1" => $pattern });
 }
-# check for pipelineLevel
-if ($completed  eq "true") {
-  push (@filterList, {"propertyName" => "completed",
-                      "operator" => "equals",
-                      "operand1" => "1"});
-}
+
 my ($success, $xPath);
 my $loop=1;
 do {
