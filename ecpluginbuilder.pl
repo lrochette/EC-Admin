@@ -15,7 +15,7 @@ my $ec = new ElectricCommander->new({timeout => 600});
 
 my $epb="../ecpluginbuilder";
 
-my $pluginVersion = "3.5.1";
+my $pluginVersion = "3.6.0";
 my $pluginKey = "EC-Admin";
 
 GetOptions ("version=s" => \$pluginVersion)

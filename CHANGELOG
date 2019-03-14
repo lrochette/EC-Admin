@@ -1,3 +1,6 @@
+2019-03-13 Laurent Rochette <lrochette@electric-cloud.com>
+  * 3.6.0.823: Fix #5 (formerly #119) New procedure to clean old pipelines
+
 2019-03-12 Laurent Rochette <lrochette@electric-cloud.com>
   * 3.5.1.814: Stop agentMemnoryConfiguration when data is incorrect
                Convert tests to ec-spec-tools
