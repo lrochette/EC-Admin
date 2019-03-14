@@ -125,7 +125,7 @@ class PluginTestHelper extends PluginSpockTestSupport {
   }
 
   def importXML(String filename) {
-    def res=dsl """import (file: "$filename", force: "1")"""
+    def res=dsl """import (fileName: "$filename", force: "1")"""
     assert res
   }
 }

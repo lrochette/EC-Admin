@@ -28,7 +28,7 @@ Error in command line arguments
 );
 
 # Fix version in plugin.xml
-# Update plugin.xml with key, version, label, description
+# Update plugin.xml with  version,
 print "[INFO] - Processing 'META-INF/plugin.xml' file...\n";
 my $xs = XML::Simple->new(
 	ForceArray => 1,

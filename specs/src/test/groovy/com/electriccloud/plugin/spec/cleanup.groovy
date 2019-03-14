@@ -9,6 +9,7 @@ class cleanup extends PluginTestHelper {
   }
 
   def doCleanupSpec() {
+    dsl """deleteProject(projectName: "pipe5")"""
   }
 
   // Check procedures exist
@@ -37,7 +38,7 @@ class cleanup extends PluginTestHelper {
   // Issue 5
   def "issue5 - delete Completed pipeline"() {
     given: "an old completed pipeline"
-      importXML("data/cleanup/pipe5_completed_1.xml")
+      dslFile "dsl/cleanup/pipe5_completed_1.groovy"
     when:
       def res=runProcedureDsl("""
         runProcedure(
