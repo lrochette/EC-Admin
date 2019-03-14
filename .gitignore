@@ -2,6 +2,7 @@ src/out
 specs/logs/
 specs/.gradle/
 specs/spec-report/
+specs/build
 *.swp
 .efci
 ElectricFlow-*

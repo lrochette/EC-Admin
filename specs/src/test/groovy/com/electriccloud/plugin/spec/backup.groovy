@@ -3,25 +3,33 @@ import spock.lang.*
 import org.apache.tools.ant.BuildLogger
 
 class backup extends PluginTestHelper {
-  static String pName='EC-Admin'
-  static String backupDir='/tmp/BACKUP'
+  static String pName = 'EC-Admin'
+  static String backupDir = '/tmp/BACKUP'
   // Issue 57
-  static String group57="AC/DC"
+  static String group57 = "AC/DC"
   // Issue 58
-  static String gate58="GW58"
-  static String res58="gw_resource_58"
-  static String zone59="zone59"
+  static String gate58 = "GW58"
+  static String res58 = "gw_resource_58"
+  // Issue 59
+  static String zone59 = "zone59"
+  // Issue 63
+  static String project63 = "456GHTVF123"
+  // issue 77
+  static String project77 = "Issue/77"
+
   def doSetupSpec() {
     dslFile 'dsl/EC-Admin_Test.groovy'
     new AntBuilder().delete(dir:"$backupDir" )
   }
 
   def doCleanupSpec() {
-   // new AntBuilder().delete(dir:"$backupDir" )
+   new AntBuilder().delete(dir:"$backupDir" )
    dsl """
       deleteGroup(groupName: "$group57")
       deleteGateway(gatewayName: "$gate58")
       deleteResource(resourceName: "$res58")
+      deleteZone(zoneName: "$zone59")
+      deleteProject(projectname: "$project63")
     """
   }
 
@@ -136,6 +144,52 @@ class backup extends PluginTestHelper {
       assert result.jobId
       assert result?.outcome == 'success'
       assert fileExist("$backupDir/zones/${zone59}.xml")
+  }
+
+  // Issue 63: filter pattern
+  def "issue 63 - pattern"() {
+    given: "a project"
+      dsl """
+        project "$proj63",
+          description: "for backup testing"
+      """
+    when: "save objects in XML format"
+      def result=runSaveAllObjects("Issue63", [pattern: "GHTVF"])
+    then: "project is saved"
+      assert result.jobId
+      assert result?.outcome == 'success'
+      assert getJobProperty("projectExported", result.jobId) == "1"
+  }
+
+  // save user
+  def "save user"() {
+    given: "admin user"
+    when: "save objects in XML format"
+      def result=runSaveAllObjects("saveUser", [exportUsers: "true", pattern: "admin"])
+    then: "admin user is saved"
+      assert result.jobId
+      assert result?.outcome == 'success'
+      assert getJobProperty("userExported", result.jobId) == "1"
+      assert fileExist("$backupDir/users/admin.xml")
+  }
+
+  // save project with /
+  def "issue 77 procedure with /"() {
+    given: "a projet with slash in the name"
+      dsl """
+        project "$proj77",
+          description: "for backup testing"
+      """
+    when: "save objects in XML format"
+      def result=runSaveAllObjects("saveUser", [pattern: "77"])
+    then: "project is saved and slash replaced"
+      assert result.jobId
+      assert result?.outcome == 'success'
+      assert getJobProperty("userExported", result.jobId) == "1"
+      assert fileExist("$backupDir/projects/Issue_77")
+      assert fileExist("$backupDir/projects/Issue_77/project.xml")
+      assert fileExist("$backupDir/projects/Issue_77/procedures/Issue_77")
+      assert fileExist("$backupDir/projects/Issue_77/procedures/Issue_77/procedure.xml")
   }
 
 }
