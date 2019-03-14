@@ -105,7 +105,8 @@ do {
 
     # Delete the pipeline
     if ($executeDeletion eq "true") {
-       InvokeCommander("SuppressLog", "deleteFlowRuntime", $flowRuntimeId) ;
+       InvokeCommander("SuppressLog", "deleteFlowRuntime",
+        {flowRuntimeId => $flowRuntimeId}) ;
        print "  Deleting flowRuntime\n\n";
     }
   }
