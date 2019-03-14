@@ -19,8 +19,8 @@ class restore extends PluginTestHelper {
 
   // Issue 64
   def "issue 64"() {
-    given:
-    when:
+    given: "a XML fileset"
+    when: "when restored"
       def result=runProcedureDsl """
         runProcedure(
           projectName: "/plugins/$pName/project",
@@ -34,7 +34,7 @@ class restore extends PluginTestHelper {
       def z=dsl """
         getZone(zoneName: "$zone")
       """
-    then:
+    then: "the zone exists"
       assert result.jobId
       assert result?.outcome == 'success'
       assert z.zone.zoneName == zone

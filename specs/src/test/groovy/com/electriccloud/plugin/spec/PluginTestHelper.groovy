@@ -123,4 +123,9 @@ class PluginTestHelper extends PluginSpockTestSupport {
     def file=new File(filename)
     return file.exists()
   }
+
+  def importXML(String filename) {
+    def res=dsl """import (file: "$filename", force: "1")"""
+    assert res
+  }
 }

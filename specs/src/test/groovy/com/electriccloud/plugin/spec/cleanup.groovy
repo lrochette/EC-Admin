@@ -32,6 +32,28 @@ class cleanup extends PluginTestHelper {
         println "Checking $proc"
         assert res[proc].procedure.procedureName == proc
       }
-   }
+  }
 
+  // Issue 5
+  def "issue5 - delete Completed pipeline"() {
+    given: "an old completed pipeline"
+      importXML("data/cleanup/pipe5_completed_1.xml")
+    when:
+      def res=runProcedureDsl("""
+        runProcedure(
+          projectName: "/plugins/$pName/project",
+          procedureName: "pipelinesCleanup",
+          actualParameter: [
+            olderThan: "360",
+            completed: "true",
+            pipelineProperty: "",
+            patternMatching: "",
+            chunkSize: "5",
+            executeDeletion: "1"
+          ]
+        )"""
+      )
+    then: " 1 pipeline was deleted"
+      assert getJobProperty("nbFlowRuntimes", red.jobId) == "1"
+  }
 }
