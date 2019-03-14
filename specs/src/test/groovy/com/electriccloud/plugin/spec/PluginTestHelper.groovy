@@ -41,18 +41,19 @@ class PluginTestHelper extends PluginSpockTestSupport {
   }
 
   def runProcedureDslAndRename(jobName, dslString) {
-    println "Running runProcedureDslAndRename"
+    println "##LR Running runProcedureDslAndRename"
     redirectLogs()
     assert dslString
+    println "##LR dstString" + dslString
 
     def result = dsl(dslString)
     assert result.jobId
-    println "Renaming job to $jobname"
-    
-    def renameJob=dsl """setJobName(
-      jobId: "${result.jobId},
-      newName: "saveAllObjects_$jobName_\$[/increment /server/counters/EC-Admin/jobCounter]"
-    ) """
+    // println "##LR Renaming job to $jobName"
+    // def counter=incrementP("/server/counters/$pName/jobCounter")
+    // def renameJob=dsl """setJobName(
+    //   jobId: "${result.jobId}",
+    //   newName: "saveAllObjects_${jobName}_$counter"
+    // ) """
 
     waitUntil {
      jobCompleted result.jobId
@@ -87,13 +88,18 @@ class PluginTestHelper extends PluginSpockTestSupport {
     return result?.property.value
   }
 
+ def incrementP(String path) {
+   def result = dsl """incrementProperty(propertyName: "$path")"""
+   return result?.property.value
+ }
+
   def getStepProperty(def jobId, def stepName, def propName) {
     assert jobId
     assert propName
 
     def prop
     def property = "/myJob/jobSteps/$stepName/$propName"
-    println "Trying to get property: $property, jobId: $jobId"
+    println "##LR Trying to get property: $property, jobId: $jobId"
     try {
       prop = getJobProperty(property, jobId)
     } catch (Throwable e) {
@@ -111,5 +117,10 @@ class PluginTestHelper extends PluginSpockTestSupport {
       return
     }
     dsl "deleteProject(projectName: '$projectName')"
+  }
+
+  def fileExist(String filename) {
+    def file=new File(filename)
+    return file.exists()
   }
 }
