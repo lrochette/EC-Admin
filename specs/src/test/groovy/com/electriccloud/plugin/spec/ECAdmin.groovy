@@ -7,7 +7,11 @@ class ECAdmin extends PluginTestHelper {
   @Shared String pluginName
 
   def doSetupSpec() {
-    dsl """resource 'ecadmin-lin', hostName: 'localhost' """
+    dsl """
+      resource 'ecadmin-lin',
+        hostName: 'localhost',
+        hostType: 'REGISTERED'
+    """
     dslFile "dsl/${pName}_Test.groovy"
     this.pluginName=getP("/plugins/$pName/project/projectName")
   }
