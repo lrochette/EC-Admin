@@ -1,4 +1,5 @@
 package com.electriccloud.plugin.spec
+import org.apache.tools.ant.BuildLogger
 
 /*
 Copyright 2018-2019 Electric Cloud, Inc.
@@ -48,12 +49,10 @@ class PluginTestHelper extends PluginSpockTestSupport {
 
     def result = dsl(dslString)
     assert result.jobId
-    // println "##LR Renaming job to $jobName"
-    // def counter=incrementP("/server/counters/$pName/jobCounter")
-    // def renameJob=dsl """setJobName(
-    //   jobId: "${result.jobId}",
-    //   newName: "saveAllObjects_${jobName}_$counter"
-    // ) """
+
+    logger.debug( "Renaming job to $jobName")
+    def counter=incrementP("/server/counters/$pName/jobCounter")
+    setProperty("/jobs/${result.jobId}/jobName", "saveAllObjects_${jobName}_$counter")
 
     waitUntil {
      jobCompleted result.jobId
@@ -117,6 +116,13 @@ class PluginTestHelper extends PluginSpockTestSupport {
       return
     }
     dsl "deleteProject(projectName: '$projectName')"
+  }
+
+  def conditionallyDeleteDirectory(String dir) {
+    if (System.getenv("LEAVE_TEST_DIRECTORIES")){
+      return
+    }
+    new AntBuilder().delete(dir:"$dir" )
   }
 
   def fileExist(String filename) {

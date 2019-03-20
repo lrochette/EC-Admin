@@ -23,15 +23,16 @@ class backup extends PluginTestHelper {
   }
 
   def doCleanupSpec() {
-   new AntBuilder().delete(dir:"$backupDir" )
-   dsl """
+    conditionallyDeleteDirectory(backupDir)
+    dsl """
       deleteGroup(groupName: "$group57")
       deleteGateway(gatewayName: "$gate58")
       deleteResource(resourceName: "$res58")
       deleteZone(zoneName: "$zone59")
-      deleteProject(projectname: "$project63")
     """
-  }
+    conditionallyDeleteProject(project63)
+    conditionallyDeleteProject(project77)
+ }
 
   def runSaveAllObjects(String jobName, def additionnalParams) {
     println "##LR Running runSaveAllObjects"
@@ -150,7 +151,7 @@ class backup extends PluginTestHelper {
   def "issue 63 - pattern"() {
     given: "a project"
       dsl """
-        project "$proj63",
+        project "$project63",
           description: "for backup testing"
       """
     when: "save objects in XML format"
@@ -174,18 +175,23 @@ class backup extends PluginTestHelper {
   }
 
   // save project with /
-  def "issue 77 procedure with /"() {
+  def "issue 77 procedure with slash"() {
     given: "a projet with slash in the name"
       dsl """
-        project "$proj77",
-          description: "for backup testing"
+        project "$project77",
+          description: "for backup testing", {
+            procedure "$project77", {
+              step 'echo',
+                command: "echo HelloWorld"
+            }
+          }
       """
     when: "save objects in XML format"
-      def result=runSaveAllObjects("saveUser", [pattern: "77"])
+      def result=runSaveAllObjects("Issue77", [pattern: "77"])
     then: "project is saved and slash replaced"
       assert result.jobId
       assert result?.outcome == 'success'
-      assert getJobProperty("userExported", result.jobId) == "1"
+      assert getJobProperty("projectExported", result.jobId) == "1"
       assert fileExist("$backupDir/projects/Issue_77")
       assert fileExist("$backupDir/projects/Issue_77/project.xml")
       assert fileExist("$backupDir/projects/Issue_77/procedures/Issue_77")
