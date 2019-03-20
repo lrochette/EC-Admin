@@ -12,6 +12,7 @@ class ECAdmin extends PluginTestHelper {
         hostName: 'localhost',
         hostType: 'REGISTERED'
     """
+    
     dslFile "dsl/${pName}_Test.groovy"
     this.pluginName=getP("/plugins/$pName/project/projectName")
   }
