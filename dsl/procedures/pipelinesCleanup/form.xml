@@ -1,0 +1,72 @@
+<editor>
+  <formElement>
+    <label>Delete pipelineRuntimes older than</label>
+    <property>olderThan</property>
+    <documentation>Indicate the numbers of days after which pipelineRuntimes should be
+      deleted. To specify a custom value, use the "Switch to property view"
+      icon located on the right hand side of the page, then type in the
+      exact number of days desired.</documentation>
+    <type>select</type>
+    <option><name>1 month</name><value>30</value></option>
+    <option><name>2 months</name><value>60</value></option>
+    <option><name>3 months</name><value>91</value></option>
+    <option><name>6 months</name><value>182</value></option>
+    <option><name>1 year</name><value>365</value></option>
+    <value>91</value>
+    <required>1</required>
+  </formElement>
+
+  <formElement>
+    <label>Delete only completed pipelineRuntimes </label>
+    <property>completed</property>
+    <documentation>Delete only completed pipelineRuntimes.</documentation>
+    <type>checkbox</type>
+    <checkedValue>true</checkedValue>
+    <uncheckedValue>false</uncheckedValue>
+    <initiallyChecked>1</initiallyChecked>
+    <value>true</value>
+  </formElement>
+
+  <formElement>
+    <label>Pipeline Runtime property</label>
+    <property>pipelineProperty</property>
+    <documentation>Name of a property attached to your pipelineRuntimes. If this
+      property is set, your pipelineRuntime won't be deleted.
+    </documentation>
+    <type>entry</type>
+    <value>doNotDelete</value>
+    <required>1</required>
+  </formElement>
+
+  <formElement>
+    <label>FlowRuntime Pattern matching</label>
+    <property>patternMatching</property>
+    <documentation>a SQL pattern matching to *SELECT* the flowRuntimes to delete.
+      The pattern must solve for a LIKE statement. if empty, no filtering will
+      apply.</documentation>
+    <type>entry</type>
+</formElement>
+
+  <formElement>
+    <label>Chunk Size</label>
+    <property>chunkSize</property>
+    <documentation>Indicate the maximum numbers of pipelineRuntimes to be
+      returned in each loop so you do not overload the system
+    </documentation>
+    <type>entry</type>
+    <value>200</value>
+    <required>1</required>
+  </formElement>
+
+  <formElement>
+    <label>Delete</label>
+    <property>executeDeletion</property>
+    <documentation>If this option is not set, only report is done. No real
+      data are deleted.</documentation>
+    <type>select</type>
+    <option><name>Report</name><value>false</value></option>
+    <option><name>Delete</name><value>true</value></option>
+    <value>false</value>
+  </formElement>
+
+</editor>

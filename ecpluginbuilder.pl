@@ -4,6 +4,7 @@
 #		https://github.com/electric-cloud/ecpluginbuilder
 
 use Getopt::Long;
+use XML::Simple qw(:strict);
 use Data::Dumper;
 use strict;
 use File::Copy;
@@ -14,7 +15,7 @@ my $ec = new ElectricCommander->new({timeout => 600});
 
 my $epb="../ecpluginbuilder";
 
-my $pluginVersion = "3.5.0";
+my $pluginVersion = "3.6.1";
 my $pluginKey = "EC-Admin";
 
 GetOptions ("version=s" => \$pluginVersion)
@@ -26,22 +27,37 @@ Error in command line arguments
 		)
 );
 
+# Fix version in plugin.xml
+# Update plugin.xml with  version,
+print "[INFO] - Processing 'META-INF/plugin.xml' file...\n";
+my $xs = XML::Simple->new(
+	ForceArray => 1,
+	KeyAttr    => { },
+	KeepRoot   => 1,
+);
+my $xmlFile = "META-INF/plugin.xml";
+my $ref  = $xs->XMLin($xmlFile);
+$ref->{plugin}[0]->{version}[0] = $pluginVersion;
+open(my $fh, '>', $xmlFile) or die "Could not open file '$xmlFile' $!";
+print $fh $xs->XMLout($ref);
+close $fh;
+
 # Read buildCounter
-my $buildCounter;
-{
-  local $/ = undef;
-  open FILE, "buildCounter" or die "Couldn't open file: $!";
-  $buildCounter = <FILE>;
-  close FILE;
-
- $buildCounter++;
- $pluginVersion .= ".$buildCounter";
- print "[INFO] - Incrementing build number to $buildCounter...\n";
-
- open FILE, "> buildCounter" or die "Couldn't open file: $!";
- print FILE $buildCounter;
- close FILE;
-}
+# my $buildCounter;
+# {
+#   local $/ = undef;
+#   open FILE, "buildCounter" or die "Couldn't open file: $!";
+#   $buildCounter = <FILE>;
+#   close FILE;
+#
+#  $buildCounter++;
+#  $pluginVersion .= ".$buildCounter";
+#  print "[INFO] - Incrementing build number to $buildCounter...\n";
+#
+#  open FILE, "> buildCounter" or die "Couldn't open file: $!";
+#  print FILE $buildCounter;
+#  close FILE;
+# }
 my $pluginName = "${pluginKey}-${pluginVersion}";
 
 

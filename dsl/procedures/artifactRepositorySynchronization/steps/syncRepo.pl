@@ -427,7 +427,7 @@ do {
 } while ($count > 0);
 
 $ec->setProperty("summary", "$sync artifact versions synchronized");
-
+$ec->setProperty("/myJob/avSynchronized", $sync);
 # Set status as error if we encountered any issue
 $ec->setProperty("summary", "$error synchronization errors detected") if ($error);
 
