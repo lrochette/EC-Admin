@@ -42,10 +42,8 @@ class PluginTestHelper extends PluginSpockTestSupport {
   }
 
   def runProcedureDslAndRename(jobName, dslString) {
-    println "##LR Running runProcedureDslAndRename"
     redirectLogs()
     assert dslString
-    println "##LR dstString" + dslString
 
     def result = dsl(dslString)
     assert result.jobId
@@ -60,7 +58,7 @@ class PluginTestHelper extends PluginSpockTestSupport {
     def logs = getJobLogs(result.jobId)
     def outcome = jobStatus(result.jobId).outcome
     logger.debug("DSL: $dslString")
-    logger.debug("Logs: $logs")
+    // logger.debug("Logs: $logs")
     logger.debug("Outcome: $outcome")
     [logs: logs, outcome: outcome, jobId: result.jobId]
   }
@@ -77,7 +75,7 @@ class PluginTestHelper extends PluginSpockTestSupport {
     def logs = getJobLogs(result.jobId)
     def outcome = jobStatus(result.jobId).outcome
     logger.debug("DSL: $dslString")
-    logger.debug("Logs: $logs")
+    // logger.debug("Logs: $logs")
     logger.debug("Outcome: $outcome")
     [logs: logs, outcome: outcome, jobId: result.jobId]
   }
@@ -98,7 +96,6 @@ class PluginTestHelper extends PluginSpockTestSupport {
 
     def prop
     def property = "/myJob/jobSteps/$stepName/$propName"
-    println "##LR Trying to get property: $property, jobId: $jobId"
     try {
       prop = getJobProperty(property, jobId)
     } catch (Throwable e) {
@@ -126,12 +123,72 @@ class PluginTestHelper extends PluginSpockTestSupport {
   }
 
   def fileExist(String filename) {
-    def file=new File(filename)
-    return file.exists()
+
+    def res=runProcedureDsl(
+      """
+        runProcedure(
+          projectName: "EC-Admin_Test",
+          procedureName: "fileExist",
+          actualParameter: [
+            fileList: '''$filename'''
+          ]
+        )
+      """
+    )
+    return res.outcome == "success"
   }
 
   def importXML(String filename) {
     def res=dsl """import (fileName: "$filename", force: "1")"""
     assert res
   }
+
+ //
+// Copied from PluginSpockTestSupport.groovy
+//
+
+  def runCommand(command) {
+    logger.debug("Command: $command")
+    def stdout = new StringBuilder()
+    def stderr = new StringBuilder()
+    def process = command.execute()
+    process.consumeProcessOutput(stdout, stderr)
+    process.waitForOrKill(20 * 1000)
+    logger.debug("STDOUT: $stdout")
+    logger.debug("STDERR: $stderr")
+    logger.debug("Exit code: ${process.exitValue()}")
+    def text = "$stdout\n$stderr"
+    assert process.exitValue() == 0
+    text
+  }
+
+
+  def publishArtifactVersion(String artifactName, String version, String dir) {
+    String commanderServer = System.getProperty("COMMANDER_SERVER") ?: 'localhost'
+    String username = System.getProperty('COMMANDER_USER') ?: 'admin'
+    String password = System.getProperty('COMMANDER_PASSWORD') ?: 'changeme'
+    String commanderHome = System.getenv('COMMANDER_HOME') ?: '/opt/EC/'
+    assert commanderHome: "Env COMMANDER_HOME must be provided"
+
+    String ectoolPath
+    if (System.properties['os.name'].toLowerCase().contains('windows')) {
+      ectoolPath = "bin/ectool.exe"
+    } else {
+      ectoolPath = "bin/ectool"
+    }
+    File ectool = new File(commanderHome, ectoolPath)
+    assert ectool.exists(): "File ${ectool.absolutePath} does not exist"
+
+    logger.debug("ECTOOL PATH: " + ectool.absolutePath.toString())
+
+    String command = "${ectool.absolutePath} --server $commanderServer "
+    runCommand("${command} login ${username} ${password}")
+
+    runCommand("${command} deleteArtifactVersion ${artifactName}:${version}")
+
+    String publishCommand = "${command} publishArtifactVersion --version $version --artifactName ${artifactName} "
+    publishCommand += "--fromDirectory $dir"
+    runCommand(publishCommand)
+  }
+
 }

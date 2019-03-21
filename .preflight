@@ -16,7 +16,7 @@
      <parameter><name>Run Unit Tests</name><value>false</value></parameter>
      <parameter><name>Send Report</name><value>false</value></parameter>
      <waitForJob>1</waitForJob>
-     <jobTimeout>3600</jobTimeout>
+     <jobTimeout>6000</jobTimeout>
    </procedure>
    <scm>
      <type>git</type>

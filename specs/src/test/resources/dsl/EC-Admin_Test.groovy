@@ -2,6 +2,45 @@
 project 'EC-Admin_Test', {
   description = 'procedure testing'
 
+procedure 'fileExist', {
+  description = 'Check to be sure file exist on the server or agent'
+  jobNameTemplate = '$[/myProcedure/procedureName]_$[/increment /server/counters/$[/myProject/projectName]/jobCounter]'
+
+  formalParameter 'resource',
+    defaultValue: 'local',
+    type: 'entry'
+
+  formalParameter 'fileList',
+    type: 'textarea',
+
+    required: '1'
+  step 'fileExist', {
+    description = '''Check that all files exist (1 per line)
+'''
+    command = '''$[/plugins/EC-Admin/project/scripts/perlHeaderJSON]
+
+my $fileList=getP("fileList");
+
+my $error=0;
+
+# displaying result using foreach loop
+foreach my $file (split(\'\\n\', $fileList))
+{
+  if (-e $file) {
+    print "YES $file\\n";
+  } else {
+    print "NO $file\\n";
+    $error++;
+  }
+}
+
+exit($error);
+$[/plugins/EC-Admin/project/scripts/perlLibJSON]
+'''
+    resourceName = '$[resource]'
+    shell = 'ec-perl'
+   }
+}
   procedure 'artifactRepoSyncTesting', {
     description = 'Do not delete. Called by ec-spec-tools'
 
@@ -151,7 +190,7 @@ $[/plugins/[EC-Admin]/project/scripts/perlCommonLib]'''
   }
 
   procedure 'semaphoreTest', {
-    jobNameTemplate = '$[/server/jobTemplate]'
+    jobNameTemplate = '$[/myProcedure/procedureName]_$[/increment /server/counters/$[/myProject/projectName]/jobCounter]'
 
     formalParameter 'token', defaultValue: '1', {
       required = '1'

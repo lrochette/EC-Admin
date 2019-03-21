@@ -198,4 +198,6 @@ class backup extends PluginTestHelper {
       assert fileExist("$backupDir/projects/Issue_77/procedures/Issue_77/procedure.xml")
   }
 
+  // Issue 74 case insensitive
+
 }
