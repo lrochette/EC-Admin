@@ -13,22 +13,22 @@ class licenseLogger extends PluginTestHelper {
 
   // Check procedures exist
   def "checkProcedures for licenseLogger"() {
-    given:
-    when:
-      def res1=dsl """
-        getProcedure(
-          projectName: "/plugins/$pName/project",
-          procedureName: "licenseLogger-snapshot"
-        ) """
-      def res2=dsl """
-        getProcedure(
-          projectName: "/plugins/$pName/project",
-          procedureName: "licenseLogger-report"
-        ) """
-
-    then:
-      assert res1?.procedure.procedureName == 'licenseLogger-snapshot'
-      assert res2?.procedure.procedureName == 'licenseLogger-report'
+    given: "a list of procedure"
+      def list= ["licenseLogger-snapshot", "licenseLogger-report"]
+      def res=[:]
+    when: "check for existence"
+      list.each { proc ->
+        res[proc]= dsl """
+          getProcedure(
+            projectName: "/plugins/$pName/project",
+            procedureName: "$proc"
+          ) """
+      }
+    then: "they exist"
+      list.each  {proc ->
+        println "Checking $proc"
+        assert res[proc].procedure.procedureName == proc
+      }
  }
 
   // Issue 52
@@ -41,7 +41,7 @@ class licenseLogger extends PluginTestHelper {
       def result = dsl """
        getAclEntry(
          principalType: 'group',
-         principalName: "everyone",
+         principalName: "Everyone",
          propertySheetId: "$psId"
        ) """
     then:
