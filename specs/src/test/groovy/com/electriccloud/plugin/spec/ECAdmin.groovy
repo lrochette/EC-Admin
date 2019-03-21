@@ -8,9 +8,14 @@ class ECAdmin extends PluginTestHelper {
 
   def doSetupSpec() {
     dsl """deleteResource(resourceName: 'ecadmin-lin')"""
+    def hostType="CONCURRENT"
+    if (System.getenv("HOSTTYPE")) {
+      hostType=System.getenv("HOSTTYPE")
+    }
     dsl """
       resource 'ecadmin-lin',
-        hostName: 'localhost'
+        hostName: 'localhost',
+        hostType: "$hostType"
     """
 
     dslFile "dsl/${pName}_Test.groovy"

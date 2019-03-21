@@ -49,7 +49,8 @@ class PluginTestHelper extends PluginSpockTestSupport {
     assert result.jobId
 
     logger.debug( "Renaming job to $jobName")
-    def counter=incrementP("/server/counters/$pName/jobCounter")
+    // def counter=incrementP("/server/counters/$pName/jobCounter")
+    def counter=getP("/server/counters/$pName/jobCounter")
     setProperty("/jobs/${result.jobId}/jobName", "saveAllObjects_${jobName}_$counter")
 
     waitUntil {

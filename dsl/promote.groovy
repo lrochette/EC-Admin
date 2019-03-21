@@ -38,7 +38,7 @@ project pluginName, {
 	}
 /*
   the whole projectAsCode has been archived
-  
+
   property 'pac_configurations', {
 		property 'cgi-bin', {
 			property 'jobMonitor.cgi', description: 'Monitors a job: waits for it to complete and reports on its success or failure.'
@@ -93,23 +93,26 @@ project pluginName, {
 	  startTime: '4:30',
 	  weekDays: 'Tuesday Thursday Saturday',
 	  actualParameter: [
-	    exportDeploy: 			 'true',
-	    exportGroups:        'true',
-	    exportResourcePools: 'true',
-	    exportResources: 		 'true',
-	    exportUsers: 				 'true',
-	    exportWorkspaces: 	 'true',
-			exportArtifacts: 		 'true',
-			exportGateways: 		 'true',
-			exportSteps: 				 'true',
-			exportZones: 				 'true',
+	    pathname: 					 '/tmp/BACKUP',
+      pool:                'default',
+      format:              'XML',
+			caseSensitive:       '',
+			relocatable: 				 'true',
 			includeACLs: 				 'true',
 			includeNotifiers: 	 'true',
-	    pathname: 					 '/tmp/BACKUP',
-			pattern: 						 '',
-			caseSensitive:       '',
-			relocatable: 				 'true'
-
+			exportSteps: 				 'true',
+	    exportResources: 		 'true',
+	    exportResourcePools: 'true',
+			exportGateways: 		 'true',
+			exportZones: 				 'true',
+	    exportWorkspaces: 	 'true',
+	    exportUsers: 				 'true',
+	    exportGroups:        'true',
+			exportArtifacts: 		 'true',
+	    exportDeploy: 			 'true',
+      exportServerProperties: 'true',
+      exportPlugins:       'false',
+      exportPersonas:      'true'
 	  ]
 }
 
