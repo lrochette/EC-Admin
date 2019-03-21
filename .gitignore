@@ -1,6 +1,6 @@
 src/out
 specs/logs/
-specs/.gradle/
+.gradle/
 specs/spec-report/
 specs/build
 *.swp
@@ -14,3 +14,4 @@ EC-Admin.jar
 .idea
 *.iml
 .DS_Store
+.preflight
