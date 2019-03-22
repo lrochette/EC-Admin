@@ -26,7 +26,8 @@ what it is now.</p>
   <p>This collection of procedures can be found on our
   <a href="https://github.com/electric-cloud-community/EC-Admin">GitHub repository</a>.
   It is available as a plugin delivered in the form of a .jar file or you can
-  simply get the source code and recompile it yourself.</p>
+  simply get the source code and recompile it yourself. It requires ElectricFlow
+  6.0 at a minimum.</p>
 
   <p>To install the plugin, use one the following methods:</p>
   <ul>
@@ -78,7 +79,7 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 
 		<li><a href="#backup">Object export backup and restore</a></li>
     <ul>
-      <li>saveProjects</li>
+ <!-- Obsolete     <li>saveProjects</li> -->
       <li>saveAllObjects</li>
       <li>restoreObjects</li>
     </ul>
@@ -98,10 +99,12 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 		<li><a href="#license">License Logger</a></li>
 		<li><a href="#postp">postp debugger helper</a></li>
 		<li><a href="#comm">Communication</a></li>
-    <li><a href="#misc">miscellaneous</a></li>
+ <!-- Obsolete
+    <li><a href="#misc">Miscellaneous</a></li>
     <ul>
       <li>findJobId</li>
     </ul>
+  -->
 	</ul>
 
 
@@ -111,9 +114,9 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
   <h1><a name="health"></a>System Health</h1>
 
   <h2>testResources</h2>
-  <p>This procedure is simply to test connection to all your resources or a
-    specific pool. This will create simple step to run an echo command on
-    alive resources.</p>
+  <p>This procedure is simply to test the connection to all your resources or a
+    specific resource pool. This will create simple steps to run an echo command on
+    "live" resources.</p>
   <table class="grid">
     <thead>
       <tr><th>Parameter</th><th>Description</th></tr>
@@ -129,11 +132,13 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
 
 	<h1><a name="look"></a>Look and Feel</h1>
 	<h2>changeBannerColor</h2>
-	<p>If you work on multiple Flow servers like a development and a
-		production instances, this procedure is for you. It allows you to change the color of the top banner and the logo to make it easier to identify your different servers. Feel free
-		to <a href="mailto:lrochette@electric-cloud.com">send me</a> new ones if you have a more artistic touch than me. Or better
-		push your changes to
-		<a href="https://github.com/electriccommunity/EC-Admin">GitHub</a>.</p>
+	<p>If you work on multiple Flow servers, for example a combination of
+    development and	production instances, this procedure is for you. It allows
+    you to change the color of the top banner and the logo to make it easier to
+    identify each instance. Feel free
+		to <a href="mailto:lrochette@electric-cloud.com">send me</a> new ones if you
+    have a more artistic touch than me. Or, better,
+		push your changes to	<a href="https://github.com/electric-cloud-community/EC-Admin">GitHub</a>.</p>
 
 	<table class="grid">
 	  <thead>
@@ -146,19 +151,20 @@ ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
       </tr>
       <tr>
         <td>Color code</td>
-        <td>Pick your own color (compatible with HTML CSS)if none of the above
-         are to your liking. If this field is not empty it will overwrite the color above.</td>
+        <td>Pick your own color (compatible with HTML CSS) if none of the above
+         are to your liking. If this field is not empty, it will overwrite the color
+         above.</td>
       </tr>
       <tr>
         <td>logo</td>
-        <td>Choose a set of pre-rendered logo to indicate
-if you server is of type DEV, SDK, TEST or PROD, in black or white to
+        <td>Choose from a set of pre-rendered logos to indicate
+if your server is of type DEV, SDK, TEST or PROD, in black or white to
 go along different background colors.</td>
       </tr>
       <tr>
         <td>logoFile</td>
         <td>The path on the Flow server to upload your own logo (up to
-          225x90 px). If this value is not blank it will overwritten the logo
+          225x90 px). If this value is not blank, it will overwrite the logo
           parameter above.</td>
       </tr>
       <tr>
@@ -168,7 +174,7 @@ go along different background colors.</td>
       </tr>
 	  </tbody>
 	</table>
-  <p><b>Note:</b> if you run your server and agent as different user
+  <p><b>Note:</b> if you run your server and agent as different users
   (as recommended), the agent won't be able to modify the following files:</p>
   <ul>
   	<li>INSTALL_DIR/apache/htdocs/commander/images/logo.gif</li>
@@ -186,7 +192,7 @@ go along different background colors.</td>
 
 	<h1><a name="runtimes"></a>Runtime objects and Workspaces management</h1>
 	<p>This set of procedures will help you manage your old jobs and the
-		associated workspaces.</p>
+		associated workspaces, as well as your old pipeline runtimes.</p>
 
 	<h2>jobsCleanup:</h2>
 	<p>A procedure to delete jobs older than a specified number of
@@ -203,23 +209,27 @@ days. It will also delete associated workspace job directories.</p>
       </tr>
       <tr>
         <td class='required'>jobType</td>
-        <td>Define what jobs should be deleted: Error, Warning or all.</td>
+        <td>Define what jobs should be deleted: Error, Warning, or All.</td>
       </tr>
       <tr>
         <td>jobProperty</td>
-        <td>Name of a property attached to your jobs. If this property is set, your job won't be deleted no matter how old it is.</td>
+        <td>Name of a property attached to your jobs. If this property is set,
+          your jobs won't be deleted no matter how old they are.</td>
       </tr>
       <tr>
         <td>jobPatternMatching</td>
-        <td>A SQL pattern matching to automatically preserve some jobs. The pattern must solve for a LIKE statement.</td>
+        <td>A SQL pattern matching to automatically preserve some jobs.
+          The pattern must solve for a LIKE statement aka 'Build%'.</td>
       </tr>
       <tr>
         <td class='required'>delete</td>
-        <td>If this option is not set, only report is done. No real data are deleted</td>
+        <td>If this option is not set, only reporting is executed. No real data
+          are deleted.</td>
       </tr>
       <tr>
         <td class='required'>computeUsage</td>
-        <td>Check off to skip the computation of the number of steps and the file space used for the job. This will speed up the execution.</td>
+        <td>Check off to skip the computation of the number of steps and the
+          file space used for the jobs. This will speed up the execution.</td>
     </tr>
     </tbody>
   </table>
@@ -237,32 +247,33 @@ days. It will also delete associated workspace job directories.</p>
     <tbody>
       <tr>
         <td class='required'>olderThan</td>
-        <td>Indicate the number of days after which pipeline runtimes are deleted</td>
+        <td>Indicates the number of days after which pipeline runtimes are deleted.</td>
       </tr>
       <tr>
         <td class='required'>Completed</td>
-        <td>If true will delete only completed pipeline runtimes.</td>
+        <td>If checked, the procedure will delete only completed pipeline runtimes.</td>
       </tr>
       <tr>
         <td class='required'>pipelineProperty</td>
         <td>Name of a property attached to your pipeline runtimes. If this
           property is set, your pipeline runtimes will not be deleted no matter
-          how old it is.</td>
+          how old they are.</td>
       </tr>
       <tr>
         <td>Pattern</td>
         <td>A SQL pattern matching to *SELECT* the flowRuntimes to delete.
-          The pattern must solve for a LIKE statement. If empty, no filtering will
-          apply</td>
+          The pattern must solve for a LIKE statement (aka 'deploy%'). If empty, no filtering will
+          apply.</td>
       </tr>
       <tr>
         <td class='required'>Chunk size</td>
         <td>Indicate the maximum numbers of pipelineRuntimes to be
-          returned in each loop so you do not overload the system</td>
+          returned in each loop so you do not overload the system.</td>
       </tr>
       <tr>
         <td class='required'>delete</td>
-        <td>If this option is not set, only report is done. No real data are deleted</td>
+        <td>If this option is not set, only reporting is executed. No real data are
+          deleted.</td>
       </tr>
 	  </tbody>
 	</table>
@@ -273,11 +284,11 @@ days. It will also delete associated workspace job directories.</p>
 	<h2>jobCleanup_byResult:</h2>
   <p>A procedure to delete jobs older than a specified number of days.
 It will also delete associated workspace job directories. It will keep the
-number of successful, failed and warning jobs you entered. You can also
-provide a property name, if this property is attached to the job, it won't be
+number of successful, failed, and warning jobs you entered. You can also
+provide a property name; if this property is attached to the job, it won't be
 deleted no matter how old. A report only mode prevents any real deletion.</p>
 
-  <h2>deleteWorksapceOrphans:</h2>
+  <h2>deleteWorkspaceOrphans:</h2>
 
   <p>A procedure to crawl a workspace directory to find orphan jobs
 (directories without a matching job) on a specified resource.</p>
@@ -285,21 +296,21 @@ deleted no matter how old. A report only mode prevents any real deletion.</p>
 	<h2>deleteObjects:</h2>
   <p>A procedure to quickly delete jobs or workflows older than a
 specified number of days. It will <b>not</b> delete associated workspace job
-directories. This is for customers with huge job or workflow database.</p>
+directories. This is for customers with a huge database.</p>
 
 
 	<h1><a name="plugin"></a>Plugins</h1>
 	<h2>Plugin Synchronization</h2>
 	<p>This procedure synchronizes plugins between the server and
 	a resource. Plugins are uploaded first as artifacts if it has not been
-	done already and then downloaded on the resource if it does not
+	done already and then downloaded on the resource if they do not
 	already exist in the plugins directory.</p>
 
 	<h1><a name="artifacts"></a>Artifact Management</h1>
 
 	<h2>artifactRepositorySynchronization</h2>
 
-	<p>Synchronize the content of a source artifact repositories to a target
+	<p>Synchronize the content of a source artifact repository to a target
 	one. You can use pattern matching to select specific artifact
 	versions to synchronize.</p>
 
@@ -324,11 +335,11 @@ directories. This is for customers with huge job or workflow database.</p>
            MyGrp:MyKey:* (all artifact versions with group MyGrp and key MyKey),<br/>
            MyGrp:* (all artifact versions with group MyGrp),<br/>
            * (all artifact versions. This is the default).<br/>
-           Multiple patterns can be separated by a semi-column</td>
+           Multiple patterns can be separated by a semi-colon.</td>
       </tr>
       <tr>
         <td>Batch Size</td>
-        <td>Number of artifact version to process at once. A high number
+        <td>Number of artifact versions to process at once. A high number
            could overwhelm your gateways.</td>
       </tr>
     </tbody>
@@ -340,9 +351,9 @@ directories. This is for customers with huge job or workflow database.</p>
   <h2>artifactsCleanup</h2>
 
 	<p>A procedure to delete artifact versions older than a specified number
-of days. Same as for jobs above, a property allows preventing the deletion. Once the
+of days. Same as for jobs above, a property can prevent the deletion. Once the
 artifacts have been deleted, artifact repositories and artifact caches are
-cleaned as well (deleting stale artifacts).  A report mode prevents any
+cleaned as well (deleting stale artifacts). A report mode prevents any
 real deletion.</p>
 
 	<h2>artifactsCleanup_byQuantity</h2>
@@ -359,20 +370,21 @@ ElectricCommander for a potential inclusion into your SCM for
 versioning.</p>
 
 	<h2>saveProjects</h2>
-  <p>This procedure simply exports your projects in a directory on the
-server. It is recommended to enable the nightly schedule associated
-with it to backup your projects on a regular basis.</p>
+  <p>This procedure has been obsoleted. It now simply calls "saveAllObjects". It
+    is still around for backward compatibility only.</p>
 
 	<h2>saveAllObjects</h2>
 
   <p>This procedure brings a finer granularity to a full server export.
 For  example, it may be easier to retrieve a simple project or procedure
-instead of the full server export or database backup to undo a wrong action
-or a bad code change. By  default it exports projects and each procedure
-individually. In addition by enabling the matching checkboxes, you can also
-export resources,  resource pools, workspaces, users and groups, and with 5.x
-and later ElectricFlow Deploy objects (Applications, Components and
-Environments). It is recommended to enable the nightly schedule associated
+instead of the full server export; or database backup to undo a wrong action
+or a bad code change. By  default, it exports projects and each procedure
+individually. In addition, by enabling the matching checkboxes, you can also
+export steps, ACLs, notifiers, resources and resource pools, workspaces,
+users and groups, gateways and zones, workspace definitions, artifacts and
+artifact versions (not the content itself);  and  ElectricFlow Deploy objects
+(Applications, Components, Environments, services, pipelines, releases, ...).
+It is recommended to enable the nightly schedule associated
 with it to backup your projects on a regular basis.</p>
 
 	<p><b>Note:</b> Use saveProjects or saveAllObjects depending on the
@@ -382,26 +394,56 @@ with it to backup your projects on a regular basis.</p>
     <thead><tr><th>Parameter</th><th>Description</th></tr></thead>
     <tbody>
       <tr>
-        <td class='required'>directory</td>
-        <td>The directory where to save the .xml files.</td>
+        <td class='required'>Backup directory</td>
+        <td>The directory where to save the files.</td>
       </tr>
       <tr>
-        <td>Pattern</td>
+        <td class='required'>Resource</td>
+        <td>The resource to use to save the files. With XML format, it has to
+          be a server resource; with DSL, it can be any agent.</td>
+      </tr>
+      <tr>
+        <td class='required'>Format</td>
+        <td>XMl (using export API) or DSL (using generateDsl API).</td>
+      </tr>
+      <tr>
+        <td>Filter Pattern</td>
         <td>A Perl regular expression to filter the objects to export.
-           For example "^B" indicates all object starting with a "B". The
+           For example "^B" indicates all objects starting with a "B". The
            pattern does not apply to the objects inside a project (except
            Deploy objects in the Default project).</td>
       </tr>
       <tr>
+        <td>Case sensitive</td>
+        <td>If checked, the regular expression above is evaluated in a case
+          sensitive mode.</td>
+      </tr>
+      <tr>
+        <td>Relocatable</td>
+        <td>If checked, it will include the relocatable option, XML mnode only.</td>
+      </tr>
+      <tr>
+        <td>ACls</td>
+        <td>If checked, it will include the ACLs with the objects.</td>
+      </tr>
+      <tr>
+        <td>Notifiers</td>
+        <td>If checked, it will include the notifiers with the objects (when it
+          applies). This is only meaningful for XML format.</td>
+      </tr>
+      <tr>
         <td>checkboxes</td>
-        <td>A checbox to enable export of the different kinds of objects.</td>
+        <td>A checkbox to enable export of the different kinds of objects.</td>
       </tr>
     </tbody>
   </table>
 
   <h2>restoreObjects</h2>
   <p>This procedure allows you to import all the .xml files in a directory.
-      Typically those have been created with saveAllObjects above.</p>
+      Typically those have been created with saveAllObjects above (XML mode only).<br />
+      For DSL code,
+      see <a href="https://github.com/electric-cloud-community/EC-DslDeploy">EC-DslDeploy</a>.
+    </p>
 
   <table class="grid">
     <thead><tr><th>Parameter</th><th>Description</th></tr></thead>
@@ -422,10 +464,12 @@ with it to backup your projects on a regular basis.</p>
   </table>
 
   <h1><a name="schedules"></a>Schedules</h1>
-  <p>This set of procedures is to help around schedule enabling and disabling which is very useful when you want to perform maintenace on your server.</p>
+  <p>This set of procedures is to help with schedule enabling and disabling.
+    It is very useful when you want to perform maintenace on your servers.</p>
 
   <h2>schedulesDisable</h2>
-	<p>This procedure disables all the enabled schedules and optionaly saves the list in a property.</p>
+	<p>This procedure disables all the enabled schedules and optionally saves the
+    list in a property.</p>
 
   <table class="grid">
     <thead><tr><th>Parameter</th><th>Description</th></tr></thead>
@@ -436,7 +480,8 @@ with it to backup your projects on a regular basis.</p>
       </tr>
       <tr>
         <td>Schedule list property</td>
-        <td>Property path used by the step to save the list of schedules disabled. Can be used by schedulesEnable.</td>
+        <td>Property path used by the step to save the list of schedules disabled.
+          Can then be used by schedulesEnable.</td>
       </tr>
     </tbody>
   </table>
@@ -445,7 +490,8 @@ with it to backup your projects on a regular basis.</p>
 			alt="schedulesDisable parameters" />
 
 	<h2>schedulesEnable</h2>
-	<p>This procedure enables schedules passed as a list in a property, typically saved by schedulesDisable.</p>
+	<p>This procedure enables schedules passed as a list in a property, typically
+    saved by schedulesDisable.</p>
 
   <table class="grid">
     <thead><tr><th>Parameter</th><th>Description</th></tr></thead>
@@ -477,9 +523,9 @@ with it to backup your projects on a regular basis.</p>
     as long as it will be readable and writable by the plugin.</p>
 
   <h2>acquireSemaphore</h2>
-  <p>This procedure is the "gate". It checks than you have not used more
+  <p>This procedure is the "gate". It checks that you have not used more
     tokens than allowed. If you have, it will simly wait until some become
-    available. This procedure is called just before the steps which access
+    available. This procedure is called just before the steps whose access
     you want to control.</p>
 
   <table class="grid">
@@ -503,7 +549,7 @@ with it to backup your projects on a regular basis.</p>
 		 alt="acquireSemaphore parameters" />
 
   <h2>releaseSemaphore</h2>
-  <p>This procedure simply "releases" of of the token for other to consume.</p>
+  <p>This procedure simply "releases" one of the tokens for others to consume.</p>
 
   <table class="grid">
    <thead><tr><th>Parameter</th><th>Description</th></tr></thead>
@@ -526,7 +572,7 @@ with it to backup your projects on a regular basis.</p>
 license-related statistics. It is implemented as a set of schedules and procedures,
 along with a set of configuration properties.</p>
 		<p>The configuration properties are located under /server/EC-Admin/licenseLogger/config.
-The property sheet is created upon promotion if it does not already exists.The following
+The property sheet is created upon promotion if it does not already exist. The following
 properties can be set up:</p>
 
   <table class="grid">
@@ -556,13 +602,19 @@ properties can be set up:</p>
 	</table>
 
 	<h1><a name="postp"></a>postp debugger helper</h1>
-	<p>The debugPostp is a simple procedure to help you debug with postp. Traditionally you would call postp from the command line with the jobStepId of the faulty postp and adding some additional option to see details. This new procedure does that for you on Linux and Windows, you just have to pass the jobStepId as a parameter.</p>
+	<p>The debugPostp is a simple procedure to help you debug 'postp'. Traditionally,
+    you would call 'postp' from the command line with the jobStepId of the faulty
+    'postp' call and add some additional options to see details. This new
+    procedure does that for you on Linux or Windows, you just have to specify
+     the jobStepId as a parameter.</p>
 
 	<h1><a name="comm"></a>Communication</h1>
-	<p>The sendAlert is a simple procedure to send a message to all registered users with an email address attached to the account. You can format your email in HTML by encapsulating it in a &lt;html&gt; tag.</p>
-
+	<p>The sendAlert is a simple procedure to send a message to all registered users
+    with an email address attached to the account. You can format your email in
+    HTML by encapsulating it in a &lt;html&gt; tag.</p>
+<!--
   <h1><a name="misc"></a>Miscellaneous</h1>
-  <p>For all those procedure I'm not sure where to put</p>
+  <p>For all those procedures that I'm not sure where to put.</p>
   <h2>findJobId</h2>
   <p>This procedure is designed for people migrating away from ElectricCommander
     4.2 to ElectricFlow 5.x or later. It will simply search in the step commands
@@ -578,19 +630,19 @@ properties can be set up:</p>
       </tr>
     </tbody>
   </table>
-
+-->
 
 	<h1>Contact authors</h1>
 	<dl>
-		<dt>License Logger</dt>
+		<dt>License Logger:</dt>
 		<dd>Mike Westerhof</dd>
 
-		<dt>deleteObjects</dt>
-    <dt>testResources</dt>
+		<dt>deleteObjects:</dt>
+    <dt>testResources:</dt>
 		<dd><a href="https://github.com/tanaynagjee">Tanay Nagjee</a></dd>
 
-    <dt>Other</dt>
-		<dd>Laurent Rochette (<a href="mailto:lrochette@electric-cloud.com">lrochette@electric-cloud.com</a>)</dd>
+    <dt>Everything else:</dt>
+		<dd> <a href="mailto:lrochette@electric-cloud.com">Laurent Rochette</a></dd>
 	</dl>
 
   <h1>Thanks</h1>
@@ -599,14 +651,16 @@ properties can be set up:</p>
   <p>Thanks to <a href="mailto:dhubbell@spkaa.com">David Hubbell</a> for his
   constant flow of fixes to my poor code.</p>
 
-	<h1>Legal Jumbo</h1>
+	<h1>Legal Mumbo Jumbo</h1>
 
-	<p>This module is free for use. Modify it however you see fit to better your
-experience using ElectricFlow. Share your enhancements and fixes.</p>
+	<p>This plugin is free for use. Modify it however you see fit to better your
+experience using ElectricFlow. Share
+your <a href="https://github.com/electric-cloud-community/EC-DslDeploy/issues">enhancements</a>
+and <a href="https://github.com/electric-cloud-community/EC-DslDeploy/pulls">fixes</a>.</p>
 
 	<p>This module is not officially supported by Electric Cloud. It has undergone no
 formal testing and you may run into issues that have not been uncovered in the
-limited manual testing done so far.</p>
+limited testing done so far.</p>
 
 	<p>Electric Cloud should not be held liable for any repercussions of using this
 software.</p>
