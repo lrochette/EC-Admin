@@ -20,7 +20,7 @@ else {
     $pluginDir = "$commanderPluginDir/$pluginName";
 }
 
-$logfile .= "Plugin directory is $pluginDir";
+$logfile .= "Plugin directory is $pluginDir\n";
 
 $commander->setProperty("/plugins/$pluginName/project/pluginDir", {value=>$pluginDir});
 $logfile .= "Plugin Name: $pluginName\n";
@@ -28,7 +28,13 @@ $logfile .= "Current directory: $dir\n";
 
 # Evaluate promote.groovy or demote.groovy based on whether plugin is being promoted or demoted ($promoteAction)
 local $/ = undef;
-
+# If env variable QUERY_STRING exists:
+my $dslFilePath;
+if(defined $ENV{QUERY_STRING}) { # Promotion through UI
+    $dslFilePath = File::Spec->catfile($ENV{COMMANDER_PLUGINS}, $pluginName, "dsl", "$promoteAction.groovy");
+} else {  # Promotion from the command line
+    $dslFilePath = File::Spec->catfile($pluginDir, "dsl", "$promoteAction.groovy");
+}
 
 my $demoteDsl = q{
 # demote.groovy placeholder
@@ -72,15 +78,14 @@ $commander->setProperty( "/plugins/$pluginName/project/logs/$nowString", { value
 die $errorMessage unless !$errorMessage;
 
 
-
 # I suppose, this should go in the promote.groovy or demote.groovy
 # promote/demote action
 if ( $promoteAction eq 'promote' ) {
-    local $self->{abortOnError} = 0;
+  local $self->{abortOnError} = 0;
 
-    # If the licenseLogger config PS does not already exist, create it
-    my $cfg = $commander->getProperty("/server/EC-Admin/licenseLogger/config");
-	if ($cfg->findvalue("//code") eq "NoSuchProperty") {
+  # If the licenseLogger config PS does not already exist, create it
+  my $cfg = $commander->getProperty("/server/EC-Admin/licenseLogger/config");
+  if ($cfg->findvalue("//code") eq "NoSuchProperty") {
         # we need the top PS later for the ACLs
         $commander->createProperty("/server/EC-Admin", {propertyType => 'sheet'});
 		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/emailTo", "admin",{description=>'comma separated list of userid or email'} );
@@ -90,17 +95,15 @@ if ( $promoteAction eq 'promote' ) {
 		$batch->setProperty( "/server/EC-Admin/licenseLogger/config/workspace", "default" );
 	}
 
-    # If the cleanup config PS does not already exist, create it
-    $cfg = $commander->getProperty("/server/EC-Admin/cleanup/config");
-    if ($cfg->findvalue("//code") eq "NoSuchProperty") {
-        $batch->setProperty( "/server/EC-Admin/cleanup/config/timeout", 600);
-    }
-
-    # Give project principal "Electric Cloud" write access to our project
-    my $projPrincipal = "project: Electric Cloud";
-    my $ecAdminProj = $pluginName;
+  # If the cleanup config PS does not already exist, create it
+  $cfg = $commander->getProperty("/server/EC-Admin/cleanup/config");
+  if ($cfg->findvalue("//code") eq "NoSuchProperty") {
+      $batch->setProperty( "/server/EC-Admin/cleanup/config/timeout", 600);
+  }
 
     # Give project Electric Cloud permission on ec_reportData
+    my $projPrincipal = "project: Electric Cloud";
+    my $ecAdminProj = $pluginName;
     $cfg = $commander->getProperty("ec_reportData", {projectName => $ecAdminProj});
     my $psId= $cfg->findvalue("//propertySheetId");
 
@@ -110,7 +113,7 @@ if ( $promoteAction eq 'promote' ) {
                 propertySheetId => $psId
             });
     if ($xpath->findvalue('//code') eq 'NoSuchAclEntry') {
-        $batch->createAclEntry("user", "project: Electric Cloud",
+        $batch->createAclEntry("user", $projPrincipal,
              {
                 projectName => $ecAdminProj,
                 propertySheetId => $psId,
@@ -123,7 +126,10 @@ if ( $promoteAction eq 'promote' ) {
     # Give Everyone permission on /server/counters/EC-Admin
     $cfg = $commander->getProperty("/server/counters/EC-Admin/jobCounter");
     if ($cfg->findvalue("//code") eq "NoSuchProperty") {
-        $batch->setProperty( "/server/counters/EC-Admin/jobCounter", 0);
+        $commander->setProperty( "/server/counters/EC-Admin/jobCounter", 0,
+          {
+            description => "job counter property for EC-Admin plugin"
+          });
     }
 
     $cfg=$commander->getProperty("/server/counters/EC-Admin");

@@ -74,7 +74,10 @@ class ECAdmin extends PluginTestHelper {
           propertySheetId: "$psId") """
     then:
       assert result
-  }
+      assert result.aclEntry.readPrivilege == "allow"
+      assert result.aclEntry.modifyPrivilege == "allow"
+      assert result.aclEntry.changePermissionsPrivilege == "allow"
+ }
 
   def "timeout_config_property"() {
     given:
