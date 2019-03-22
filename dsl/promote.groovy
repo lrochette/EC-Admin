@@ -36,6 +36,8 @@ project pluginName, {
 			}
 		}
 	}
+  property 'ec_reportData',
+    propertyType: 'sheet'
 /*
   the whole projectAsCode has been archived
 
@@ -48,7 +50,9 @@ project pluginName, {
 		}
 	}
 */
+
 	// Schedules
+  println "Creating sample schedule 'CleanJobs'"
 	schedule 'CleanJobs',
 	  description: 'A Schedule to automatically delete jobs older than 30 days',
 	  misfirePolicy: 'runOnce',
@@ -64,6 +68,7 @@ project pluginName, {
 	    olderThan: '30'
 	  ]
 
+  println "Creating sample schedule 'licenseLogger-reporter'"
 	schedule 'licenseLogger-reporter',
 	  description: 'Generates and (optionally) emails the periodic license report',
 	  misfirePolicy: 'runOnce',
@@ -75,6 +80,7 @@ project pluginName, {
 	    sendEmail: 'true'
 	  ]
 
+  println "Creating sample schedule 'licenseLogger-snapshot'"
 	schedule 'licenseLogger-snapshot',
 	  description: 'Gathers a periodic snapshot of license usage',
 	  interval: '5',
@@ -85,6 +91,7 @@ project pluginName, {
 	  startTime: '0:02',
 	  stopTime: '23:59'
 
+  println "Creating sample schedule 'weeklySaveProjects'"
 	schedule 'weeklySaveProjects',
 	  description: 'Export weekly a bunch of objects for grnualrity',
 	  misfirePolicy: 'runOnce',
@@ -115,6 +122,38 @@ project pluginName, {
       exportPersonas:      'true'
 	  ]
 }
+
+/*
+ JIRA PLUGINWIZ-58
+ moving ACLs back to create_ec_setup.pl
+
+// ACLs
+// Give Everyone permissions on /server/counters/EC-Admin
+println "Setting ACLs on /server/counters/EC-Admin"
+aclEntry(
+  principalType: "group",      principalName: "Everyone",
+  objectType: "propertySheet", path: "/server/counters/EC-Admin",
+  readPrivilege: "allow",      modifyPrivilege: "allow",
+  executePrivilege: "inherit", changePermissionsPrivilege: "inherit"
+)
+// Give plugin permission on /server/EC-Admin
+println "Setting ACLs on /server/EC-Admin"
+aclEntry(
+  principalType: "user",       principalName: "project: $pluginName",
+  objectType: "propertySheet", path: "/server/EC-Admin",
+  projectName: $pluginName,
+  readPrivilege: "allow",      modifyPrivilege: "allow",
+  executePrivilege: "inherit", changePermissionsPrivilege: "allow"
+)
+// Give project principal "Electric Cloud" write access to our project report PS
+println "Setting ACLs on /projects/$pluginName/ec_reportData"
+aclEntry(
+  principalType: "user",       principalName: "project: Electric Cloud",
+  objectType: "propertySheet", path: "/projects/$pluginName/ec_reportData",
+  readPrivilege: "allow",      modifyPrivilege: "allow",
+  executePrivilege: "inherit", changePermissionsPrivilege: "inherit"
+ )
+*/
 
 // Copy existing plugin configurations from the previous
 // version to this version. At the same time, also attach
