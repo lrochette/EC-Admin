@@ -1,7 +1,17 @@
 <h1>EC-Admin</h1>
 
-<p>EC-Admin is a collection of advanced management, optimization, and customization tools for ElectricFlow. It includes tools for bulk resource health checks, white labeling, log management, advanced backup, license statistics, debug tools, and more.</p>
-<p>EC-Admin is used in many ElectricFlow deployments and reflects.</p> 
+<p>EC-Admin is a collection of advanced management, optimization, and customization tools for ElectricFlow. It includes tools for 
+  <ul>
+    <li>Bulk resource health checks</li>
+    <li>White labeling</li>
+    <li>Log management</li>
+    <li>Advanced backup</li>
+    <li>License statistics</li>
+    <li>Debug tools</li>
+    <li>More</li>
+  </ul>
+</p>
+<p>EC-Admin is used in many ElectricFlow field deployments.</p> 
 <p>In June 2018, the plugin was been converted to the
   <a href="https://github.com/electric-cloud/PluginWizard">PluginWizard DSL</a>
   format so the whole plugin code is now managed on GitHub without the need to
