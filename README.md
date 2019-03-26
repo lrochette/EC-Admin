@@ -12,11 +12,11 @@
   </ul>
 </p>
 <p>EC-Admin is used in many ElectricFlow field deployments.</p> 
-<p>In June 2018, the plugin was been converted to the
+<p>In June 2018, the plugin was converted to the
   <a href="https://github.com/electric-cloud/PluginWizard">PluginWizard DSL</a>
   format so the whole plugin code is now managed on GitHub without the need to
   extract the project first.<br/>
-Note that added, 'promotion' of the plugin can take a couple of minutes.</p>
+Note that 'promotion' of the plugin may take a couple of minutes.</p>
 
 <p>Requirements:</p>
 <ul>
