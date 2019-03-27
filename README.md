@@ -1,15 +1,22 @@
 <h1>EC-Admin</h1>
 
-<p>EC-Admin is a collection of administrative procedures to help you
-manage your server. Its inception was sparked by requests from customers
-during my Professional Services engagements. It has grown over the years to what it is now.</p>
-
-<p>In June 2018, the plugin was been converted to the
+<p>EC-Admin is a collection of advanced management, optimization, and customization tools for ElectricFlow. It includes tools for 
+  <ul>
+    <li>Bulk resource health checks</li>
+    <li>White labeling</li>
+    <li>Log management</li>
+    <li>Advanced backup</li>
+    <li>License statistics</li>
+    <li>Debug tools</li>
+    <li>More</li>
+  </ul>
+</p>
+<p>EC-Admin is used in many ElectricFlow field deployments.</p> 
+<p>In June 2018, the plugin was converted to the
   <a href="https://github.com/electric-cloud/PluginWizard">PluginWizard DSL</a>
-  format so the whole plugin code is now managed on GiyHub without the need to
+  format so the whole plugin code is now managed on GitHub without the need to
   extract the project first.<br/>
-As a side effect the promotion of the plugin can take a couple of minutes as
-the DSL code as to be evaluated on the server.</p>
+Note that 'promotion' of the plugin may take a couple of minutes.</p>
 
 <p>Requirements:</p>
 <ul>
@@ -27,13 +34,11 @@ and build it yourself.</p>
 
 <p>To install the plugin, use one the following methods:</p>
 <ul>
-<li>the "Install from File/URL" tab in the administration/Plugins</li>
-<li>the Perl "$ec->installPlugin()" API.</li>
-<li> the CLI client "ectool installPlugin --force 1 EC-Admin.jar</li>
+<li>ElecricFlow Administration/Plugins UI - "Install from File/URL"</li>
+<li>CLI - "ectool installPlugin --force 1 EC-Admin.jar</li>
+<li>Perl - "$ec->installPlugin()" API.</li>
 </ul>
-<p>Don't forget to promote the plugin after installation. Now the plugin has
-  been converted to PluginWizard and DSL format, the promotion takes a little
-  longer. You have to increase to DSL timeout setting to at least 180 (3 minutes).</p>
+<p>Don't forget to promote the plugin after installation. You may have to increase the DSL timeout setting to 3 minutes.</p>
 
 <p>To install on 4.0.x or or 4.1.x, import the EC_4.0.xml file. Be
 aware that some features are not present as the original project
