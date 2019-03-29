@@ -1,6 +1,6 @@
 <h1>EC-Admin</h1>
 
-<p>EC-Admin is a collection of advanced management, optimization, and customization tools for ElectricFlow. It includes tools for
+<p>EC-Admin is a collection of advanced management, optimization, and customization tools for ElectricFlow. It includes tools for:
   <ul>
     <li>Bulk resource health checks</li>
     <li>White labeling</li>
@@ -26,11 +26,9 @@
 </p>The official stable version can be found in the plugins
   catalog or in
   our <a href="https://electric-cloud.com/plugins/directory/p/ec-admin">plugins directory</a>.</p>
-  <p>This collection of procedures can be found on our
-  <a href="https://github.com/electric-cloud-community/EC-Admin">GitHub
-  repository</a>. You can also follow development
+  <p>You can also follow development
   in our <a href="https://github.com/electric-cloud-community/EC-Admin">Community
-  GitHub repository</a>.</p>
+  GitHub repository</a>. For latest code development, check the <a href="https://github.com/lrochette/EC-Admin">maintainer's fork</a>.</p>
 <p> It is available as a plugin delivered in the form of
 a .jar file.</p>
 
@@ -45,7 +43,8 @@ a .jar file.</p>
 <p>To install on 4.0.x or or 4.1.x, import the EC_4.0.xml file. Be
 aware that some features are not present as the original project
 makes use of createJobStep() API which was introduced in 4.2.0:<br/>
-ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1</p>
+```ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1```
+</p>
 
 <h1>Contact authors</h1>
 <dl>
