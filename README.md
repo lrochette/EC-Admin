@@ -14,8 +14,16 @@
 <p>EC-Admin is used in many ElectricFlow field deployments.</p>
 <p>In June 2018, the plugin was converted to the
   <a href="https://github.com/electric-cloud/PluginWizard">PluginWizard DSL</a>
-  format so the whole plugin code is now managed on GitHub without the need to extract the project first.</p>
+  format so the whole plugin code is now managed on GitHub without the need
+  to extract the project first.</p>
 
+</p>The official stable version can be found in the plugins
+  catalog or in
+  our <a href="https://electric-cloud.com/plugins/directory/p/ec-admin">plugins directory</a>.</p>
+  <p>You can also follow development
+  in our <a href="https://github.com/electric-cloud-community/EC-Admin">Community
+  GitHub repository</a>. For latest code development, check the <a href="https://github.com/lrochette/EC-Admin">maintainer's fork</a>.</p>
+  
 <p>Requirements:</p>
 <ul>
   <li>Electric Flow 6.0 minimum</li>
@@ -23,20 +31,15 @@
 </ul>
 
 <h2><a name="installation"></a>Installation</h2>
-</p>The official stable version can be found in the plugins
-  catalog or in
-  our <a href="https://electric-cloud.com/plugins/directory/p/ec-admin">plugins directory</a>.</p>
-  <p>You can also follow development
-  in our <a href="https://github.com/electric-cloud-community/EC-Admin">Community
-  GitHub repository</a>. For latest code development, check the <a href="https://github.com/lrochette/EC-Admin">maintainer's fork</a>.</p>
+
 <p> It is available as a plugin delivered in the form of
 a .jar file.</p>
 
 <p>To install the plugin, use one the following methods:</p>
 <ul>
 <li>ElecricFlow Administration/Plugins UI - "Install from File/URL"</li>
-<li>CLI - "ectool installPlugin --force 1 EC-Admin.jar</li>
-<li>Perl - "$ec->installPlugin()" API.</li>
+<li>CLI - `ectool installPlugin --force 1 EC-Admin.jar` </li>
+<li>Perl - `$ec->installPlugin()" API`.</li>
 </ul>
 <p>Don't forget to promote the plugin after installation.</p>
 
