@@ -43,7 +43,9 @@ a .jar file.</p>
 <p>To install on 4.0.x or or 4.1.x, import the EC_4.0.xml file. Be
 aware that some features are not present as the original project
 makes use of createJobStep() API which was introduced in 4.2.0:<br/>
+
 ```ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1```
+
 </p>
 
 <h1>Contact authors</h1>
