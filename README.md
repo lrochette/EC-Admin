@@ -38,13 +38,13 @@ To install the plugin, use one the following methods:
 
 * ElecricFlow Administration/Plugins UI - "Install from File/URL"
 * CLI - `ectool installPlugin --force 1 EC-Admin.jar`
-* Perl - `$ec->installPlugin()" API`.
+* Perl - `$ec->installPlugin()` API.
 
 Don't forget to promote the plugin after installation.
 
-o install on 4.0.x or or 4.1.x, import the EC_4.0.xml file. Be
+To install on 4.0.x or or 4.1.x, import the EC_4.0.xml file. Be
 aware that some features are not present as the original project
-makes use of createJobStep() API which was introduced in 4.2.0:
+makes use of `createJobStep()` API which was introduced in 4.2.0:
 
 ```ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1```
 
@@ -53,14 +53,14 @@ makes use of createJobStep() API which was introduced in 4.2.0:
 # Contact authors
 
 * License Logger:
-..* Mike Westerhof
+  * Mike Westerhof
 
 * deleteObjects:
 * testResources:
-..* [Tanay Nagjee](https://github.com/tanaynagjee)
+  * [Tanay Nagjee](https://github.com/tanaynagjee)
 
 * Everything else:
-..*  [Laurent Rochette](mailto:lrochette@electric-cloud.com)
+  *  [Laurent Rochette](mailto:lrochette@electric-cloud.com)
 
 
 # Thanks
