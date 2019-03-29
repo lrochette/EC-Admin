@@ -11,77 +11,74 @@ tools for ElectricFlow. It includes tools for:
 * Debug tools
 * More
 
-</p>
-<p>EC-Admin is used in many ElectricFlow field deployments.</p>
-<p>In June 2018, the plugin was converted to the
-  <a href="https://github.com/electric-cloud/PluginWizard">PluginWizard DSL</a>
-  format so the whole plugin code is now managed on GitHub without the need
-  to extract the project first.</p>
+EC-Admin is used in many ElectricFlow field deployments.
 
-</p>The official stable version can be found in the plugins
-  catalog or in
-  our <a href="https://electric-cloud.com/plugins/directory/p/ec-admin">plugins
-  directory</a>. You can also follow development
-  in our <a href="https://github.com/electric-cloud-community/EC-Admin">Community
-  GitHub repository</a>. For the latest code changes, check
-  the <a href="https://github.com/lrochette/EC-Admin">maintainer's fork</a>.</p>
+In June 2018, the plugin was converted to the [Plugin Wizard DSL framework](https://github.com/electric-cloud/PluginWizard)
+format so the whole plugin code is now managed on GitHub without the need
+to extract the project first. In March 2019, the plugin was furthermore
+converted to the new [plugin builder](https://github.com/electric-cloud/ec-plugin-tool)
+to inprove promotion time
 
-<p>Requirements:</p>
-<ul>
-  <li>Electric Flow 6.0 minimum
-  <li>EC-PluginManager 1.4.0
-</ul>
+The official stable version can be found in the plugins catalog or in
+our [plugins directory](https://electric-cloud.com/plugins/directory/p/ec-admin).
+You can also follow development in our [Community GitHub repository](https://github.com/electric-cloud-community/EC-Admin).
+For the latest code changes, check the [maintainer's fork](https://github.com/lrochette/EC-Admin)
 
-<h2><a name="installation"></a>Installation</h2>
+Requirements:
 
-<p> It is available as a plugin delivered in the form of
-a .jar file.</p>
+* Electric Flow 6.0 minimum
+* EC-PluginManager 1.4.0
 
-<p>To install the plugin, use one the following methods:</p>
-<ul>
-<li>ElecricFlow Administration/Plugins UI - "Install from File/URL"
-<li>CLI - `ectool installPlugin --force 1 EC-Admin.jar`
-<li>Perl - `$ec->installPlugin()" API`.
-</ul>
-<p>Don't forget to promote the plugin after installation.</p>
 
-<p>To install on 4.0.x or or 4.1.x, import the EC_4.0.xml file. Be
+## Installation
+
+It is available as a plugin delivered in the form of a .jar file.
+
+To install the plugin, use one the following methods:
+
+* ElecricFlow Administration/Plugins UI - "Install from File/URL"
+* CLI - `ectool installPlugin --force 1 EC-Admin.jar`
+* Perl - `$ec->installPlugin()" API`.
+
+Don't forget to promote the plugin after installation.
+
+o install on 4.0.x or or 4.1.x, import the EC_4.0.xml file. Be
 aware that some features are not present as the original project
-makes use of createJobStep() API which was introduced in 4.2.0:<br/>
+makes use of createJobStep() API which was introduced in 4.2.0:
 
 ```ectool import /path_to/EC-Admin_for_EC_4.0.xml --disableSchedules 1```
 
-</p>
 
-<h1>Contact authors</h1>
-<dl>
-<dt>License Logger:</dt>
-<dd>Mike Westerhof</dd>
 
-<dt>deleteObjects:</dt>
-<dt>testResources:</dt>
-<dd><a href="https://github.com/tanaynagjee">Tanay Nagjee</a></dd>
+# Contact authors
 
-<dt>Everything else:</dt>
-<dd> <a href="mailto:lrochette@electric-cloud.com">Laurent Rochette</a></dd>
-</dl>
+* License Logger:
+..* Mike Westerhof
 
-<h1>Thanks</h1>
-<p>Thanks to Mark Hall for providing the Dev and Prod logos for
-  changeBannerColor.</p>
-<p>Thanks to <a href="mailto:dhubbell@spkaa.com">David Hubbell</a> for his
-constant flow of fixes to my poor code.</p>
+* deleteObjects:
+* testResources:
+..* [Tanay Nagjee](https://github.com/tanaynagjee)
 
-<h1>Legal Mumbo Jumbo</h1>
+* Everything else:
+..*  [Laurent Rochette](mailto:lrochette@electric-cloud.com)
 
-<p>This plugin is free for use. Modify it however you see fit to better your
+
+# Thanks
+Thanks to Mark Hall for providing the Dev and Prod logos for changeBannerColor.
+
+Thanks to [David Hubbell](mailto:dhubbell@spkaa.com) for his constant flow of
+fixes to my poor code.
+
+# Legal Mumbo Jumbo
+
+This plugin is free for use. Modify it however you see fit to better your
 experience using ElectricFlow. Share
-your <a href="https://github.com/electric-cloud-community/EC-DslDeploy/issues">enhancements</a>
-and <a href="https://github.com/electric-cloud-community/EC-DslDeploy/pulls">fixes</a>.</p>
+your [enhancements](https://github.com/electric-cloud-community/EC-DslDeploy/issues)
+and [fixes](https://github.com/electric-cloud-community/EC-DslDeploy/pulls)
 
-<p>This module is not officially supported by Electric Cloud. It has undergone no
+This module is not officially supported by Electric Cloud. It has undergone no
 formal testing and you may run into issues that have not been uncovered in the
-limited testing done so far.</p>
+limited testing done so far.
 
-<p>Electric Cloud should not be held liable for any repercussions of using this
-software.</p>
+[Electric Cloud](https://www.electric-cloud.com) should not be held liable for
+any repercussions of using this plugin.
