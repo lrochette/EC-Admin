@@ -39,6 +39,27 @@ class ECAdmin extends PluginTestHelper {
       // assert prop.property.value == 'pickListOnly'
     }
 
+  // Check schedules exist
+  def "checkSchedules"() {
+    given:  "a list of schedules"
+      def list= ['CleanJobs', 'licenseLogger-reporter', 'licenseLogger-snapshot',
+       'weeklySaveProjects']
+      def res=[:]
+    when: "check for existence"
+       list.each { sched ->
+         res[sched]= dsl """
+           getSchedule(
+             projectName: "/plugins/$pName/project",
+             scheduleName: "$sched"
+           ) """
+       }
+    then: "they exist"
+      list.each  { sched ->
+        println "Checking schedule $sched"
+        assert res[sched].schedule.scheduleName == sched
+    }
+  }
+
   // Check properties /plugins/$pName/projects/scripts work properly
   def "scripts_perlCommonLib"() {
     given:
