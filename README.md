@@ -1,4 +1,4 @@
-#EC-Admin
+# EC-Admin
 
 EC-Admin is a collection of advanced management, optimization, and customization
 tools for ElectricFlow. It includes tools for:
