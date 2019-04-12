@@ -36,7 +36,7 @@ It is available as a plugin delivered in the form of a .jar file.
 
 To install the plugin, use one the following methods:
 
-* ElecricFlow Administration/Plugins UI - "Install from File/URL"
+* ElectricFlow Administration/Plugins UI - "Install from File/URL"
 * CLI - `ectool installPlugin --force 1 EC-Admin.jar`
 * Perl - `$ec->installPlugin()` API.
 

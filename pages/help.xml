@@ -656,15 +656,15 @@ properties can be set up:</p>
 
 	<p>This plugin is free for use. Modify it however you see fit to better your
 experience using ElectricFlow. Share
-your <a href="https://github.com/electric-cloud-community/EC-DslDeploy/issues">enhancements</a>
-and <a href="https://github.com/electric-cloud-community/EC-DslDeploy/pulls">fixes</a>.</p>
+your <a href="https://github.com/electric-cloud-community/EC-Admin/issues">enhancements</a>
+and <a href="https://github.com/electric-cloud-community/EC-Admin/pulls">fixes</a>.</p>
 
-	<p>This module is not officially supported by Electric Cloud. It has undergone no
+	<p>This plugin is not officially supported by Electric Cloud. It has undergone no
 formal testing and you may run into issues that have not been uncovered in the
 limited testing done so far.</p>
 
 	<p>Electric Cloud should not be held liable for any repercussions of using this
-software.</p>
+plugin.</p>
 </div>
 </body>
 </html>
